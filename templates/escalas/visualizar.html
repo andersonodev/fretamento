@@ -1,0 +1,1665 @@
+{% extends 'base.html' %}
+
+{% block title %}Visualizar Escala - {{ escala.data|date:"d/m/Y" }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Cabeçalho -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="mb-0">
+                        <i class="fas fa-calendar-check text-primary"></i>
+                        Escala - {{ escala.data|date:"l, d/m/Y" }}
+                    </h1>
+                    <p class="text-muted">
+                        Status: <span class="badge bg-{% if escala.etapa == 'ESTRUTURA' %}secondary{% elif escala.etapa == 'DADOS_PUXADOS' %}primary{% else %}success{% endif %}">{{ escala.get_etapa_display }}</span>
+                        {% if escala.data_origem %}
+                            | Dados de: {{ escala.data_origem|date:"d/m/Y" }}
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="btn-group" role="group">
+                    <a href="{% url 'escalas:gerenciar_escalas' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </a>
+                    {% if escala.tem_dados %}
+                        <a href="{% url 'escalas:exportar_escala' data=escala.data|date:'Y-m-d' %}" class="btn btn-success">
+                            <i class="fas fa-file-excel"></i> Exportar Excel
+                        </a>
+                    {% endif %}
+                    {% if escala.etapa == 'DADOS_PUXADOS' %}
+                        <form method="post" action="{% url 'escalas:gerenciar_escalas' %}" class="d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="data" value="{{ escala.data|date:'Y-m-d' }}">
+                            <button type="submit" name="acao" value="otimizar" class="btn btn-warning">
+                                <i class="fas fa-magic"></i> Otimizar Escala
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if not escala.tem_dados %}
+        <!-- Estrutura Criada - Instruções -->
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <h5><i class="fas fa-info-circle"></i> Estrutura Criada com Sucesso!</h5>
+                    <p class="mb-2">A estrutura básica da escala foi criada. Agora você pode:</p>
+                    <a href="{% url 'escalas:puxar_dados' data=escala.data|date:'Y-m-d' %}" class="btn btn-primary">
+                        <i class="fas fa-download"></i> Puxar Dados de uma Data
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <!-- Instruções Kanban -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <h6><i class="fas fa-info-circle"></i> Sistema Kanban Avançado</h6>
+                    <ul class="mb-0 small">
+                        <li><strong>Mover entre vans:</strong> Arraste um serviço para o espaço vazio da outra van</li>
+                        <li><strong>Agrupar serviços:</strong> Arraste um serviço e solte BEM NO CENTRO de outro cartão</li>
+                        <li><strong>Indicadores visuais:</strong> Verde = Agrupar | Azul = Mover para van</li>
+                        <li><strong>Desagrupar individual:</strong> Duplo clique no cartão OU clique no botão <i class="fas fa-unlink text-danger"></i></li>
+                        <li><strong>Desagrupar completo:</strong> Clique direito no cartão → "Desagrupar grupo completo"</li>
+                        <li><strong>Menu de contexto:</strong> Clique direito em qualquer cartão para mais opções</li>
+                        <li><strong>Filtrar:</strong> Use os filtros acima para encontrar serviços específicos</li>
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumo Geral -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card text-white bg-primary">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">
+                            <i class="fas fa-users"></i> Total PAX
+                        </h5>
+                        <h3>{{ van1.total_pax|add:van2.total_pax }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-success">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">
+                            <i class="fas fa-dollar-sign"></i> Valor Total
+                        </h5>
+                        <h3>R$ {{ van1.total_valor|add:van2.total_valor|floatformat:2 }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-info">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">
+                            <i class="fas fa-layer-group"></i> Total Serviços
+                        </h5>
+                        <h3>{{ total_servicos }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white {% if escala.esta_otimizada %}bg-success{% else %}bg-warning{% endif %}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">
+                            <i class="fas fa-magic"></i> Status
+                        </h5>
+                        <h6>{% if escala.esta_otimizada %}Otimizada{% else %}Distribuição Básica{% endif %}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card border-info">
+                    <div class="card-header bg-light">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-filter text-info"></i> Filtros de Busca
+                            <button class="btn btn-sm btn-outline-secondary ms-2" id="clearFilters">
+                                <i class="fas fa-times"></i> Limpar
+                            </button>
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <!-- Filtro por PAX -->
+                            <div class="col-md-3">
+                                <label for="filtro-pax" class="form-label small">
+                                    <i class="fas fa-users text-primary"></i> PAX
+                                </label>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" id="filtro-pax-min" placeholder="Min" min="1">
+                                    <span class="input-group-text">até</span>
+                                    <input type="number" class="form-control" id="filtro-pax-max" placeholder="Max" min="1">
+                                </div>
+                            </div>
+                            
+                            <!-- Filtro por Serviço -->
+                            <div class="col-md-4">
+                                <label for="filtro-servico" class="form-label small">
+                                    <i class="fas fa-map-marker-alt text-danger"></i> Serviço/Destino
+                                </label>
+                                <input type="text" class="form-control form-control-sm" id="filtro-servico" 
+                                       placeholder="Digite para filtrar por serviço...">
+                            </div>
+                            
+                            <!-- Filtro por Local Pickup -->
+                            <div class="col-md-3">
+                                <label for="filtro-pickup" class="form-label small">
+                                    <i class="fas fa-location-dot text-warning"></i> Local Pickup
+                                </label>
+                                <input type="text" class="form-control form-control-sm" id="filtro-pickup" 
+                                       placeholder="Digite para filtrar pickup...">
+                            </div>
+                            
+                            <!-- Filtro por Van -->
+                            <div class="col-md-2">
+                                <label for="filtro-van" class="form-label small">
+                                    <i class="fas fa-van-shuttle text-info"></i> Van
+                                </label>
+                                <select class="form-select form-select-sm" id="filtro-van">
+                                    <option value="">Todas</option>
+                                    <option value="VAN1">Van 1</option>
+                                    <option value="VAN2">Van 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Estatísticas de Filtro -->
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted" id="filtro-stats">
+                                        Mostrando todos os serviços
+                                    </small>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <button type="button" class="btn btn-outline-primary" id="filtro-pax-alto" title="PAX Alto (4+)">
+                                            <i class="fas fa-users"></i> 4+
+                                        </button>
+                                        <button type="button" class="btn btn-outline-success" id="filtro-pax-medio" title="PAX Médio (7+)">
+                                            <i class="fas fa-users"></i> 7+
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger" id="filtro-pax-muito-alto" title="PAX Muito Alto (10+)">
+                                            <i class="fas fa-users"></i> 10+
+                                        </button>
+                                        <button type="button" class="btn btn-outline-warning" id="filtro-transfer" title="Transfers">
+                                            <i class="fas fa-car"></i> Transfer
+                                        </button>
+                                        <button type="button" class="btn btn-outline-info" id="filtro-tour" title="Tours">
+                                            <i class="fas fa-route"></i> Tour
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informações sobre Grupos (se existirem) -->
+        {% if grupos_van1 or grupos_van2 %}
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-layer-group text-success"></i> 
+                            Grupos de Serviços
+                            <small class="text-muted">({{ grupos_van1.count|add:grupos_van2.count }} grupos ativos)</small>
+                        </h6>
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="row">
+                            {% if grupos_van1 %}
+                                <div class="col-md-6">
+                                    <h6 class="text-primary mb-2">Van 1</h6>
+                                    {% for grupo in grupos_van1 %}
+                                        <div class="card mb-2 border-success">
+                                            <div class="card-body p-2">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <strong>Grupo #{{ grupo.id }}</strong>
+                                                        <small class="d-block text-muted">{{ grupo.cliente_principal }}</small>
+                                                    </div>
+                                                    <div class="text-end">
+                                                        <span class="badge bg-success">{{ grupo.servicos.count }} serviços</span>
+                                                        <small class="d-block text-muted">{{ grupo.total_pax }} PAX</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            
+                            {% if grupos_van2 %}
+                                <div class="col-md-6">
+                                    <h6 class="text-primary mb-2">Van 2</h6>
+                                    {% for grupo in grupos_van2 %}
+                                        <div class="card mb-2 border-success">
+                                            <div class="card-body p-2">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <strong>Grupo #{{ grupo.id }}</strong>
+                                                        <small class="d-block text-muted">{{ grupo.cliente_principal }}</small>
+                                                    </div>
+                                                    <div class="text-end">
+                                                        <span class="badge bg-success">{{ grupo.servicos.count }} serviços</span>
+                                                        <small class="d-block text-muted">{{ grupo.total_pax }} PAX</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Interface Kanban - Van 1 e Van 2 -->
+        <div class="row" id="kanban-container">
+            <!-- Van 1 -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-van-shuttle"></i> Van 1
+                            <span class="badge bg-light text-dark ms-2">{{ van1.total_pax }} PAX</span>
+                            <span class="badge bg-light text-dark ms-1">R$ {{ van1.total_valor|floatformat:2 }}</span>
+                            <span class="badge bg-light text-dark ms-1">{{ van1.count }} serviços</span>
+                        </h5>
+                    </div>
+                    <div class="card-body p-2" id="van1-container" data-van="VAN1">
+                        {% for alocacao in van1.servicos %}
+                            <div class="servico-card" 
+                                 data-alocacao-id="{{ alocacao.id }}" 
+                                 data-servico-id="{{ alocacao.servico.id }}"
+                                 data-pax="{{ alocacao.servico.pax }}"
+                                 data-servico="{{ alocacao.servico.servico|lower }}"
+                                 data-pickup="{{ alocacao.servico.local_pickup|lower|default:'' }}"
+                                 data-van="VAN1"
+                                 draggable="true">
+                                <div class="card mb-2 border {% if alocacao.grupo_info %}border-success{% endif %}" {% if alocacao.grupo_info %}title="Duplo clique para desagrupar | Clique direito para mais opções"{% endif %}>
+                                    {% if alocacao.grupo_info %}
+                                        <div class="card-header p-1 bg-light">
+                                            <small class="text-success">
+                                                <i class="fas fa-layer-group"></i> 
+                                                Grupo {{ alocacao.grupo_info.grupo.id }} 
+                                                ({{ alocacao.grupo_info.grupo.servicos.count }} serviços){% if alocacao.grupo_info.grupo.get_vendas_unicas %}<br><i class="fas fa-hashtag"></i> {{ alocacao.grupo_info.grupo.get_vendas_unicas }}{% endif %}
+                                                <button type="button" 
+                                                        class="btn btn-outline-danger btn-sm float-end py-0 px-1"
+                                                        onclick="desagruparServico({{ alocacao.id }})"
+                                                        title="Remover do grupo">
+                                                    <i class="fas fa-unlink"></i>
+                                                </button>
+                                            </small>
+                                        </div>
+                                    {% endif %}
+                                    <div class="card-body p-3">
+                                        <!-- Cabeçalho do Serviço -->
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <div class="flex-grow-1">
+                                                <h6 class="card-title mb-1">
+                                                    <i class="fas fa-grip-vertical text-muted me-1"></i>
+                                                    {{ alocacao.servico.cliente }}
+                                                </h6>
+                                                <small class="text-muted">
+                                                    <i class="fas fa-hashtag"></i> {{ alocacao.servico.numero_da_compra|default:"-" }}
+                                                </small>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
+                                                {% if alocacao.preco_calculado %}
+                                                    <br><span class="badge bg-success">R$ {{ alocacao.preco_calculado|floatformat:2 }}</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Detalhes do Serviço -->
+                                        <div class="small">
+                                            <div class="mb-1">
+                                                <i class="fas fa-map-marker-alt text-danger"></i>
+                                                <strong>Serviço:</strong> {{ alocacao.servico.servico }}
+                                            </div>
+                                            
+                                            {% if alocacao.servico.local_pickup %}
+                                                <div class="mb-1">
+                                                    <i class="fas fa-location-dot text-warning"></i>
+                                                    <strong>Pickup:</strong> {{ alocacao.servico.local_pickup }}
+                                                </div>
+                                            {% endif %}
+                                            
+                                            <div class="row g-1">
+                                                {% if alocacao.servico.horario %}
+                                                    <div class="col-6">
+                                                        <i class="fas fa-clock text-info"></i>
+                                                        {{ alocacao.servico.horario|time:"H:i" }}
+                                                    </div>
+                                                {% endif %}
+                                                
+                                                {% if alocacao.servico.numero_venda %}
+                                                    <div class="col-6">
+                                                        <i class="fas fa-shopping-cart text-success"></i>
+                                                        Vendas: {{ alocacao.servico.numero_venda }}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            {% if alocacao.veiculo_recomendado %}
+                                                <div class="mt-1">
+                                                    <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
+                                                    {% if alocacao.lucratividade %}
+                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|floatformat:1 }}</span>
+                                                    {% endif %}
+                                                    {% if alocacao.automatica %}
+                                                        <span class="badge bg-info">Auto</span>
+                                                    {% else %}
+                                                        <span class="badge bg-dark">Manual</span>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="text-center py-4 dropzone" data-van="VAN1">
+                                <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                <h6 class="text-muted">Van vazia</h6>
+                                <p class="text-muted small">Arraste serviços aqui</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Van 2 -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-van-shuttle"></i> Van 2
+                            <span class="badge bg-light text-dark ms-2">{{ van2.total_pax }} PAX</span>
+                            <span class="badge bg-light text-dark ms-1">R$ {{ van2.total_valor|floatformat:2 }}</span>
+                            <span class="badge bg-light text-dark ms-1">{{ van2.count }} serviços</span>
+                        </h5>
+                    </div>
+                    <div class="card-body p-2" id="van2-container" data-van="VAN2">
+                        {% for alocacao in van2.servicos %}
+                            <div class="servico-card" 
+                                 data-alocacao-id="{{ alocacao.id }}" 
+                                 data-servico-id="{{ alocacao.servico.id }}"
+                                 data-pax="{{ alocacao.servico.pax }}"
+                                 data-servico="{{ alocacao.servico.servico|lower }}"
+                                 data-pickup="{{ alocacao.servico.local_pickup|lower|default:'' }}"
+                                 data-van="VAN2"
+                                 draggable="true">
+                                <div class="card mb-2 border {% if alocacao.grupo_info %}border-success{% endif %}" {% if alocacao.grupo_info %}title="Duplo clique para desagrupar | Clique direito para mais opções"{% endif %}>
+                                    {% if alocacao.grupo_info %}
+                                        <div class="card-header p-1 bg-light">
+                                            <small class="text-success">
+                                                <i class="fas fa-layer-group"></i> 
+                                                Grupo {{ alocacao.grupo_info.grupo.id }} 
+                                                ({{ alocacao.grupo_info.grupo.servicos.count }} serviços){% if alocacao.grupo_info.grupo.get_vendas_unicas %}<br><i class="fas fa-hashtag"></i> {{ alocacao.grupo_info.grupo.get_vendas_unicas }}{% endif %}
+                                                <button type="button" 
+                                                        class="btn btn-outline-danger btn-sm float-end py-0 px-1"
+                                                        onclick="desagruparServico({{ alocacao.id }})"
+                                                        title="Remover do grupo">
+                                                    <i class="fas fa-unlink"></i>
+                                                </button>
+                                            </small>
+                                        </div>
+                                    {% endif %}
+                                    <div class="card-body p-3">
+                                        <!-- Cabeçalho do Serviço -->
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <div class="flex-grow-1">
+                                                <h6 class="card-title mb-1">
+                                                    <i class="fas fa-grip-vertical text-muted me-1"></i>
+                                                    {{ alocacao.servico.cliente }}
+                                                </h6>
+                                                <small class="text-muted">
+                                                    <i class="fas fa-hashtag"></i> {{ alocacao.servico.numero_da_compra|default:"-" }}
+                                                </small>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
+                                                {% if alocacao.preco_calculado %}
+                                                    <br><span class="badge bg-success">R$ {{ alocacao.preco_calculado|floatformat:2 }}</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Detalhes do Serviço -->
+                                        <div class="small">
+                                            <div class="mb-1">
+                                                <i class="fas fa-map-marker-alt text-danger"></i>
+                                                <strong>Serviço:</strong> {{ alocacao.servico.servico }}
+                                            </div>
+                                            
+                                            {% if alocacao.servico.local_pickup %}
+                                                <div class="mb-1">
+                                                    <i class="fas fa-location-dot text-warning"></i>
+                                                    <strong>Pickup:</strong> {{ alocacao.servico.local_pickup }}
+                                                </div>
+                                            {% endif %}
+                                            
+                                            <div class="row g-1">
+                                                {% if alocacao.servico.horario %}
+                                                    <div class="col-6">
+                                                        <i class="fas fa-clock text-info"></i>
+                                                        {{ alocacao.servico.horario|time:"H:i" }}
+                                                    </div>
+                                                {% endif %}
+                                                
+                                                {% if alocacao.servico.numero_venda %}
+                                                    <div class="col-6">
+                                                        <i class="fas fa-shopping-cart text-success"></i>
+                                                        Vendas: {{ alocacao.servico.numero_venda }}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            {% if alocacao.veiculo_recomendado %}
+                                                <div class="mt-1">
+                                                    <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
+                                                    {% if alocacao.lucratividade %}
+                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|floatformat:1 }}</span>
+                                                    {% endif %}
+                                                    {% if alocacao.automatica %}
+                                                        <span class="badge bg-info">Auto</span>
+                                                    {% else %}
+                                                        <span class="badge bg-dark">Manual</span>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="text-center py-4 dropzone" data-van="VAN2">
+                                <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                <h6 class="text-muted">Van vazia</h6>
+                                <p class="text-muted small">Arraste serviços aqui</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ações -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="d-flex gap-2 justify-content-center flex-wrap">
+                    <a href="{% url 'escalas:gerenciar_escalas' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar ao Gerenciamento
+                    </a>
+
+                    
+                    {% if escala.tem_dados %}
+                        <a href="{% url 'escalas:exportar_escala' data=escala.data|date:'Y-m-d' %}" class="btn btn-success">
+                            <i class="fas fa-file-excel"></i> Exportar para Excel
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+<!-- CSS para drag and drop -->
+<style>
+.servico-card {
+    cursor: move;
+    transition: all 0.3s ease;
+}
+
+.servico-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.servico-card.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+}
+
+.servico-card.drop-target {
+    border: 3px solid #28a745;
+    background-color: rgba(40, 167, 69, 0.1);
+    transform: scale(1.02);
+}
+
+.servico-card.drop-target::before {
+    content: "🔗 AGRUPAR";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #28a745;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.van-container.drag-over {
+    border: 3px solid #007bff;
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.van-container.drag-over::before {
+    content: "📦 MOVER PARA ESTA VAN";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.dropzone {
+    min-height: 100px;
+    border: 2px dashed #dee2e6;
+    border-radius: 0.375rem;
+    transition: all 0.3s ease;
+}
+
+.dropzone.drag-over {
+    border-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+#van1-container, #van2-container {
+    min-height: 200px;
+    position: relative;
+}
+
+.van-container {
+    min-height: 400px;
+    position: relative;
+}
+
+/* === ESTILOS PARA FILTROS === */
+.btn.active {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: white;
+}
+
+.btn-outline-warning.active {
+    background-color: var(--bs-warning);
+    border-color: var(--bs-warning);
+    color: var(--bs-dark);
+}
+
+.btn-outline-info.active {
+    background-color: var(--bs-info);
+    border-color: var(--bs-info);
+    color: white;
+}
+
+.servico-card[style*="display: none"] {
+    transition: opacity 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+#filtro-stats strong {
+    color: var(--bs-primary);
+}
+
+/* Animação suave para filtros */
+.servico-card {
+    transition: all 0.3s ease;
+}
+
+/* Estilos para menu de contexto */
+.menu-item {
+    padding: 8px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.menu-item:hover {
+    background-color: #f8f9fa;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item.disabled {
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.menu-item.disabled:hover {
+    background-color: transparent;
+}
+
+.menu-item-hint {
+    padding: 5px 15px;
+    font-size: 11px;
+    color: #6c757d;
+    font-style: italic;
+    background-color: #f8f9fa;
+}
+
+/* Melhorar indicação visual de grupos */
+.servico-card .border-success {
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25);
+}
+
+.servico-card:hover .border-success {
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.4);
+}
+
+/* Tooltip para duplo clique */
+.servico-card[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+}
+</style>
+
+<!-- JavaScript para funcionalidade Kanban -->
+<script>
+// Função global para mostrar mensagens
+function showMessage(text, type) {
+    // Remover mensagem anterior se existir
+    const existingAlert = document.querySelector('.alert-message');
+    if (existingAlert) {
+        existingAlert.remove();
+    }
+    
+    const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+    const alertHtml = `
+        <div class="alert ${alertClass} alert-dismissible fade show alert-message" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
+            ${text}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', alertHtml);
+    
+    // Auto-remover após 3 segundos
+    setTimeout(() => {
+        const alert = document.querySelector('.alert-message');
+        if (alert) {
+            alert.remove();
+        }
+    }, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const servicoCards = document.querySelectorAll('.servico-card');
+    const containers = document.querySelectorAll('[data-van]');
+    
+    // Configurar drag and drop para cada cartão de serviço
+    servicoCards.forEach(card => {
+        card.addEventListener('dragstart', handleDragStart);
+        card.addEventListener('dragend', handleDragEnd);
+        card.addEventListener('dragover', handleCardDragOver);
+        card.addEventListener('drop', handleCardDrop);
+        
+        // Adicionar duplo clique para desagrupar
+        card.addEventListener('dblclick', handleDoubleClick);
+        
+        // Adicionar menu de contexto
+        card.addEventListener('contextmenu', handleRightClick);
+        
+        // Adicionar clique simples para abrir modal de detalhes
+        card.addEventListener('click', handleCardClick);
+    });
+    
+    // Configurar drop zones
+    containers.forEach(container => {
+        container.addEventListener('dragover', handleDragOver);
+        container.addEventListener('drop', handleDrop);
+        container.addEventListener('dragenter', handleDragEnter);
+        container.addEventListener('dragleave', handleDragLeave);
+    });
+    
+    let draggedElement = null;
+    
+    function handleDragStart(e) {
+        this.classList.add('dragging');
+        draggedElement = this;
+        e.dataTransfer.setData('text/plain', this.dataset.alocacaoId);
+        e.dataTransfer.effectAllowed = 'move';
+    }
+    
+    function handleDragEnd(e) {
+        this.classList.remove('dragging');
+        draggedElement = null;
+        // Remover highlights de todos os cards
+        document.querySelectorAll('.servico-card').forEach(card => {
+            card.classList.remove('drop-target');
+        });
+    }
+    
+    function handleCardDragOver(e) {
+        e.preventDefault();
+        if (draggedElement && draggedElement !== this) {
+            // Só adiciona highlight se realmente sobre o cartão
+            const rect = this.getBoundingClientRect();
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            // Verifica se está realmente sobre o cartão (com margem de precisão)
+            if (mouseX >= rect.left + 10 && mouseX <= rect.right - 10 &&
+                mouseY >= rect.top + 10 && mouseY <= rect.bottom - 10) {
+                this.classList.add('drop-target');
+                e.dataTransfer.dropEffect = 'copy'; // Indica agrupamento
+            } else {
+                this.classList.remove('drop-target');
+                e.dataTransfer.dropEffect = 'move'; // Indica movimentação
+            }
+        }
+    }
+    
+    function handleCardDrop(e) {
+        e.preventDefault();
+        
+        this.classList.remove('drop-target');
+        
+        if (draggedElement && draggedElement !== this) {
+            // Verifica se está realmente sobre o cartão para agrupar
+            const rect = this.getBoundingClientRect();
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            // Só agrupa se solto BEM NO CENTRO do cartão
+            if (mouseX >= rect.left + 20 && mouseX <= rect.right - 20 &&
+                mouseY >= rect.top + 20 && mouseY <= rect.bottom - 20) {
+                
+                e.stopPropagation(); // Impede movimentação
+                
+                // Agrupar serviços
+                const alocacaoOrigemId = draggedElement.dataset.alocacaoId;
+                const alocacaoDestinoId = this.dataset.alocacaoId;
+                
+                fetch('{% url "escalas:agrupar_servicos" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({
+                        alocacao_origem_id: alocacaoOrigemId,
+                        alocacao_destino_id: alocacaoDestinoId
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showMessage('Serviços agrupados com sucesso!', 'success');
+                        setTimeout(() => location.reload(), 1000);
+                    } else {
+                        showMessage('Erro ao agrupar serviços: ' + data.error, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    showMessage('Erro ao agrupar serviços', 'error');
+                });
+            }
+            // Se não está bem no centro, deixa que o handleDrop do container processe a movimentação
+        }
+    }
+    
+    function handleDragOver(e) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+    }
+    
+    function handleDragEnter(e) {
+        e.preventDefault();
+        if (!e.target.closest('.servico-card')) {
+            this.classList.add('drag-over');
+        }
+    }
+    
+    function handleDragLeave(e) {
+        // Só remove se realmente saiu do container
+        if (!this.contains(e.relatedTarget)) {
+            this.classList.remove('drag-over');
+        }
+    }
+    
+    function handleDrop(e) {
+        e.preventDefault();
+        this.classList.remove('drag-over');
+        
+        const alocacaoId = e.dataTransfer.getData('text/plain');
+        const novaVan = this.dataset.van;
+        
+        if (!draggedElement) {
+            return;
+        }
+        
+        // Verificar se a van atual é diferente da nova van
+        const vanAtual = draggedElement.dataset.van;
+        if (vanAtual === novaVan) {
+            // Mesma van - só reorganizar se necessário
+            showMessage('Serviço já está nesta van', 'info');
+            return;
+        }
+        
+        // Mover o serviço via AJAX
+        fetch('{% url "escalas:mover_servico" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                alocacao_id: alocacaoId,
+                nova_van: novaVan,
+                nova_posicao: 0
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showMessage(`Serviço movido para ${novaVan === 'VAN1' ? 'Van 1' : 'Van 2'}!`, 'success');
+                setTimeout(() => location.reload(), 1000);
+            } else {
+                showMessage('Erro ao mover serviço: ' + data.error, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            showMessage('Erro ao mover serviço', 'error');
+        });
+    }
+    
+    // Duplo clique para desagrupar
+    function handleDoubleClick(e) {
+        e.preventDefault();
+        const alocacaoId = this.dataset.alocacaoId;
+        const isGrouped = this.querySelector('.border-success');
+        
+        if (isGrouped) {
+            desagruparServico(alocacaoId, 'Duplo clique para desagrupar detectado!');
+        }
+    }
+    
+    // Clique direito para menu de contexto
+    function handleRightClick(e) {
+        e.preventDefault();
+        const alocacaoId = this.dataset.alocacaoId;
+        const isGrouped = this.querySelector('.border-success');
+        
+        // Remover menu anterior se existir
+        const existingMenu = document.querySelector('.context-menu');
+        if (existingMenu) {
+            existingMenu.remove();
+        }
+        
+        // Criar menu de contexto
+        const menu = document.createElement('div');
+        menu.className = 'context-menu';
+        menu.style.cssText = `
+            position: fixed;
+            top: ${e.clientY}px;
+            left: ${e.clientX}px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 9999;
+            min-width: 200px;
+        `;
+        
+        if (isGrouped) {
+            menu.innerHTML = `
+                <div class="menu-item" onclick="desagruparServico(${alocacaoId}, 'Removido via menu de contexto')">
+                    <i class="fas fa-unlink text-danger"></i> Remover do grupo
+                </div>
+                <div class="menu-item" onclick="desagruparGrupoCompleto(${alocacaoId})">
+                    <i class="fas fa-object-ungroup text-warning"></i> Desagrupar grupo completo
+                </div>
+            `;
+        } else {
+            menu.innerHTML = `
+                <div class="menu-item disabled">
+                    <i class="fas fa-info-circle text-muted"></i> Serviço não está agrupado
+                </div>
+                <div class="menu-item-hint">
+                    Dica: Arraste sobre outro serviço para agrupar
+                </div>
+            `;
+        }
+        
+        document.body.appendChild(menu);
+        
+        // Remover menu ao clicar fora
+        setTimeout(() => {
+            document.addEventListener('click', function removeMenu() {
+                menu.remove();
+                document.removeEventListener('click', removeMenu);
+            });
+        }, 100);
+    }
+    
+    // Clique simples para abrir modal de detalhes
+    function handleCardClick(e) {
+        // Prevenir se estiver arrastando ou em contexto menu
+        if (e.ctrlKey || e.shiftKey || e.detail > 1) {
+            return;
+        }
+        
+        // Não abrir modal se clicou em botão específico
+        if (e.target.closest('button') || e.target.closest('.btn')) {
+            return;
+        }
+        
+        const alocacaoId = this.dataset.alocacaoId;
+        
+        // Verificar se este serviço está em um grupo
+        const isGrouped = this.querySelector('.border-success') || this.closest('.grupo-servicos');
+        
+        if (isGrouped) {
+            // Abrir modal de grupo
+            abrirModalGrupo(alocacaoId);
+        } else {
+            // Abrir modal de serviço individual
+            abrirModalDetalhes(alocacaoId);
+        }
+    }
+});
+
+// Função para abrir modal e carregar dados
+function abrirModalDetalhes(alocacaoId) {
+    fetch(`{% url "escalas:detalhes_servico" %}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            alocacao_id: alocacaoId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            preencherModalDetalhes(data.servico, data.alocacao);
+            const modal = new bootstrap.Modal(document.getElementById('modalDetalhesServico'));
+            modal.show();
+        } else {
+            showMessage('Erro ao carregar detalhes: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showMessage('Erro ao carregar detalhes do serviço', 'error');
+    });
+}
+
+// Função para abrir modal de grupo e carregar dados
+function abrirModalGrupo(alocacaoId) {
+    fetch(`{% url "escalas:detalhes_grupo" %}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            alocacao_id: alocacaoId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            preencherModalGrupo(data.grupo, data.servicos);
+            const modal = new bootstrap.Modal(document.getElementById('modalDetalhesGrupo'));
+            modal.show();
+        } else {
+            showMessage('Erro ao carregar detalhes do grupo: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showMessage('Erro ao carregar detalhes do grupo', 'error');
+    });
+}
+
+// Função para preencher o modal de grupo com dados
+function preencherModalGrupo(grupo, servicos) {
+    // Informações básicas do grupo
+    document.getElementById('editGrupoCliente').value = grupo.cliente_principal || '';
+    document.getElementById('editGrupoServico').value = grupo.servico_principal || '';
+    document.getElementById('editGrupoPickup').value = grupo.local_pickup_principal || '';
+    document.getElementById('editGrupoVan').value = grupo.van || '';
+    document.getElementById('editGrupoTotalPax').value = grupo.total_pax || 0;
+    document.getElementById('editGrupoTotal').value = grupo.total_valor || 0;
+    document.getElementById('editGrupoId').value = grupo.id;
+    
+    // Preencher lista de serviços
+    const listaContainer = document.getElementById('listaServicosGrupo');
+    listaContainer.innerHTML = '';
+    
+    servicos.forEach((servico, index) => {
+        const servicoHtml = `
+            <div class="border-bottom pb-2 mb-2" data-servico-id="${servico.alocacao_id}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>${servico.cliente}</strong>
+                        <br><small class="text-muted">${servico.servico}</small>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <span class="badge bg-info">${servico.pax} PAX</span>
+                    </div>
+                    <div class="col-md-3 text-end">
+                        <button type="button" class="btn btn-sm btn-outline-danger" 
+                                onclick="removerServicoDoGrupo(${servico.alocacao_id})">
+                            <i class="fas fa-unlink"></i> Remover
+                        </button>
+                    </div>
+                </div>
+                ${servico.local_pickup ? `<small class="text-success"><i class="fas fa-location-dot"></i> ${servico.local_pickup}</small>` : ''}
+            </div>
+        `;
+        listaContainer.insertAdjacentHTML('beforeend', servicoHtml);
+    });
+    
+    // Atualizar título do modal
+    document.getElementById('modalGrupoLabel').innerHTML = 
+        `<i class="fas fa-layer-group"></i> Grupo: ${grupo.cliente_principal} (${servicos.length} serviços)`;
+}
+
+// Função para preencher o modal com dados
+function preencherModalDetalhes(servico, alocacao) {
+    // Informações básicas
+    document.getElementById('editCliente').value = servico.cliente || '';
+    document.getElementById('editPax').value = servico.pax || '';
+    document.getElementById('editServico').value = servico.servico || '';
+    document.getElementById('editPickup').value = servico.local_pickup || '';
+    
+    // Data e horário
+    document.getElementById('editHorario').value = servico.horario || '';
+    document.getElementById('editDataServico').value = servico.data_do_servico || '';
+    
+    // Informações da venda
+    document.getElementById('editNumeroVenda').value = servico.numero_venda || '';
+    
+    // Características do serviço
+    document.getElementById('editTipo').value = servico.tipo || 'OUTRO';
+    document.getElementById('editDirecao').value = servico.direcao || 'N/A';
+    document.getElementById('editAeroporto').value = servico.aeroporto || 'N/A';
+    document.getElementById('editRegiao').value = servico.regiao || 'N/A';
+    
+    // Características especiais
+    document.getElementById('editEhRegular').checked = servico.eh_regular || false;
+    document.getElementById('editEhPrioritario').checked = servico.eh_prioritario || false;
+    
+    // Van atual
+    document.getElementById('editVan').value = alocacao.van || '';
+    
+    // IDs para salvamento
+    document.getElementById('editServicoId').value = servico.id;
+    document.getElementById('editAlocacaoId').value = alocacao.id;
+    
+    // Atualizar título do modal
+    document.getElementById('modalDetalhesLabel').innerHTML = 
+        `<i class="fas fa-edit"></i> Editando: ${servico.cliente} - ${servico.pax} PAX`;
+}
+
+// Event listeners para o modal
+document.addEventListener('DOMContentLoaded', function() {
+    // Salvar edições
+    document.getElementById('btnSalvarEdicao').addEventListener('click', function() {
+        salvarEdicoesServico();
+    });
+});
+
+// Função para salvar as edições
+function salvarEdicoesServico() {
+    const formData = new FormData(document.getElementById('formEditarServico'));
+    const data = Object.fromEntries(formData);
+    
+    fetch('{% url "escalas:salvar_edicao_servico" %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showMessage('Serviço atualizado com sucesso!', 'success');
+            // Fechar modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalDetalhesServico'));
+            modal.hide();
+            // Recarregar página para mostrar mudanças
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showMessage('Erro ao salvar: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showMessage('Erro ao salvar alterações', 'error');
+    });
+}
+
+// Função para desagrupar serviço
+function desagruparServico(alocacaoId, customMessage = null) {
+    const message = customMessage || 'Deseja remover este serviço do grupo?';
+    if (!confirm(message)) {
+        return;
+    }
+    
+    fetch('{% url "escalas:desagrupar_servico" %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            alocacao_id: alocacaoId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showMessage('Serviço removido do grupo!', 'success');
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showMessage('Erro: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showMessage('Erro ao desagrupar serviço', 'error');
+    });
+}
+
+// Função para desagrupar grupo completo
+function desagruparGrupoCompleto(alocacaoId) {
+    if (!confirm('Deseja desagrupar TODOS os serviços deste grupo?')) {
+        return;
+    }
+    
+    fetch('{% url "escalas:desagrupar_grupo_completo" %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            alocacao_id: alocacaoId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showMessage('Grupo desagrupado completamente!', 'success');
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showMessage('Erro: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showMessage('Erro ao desagrupar grupo', 'error');
+    });
+}
+
+// ===== SISTEMA DE FILTROS =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos dos filtros
+    const filtroPaxMin = document.getElementById('filtro-pax-min');
+    const filtroPaxMax = document.getElementById('filtro-pax-max');
+    const filtroServico = document.getElementById('filtro-servico');
+    const filtroPickup = document.getElementById('filtro-pickup');
+    const filtroVan = document.getElementById('filtro-van');
+    const clearFilters = document.getElementById('clearFilters');
+    const filtroStats = document.getElementById('filtro-stats');
+    
+    // Botões de filtro rápido
+    const filtroPaxAlto = document.getElementById('filtro-pax-alto');
+    const filtroPaxMedio = document.getElementById('filtro-pax-medio');
+    const filtroPaxMuitoAlto = document.getElementById('filtro-pax-muito-alto');
+    const filtroTransfer = document.getElementById('filtro-transfer');
+    const filtroTour = document.getElementById('filtro-tour');
+    
+    // Todos os cards de serviço
+    const servicoCards = document.querySelectorAll('.servico-card');
+    
+    // Função para aplicar filtros
+    function aplicarFiltros() {
+        const paxMin = parseInt(filtroPaxMin.value) || 0;
+        const paxMax = parseInt(filtroPaxMax.value) || 999;
+        const servicoTexto = filtroServico.value.toLowerCase();
+        const pickupTexto = filtroPickup.value.toLowerCase();
+        const vanSelecionada = filtroVan.value;
+        
+        let servicosVisiveis = 0;
+        let paxVisivel = 0;
+        let van1Visiveis = 0;
+        let van2Visiveis = 0;
+        
+        servicoCards.forEach(card => {
+            const pax = parseInt(card.dataset.pax);
+            const servico = card.dataset.servico;
+            const pickup = card.dataset.pickup;
+            const van = card.dataset.van;
+            
+            // Verificar filtros
+            const passaPax = pax >= paxMin && pax <= paxMax;
+            const passaServico = !servicoTexto || servico.includes(servicoTexto);
+            const passaPickup = !pickupTexto || pickup.includes(pickupTexto);
+            const passaVan = !vanSelecionada || van === vanSelecionada;
+            
+            // Mostrar/ocultar card
+            if (passaPax && passaServico && passaPickup && passaVan) {
+                card.style.display = 'block';
+                servicosVisiveis++;
+                paxVisivel += pax;
+                if (van === 'VAN1') van1Visiveis++;
+                else van2Visiveis++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Atualizar estatísticas
+        atualizarEstatisticas(servicosVisiveis, paxVisivel, van1Visiveis, van2Visiveis);
+    }
+    
+    // Função para atualizar estatísticas
+    function atualizarEstatisticas(servicos, pax, van1, van2) {
+        const total = servicoCards.length;
+        if (servicos === total) {
+            filtroStats.textContent = `Mostrando todos os ${servicos} serviços (${pax} PAX)`;
+        } else {
+            filtroStats.innerHTML = `
+                Mostrando <strong>${servicos}</strong> de ${total} serviços (${pax} PAX) 
+                | Van 1: ${van1} | Van 2: ${van2}
+            `;
+        }
+    }
+    
+    // Função para limpar filtros
+    function limparFiltros() {
+        filtroPaxMin.value = '';
+        filtroPaxMax.value = '';
+        filtroServico.value = '';
+        filtroPickup.value = '';
+        filtroVan.value = '';
+        
+        // Remover classes ativas dos botões
+        document.querySelectorAll('.btn-outline-primary.active, .btn-outline-warning.active, .btn-outline-info.active')
+                .forEach(btn => btn.classList.remove('active'));
+        
+        aplicarFiltros();
+    }
+    
+    // Event listeners para filtros
+    filtroPaxMin.addEventListener('input', aplicarFiltros);
+    filtroPaxMax.addEventListener('input', aplicarFiltros);
+    filtroServico.addEventListener('input', aplicarFiltros);
+    filtroPickup.addEventListener('input', aplicarFiltros);
+    filtroVan.addEventListener('change', aplicarFiltros);
+    clearFilters.addEventListener('click', limparFiltros);
+    
+    // Filtros rápidos
+    filtroPaxAlto.addEventListener('click', function() {
+        limparFiltros();
+        filtroPaxMin.value = '4';
+        this.classList.add('active');
+        aplicarFiltros();
+    });
+    
+    filtroPaxMedio.addEventListener('click', function() {
+        limparFiltros();
+        filtroPaxMin.value = '7';
+        this.classList.add('active');
+        aplicarFiltros();
+    });
+    
+    filtroPaxMuitoAlto.addEventListener('click', function() {
+        limparFiltros();
+        filtroPaxMin.value = '10';
+        this.classList.add('active');
+        aplicarFiltros();
+    });
+    
+    filtroTransfer.addEventListener('click', function() {
+        limparFiltros();
+        filtroServico.value = 'transfer';
+        this.classList.add('active');
+        aplicarFiltros();
+    });
+    
+    filtroTour.addEventListener('click', function() {
+        limparFiltros();
+        filtroServico.value = 'tour';
+        this.classList.add('active');
+        aplicarFiltros();
+    });
+    
+    // Aplicar filtros inicial
+    aplicarFiltros();
+});
+</script>
+
+<!-- Modal de Detalhes e Edição do Serviço -->
+<div class="modal fade" id="modalDetalhesServico" tabindex="-1" aria-labelledby="modalDetalhesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDetalhesLabel">
+                    <i class="fas fa-edit"></i> Detalhes e Edição do Serviço
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarServico">
+                    <!-- Informações Básicas -->
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <label for="editCliente" class="form-label">
+                                <i class="fas fa-user"></i> Cliente
+                            </label>
+                            <input type="text" class="form-control" id="editCliente" name="cliente">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="editPax" class="form-label">
+                                <i class="fas fa-users"></i> PAX
+                            </label>
+                            <input type="number" class="form-control" id="editPax" name="pax" min="1">
+                        </div>
+                    </div>
+
+                    <!-- Serviço e Pickup -->
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="editServico" class="form-label">
+                                <i class="fas fa-map-marker-alt"></i> Serviço
+                            </label>
+                            <textarea class="form-control" id="editServico" name="servico" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="editPickup" class="form-label">
+                                <i class="fas fa-location-dot"></i> Local de Pickup
+                            </label>
+                            <input type="text" class="form-control" id="editPickup" name="local_pickup">
+                        </div>
+                    </div>
+
+                    <!-- Horário e Data -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="editHorario" class="form-label">
+                                <i class="fas fa-clock"></i> Horário
+                            </label>
+                            <input type="time" class="form-control" id="editHorario" name="horario">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="editDataServico" class="form-label">
+                                <i class="fas fa-calendar"></i> Data do Serviço
+                            </label>
+                            <input type="date" class="form-control" id="editDataServico" name="data_do_servico">
+                        </div>
+                    </div>
+
+                    <!-- Informações da Venda -->
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="editNumeroVenda" class="form-label">
+                                <i class="fas fa-hashtag"></i> Número da Venda
+                            </label>
+                            <input type="text" class="form-control" id="editNumeroVenda" name="numero_venda">
+                        </div>
+                    </div>
+
+                    <!-- Características do Serviço -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="editTipo" class="form-label">
+                                <i class="fas fa-layer-group"></i> Tipo
+                            </label>
+                            <select class="form-control" id="editTipo" name="tipo">
+                                <option value="TRANSFER">Transfer</option>
+                                <option value="DISPOSICAO">Disposição</option>
+                                <option value="TOUR">Tour</option>
+                                <option value="OUTRO">Outro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="editDirecao" class="form-label">
+                                <i class="fas fa-arrows-alt-h"></i> Direção
+                            </label>
+                            <select class="form-control" id="editDirecao" name="direcao">
+                                <option value="IN">IN</option>
+                                <option value="OUT">OUT</option>
+                                <option value="N/A">N/A</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="editAeroporto" class="form-label">
+                                <i class="fas fa-plane"></i> Aeroporto
+                            </label>
+                            <select class="form-control" id="editAeroporto" name="aeroporto">
+                                <option value="GIG">GIG</option>
+                                <option value="SDU">SDU</option>
+                                <option value="N/A">N/A</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="editRegiao" class="form-label">
+                                <i class="fas fa-map"></i> Região
+                            </label>
+                            <select class="form-control" id="editRegiao" name="regiao">
+                                <option value="ZONA SUL">Zona Sul</option>
+                                <option value="SANTOS DUMONT">Santos Dumont</option>
+                                <option value="BARRA">Barra</option>
+                                <option value="CENTRO">Centro</option>
+                                <option value="BUZIOS">Búzios</option>
+                                <option value="ANGRA">Angra</option>
+                                <option value="PETROPOLIS">Petrópolis</option>
+                                <option value="PARATY">Paraty</option>
+                                <option value="MACAE">Macaé</option>
+                                <option value="N/A">N/A</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Características Especiais -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="editEhRegular" name="eh_regular">
+                                <label class="form-check-label" for="editEhRegular">
+                                    <i class="fas fa-sync"></i> É Regular
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="editEhPrioritario" name="eh_prioritario">
+                                <label class="form-check-label" for="editEhPrioritario">
+                                    <i class="fas fa-star"></i> É Prioritário
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Van Atual -->
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="editVan" class="form-label">
+                                <i class="fas fa-van-shuttle"></i> Van Atual
+                            </label>
+                            <select class="form-control" id="editVan" name="van">
+                                <option value="VAN1">Van 1</option>
+                                <option value="VAN2">Van 2</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- IDs ocultos -->
+                    <input type="hidden" id="editServicoId" name="servico_id">
+                    <input type="hidden" id="editAlocacaoId" name="alocacao_id">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnSalvarEdicao">
+                    <i class="fas fa-save"></i> Salvar Alterações
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Edição de Grupo -->
+<div class="modal fade" id="modalDetalhesGrupo" tabindex="-1" aria-labelledby="modalGrupoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="modalGrupoLabel">
+                    <i class="fas fa-layer-group"></i> Detalhes do Grupo
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarGrupo">
+                    <!-- Informações Gerais do Grupo -->
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <label for="editGrupoCliente" class="form-label">
+                                <i class="fas fa-user"></i> Cliente Principal
+                            </label>
+                            <input type="text" class="form-control" id="editGrupoCliente" name="cliente_principal">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="editGrupoTotalPax" class="form-label">
+                                <i class="fas fa-users"></i> Total PAX
+                            </label>
+                            <input type="number" class="form-control" id="editGrupoTotalPax" name="total_pax" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Serviço e Local Principal -->
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="editGrupoServico" class="form-label">
+                                <i class="fas fa-map-marker-alt"></i> Serviço Principal
+                            </label>
+                            <textarea class="form-control" id="editGrupoServico" name="servico_principal" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="editGrupoPickup" class="form-label">
+                                <i class="fas fa-location-dot"></i> Local de Pickup Principal
+                            </label>
+                            <input type="text" class="form-control" id="editGrupoPickup" name="local_pickup_principal">
+                        </div>
+                    </div>
+
+                    <!-- Van do Grupo -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="editGrupoVan" class="form-label">
+                                <i class="fas fa-van-shuttle"></i> Van do Grupo
+                            </label>
+                            <select class="form-control" id="editGrupoVan" name="van">
+                                <option value="VAN1">Van 1</option>
+                                <option value="VAN2">Van 2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="editGrupoTotal" class="form-label">
+                                <i class="fas fa-dollar-sign"></i> Valor Total
+                            </label>
+                            <input type="number" class="form-control" id="editGrupoTotal" name="total_valor" step="0.01" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Lista de Serviços do Grupo -->
+                    <div class="mb-3">
+                        <label class="form-label">
+                            <i class="fas fa-list"></i> Serviços no Grupo
+                        </label>
+                        <div id="listaServicosGrupo" class="border rounded p-3" style="max-height: 300px; overflow-y: auto;">
+                            <!-- Será preenchido dinamicamente -->
+                        </div>
+                    </div>
+
+                    <!-- IDs ocultos -->
+                    <input type="hidden" id="editGrupoId" name="grupo_id">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" id="btnDesagruparTodos">
+                    <i class="fas fa-unlink"></i> Desagrupar Todos
+                </button>
+                <button type="button" class="btn btn-primary" id="btnSalvarGrupo">
+                    <i class="fas fa-save"></i> Salvar Alterações
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
