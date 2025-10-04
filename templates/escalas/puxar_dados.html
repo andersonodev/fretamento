@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block title %}Puxar Dados - {{ escala.data|date:"d/m/Y" }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Cabeçalho -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="mb-0">
+                        <i class="fas fa-download text-info"></i>
+                        Puxar Dados - Escala {{ escala.data|date:"d/m/Y" }}
+                    </h1>
+                    <p class="text-muted">Etapa 2: Selecione uma data de origem para importar os serviços</p>
+                </div>
+                <a href="{% url 'escalas:gerenciar_escalas' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status da Escala -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <div class="row">
+                    <div class="col-md-3">
+                        <strong>Data da Escala:</strong><br>
+                        {{ escala.data|date:"l, d/m/Y" }}
+                    </div>
+                    <div class="col-md-3">
+                        <strong>Status:</strong><br>
+                        <span class="badge bg-secondary">{{ escala.get_etapa_display }}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <strong>Serviços Atuais:</strong><br>
+                        <span class="badge bg-info">{{ escala.alocacoes.count }}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <strong>Próximo Passo:</strong><br>
+                        Puxar dados de uma data específica
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulário para Puxar Dados -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-calendar-day"></i> Selecionar Data de Origem
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <!-- Seleção de Data -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="data_origem" class="form-label">
+                                    <strong>Data de Origem dos Serviços</strong>
+                                </label>
+                                <select class="form-select" name="data_origem" id="data_origem" required>
+                                    <option value="">Selecione uma data...</option>
+                                    {% for data_info in datas_disponiveis %}
+                                    <option value="{{ data_info.data|date_br }}" 
+                                            data-servicos="{{ data_info.total_servicos }}"
+                                            data-pax="{{ data_info.total_pax }}"
+                                            data-horarios="{{ data_info.com_horario }}">
+                                        {{ data_info.data|date:"d/m/Y (l)" }} - 
+                                        {{ data_info.total_servicos }} serviços, 
+                                        {{ data_info.total_pax }} PAX
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                                <div class="form-text">
+                                    Selecione a data de onde você quer puxar os serviços para esta escala.
+                                </div>
+                            </div>
+                            
+                            <!-- Preview da Data Selecionada -->
+                            <div class="col-md-6">
+                                <div id="preview-dados" class="d-none">
+                                    <h6>Preview dos Dados:</h6>
+                                    <div class="border rounded p-3 bg-light">
+                                        <div class="row g-2">
+                                            <div class="col-6">
+                                                <small class="text-muted">Total de Serviços:</small><br>
+                                                <span id="preview-servicos" class="badge bg-primary">-</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">Total de PAX:</small><br>
+                                                <span id="preview-pax" class="badge bg-warning text-dark">-</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">Com Horário:</small><br>
+                                                <span id="preview-horarios" class="badge bg-info">-</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <small class="text-muted">Distribuição:</small><br>
+                                                <span class="badge bg-success">Van 1: <span id="van1-count">-</span></span>
+                                                <span class="badge bg-success">Van 2: <span id="van2-count">-</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botões de Ação -->
+                        <div class="d-flex gap-2 justify-content-end">
+                            <a href="{% url 'escalas:gerenciar_escalas' %}" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary" id="btn-puxar" disabled>
+                                <i class="fas fa-download"></i> Puxar Dados e Distribuir
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Informações sobre Datas Disponíveis -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="card-title mb-0">
+                        <i class="fas fa-info-circle"></i> Datas Disponíveis na Base de Dados
+                    </h6>
+                </div>
+                <div class="card-body">
+                    {% if datas_disponiveis %}
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Serviços</th>
+                                        <th>PAX Total</th>
+                                        <th>Com Horário</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data_info in datas_disponiveis %}
+                                    <tr>
+                                        <td>{{ data_info.data|date:"d/m/Y (l)" }}</td>
+                                        <td><span class="badge bg-primary">{{ data_info.total_servicos }}</span></td>
+                                        <td><span class="badge bg-warning text-dark">{{ data_info.total_pax }}</span></td>
+                                        <td><span class="badge bg-info">{{ data_info.com_horario }}</span></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-3">
+                            <i class="fas fa-exclamation-triangle fa-2x text-warning mb-2"></i>
+                            <h6 class="text-muted">Nenhuma data com serviços encontrada</h6>
+                            <p class="text-muted">Faça upload de uma planilha primeiro para ter dados disponíveis.</p>
+                            <a href="{% url 'core:upload_planilha' %}" class="btn btn-primary">
+                                <i class="fas fa-upload"></i> Fazer Upload de Planilha
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const selectData = document.getElementById('data_origem');
+    const previewDiv = document.getElementById('preview-dados');
+    const btnPuxar = document.getElementById('btn-puxar');
+    
+    selectData.addEventListener('change', function() {
+        const option = this.selectedOptions[0];
+        
+        if (option.value) {
+            // Mostrar preview
+            const servicos = parseInt(option.dataset.servicos) || 0;
+            const pax = parseInt(option.dataset.pax) || 0;
+            const horarios = parseInt(option.dataset.horarios) || 0;
+            
+            document.getElementById('preview-servicos').textContent = servicos;
+            document.getElementById('preview-pax').textContent = pax;
+            document.getElementById('preview-horarios').textContent = horarios;
+            
+            // Calcular distribuição
+            const van1Count = Math.ceil(servicos / 2);
+            const van2Count = servicos - van1Count;
+            document.getElementById('van1-count').textContent = van1Count;
+            document.getElementById('van2-count').textContent = van2Count;
+            
+            previewDiv.classList.remove('d-none');
+            btnPuxar.disabled = false;
+        } else {
+            previewDiv.classList.add('d-none');
+            btnPuxar.disabled = true;
+        }
+    });
+});
+</script>
+{% endblock %}

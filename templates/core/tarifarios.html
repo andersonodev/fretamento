@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block title %}Tarifários - Sistema de Fretamento{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2><i class="fas fa-dollar-sign"></i> Tarifários de Preços</h2>
+            <p class="text-muted">Visualização dos tarifários configurados no sistema</p>
+        </div>
+    </div>
+
+    <!-- Estatísticas -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Total Serviços JW</h5>
+                    <h3>{{ estatisticas.total_servicos_jw }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Total Serviços Motoristas</h5>
+                    <h3>{{ estatisticas.total_servicos_motoristas }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <h5 class="card-title">Menor Preço JW</h5>
+                    <h3>R$ {{ estatisticas.menor_preco_jw|floatformat:2 }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h5 class="card-title">Maior Preço JW</h5>
+                    <h3>R$ {{ estatisticas.maior_preco_jw|floatformat:2 }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navegação -->
+    <ul class="nav nav-tabs" id="tarifarioTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="jw-tab" data-bs-toggle="tab" data-bs-target="#jw" type="button" role="tab">
+                Tarifário JW
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="motoristas-tab" data-bs-toggle="tab" data-bs-target="#motoristas" type="button" role="tab">
+                Tarifário Motoristas
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="veiculos-tab" data-bs-toggle="tab" data-bs-target="#veiculos" type="button" role="tab">
+                Veículos Disponíveis
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="tarifarioTabContent">
+        <!-- Tarifário JW -->
+        <div class="tab-pane fade show active" id="jw" role="tabpanel">
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5><i class="fas fa-bus"></i> Tarifário JW - Preços por Veículo</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Serviço</th>
+                                    <th>Executivo</th>
+                                    <th>Van 15</th>
+                                    <th>Van 18</th>
+                                    <th>Micro</th>
+                                    <th>Ônibus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for servico, precos in tarifario_jw.items %}
+                                <tr>
+                                    <td><strong>{{ servico }}</strong></td>
+                                    {% for veiculo in veiculos_disponiveis %}
+                                    <td>
+                                        {% if precos|get_item:veiculo %}
+                                            <span class="badge bg-success">
+                                                R$ {{ precos|get_item:veiculo|floatformat:2 }}
+                                            </span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">N/A</span>
+                                        {% endif %}
+                                    </td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarifário Motoristas -->
+        <div class="tab-pane fade" id="motoristas" role="tabpanel">
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5><i class="fas fa-user-tie"></i> Tarifário Motoristas - Preço Fixo</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Serviço</th>
+                                    <th>Preço Base</th>
+                                    <th>Observação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for servico, preco in tarifario_motoristas.items %}
+                                <tr>
+                                    <td><strong>{{ servico }}</strong></td>
+                                    <td>
+                                        <span class="badge bg-primary fs-6">
+                                            R$ {{ preco|floatformat:2 }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <small class="text-muted">
+                                            Multiplicado pelo número de venda
+                                        </small>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Veículos Disponíveis -->
+        <div class="tab-pane fade" id="veiculos" role="tabpanel">
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5><i class="fas fa-car"></i> Veículos Disponíveis</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for veiculo in veiculos_disponiveis %}
+                        <div class="col-md-4 mb-3">
+                            <div class="card border-primary">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">{{ veiculo }}</h5>
+                                    <p class="card-text">
+                                        {% if veiculo == "Executivo" %}
+                                            <small>Até 3 passageiros</small>
+                                        {% elif veiculo == "Van 15 lugares" %}
+                                            <small>Até 11 passageiros</small>
+                                        {% elif veiculo == "Van 18 lugares" %}
+                                            <small>Até 14 passageiros</small>
+                                        {% elif veiculo == "Micro" %}
+                                            <small>Até 26 passageiros</small>
+                                        {% elif veiculo == "Ônibus" %}
+                                            <small>Mais de 26 passageiros</small>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="alert alert-info mt-3">
+                        <h6><i class="fas fa-info-circle"></i> Informações Importantes:</h6>
+                        <ul class="mb-0">
+                            <li><strong>Custo Diário Van:</strong> R$ {{ estatisticas.custo_diario_van|floatformat:2 }}</li>
+                            <li><strong>Tarifário JW:</strong> Preços específicos por tipo de veículo</li>
+                            <li><strong>Tarifário Motoristas:</strong> Preço base multiplicado por número de venda</li>
+                            <li>O sistema seleciona automaticamente o veículo mais adequado baseado no número de PAX</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ações -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="d-flex gap-2">
+                <a href="{% url 'core:simulador_precos' %}" class="btn btn-primary">
+                    <i class="fas fa-calculator"></i> Simulador de Preços
+                </a>
+                <a href="{% url 'core:buscar_preco' %}" class="btn btn-success">
+                    <i class="fas fa-search"></i> Buscar Preço Específico
+                </a>
+                <a href="{% url 'core:historico_calculos' %}" class="btn btn-info">
+                    <i class="fas fa-history"></i> Histórico de Cálculos
+                </a>
+                <a href="{% url 'core:home' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter personalizado para acessar itens de dicionário -->
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Inicializar tooltips do Bootstrap
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+});
+</script>
+{% endblock %}

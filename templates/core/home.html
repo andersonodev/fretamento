@@ -1,0 +1,770 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Sistema de Fretamento{% endblock %}
+
+{% block content %}
+<style>
+    /* Dashboard específico */
+    .dashboard-header {
+        background: linear-gradient(135deg, #1F8CCB 0%, #1a7bb8 100%);
+        color: white;
+        border-radius: 24px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .dashboard-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/><circle cx="30" cy="30" r="20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.3"/><circle cx="70" cy="70" r="15" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.4"/></svg>') repeat;
+        animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateX(0) translateY(0) rotate(0deg); }
+        100% { transform: translateX(-50px) translateY(-50px) rotate(360deg); }
+    }
+
+    .dashboard-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .dashboard-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        position: relative;
+        z-index: 1;
+    }
+
+    .welcome-time {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Cards modernos */
+    .stat-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 1.5rem;
+        height: 100%;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--primary-gradient);
+        border-radius: 20px 20px 0 0;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+        line-height: 1;
+    }
+
+    .stat-label {
+        color: #718096;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .stat-icon {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: #1F8CCB;
+    }
+
+    .stat-change {
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-top: 0.5rem;
+    }
+
+    .stat-change.positive {
+        color: #48bb78;
+    }
+
+    .stat-change.negative {
+        color: #f56565;
+    }
+
+    /* Action cards */
+    .action-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .action-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .action-card-header {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 1.5rem;
+        border-bottom: none;
+    }
+
+    .action-card-body {
+        padding: 1.5rem;
+    }
+
+    .action-btn {
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        margin-bottom: 0.75rem;
+        transition: all 0.3s ease;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .action-btn:last-child {
+        margin-bottom: 0;
+    }
+
+    .action-btn.primary {
+        background: linear-gradient(135deg, #1F8CCB 0%, #1a7bb8 100%);
+        color: white;
+    }
+
+    .action-btn.success {
+        background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        color: white;
+    }
+
+    .action-btn.info {
+        background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+        color: white;
+    }
+
+    .action-btn.warning {
+        background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+        color: white;
+    }
+
+    .action-btn.outline {
+        background: transparent;
+        border: 2px solid #e2e8f0;
+        color: #4a5568;
+    }
+
+    .action-btn:hover {
+        transform: translateX(5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .action-btn i {
+        margin-right: 0.75rem;
+        width: 20px;
+    }
+
+    /* Chart containers */
+    .chart-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 1.5rem;
+        height: 100%;
+    }
+
+    .chart-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* Recent activity */
+    .activity-item {
+        padding: 1rem;
+        border-radius: 12px;
+        margin-bottom: 0.75rem;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+        border: 1px solid rgba(102, 126, 234, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .activity-item:hover {
+        transform: translateX(5px);
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    }
+
+    .activity-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .activity-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+    }
+
+    .activity-content h6 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 0.25rem;
+    }
+
+    .activity-content small {
+        color: #718096;
+        font-size: 0.8rem;
+    }
+
+    .activity-status {
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .status-success {
+        background: linear-gradient(135deg, rgba(72, 187, 120, 0.2) 0%, rgba(56, 161, 105, 0.2) 100%);
+        color: #38a169;
+    }
+
+    .status-warning {
+        background: linear-gradient(135deg, rgba(237, 137, 54, 0.2) 0%, rgba(221, 107, 32, 0.2) 100%);
+        color: #dd6b20;
+    }
+
+    .status-danger {
+        background: linear-gradient(135deg, rgba(245, 101, 101, 0.2) 0%, rgba(229, 62, 62, 0.2) 100%);
+        color: #e53e3e;
+    }
+
+    /* Progress bars */
+    .progress-modern {
+        height: 8px;
+        border-radius: 10px;
+        background: #e2e8f0;
+        overflow: hidden;
+    }
+
+    .progress-bar-modern {
+        height: 100%;
+        border-radius: 10px;
+        background: var(--primary-gradient);
+        transition: width 0.6s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .dashboard-title {
+            font-size: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+        }
+        
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
+    }
+</style>
+
+<!-- Dashboard Header -->
+<div class="dashboard-header animate__animated animate__fadeInDown">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="dashboard-title">
+                Bem-vindo, {{ user_info.nome }}! 👋
+            </h1>
+            <p class="dashboard-subtitle">
+                Gerencie suas escalas de fretamento de forma inteligente e automatizada
+            </p>
+            <div class="welcome-time">
+                <i class="fas fa-clock me-2"></i>
+                {{ data_atual|date:"l, d \d\e F \d\e Y" }} - {{ data_atual|date:"H:i" }}
+            </div>
+        </div>
+        <div class="col-md-4 text-end">
+            {% if user_info.permissoes_especiais %}
+                <div class="badge bg-warning fs-6 px-3 py-2">
+                    <i class="fas fa-crown me-2"></i>Supervisor
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Estatísticas Principais -->
+<div class="row mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stat-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+            <div class="stat-icon">
+                <i class="fas fa-bus"></i>
+            </div>
+            <div class="stat-number" id="total-servicos">{{ total_servicos }}</div>
+            <div class="stat-label">Total de Serviços</div>
+            {% if crescimento_servicos > 0 %}
+                <div class="stat-change positive">
+                    <i class="fas fa-arrow-up me-1"></i>+{{ crescimento_servicos }}% este mês
+                </div>
+            {% elif crescimento_servicos < 0 %}
+                <div class="stat-change negative">
+                    <i class="fas fa-arrow-down me-1"></i>{{ crescimento_servicos }}% este mês
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stat-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+            <div class="stat-icon">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-number" id="escalas-criadas">{{ escalas_criadas }}</div>
+            <div class="stat-label">Escalas Criadas</div>
+            <div class="stat-change positive">
+                <i class="fas fa-check-circle me-1"></i>{{ escalas_aprovadas }} aprovadas
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stat-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+            <div class="stat-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-number" id="pax-medio">{{ pax_medio }}</div>
+            <div class="stat-label">PAX Médio</div>
+            <div class="stat-change">
+                <i class="fas fa-star me-1"></i>{{ servicos_prioritarios }} prioritários
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stat-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+            <div class="stat-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-number" id="eficiencia-vans">{{ total_van_servicos }}</div>
+            <div class="stat-label">Serviços Últimos 30 Dias</div>
+            <div class="progress-modern mt-2">
+                <div class="progress-bar-modern" style="width: 85%;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Seção Principal -->
+<div class="row mb-4">
+    <!-- Ações Rápidas -->
+    <div class="col-lg-4 mb-4">
+        <div class="action-card animate__animated animate__fadeInLeft">
+            <div class="action-card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-rocket me-2"></i>Ações Rápidas
+                </h5>
+            </div>
+            <div class="action-card-body">
+                <a href="{% url 'core:upload_planilha' %}" class="action-btn primary">
+                    <i class="fas fa-cloud-upload-alt"></i>Upload da Planilha OS
+                </a>
+                <a href="{% url 'escalas:gerenciar_escalas' %}" class="action-btn success">
+                    <i class="fas fa-calendar-plus"></i>Criar Nova Escala
+                </a>
+                <a href="{% url 'core:lista_servicos' %}" class="action-btn info">
+                    <i class="fas fa-list-alt"></i>Visualizar Serviços
+                </a>
+                <a href="{% url 'core:diagnostico' %}" class="action-btn warning">
+                    <i class="fas fa-chart-bar"></i>Ver Analytics
+                </a>
+                <a href="{% url 'core:visualizar_tarifarios' %}" class="action-btn outline">
+                    <i class="fas fa-dollar-sign"></i>Consultar Tarifários
+                </a>
+                <a href="{% url 'core:simulador_precos' %}" class="action-btn outline">
+                    <i class="fas fa-calculator"></i>Simulador de Preços
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Estatísticas por Tipo -->
+    <div class="col-lg-4 mb-4">
+        <div class="chart-container animate__animated animate__fadeInUp">
+            <div class="chart-title">
+                <i class="fas fa-chart-pie"></i>Distribuição por Tipo
+            </div>
+            <div class="row">
+                {% for stat in stats_tipo %}
+                <div class="col-12 mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="fw-semibold">{{ stat.tipo|default:"Não informado" }}</span>
+                        <span class="text-muted">{{ stat.total }}</span>
+                    </div>
+                    <div class="progress-modern">
+                        <div class="progress-bar-modern" style="width: {% widthratio stat.total total_servicos 100 %}%;"></div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="text-center text-muted py-3">
+                    <i class="fas fa-chart-pie fa-2x mb-2"></i>
+                    <p>Nenhum dado disponível</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Atividade Recente -->
+    <div class="col-lg-4 mb-4">
+        <div class="chart-container animate__animated animate__fadeInRight">
+            <div class="chart-title">
+                <i class="fas fa-clock"></i>Atividade Recente
+            </div>
+            <div class="activity-list">
+                {% for proc in processamentos_recentes %}
+                <div class="activity-item">
+                    <div class="d-flex align-items-center">
+                        <div class="activity-icon me-3">
+                            <i class="fas fa-file-excel"></i>
+                        </div>
+                        <div class="activity-content flex-grow-1">
+                            <h6>{{ proc.nome_arquivo }}</h6>
+                            <small>{{ proc.created_at|date:"d/m/Y H:i" }}</small>
+                        </div>
+                        <div class="activity-status status-{% if proc.status == 'CONCLUIDO' %}success{% elif proc.status == 'ERRO' %}danger{% else %}warning{% endif %}">
+                            {{ proc.get_status_display }}
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="text-center text-muted py-3">
+                    <i class="fas fa-history fa-2x mb-2"></i>
+                    <p>Nenhuma atividade recente</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Seção de Escalas e Eficiência -->
+<div class="row mb-4">
+    <!-- Escalas Recentes -->
+    <div class="col-lg-6 mb-4">
+        <div class="chart-container animate__animated animate__fadeInLeft">
+            <div class="chart-title">
+                <i class="fas fa-calendar-alt"></i>Escalas Recentes
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Etapa</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for escala in escalas_recentes %}
+                        <tr>
+                            <td>
+                                <strong>{{ escala.data|date:"d/m" }}</strong><br>
+                                <small class="text-muted">{{ escala.data|date:"Y" }}</small>
+                            </td>
+                            <td>
+                                <span class="badge bg-info">{{ escala.get_etapa_display }}</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-{% if escala.status == 'APROVADA' %}success{% elif escala.status == 'REJEITADA' %}danger{% else %}warning{% endif %}">
+                                    {{ escala.get_status_display|default:"Pendente" }}
+                                </span>
+                            </td>
+                            <td>
+                                <a href="{% url 'escalas:visualizar_escala' data=escala.data|date_br %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-3">
+                                Nenhuma escala criada ainda
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Eficiência das Vans -->
+    <div class="col-lg-6 mb-4">
+        <div class="chart-container animate__animated animate__fadeInRight">
+            <div class="chart-title">
+                <i class="fas fa-tachometer-alt"></i>Eficiência das Vans (30 dias)
+            </div>
+            <div class="row text-center">
+                <div class="col-6">
+                    <div class="p-3">
+                        <div class="stat-number text-primary">{{ van1_servicos }}</div>
+                        <div class="stat-label">Van 1</div>
+                        <div class="progress-modern mt-2">
+                            <div class="progress-bar-modern" style="width: {% if total_van_servicos > 0 %}{% widthratio van1_servicos total_van_servicos 100 %}{% else %}0{% endif %}%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3">
+                        <div class="stat-number text-success">{{ van2_servicos }}</div>
+                        <div class="stat-label">Van 2</div>
+                        <div class="progress-modern mt-2">
+                            <div class="progress-bar-modern bg-success" style="width: {% if total_van_servicos > 0 %}{% widthratio van2_servicos total_van_servicos 100 %}{% else %}0{% endif %}%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-3">
+                {% for stat in stats_aeroporto %}
+                <div class="col-6 mb-2">
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-semibold">{{ stat.aeroporto }}</span>
+                        <span class="text-muted">{{ stat.total }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Guia de Como Usar -->
+<div class="row">
+    <div class="col-12">
+        <div class="chart-container animate__animated animate__fadeInUp">
+            <div class="chart-title">
+                <i class="fas fa-graduation-cap"></i>Como Usar o Sistema
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-center mb-3">
+                    <div class="p-4">
+                        <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-upload fa-lg"></i>
+                        </div>
+                        <h5>1. Upload da Planilha OS</h5>
+                        <p class="text-muted">Faça upload da sua planilha OS (.xlsx, .xls ou .csv). O sistema irá limpar e processar automaticamente os dados.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center mb-3">
+                    <div class="p-4">
+                        <div class="rounded-circle bg-success text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-calendar-plus fa-lg"></i>
+                        </div>
+                        <h5>2. Criar e Puxar Escalas</h5>
+                        <p class="text-muted">Crie a estrutura da escala para o dia desejado e puxe os dados da OS. O sistema distribui automaticamente entre Van 1 e Van 2.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center mb-3">
+                    <div class="p-4">
+                        <div class="rounded-circle bg-warning text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-cogs fa-lg"></i>
+                        </div>
+                        <h5>3. Otimizar e Exportar</h5>
+                        <p class="text-muted">Otimize a escala com agrupamento inteligente e exporte para Excel. Serviços são agrupados por proximidade de horário.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animação de contadores
+    function animateCounter(element, target, duration = 2000) {
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current);
+        }, 16);
+    }
+    
+    // Animar contadores quando entram na viewport
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                const target = parseInt(element.getAttribute('data-target') || element.textContent);
+                animateCounter(element, target);
+                observer.unobserve(element);
+            }
+        });
+    }, observerOptions);
+    
+    // Observar todos os números das estatísticas
+    document.querySelectorAll('.stat-number').forEach(el => {
+        el.setAttribute('data-target', el.textContent);
+        el.textContent = '0';
+        observer.observe(el);
+    });
+    
+    // Atualizar hora em tempo real
+    function updateTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        const dateString = now.toLocaleDateString('pt-BR', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        const timeElement = document.querySelector('.welcome-time');
+        if (timeElement) {
+            timeElement.innerHTML = `<i class="fas fa-clock me-2"></i>${dateString} - ${timeString}`;
+        }
+    }
+    
+    // Atualizar a cada minuto
+    setInterval(updateTime, 60000);
+    
+    // Efeito de hover nos cards de ação
+    document.querySelectorAll('.action-btn').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(8px) scale(1.02)';
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0) scale(1)';
+        });
+    });
+    
+    // Loading states para links de ação
+    document.querySelectorAll('.action-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const icon = this.querySelector('i');
+            const originalClass = icon.className;
+            icon.className = 'fas fa-spinner fa-spin';
+            
+            // Restaurar após 1 segundo (tempo para navegação)
+            setTimeout(() => {
+                icon.className = originalClass;
+            }, 1000);
+        });
+    });
+    
+    // Tooltip para estatísticas
+    const tooltips = [
+        {
+            selector: '#total-servicos',
+            title: 'Total de serviços cadastrados no sistema'
+        },
+        {
+            selector: '#escalas-criadas',
+            title: 'Número de escalas criadas até o momento'
+        },
+        {
+            selector: '#pax-medio',
+            title: 'Média de passageiros por serviço'
+        },
+        {
+            selector: '#eficiencia-vans',
+            title: 'Total de serviços distribuídos nas vans nos últimos 30 dias'
+        }
+    ];
+    
+    tooltips.forEach(tooltip => {
+        const element = document.querySelector(tooltip.selector);
+        if (element) {
+            element.setAttribute('title', tooltip.title);
+            element.setAttribute('data-bs-toggle', 'tooltip');
+            new bootstrap.Tooltip(element);
+        }
+    });
+});
+</script>
+{% endblock %}

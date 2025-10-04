@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block title %}Gerenciar Escalas{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Efeito hover nos botões da ta                                                        onclick="confirmarExclusao('{{ escala.data|date_br }}', '{{ escala.data|date:'d/m/Y' }}', {{ escala.alocacoes.count }}, '{{ escala.get_etapa_display }}');">ela */
+.btn-group .btn:hover {
+    z-index: 1;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Cabeçalho -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="mb-0">
+                <i class="fas fa-calendar-alt text-primary"></i>
+                Gerenciar Escalas
+            </h1>
+            <p class="text-muted">Sistema de duas etapas: Criar estrutura → Puxar dados → Otimizar</p>
+        </div>
+    </div>
+
+    <!-- Criar Nova Escala -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-plus-circle"></i> Criar Nova Escala
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="row g-3">
+                        {% csrf_token %}
+                        <input type="hidden" name="acao" value="criar_estrutura">
+                        <div class="col-md-4">
+                            <label for="data" class="form-label">Data da Escala</label>
+                            <input type="date" class="form-control" name="data" id="data" required>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Criar Estrutura
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <small class="text-muted">
+                                <strong>Etapa 1:</strong> Cria apenas a estrutura básica da escala
+                            </small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de Escalas -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-list"></i> Escalas Existentes
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if escalas %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Status</th>
+                                        <th>Aprovação</th>
+                                        <th>Data Origem</th>
+                                        <th>Serviços</th>
+                                        <th>PAX Total</th>
+                                        <th>Valor Total</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for escala in escalas %}
+                                    <tr>
+                                        <td>
+                                            <strong>{{ escala.data|date:"d/m/Y" }}</strong><br>
+                                            <small class="text-muted">{{ escala.data|date:"l" }}</small>
+                                        </td>
+                                        <td>
+                                            {% if escala.etapa == 'ESTRUTURA' %}
+                                                <span class="badge bg-secondary">Estrutura Criada</span>
+                                            {% elif escala.etapa == 'DADOS_PUXADOS' %}
+                                                <span class="badge bg-primary">Dados Puxados</span>
+                                            {% elif escala.etapa == 'OTIMIZADA' %}
+                                                <span class="badge bg-success">Otimizada</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-{% if escala.status == 'PENDENTE' %}warning{% elif escala.status == 'APROVADA' %}success{% else %}danger{% endif %}">
+                                                {{ escala.get_status_display }}
+                                            </span>
+                                            {% if escala.aprovada_por %}
+                                                <br><small class="text-muted">por {{ escala.aprovada_por.get_full_name|default:escala.aprovada_por.username }}</small>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if escala.data_origem %}
+                                                {{ escala.data_origem|date:"d/m/Y" }}
+                                            {% else %}
+                                                <span class="text-muted">-</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-info">{{ escala.alocacoes.count }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-warning text-dark">{{ escala.total_van1_pax|add:escala.total_van2_pax }}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-success">R$ {{ escala.total_van1_valor|add:escala.total_van2_valor|floatformat:2 }}</span>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <!-- Visualizar -->
+                                                <a href="{% url 'escalas:visualizar_escala' data=escala.data|date_br %}" 
+                                                   class="btn btn-outline-primary" title="Visualizar">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                
+                                                <!-- Puxar Dados -->
+                                                {% if escala.etapa == 'ESTRUTURA' %}
+                                                    <a href="{% url 'escalas:puxar_dados' data=escala.data|date_br %}" 
+                                                       class="btn btn-outline-info" title="Puxar Dados">
+                                                        <i class="fas fa-download"></i>
+                                                    </a>
+                                                {% endif %}
+                                                
+                                                <!-- Otimizar -->
+                                                {% if escala.etapa == 'DADOS_PUXADOS' %}
+                                                    <form method="post" class="d-inline">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="data" value="{{ escala.data|date_br }}">
+                                                        <button type="submit" name="acao" value="otimizar" 
+                                                                class="btn btn-outline-warning" title="Otimizar">
+                                                            <i class="fas fa-magic"></i>
+                                                        </button>
+                                                    </form>
+                                                {% endif %}
+                                                
+                                                <!-- Exportar -->
+                                                {% if escala.alocacoes.count > 0 %}
+                                                    <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" 
+                                                       class="btn btn-outline-success" title="Exportar Excel">
+                                                        <i class="fas fa-file-excel"></i>
+                                                    </a>
+                                                {% endif %}
+                                                
+                                                <!-- Excluir -->
+                                                <button type="button" 
+                                                        class="btn btn-outline-danger" 
+                                                        title="Excluir Escala"
+                                                        onclick="confirmarExclusao('{{ escala.data|date_br }}', '{{ escala.data|date:'d/m/Y' }}', {{ escala.alocacoes.count }}, '{{ escala.get_etapa_display }}')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-calendar-times fa-3x text-muted mb-3"></i>
+                            <h6 class="text-muted">Nenhuma escala criada ainda</h6>
+                            <p class="text-muted">Crie sua primeira escala usando o formulário acima.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guia de Uso -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-info">
+                <div class="card-header bg-light">
+                    <h6 class="card-title mb-0">
+                        <i class="fas fa-info-circle text-info"></i> Como Usar o Sistema de Escalas
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-plus text-primary"></i> Etapa 1: Criar Estrutura</h6>
+                            <p class="small">Crie apenas a estrutura básica da escala com a data desejada.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-download text-info"></i> Etapa 2: Puxar Dados</h6>
+                            <p class="small">Selecione uma data de origem e puxe os serviços, que serão distribuídos automaticamente entre as vans.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-magic text-warning"></i> Etapa 3: Otimizar</h6>
+                            <p class="small">Otimize a distribuição dos serviços baseado na lucratividade e balanceamento de PAX.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Auto-definir data para hoje
+document.addEventListener('DOMContentLoaded', function() {
+    const dataInput = document.getElementById('data');
+    if (dataInput && !dataInput.value) {
+        const hoje = new Date().toISOString().split('T')[0];
+        dataInput.value = hoje;
+    }
+});
+
+// Função para confirmar exclusão
+function confirmarExclusao(data, dataFormatada, totalServicos, etapa) {
+    let mensagem = `Tem certeza que deseja excluir a escala de ${dataFormatada}?`;
+    
+    if (totalServicos > 0) {
+        mensagem += `\n\n⚠️ ATENÇÃO: Esta ação irá excluir ${totalServicos} serviços da escala!`;
+    }
+    
+    if (etapa === 'Otimizada') {
+        mensagem += `\n\n💡 Esta escala está otimizada. Todos os dados serão perdidos permanentemente.`;
+    }
+    
+    mensagem += `\n\nEsta ação não pode ser desfeita.`;
+    
+    if (confirm(mensagem)) {
+        // Criar formulário dinamicamente
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `/escalas/excluir/${data}/`;
+        
+        // Token CSRF
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = 'csrfmiddlewaretoken';
+        csrfInput.value = csrfToken;
+        form.appendChild(csrfInput);
+        
+        // Adicionar ao DOM e submeter
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
+</script>
+{% endblock %}

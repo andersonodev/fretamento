@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load core_extras %}
+
+{% block title %}Lista de Serviços - Sistema de Fretamento{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2><i class="fas fa-list"></i> Lista de Serviços</h2>
+            <p class="text-muted">Serviços processados no sistema</p>
+        </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5><i class="fas fa-filter"></i> Filtros</h5>
+        </div>
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label for="data_inicio" class="form-label">Data Início</label>
+                    <input type="date" class="form-control" id="data_inicio" name="data_inicio" 
+                           value="{{ request.GET.data_inicio }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="data_fim" class="form-label">Data Fim</label>
+                    <input type="date" class="form-control" id="data_fim" name="data_fim" 
+                           value="{{ request.GET.data_fim }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="tipo" class="form-label">Tipo</label>
+                    <select class="form-select" id="tipo" name="tipo">
+                        <option value="">Todos</option>
+                        <option value="TRANSFER" {% if request.GET.tipo == 'TRANSFER' %}selected{% endif %}>Transfer</option>
+                        <option value="DISPOSICAO" {% if request.GET.tipo == 'DISPOSICAO' %}selected{% endif %}>Disposição</option>
+                        <option value="TOUR" {% if request.GET.tipo == 'TOUR' %}selected{% endif %}>Tour</option>
+                        <option value="OUTRO" {% if request.GET.tipo == 'OUTRO' %}selected{% endif %}>Outro</option>
+                    </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="fas fa-search"></i> Filtrar
+                    </button>
+                    <a href="{% url 'core:lista_servicos' %}" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Limpar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Estatísticas -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Total de Serviços</h5>
+                    <h3>{{ page_obj.paginator.count }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Transfers</h5>
+                    <h3>{{ total_transfers|default:0 }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-info">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Disposições</h5>
+                    <h3>{{ total_disposicoes|default:0 }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Tours</h5>
+                    <h3>{{ total_tours|default:0 }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de Serviços -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <h5><i class="fas fa-table"></i> Serviços</h5>
+            <div>
+                <small class="text-muted">
+                    Mostrando {{ page_obj.start_index }}-{{ page_obj.end_index }} de {{ page_obj.paginator.count }} serviços
+                </small>
+            </div>
+        </div>
+        <div class="card-body">
+            {% if servicos %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Cliente</th>
+                            <th>Serviço</th>
+                            <th>Tipo</th>
+                            <th>PAX</th>
+                            <th>Região</th>
+                            <th>Aeroporto</th>
+                            <th>Prioridade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for servico in servicos %}
+                        <tr>
+                            <td>{{ servico.data_do_servico|date:"d/m/Y" }}</td>
+                            <td>
+                                {% if servico.horario %}
+                                    {{ servico.horario|time:"H:i" }}
+                                {% else %}
+                                    <span class="text-muted">N/A</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ servico.cliente|truncatechars:30 }}</td>
+                            <td>{{ servico.servico|truncatechars:50 }}</td>
+                            <td>
+                                {% if servico.tipo == 'TRANSFER' %}
+                                    <span class="badge bg-primary">Transfer</span>
+                                {% elif servico.tipo == 'DISPOSICAO' %}
+                                    <span class="badge bg-success">Disposição</span>
+                                {% elif servico.tipo == 'TOUR' %}
+                                    <span class="badge bg-warning">Tour</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{{ servico.tipo }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="badge bg-info">{{ servico.pax }}</span>
+                            </td>
+                            <td>{{ servico.regiao }}</td>
+                            <td>{{ servico.aeroporto }}</td>
+                            <td>
+                                {% if servico.eh_prioritario %}
+                                    <span class="badge bg-danger">
+                                        <i class="fas fa-star"></i> Prioridade
+                                    </span>
+                                {% else %}
+                                    <span class="text-muted">Normal</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paginação -->
+            {% if page_obj.has_other_pages %}
+            <nav>
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1{{ request.GET|querystring_without_page }}">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{{ request.GET|querystring_without_page }}">
+                                <i class="fas fa-angle-left"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}{{ request.GET|querystring_without_page }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}{{ request.GET|querystring_without_page }}">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{{ request.GET|querystring_without_page }}">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                <h5 class="text-muted">Nenhum serviço encontrado</h5>
+                <p class="text-muted">Faça upload de uma planilha para começar</p>
+                <a href="{% url 'core:upload_planilha' %}" class="btn btn-primary">
+                    <i class="fas fa-upload"></i> Fazer Upload
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Ações -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="d-flex gap-2">
+                <a href="{% url 'core:upload_planilha' %}" class="btn btn-primary">
+                    <i class="fas fa-upload"></i> Novo Upload
+                </a>
+                <a href="{% url 'core:visualizar_tarifarios' %}" class="btn btn-info">
+                    <i class="fas fa-dollar-sign"></i> Ver Tarifários
+                </a>
+                <a href="{% url 'escalas:gerenciar_escalas' %}" class="btn btn-success">
+                    <i class="fas fa-calendar"></i> Gerenciar Escalas
+                </a>
+                <a href="{% url 'core:home' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

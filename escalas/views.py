@@ -1,0 +1,1077 @@
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse, HttpResponse
+from django.views import View
+from django.views.generic import ListView, DetailView
+from django.utils.dateparse import parse_date
+from django.utils import timezone
+from django.db.models import Count, Q, Sum, F
+from django.db import transaction
+from datetime import datetime, date
+from decimal import Decimal
+from core.models import Servico, ProcessamentoPlanilha
+from escalas.models import Escala, AlocacaoVan, GrupoServico, ServicoGrupo
+from core.processors import ProcessadorPlanilhaOS
+from escalas.services import GerenciadorEscalas, ExportadorEscalas
+from core.tarifarios import calcular_preco_servico
+import json
+import random
+
+
+def parse_data_brasileira(data_str):
+    """
+    Converte data do formato brasileiro (DD-MM-YYYY) ou formato ISO (YYYY-MM-DD) 
+    para objeto date do Python
+    """
+    if not data_str:
+        return None
+    
+    try:
+        # Primeiro tenta formato brasileiro DD-MM-YYYY
+        if '-' in data_str and len(data_str.split('-')[0]) <= 2:
+            return datetime.strptime(data_str, '%d-%m-%Y').date()
+        # Depois tenta formato ISO YYYY-MM-DD
+        elif '-' in data_str:
+            return datetime.strptime(data_str, '%Y-%m-%d').date()
+        # Se nada funcionar, usa o parse_date do Django
+        else:
+            return parse_date(data_str)
+    except ValueError:
+        # Fallback para parse_date do Django
+        return parse_date(data_str)
+
+
+class GerenciarEscalasView(LoginRequiredMixin, View):
+    """View para gerenciar escalas com sistema de duas etapas"""
+    
+    def get(self, request):
+        escalas = Escala.objects.order_by('-data')[:20]
+        return render(request, 'escalas/gerenciar.html', {'escalas': escalas})
+    
+    def post(self, request):
+        acao = request.POST.get('acao')
+        data_str = request.POST.get('data')
+        
+        if not data_str:
+            messages.error(request, 'Data é obrigatória.')
+            return redirect('escalas:gerenciar_escalas')
+        
+        try:
+            data_alvo = parse_data_brasileira(data_str)
+            
+            if acao == 'criar_estrutura':
+                # Etapa 1: Criar apenas a estrutura
+                escala, created = Escala.objects.get_or_create(
+                    data=data_alvo,
+                    defaults={'etapa': 'ESTRUTURA'}
+                )
+                
+                if created:
+                    messages.success(request, f'Estrutura criada para {data_alvo.strftime("%d/%m/%Y")}! Agora você pode puxar os dados.')
+                else:
+                    messages.info(request, f'Estrutura para {data_alvo.strftime("%d/%m/%Y")} já existe.')
+                
+                return redirect('escalas:visualizar_escala', data=data_str)
+                
+            elif acao == 'otimizar':
+                escala = get_object_or_404(Escala, data=data_alvo)
+                if escala.etapa != 'DADOS_PUXADOS':
+                    messages.error(request, 'Para otimizar, é necessário ter dados puxados.')
+                    return redirect('escalas:gerenciar_escalas')
+                
+                self._otimizar_escala(escala)
+                messages.success(request, f'Escala para {data_alvo.strftime("%d/%m/%Y")} otimizada com sucesso!')
+                
+                return redirect('escalas:visualizar_escala', data=data_str)
+                
+        except Exception as e:
+            messages.error(request, f'Erro: {str(e)}')
+        
+        return redirect('escalas:gerenciar_escalas')
+    
+    def _otimizar_escala(self, escala):
+        """Otimiza a distribuição dos serviços nas vans baseado em lucratividade"""
+        with transaction.atomic():
+            # Recalcular todos os preços e lucratividade
+            for alocacao in escala.alocacoes.all():
+                alocacao.calcular_preco_e_veiculo()
+            
+            # Obter todos os serviços ordenados por lucratividade (maior primeiro)
+            alocacoes = list(escala.alocacoes.order_by('-lucratividade', '-preco_calculado'))
+            
+            # Redistribuir de forma otimizada
+            van1_servicos = []
+            van2_servicos = []
+            van1_pax = 0
+            van2_pax = 0
+            
+            for alocacao in alocacoes:
+                # Escolhe a van com menos PAX (balanceamento)
+                # Prioriza serviços mais lucrativos para van com mais capacidade
+                if van1_pax <= van2_pax:
+                    van1_servicos.append(alocacao)
+                    van1_pax += alocacao.servico.pax
+                    alocacao.van = 'VAN1'
+                    alocacao.ordem = len(van1_servicos)
+                else:
+                    van2_servicos.append(alocacao)
+                    van2_pax += alocacao.servico.pax
+                    alocacao.van = 'VAN2'
+                    alocacao.ordem = len(van2_servicos)
+                
+                alocacao.automatica = True
+                alocacao.save()
+            
+            # Atualizar status da escala
+            escala.etapa = 'OTIMIZADA'
+            escala.save()
+
+
+class VisualizarEscalaView(LoginRequiredMixin, DetailView):
+    """View para visualizar uma escala específica"""
+    
+    model = Escala
+    template_name = 'escalas/visualizar.html'
+    context_object_name = 'escala'
+    
+    def get_object(self):
+        data_str = self.kwargs.get('data')
+        data = parse_data_brasileira(data_str)
+        return get_object_or_404(Escala, data=data)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Dados da Van 1
+        van1_alocacoes = self.object.alocacoes.filter(van='VAN1').order_by('ordem')
+        van1_data = {
+            'servicos': van1_alocacoes,
+            'total_pax': sum(a.servico.pax for a in van1_alocacoes),
+            'total_valor': sum(a.preco_calculado or 0 for a in van1_alocacoes),
+            'count': van1_alocacoes.count()
+        }
+        
+        # Dados da Van 2
+        van2_alocacoes = self.object.alocacoes.filter(van='VAN2').order_by('ordem')
+        van2_data = {
+            'servicos': van2_alocacoes,
+            'total_pax': sum(a.servico.pax for a in van2_alocacoes),
+            'total_valor': sum(a.preco_calculado or 0 for a in van2_alocacoes),
+            'count': van2_alocacoes.count()
+        }
+        
+        # Informações sobre grupos
+        grupos_van1 = self.object.grupos.filter(van='VAN1').order_by('ordem')
+        grupos_van2 = self.object.grupos.filter(van='VAN2').order_by('ordem')
+        
+        context.update({
+            'van1': van1_data,
+            'van2': van2_data,
+            'grupos_van1': grupos_van1,
+            'grupos_van2': grupos_van2,
+            'total_servicos': van1_alocacoes.count() + van2_alocacoes.count(),
+        })
+        
+        return context
+
+
+class PuxarDadosView(LoginRequiredMixin, View):
+    """View para puxar dados específicos da data indicada pelo usuário"""
+    
+    def get(self, request, data):
+        """Exibe interface para puxar dados de uma data específica"""
+        data_obj = parse_data_brasileira(data)
+        escala = get_object_or_404(Escala, data=data_obj)
+        
+        if escala.etapa != 'ESTRUTURA':
+            messages.warning(request, 'Esta escala já tem dados puxados.')
+            return redirect('escalas:visualizar_escala', data=data)
+        
+        # Obter datas disponíveis com estatísticas
+        datas_disponiveis = []
+        datas_com_servicos = (Servico.objects
+                             .values('data_do_servico')
+                             .annotate(
+                                 total_servicos=Count('id'),
+                                 com_horario=Count('id', filter=Q(horario__isnull=False)),
+                                 total_pax=Sum('pax')
+                             )
+                             .order_by('-data_do_servico'))
+        
+        for data_info in datas_com_servicos:
+            datas_disponiveis.append({
+                'data': data_info['data_do_servico'],
+                'total_servicos': data_info['total_servicos'],
+                'com_horario': data_info['com_horario'],
+                'total_pax': data_info['total_pax'] or 0
+            })
+        
+        context = {
+            'escala': escala,
+            'datas_disponiveis': datas_disponiveis
+        }
+        
+        return render(request, 'escalas/puxar_dados.html', context)
+    
+    def post(self, request, data):
+        """Puxa dados da data selecionada"""
+        data_obj = parse_data_brasileira(data)
+        escala = get_object_or_404(Escala, data=data_obj)
+        data_origem_str = request.POST.get('data_origem')
+        
+        if not data_origem_str:
+            messages.error(request, 'Selecione uma data de origem para puxar os dados.')
+            return redirect('escalas:puxar_dados', data=data)
+        
+        try:
+            data_origem = parse_data_brasileira(data_origem_str)
+            
+            # Buscar serviços da data de origem
+            servicos = Servico.objects.filter(data_do_servico=data_origem)
+            
+            if not servicos.exists():
+                messages.error(request, f'Nenhum serviço encontrado para {data_origem.strftime("%d/%m/%Y")}.')
+                return redirect('escalas:puxar_dados', data=data)
+            
+            # Puxar dados e distribuir automaticamente
+            self._puxar_e_distribuir_servicos(escala, servicos, data_origem)
+            
+            messages.success(request, 
+                f'Dados puxados com sucesso! '
+                f'{servicos.count()} serviços de {data_origem.strftime("%d/%m/%Y")} '
+                f'distribuídos automaticamente entre as vans.')
+            
+            return redirect('escalas:visualizar_escala', data=data)
+            
+        except Exception as e:
+            messages.error(request, f'Erro ao puxar dados: {str(e)}')
+            return redirect('escalas:puxar_dados', data=data)
+    
+    def _puxar_e_distribuir_servicos(self, escala, servicos, data_origem):
+        """Puxa dados e distribui automaticamente entre as vans"""
+        with transaction.atomic():
+            # Limpar alocações existentes
+            escala.alocacoes.all().delete()
+            
+            # Converter para lista para poder embaralhar
+            lista_servicos = list(servicos)
+            
+            # Embaralhar para distribuição mais equilibrada
+            random.shuffle(lista_servicos)
+            
+            # Distribuir entre as vans
+            for i, servico in enumerate(lista_servicos):
+                van = 'VAN1' if i % 2 == 0 else 'VAN2'
+                ordem = (i // 2) + 1
+                
+                alocacao = AlocacaoVan.objects.create(
+                    escala=escala,
+                    servico=servico,
+                    van=van,
+                    ordem=ordem,
+                    automatica=True
+                )
+                
+                # Calcular preço e veículo
+                alocacao.calcular_preco_e_veiculo()
+            
+            # Atualizar escala
+            escala.data_origem = data_origem
+            escala.etapa = 'DADOS_PUXADOS'
+            escala.save()
+
+
+class MoverServicoView(LoginRequiredMixin, View):
+    """View para mover serviços entre vans (funcionalidade Kanban)"""
+    
+    def post(self, request):
+        """Move um serviço de uma van para outra"""
+        try:
+            data = json.loads(request.body)
+            alocacao_id = data.get('alocacao_id')
+            nova_van = data.get('nova_van')
+            nova_posicao = data.get('nova_posicao', 0)
+            
+            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
+            
+            # Verificar se a escala permite movimentação
+            if alocacao.escala.etapa == 'ESTRUTURA':
+                return JsonResponse({'success': False, 'error': 'Escala não tem dados puxados'})
+            
+            with transaction.atomic():
+                # Guardar van de origem antes da mudança
+                van_origem = alocacao.van
+                
+                # Atualizar posições na van de destino
+                AlocacaoVan.objects.filter(
+                    escala=alocacao.escala,
+                    van=nova_van,
+                    ordem__gte=nova_posicao
+                ).update(ordem=F('ordem') + 1)
+                
+                # Mover o serviço
+                alocacao.van = nova_van
+                alocacao.ordem = nova_posicao
+                alocacao.automatica = False  # Marca como movido manualmente
+                alocacao.save()
+                
+                # Reorganizar a van de origem apenas se for diferente da destino
+                if van_origem != nova_van:
+                    van_origem_alocacoes = AlocacaoVan.objects.filter(
+                        escala=alocacao.escala,
+                        van=van_origem
+                    ).order_by('ordem')
+                    
+                    for i, alocacao_origem in enumerate(van_origem_alocacoes, 1):
+                        if alocacao_origem.ordem != i:
+                            alocacao_origem.ordem = i
+                            alocacao_origem.save()
+            
+            return JsonResponse({'success': True})
+            
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+
+
+class AgruparServicosView(LoginRequiredMixin, View):
+    """
+    View para agrupar serviços quando um é solto sobre outro (Kanban avançado)
+    """
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            alocacao_origem_id = data.get('alocacao_origem_id')  # Alocação sendo arrastada
+            alocacao_destino_id = data.get('alocacao_destino_id')  # Alocação sobre a qual foi solta
+            
+            if not alocacao_origem_id or not alocacao_destino_id:
+                return JsonResponse({'success': False, 'error': 'IDs de alocações não fornecidos'})
+            
+            if alocacao_origem_id == alocacao_destino_id:
+                return JsonResponse({'success': False, 'error': 'Não é possível agrupar um serviço com ele mesmo'})
+            
+            # Buscar as alocações
+            alocacao_origem = get_object_or_404(AlocacaoVan, id=alocacao_origem_id)
+            alocacao_destino = get_object_or_404(AlocacaoVan, id=alocacao_destino_id)
+            
+            # Verificar se pertencem à mesma escala
+            if alocacao_origem.escala_id != alocacao_destino.escala_id:
+                return JsonResponse({'success': False, 'error': 'Serviços de escalas diferentes não podem ser agrupados'})
+            
+            # Verificar se destino já está em um grupo
+            grupo_destino = None
+            try:
+                # Se destino já tem grupo, usar esse grupo
+                grupo_destino = alocacao_destino.grupo_info.grupo
+            except ServicoGrupo.DoesNotExist:
+                # Se destino não tem grupo, criar novo
+                grupo_destino = GrupoServico.objects.create(
+                    escala=alocacao_destino.escala,
+                    van=alocacao_destino.van,
+                    ordem=alocacao_destino.ordem,
+                    cliente_principal=alocacao_destino.servico.cliente,
+                    servico_principal=alocacao_destino.servico.servico,
+                    local_pickup_principal=alocacao_destino.servico.local_pickup or ''
+                )
+                
+                # Adicionar o serviço destino ao grupo
+                ServicoGrupo.objects.create(
+                    grupo=grupo_destino,
+                    alocacao=alocacao_destino
+                )
+            
+            # Verificar se origem já está em um grupo
+            try:
+                grupo_origem = alocacao_origem.grupo_info.grupo
+                # Se origem está em outro grupo, mover todos os serviços do grupo origem para grupo destino
+                if grupo_origem.id != grupo_destino.id:
+                    servicos_origem = grupo_origem.servicos.all()
+                    for servico_grupo in servicos_origem:
+                        servico_grupo.grupo = grupo_destino
+                        servico_grupo.save()
+                        # Atualizar van da alocação para seguir o grupo
+                        servico_grupo.alocacao.van = grupo_destino.van
+                        servico_grupo.alocacao.save()
+                    
+                    # Deletar grupo origem vazio
+                    grupo_origem.delete()
+                
+            except ServicoGrupo.DoesNotExist:
+                # Se origem não tem grupo, simplesmente adicionar ao grupo destino
+                ServicoGrupo.objects.create(
+                    grupo=grupo_destino,
+                    alocacao=alocacao_origem
+                )
+                
+                # Atualizar van da origem para seguir o grupo
+                alocacao_origem.van = grupo_destino.van
+                alocacao_origem.save()
+            
+            # Recalcular totais do grupo
+            grupo_destino.recalcular_totais()
+            
+            return JsonResponse({
+                'success': True,
+                'message': f'Serviços agrupados com sucesso',
+                'grupo_id': grupo_destino.id,
+                'total_servicos': grupo_destino.servicos.count()
+            })
+            
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+
+
+class DesagruparServicoView(View):
+    """
+    View para remover um serviço de um grupo
+    """
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            alocacao_id = data.get('alocacao_id')
+            
+            if not alocacao_id:
+                return JsonResponse({'success': False, 'error': 'ID da alocação não fornecido'})
+            
+            # Buscar a alocação
+            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
+            
+            # Verificar se está em um grupo
+            try:
+                servico_grupo = alocacao.grupo_info
+                grupo = servico_grupo.grupo
+                
+                # Remover do grupo
+                servico_grupo.delete()
+                
+                # Se o grupo ficou com menos de 2 serviços, desagrupar todos
+                if grupo.servicos.count() < 2:
+                    # Desagrupar todos os serviços restantes
+                    for sg in grupo.servicos.all():
+                        sg.delete()
+                    # Deletar grupo vazio
+                    grupo.delete()
+                else:
+                    # Recalcular totais do grupo
+                    grupo.recalcular_totais()
+                
+                return JsonResponse({
+                    'success': True,
+                    'message': 'Serviço removido do grupo'
+                })
+                
+            except ServicoGrupo.DoesNotExist:
+                return JsonResponse({'success': False, 'error': 'Serviço não está em nenhum grupo'})
+            
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+
+
+class ExportarEscalaView(LoginRequiredMixin, View):
+    """View para exportar escala em Excel"""
+    
+    def get(self, request, data):
+        data_obj = parse_data_brasileira(data)
+        escala = get_object_or_404(Escala, data=data_obj)
+        
+        # Exporta para Excel
+        exportador = ExportadorEscalas()
+        excel_data = exportador.exportar_para_excel(escala)
+        
+        # Resposta HTTP
+        response = HttpResponse(
+            excel_data,
+            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
+        response['Content-Disposition'] = f'attachment; filename="escala_{data}.xlsx"'
+        
+        return response
+
+
+class ExcluirEscalaView(LoginRequiredMixin, View):
+    """View para excluir uma escala"""
+    
+    def post(self, request, data):
+        """Exclui uma escala específica"""
+        try:
+            data_obj = parse_data_brasileira(data)
+            escala = get_object_or_404(Escala, data=data_obj)
+            
+            # Verificar se é seguro excluir
+            if escala.etapa == 'OTIMIZADA':
+                messages.warning(
+                    request, 
+                    f'Escala de {data_obj.strftime("%d/%m/%Y")} está otimizada. '
+                    'Tem certeza que deseja excluir? Todos os dados serão perdidos permanentemente.'
+                )
+                
+            # Salvar informações para a mensagem
+            data_formatada = data_obj.strftime('%d/%m/%Y')
+            total_servicos = escala.alocacoes.count()
+            
+            # Excluir escala (cascata exclui as alocações)
+            with transaction.atomic():
+                escala.delete()
+            
+            if total_servicos > 0:
+                messages.success(
+                    request,
+                    f'Escala de {data_formatada} excluída com sucesso! '
+                    f'{total_servicos} serviços foram removidos da escala.'
+                )
+            else:
+                messages.success(
+                    request,
+                    f'Estrutura de escala de {data_formatada} excluída com sucesso!'
+                )
+            
+        except Exception as e:
+            messages.error(request, f'Erro ao excluir escala: {str(e)}')
+            
+        return redirect('escalas:gerenciar_escalas')
+    
+    def get(self, request, data):
+        """Redireciona para gerenciamento se acessado via GET"""
+        messages.info(request, 'Acesso inválido. Use o botão de exclusão na interface.')
+        return redirect('escalas:gerenciar_escalas')
+
+
+class DesagruparGrupoCompletoView(View):
+    """
+    View para desagrupar um grupo completo de serviços
+    """
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            alocacao_id = data.get('alocacao_id')
+            
+            if not alocacao_id:
+                return JsonResponse({'success': False, 'error': 'ID da alocação não fornecido'})
+            
+            # Buscar a alocação
+            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
+            
+            # Verificar se está em um grupo
+            try:
+                servico_grupo = alocacao.grupo_info
+                grupo = servico_grupo.grupo
+                
+                # Contar serviços no grupo
+                total_servicos = grupo.servicos.count()
+                
+                # Remover todos os serviços do grupo
+                grupo.servicos.all().delete()
+                
+                # Deletar o grupo vazio
+                grupo.delete()
+                
+                return JsonResponse({
+                    'success': True,
+                    'message': f'Grupo com {total_servicos} serviços foi completamente desagrupado'
+                })
+                
+            except ServicoGrupo.DoesNotExist:
+                return JsonResponse({'success': False, 'error': 'Serviço não está em nenhum grupo'})
+            
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+
+
+class DetalhesServicoView(View):
+    """
+    View para carregar detalhes de um serviço para edição
+    """
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            alocacao_id = data.get('alocacao_id')
+            
+            if not alocacao_id:
+                return JsonResponse({'success': False, 'error': 'ID da alocação não fornecido'})
+            
+            # Buscar a alocação e serviço
+            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
+            servico = alocacao.servico
+            
+            # Preparar dados do serviço
+            servico_data = {
+                'id': servico.id,
+                'cliente': servico.cliente,
+                'pax': servico.pax,
+                'servico': servico.servico,
+                'local_pickup': servico.local_pickup,
+                'horario': servico.horario.strftime('%H:%M') if servico.horario else '',
+                'data_do_servico': servico.data_do_servico.strftime('%Y-%m-%d') if servico.data_do_servico else '',
+                'numero_venda': servico.numero_venda,
+                'tipo': servico.tipo,
+                'direcao': servico.direcao,
+                'aeroporto': servico.aeroporto,
+                'regiao': servico.regiao,
+                'eh_regular': servico.eh_regular,
+                'eh_prioritario': servico.eh_prioritario,
+                # Campos que não existem no modelo - usar valores padrão
+                'numero_da_compra': '',
+                'valor_venda': 0,
+                'valor_repasse': 0,
+                'categoria': '',
+                'observacoes': '',
+            }
+            
+            # Dados da alocação
+            alocacao_data = {
+                'id': alocacao.id,
+                'van': alocacao.van,
+                'ordem': alocacao.ordem,
+            }
+            
+            return JsonResponse({
+                'success': True,
+                'servico': servico_data,
+                'alocacao': alocacao_data
+            })
+            
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+
+
+class SalvarEdicaoServicoView(View):
+    """
+    View para salvar edições de um serviço
+    """
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            servico_id = data.get('servico_id')
+            alocacao_id = data.get('alocacao_id')
+            
+            if not servico_id or not alocacao_id:
+                return JsonResponse({'success': False, 'error': 'IDs não fornecidos'})
+            
+            # Buscar serviço e alocação
+            servico = get_object_or_404(Servico, id=servico_id)
+            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
+            
+            with transaction.atomic():
+                # Atualizar dados do serviço que existem no modelo
+                servico.cliente = data.get('cliente', servico.cliente)
+                servico.pax = int(data.get('pax', servico.pax))
+                servico.servico = data.get('servico', servico.servico)
+                servico.local_pickup = data.get('local_pickup', servico.local_pickup)
+                servico.numero_venda = data.get('numero_venda', servico.numero_venda)
+                
+                # Horário
+                horario_str = data.get('horario')
+                if horario_str:
+                    from datetime import datetime
+                    servico.horario = datetime.strptime(horario_str, '%H:%M').time()
+                
+                # Data do serviço
+                data_str = data.get('data_do_servico')
+                if data_str:
+                    servico.data_do_servico = parse_date(data_str)
+                
+                # Campos específicos do modelo
+                if data.get('tipo') and data.get('tipo') in ['TRANSFER', 'DISPOSICAO', 'TOUR', 'OUTRO']:
+                    servico.tipo = data.get('tipo')
+                
+                if data.get('direcao') and data.get('direcao') in ['IN', 'OUT', 'N/A']:
+                    servico.direcao = data.get('direcao')
+                
+                if data.get('aeroporto') and data.get('aeroporto') in ['GIG', 'SDU', 'N/A']:
+                    servico.aeroporto = data.get('aeroporto')
+                
+                if data.get('regiao'):
+                    servico.regiao = data.get('regiao')
+                
+                # Campos booleanos
+                servico.eh_regular = bool(data.get('eh_regular', False))
+                servico.eh_prioritario = bool(data.get('eh_prioritario', False))
+                
+                servico.save()
+                
+                # Atualizar van se mudou
+                nova_van = data.get('van')
+                if nova_van and nova_van != alocacao.van:
+                    alocacao.van = nova_van
+                    alocacao.save()
+                
+                # Recalcular preço
+                from core.tarifarios import calcular_preco_servico
+                preco_calculado = calcular_preco_servico(servico)
+                alocacao.preco_calculado = preco_calculado
+                alocacao.save()
+            
+            return JsonResponse({
+                'success': True,
+                'message': 'Serviço atualizado com sucesso'
+            })
+            
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+
+
+class DetalhesGrupoView(View):
+    """
+    View para carregar detalhes de um grupo para edição
+    """
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            alocacao_id = data.get('alocacao_id')
+            
+            if not alocacao_id:
+                return JsonResponse({'success': False, 'error': 'ID da alocação não fornecido'})
+            
+            # Buscar a alocação e verificar se está em um grupo
+            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
+            
+            try:
+                servico_grupo = alocacao.grupo_info
+                grupo = servico_grupo.grupo
+            except ServicoGrupo.DoesNotExist:
+                return JsonResponse({'success': False, 'error': 'Serviço não está em nenhum grupo'})
+            
+            # Dados do grupo
+            grupo_data = {
+                'id': grupo.id,
+                'cliente_principal': grupo.cliente_principal,
+                'servico_principal': grupo.servico_principal,
+                'local_pickup_principal': grupo.local_pickup_principal,
+                'van': grupo.van,
+                'total_pax': grupo.total_pax,
+                'total_valor': float(grupo.total_valor) if grupo.total_valor else 0,
+            }
+            
+            # Dados dos serviços do grupo
+            servicos_data = []
+            for sg in grupo.servicos.all():
+                servico = sg.alocacao.servico
+                servicos_data.append({
+                    'alocacao_id': sg.alocacao.id,
+                    'cliente': servico.cliente,
+                    'pax': servico.pax,
+                    'servico': servico.servico,
+                    'local_pickup': servico.local_pickup,
+                    'horario': servico.horario.strftime('%H:%M') if servico.horario else '',
+                })
+            
+            return JsonResponse({
+                'success': True,
+                'grupo': grupo_data,
+                'servicos': servicos_data
+            })
+            
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+
+
+class SalvarEdicaoGrupoView(View):
+    """
+    View para salvar edições de um grupo
+    """
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            grupo_id = data.get('grupo_id')
+            
+            if not grupo_id:
+                return JsonResponse({'success': False, 'error': 'ID do grupo não fornecido'})
+            
+            # Buscar grupo
+            grupo = get_object_or_404(GrupoServico, id=grupo_id)
+            
+            with transaction.atomic():
+                # Atualizar dados do grupo
+                grupo.cliente_principal = data.get('cliente_principal', grupo.cliente_principal)
+                grupo.servico_principal = data.get('servico_principal', grupo.servico_principal)
+                grupo.local_pickup_principal = data.get('local_pickup_principal', grupo.local_pickup_principal)
+                
+                # Atualizar van do grupo e de todas as alocações
+                nova_van = data.get('van')
+                if nova_van and nova_van != grupo.van:
+                    grupo.van = nova_van
+                    # Atualizar van de todas as alocações do grupo
+                    for sg in grupo.servicos.all():
+                        sg.alocacao.van = nova_van
+                        sg.alocacao.save()
+                
+                grupo.save()
+                
+                # Recalcular totais do grupo
+                grupo.recalcular_totais()
+            
+            return JsonResponse({
+                'success': True,
+                'message': 'Grupo atualizado com sucesso'
+            })
+            
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+
+
+
+class AprovarEscalaView(LoginRequiredMixin, View):
+    """View para aprovar ou rejeitar escalas"""
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            escala_id = data.get("escala_id")
+            acao = data.get("acao")  # "aprovar" ou "rejeitar"
+            observacoes = data.get("observacoes", "")
+            
+            escala = get_object_or_404(Escala, id=escala_id)
+            
+            # Verificar se a escala pode ser aprovada
+            if not escala.pode_aprovar:
+                return JsonResponse({
+                    "success": False,
+                    "error": "Esta escala não pode ser aprovada no momento"
+                })
+            
+            # Verificar se o usuário tem permissão (cristiane.aguiar ou lucy.leite)
+            if request.user.username not in ["cristiane.aguiar", "lucy.leite"]:
+                return JsonResponse({
+                    "success": False,
+                    "error": "Você não tem permissão para aprovar escalas"
+                })
+            
+            # Atualizar status da escala
+            if acao == "aprovar":
+                escala.status = "APROVADA"
+                message = "Escala aprovada com sucesso!"
+            elif acao == "rejeitar":
+                escala.status = "REJEITADA"
+                message = "Escala rejeitada."
+            else:
+                return JsonResponse({
+                    "success": False,
+                    "error": "Ação inválida"
+                })
+            
+            escala.aprovada_por = request.user
+            escala.data_aprovacao = timezone.now()
+            escala.observacoes_aprovacao = observacoes
+            escala.save()
+            
+            return JsonResponse({
+                "success": True,
+                "message": message,
+                "status": escala.get_status_display()
+            })
+            
+        except Exception as e:
+            return JsonResponse({
+                "success": False,
+                "error": str(e)
+            })
+
+
+class ApiServicoDetailView(LoginRequiredMixin, View):
+    """
+    API para buscar detalhes de um serviço específico
+    """
+    
+    def get(self, request, alocacao_id):
+        try:
+            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
+            servico = alocacao.servico
+            
+            data = {
+                'success': True,
+                'servico': {
+                    'id': servico.id,
+                    'cliente': servico.cliente,
+                    'servico': servico.servico,
+                    'pax': servico.pax,
+                    'horario': servico.horario.strftime('%H:%M') if servico.horario else '',
+                    'local_pickup': servico.local_pickup or '',
+                    'numero_venda': servico.numero_venda or '',
+                    'data_do_servico': servico.data_do_servico.strftime('%Y-%m-%d') if servico.data_do_servico else '',
+                },
+                'alocacao': {
+                    'id': alocacao.id,
+                    'van': alocacao.van,
+                    'preco_calculado': str(alocacao.preco_calculado or 0),
+                    'veiculo_recomendado': alocacao.veiculo_recomendado or '',
+                    'lucratividade': str(alocacao.lucratividade or 0),
+                    'automatica': alocacao.automatica,
+                }
+            }
+            
+            return JsonResponse(data)
+            
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+
+
+class ApiTarifariosView(LoginRequiredMixin, View):
+    """
+    API para buscar tarifários JW e Motoristas
+    """
+    
+    def get(self, request):
+        from core.tarifarios import TARIFARIO_JW, TARIFARIO_MOTORISTAS
+        
+        return JsonResponse({
+            'success': True,
+            'tarifario_jw': TARIFARIO_JW,
+            'tarifario_motoristas': TARIFARIO_MOTORISTAS
+        })
+
+
+class ApiAtualizarPrecoView(LoginRequiredMixin, View):
+    """
+    API para atualizar preço de uma alocação
+    """
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            alocacao_id = data.get('alocacao_id')
+            novo_preco = data.get('novo_preco')
+            fonte = data.get('fonte', 'Manual')
+            observacao = data.get('observacao', '')
+            
+            if not alocacao_id or not novo_preco:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Dados incompletos'
+                })
+            
+            # Buscar alocação
+            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
+            
+            # Atualizar preço
+            alocacao.preco_calculado = Decimal(str(novo_preco))
+            alocacao.automatica = False  # Marcar como manual quando editado
+            alocacao.save()
+            
+            # Log da alteração (opcional - você pode criar um modelo para histórico)
+            # HistoricoPreco.objects.create(
+            #     alocacao=alocacao,
+            #     preco_anterior=alocacao.preco_calculado,
+            #     preco_novo=novo_preco,
+            #     fonte=fonte,
+            #     observacao=observacao,
+            #     usuario=request.user
+            # )
+            
+            return JsonResponse({
+                'success': True,
+                'message': f'Preço atualizado para R$ {novo_preco:.2f}',
+                'novo_preco': str(novo_preco)
+            })
+            
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+
+
+class DesfazerAgrupamentosAutomaticosView(LoginRequiredMixin, View):
+    """
+    View para desfazer todos os agrupamentos criados automaticamente
+    """
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            escala_id = data.get('escala_id')
+            
+            if not escala_id:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'ID da escala não fornecido'
+                })
+            
+            # Buscar escala
+            escala = get_object_or_404(Escala, id=escala_id)
+            
+            # Buscar todas as alocações automáticas que estão em grupos
+            alocacoes_automaticas = escala.alocacoes.filter(
+                automatica=True,
+                grupo_info__isnull=False
+            )
+            
+            grupos_para_remover = set()
+            grupos_desfeitos = 0
+            
+            with transaction.atomic():
+                # Coletar grupos que serão afetados
+                for alocacao in alocacoes_automaticas:
+                    try:
+                        grupo = alocacao.grupo_info.grupo
+                        grupos_para_remover.add(grupo.id)
+                    except:
+                        pass
+                
+                # Remover serviços dos grupos
+                ServicoGrupo.objects.filter(
+                    alocacao__in=alocacoes_automaticas
+                ).delete()
+                
+                # Remover grupos que ficaram vazios ou só com serviços automáticos
+                for grupo_id in grupos_para_remover:
+                    try:
+                        grupo = GrupoServico.objects.get(id=grupo_id)
+                        
+                        # Verificar se o grupo ainda tem serviços
+                        if grupo.servicos.count() == 0:
+                            grupo.delete()
+                            grupos_desfeitos += 1
+                        elif grupo.servicos.filter(alocacao__automatica=False).count() == 0:
+                            # Se só tem serviços automáticos, desfazer o grupo todo
+                            grupo.delete()
+                            grupos_desfeitos += 1
+                        else:
+                            # Grupo tem serviços manuais, só contar como desfeito parcial
+                            grupos_desfeitos += 1
+                            
+                    except GrupoServico.DoesNotExist:
+                        pass
+            
+            return JsonResponse({
+                'success': True,
+                'message': f'{grupos_desfeitos} agrupamentos automáticos foram desfeitos',
+                'grupos_desfeitos': grupos_desfeitos
+            })
+            
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })

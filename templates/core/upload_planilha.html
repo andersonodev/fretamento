@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Upload Planilha OS{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">
+                    <i class="fas fa-upload text-primary"></i>
+                    Upload da Planilha OS
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Formatos aceitos:</strong> .xlsx, .xls, .csv<br>
+                    <strong>Processamento automático:</strong> O sistema irá limpar e normalizar os dados automaticamente.
+                </div>
+                
+                <form method="post" enctype="multipart/form-data" class="mb-4">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="arquivo" class="form-label">Selecione a planilha OS:</label>
+                        <input type="file" class="form-control" id="arquivo" name="arquivo" 
+                               accept=".xlsx,.xls,.csv" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-upload"></i> Processar Planilha
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="border-top pt-3">
+                    <h6>Processo de Limpeza Automática:</h6>
+                    <ul class="text-muted">
+                        <li>Remove colunas desnecessárias (File Operadora, Obs, etc.)</li>
+                        <li>Limpa linhas com "folga" ou dados inválidos</li>
+                        <li>Separa Cliente/Titular, mantendo apenas Cliente</li>
+                        <li>Separa coluna Voo em Nº Voo e Hora Voo</li>
+                        <li>Padroniza nomes de serviços (Disposição, transfers, etc.)</li>
+                        <li>Normaliza cabeçalhos para padrão do sistema</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-chart-bar text-success"></i>
+                    Exemplo de Limpeza de Serviços
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Antes (Original)</th>
+                                <th>Depois (Limpo)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>001 - TRANSFER IN GIG PARA Z.SUL S/GUIA</code></td>
+                                <td><code>TRANSFER IN GIG PARA ZONA SUL</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>Disposição 8 horas</code></td>
+                                <td><code>Disposição 8h</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>TOUR P/ BÚZIOS C/GUIA -</code></td>
+                                <td><code>TOUR PARA BÚZIOS</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Adiciona feedback visual durante upload
+document.querySelector('form').addEventListener('submit', function(e) {
+    const button = this.querySelector('button[type="submit"]');
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+    button.disabled = true;
+});
+</script>
+{% endblock %}

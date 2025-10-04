@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema de Fretamento{% endblock %}</title>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- CSS Personalizado -->
+    {% load static %}
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #1F8CCB 0%, #1a7bb8 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --dark-gradient: linear-gradient(135deg, #434343 0%, #000000 100%);
+            
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            
+            --primary-color: #1F8CCB;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Animações de entrada */
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navbar moderna com glass effect */
+        .navbar-modern {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-brand i {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .nav-link {
+            color: var(--text-primary) !important;
+            font-weight: 500;
+            padding: 0.75rem 1rem !important;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            transition: all 0.3s ease;
+            z-index: -1;
+            border-radius: 12px;
+        }
+
+        .nav-link:hover::before {
+            left: 0;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-link i {
+            margin-right: 0.5rem;
+        }
+
+        /* Dropdown menu moderno */
+        .dropdown-menu {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-item {
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }        .dropdown-item:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Perfil do usuário */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .user-profile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .user-role {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            line-height: 1;
+        }
+
+        /* Container principal */
+        .main-container {
+            padding: 2rem 0;
+            min-height: calc(100vh - 120px);
+        }
+
+        /* Alerts modernos */
+        .alert {
+            border: none;
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(139, 195, 74, 0.15) 100%);
+            color: #2e7d32;
+        }
+
+        .alert-danger {
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.15) 0%, rgba(233, 30, 99, 0.15) 100%);
+            color: #c62828;
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%);
+            color: #f57c00;
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.15) 0%, rgba(3, 169, 244, 0.15) 100%);
+            color: #1976d2;
+        }
+
+        /* Footer moderno */
+        .footer-modern {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .user-info {
+                display: none;
+            }
+            
+            .nav-link {
+                padding: 0.5rem 0.75rem !important;
+            }
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scrollbar customizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #1F8CCB 0%, #1a7bb8 100%);
+        }
+
+        /* Dropdown items especiais */
+        .theme-toggle-item {
+            cursor: pointer;
+        }
+
+        .theme-toggle-item:hover {
+            background: var(--primary-gradient) !important;
+            color: white !important;
+        }
+
+        /* Dark theme */
+        .dark-theme {
+            background-color: #1a1a1a !important;
+            color: #e0e0e0 !important;
+        }
+
+        .dark-theme .navbar {
+            background: rgba(26, 26, 26, 0.95) !important;
+            backdrop-filter: blur(20px);
+        }
+
+        .dark-theme .dropdown-menu {
+            background: #2a2a2a !important;
+            border: 1px solid #404040 !important;
+        }
+
+        .dark-theme .dropdown-item {
+            background: #2a2a2a !important;
+            color: #e0e0e0 !important;
+            border: 1px solid #404040 !important;
+        }
+
+        .dark-theme .dropdown-item:hover {
+            background: var(--primary-gradient) !important;
+            color: white !important;
+        }
+
+        .dark-theme .card {
+            background: #2a2a2a !important;
+            border: 1px solid #404040 !important;
+            color: #e0e0e0 !important;
+        }
+    </style>
+</head>
+<body class="fade-in-up">
+    <!-- Navbar moderna -->
+    <nav class="navbar navbar-expand-lg navbar-modern">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'core:home' %}">
+                <i class="fas fa-bus"></i>Sistema de Fretamento
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:home' %}">
+                            <i class="fas fa-home"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:upload_planilha' %}">
+                            <i class="fas fa-cloud-upload-alt"></i>Upload OS
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:lista_servicos' %}">
+                            <i class="fas fa-list-alt"></i>Serviços
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'escalas:gerenciar_escalas' %}">
+                            <i class="fas fa-calendar-check"></i>Escalas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:diagnostico' %}">
+                            <i class="fas fa-chart-line"></i>Analytics
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Perfil do usuário -->
+                {% if user.is_authenticated %}
+                    <div class="navbar-nav">
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle user-profile" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="user-avatar">
+                                    {{ user.get_full_name|default:user.username|first|upper }}
+                                </div>
+                                <div class="user-info">
+                                    <div class="user-name">{{ user.get_full_name|default:user.username }}</div>
+                                    <div class="user-role">
+                                        {% if user.username in 'cristiane.aguiar,lucy.leite' %}
+                                            Supervisor
+                                        {% else %}
+                                            Operador
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-down ms-2"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li class="dropdown-item-text">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="user-avatar me-2">
+                                            {{ user.get_full_name|default:user.username|first|upper }}
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold">{{ user.get_full_name|default:user.username }}</div>
+                                            <small class="text-muted">{{ user.email|default:user.username }}</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'core:home' %}">
+                                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                                    </a>
+                                </li>
+                                {% if user.username in 'cristiane.aguiar,lucy.leite' %}
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'escalas:gerenciar_escalas' %}">
+                                        <i class="fas fa-check-circle me-2"></i>Aprovar Escalas
+                                    </a>
+                                </li>
+                                {% endif %}
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item theme-toggle-item" href="#" id="theme-toggle" title="Alternar tema">
+                                        <i class="fas fa-moon me-2"></i>Modo Noturno
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'authentication:logout' %}">
+                                        <i class="fas fa-sign-out-alt me-2"></i>Sair do Sistema
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Container principal -->
+    <main class="container main-container">
+        <!-- Mensagens de feedback -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show animate__animated animate__fadeInDown" role="alert">
+                    <div class="d-flex align-items-center">
+                        {% if message.tags == 'success' %}
+                            <i class="fas fa-check-circle me-2"></i>
+                        {% elif message.tags == 'danger' %}
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                        {% elif message.tags == 'warning' %}
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                        {% else %}
+                            <i class="fas fa-info-circle me-2"></i>
+                        {% endif %}
+                        {{ message }}
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Conteúdo da página -->
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer moderno -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="{% url 'core:home' %}" class="footer-link">Dashboard</a>
+                    <a href="{% url 'core:lista_servicos' %}" class="footer-link">Serviços</a>
+                    <a href="{% url 'escalas:gerenciar_escalas' %}" class="footer-link">Escalas</a>
+                    <a href="{% url 'core:diagnostico' %}" class="footer-link">Analytics</a>
+                </div>
+                <div class="text-muted">
+                    <p class="mb-1">&copy; 2025 Sistema de Fretamento. Todos os direitos reservados.</p>
+                    <p class="mb-0"><small>Versão 2.0 | Powered by Django & Bootstrap</small></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript Personalizado -->
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    
+    <script>
+        // Animações suaves ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-hide alerts após 5 segundos
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }, 5000);
+            });
+
+            // Smooth scroll para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Loading states para botões
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', function() {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        const originalText = submitBtn.innerHTML;
+                        submitBtn.innerHTML = '<span class="loading-spinner me-2"></span>Processando...';
+                        submitBtn.disabled = true;
+                        
+                        // Restaurar após 3 segundos (fallback)
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    }
+                });
+            });
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const icon = themeToggle.querySelector('i');
+            
+            // Carregar tema salvo
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+                icon.className = 'fas fa-sun me-2';
+                themeToggle.querySelector('span, text()').textContent = 'Modo Claro';
+            }
+            
+            themeToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                body.classList.toggle('dark-theme');
+                
+                if (body.classList.contains('dark-theme')) {
+                    icon.className = 'fas fa-sun me-2';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.className = 'fas fa-moon me-2';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        });
+    </script>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>
