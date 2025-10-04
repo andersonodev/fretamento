@@ -806,3 +806,5 @@ INFO 2025-10-04 09:30:04,583 basehttp 81274 6201667584 "POST /escalas/desagrupar
 INFO 2025-10-04 09:30:05,669 basehttp 81274 6201667584 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 350684
 INFO 2025-10-04 09:30:35,348 autoreload 81274 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
 INFO 2025-10-04 09:30:35,863 autoreload 81437 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-04 09:31:06,527 log 81437 6194262016 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:31:06,528 basehttp 81437 6194262016 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
