@@ -5,20 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Sistema de Fretamento{% endblock %}</title>
     
-    <!-- Bootstrap 5.3 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome 6 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    
+    <!-- Bootstrap 5.3 - CDN otimizado -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Font Awesome - versão otimizada -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous">
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Animate.css -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Chart.js - apenas quando necessário -->
+    {% block extra_head %}{% endblock %}
     
     <!-- CSS Personalizado -->
     {% load static %}
     <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    <link href="{% static 'css/whatsapp-dark.css' %}" rel="stylesheet">
     
     <style>
         :root {
@@ -348,37 +353,118 @@
             color: white !important;
         }
 
-        /* Dark theme */
+        /* Dark theme - WhatsApp colors */
         .dark-theme {
-            background-color: #1a1a1a !important;
-            color: #e0e0e0 !important;
+            background: linear-gradient(135deg, #0b141a 0%, #1f2c34 100%) !important;
+            color: #e9edef !important;
         }
 
         .dark-theme .navbar {
-            background: rgba(26, 26, 26, 0.95) !important;
+            background: rgba(11, 20, 26, 0.95) !important;
             backdrop-filter: blur(20px);
+            border-bottom: 1px solid #3b4a54;
+        }
+
+        .dark-theme .navbar-brand {
+            color: #00a884 !important;
+        }
+
+        .dark-theme .nav-link {
+            color: #e9edef !important;
+        }
+
+        .dark-theme .nav-link:hover {
+            color: #00a884 !important;
+            background: rgba(0, 168, 132, 0.1) !important;
         }
 
         .dark-theme .dropdown-menu {
-            background: #2a2a2a !important;
-            border: 1px solid #404040 !important;
+            background: #2a3942 !important;
+            border: 1px solid #3b4a54 !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
         .dark-theme .dropdown-item {
-            background: #2a2a2a !important;
-            color: #e0e0e0 !important;
-            border: 1px solid #404040 !important;
+            background: transparent !important;
+            color: #e9edef !important;
+            border: none !important;
         }
 
         .dark-theme .dropdown-item:hover {
-            background: var(--primary-gradient) !important;
-            color: white !important;
+            background: rgba(0, 168, 132, 0.1) !important;
+            color: #00a884 !important;
         }
 
         .dark-theme .card {
-            background: #2a2a2a !important;
-            border: 1px solid #404040 !important;
-            color: #e0e0e0 !important;
+            background: #2a3942 !important;
+            border: 1px solid #3b4a54 !important;
+            color: #e9edef !important;
+        }
+
+        .dark-theme .card-header {
+            background: #1f2c34 !important;
+            border-bottom: 1px solid #3b4a54 !important;
+            color: #e9edef !important;
+        }
+
+        .dark-theme .btn-primary {
+            background: linear-gradient(135deg, #00a884 0%, #008f6f 100%) !important;
+            border-color: #00a884 !important;
+        }
+
+        .dark-theme .btn-primary:hover {
+            background: linear-gradient(135deg, #008f6f 0%, #007a5e 100%) !important;
+            border-color: #008f6f !important;
+        }
+
+        .dark-theme .alert {
+            background: #2a3942 !important;
+            border: 1px solid #3b4a54 !important;
+            color: #e9edef !important;
+        }
+
+        .dark-theme .form-control, .dark-theme .form-select {
+            background: #1f2c34 !important;
+            border: 1px solid #3b4a54 !important;
+            color: #e9edef !important;
+        }
+
+        .dark-theme .form-control:focus, .dark-theme .form-select:focus {
+            background: #2a3942 !important;
+            border-color: #00a884 !important;
+            box-shadow: 0 0 0 0.25rem rgba(0, 168, 132, 0.25) !important;
+        }
+
+        .dark-theme .table {
+            color: #e9edef !important;
+        }
+
+        .dark-theme .table thead th {
+            background: #1f2c34 !important;
+            border-color: #3b4a54 !important;
+            color: #e9edef !important;
+        }
+
+        .dark-theme .table tbody tr {
+            border-color: #3b4a54 !important;
+        }
+
+        .dark-theme .table tbody tr:hover {
+            background: rgba(0, 168, 132, 0.1) !important;
+        }
+
+        .dark-theme .badge {
+            background: #00a884 !important;
+            color: white !important;
+        }
+
+        .dark-theme .text-muted {
+            color: #8696a0 !important;
+        }
+
+        .dark-theme .footer-modern {
+            background: rgba(11, 20, 26, 0.95) !important;
+            border-top: 1px solid #3b4a54 !important;
         }
     </style>
 </head>
@@ -596,7 +682,11 @@
             if (savedTheme === 'dark') {
                 body.classList.add('dark-theme');
                 icon.className = 'fas fa-sun me-2';
-                themeToggle.querySelector('span, text()').textContent = 'Modo Claro';
+                // Atualizar texto do menu
+                const menuText = themeToggle.childNodes[themeToggle.childNodes.length - 1];
+                if (menuText && menuText.nodeType === Node.TEXT_NODE) {
+                    menuText.textContent = 'Modo Claro';
+                }
             }
             
             themeToggle.addEventListener('click', function(e) {
@@ -606,9 +696,19 @@
                 if (body.classList.contains('dark-theme')) {
                     icon.className = 'fas fa-sun me-2';
                     localStorage.setItem('theme', 'dark');
+                    // Atualizar texto do menu
+                    const menuText = themeToggle.childNodes[themeToggle.childNodes.length - 1];
+                    if (menuText && menuText.nodeType === Node.TEXT_NODE) {
+                        menuText.textContent = 'Modo Claro';
+                    }
                 } else {
                     icon.className = 'fas fa-moon me-2';
                     localStorage.setItem('theme', 'light');
+                    // Atualizar texto do menu
+                    const menuText = themeToggle.childNodes[themeToggle.childNodes.length - 1];
+                    if (menuText && menuText.nodeType === Node.TEXT_NODE) {
+                        menuText.textContent = 'Modo Noturno';
+                    }
                 }
             });
         });

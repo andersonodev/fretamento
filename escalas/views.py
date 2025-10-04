@@ -18,29 +18,50 @@ from escalas.services import GerenciadorEscalas, ExportadorEscalas
 from core.tarifarios import calcular_preco_servico
 import json
 import random
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def parse_data_brasileira(data_str):
     """
-    Converte data do formato brasileiro (DD-MM-YYYY) ou formato ISO (YYYY-MM-DD) 
+    Converte data do formato brasileiro (DD-MM-YYYY ou DD/MM/YYYY) ou formato ISO (YYYY-MM-DD) 
     para objeto date do Python
     """
     if not data_str:
         return None
     
+    logger.debug(f"Parsing data: {data_str}")
+    
     try:
         # Primeiro tenta formato brasileiro DD-MM-YYYY
         if '-' in data_str and len(data_str.split('-')[0]) <= 2:
-            return datetime.strptime(data_str, '%d-%m-%Y').date()
+            data_obj = datetime.strptime(data_str, '%d-%m-%Y').date()
+            logger.debug(f"Formato brasileiro com hífen parseado: {data_obj}")
+            return data_obj
+        # Tenta formato brasileiro DD/MM/YYYY
+        elif '/' in data_str and len(data_str.split('/')[0]) <= 2:
+            data_obj = datetime.strptime(data_str, '%d/%m/%Y').date()
+            logger.debug(f"Formato brasileiro com barra parseado: {data_obj}")
+            return data_obj
         # Depois tenta formato ISO YYYY-MM-DD
-        elif '-' in data_str:
-            return datetime.strptime(data_str, '%Y-%m-%d').date()
+        elif '-' in data_str and len(data_str.split('-')[0]) == 4:
+            data_obj = datetime.strptime(data_str, '%Y-%m-%d').date()
+            logger.debug(f"Formato ISO parseado: {data_obj}")
+            return data_obj
         # Se nada funcionar, usa o parse_date do Django
         else:
-            return parse_date(data_str)
-    except ValueError:
+            data_obj = parse_date(data_str)
+            logger.debug(f"Django parse_date usado: {data_obj}")
+            return data_obj
+    except ValueError as e:
+        logger.error(f"Erro ao fazer parse da data '{data_str}': {e}")
         # Fallback para parse_date do Django
-        return parse_date(data_str)
+        try:
+            return parse_date(data_str)
+        except:
+            logger.error(f"Fallback também falhou para '{data_str}'")
+            return None
 
 
 class GerenciarEscalasView(LoginRequiredMixin, View):
@@ -144,22 +165,47 @@ class VisualizarEscalaView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         
+        # Obter todas as alocações
+        all_van1_alocacoes = self.object.alocacoes.filter(van='VAN1').order_by('ordem')
+        all_van2_alocacoes = self.object.alocacoes.filter(van='VAN2').order_by('ordem')
+        
+        # Filtrar para mostrar apenas um representante por grupo
+        def get_unique_alocacoes(alocacoes):
+            """Retorna apenas um representante por grupo + alocações não agrupadas"""
+            grupos_vistos = set()
+            alocacoes_unicas = []
+            
+            for alocacao in alocacoes:
+                try:
+                    # Se tem grupo_info, verificar se já mostramos este grupo
+                    grupo_id = alocacao.grupo_info.grupo.id
+                    if grupo_id not in grupos_vistos:
+                        grupos_vistos.add(grupo_id)
+                        alocacoes_unicas.append(alocacao)
+                except:
+                    # Se não tem grupo_info, é uma alocação individual
+                    alocacoes_unicas.append(alocacao)
+            
+            return alocacoes_unicas
+        
+        # Obter alocações únicas (representantes de grupos)
+        van1_alocacoes_unicas = get_unique_alocacoes(all_van1_alocacoes)
+        van2_alocacoes_unicas = get_unique_alocacoes(all_van2_alocacoes)
+        
         # Dados da Van 1
-        van1_alocacoes = self.object.alocacoes.filter(van='VAN1').order_by('ordem')
         van1_data = {
-            'servicos': van1_alocacoes,
-            'total_pax': sum(a.servico.pax for a in van1_alocacoes),
-            'total_valor': sum(a.preco_calculado or 0 for a in van1_alocacoes),
-            'count': van1_alocacoes.count()
+            'servicos': van1_alocacoes_unicas,  # Usar alocações únicas
+            'total_pax': sum(a.servico.pax for a in all_van1_alocacoes),  # Totais baseados em todas
+            'total_valor': sum(a.preco_calculado or 0 for a in all_van1_alocacoes),
+            'count': all_van1_alocacoes.count()
         }
         
         # Dados da Van 2
-        van2_alocacoes = self.object.alocacoes.filter(van='VAN2').order_by('ordem')
         van2_data = {
-            'servicos': van2_alocacoes,
-            'total_pax': sum(a.servico.pax for a in van2_alocacoes),
-            'total_valor': sum(a.preco_calculado or 0 for a in van2_alocacoes),
-            'count': van2_alocacoes.count()
+            'servicos': van2_alocacoes_unicas,  # Usar alocações únicas
+            'total_pax': sum(a.servico.pax for a in all_van2_alocacoes),  # Totais baseados em todas
+            'total_valor': sum(a.preco_calculado or 0 for a in all_van2_alocacoes),
+            'count': all_van2_alocacoes.count()
         }
         
         # Informações sobre grupos
@@ -171,7 +217,7 @@ class VisualizarEscalaView(LoginRequiredMixin, DetailView):
             'van2': van2_data,
             'grupos_van1': grupos_van1,
             'grupos_van2': grupos_van2,
-            'total_servicos': van1_alocacoes.count() + van2_alocacoes.count(),
+            'total_servicos': all_van1_alocacoes.count() + all_van2_alocacoes.count(),
         })
         
         return context
@@ -304,18 +350,53 @@ class MoverServicoView(LoginRequiredMixin, View):
                 # Guardar van de origem antes da mudança
                 van_origem = alocacao.van
                 
-                # Atualizar posições na van de destino
-                AlocacaoVan.objects.filter(
-                    escala=alocacao.escala,
-                    van=nova_van,
-                    ordem__gte=nova_posicao
-                ).update(ordem=F('ordem') + 1)
-                
-                # Mover o serviço
-                alocacao.van = nova_van
-                alocacao.ordem = nova_posicao
-                alocacao.automatica = False  # Marca como movido manualmente
-                alocacao.save()
+                # Verificar se a alocação pertence a um grupo
+                try:
+                    servico_grupo = alocacao.grupo_info
+                    grupo = servico_grupo.grupo
+                    
+                    # Se pertence a um grupo, mover TODO o grupo
+                    alocacoes_do_grupo = AlocacaoVan.objects.filter(
+                        grupo_info__grupo=grupo
+                    )
+                    
+                    # Atualizar posições na van de destino
+                    AlocacaoVan.objects.filter(
+                        escala=alocacao.escala,
+                        van=nova_van,
+                        ordem__gte=nova_posicao
+                    ).update(ordem=F('ordem') + alocacoes_do_grupo.count())
+                    
+                    # Mover todas as alocações do grupo
+                    for i, alocacao_grupo in enumerate(alocacoes_do_grupo):
+                        alocacao_grupo.van = nova_van
+                        alocacao_grupo.ordem = nova_posicao + i
+                        alocacao_grupo.automatica = False
+                        alocacao_grupo.save()
+                    
+                    # Atualizar van do grupo
+                    grupo.van = nova_van
+                    grupo.save()
+                    
+                    mensagem_sucesso = f'Grupo com {alocacoes_do_grupo.count()} serviços movido com sucesso'
+                    
+                except ServicoGrupo.DoesNotExist:
+                    # Se não pertence a um grupo, mover apenas a alocação individual
+                    
+                    # Atualizar posições na van de destino
+                    AlocacaoVan.objects.filter(
+                        escala=alocacao.escala,
+                        van=nova_van,
+                        ordem__gte=nova_posicao
+                    ).update(ordem=F('ordem') + 1)
+                    
+                    # Mover o serviço
+                    alocacao.van = nova_van
+                    alocacao.ordem = nova_posicao
+                    alocacao.automatica = False  # Marca como movido manualmente
+                    alocacao.save()
+                    
+                    mensagem_sucesso = 'Serviço movido com sucesso'
                 
                 # Reorganizar a van de origem apenas se for diferente da destino
                 if van_origem != nova_van:
@@ -329,7 +410,10 @@ class MoverServicoView(LoginRequiredMixin, View):
                             alocacao_origem.ordem = i
                             alocacao_origem.save()
             
-            return JsonResponse({'success': True})
+            return JsonResponse({
+                'success': True, 
+                'message': mensagem_sucesso
+            })
             
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)})
@@ -590,6 +674,72 @@ class DesagruparGrupoCompletoView(View):
             })
 
 
+class ExcluirServicoView(LoginRequiredMixin, View):
+    """View para excluir um serviço/alocação"""
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            alocacao_id = data.get('alocacao_id')
+            
+            if not alocacao_id:
+                return JsonResponse({'success': False, 'error': 'ID da alocação não fornecido'})
+            
+            # Buscar a alocação
+            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
+            servico = alocacao.servico
+            
+            with transaction.atomic():
+                # Verificar se está em um grupo
+                try:
+                    servico_grupo = alocacao.grupo_info
+                    grupo = servico_grupo.grupo
+                    
+                    # Remover do grupo primeiro
+                    servico_grupo.delete()
+                    
+                    # Se o grupo ficou com menos de 2 serviços, desagrupar todos
+                    if grupo.servicos.count() < 2:
+                        for sg in grupo.servicos.all():
+                            sg.delete()
+                        grupo.delete()
+                        
+                except ServicoGrupo.DoesNotExist:
+                    # Não está em grupo, pode excluir diretamente
+                    pass
+                
+                # Guardar informações para a mensagem
+                cliente = servico.cliente
+                pax = servico.pax
+                van = alocacao.van
+                escala = alocacao.escala
+                
+                # Excluir a alocação (o serviço pode ser reutilizado em outras escalas)
+                alocacao.delete()
+                
+                # Reorganizar ordem das demais alocações na van
+                alocacoes_restantes = AlocacaoVan.objects.filter(
+                    escala=escala,
+                    van=van
+                ).order_by('ordem')
+                
+                for i, alocacao_restante in enumerate(alocacoes_restantes, 1):
+                    if alocacao_restante.ordem != i:
+                        alocacao_restante.ordem = i
+                        alocacao_restante.save()
+                
+                return JsonResponse({
+                    'success': True,
+                    'message': f'Serviço {cliente} ({pax} PAX) foi excluído da {van}'
+                })
+                
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+
+
 class DetalhesServicoView(View):
     """
     View para carregar detalhes de um serviço para edição
@@ -615,7 +765,7 @@ class DetalhesServicoView(View):
                 'servico': servico.servico,
                 'local_pickup': servico.local_pickup,
                 'horario': servico.horario.strftime('%H:%M') if servico.horario else '',
-                'data_do_servico': servico.data_do_servico.strftime('%Y-%m-%d') if servico.data_do_servico else '',
+                'data_do_servico': servico.data_do_servico.strftime('%d-%m-%Y') if servico.data_do_servico else '',
                 'numero_venda': servico.numero_venda,
                 'tipo': servico.tipo,
                 'direcao': servico.direcao,
@@ -916,7 +1066,7 @@ class ApiServicoDetailView(LoginRequiredMixin, View):
                     'horario': servico.horario.strftime('%H:%M') if servico.horario else '',
                     'local_pickup': servico.local_pickup or '',
                     'numero_venda': servico.numero_venda or '',
-                    'data_do_servico': servico.data_do_servico.strftime('%Y-%m-%d') if servico.data_do_servico else '',
+                    'data_do_servico': servico.data_do_servico.strftime('%d-%m-%Y') if servico.data_do_servico else '',
                 },
                 'alocacao': {
                     'id': alocacao.id,

@@ -33,7 +33,7 @@ class ProcessadorPlanilhaOS:
     
     def processar_planilha(self, arquivo: UploadedFile) -> Tuple[List[Servico], ProcessamentoPlanilha]:
         """
-        Processa a planilha OS completa
+        Processa a planilha OS completa com otimizações
         """
         # Cria registro de processamento
         processamento = ProcessamentoPlanilha.objects.create(
@@ -51,6 +51,12 @@ class ProcessadorPlanilhaOS:
             
             # Converte para objetos Servico
             servicos = self._converter_para_servicos(df)
+            
+            # Salva em lote para melhor performance
+            if servicos:
+                # Usa bulk_create para inserção otimizada
+                Servico.objects.bulk_create(servicos, batch_size=1000)
+                logger.info(f"Inseridos {len(servicos)} serviços usando bulk_create")
             
             # Atualiza status
             processamento.status = 'CONCLUIDO'
@@ -240,9 +246,15 @@ class ProcessadorPlanilhaOS:
             # Atualiza data atual se presente
             if col_mapping['data_servico'] and pd.notna(row[col_mapping['data_servico']]):
                 try:
-                    data_atual = pd.to_datetime(row[col_mapping['data_servico']]).date()
+                    # Força formato brasileiro DD/MM/YYYY
+                    data_str = str(row[col_mapping['data_servico']])
+                    data_atual = pd.to_datetime(data_str, format='%d/%m/%Y', dayfirst=True).date()
                 except:
-                    pass
+                    try:
+                        # Fallback: tenta formato ISO
+                        data_atual = pd.to_datetime(row[col_mapping['data_servico']]).date()
+                    except:
+                        pass
             
             # Pula se não há serviço ou cliente
             if not self._tem_dados_minimos(row, col_mapping):

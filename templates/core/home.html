@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 
 {% block title %}Dashboard - Sistema de Fretamento{% endblock %}
 
@@ -330,6 +331,119 @@
             height: 50px;
             font-size: 1.2rem;
         }
+    }
+
+    /* Dark Mode Específico para Dashboard */
+    .dark-theme .dashboard-header {
+        background: linear-gradient(135deg, #1F8CCB 0%, #1a7bb8 100%) !important;
+        color: #e9edef !important;
+    }
+
+    .dark-theme .stat-card {
+        background: #2a3942 !important;
+        border: 1px solid #3b4a54 !important;
+        color: #e9edef !important;
+    }
+
+    .dark-theme .stat-card:hover {
+        box-shadow: 0 20px 40px rgba(31, 140, 203, 0.2) !important;
+    }
+
+    .dark-theme .stat-number {
+        background: linear-gradient(135deg, #1F8CCB 0%, #1a7bb8 100%) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+    }
+
+    .dark-theme .stat-label {
+        color: #8696a0 !important;
+    }
+
+    .dark-theme .stat-icon {
+        color: #1F8CCB !important;
+    }
+
+    .dark-theme .action-card {
+        background: #2a3942 !important;
+        border: 1px solid #3b4a54 !important;
+        color: #e9edef !important;
+    }
+
+    .dark-theme .action-card-header {
+        background: linear-gradient(135deg, #1F8CCB 0%, #1a7bb8 100%) !important;
+        color: white !important;
+    }
+
+    .dark-theme .action-card-body {
+        background: #2a3942 !important;
+        color: #e9edef !important;
+    }
+
+    .dark-theme .action-btn {
+        background: #1f2c34 !important;
+        color: #e9edef !important;
+        border: 1px solid #3b4a54 !important;
+    }
+
+    .dark-theme .action-btn:hover {
+        background: rgba(31, 140, 203, 0.1) !important;
+        color: #1F8CCB !important;
+        border-color: #1F8CCB !important;
+    }
+
+    /* Seções específicas da dashboard */
+    .dark-theme .recent-activity {
+        background: #2a3942 !important;
+        border: 1px solid #3b4a54 !important;
+        color: #e9edef !important;
+    }
+
+    .dark-theme .chart-container {
+        background: #2a3942 !important;
+        border: 1px solid #3b4a54 !important;
+    }
+
+    .dark-theme h3, .dark-theme h4, .dark-theme h5 {
+        color: #e9edef !important;
+    }
+
+    .dark-theme .text-muted {
+        color: #8696a0 !important;
+    }
+
+    .dark-theme .badge {
+        background: #1F8CCB !important;
+        color: white !important;
+    }
+
+    .dark-theme .badge.bg-warning {
+        background: #1F8CCB !important;
+        color: white !important;
+    }
+
+    .dark-theme .stat-change {
+        color: #8696a0 !important;
+    }
+
+    .dark-theme .stat-change.positive {
+        color: #1F8CCB !important;
+    }
+
+    .dark-theme .stat-change.negative {
+        color: #ff6b6b !important;
+    }
+
+    .dark-theme .dashboard-title {
+        color: #e9edef !important;
+    }
+
+    .dark-theme .dashboard-subtitle {
+        color: #e9edef !important;
+    }
+
+    .dark-theme .welcome-time {
+        color: #8696a0 !important;
     }
 </style>
 

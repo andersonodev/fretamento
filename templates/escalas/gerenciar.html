@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% load custom_filters %}
 
 {% block title %}Gerenciar Escalas{% endblock %}
@@ -219,6 +220,7 @@
 // Auto-definir data para hoje
 document.addEventListener('DOMContentLoaded', function() {
     const dataInput = document.getElementById('data');
+    
     if (dataInput && !dataInput.value) {
         const hoje = new Date().toISOString().split('T')[0];
         dataInput.value = hoje;

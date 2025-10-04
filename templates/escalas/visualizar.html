@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 
 {% block title %}Visualizar Escala - {{ escala.data|date:"d/m/Y" }}{% endblock %}
 
@@ -25,14 +26,14 @@
                         <i class="fas fa-arrow-left"></i> Voltar
                     </a>
                     {% if escala.tem_dados %}
-                        <a href="{% url 'escalas:exportar_escala' data=escala.data|date:'Y-m-d' %}" class="btn btn-success">
+                        <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" class="btn btn-success">
                             <i class="fas fa-file-excel"></i> Exportar Excel
                         </a>
                     {% endif %}
                     {% if escala.etapa == 'DADOS_PUXADOS' %}
                         <form method="post" action="{% url 'escalas:gerenciar_escalas' %}" class="d-inline">
                             {% csrf_token %}
-                            <input type="hidden" name="data" value="{{ escala.data|date:'Y-m-d' }}">
+                            <input type="hidden" name="data" value="{{ escala.data|date_br }}">
                             <button type="submit" name="acao" value="otimizar" class="btn btn-warning">
                                 <i class="fas fa-magic"></i> Otimizar Escala
                             </button>
@@ -50,7 +51,7 @@
                 <div class="alert alert-info">
                     <h5><i class="fas fa-info-circle"></i> Estrutura Criada com Sucesso!</h5>
                     <p class="mb-2">A estrutura básica da escala foi criada. Agora você pode:</p>
-                    <a href="{% url 'escalas:puxar_dados' data=escala.data|date:'Y-m-d' %}" class="btn btn-primary">
+                    <a href="{% url 'escalas:puxar_dados' data=escala.data|date_br %}" class="btn btn-primary">
                         <i class="fas fa-download"></i> Puxar Dados de uma Data
                     </a>
                 </div>
@@ -318,16 +319,25 @@
                                             <div class="flex-grow-1">
                                                 <h6 class="card-title mb-1">
                                                     <i class="fas fa-grip-vertical text-muted me-1"></i>
-                                                    {{ alocacao.servico.cliente }}
+                                                    {% if alocacao.grupo_info %}
+                                                        {{ alocacao.grupo_info.grupo.get_clientes_concatenados }}
+                                                    {% else %}
+                                                        {{ alocacao.servico.cliente }}
+                                                    {% endif %}
                                                 </h6>
                                                 <small class="text-muted">
                                                     <i class="fas fa-hashtag"></i> {{ alocacao.servico.numero_da_compra|default:"-" }}
                                                 </small>
                                             </div>
                                             <div class="text-end">
-                                                <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
-                                                {% if alocacao.preco_calculado %}
-                                                    <br><span class="badge bg-success">R$ {{ alocacao.preco_calculado|floatformat:2 }}</span>
+                                                {% if alocacao.grupo_info %}
+                                                    <span class="badge bg-primary">{{ alocacao.grupo_info.grupo.total_pax }} PAX</span>
+                                                    <br><span class="badge bg-success">R$ {{ alocacao.grupo_info.grupo.total_valor|floatformat:2 }}</span>
+                                                {% else %}
+                                                    <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
+                                                    {% if alocacao.preco_calculado %}
+                                                        <br><span class="badge bg-success">R$ {{ alocacao.preco_calculado|floatformat:2 }}</span>
+                                                    {% endif %}
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -339,28 +349,55 @@
                                                 <strong>Serviço:</strong> {{ alocacao.servico.servico }}
                                             </div>
                                             
-                                            {% if alocacao.servico.local_pickup %}
-                                                <div class="mb-1">
-                                                    <i class="fas fa-location-dot text-warning"></i>
-                                                    <strong>Pickup:</strong> {{ alocacao.servico.local_pickup }}
-                                                </div>
-                                            {% endif %}
-                                            
-                                            <div class="row g-1">
-                                                {% if alocacao.servico.horario %}
-                                                    <div class="col-6">
-                                                        <i class="fas fa-clock text-info"></i>
-                                                        {{ alocacao.servico.horario|time:"H:i" }}
+                                            {% if alocacao.grupo_info %}
+                                                <!-- Mostrar informações consolidadas do grupo -->
+                                                {% if alocacao.grupo_info.grupo.get_pickups_concatenados %}
+                                                    <div class="mb-1">
+                                                        <i class="fas fa-location-dot text-warning"></i>
+                                                        <strong>Pickup:</strong> {{ alocacao.grupo_info.grupo.get_pickups_concatenados }}
                                                     </div>
                                                 {% endif %}
                                                 
-                                                {% if alocacao.servico.numero_venda %}
-                                                    <div class="col-6">
-                                                        <i class="fas fa-shopping-cart text-success"></i>
-                                                        Vendas: {{ alocacao.servico.numero_venda }}
+                                                <div class="row g-1">
+                                                    {% if alocacao.grupo_info.grupo.get_horarios_concatenados %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-clock text-info"></i>
+                                                            {{ alocacao.grupo_info.grupo.get_horarios_concatenados }}
+                                                        </div>
+                                                    {% endif %}
+                                                    
+                                                    {% if alocacao.grupo_info.grupo.get_vendas_unicas %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-shopping-cart text-success"></i>
+                                                            Vendas: {{ alocacao.grupo_info.grupo.get_vendas_unicas }}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% else %}
+                                                <!-- Mostrar informações individuais -->
+                                                {% if alocacao.servico.local_pickup %}
+                                                    <div class="mb-1">
+                                                        <i class="fas fa-location-dot text-warning"></i>
+                                                        <strong>Pickup:</strong> {{ alocacao.servico.local_pickup }}
                                                     </div>
                                                 {% endif %}
-                                            </div>
+                                                
+                                                <div class="row g-1">
+                                                    {% if alocacao.servico.horario %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-clock text-info"></i>
+                                                            {{ alocacao.servico.horario|time:"H:i" }}
+                                                        </div>
+                                                    {% endif %}
+                                                    
+                                                    {% if alocacao.servico.numero_venda %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-shopping-cart text-success"></i>
+                                                            Vendas: {{ alocacao.servico.numero_venda }}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
                                             
                                             {% if alocacao.veiculo_recomendado %}
                                                 <div class="mt-1">
@@ -433,16 +470,25 @@
                                             <div class="flex-grow-1">
                                                 <h6 class="card-title mb-1">
                                                     <i class="fas fa-grip-vertical text-muted me-1"></i>
-                                                    {{ alocacao.servico.cliente }}
+                                                    {% if alocacao.grupo_info %}
+                                                        {{ alocacao.grupo_info.grupo.get_clientes_concatenados }}
+                                                    {% else %}
+                                                        {{ alocacao.servico.cliente }}
+                                                    {% endif %}
                                                 </h6>
                                                 <small class="text-muted">
                                                     <i class="fas fa-hashtag"></i> {{ alocacao.servico.numero_da_compra|default:"-" }}
                                                 </small>
                                             </div>
                                             <div class="text-end">
-                                                <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
-                                                {% if alocacao.preco_calculado %}
-                                                    <br><span class="badge bg-success">R$ {{ alocacao.preco_calculado|floatformat:2 }}</span>
+                                                {% if alocacao.grupo_info %}
+                                                    <span class="badge bg-primary">{{ alocacao.grupo_info.grupo.total_pax }} PAX</span>
+                                                    <br><span class="badge bg-success">R$ {{ alocacao.grupo_info.grupo.total_valor|floatformat:2 }}</span>
+                                                {% else %}
+                                                    <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
+                                                    {% if alocacao.preco_calculado %}
+                                                        <br><span class="badge bg-success">R$ {{ alocacao.preco_calculado|floatformat:2 }}</span>
+                                                    {% endif %}
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -454,28 +500,55 @@
                                                 <strong>Serviço:</strong> {{ alocacao.servico.servico }}
                                             </div>
                                             
-                                            {% if alocacao.servico.local_pickup %}
-                                                <div class="mb-1">
-                                                    <i class="fas fa-location-dot text-warning"></i>
-                                                    <strong>Pickup:</strong> {{ alocacao.servico.local_pickup }}
-                                                </div>
-                                            {% endif %}
-                                            
-                                            <div class="row g-1">
-                                                {% if alocacao.servico.horario %}
-                                                    <div class="col-6">
-                                                        <i class="fas fa-clock text-info"></i>
-                                                        {{ alocacao.servico.horario|time:"H:i" }}
+                                            {% if alocacao.grupo_info %}
+                                                <!-- Mostrar informações consolidadas do grupo -->
+                                                {% if alocacao.grupo_info.grupo.get_pickups_concatenados %}
+                                                    <div class="mb-1">
+                                                        <i class="fas fa-location-dot text-warning"></i>
+                                                        <strong>Pickup:</strong> {{ alocacao.grupo_info.grupo.get_pickups_concatenados }}
                                                     </div>
                                                 {% endif %}
                                                 
-                                                {% if alocacao.servico.numero_venda %}
-                                                    <div class="col-6">
-                                                        <i class="fas fa-shopping-cart text-success"></i>
-                                                        Vendas: {{ alocacao.servico.numero_venda }}
+                                                <div class="row g-1">
+                                                    {% if alocacao.grupo_info.grupo.get_horarios_concatenados %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-clock text-info"></i>
+                                                            {{ alocacao.grupo_info.grupo.get_horarios_concatenados }}
+                                                        </div>
+                                                    {% endif %}
+                                                    
+                                                    {% if alocacao.grupo_info.grupo.get_vendas_unicas %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-shopping-cart text-success"></i>
+                                                            Vendas: {{ alocacao.grupo_info.grupo.get_vendas_unicas }}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% else %}
+                                                <!-- Mostrar informações individuais -->
+                                                {% if alocacao.servico.local_pickup %}
+                                                    <div class="mb-1">
+                                                        <i class="fas fa-location-dot text-warning"></i>
+                                                        <strong>Pickup:</strong> {{ alocacao.servico.local_pickup }}
                                                     </div>
                                                 {% endif %}
-                                            </div>
+                                                
+                                                <div class="row g-1">
+                                                    {% if alocacao.servico.horario %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-clock text-info"></i>
+                                                            {{ alocacao.servico.horario|time:"H:i" }}
+                                                        </div>
+                                                    {% endif %}
+                                                    
+                                                    {% if alocacao.servico.numero_venda %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-shopping-cart text-success"></i>
+                                                            Vendas: {{ alocacao.servico.numero_venda }}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
                                             
                                             {% if alocacao.veiculo_recomendado %}
                                                 <div class="mt-1">
@@ -516,7 +589,7 @@
 
                     
                     {% if escala.tem_dados %}
-                        <a href="{% url 'escalas:exportar_escala' data=escala.data|date:'Y-m-d' %}" class="btn btn-success">
+                        <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" class="btn btn-success">
                             <i class="fas fa-file-excel"></i> Exportar para Excel
                         </a>
                     {% endif %}
@@ -904,7 +977,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                showMessage(`Serviço movido para ${novaVan === 'VAN1' ? 'Van 1' : 'Van 2'}!`, 'success');
+                const mensagem = data.message || `Serviço movido para ${novaVan === 'VAN1' ? 'Van 1' : 'Van 2'}!`;
+                showMessage(mensagem, 'success');
                 setTimeout(() => location.reload(), 1000);
             } else {
                 showMessage('Erro ao mover serviço: ' + data.error, 'error');
@@ -1152,9 +1226,24 @@ function preencherModalDetalhes(servico, alocacao) {
 
 // Event listeners para o modal
 document.addEventListener('DOMContentLoaded', function() {
-    // Salvar edições
+    // Salvar edições de serviço individual
     document.getElementById('btnSalvarEdicao').addEventListener('click', function() {
         salvarEdicoesServico();
+    });
+    
+    // Excluir serviço
+    document.getElementById('btnExcluirServico').addEventListener('click', function() {
+        excluirServico();
+    });
+    
+    // Salvar edições de grupo
+    document.getElementById('btnSalvarGrupo').addEventListener('click', function() {
+        salvarEdicoesGrupo();
+    });
+    
+    // Desagrupar todos os serviços
+    document.getElementById('btnDesagruparTodos').addEventListener('click', function() {
+        desagruparTodosServicos();
     });
 });
 
@@ -1179,7 +1268,7 @@ function salvarEdicoesServico() {
             const modal = bootstrap.Modal.getInstance(document.getElementById('modalDetalhesServico'));
             modal.hide();
             // Recarregar página para mostrar mudanças
-            setTimeout(() => location.reload(), 1000);
+            setTimeout(() => window.location.href = window.location.href, 1000);
         } else {
             showMessage('Erro ao salvar: ' + data.error, 'error');
         }
@@ -1187,6 +1276,123 @@ function salvarEdicoesServico() {
     .catch(error => {
         console.error('Erro:', error);
         showMessage('Erro ao salvar alterações', 'error');
+    });
+}
+
+// Função para excluir um serviço
+function excluirServico() {
+    const alocacaoId = document.getElementById('editAlocacaoId').value;
+    const cliente = document.getElementById('editCliente').value;
+    const pax = document.getElementById('editPax').value;
+    
+    if (!confirm(`Tem certeza que deseja EXCLUIR o serviço "${cliente}" (${pax} PAX)?\n\n⚠️ Esta ação não pode ser desfeita!`)) {
+        return;
+    }
+    
+    fetch('{% url "escalas:excluir_servico" %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            alocacao_id: alocacaoId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showMessage(data.message, 'success');
+            // Fechar modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalDetalhesServico'));
+            modal.hide();
+            // Recarregar página para mostrar mudanças
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showMessage('Erro ao excluir serviço: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showMessage('Erro ao excluir serviço', 'error');
+    });
+}
+
+// Função para salvar as edições de grupo
+function salvarEdicoesGrupo() {
+    const formData = new FormData(document.getElementById('formEditarGrupo'));
+    const data = Object.fromEntries(formData);
+    
+    fetch('{% url "escalas:salvar_edicao_grupo" %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showMessage('Grupo atualizado com sucesso!', 'success');
+            // Fechar modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalDetalhesGrupo'));
+            modal.hide();
+            // Recarregar página para mostrar mudanças
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showMessage('Erro ao salvar grupo: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showMessage('Erro ao salvar alterações do grupo', 'error');
+    });
+}
+
+// Função para desagrupar todos os serviços do grupo
+function desagruparTodosServicos() {
+    if (!confirm('Deseja desagrupar TODOS os serviços deste grupo? Esta ação não pode ser desfeita.')) {
+        return;
+    }
+    
+    const grupoId = document.getElementById('editGrupoId').value;
+    
+    // Usar primeira alocação do grupo para a chamada
+    const primeiraAlocacao = document.querySelector('#listaServicosGrupo [data-servico-id]');
+    if (!primeiraAlocacao) {
+        showMessage('Erro: Não foi possível identificar as alocações do grupo', 'error');
+        return;
+    }
+    
+    const alocacaoId = primeiraAlocacao.dataset.servicoId;
+    
+    fetch('{% url "escalas:desagrupar_grupo_completo" %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            alocacao_id: alocacaoId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showMessage('Grupo desagrupado com sucesso!', 'success');
+            // Fechar modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalDetalhesGrupo'));
+            modal.hide();
+            // Recarregar página para mostrar mudanças
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showMessage('Erro ao desagrupar: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showMessage('Erro ao desagrupar grupo', 'error');
     });
 }
 
@@ -1558,6 +1764,9 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                     <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" id="btnExcluirServico">
+                    <i class="fas fa-trash"></i> Excluir Serviço
                 </button>
                 <button type="button" class="btn btn-primary" id="btnSalvarEdicao">
                     <i class="fas fa-save"></i> Salvar Alterações

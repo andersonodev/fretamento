@@ -1,0 +1,808 @@
+INFO 2025-10-04 07:17:22,931 autoreload 70448 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:17:49,135 autoreload 70448 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/fretamento_project/settings.py changed, reloading.
+INFO 2025-10-04 07:17:49,813 autoreload 70484 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:18:05,436 autoreload 70642 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:18:14,240 basehttp 70484 6198013952 "GET / HTTP/1.1" 302 0
+INFO 2025-10-04 07:18:14,249 basehttp 70484 6198013952 "GET /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-04 07:18:20,169 autoreload 70727 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:18:26,778 basehttp 70727 6160478208 "GET / HTTP/1.1" 302 0
+INFO 2025-10-04 07:18:26,784 basehttp 70727 6160478208 "GET /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-04 07:18:53,021 basehttp 70727 6160478208 "GET /escalas/gerenciar/ HTTP/1.1" 200 44868
+INFO 2025-10-04 07:18:53,059 basehttp 70727 6160478208 "GET /static/css/dashboard.css HTTP/1.1" 200 15235
+INFO 2025-10-04 07:18:53,059 basehttp 70727 6177304576 "GET /static/js/dashboard.js HTTP/1.1" 200 20844
+WARNING 2025-10-04 07:18:53,147 log 70727 6177304576 Not Found: /favicon.ico
+WARNING 2025-10-04 07:18:53,147 basehttp 70727 6177304576 "GET /favicon.ico HTTP/1.1" 404 2679
+INFO 2025-10-04 07:20:06,021 autoreload 70981 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:20:11,601 basehttp 70981 6174257152 "GET / HTTP/1.1" 302 0
+INFO 2025-10-04 07:20:11,607 basehttp 70981 6174257152 "GET /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-04 07:20:37,945 basehttp 70981 6174257152 "GET /escalas/gerenciar/ HTTP/1.1" 200 44868
+INFO 2025-10-04 07:20:37,997 basehttp 70981 6174257152 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-10-04 07:20:37,998 basehttp 70981 6191083520 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-04 07:20:42,661 basehttp 70981 6174257152 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 807475
+INFO 2025-10-04 07:21:02,597 basehttp 70981 6191083520 "POST /escalas/mover-servico/ HTTP/1.1" 200 17
+INFO 2025-10-04 07:21:02,611 basehttp 70981 6174257152 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 07:21:03,878 basehttp 70981 6174257152 - Broken pipe from ('127.0.0.1', 64648)
+INFO 2025-10-04 07:21:03,878 basehttp 70981 6191083520 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 810808
+ERROR 2025-10-04 07:21:11,813 log 70981 6174257152 Internal Server Error: /escalas/exportar/2025-10-04/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 488, in get
+    excel_data = exportador.exportar_para_excel(escala)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py", line 176, in exportar_para_excel
+    dados_van1 = processar_van(alocacoes_van1, "VAN 1")
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py", line 94, in processar_van
+    grupo_servico = alocacao.servico.grupos.first()
+AttributeError: 'Servico' object has no attribute 'grupos'
+ERROR 2025-10-04 07:21:11,815 basehttp 70981 6174257152 "GET /escalas/exportar/2025-10-04/ HTTP/1.1" 500 102627
+INFO 2025-10-04 07:21:25,177 autoreload 70981 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/processors.py changed, reloading.
+INFO 2025-10-04 07:21:26,122 autoreload 71094 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:22:04,014 autoreload 71094 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-04 07:22:04,321 autoreload 71142 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:22:33,282 autoreload 71142 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-04 07:22:33,596 autoreload 71178 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:22:56,497 autoreload 71178 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-04 07:22:56,801 autoreload 71210 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:26:22,797 autoreload 71533 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:26:24,533 autoreload 71533 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-04 07:26:24,757 autoreload 71547 8529070080 Watching for file changes with StatReloader
+ERROR 2025-10-04 07:26:28,022 log 71547 6173683712 Internal Server Error: /escalas/visualizar/04-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/detail.py", line 108, in get
+    self.object = self.get_object()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 154, in get_object
+    data = parse_data_brasileira(data_str)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 31, in parse_data_brasileira
+    logger.debug(f"Parsing data: {data_str}")
+NameError: name 'logger' is not defined
+ERROR 2025-10-04 07:26:28,023 basehttp 71547 6173683712 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 500 91431
+ERROR 2025-10-04 07:26:31,930 log 71547 6173110272 Internal Server Error: /escalas/visualizar/04-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/detail.py", line 108, in get
+    self.object = self.get_object()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 154, in get_object
+    data = parse_data_brasileira(data_str)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 31, in parse_data_brasileira
+    logger.debug(f"Parsing data: {data_str}")
+NameError: name 'logger' is not defined
+ERROR 2025-10-04 07:26:31,931 basehttp 71547 6173110272 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 500 91568
+INFO 2025-10-04 07:26:48,262 basehttp 71547 6173110272 "POST /escalas/gerenciar/ HTTP/1.1" 302 0
+WARNING 2025-10-04 07:27:02,630 log 71547 6189936640 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 07:27:02,673 basehttp 71547 6189936640 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 07:27:14,044 basehttp 71547 6173110272 "GET /escalas/gerenciar/ HTTP/1.1" 200 45440
+INFO 2025-10-04 07:27:14,045 basehttp 71547 6173110272 - Broken pipe from ('127.0.0.1', 64878)
+INFO 2025-10-04 07:27:33,391 autoreload 71547 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-04 07:27:33,757 autoreload 71616 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:27:38,880 autoreload 71674 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:27:43,297 basehttp 71616 6130331648 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 811380
+INFO 2025-10-04 07:27:46,306 basehttp 71616 6130331648 "GET /escalas/exportar/2025-10-04/ HTTP/1.1" 200 15440
+INFO 2025-10-04 07:27:52,356 autoreload 71750 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:28:11,604 autoreload 71878 8529070080 Watching for file changes with StatReloader
+ERROR 2025-10-04 07:29:02,487 exception 72032 8529070080 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-10-04 07:29:02,507 log 72032 8529070080 Bad Request: /escalas/exportar-br/04-10-2025/
+ERROR 2025-10-04 07:29:02,507 exception 72032 8529070080 Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+WARNING 2025-10-04 07:29:02,516 log 72032 8529070080 Bad Request: /escalas/exportar/2025-10-04/
+INFO 2025-10-04 07:35:03,109 autoreload 72694 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:35:34,670 basehttp 72694 6206156800 "GET /escalas/gerenciar/ HTTP/1.1" 200 44868
+ERROR 2025-10-04 07:35:44,290 log 72694 6205583360 Internal Server Error: /escalas/visualizar/04-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 1387, in url
+    kwargs[name] = parser.compile_filter(value)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 698, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 606, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'date_br'
+ERROR 2025-10-04 07:35:44,292 basehttp 72694 6205583360 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 500 310177
+INFO 2025-10-04 07:36:27,517 basehttp 72694 6205583360 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 810808
+INFO 2025-10-04 07:36:28,550 basehttp 72694 6205583360 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 810808
+INFO 2025-10-04 07:36:33,187 basehttp 72694 6205583360 "GET /escalas/exportar/04-10-2025/ HTTP/1.1" 200 15440
+WARNING 2025-10-04 07:36:45,912 log 72694 6205583360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 07:36:45,913 basehttp 72694 6205583360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 07:37:04,487 autoreload 72886 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:37:19,469 basehttp 72694 6205583360 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 66091
+INFO 2025-10-04 07:37:22,814 basehttp 72694 6205583360 "GET /escalas/puxar-dados/02-10-2025/ HTTP/1.1" 200 35514
+INFO 2025-10-04 07:38:16,375 views 72694 6205583360 Gerando dashboard com consultas otimizadas
+ERROR 2025-10-04 07:38:16,428 log 72694 6205583360 Internal Server Error: /core/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 70, in get
+    return render(request, 'core/home.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 1387, in url
+    kwargs[name] = parser.compile_filter(value)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 698, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 606, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'date_br'
+ERROR 2025-10-04 07:38:16,429 basehttp 72694 6205583360 "GET /core/ HTTP/1.1" 500 266104
+INFO 2025-10-04 07:38:18,211 views 72694 6205583360 Dashboard carregado do cache
+ERROR 2025-10-04 07:38:18,266 log 72694 6205583360 Internal Server Error: /core/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 34, in get
+    return render(request, 'core/home.html', cached_data)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 1387, in url
+    kwargs[name] = parser.compile_filter(value)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 698, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 606, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'date_br'
+ERROR 2025-10-04 07:38:18,268 basehttp 72694 6205583360 "GET /core/ HTTP/1.1" 500 263600
+INFO 2025-10-04 07:38:19,957 basehttp 72694 6205583360 "GET / HTTP/1.1" 302 0
+INFO 2025-10-04 07:38:19,962 basehttp 72694 6205583360 "GET /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-04 07:38:46,501 basehttp 72694 6205583360 "GET /escalas/gerenciar/ HTTP/1.1" 200 44868
+WARNING 2025-10-04 07:39:47,448 log 72694 6205583360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 07:39:47,449 basehttp 72694 6205583360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 07:39:54,467 autoreload 73149 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:40:09,986 autoreload 73314 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-04 07:40:47,445 log 73314 6132592640 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 07:40:47,447 basehttp 73314 6132592640 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 07:41:46,566 log 73314 6132592640 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 07:41:46,567 basehttp 73314 6132592640 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 07:41:48,484 basehttp 73314 6132592640 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 66091
+INFO 2025-10-04 07:41:51,530 basehttp 73314 6132592640 "GET /escalas/puxar-dados/02-10-2025/ HTTP/1.1" 200 35514
+INFO 2025-10-04 07:45:40,913 autoreload 73950 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-04 07:45:52,460 log 73950 6127104000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 07:45:52,460 basehttp 73950 6127104000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 07:46:33,159 basehttp 73950 6127104000 "GET /escalas/puxar-dados/02-10-2025/ HTTP/1.1" 200 35500
+INFO 2025-10-04 07:46:41,377 views 73950 6127104000 Gerando dashboard com consultas otimizadas
+ERROR 2025-10-04 07:46:41,442 log 73950 6127104000 Internal Server Error: /core/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 70, in get
+    return render(request, 'core/home.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 1387, in url
+    kwargs[name] = parser.compile_filter(value)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 698, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 606, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'date_br'
+ERROR 2025-10-04 07:46:41,444 basehttp 73950 6127104000 "GET /core/ HTTP/1.1" 500 266112
+INFO 2025-10-04 07:48:01,076 autoreload 74161 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:48:07,957 views 74161 6168719360 Gerando dashboard com consultas otimizadas
+INFO 2025-10-04 07:48:07,994 basehttp 74161 6168719360 "GET /core/ HTTP/1.1" 200 50019
+INFO 2025-10-04 07:48:43,157 autoreload 74294 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:48:47,788 basehttp 74294 6171717632 "GET /core/upload/ HTTP/1.1" 200 25209
+INFO 2025-10-04 07:48:52,648 basehttp 74294 6171144192 "GET /core/servicos/ HTTP/1.1" 200 83766
+INFO 2025-10-04 07:49:01,532 basehttp 74294 6171144192 "GET /core/servicos/?page=2 HTTP/1.1" 200 83431
+INFO 2025-10-04 07:49:04,517 basehttp 74294 6171144192 "GET /core/servicos/?page=3 HTTP/1.1" 200 83791
+INFO 2025-10-04 07:49:11,601 basehttp 74294 6171144192 "GET /core/diagnostico/ HTTP/1.1" 200 45142
+INFO 2025-10-04 07:50:01,425 basehttp 74294 6171144192 - Broken pipe from ('127.0.0.1', 49412)
+INFO 2025-10-04 07:50:11,130 basehttp 74294 6187970560 "GET /escalas/gerenciar/ HTTP/1.1" 200 44873
+INFO 2025-10-04 07:51:23,106 autoreload 74698 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 07:51:28,014 basehttp 74698 6171095040 "POST /escalas/excluir/02-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-04 07:51:28,034 basehttp 74698 6171095040 "GET /escalas/gerenciar/ HTTP/1.1" 200 27490
+INFO 2025-10-04 07:51:31,937 basehttp 74698 6170521600 "GET /core/servicos/ HTTP/1.1" 200 25974
+INFO 2025-10-04 07:51:40,473 views 74698 6170521600 Gerando dashboard com consultas otimizadas
+INFO 2025-10-04 07:51:40,487 basehttp 74698 6170521600 "GET /core/ HTTP/1.1" 200 43373
+INFO 2025-10-04 07:51:41,941 basehttp 74698 6170521600 "GET /escalas/gerenciar/ HTTP/1.1" 200 26904
+INFO 2025-10-04 07:52:03,056 basehttp 74698 6170521600 "GET /core/upload/ HTTP/1.1" 200 25209
+INFO 2025-10-04 07:52:44,926 processors 74698 6170521600 Planilha lida com 388 linhas e 35 colunas
+INFO 2025-10-04 07:52:44,939 processors 74698 6170521600 Linhas removidas durante a limpeza: 127
+INFO 2025-10-04 07:52:45,015 processors 74698 6170521600 Inseridos 261 serviços usando bulk_create
+INFO 2025-10-04 07:52:45,019 basehttp 74698 6170521600 "POST /core/upload/ HTTP/1.1" 302 0
+INFO 2025-10-04 07:52:45,038 basehttp 74698 6170521600 "GET /core/servicos/ HTTP/1.1" 200 83142
+WARNING 2025-10-04 07:53:45,479 log 74698 6170521600 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 07:53:45,480 basehttp 74698 6170521600 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 07:54:45,458 log 74698 6170521600 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 07:54:45,460 basehttp 74698 6170521600 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 07:55:45,466 log 74698 6170521600 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 07:55:45,467 basehttp 74698 6170521600 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 07:56:14,090 basehttp 74698 6170521600 "GET /core/servicos/?page=2 HTTP/1.1" 200 83492
+INFO 2025-10-04 07:56:19,653 basehttp 74698 6170521600 "GET /escalas/gerenciar/ HTTP/1.1" 200 26904
+INFO 2025-10-04 07:56:21,458 basehttp 74698 6170521600 "POST /escalas/gerenciar/ HTTP/1.1" 302 0
+INFO 2025-10-04 07:56:21,478 basehttp 74698 6170521600 "GET /escalas/visualizar/2025-10-04/ HTTP/1.1" 200 66683
+INFO 2025-10-04 07:56:24,180 basehttp 74698 6170521600 "GET /escalas/puxar-dados/04-10-2025/ HTTP/1.1" 200 34500
+INFO 2025-10-04 07:56:37,685 basehttp 74698 6170521600 "POST /escalas/puxar-dados/04-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-04 07:56:37,731 basehttp 74698 6170521600 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 320039
+INFO 2025-10-04 07:57:20,812 basehttp 74698 6170521600 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 07:57:21,900 basehttp 74698 6170521600 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 323732
+INFO 2025-10-04 07:57:39,478 basehttp 74698 6170521600 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 07:57:40,559 basehttp 74698 6170521600 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 323732
+INFO 2025-10-04 07:58:22,743 basehttp 74698 6170521600 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 734
+WARNING 2025-10-04 07:58:40,599 log 74698 6170521600 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 07:58:40,600 basehttp 74698 6170521600 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 07:59:08,188 views 74698 6170521600 Gerando dashboard com consultas otimizadas
+INFO 2025-10-04 07:59:08,205 basehttp 74698 6170521600 "GET /core/ HTTP/1.1" 200 44793
+INFO 2025-10-04 07:59:37,157 autoreload 74698 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/fretamento_project/settings.py changed, reloading.
+INFO 2025-10-04 07:59:37,664 autoreload 75334 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 08:00:21,244 autoreload 75437 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 08:00:29,762 basehttp 75437 6170931200 "GET /escalas/gerenciar/ HTTP/1.1" 200 32243
+WARNING 2025-10-04 08:01:30,512 log 75437 6170357760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:01:30,514 basehttp 75437 6170357760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 08:01:34,680 views 75437 6170357760 Gerando dashboard com consultas otimizadas
+INFO 2025-10-04 08:01:34,699 basehttp 75437 6170357760 "GET /core/ HTTP/1.1" 200 44793
+INFO 2025-10-04 08:02:04,167 basehttp 75437 6170357760 "GET /core/tarifarios/ HTTP/1.1" 200 123607
+WARNING 2025-10-04 08:02:34,746 log 75437 6170357760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:02:34,750 basehttp 75437 6170357760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 08:03:01,308 basehttp 75437 6170357760 "GET /core/diagnostico/ HTTP/1.1" 200 45366
+INFO 2025-10-04 08:03:24,504 views 75437 6170357760 Dashboard carregado do cache
+INFO 2025-10-04 08:03:24,513 basehttp 75437 6170357760 "GET /core/ HTTP/1.1" 200 47263
+WARNING 2025-10-04 08:04:25,460 log 75437 6170357760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:04:25,462 basehttp 75437 6170357760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 08:04:39,471 basehttp 75437 6170357760 "GET /auth/logout/ HTTP/1.1" 302 0
+INFO 2025-10-04 08:04:39,483 basehttp 75437 6170357760 "GET /auth/login/ HTTP/1.1" 200 11097
+INFO 2025-10-04 08:05:13,914 basehttp 75437 6170357760 "GET /auth/login/ HTTP/1.1" 200 9170
+INFO 2025-10-04 08:05:29,235 basehttp 75437 6170357760 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-04 08:05:33,041 basehttp 75437 6170357760 "GET /escalas/gerenciar/ HTTP/1.1" 200 35340
+INFO 2025-10-04 08:05:33,067 basehttp 75437 6170357760 "GET /static/css/whatsapp-dark.css HTTP/1.1" 200 9628
+INFO 2025-10-04 08:05:35,583 views 75437 6170357760 Dashboard carregado do cache
+INFO 2025-10-04 08:05:35,595 basehttp 75437 6170357760 "GET /core/ HTTP/1.1" 200 47328
+WARNING 2025-10-04 08:06:36,471 log 75437 6170357760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:06:36,472 basehttp 75437 6170357760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:07:36,473 log 75437 6170357760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:07:36,474 basehttp 75437 6170357760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:08:36,466 log 75437 6170357760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:08:36,467 basehttp 75437 6170357760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 08:09:15,778 autoreload 76052 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-04 08:09:36,465 log 75437 6170357760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:09:36,465 basehttp 75437 6170357760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 08:09:37,083 autoreload 76127 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 08:10:48,360 autoreload 76310 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 08:10:51,498 views 76310 6205452288 Gerando dashboard com consultas otimizadas
+INFO 2025-10-04 08:10:51,523 basehttp 76310 6205452288 "GET /core/ HTTP/1.1" 200 48130
+INFO 2025-10-04 08:10:51,541 basehttp 76310 6205452288 "GET /static/css/whatsapp-dark.css HTTP/1.1" 200 13471
+INFO 2025-10-04 08:10:53,413 views 76310 6205452288 Dashboard carregado do cache
+INFO 2025-10-04 08:10:53,420 basehttp 76310 6205452288 "GET /core/ HTTP/1.1" 200 48130
+INFO 2025-10-04 08:11:32,955 views 76310 6204878848 Dashboard carregado do cache
+INFO 2025-10-04 08:11:32,963 basehttp 76310 6204878848 "GET /core/ HTTP/1.1" 200 48130
+INFO 2025-10-04 08:11:32,990 basehttp 76310 6204878848 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 08:11:34,132 basehttp 76310 6204878848 "GET /core/upload/ HTTP/1.1" 200 28546
+INFO 2025-10-04 08:11:37,143 basehttp 76310 6204878848 "GET /core/servicos/ HTTP/1.1" 200 85884
+INFO 2025-10-04 08:11:43,364 basehttp 76310 6204878848 - Broken pipe from ('127.0.0.1', 50101)
+INFO 2025-10-04 08:11:43,373 basehttp 76310 6221705216 "GET /core/diagnostico/ HTTP/1.1" 200 46233
+INFO 2025-10-04 08:11:57,234 basehttp 76310 6204878848 "GET /escalas/gerenciar/ HTTP/1.1" 200 35580
+INFO 2025-10-04 08:11:57,257 basehttp 76310 6204878848 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 08:12:06,314 views 76310 6204878848 Dashboard carregado do cache
+INFO 2025-10-04 08:12:06,319 basehttp 76310 6204878848 "GET /core/ HTTP/1.1" 200 48130
+WARNING 2025-10-04 08:13:06,488 log 76310 6204878848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:13:06,489 basehttp 76310 6204878848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 08:14:00,287 autoreload 76623 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 08:14:03,701 views 76623 6132183040 Gerando dashboard com consultas otimizadas
+INFO 2025-10-04 08:14:03,724 basehttp 76623 6132183040 "GET /core/ HTTP/1.1" 200 50977
+INFO 2025-10-04 08:14:03,740 basehttp 76623 6132183040 "GET /static/css/whatsapp-dark.css HTTP/1.1" 200 16988
+INFO 2025-10-04 08:14:24,045 basehttp 76623 6131609600 "GET /core/servicos/ HTTP/1.1" 200 85884
+INFO 2025-10-04 08:14:24,053 basehttp 76623 6131609600 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 08:14:49,999 views 76623 6131609600 Dashboard carregado do cache
+INFO 2025-10-04 08:14:50,009 basehttp 76623 6131609600 "GET /core/ HTTP/1.1" 200 50977
+INFO 2025-10-04 08:14:50,027 basehttp 76623 6131609600 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 08:15:03,818 basehttp 76623 6131609600 "GET /core/servicos/ HTTP/1.1" 200 85884
+INFO 2025-10-04 08:15:10,249 basehttp 76623 6131609600 "GET /escalas/gerenciar/ HTTP/1.1" 200 35580
+INFO 2025-10-04 08:15:10,266 basehttp 76623 6131609600 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+WARNING 2025-10-04 08:16:10,307 log 76623 6131609600 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:16:10,308 basehttp 76623 6131609600 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 08:20:14,878 autoreload 77021 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 08:20:17,513 views 77021 6209777664 Gerando dashboard com consultas otimizadas
+INFO 2025-10-04 08:20:17,544 basehttp 77021 6209777664 "GET /core/ HTTP/1.1" 200 50979
+INFO 2025-10-04 08:20:17,565 basehttp 77021 6243430400 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-04 08:20:17,570 basehttp 77021 6226604032 "GET /static/css/dashboard.css HTTP/1.1" 200 15603
+INFO 2025-10-04 08:20:17,570 basehttp 77021 6209777664 "GET /static/css/whatsapp-dark.css HTTP/1.1" 200 17112
+WARNING 2025-10-04 08:21:18,493 log 77021 6209777664 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:21:18,495 basehttp 77021 6209777664 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:22:18,469 log 77021 6209204224 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:22:18,470 basehttp 77021 6209204224 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:23:18,480 log 77021 6209204224 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:23:18,481 basehttp 77021 6209204224 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:24:18,478 log 77021 6209204224 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:24:18,480 basehttp 77021 6209204224 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 08:25:08,607 autoreload 77433 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-04 08:25:18,493 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:25:18,494 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:26:18,489 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:26:18,491 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:27:18,477 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:27:18,478 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:28:19,483 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:28:19,485 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:29:20,489 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:29:20,491 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:30:21,483 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:30:21,484 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:31:22,481 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:31:22,483 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:32:23,483 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:32:23,483 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:33:24,482 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:33:24,483 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:34:25,482 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:34:25,482 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:35:26,485 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:35:26,486 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:36:27,485 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:36:27,486 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:37:28,486 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:37:28,487 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:38:29,487 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:38:29,488 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:39:30,484 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:39:30,485 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:40:31,489 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:40:31,490 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:41:32,486 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:41:32,488 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:42:33,487 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:42:33,488 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:43:34,488 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:43:34,489 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:44:35,480 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:44:35,480 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:45:36,501 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:45:36,503 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:46:37,485 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:46:37,487 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:47:38,492 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:47:38,493 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:48:39,493 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:48:39,494 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:49:40,490 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:49:40,491 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:50:17,699 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:50:17,703 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 08:50:23,771 views 77433 6207221760 Gerando dashboard com consultas otimizadas
+INFO 2025-10-04 08:50:23,799 basehttp 77433 6207221760 "GET /core/ HTTP/1.1" 200 50979
+INFO 2025-10-04 08:50:23,850 basehttp 77433 6207221760 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-10-04 08:50:23,855 basehttp 77433 6224048128 "GET /static/css/whatsapp-dark.css HTTP/1.1" 200 22967
+INFO 2025-10-04 08:50:29,770 basehttp 77433 6207221760 "GET /core/upload/ HTTP/1.1" 200 28546
+INFO 2025-10-04 08:50:33,290 basehttp 77433 6207221760 "GET /core/servicos/ HTTP/1.1" 200 85884
+INFO 2025-10-04 08:50:40,643 basehttp 77433 6207221760 "GET /escalas/gerenciar/ HTTP/1.1" 200 35580
+INFO 2025-10-04 08:50:46,071 basehttp 77433 6207221760 "GET /core/diagnostico/ HTTP/1.1" 200 46233
+INFO 2025-10-04 08:51:09,737 views 77433 6207221760 Dashboard carregado do cache
+INFO 2025-10-04 08:51:09,744 basehttp 77433 6207221760 "GET /core/ HTTP/1.1" 200 50979
+INFO 2025-10-04 08:51:18,143 basehttp 77433 6207221760 "GET /escalas/gerenciar/ HTTP/1.1" 200 35580
+INFO 2025-10-04 08:52:12,746 basehttp 77433 6207221760 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 327069
+WARNING 2025-10-04 08:53:13,498 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:53:13,499 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:54:13,506 log 77433 6207221760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:54:13,509 basehttp 77433 6207221760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 08:54:34,195 autoreload 77433 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-04 08:54:34,633 autoreload 78641 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-04 08:55:13,511 log 78641 6135164928 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:55:13,512 basehttp 78641 6135164928 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:56:13,496 log 78641 6135164928 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:56:13,498 basehttp 78641 6135164928 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:57:13,500 log 78641 6135164928 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:57:13,501 basehttp 78641 6135164928 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 08:58:13,498 log 78641 6135164928 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 08:58:13,500 basehttp 78641 6135164928 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 08:59:57,096 autoreload 79141 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 09:00:00,715 basehttp 79141 6138376192 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 351293
+INFO 2025-10-04 09:00:00,775 basehttp 79141 6138376192 "GET /static/css/dashboard.css HTTP/1.1" 200 15603
+INFO 2025-10-04 09:00:00,776 basehttp 79141 6155202560 "GET /static/css/whatsapp-dark.css HTTP/1.1" 200 22967
+INFO 2025-10-04 09:00:05,219 basehttp 79141 6138376192 "POST /escalas/mover-servico/ HTTP/1.1" 200 17
+INFO 2025-10-04 09:00:05,231 basehttp 79141 6155202560 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 09:00:06,416 basehttp 79141 6138376192 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 354544
+INFO 2025-10-04 09:00:06,439 basehttp 79141 6155202560 - Broken pipe from ('127.0.0.1', 50909)
+INFO 2025-10-04 09:00:21,539 basehttp 79141 6138376192 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 09:00:22,657 basehttp 79141 6138376192 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 354544
+INFO 2025-10-04 09:00:29,846 basehttp 79141 6155202560 "POST /escalas/mover-servico/ HTTP/1.1" 200 17
+INFO 2025-10-04 09:00:29,850 basehttp 79141 6138376192 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 09:00:31,046 basehttp 79141 6138376192 - Broken pipe from ('127.0.0.1', 50908)
+INFO 2025-10-04 09:00:31,080 basehttp 79141 6155202560 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 356130
+INFO 2025-10-04 09:00:46,719 basehttp 79141 6137802752 "POST /escalas/desagrupar-servico/ HTTP/1.1" 200 62
+INFO 2025-10-04 09:00:47,856 basehttp 79141 6137802752 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 354546
+INFO 2025-10-04 09:00:47,869 basehttp 79141 6154629120 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:00:47,869 basehttp 79141 6137802752 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:00:51,450 basehttp 79141 6137802752 "POST /escalas/desagrupar-servico/ HTTP/1.1" 200 62
+INFO 2025-10-04 09:00:52,559 basehttp 79141 6137802752 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 351295
+INFO 2025-10-04 09:00:58,850 basehttp 79141 6137802752 "POST /escalas/desagrupar-servico/ HTTP/1.1" 200 62
+INFO 2025-10-04 09:00:59,935 basehttp 79141 6137802752 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 347159
+INFO 2025-10-04 09:01:10,722 basehttp 79141 6137802752 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 347159
+INFO 2025-10-04 09:01:15,891 basehttp 79141 6154629120 "POST /escalas/mover-servico/ HTTP/1.1" 200 17
+INFO 2025-10-04 09:01:15,902 basehttp 79141 6137802752 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 09:01:17,061 basehttp 79141 6154629120 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 351706
+INFO 2025-10-04 09:01:17,070 basehttp 79141 6137802752 - Broken pipe from ('127.0.0.1', 50929)
+INFO 2025-10-04 09:01:31,546 basehttp 79141 6137802752 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 650
+INFO 2025-10-04 09:01:41,112 basehttp 79141 6137802752 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 650
+INFO 2025-10-04 09:01:45,750 basehttp 79141 6137802752 "POST /escalas/desagrupar-servico/ HTTP/1.1" 200 62
+INFO 2025-10-04 09:01:46,836 basehttp 79141 6137802752 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 347159
+INFO 2025-10-04 09:01:46,852 basehttp 79141 6137802752 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:01:46,852 basehttp 79141 6154629120 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:01:52,521 basehttp 79141 6154629120 "POST /escalas/mover-servico/ HTTP/1.1" 200 17
+INFO 2025-10-04 09:01:52,534 basehttp 79141 6137802752 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 09:01:53,683 basehttp 79141 6154629120 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 351720
+INFO 2025-10-04 09:01:53,699 basehttp 79141 6137802752 - Broken pipe from ('127.0.0.1', 50948)
+WARNING 2025-10-04 09:02:54,510 log 79141 6137802752 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:02:54,511 basehttp 79141 6137802752 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 09:03:49,880 autoreload 79141 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-04 09:03:50,315 autoreload 79391 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-04 09:03:54,513 log 79391 6165196800 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:03:54,514 basehttp 79391 6165196800 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 09:03:55,277 autoreload 79449 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 09:04:06,338 autoreload 79517 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 09:06:12,711 autoreload 79735 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 09:06:17,527 basehttp 79735 6173487104 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-04 09:06:17,537 basehttp 79735 6173487104 "GET /auth/login/?next=/escalas/visualizar/04-10-2025/ HTTP/1.1" 200 9170
+INFO 2025-10-04 09:06:25,510 basehttp 79735 6172913664 "POST /auth/login/?next=/escalas/visualizar/04-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-04 09:06:29,357 basehttp 79735 6172913664 "GET /escalas/gerenciar/ HTTP/1.1" 200 36142
+INFO 2025-10-04 09:06:29,374 basehttp 79735 6172913664 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:06:29,374 basehttp 79735 6189740032 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:06:37,093 basehttp 79735 6172913664 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 345289
+INFO 2025-10-04 09:06:44,871 basehttp 79735 6189740032 "POST /escalas/mover-servico/ HTTP/1.1" 200 17
+INFO 2025-10-04 09:06:44,879 basehttp 79735 6172913664 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 09:06:46,005 basehttp 79735 6172913664 - Broken pipe from ('127.0.0.1', 51050)
+INFO 2025-10-04 09:06:46,018 basehttp 79735 6189740032 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 339907
+INFO 2025-10-04 09:07:02,532 basehttp 79735 6172913664 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 863
+INFO 2025-10-04 09:07:17,096 basehttp 79735 6172913664 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 863
+INFO 2025-10-04 09:07:38,743 basehttp 79735 6172913664 "POST /escalas/mover-servico/ HTTP/1.1" 200 17
+INFO 2025-10-04 09:07:39,841 basehttp 79735 6172913664 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 346453
+INFO 2025-10-04 09:07:50,482 basehttp 79735 6172913664 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 346453
+INFO 2025-10-04 09:07:55,243 basehttp 79735 6189740032 "POST /escalas/mover-servico/ HTTP/1.1" 200 17
+INFO 2025-10-04 09:07:55,249 basehttp 79735 6172913664 "POST /escalas/mover-servico/ HTTP/1.1" 200 17
+INFO 2025-10-04 09:07:56,406 basehttp 79735 6172913664 - Broken pipe from ('127.0.0.1', 51071)
+INFO 2025-10-04 09:07:56,410 basehttp 79735 6189740032 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 339909
+INFO 2025-10-04 09:07:56,428 basehttp 79735 6189740032 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:07:56,428 basehttp 79735 6172913664 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:08:01,176 basehttp 79735 6172913664 "POST /escalas/mover-servico/ HTTP/1.1" 200 17
+INFO 2025-10-04 09:08:01,180 basehttp 79735 6189740032 "POST /escalas/mover-servico/ HTTP/1.1" 200 17
+INFO 2025-10-04 09:08:02,343 basehttp 79735 6189740032 - Broken pipe from ('127.0.0.1', 51075)
+INFO 2025-10-04 09:08:02,350 basehttp 79735 6172913664 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 346453
+WARNING 2025-10-04 09:09:02,515 log 79735 6172913664 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:09:02,517 basehttp 79735 6172913664 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 09:10:02,504 log 79735 6172913664 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:10:02,506 basehttp 79735 6172913664 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 09:10:14,337 autoreload 79735 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-04 09:10:14,912 autoreload 79934 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-04 09:11:02,524 log 79934 6133870592 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:11:02,525 basehttp 79934 6133870592 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 09:12:04,248 autoreload 80211 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 09:12:11,340 basehttp 80211 6133411840 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 340015
+INFO 2025-10-04 09:12:11,362 basehttp 80211 6133411840 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:12:11,362 basehttp 80211 6150238208 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:12:15,179 basehttp 80211 6133411840 "POST /escalas/mover-servico/ HTTP/1.1" 200 76
+INFO 2025-10-04 09:12:16,294 basehttp 80211 6133411840 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 340015
+INFO 2025-10-04 09:12:21,333 basehttp 80211 6133411840 "POST /escalas/desagrupar-servico/ HTTP/1.1" 200 62
+INFO 2025-10-04 09:12:22,398 basehttp 80211 6133411840 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 345319
+INFO 2025-10-04 09:12:26,632 basehttp 80211 6133411840 "POST /escalas/desagrupar-servico/ HTTP/1.1" 200 62
+INFO 2025-10-04 09:12:27,711 basehttp 80211 6133411840 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 347222
+INFO 2025-10-04 09:12:36,386 basehttp 80211 6150238208 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-04 09:12:36,395 basehttp 80211 6133411840 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 09:12:37,522 basehttp 80211 6133411840 - Broken pipe from ('127.0.0.1', 51209)
+INFO 2025-10-04 09:12:37,522 basehttp 80211 6150238208 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 345336
+INFO 2025-10-04 09:12:41,886 basehttp 80211 6133411840 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-04 09:12:41,900 basehttp 80211 6150238208 "POST /escalas/mover-servico/ HTTP/1.1" 200 76
+INFO 2025-10-04 09:12:43,016 basehttp 80211 6150238208 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 345336
+INFO 2025-10-04 09:12:51,100 basehttp 80211 6133411840 "POST /escalas/desagrupar-servico/ HTTP/1.1" 200 62
+INFO 2025-10-04 09:12:52,181 basehttp 80211 6133411840 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 347224
+INFO 2025-10-04 09:13:00,639 basehttp 80211 6133411840 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 09:13:01,741 basehttp 80211 6133411840 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 345332
+INFO 2025-10-04 09:13:04,726 basehttp 80211 6150238208 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-04 09:13:04,738 basehttp 80211 6133411840 "POST /escalas/mover-servico/ HTTP/1.1" 200 76
+INFO 2025-10-04 09:13:05,831 basehttp 80211 6133411840 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 345332
+INFO 2025-10-04 09:13:09,623 basehttp 80211 6133411840 "POST /escalas/desagrupar-servico/ HTTP/1.1" 200 62
+INFO 2025-10-04 09:13:10,690 basehttp 80211 6133411840 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 347224
+INFO 2025-10-04 09:13:18,555 basehttp 80211 6133411840 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 600
+INFO 2025-10-04 09:13:24,087 basehttp 80211 6133411840 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 600
+INFO 2025-10-04 09:13:30,903 basehttp 80211 6133411840 "POST /escalas/salvar-edicao-servico/ HTTP/1.1" 200 110
+INFO 2025-10-04 09:13:35,084 basehttp 80211 6133411840 "POST /escalas/salvar-edicao-servico/ HTTP/1.1" 200 110
+INFO 2025-10-04 09:13:40,524 basehttp 80211 6133411840 "POST /escalas/salvar-edicao-servico/ HTTP/1.1" 200 110
+INFO 2025-10-04 09:13:48,181 basehttp 80211 6133411840 "POST /escalas/salvar-edicao-servico/ HTTP/1.1" 200 110
+WARNING 2025-10-04 09:14:11,513 log 80211 6133411840 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:14:11,514 basehttp 80211 6133411840 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 09:15:10,720 log 80211 6133411840 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:15:10,721 basehttp 80211 6133411840 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 09:16:10,735 log 80211 6133411840 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:16:10,736 basehttp 80211 6133411840 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 09:16:32,150 basehttp 80211 6133411840 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 560
+INFO 2025-10-04 09:16:33,679 autoreload 80500 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 09:16:48,577 autoreload 80571 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-04 09:17:10,726 log 80571 6196736000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:17:10,727 basehttp 80571 6196736000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 09:17:25,559 basehttp 80571 6196736000 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 581
+WARNING 2025-10-04 09:18:10,725 log 80571 6196736000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:18:10,725 basehttp 80571 6196736000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 09:19:10,734 log 80571 6196736000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:19:10,736 basehttp 80571 6196736000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 09:20:10,730 log 80571 6196736000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:20:10,731 basehttp 80571 6196736000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-04 09:21:10,745 log 80571 6196736000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:21:10,747 basehttp 80571 6196736000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 09:21:11,623 basehttp 80571 6213562368 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-04 09:21:11,637 basehttp 80571 6196736000 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 09:21:12,774 basehttp 80571 6196736000 - Broken pipe from ('127.0.0.1', 51378)
+INFO 2025-10-04 09:21:12,785 basehttp 80571 6213562368 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 348125
+INFO 2025-10-04 09:21:12,799 basehttp 80571 6213562368 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:21:12,799 basehttp 80571 6196736000 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:21:15,431 basehttp 80571 6196736000 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 348125
+INFO 2025-10-04 09:21:20,957 basehttp 80571 6196736000 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 729
+INFO 2025-10-04 09:21:27,379 basehttp 80571 6196736000 "POST /escalas/salvar-edicao-grupo/ HTTP/1.1" 200 60
+INFO 2025-10-04 09:21:28,470 basehttp 80571 6196736000 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 348125
+INFO 2025-10-04 09:21:35,174 basehttp 80571 6196736000 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 728
+INFO 2025-10-04 09:21:40,324 basehttp 80571 6196736000 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 728
+INFO 2025-10-04 09:21:49,089 basehttp 80571 6196736000 "POST /escalas/desagrupar-grupo-completo/ HTTP/1.1" 200 87
+INFO 2025-10-04 09:21:50,167 basehttp 80571 6196736000 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 350403
+INFO 2025-10-04 09:21:58,663 autoreload 80571 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-04 09:21:59,027 autoreload 80806 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-04 09:22:50,225 log 80806 6131658752 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:22:50,227 basehttp 80806 6131658752 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 09:23:32,577 autoreload 80806 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-04 09:23:32,938 autoreload 80877 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-04 09:23:50,518 log 80877 6194327552 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:23:50,518 basehttp 80877 6194327552 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 09:23:56,035 autoreload 80877 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/urls.py changed, reloading.
+INFO 2025-10-04 09:23:56,412 autoreload 80896 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 09:24:49,857 basehttp 80896 6131281920 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 580
+WARNING 2025-10-04 09:24:50,204 log 80896 6131281920 Not Found: /api/dashboard/updates/
+WARNING 2025-10-04 09:24:50,204 basehttp 80896 6131281920 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-04 09:25:18,465 basehttp 80896 6131281920 "GET /escalas/gerenciar/ HTTP/1.1" 200 35580
+INFO 2025-10-04 09:25:18,491 basehttp 80896 6131281920 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:25:18,493 basehttp 80896 6148108288 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:25:18,493 basehttp 80896 6164934656 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-04 09:26:06,765 basehttp 80896 6131281920 "POST /escalas/gerenciar/ HTTP/1.1" 302 0
+INFO 2025-10-04 09:26:06,801 basehttp 80896 6131281920 "GET /escalas/visualizar/2025-10-02/ HTTP/1.1" 200 75018
+INFO 2025-10-04 09:26:08,624 basehttp 80896 6131281920 "GET /escalas/puxar-dados/02-10-2025/ HTTP/1.1" 200 37842
+INFO 2025-10-04 09:28:36,761 autoreload 81274 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-04 09:28:49,802 basehttp 81274 6201667584 "POST /escalas/puxar-dados/02-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-04 09:28:49,860 basehttp 81274 6201667584 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 356736
+INFO 2025-10-04 09:28:49,899 basehttp 81274 6201667584 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:28:49,899 basehttp 81274 6218493952 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-04 09:29:01,736 basehttp 81274 6201667584 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 549
+INFO 2025-10-04 09:29:16,502 basehttp 81274 6201667584 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-04 09:29:17,598 basehttp 81274 6201667584 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 353835
+INFO 2025-10-04 09:29:20,271 basehttp 81274 6201667584 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 704
+INFO 2025-10-04 09:29:25,951 basehttp 81274 6201667584 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 574
+INFO 2025-10-04 09:29:29,083 basehttp 81274 6201667584 "POST /escalas/excluir-servico/ HTTP/1.1" 200 103
+INFO 2025-10-04 09:29:30,177 basehttp 81274 6201667584 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 348412
+INFO 2025-10-04 09:29:34,238 basehttp 81274 6201667584 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 704
+INFO 2025-10-04 09:29:46,486 basehttp 81274 6201667584 "POST /escalas/salvar-edicao-grupo/ HTTP/1.1" 200 60
+INFO 2025-10-04 09:29:47,573 basehttp 81274 6201667584 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 348412
+INFO 2025-10-04 09:29:52,326 basehttp 81274 6201667584 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 705
+INFO 2025-10-04 09:29:57,069 basehttp 81274 6201667584 "POST /escalas/salvar-edicao-grupo/ HTTP/1.1" 200 60
+INFO 2025-10-04 09:29:58,180 basehttp 81274 6201667584 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 348412
+INFO 2025-10-04 09:30:04,583 basehttp 81274 6201667584 "POST /escalas/desagrupar-servico/ HTTP/1.1" 200 62
+INFO 2025-10-04 09:30:05,669 basehttp 81274 6201667584 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 350684
+INFO 2025-10-04 09:30:35,348 autoreload 81274 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-04 09:30:35,863 autoreload 81437 8529070080 Watching for file changes with StatReloader

@@ -164,6 +164,31 @@ class GrupoServico(models.Model):
                 if venda not in vendas:
                     vendas.append(venda)
         return vendas
+    
+    def get_servicos_concatenados(self):
+        """Retorna serviços concatenados com '/' se diferentes"""
+        servicos_unicos = self.get_servicos_unicos()
+        return ' / '.join(servicos_unicos) if len(servicos_unicos) > 1 else (servicos_unicos[0] if servicos_unicos else '')
+    
+    def get_pickups_concatenados(self):
+        """Retorna pickups concatenados com '/' se diferentes"""
+        pickups_unicos = self.get_pickups_unicos()
+        return ' / '.join(pickups_unicos) if len(pickups_unicos) > 1 else (pickups_unicos[0] if pickups_unicos else '')
+    
+    def get_clientes_concatenados(self):
+        """Retorna clientes concatenados com '/' se diferentes"""
+        clientes_unicos = self.get_clientes_unicos()
+        return ' / '.join(clientes_unicos) if len(clientes_unicos) > 1 else (clientes_unicos[0] if clientes_unicos else '')
+    
+    def get_horarios_concatenados(self):
+        """Retorna horários concatenados com '/' se diferentes"""
+        horarios = []
+        for s in self.servicos.all():
+            if s.servico.horario:
+                horario_str = s.servico.horario.strftime('%H:%M')
+                if horario_str not in horarios:
+                    horarios.append(horario_str)
+        return ' / '.join(horarios) if len(horarios) > 1 else (horarios[0] if horarios else '')
 
 
 class ServicoGrupo(models.Model):

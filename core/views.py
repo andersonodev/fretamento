@@ -4,82 +4,50 @@ from django.http import JsonResponse, HttpResponse
 from django.views import View
 from django.views.generic import ListView, DetailView
 from django.utils.dateparse import parse_date
-from django.db.models import Count, Sum, Q, Avg
+from django.db.models import Count, Sum, Q, Avg, Prefetch
 from django.utils import timezone
+from django.core.cache import cache
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from datetime import datetime, date, timedelta
 from core.models import Servico, ProcessamentoPlanilha
 from escalas.models import Escala, AlocacaoVan
 from core.processors import ProcessadorPlanilhaOS
 from escalas.services import GerenciadorEscalas, ExportadorEscalas
+from escalas.views import parse_data_brasileira
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class HomeView(View):
-    """View principal do sistema com dashboard completo"""
+    """View principal do sistema com dashboard completo otimizado"""
     
     def get(self, request):
-        # Estatísticas gerais do sistema
-        total_servicos = Servico.objects.count()
-        escalas_criadas = Escala.objects.count()
-        escalas_aprovadas = Escala.objects.filter(status='APROVADA').count()
-        escalas_pendentes = Escala.objects.filter(status='PENDENTE').count()
+        # Tenta buscar do cache primeiro
+        cache_key = f"dashboard_stats_{request.user.id}"
+        cached_data = cache.get(cache_key)
+        
+        if cached_data:
+            logger.info("Dashboard carregado do cache")
+            return render(request, 'core/home.html', cached_data)
+        
+        logger.info("Gerando dashboard com consultas otimizadas")
+        
+        # Estatísticas básicas com uma única consulta
+        stats_basicas = self._get_stats_basicas()
         
         # Estatísticas dos últimos 30 dias
-        data_30_dias = timezone.now().date() - timedelta(days=30)
-        servicos_recentes = Servico.objects.filter(data_do_servico__gte=data_30_dias)
-        escalas_recentes = Escala.objects.filter(data__gte=data_30_dias)
+        stats_30_dias = self._get_stats_30_dias()
         
-        # Estatísticas por tipo de serviço
-        stats_tipo = Servico.objects.values('tipo').annotate(
-            total=Count('id'),
-            pax_total=Sum('pax')
-        ).order_by('-total')
+        # Estatísticas detalhadas
+        stats_detalhadas = self._get_stats_detalhadas()
         
-        # Estatísticas por aeroporto
-        stats_aeroporto = Servico.objects.exclude(aeroporto='N/A').values('aeroporto').annotate(
-            total=Count('id')
-        ).order_by('-total')
+        # Dados recentes
+        dados_recentes = self._get_dados_recentes()
         
-        # Estatísticas por direção
-        stats_direcao = Servico.objects.exclude(direcao='N/A').values('direcao').annotate(
-            total=Count('id')
-        ).order_by('-total')
-        
-        # Processamentos recentes
-        processamentos_recentes = ProcessamentoPlanilha.objects.order_by('-created_at')[:5]
-        
-        # Escalas recentes
-        escalas_recentes_list = Escala.objects.order_by('-data')[:5]
-        
-        # Eficiência das vans (últimos 30 dias)
-        van1_servicos = AlocacaoVan.objects.filter(
-            escala__data__gte=data_30_dias,
-            van='VAN1'
-        ).count()
-        
-        van2_servicos = AlocacaoVan.objects.filter(
-            escala__data__gte=data_30_dias,
-            van='VAN2'
-        ).count()
-        
-        # PAX médio por serviço
-        pax_medio = Servico.objects.aggregate(Avg('pax'))['pax__avg'] or 0
-        
-        # Serviços prioritários
-        servicos_prioritarios = Servico.objects.filter(eh_prioritario=True).count()
-        
-        # Taxa de crescimento (comparação com os 30 dias anteriores)
-        data_60_dias = timezone.now().date() - timedelta(days=60)
-        servicos_periodo_anterior = Servico.objects.filter(
-            data_do_servico__gte=data_60_dias,
-            data_do_servico__lt=data_30_dias
-        ).count()
-        
-        crescimento_servicos = 0
-        if servicos_periodo_anterior > 0:
-            crescimento_servicos = ((servicos_recentes.count() - servicos_periodo_anterior) / servicos_periodo_anterior) * 100
-        
-        # Dados do usuário atual
+        # Informações do usuário
         user_info = {
             'nome': request.user.get_full_name() or request.user.username,
             'username': request.user.username,
@@ -88,41 +56,123 @@ class HomeView(View):
         }
         
         context = {
-            # Estatísticas principais
-            'total_servicos': total_servicos,
-            'escalas_criadas': escalas_criadas,
-            'escalas_aprovadas': escalas_aprovadas,
-            'escalas_pendentes': escalas_pendentes,
-            
-            # Estatísticas dos últimos 30 dias
-            'servicos_30_dias': servicos_recentes.count(),
-            'escalas_30_dias': escalas_recentes.count(),
-            'crescimento_servicos': round(crescimento_servicos, 1),
-            
-            # Estatísticas detalhadas
-            'stats_tipo': stats_tipo,
-            'stats_aeroporto': stats_aeroporto,
-            'stats_direcao': stats_direcao,
-            'pax_medio': round(pax_medio, 1),
-            'servicos_prioritarios': servicos_prioritarios,
-            
-            # Eficiência das vans
-            'van1_servicos': van1_servicos,
-            'van2_servicos': van2_servicos,
-            'total_van_servicos': van1_servicos + van2_servicos,
-            
-            # Dados recentes
-            'processamentos_recentes': processamentos_recentes,
-            'escalas_recentes': escalas_recentes_list,
-            
-            # Informações do usuário
+            **stats_basicas,
+            **stats_30_dias,
+            **stats_detalhadas,
+            **dados_recentes,
             'user_info': user_info,
-            
-            # Data atual
             'data_atual': timezone.now(),
         }
         
+        # Cache por 5 minutos
+        cache.set(cache_key, context, 300)
+        
         return render(request, 'core/home.html', context)
+    
+    def _get_stats_basicas(self):
+        """Estatísticas básicas com consulta otimizada"""
+        servicos_stats = Servico.objects.aggregate(
+            total_servicos=Count('id'),
+            pax_medio=Avg('pax'),
+            servicos_prioritarios=Count('id', filter=Q(eh_prioritario=True))
+        )
+        
+        escalas_stats = Escala.objects.aggregate(
+            escalas_criadas=Count('id'),
+            escalas_aprovadas=Count('id', filter=Q(status='APROVADA')),
+            escalas_pendentes=Count('id', filter=Q(status='PENDENTE'))
+        )
+        
+        return {
+            'total_servicos': servicos_stats['total_servicos'] or 0,
+            'pax_medio': round(servicos_stats['pax_medio'] or 0, 1),
+            'servicos_prioritarios': servicos_stats['servicos_prioritarios'] or 0,
+            'escalas_criadas': escalas_stats['escalas_criadas'] or 0,
+            'escalas_aprovadas': escalas_stats['escalas_aprovadas'] or 0,
+            'escalas_pendentes': escalas_stats['escalas_pendentes'] or 0,
+        }
+    
+    def _get_stats_30_dias(self):
+        """Estatísticas dos últimos 30 dias"""
+        data_30_dias = timezone.now().date() - timedelta(days=30)
+        data_60_dias = timezone.now().date() - timedelta(days=60)
+        
+        # Consultas otimizadas em batch
+        servicos_30_dias = Servico.objects.filter(
+            data_do_servico__gte=data_30_dias
+        ).count()
+        
+        servicos_60_dias = Servico.objects.filter(
+            data_do_servico__gte=data_60_dias,
+            data_do_servico__lt=data_30_dias
+        ).count()
+        
+        escalas_30_dias = Escala.objects.filter(
+            data__gte=data_30_dias
+        ).count()
+        
+        # Cálculo de crescimento
+        crescimento_servicos = 0
+        if servicos_60_dias > 0:
+            crescimento_servicos = ((servicos_30_dias - servicos_60_dias) / servicos_60_dias) * 100
+        
+        # Eficiência das vans (últimos 30 dias)
+        van_stats = AlocacaoVan.objects.filter(
+            escala__data__gte=data_30_dias
+        ).aggregate(
+            van1_servicos=Count('id', filter=Q(van='VAN1')),
+            van2_servicos=Count('id', filter=Q(van='VAN2'))
+        )
+        
+        return {
+            'servicos_30_dias': servicos_30_dias,
+            'escalas_30_dias': escalas_30_dias,
+            'crescimento_servicos': round(crescimento_servicos, 1),
+            'van1_servicos': van_stats['van1_servicos'] or 0,
+            'van2_servicos': van_stats['van2_servicos'] or 0,
+            'total_van_servicos': (van_stats['van1_servicos'] or 0) + (van_stats['van2_servicos'] or 0),
+        }
+    
+    def _get_stats_detalhadas(self):
+        """Estatísticas detalhadas por tipo, aeroporto, direção"""
+        # Estatísticas por tipo de serviço
+        stats_tipo = list(Servico.objects.values('tipo').annotate(
+            total=Count('id'),
+            pax_total=Sum('pax')
+        ).order_by('-total')[:5])  # Top 5 apenas
+        
+        # Estatísticas por aeroporto
+        stats_aeroporto = list(Servico.objects.exclude(
+            aeroporto='N/A'
+        ).values('aeroporto').annotate(
+            total=Count('id')
+        ).order_by('-total')[:5])  # Top 5 apenas
+        
+        # Estatísticas por direção
+        stats_direcao = list(Servico.objects.exclude(
+            direcao='N/A'
+        ).values('direcao').annotate(
+            total=Count('id')
+        ).order_by('-total'))
+        
+        return {
+            'stats_tipo': stats_tipo,
+            'stats_aeroporto': stats_aeroporto,
+            'stats_direcao': stats_direcao,
+        }
+    
+    def _get_dados_recentes(self):
+        """Dados recentes com prefetch otimizado"""
+        # Processamentos recentes (apenas 5)
+        processamentos_recentes = ProcessamentoPlanilha.objects.select_related().order_by('-created_at')[:5]
+        
+        # Escalas recentes (apenas 5)
+        escalas_recentes = Escala.objects.select_related('aprovada_por').order_by('-data')[:5]
+        
+        return {
+            'processamentos_recentes': processamentos_recentes,
+            'escalas_recentes': escalas_recentes,
+        }
 
 
 class UploadPlanilhaView(View):
@@ -148,8 +198,11 @@ class UploadPlanilhaView(View):
             processador = ProcessadorPlanilhaOS()
             servicos, processamento = processador.processar_planilha(arquivo)
             
-            # Salva os serviços no banco
-            Servico.objects.bulk_create(servicos)
+            # Limpa cache relacionado após nova importação
+            cache.delete_many([
+                f"dashboard_stats_{request.user.id}",
+                "lista_servicos_stats_*"
+            ])
             
             messages.success(
                 request, 
@@ -159,12 +212,13 @@ class UploadPlanilhaView(View):
             return redirect('core:lista_servicos')
             
         except Exception as e:
+            logger.error(f"Erro no upload: {e}")
             messages.error(request, f'Erro ao processar planilha: {str(e)}')
             return redirect('core:upload_planilha')
 
 
 class ListaServicosView(ListView):
-    """View para listar serviços"""
+    """View para listar serviços com otimizações"""
     
     model = Servico
     template_name = 'core/lista_servicos.html'
@@ -172,7 +226,7 @@ class ListaServicosView(ListView):
     paginate_by = 50
     
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().select_related()
         
         # Filtros
         data_inicio = self.request.GET.get('data_inicio')
@@ -180,9 +234,9 @@ class ListaServicosView(ListView):
         tipo = self.request.GET.get('tipo')
         
         if data_inicio:
-            queryset = queryset.filter(data_do_servico__gte=parse_date(data_inicio))
+            queryset = queryset.filter(data_do_servico__gte=parse_data_brasileira(data_inicio))
         if data_fim:
-            queryset = queryset.filter(data_do_servico__lte=parse_date(data_fim))
+            queryset = queryset.filter(data_do_servico__lte=parse_data_brasileira(data_fim))
         if tipo:
             queryset = queryset.filter(tipo=tipo)
         
@@ -191,14 +245,21 @@ class ListaServicosView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         
-        # Aplica os mesmos filtros para estatísticas
-        queryset = self.get_queryset()
+        # Cache das estatísticas por 5 minutos
+        cache_key = f"lista_servicos_stats_{hash(str(self.request.GET))}"
+        stats = cache.get(cache_key)
         
-        # Calcula estatísticas
-        context['total_transfers'] = queryset.filter(tipo='TRANSFER').count()
-        context['total_disposicoes'] = queryset.filter(tipo='DISPOSICAO').count()
-        context['total_tours'] = queryset.filter(tipo='TOUR').count()
+        if not stats:
+            # Calcula estatísticas com uma única consulta
+            queryset = self.get_queryset()
+            stats = queryset.aggregate(
+                total_transfers=Count('id', filter=Q(tipo='TRANSFER')),
+                total_disposicoes=Count('id', filter=Q(tipo='DISPOSICAO')),
+                total_tours=Count('id', filter=Q(tipo='TOUR'))
+            )
+            cache.set(cache_key, stats, 300)
         
+        context.update(stats)
         return context
 
 
@@ -218,7 +279,7 @@ class GerenciarEscalasView(View):
             return redirect('escalas:gerenciar_escalas')
         
         try:
-            data_alvo = parse_date(data_str)
+            data_alvo = parse_data_brasileira(data_str)
             gerenciador = GerenciadorEscalas()
             
             if acao == 'criar':
@@ -253,7 +314,7 @@ class VisualizarEscalaView(DetailView):
     
     def get_object(self):
         data_str = self.kwargs.get('data')
-        data = parse_date(data_str)
+        data = parse_data_brasileira(data_str)
         return get_object_or_404(Escala, data=data)
     
     def get_context_data(self, **kwargs):
@@ -271,7 +332,7 @@ class ExportarEscalaView(View):
     """View para exportar escala em Excel"""
     
     def get(self, request, data):
-        data_obj = parse_date(data)
+        data_obj = parse_data_brasileira(data)
         escala = get_object_or_404(Escala, data=data_obj)
         
         # Exporta para Excel
@@ -307,7 +368,7 @@ class DiagnosticoView(View):
         # Dados por data
         servicos_por_data = {}
         for servico in Servico.objects.all():
-            data_key = servico.data_do_servico.strftime('%Y-%m-%d')
+            data_key = servico.data_do_servico.strftime('%d-%m-%Y')
             if data_key not in servicos_por_data:
                 servicos_por_data[data_key] = {'total': 0, 'com_horario': 0, 'prioritarios': 0}
             

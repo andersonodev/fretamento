@@ -62,27 +62,7 @@
             position: relative;
         }
 
-        .dark-mode-toggle {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            transition: background 0.2s ease;
-        }
 
-        .dark-mode-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
 
         .login-icon {
             width: 64px;
@@ -241,9 +221,6 @@
         <div class="login-card">
             <!-- Header -->
             <div class="login-header">
-                <button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Alternar modo noturno">
-                    <i class="fas fa-moon"></i>
-                </button>
                 <div class="login-icon">
                     <i class="fas fa-bus"></i>
                 </div>
@@ -327,31 +304,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Função para alternar modo noturno
-        function toggleDarkMode() {
-            const body = document.body;
-            const toggle = document.querySelector('.dark-mode-toggle i');
-            
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                toggle.className = 'fas fa-sun';
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                toggle.className = 'fas fa-moon';
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        }
+
 
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('loginForm');
             const loginBtn = document.getElementById('loginBtn');
             
-            // Verificar modo noturno salvo
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                document.body.classList.add('dark-mode');
-                document.querySelector('.dark-mode-toggle i').className = 'fas fa-sun';
-            }
+
             
             // Form submission with loading state
             form.addEventListener('submit', function() {

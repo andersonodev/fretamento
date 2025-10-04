@@ -5,8 +5,8 @@ Serviços para gerenciamento de escalas
 from datetime import datetime, date
 from typing import List, Dict
 from django.db import transaction
-from core.models import Servico, GrupoServico, ServicoGrupo
-from escalas.models import Escala, AlocacaoVan
+from core.models import Servico, GrupoServico
+from escalas.models import Escala, AlocacaoVan, ServicoGrupo
 from core.logic import OtimizadorEscalas, CalculadorVeiculoPreco
 import logging
 
@@ -90,67 +90,68 @@ class ExportadorEscalas:
             resultados = []
             
             for alocacao in alocacoes:
-                # Verificar se este serviço está em um grupo
-                grupo_servico = alocacao.servico.grupos.first()
-                
-                if grupo_servico and grupo_servico.grupo.id not in grupos_processados:
-                    # Processar grupo completo
-                    grupo = grupo_servico.grupo
-                    grupos_processados.add(grupo.id)
+                # Verificar se esta alocação está em um grupo
+                try:
+                    grupo_info = alocacao.grupo_info
+                    grupo = grupo_info.grupo
                     
-                    # Buscar todos os serviços do grupo na mesma van
-                    servicos_do_grupo = []
-                    alocacoes_do_grupo = alocacao.escala.alocacoes.filter(
-                        van=alocacao.van,
-                        servico__grupos__grupo=grupo
-                    ).order_by('ordem')
-                    
-                    for aloc in alocacoes_do_grupo:
-                        servicos_do_grupo.append(aloc)
-                    
-                    if len(servicos_do_grupo) > 1:
-                        # Grupo com múltiplos serviços - concatenar números de venda
-                        numeros_venda = []
-                        total_pax = 0
-                        primeiro_servico = servicos_do_grupo[0].servico
+                    if grupo.id not in grupos_processados:
+                        # Processar grupo completo
+                        grupos_processados.add(grupo.id)
                         
-                        for aloc_grupo in servicos_do_grupo:
-                            if aloc_grupo.servico.numero_venda:
-                                numeros_venda.append(str(aloc_grupo.servico.numero_venda))
-                            total_pax += aloc_grupo.servico.pax or 0
+                        # Buscar todos os serviços do grupo na mesma van
+                        servicos_do_grupo = []
+                        alocacoes_do_grupo = alocacao.escala.alocacoes.filter(
+                            van=alocacao.van,
+                            grupo_info__grupo=grupo
+                        ).order_by('ordem')
                         
-                        # Criar linha agrupada
-                        linha_grupo = {
-                            'data': escala.data,
-                            'cliente': primeiro_servico.cliente,
-                            'local_pickup': primeiro_servico.local_pickup or "",
-                            'numero_venda': " / ".join(numeros_venda),  # CONCATENADO
-                            'pax': total_pax,
-                            'horario': primeiro_servico.horario,
-                            'data_servico': primeiro_servico.data_do_servico,
-                            'servico': f"{primeiro_servico.servico} (+{len(servicos_do_grupo)-1} / Grupo)",
-                            'preco': sum(float(aloc.preco_calculado or 0) for aloc in servicos_do_grupo),
-                            'van': van_name,
-                            'obs': f"Grupo {grupo.id}"
-                        }
-                        resultados.append(linha_grupo)
-                    else:
-                        # Grupo com apenas um serviço - tratar como individual
-                        resultados.append({
-                            'data': escala.data,
-                            'cliente': alocacao.servico.cliente,
-                            'local_pickup': alocacao.servico.local_pickup or "",
-                            'numero_venda': alocacao.servico.numero_venda or "",
-                            'pax': alocacao.servico.pax,
-                            'horario': alocacao.servico.horario,
-                            'data_servico': alocacao.servico.data_do_servico,
-                            'servico': alocacao.servico.servico,
-                            'preco': float(alocacao.preco_calculado or 0),
-                            'van': van_name,
-                            'obs': ""
-                        })
+                        for aloc in alocacoes_do_grupo:
+                            servicos_do_grupo.append(aloc)
+                        
+                        if len(servicos_do_grupo) > 1:
+                            # Grupo com múltiplos serviços - concatenar números de venda
+                            numeros_venda = []
+                            total_pax = 0
+                            primeiro_servico = servicos_do_grupo[0].servico
+                            
+                            for aloc_grupo in servicos_do_grupo:
+                                if aloc_grupo.servico.numero_venda:
+                                    numeros_venda.append(str(aloc_grupo.servico.numero_venda))
+                                total_pax += aloc_grupo.servico.pax or 0
+                            
+                            # Criar linha agrupada
+                            linha_grupo = {
+                                'data': escala.data,
+                                'cliente': primeiro_servico.cliente,
+                                'local_pickup': primeiro_servico.local_pickup or "",
+                                'numero_venda': " / ".join(numeros_venda),  # CONCATENADO
+                                'pax': total_pax,
+                                'horario': primeiro_servico.horario,
+                                'data_servico': primeiro_servico.data_do_servico,
+                                'servico': f"{primeiro_servico.servico} (+{len(servicos_do_grupo)-1} / Grupo)",
+                                'preco': sum(float(aloc.preco_calculado or 0) for aloc in servicos_do_grupo),
+                                'van': van_name,
+                                'obs': f"Grupo {grupo.id}"
+                            }
+                            resultados.append(linha_grupo)
+                        else:
+                            # Grupo com apenas um serviço - tratar como individual
+                            resultados.append({
+                                'data': escala.data,
+                                'cliente': alocacao.servico.cliente,
+                                'local_pickup': alocacao.servico.local_pickup or "",
+                                'numero_venda': alocacao.servico.numero_venda or "",
+                                'pax': alocacao.servico.pax,
+                                'horario': alocacao.servico.horario,
+                                'data_servico': alocacao.servico.data_do_servico,
+                                'servico': alocacao.servico.servico,
+                                'preco': float(alocacao.preco_calculado or 0),
+                                'van': van_name,
+                                'obs': ""
+                            })
                 
-                elif not grupo_servico:
+                except ServicoGrupo.DoesNotExist:
                     # Serviço individual (não está em grupo)
                     resultados.append({
                         'data': escala.data,

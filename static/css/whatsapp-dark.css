@@ -1,0 +1,820 @@
+/* WhatsApp Dark Mode Theme - High Specificity with Blue Colors */
+:root {
+    /* WhatsApp Dark Colors with Blue Accent */
+    --wa-bg-primary: #0b141a;
+    --wa-bg-secondary: #1f2c34;
+    --wa-bg-card: #2a3942;
+    --wa-text-primary: #e9edef;
+    --wa-text-secondary: #8696a0;
+    --wa-border: #3b4a54;
+    --wa-accent: #1F8CCB; /* Azul original do sistema */
+    --wa-accent-hover: #1a7bb8; /* Azul hover original */
+    --wa-accent-light: rgba(31, 140, 203, 0.1); /* Azul com transparência */
+    --wa-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Dark theme aplicado globalmente com alta especificidade */
+body.d/* Cards com background branco forçado */
+body.dark-theme [style*="background: white"],
+body.dark-theme [style*="background-color: white"],
+body.dark-theme [style*="background: #fff"],
+body.dark-theme [style*="background-color: #fff"],
+body.dark-theme [style*="background: rgba(255, 255, 255"] {
+    background: var(--wa-bg-card) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+/* Tabelas específicas - força modo escuro */
+body.dark-theme table,
+body.dark-theme .table,
+body.dark-theme tbody,
+body.dark-theme thead,
+body.dark-theme tr,
+body.dark-theme td,
+body.dark-theme th {
+    background: var(--wa-bg-card) !important;
+    color: var(--wa-text-primary) !important;
+    border-color: var(--wa-border) !important;
+}
+
+body.dark-theme .table-striped tbody tr:nth-of-type(odd) {
+    background: var(--wa-bg-secondary) !important;
+}
+
+body.dark-theme .table-striped tbody tr:nth-of-type(even) {
+    background: var(--wa-bg-card) !important;
+}
+
+/* Containers e divs com fundo branco */
+body.dark-theme .container,
+body.dark-theme .container-fluid,
+body.dark-theme .row,
+body.dark-theme [class*="col-"] {
+    color: var(--wa-text-primary) !important;
+}
+
+/* Força textos escuros para cor clara */
+body.dark-theme .text-dark,
+body.dark-theme .text-black,
+body.dark-theme [style*="color: #000"],
+body.dark-theme [style*="color: black"],
+body.dark-theme [style*="color: #333"],
+body.dark-theme [style*="color: #666"],
+body.dark-theme [style*="color: #999"] {
+    color: var(--wa-text-primary) !important;
+}
+
+/* Texto muted mais visível */
+body.dark-theme .text-muted,
+body.dark-theme small,
+body.dark-theme .small {
+    color: var(--wa-text-secondary) !important;
+}
+
+/* Elementos específicos da dashboard que podem ter fundo branco */
+body.dark-theme .card-body,
+body.dark-theme .modal-body,
+body.dark-theme .list-group,
+body.dark-theme .accordion,
+body.dark-theme .nav-tabs,
+body.dark-theme .tab-content {
+    background: var(--wa-bg-card) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+/* Seções específicas que podem escapar */
+body.dark-theme section,
+body.dark-theme article,
+body.dark-theme aside,
+body.dark-theme main {
+    color: var(--wa-text-primary) !important;
+}
+
+/* Bootstrap components específicos */
+body.dark-theme .table-responsive {
+    background: var(--wa-bg-card) !important;
+}
+
+body.dark-theme .table-hover tbody tr:hover {
+    background: var(--wa-accent-light) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+/* Regras universais para garantir que TODOS os elementos sejam escuros */
+body.dark-theme * {
+    border-color: var(--wa-border) !important;
+}
+
+/* Qualquer elemento com background claro */
+body.dark-theme *:not(.btn):not(.badge):not(.alert) {
+    background-color: transparent !important;
+}
+
+/* Força background escuro em elementos container */
+body.dark-theme div:not(.btn):not(.badge):not(.dropdown-menu) {
+    background-color: transparent !important;
+}
+
+/* Elementos que devem ter background específico */
+body.dark-theme .card,
+body.dark-theme .table,
+body.dark-theme .modal-content,
+body.dark-theme .dropdown-menu,
+body.dark-theme .alert {
+    background: var(--wa-bg-card) !important;
+}
+
+/* Força cor de texto em todos os elementos */
+body.dark-theme p,
+body.dark-theme span,
+body.dark-theme div,
+body.dark-theme td,
+body.dark-theme th,
+body.dark-theme label,
+body.dark-theme small {
+    color: var(--wa-text-primary) !important;
+}
+
+/* Override para qualquer cor inline específica */
+body.dark-theme [style*="color"] {
+    color: var(--wa-text-primary) !important;
+}
+
+/* Elementos específicos que podem ter problemas */
+body.dark-theme .datetime,
+body.dark-theme .date,
+body.dark-theme .time,
+body.dark-theme .status,
+body.dark-theme .badge-secondary {
+    color: var(--wa-text-primary) !important;
+    background: var(--wa-bg-secondary) !important;
+}l body.dark-theme {
+    background: linear-gradient(135deg, var(--wa-bg-primary) 0%, var(--wa-bg-secondary) 100%) !important;
+    color: var(--wa-text-primary) !important;
+    min-height: 100vh !important;
+}
+
+/* Scrollbar personalizada para WhatsApp theme */
+body.dark-theme ::-webkit-scrollbar {
+    width: 8px;
+}
+
+body.dark-theme ::-webkit-scrollbar-track {
+    background: var(--wa-bg-secondary);
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb {
+    background: var(--wa-accent);
+    border-radius: 10px;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+    background: var(--wa-accent-hover);
+}
+
+/* Navbar WhatsApp Style */
+body.dark-theme .navbar-modern,
+body.dark-theme .navbar {
+    background: rgba(11, 20, 26, 0.95) !important;
+    border-bottom: 1px solid var(--wa-border) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+body.dark-theme .navbar-brand {
+    color: var(--wa-accent) !important;
+    font-weight: 600;
+}
+
+body.dark-theme .navbar-brand:hover {
+    color: var(--wa-accent-hover) !important;
+}
+
+body.dark-theme .nav-link {
+    color: var(--wa-text-primary) !important;
+    transition: all 0.3s ease;
+}
+
+body.dark-theme .nav-link:hover {
+    color: var(--wa-accent) !important;
+    background: var(--wa-accent-light) !important;
+    border-radius: 8px;
+}
+
+body.dark-theme .nav-link::before {
+    background: linear-gradient(135deg, var(--wa-accent) 0%, var(--wa-accent-hover) 100%) !important;
+}
+
+/* Dropdowns WhatsApp Style */
+body.dark-theme .dropdown-menu {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px var(--wa-shadow);
+    padding: 8px;
+}
+
+body.dark-theme .dropdown-item {
+    background: transparent !important;
+    color: var(--wa-text-primary) !important;
+    border-radius: 8px !important;
+    margin: 2px 0;
+    padding: 8px 12px;
+    transition: all 0.2s ease;
+}
+
+body.dark-theme .dropdown-item:hover,
+body.dark-theme .dropdown-item:focus {
+    background: var(--wa-accent-light) !important;
+    color: var(--wa-accent) !important;
+}
+
+body.dark-theme .dropdown-divider {
+    border-color: var(--wa-border) !important;
+}
+
+/* Cards WhatsApp Style */
+body.dark-theme .card {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-theme .card-header {
+    background: var(--wa-bg-secondary) !important;
+    border-bottom: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+body.dark-theme .card-body {
+    background: var(--wa-bg-card) !important;
+}
+
+body.dark-theme .card-modern {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+}
+
+/* Buttons WhatsApp Style */
+body.dark-theme .btn-primary {
+    background: linear-gradient(135deg, var(--wa-accent) 0%, var(--wa-accent-hover) 100%) !important;
+    border-color: var(--wa-accent) !important;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+body.dark-theme .btn-primary:hover,
+body.dark-theme .btn-primary:focus {
+    background: linear-gradient(135deg, var(--wa-accent-hover) 0%, #007a5e 100%) !important;
+    border-color: var(--wa-accent-hover) !important;
+    transform: translateY(-2px);
+}
+
+body.dark-theme .btn-outline-primary {
+    border-color: var(--wa-accent) !important;
+    color: var(--wa-accent) !important;
+}
+
+body.dark-theme .btn-outline-primary:hover {
+    background: var(--wa-accent) !important;
+    border-color: var(--wa-accent) !important;
+    color: white !important;
+}
+
+body.dark-theme .btn-secondary {
+    background: var(--wa-bg-secondary) !important;
+    border-color: var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+body.dark-theme .btn-secondary:hover {
+    background: var(--wa-bg-card) !important;
+    border-color: var(--wa-accent) !important;
+}
+
+body.dark-theme .btn-modern {
+    background: var(--wa-bg-card) !important;
+    color: var(--wa-text-primary) !important;
+    border-color: var(--wa-border) !important;
+}
+
+body.dark-theme .btn-modern.btn-primary {
+    background: linear-gradient(135deg, var(--wa-accent) 0%, var(--wa-accent-hover) 100%) !important;
+}
+
+/* Forms WhatsApp Style */
+body.dark-theme .form-control, 
+body.dark-theme .form-select {
+    background: var(--wa-bg-secondary) !important;
+    border: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+    border-radius: 8px;
+}
+
+body.dark-theme .form-control:focus, 
+body.dark-theme .form-select:focus {
+    background: var(--wa-bg-card) !important;
+    border-color: var(--wa-accent) !important;
+    box-shadow: 0 0 0 0.25rem var(--wa-accent-light) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+body.dark-theme .form-control::placeholder {
+    color: var(--wa-text-secondary) !important;
+}
+
+body.dark-theme .form-label {
+    color: var(--wa-text-primary) !important;
+    font-weight: 500;
+}
+
+body.dark-theme .input-modern {
+    background: var(--wa-bg-secondary) !important;
+    border-color: var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+body.dark-theme .input-modern:focus {
+    background: var(--wa-bg-card) !important;
+    border-color: var(--wa-accent) !important;
+}
+
+/* Tables WhatsApp Style */
+.dark-theme .table {
+    color: var(--wa-text-primary) !important;
+    background: transparent;
+}
+
+.dark-theme .table thead th {
+    background: var(--wa-bg-secondary) !important;
+    border-color: var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+    font-weight: 600;
+}
+
+.dark-theme .table tbody tr {
+    border-color: var(--wa-border) !important;
+    background: var(--wa-bg-card);
+}
+
+.dark-theme .table tbody tr:hover {
+    background: var(--wa-accent-light) !important;
+}
+
+.dark-theme .table tbody td {
+    border-color: var(--wa-border) !important;
+}
+
+/* Alerts WhatsApp Style */
+.dark-theme .alert {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+    border-radius: 12px;
+}
+
+.dark-theme .alert-success {
+    background: rgba(31, 140, 203, 0.1) !important;
+    border-color: var(--wa-accent) !important;
+    color: var(--wa-accent) !important;
+}
+
+.dark-theme .alert-danger {
+    background: rgba(220, 53, 69, 0.1) !important;
+    border-color: #dc3545 !important;
+    color: #ff6b6b !important;
+}
+
+.dark-theme .alert-warning {
+    background: rgba(255, 193, 7, 0.1) !important;
+    border-color: #ffc107 !important;
+    color: #ffeb3b !important;
+}
+
+.dark-theme .alert-info {
+    background: rgba(13, 202, 240, 0.1) !important;
+    border-color: #0dcaf0 !important;
+    color: #40c4ff !important;
+}
+
+/* Badges WhatsApp Style */
+.dark-theme .badge {
+    background: var(--wa-accent) !important;
+    color: white !important;
+    border-radius: 12px;
+}
+
+.dark-theme .badge.bg-secondary {
+    background: var(--wa-bg-secondary) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+/* Text colors */
+.dark-theme .text-muted {
+    color: var(--wa-text-secondary) !important;
+}
+
+.dark-theme .text-primary {
+    color: var(--wa-accent) !important;
+}
+
+.dark-theme .text-secondary {
+    color: var(--wa-text-secondary) !important;
+}
+
+/* Modal WhatsApp Style */
+.dark-theme .modal-content {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+    border-radius: 16px;
+    color: var(--wa-text-primary) !important;
+}
+
+.dark-theme .modal-header {
+    background: var(--wa-bg-secondary) !important;
+    border-bottom: 1px solid var(--wa-border) !important;
+    border-radius: 16px 16px 0 0;
+}
+
+.dark-theme .modal-footer {
+    background: var(--wa-bg-secondary) !important;
+    border-top: 1px solid var(--wa-border) !important;
+    border-radius: 0 0 16px 16px;
+}
+
+.dark-theme .btn-close {
+    filter: invert(1);
+}
+
+/* Pagination WhatsApp Style */
+.dark-theme .page-link {
+    background: var(--wa-bg-card) !important;
+    border-color: var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+.dark-theme .page-link:hover {
+    background: var(--wa-accent-light) !important;
+    border-color: var(--wa-accent) !important;
+    color: var(--wa-accent) !important;
+}
+
+.dark-theme .page-item.active .page-link {
+    background: var(--wa-accent) !important;
+    border-color: var(--wa-accent) !important;
+}
+
+/* Footer WhatsApp Style */
+.dark-theme .footer-modern {
+    background: rgba(11, 20, 26, 0.95) !important;
+    border-top: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-secondary) !important;
+}
+
+.dark-theme .footer-link {
+    color: var(--wa-text-secondary) !important;
+}
+
+.dark-theme .footer-link:hover {
+    color: var(--wa-accent) !important;
+}
+
+/* Progress bars */
+.dark-theme .progress {
+    background: var(--wa-bg-secondary) !important;
+}
+
+.dark-theme .progress-bar {
+    background: var(--wa-accent) !important;
+}
+
+/* Custom animations for WhatsApp theme */
+@keyframes whatsappGlow {
+    0% { box-shadow: 0 0 0 0 var(--wa-accent-light); }
+    50% { box-shadow: 0 0 0 10px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.dark-theme .wa-pulse {
+    animation: whatsappGlow 2s infinite;
+}
+
+/* Dashboard específico - Cards de métricas */
+body.dark-theme .card,
+body.dark-theme .card-modern,
+body.dark-theme .action-card {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+body.dark-theme .card-header,
+body.dark-theme .action-card-header {
+    background: var(--wa-bg-secondary) !important;
+    color: var(--wa-text-primary) !important;
+    border-bottom: 1px solid var(--wa-border) !important;
+}
+
+body.dark-theme .card-body,
+body.dark-theme .action-card-body {
+    background: var(--wa-bg-card) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+/* Texto e números nas métricas */
+body.dark-theme h1, 
+body.dark-theme h2, 
+body.dark-theme h3, 
+body.dark-theme h4, 
+body.dark-theme h5, 
+body.dark-theme h6 {
+    color: var(--wa-text-primary) !important;
+}
+
+body.dark-theme .text-primary {
+    color: var(--wa-accent) !important;
+}
+
+body.dark-theme .text-secondary {
+    color: var(--wa-text-secondary) !important;
+}
+
+body.dark-theme .text-muted {
+    color: var(--wa-text-secondary) !important;
+}
+
+/* Botões de ação */
+body.dark-theme .action-btn,
+body.dark-theme .btn {
+    background: var(--wa-bg-secondary) !important;
+    color: var(--wa-text-primary) !important;
+    border-color: var(--wa-border) !important;
+}
+
+body.dark-theme .action-btn:hover,
+body.dark-theme .btn:hover {
+    background: var(--wa-accent-light) !important;
+    color: var(--wa-accent) !important;
+}
+
+body.dark-theme .btn-primary {
+    background: linear-gradient(135deg, var(--wa-accent) 0%, var(--wa-accent-hover) 100%) !important;
+    color: white !important;
+}
+
+/* Container principal */
+body.dark-theme .container,
+body.dark-theme .main-container {
+    color: var(--wa-text-primary) !important;
+}
+
+/* Badge de status */
+body.dark-theme .badge {
+    background: var(--wa-accent) !important;
+    color: white !important;
+}
+
+body.dark-theme .badge-success {
+    background: var(--wa-accent) !important;
+}
+
+/* Progress bars e gráficos */
+body.dark-theme .progress {
+    background: var(--wa-bg-secondary) !important;
+}
+
+body.dark-theme .progress-bar {
+    background: var(--wa-accent) !important;
+}
+
+/* Elementos específicos melhorados */
+body.dark-theme .list-group-item {
+    background: var(--wa-bg-card) !important;
+    border-color: var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+body.dark-theme .list-group-item:hover {
+    background: var(--wa-accent-light) !important;
+}
+
+body.dark-theme .navbar-toggler {
+    border-color: var(--wa-border) !important;
+}
+
+body.dark-theme .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23e9edef' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Search inputs specific styling */
+body.dark-theme input[type="search"] {
+    background: var(--wa-bg-secondary) !important;
+    border: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+body.dark-theme input[type="search"]:focus {
+    border-color: var(--wa-accent) !important;
+    box-shadow: 0 0 0 0.25rem var(--wa-accent-light) !important;
+}
+
+/* Footer */
+body.dark-theme .footer-modern {
+    background: rgba(11, 20, 26, 0.95) !important;
+    border-top: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-secondary) !important;
+}
+
+body.dark-theme .footer-link {
+    color: var(--wa-text-secondary) !important;
+}
+
+body.dark-theme .footer-link:hover {
+    color: var(--wa-accent) !important;
+}
+
+/* Dashboard específico - Correções para template home.html */
+body.dark-theme .dashboard-header {
+    background: linear-gradient(135deg, var(--wa-accent) 0%, var(--wa-accent-hover) 100%) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+/* Cards de estatísticas */
+body.dark-theme .stat-card {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+    backdrop-filter: blur(20px);
+}
+
+body.dark-theme .stat-card:hover {
+    box-shadow: 0 20px 40px rgba(31, 140, 203, 0.2) !important;
+}
+
+body.dark-theme .stat-number {
+    background: linear-gradient(135deg, var(--wa-accent) 0%, var(--wa-accent-hover) 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+body.dark-theme .stat-label {
+    color: var(--wa-text-secondary) !important;
+}
+
+body.dark-theme .stat-icon {
+    color: var(--wa-accent) !important;
+}
+
+/* Cards de ações */
+body.dark-theme .action-card {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+body.dark-theme .action-card-header {
+    background: linear-gradient(135deg, var(--wa-accent) 0%, var(--wa-accent-hover) 100%) !important;
+    color: white !important;
+}
+
+body.dark-theme .action-card-body {
+    background: var(--wa-bg-card) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+body.dark-theme .action-btn {
+    background: var(--wa-bg-secondary) !important;
+    color: var(--wa-text-primary) !important;
+    border: 1px solid var(--wa-border) !important;
+}
+
+body.dark-theme .action-btn:hover {
+    background: var(--wa-accent-light) !important;
+    color: var(--wa-accent) !important;
+    border-color: var(--wa-accent) !important;
+}
+
+/* Seções específicas da dashboard */
+body.dark-theme .row .col-md-3 .card,
+body.dark-theme .row .col-lg-4 .card,
+body.dark-theme .row .col-xl-3 .card {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+/* Gráficos e charts */
+body.dark-theme .chart-container {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+}
+
+/* Tabelas na dashboard */
+body.dark-theme .table-container {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+}
+
+body.dark-theme .table-container .table {
+    color: var(--wa-text-primary) !important;
+}
+
+body.dark-theme .table-container .table thead {
+    background: var(--wa-bg-secondary) !important;
+}
+
+/* Cards com classes específicas da dashboard */
+body.dark-theme .dashboard-card,
+body.dark-theme .metric-card,
+body.dark-theme .summary-card {
+    background: var(--wa-bg-card) !important;
+    border: 1px solid var(--wa-border) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+/* Elementos com background branco forçado */
+body.dark-theme [style*="background: white"],
+body.dark-theme [style*="background-color: white"],
+body.dark-theme [style*="background: #fff"],
+body.dark-theme [style*="background-color: #fff"] {
+    background: var(--wa-bg-card) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+/* Cards com background rgba branco */
+body.dark-theme [style*="background: rgba(255, 255, 255"] {
+    background: var(--wa-bg-card) !important;
+    color: var(--wa-text-primary) !important;
+}
+
+/* ================================ */
+/* SEÇÃO ESPECÍFICA PARA ESCALAS   */
+/* ================================ */
+
+/* Escalas específicas - tabelas de dados puxados */
+body.dark-theme table.table,
+body.dark-theme table.table *,
+body.dark-theme .table thead,
+body.dark-theme .table thead *,
+body.dark-theme .table tbody,
+body.dark-theme .table tbody *,
+body.dark-theme .table tr,
+body.dark-theme .table tr *,
+body.dark-theme .table td,
+body.dark-theme .table th {
+    background-color: #1f2c34 !important;
+    color: #ffffff !important;
+    border-color: #2a3942 !important;
+}
+
+/* Badge e labels dentro das tabelas */
+body.dark-theme .table .badge,
+body.dark-theme .badge.bg-primary,
+body.dark-theme .badge.bg-warning,
+body.dark-theme .badge.bg-info,
+body.dark-theme .badge.bg-success,
+body.dark-theme .badge.bg-secondary {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+
+/* Botões de ação dentro das tabelas */
+body.dark-theme .btn-outline-primary,
+body.dark-theme .btn-outline-info,
+body.dark-theme .btn-outline-success,
+body.dark-theme .btn-outline-danger {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* Garantir que TODOS os elementos herdem dark mode */
+body.dark-theme * {
+    background-color: inherit !important;
+}
+
+/* Elementos do dashboard que podem escapar do dark mode */
+body.dark-theme .chart-container,
+body.dark-theme .chart-container *,
+body.dark-theme .metric-box,
+body.dark-theme .metric-box *,
+body.dark-theme .summary-section,
+body.dark-theme .summary-section * {
+    background-color: #1f2c34 !important;
+    color: #ffffff !important;
+}
+
+/* Forçar cores em elementos específicos que podem não estar aplicando */
+body.dark-theme .table-hover tbody tr:hover td {
+    background-color: #2a3942 !important;
+}
+
+/* Pequenos textos que ficam invisíveis */
+body.dark-theme .small,
+body.dark-theme small,
+body.dark-theme .text-xs {
+    color: #b7c3c7 !important;
+}
