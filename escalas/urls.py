@@ -24,6 +24,7 @@ urlpatterns = [
     
     # APIs para modal de tarifários
     path('api/servico/<int:alocacao_id>/', views.ApiServicoDetailView.as_view(), name='api_servico_detail'),
+    path('api/tarifarios/', views.ApiTarifariosView.as_view(), name='api_tarifarios'),
     path('api/atualizar-preco/', views.ApiAtualizarPrecoView.as_view(), name='api_atualizar_preco'),
     path('desfazer-agrupamentos-automaticos/', views.DesfazerAgrupamentosAutomaticosView.as_view(), name='desfazer_agrupamentos_automaticos'),
 ]

@@ -333,10 +333,16 @@
                                                 {% if alocacao.grupo_info %}
                                                     <span class="badge bg-primary">{{ alocacao.grupo_info.grupo.total_pax }} PAX</span>
                                                     <br><span class="badge bg-success">R$ {{ alocacao.grupo_info.grupo.total_valor|floatformat:2 }}</span>
+                                                    <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
+                                                       onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'grupo', '{{ alocacao.grupo_info.grupo.id }}')"
+                                                       title="Editar preço"></i>
                                                 {% else %}
                                                     <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
                                                     {% if alocacao.preco_calculado %}
                                                         <br><span class="badge bg-success">R$ {{ alocacao.preco_calculado|floatformat:2 }}</span>
+                                                        <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
+                                                           onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'individual')"
+                                                           title="Editar preço"></i>
                                                     {% endif %}
                                                 {% endif %}
                                             </div>
@@ -484,10 +490,16 @@
                                                 {% if alocacao.grupo_info %}
                                                     <span class="badge bg-primary">{{ alocacao.grupo_info.grupo.total_pax }} PAX</span>
                                                     <br><span class="badge bg-success">R$ {{ alocacao.grupo_info.grupo.total_valor|floatformat:2 }}</span>
+                                                    <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
+                                                       onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'grupo', '{{ alocacao.grupo_info.grupo.id }}')"
+                                                       title="Editar preço"></i>
                                                 {% else %}
                                                     <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
                                                     {% if alocacao.preco_calculado %}
                                                         <br><span class="badge bg-success">R$ {{ alocacao.preco_calculado|floatformat:2 }}</span>
+                                                        <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
+                                                           onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'individual')"
+                                                           title="Editar preço"></i>
                                                     {% endif %}
                                                 {% endif %}
                                             </div>
@@ -1067,8 +1079,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Não abrir modal se clicou em botão específico
-        if (e.target.closest('button') || e.target.closest('.btn')) {
+        // Não abrir modal se clicou em botão específico ou ícone de edição
+        if (e.target.closest('button') || e.target.closest('.btn') || e.target.classList.contains('fa-edit')) {
             return;
         }
         
@@ -1596,6 +1608,523 @@ document.addEventListener('DOMContentLoaded', function() {
     // Aplicar filtros inicial
     aplicarFiltros();
 });
+
+// Função para obter CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Função para abrir modal de tarifários
+function abrirModalTarifarios(servicoId, tipo, grupoId = null) {
+    // Armazenar informações do serviço selecionado
+    document.getElementById('servicoIdSelecionado').value = servicoId;
+    document.getElementById('tipoSelecionado').value = tipo;
+    if (grupoId) {
+        document.getElementById('grupoIdSelecionado').value = grupoId;
+    }
+    
+    // Carregar dados dos tarifários
+    carregarTarifarios();
+    
+    // Abrir modal
+    const modal = new bootstrap.Modal(document.getElementById('modalTarifarios'));
+    modal.show();
+}
+
+// Função para carregar dados dos tarifários
+function carregarTarifarios() {
+    fetch('/escalas/api/tarifarios/')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                preencherTabelaJW(data.tarifario_jw);
+                preencherTabelaMotoristas(data.tarifario_motoristas);
+            } else {
+                console.error('Erro ao carregar tarifários:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+        });
+}
+
+// Função para preencher tabela do tarifário JW
+function preencherTabelaJW(tarifarioJW) {
+    const tbody = document.getElementById('tabelaJW');
+    tbody.innerHTML = '';
+    
+    const veiculos = ['Executivo', 'Van 15 lugares', 'Van 18 lugares', 'Micro', 'Ônibus'];
+    
+    for (const [servico, precos] of Object.entries(tarifarioJW)) {
+        const row = document.createElement('tr');
+        
+        // Coluna do serviço
+        const cellServico = document.createElement('td');
+        cellServico.innerHTML = `<strong>${servico}</strong>`;
+        row.appendChild(cellServico);
+        
+        // Colunas dos veículos
+        veiculos.forEach(veiculo => {
+            const cell = document.createElement('td');
+            if (precos[veiculo]) {
+                const preco = parseFloat(precos[veiculo]);
+                
+                const badge = document.createElement('span');
+                badge.className = 'badge bg-success';
+                badge.style.cursor = 'pointer';
+                badge.textContent = `R$ ${preco.toFixed(2)}`;
+                badge.addEventListener('click', function() {
+                    aplicarPrecoSelecionado(preco, servico, veiculo);
+                });
+                
+                cell.appendChild(badge);
+            } else {
+                cell.innerHTML = '<span class="badge bg-secondary">N/A</span>';
+            }
+            row.appendChild(cell);
+        });
+        
+        tbody.appendChild(row);
+    }
+}
+
+// Função para preencher tabela do tarifário de motoristas
+function preencherTabelaMotoristas(tarifarioMotoristas) {
+    const tbody = document.getElementById('tabelaMotoristas');
+    tbody.innerHTML = '';
+    
+    for (const [servico, preco] of Object.entries(tarifarioMotoristas)) {
+        const row = document.createElement('tr');
+        
+        // Criar células
+        const cellServico = document.createElement('td');
+        cellServico.innerHTML = `<strong>${servico}</strong>`;
+        
+        const cellPreco = document.createElement('td');
+        const badge = document.createElement('span');
+        badge.className = 'badge bg-primary';
+        badge.style.cursor = 'pointer';
+        badge.textContent = `R$ ${preco.toFixed(2)}`;
+        badge.addEventListener('click', function() {
+            aplicarPrecoSelecionado(preco, servico, 'Motorista');
+        });
+        cellPreco.appendChild(badge);
+        
+        const cellObs = document.createElement('td');
+        cellObs.innerHTML = '<small class="text-muted">Multiplicado pelo número de venda</small>';
+        
+        row.appendChild(cellServico);
+        row.appendChild(cellPreco);
+        row.appendChild(cellObs);
+        
+        tbody.appendChild(row);
+    }
+}
+
+// Função para aplicar preço selecionado
+function aplicarPrecoSelecionado(preco, servicoOrigem, veiculo) {
+    console.log('🎯 aplicarPrecoSelecionado chamada:', { preco, servicoOrigem, veiculo });
+    
+    const servicoId = document.getElementById('servicoIdSelecionado').value;
+    const tipo = document.getElementById('tipoSelecionado').value;
+    const grupoId = document.getElementById('grupoIdSelecionado').value;
+    
+    console.log('📊 Dados do serviço:', { servicoId, tipo, grupoId });
+    
+    if (!servicoId) {
+        console.error('servicoId não encontrado!');
+        alert('Erro: ID do serviço não encontrado. Tente fechar e abrir o modal novamente.');
+        return;
+    }
+    
+    // Verificar se existe Bootstrap
+    if (!window.bootstrap) {
+        console.error('Bootstrap não disponível!');
+        alert('Erro: Bootstrap não carregado. Recarregue a página.');
+        return;
+    }
+    
+    // Armazenar dados para confirmação
+    window.precoParaConfirmar = {
+        preco: preco,
+        servicoOrigem: servicoOrigem,
+        veiculo: veiculo,
+        servicoId: servicoId,
+        tipo: tipo,
+        grupoId: grupoId
+    };
+    
+    // Verificar se modal de confirmação existe primeiro
+    const modalConfirmacaoEl = document.getElementById('modalConfirmacaoPreco');
+    if (!modalConfirmacaoEl) {
+        console.error('❌ Modal de confirmação não encontrado no DOM!');
+        alert('Erro: Modal de confirmação não encontrado. Verifique se a página carregou completamente.');
+        return;
+    }
+    
+    // Fechar modal de tarifários primeiro
+    const modalTarifarios = bootstrap.Modal.getInstance(document.getElementById('modalTarifarios'));
+    if (modalTarifarios) {
+        console.log('� Fechando modal de tarifários...');
+        modalTarifarios.hide();
+    }
+    
+    // Função para preencher modal quando estiver pronto
+    function preencherModalConfirmacao() {
+        console.log('📝 Tentando preencher modal de confirmação...');
+        
+        // Estratégia múltipla para encontrar elementos
+        let precoEl = null;
+        let origemEl = null;
+        
+        // Estratégia 1: IDs diretos
+        precoEl = document.getElementById('precoConfirmacao');
+        origemEl = document.getElementById('origemConfirmacao');
+        console.log('🔍 Estratégia 1 - IDs diretos:', {precoEl, origemEl});
+        
+        // Estratégia 2: Buscar dentro do modal
+        if (!precoEl || !origemEl) {
+            precoEl = precoEl || modalConfirmacaoEl.querySelector('#precoConfirmacao');
+            origemEl = origemEl || modalConfirmacaoEl.querySelector('#origemConfirmacao');
+            console.log('🔍 Estratégia 2 - Dentro do modal:', {precoEl, origemEl});
+        }
+        
+        // Estratégia 3: Buscar por classes e contexto
+        if (!precoEl) {
+            precoEl = modalConfirmacaoEl.querySelector('.badge.bg-success');
+            console.log('🔍 Estratégia 3 - Badge verde encontrado:', precoEl);
+        }
+        
+        if (!origemEl) {
+            // Buscar span que não seja badge
+            const spans = Array.from(modalConfirmacaoEl.querySelectorAll('span'));
+            origemEl = spans.find(span => 
+                !span.classList.contains('badge') && 
+                span.textContent.trim() !== '' &&
+                !span.textContent.includes('R$')
+            );
+            console.log('🔍 Estratégia 3 - Span para origem encontrado:', origemEl);
+        }
+        
+        // Estratégia 4: Forçar criação com base na estrutura existente
+        if (!precoEl || !origemEl) {
+            console.warn('⚠️ Elementos não encontrados, analisando estrutura...');
+            console.log('🔍 HTML completo do modal:', modalConfirmacaoEl.innerHTML);
+            
+            // Tentar encontrar qualquer estrutura que possa ser usada
+            const rows = modalConfirmacaoEl.querySelectorAll('.row');
+            console.log('🔍 Rows encontradas:', rows.length);
+            
+            rows.forEach((row, index) => {
+                console.log(`🔍 Row ${index}:`, row.innerHTML);
+            });
+        }
+        
+        console.log('🔍 Elementos finais após todas as estratégias:', { precoEl, origemEl });
+        
+        if (!precoEl || !origemEl) {
+            console.error('❌ Ainda não foi possível encontrar os elementos!');
+            console.log('🔍 Estrutura do modal:', modalConfirmacaoEl.innerHTML);
+            
+            // Última tentativa: recriar elementos do zero
+            const alertDiv = modalConfirmacaoEl.querySelector('.alert.alert-info');
+            console.log('🔍 Alert div encontrado:', alertDiv);
+            
+            if (alertDiv) {
+                console.log('✅ Recriando estrutura do modal...');
+                alertDiv.innerHTML = `
+                    <div class="row">
+                        <div class="col-6"><strong>Preço:</strong></div>
+                        <div class="col-6">
+                            <span class="badge bg-success fs-6" id="precoConfirmacao">R$ ${preco.toFixed(2)}</span>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6"><strong>Origem:</strong></div>
+                        <div class="col-6">
+                            <span id="origemConfirmacao">${servicoOrigem} - ${veiculo}</span>
+                        </div>
+                    </div>
+                `;
+                console.log('✅ Elementos recriados com sucesso!');
+                return true;
+            } else {
+                console.error('❌ Não foi possível encontrar div.alert.alert-info');
+                
+                // Buscar qualquer div que possa servir
+                const modalBody = modalConfirmacaoEl.querySelector('.modal-body');
+                console.log('🔍 Modal body encontrado:', modalBody);
+                
+                if (modalBody) {
+                    // Encontrar onde inserir o conteúdo
+                    let targetDiv = modalBody.querySelector('.alert') || modalBody;
+                    
+                    // Se não houver alert, criar um
+                    if (!modalBody.querySelector('.alert')) {
+                        console.log('📝 Criando estrutura alert do zero...');
+                        const alertDiv = document.createElement('div');
+                        alertDiv.className = 'alert alert-info mt-3';
+                        
+                        // Inserir depois do h5 que contém "Aplicar o seguinte preço?"
+                        const h5 = modalBody.querySelector('h5');
+                        if (h5) {
+                            h5.insertAdjacentElement('afterend', alertDiv);
+                            targetDiv = alertDiv;
+                        } else {
+                            modalBody.appendChild(alertDiv);
+                            targetDiv = alertDiv;
+                        }
+                    }
+                    
+                    targetDiv.innerHTML = `
+                        <div class="row">
+                            <div class="col-6"><strong>Preço:</strong></div>
+                            <div class="col-6">
+                                <span class="badge bg-success fs-6" id="precoConfirmacao">R$ ${preco.toFixed(2)}</span>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6"><strong>Origem:</strong></div>
+                            <div class="col-6">
+                                <span id="origemConfirmacao">${servicoOrigem} - ${veiculo}</span>
+                            </div>
+                        </div>
+                    `;
+                    console.log('✅ Estrutura criada dinamicamente!');
+                    return true;
+                } else {
+                    console.error('❌ Não foi possível encontrar .modal-body');
+                    alert('Erro crítico: Modal não possui estrutura esperada. Recarregue a página.');
+                    return false;
+                }
+            }
+        }
+        
+        // Preencher elementos normalmente
+        if (precoEl && origemEl) {
+            // Garantir que os elementos tenham IDs corretos
+            if (!precoEl.id) precoEl.id = 'precoConfirmacao';
+            if (!origemEl.id) origemEl.id = 'origemConfirmacao';
+            
+            precoEl.textContent = `R$ ${preco.toFixed(2)}`;
+            origemEl.textContent = `${servicoOrigem} - ${veiculo}`;
+            console.log('✅ Elementos preenchidos com sucesso!');
+            return true;
+        } else {
+            console.warn('⚠️ Um ou ambos elementos ainda são null, tentando recriação...');
+            return false;
+        }
+    }
+    
+    // Abrir modal de confirmação e preencher
+    setTimeout(() => {
+        console.log('⏱️ Abrindo modal de confirmação...');
+        
+        try {
+            const modalConfirmacao = new bootstrap.Modal(modalConfirmacaoEl);
+            
+            // Aguardar o modal ser mostrado completamente
+            modalConfirmacaoEl.addEventListener('shown.bs.modal', function preencherAposAbrir() {
+                console.log('🎉 Modal de confirmação totalmente carregado!');
+                preencherModalConfirmacao();
+                // Remover listener para evitar duplicação
+                modalConfirmacaoEl.removeEventListener('shown.bs.modal', preencherAposAbrir);
+            });
+            
+            modalConfirmacao.show();
+            console.log('✅ Modal de confirmação disparado para abertura');
+            
+        } catch (error) {
+            console.error('❌ Erro ao abrir modal de confirmação:', error);
+            alert('Erro ao abrir modal de confirmação: ' + error.message);
+        }
+    }, 300);
+}
+
+// Função para confirmar e aplicar o preço
+function confirmarAplicacaoPreco() {
+    const dados = window.precoParaConfirmar;
+    
+    if (!dados) {
+        alert('Erro: dados do preço não encontrados.');
+        return;
+    }
+    
+    // Mostrar loading
+    document.getElementById('btnConfirmarPreco').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Aplicando...';
+    document.getElementById('btnConfirmarPreco').disabled = true;
+    
+    // Preparar dados para envio
+    const dadosEnvio = {
+        servico_id: dados.servicoId,
+        preco: dados.preco,
+        tipo: dados.tipo,
+        fonte: `${dados.servicoOrigem} - ${dados.veiculo}`
+    };
+    
+    if (dados.grupoId) {
+        dadosEnvio.grupo_id = dados.grupoId;
+    }
+    
+    fetch('/escalas/api/atualizar-preco/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify(dadosEnvio)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Fechar modal de confirmação
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalConfirmacaoPreco'));
+            modal.hide();
+            
+            // Mostrar sucesso e recarregar
+            mostrarNotificacaoSucesso(`Preço atualizado para R$ ${dados.preco.toFixed(2)}`);
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        } else {
+            alert('Erro ao atualizar preço: ' + data.error);
+            // Restaurar botão
+            document.getElementById('btnConfirmarPreco').innerHTML = '<i class="fas fa-check"></i> Confirmar';
+            document.getElementById('btnConfirmarPreco').disabled = false;
+        }
+    })
+    .catch(error => {
+        console.error('Erro na requisição:', error);
+        alert('Erro ao atualizar preço.');
+        // Restaurar botão
+        document.getElementById('btnConfirmarPreco').innerHTML = '<i class="fas fa-check"></i> Confirmar';
+        document.getElementById('btnConfirmarPreco').disabled = false;
+    });
+}
+
+// Função para mostrar notificação de sucesso
+function mostrarNotificacaoSucesso(mensagem) {
+    // Criar elemento de notificação
+    const notificacao = document.createElement('div');
+    notificacao.className = 'alert alert-success alert-dismissible fade show position-fixed';
+    notificacao.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+    notificacao.innerHTML = `
+        <i class="fas fa-check-circle"></i> ${mensagem}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    document.body.appendChild(notificacao);
+    
+    // Remover após 3 segundos
+    setTimeout(() => {
+        if (notificacao.parentNode) {
+            notificacao.remove();
+        }
+    }, 3000);
+}
+
+// Função para aplicar preço customizado
+function aplicarPrecoCustomizado() {
+    const precoInput = document.getElementById('precoCustomizado');
+    const preco = parseFloat(precoInput.value);
+    
+    if (isNaN(preco) || preco <= 0) {
+        alert('Por favor, insira um preço válido.');
+        return;
+    }
+    
+    const servicoId = document.getElementById('servicoIdSelecionado').value;
+    const tipo = document.getElementById('tipoSelecionado').value;
+    const grupoId = document.getElementById('grupoIdSelecionado').value;
+    
+    // Armazenar dados para confirmação
+    window.precoParaConfirmar = {
+        preco: preco,
+        servicoOrigem: 'Preço',
+        veiculo: 'Customizado',
+        servicoId: servicoId,
+        tipo: tipo,
+        grupoId: grupoId
+    };
+    
+    // Preencher modal de confirmação
+    document.getElementById('precoConfirmacao').textContent = `R$ ${preco.toFixed(2)}`;
+    document.getElementById('origemConfirmacao').textContent = 'Preço Customizado';
+    
+    // Fechar modal de tarifários e abrir modal de confirmação
+    const modalTarifarios = bootstrap.Modal.getInstance(document.getElementById('modalTarifarios'));
+    modalTarifarios.hide();
+    
+    const modalConfirmacao = new bootstrap.Modal(document.getElementById('modalConfirmacaoPreco'));
+    modalConfirmacao.show();
+}
+
+// Funcionalidade de busca nas tabelas
+document.addEventListener('DOMContentLoaded', function() {
+    // Busca no tarifário JW
+    document.getElementById('buscaJW').addEventListener('input', function() {
+        const termo = this.value.toLowerCase();
+        const linhas = document.querySelectorAll('#tabelaJW tr');
+        
+        linhas.forEach(linha => {
+            const texto = linha.textContent.toLowerCase();
+            linha.style.display = texto.includes(termo) ? '' : 'none';
+        });
+    });
+    
+    // Busca no tarifário de motoristas
+    document.getElementById('buscaMotoristas').addEventListener('input', function() {
+        const termo = this.value.toLowerCase();
+        const linhas = document.querySelectorAll('#tabelaMotoristas tr');
+        
+        linhas.forEach(linha => {
+            const texto = linha.textContent.toLowerCase();
+            linha.style.display = texto.includes(termo) ? '' : 'none';
+        });
+    });
+    
+    // Verificação de elementos essenciais para tarifários
+    console.log('🚀 Verificando elementos essenciais para funcionalidade de tarifários...');
+    
+    const elementosEssenciais = [
+        'modalConfirmacaoPreco',
+        'precoConfirmacao', 
+        'origemConfirmacao',
+        'modalTarifarios'
+    ];
+    
+    const elementosEncontrados = {};
+    const elementosAusentes = [];
+    
+    elementosEssenciais.forEach(id => {
+        const elemento = document.getElementById(id);
+        elementosEncontrados[id] = elemento;
+        if (!elemento) {
+            elementosAusentes.push(id);
+        }
+    });
+    
+    console.log('✅ Elementos encontrados:', elementosEncontrados);
+    
+    if (elementosAusentes.length > 0) {
+        console.error('❌ Elementos ausentes:', elementosAusentes);
+        console.log('🔍 Total de elementos com ID no documento:', document.querySelectorAll('[id]').length);
+        console.warn('⚠️ Funcionalidade de tarifários pode não funcionar corretamente!');
+    } else {
+        console.log('✅ Todos os elementos essenciais para tarifários encontrados!');
+    }
+});
 </script>
 
 <!-- Modal de Detalhes e Edição do Serviço -->
@@ -1865,6 +2394,168 @@ document.addEventListener('DOMContentLoaded', function() {
                 </button>
                 <button type="button" class="btn btn-primary" id="btnSalvarGrupo">
                     <i class="fas fa-save"></i> Salvar Alterações
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Tarifários para Edição de Preços -->
+<div class="modal fade" id="modalTarifarios" tabindex="-1" aria-labelledby="modalTarifariosLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTarifariosLabel">
+                    <i class="fas fa-dollar-sign"></i> Escolher Preço dos Tarifários
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Navegação por Abas -->
+                <ul class="nav nav-tabs" id="tarifarioModalTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="jw-modal-tab" data-bs-toggle="tab" data-bs-target="#jw-modal" type="button" role="tab">
+                            <i class="fas fa-bus"></i> Tarifário JW
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="motoristas-modal-tab" data-bs-toggle="tab" data-bs-target="#motoristas-modal" type="button" role="tab">
+                            <i class="fas fa-user-tie"></i> Tarifário Motoristas
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="customizado-modal-tab" data-bs-toggle="tab" data-bs-target="#customizado-modal" type="button" role="tab">
+                            <i class="fas fa-edit"></i> Preço Customizado
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="tarifarioModalTabContent">
+                    <!-- Tarifário JW -->
+                    <div class="tab-pane fade show active" id="jw-modal" role="tabpanel">
+                        <div class="mt-3">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="buscaJW" placeholder="Buscar serviço no tarifário JW...">
+                            </div>
+                            <div class="table-responsive" style="max-height: 400px;">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Serviço</th>
+                                            <th>Executivo</th>
+                                            <th>Van 15</th>
+                                            <th>Van 18</th>
+                                            <th>Micro</th>
+                                            <th>Ônibus</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabelaJW">
+                                        <!-- Será preenchido dinamicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarifário Motoristas -->
+                    <div class="tab-pane fade" id="motoristas-modal" role="tabpanel">
+                        <div class="mt-3">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="buscaMotoristas" placeholder="Buscar serviço no tarifário de motoristas...">
+                            </div>
+                            <div class="table-responsive" style="max-height: 400px;">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Serviço</th>
+                                            <th>Preço Base</th>
+                                            <th>Observação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabelaMotoristas">
+                                        <!-- Será preenchido dinamicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preço Customizado -->
+                    <div class="tab-pane fade" id="customizado-modal" role="tabpanel">
+                        <div class="mt-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="precoCustomizado" class="form-label">
+                                        <i class="fas fa-dollar-sign"></i> Preço Personalizado
+                                    </label>
+                                    <input type="number" class="form-control" id="precoCustomizado" 
+                                           placeholder="0.00" step="0.01" min="0">
+                                </div>
+                                <div class="col-md-6 d-flex align-items-end">
+                                    <button type="button" class="btn btn-success" onclick="aplicarPrecoCustomizado()">
+                                        <i class="fas fa-check"></i> Aplicar Preço
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Informações Ocultas -->
+                <input type="hidden" id="servicoIdSelecionado">
+                <input type="hidden" id="tipoSelecionado">
+                <input type="hidden" id="grupoIdSelecionado">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Confirmação de Aplicação de Preço -->
+<div class="modal fade" id="modalConfirmacaoPreco" tabindex="-1" aria-labelledby="modalConfirmacaoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="modalConfirmacaoLabel">
+                    <i class="fas fa-dollar-sign"></i> Confirmar Aplicação de Preço
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="mb-4">
+                    <i class="fas fa-question-circle text-primary" style="font-size: 3rem;"></i>
+                </div>
+                <h5>Aplicar o seguinte preço?</h5>
+                <div class="alert alert-info mt-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>Preço:</strong>
+                        </div>
+                        <div class="col-6">
+                            <span class="badge bg-success fs-6" id="precoConfirmacao">R$ 0,00</span>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <strong>Origem:</strong>
+                        </div>
+                        <div class="col-6">
+                            <span id="origemConfirmacao">-</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-muted small">Esta ação substituirá o preço atual do serviço.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button type="button" class="btn btn-success" id="btnConfirmarPreco" onclick="confirmarAplicacaoPreco()">
+                    <i class="fas fa-check"></i> Confirmar
                 </button>
             </div>
         </div>

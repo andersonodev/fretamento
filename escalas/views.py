@@ -1104,46 +1104,72 @@ class ApiTarifariosView(LoginRequiredMixin, View):
 
 class ApiAtualizarPrecoView(LoginRequiredMixin, View):
     """
-    API para atualizar preço de uma alocação
+    API para atualizar preço de uma alocação ou grupo
     """
     
     def post(self, request):
         try:
             data = json.loads(request.body)
-            alocacao_id = data.get('alocacao_id')
-            novo_preco = data.get('novo_preco')
+            servico_id = data.get('servico_id')
+            preco = data.get('preco')
+            tipo = data.get('tipo', 'individual')
             fonte = data.get('fonte', 'Manual')
-            observacao = data.get('observacao', '')
+            grupo_id = data.get('grupo_id')
             
-            if not alocacao_id or not novo_preco:
+            if not servico_id or not preco:
                 return JsonResponse({
                     'success': False,
                     'error': 'Dados incompletos'
                 })
             
-            # Buscar alocação
-            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
+            novo_preco = Decimal(str(preco))
             
-            # Atualizar preço
-            alocacao.preco_calculado = Decimal(str(novo_preco))
-            alocacao.automatica = False  # Marcar como manual quando editado
-            alocacao.save()
-            
-            # Log da alteração (opcional - você pode criar um modelo para histórico)
-            # HistoricoPreco.objects.create(
-            #     alocacao=alocacao,
-            #     preco_anterior=alocacao.preco_calculado,
-            #     preco_novo=novo_preco,
-            #     fonte=fonte,
-            #     observacao=observacao,
-            #     usuario=request.user
-            # )
-            
-            return JsonResponse({
-                'success': True,
-                'message': f'Preço atualizado para R$ {novo_preco:.2f}',
-                'novo_preco': str(novo_preco)
-            })
+            if tipo == 'grupo' and grupo_id:
+                # Atualizar preço do grupo
+                try:
+                    grupo = GrupoServico.objects.get(id=grupo_id)
+                    grupo.total_valor = novo_preco
+                    grupo.save()
+                    
+                    return JsonResponse({
+                        'success': True,
+                        'message': f'Preço do grupo atualizado para R$ {novo_preco:.2f}',
+                        'tipo': 'grupo',
+                        'grupo_id': grupo_id
+                    })
+                except GrupoServico.DoesNotExist:
+                    return JsonResponse({
+                        'success': False,
+                        'error': 'Grupo não encontrado'
+                    })
+            else:
+                # Atualizar preço individual
+                try:
+                    # Buscar alocação por serviço
+                    alocacao = AlocacaoVan.objects.filter(servico_id=servico_id).first()
+                    
+                    if not alocacao:
+                        return JsonResponse({
+                            'success': False,
+                            'error': 'Alocação não encontrada'
+                        })
+                    
+                    # Atualizar preço
+                    alocacao.preco_calculado = novo_preco
+                    alocacao.automatica = False  # Marcar como manual quando editado
+                    alocacao.save()
+                    
+                    return JsonResponse({
+                        'success': True,
+                        'message': f'Preço atualizado para R$ {novo_preco:.2f}',
+                        'tipo': 'individual',
+                        'servico_id': servico_id
+                    })
+                except Exception as e:
+                    return JsonResponse({
+                        'success': False,
+                        'error': f'Erro ao atualizar preço individual: {str(e)}'
+                    })
             
         except Exception as e:
             return JsonResponse({
