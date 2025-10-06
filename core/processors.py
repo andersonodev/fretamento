@@ -50,7 +50,7 @@ class ProcessadorPlanilhaOS:
             df = self._limpar_planilha(df)
             
             # Converte para objetos Servico
-            servicos = self._converter_para_servicos(df)
+            servicos = self._converter_para_servicos(df, arquivo.name)
             
             # Salva em lote para melhor performance
             if servicos:
@@ -225,7 +225,7 @@ class ProcessadorPlanilhaOS:
         """Normaliza nomes dos cabeçalhos"""
         return df.rename(columns=self.renames_colunas)
     
-    def _converter_para_servicos(self, df: pd.DataFrame) -> List[Servico]:
+    def _converter_para_servicos(self, df: pd.DataFrame, nome_arquivo: str = "") -> List[Servico]:
         """Converte DataFrame para lista de objetos Servico"""
         servicos = []
         
@@ -269,7 +269,8 @@ class ProcessadorPlanilhaOS:
                 horario=self._obter_valor_time(row, col_mapping['horario']),
                 data_do_servico=data_atual or datetime.now().date(),
                 servico=self._obter_valor_string(row, col_mapping['servico']),
-                linha_original=idx + 2  # +2 porque pandas é 0-based e Excel começa na linha 1
+                linha_original=idx + 2,  # +2 porque pandas é 0-based e Excel começa na linha 1
+                arquivo_origem=nome_arquivo
             )
             
             servicos.append(servico_obj)

@@ -269,9 +269,7 @@ class ExportadorEscalas:
         ws.merge_cells(f"O{van1_start_row}:O{van1_end_row}")
         rent1_cell = ws.cell(row=van1_start_row, column=15)
         rent1_cell.value = f"=SUM(K{van1_start_row}:K{van1_end_row})-{CUSTO_DIARIO}"
-        # Aplicar cor vermelha por padrão para valores que subtraem o custo diário
-        # (assumindo que normalmente resultará em valor negativo)
-        rent1_cell.font = rent_negative_font  # Sempre vermelho para -635.17
+        rent1_cell.font = resumo_font  # Fonte padrão sem cor
         rent1_cell.fill = resumo_fill
         rent1_cell.alignment = center_alignment
         rent1_cell.number_format = 'R$ #,##0.00'
@@ -322,9 +320,7 @@ class ExportadorEscalas:
         ws.merge_cells(f"O{van2_start_row}:O{van2_end_row}")
         rent2_cell = ws.cell(row=van2_start_row, column=15)
         rent2_cell.value = f"=SUM(K{van2_start_row}:K{van2_end_row})-{CUSTO_DIARIO}"
-        # Aplicar cor vermelha por padrão para valores que subtraem o custo diário
-        # (assumindo que normalmente resultará em valor negativo)
-        rent2_cell.font = rent_negative_font  # Sempre vermelho para -635.17
+        rent2_cell.font = resumo_font  # Fonte padrão sem cor
         rent2_cell.fill = resumo_fill
         rent2_cell.alignment = center_alignment
         rent2_cell.number_format = 'R$ #,##0.00'
@@ -343,6 +339,23 @@ class ExportadorEscalas:
         # Formato de data
         for r in range(van1_start_row, van2_end_row + 1):
             ws.cell(row=r, column=7).number_format = 'dd/mm/yyyy'  # DATA DO SERVIÇO
+        
+        # ===== FORMATAÇÃO CONDICIONAL PARA COLUNAS RENT =====
+        from openpyxl.formatting.rule import CellIsRule
+        
+        # Regra para valores negativos (vermelho)
+        red_font = Font(color="FF0000", bold=True)
+        negative_rule = CellIsRule(operator='lessThan', formula=['0'], font=red_font)
+        
+        # Regra para valores positivos ou zero (verde)
+        green_font = Font(color="34A853", bold=True)
+        positive_rule = CellIsRule(operator='greaterThanOrEqual', formula=['0'], font=green_font)
+        
+        # Aplicar formatação condicional às células de Rent
+        ws.conditional_formatting.add(f"O{van1_start_row}:O{van1_end_row}", negative_rule)
+        ws.conditional_formatting.add(f"O{van1_start_row}:O{van1_end_row}", positive_rule)
+        ws.conditional_formatting.add(f"O{van2_start_row}:O{van2_end_row}", negative_rule)
+        ws.conditional_formatting.add(f"O{van2_start_row}:O{van2_end_row}", positive_rule)
         
         # Salva em buffer
         buffer = io.BytesIO()
@@ -397,8 +410,8 @@ class ExportadorEscalas:
         # Linha divisória verde (entre VAN1 e VAN2 no mesmo dia)
         divisor_fill = PatternFill(start_color="34A853", end_color="34A853", fill_type="solid")
         
-        # NOVO: Linha divisória vermelha (entre dias diferentes)
-        divisor_dia_fill = PatternFill(start_color="FF0000", end_color="FF0000", fill_type="solid")
+        # NOVO: Linha divisória amarela (entre dias diferentes)
+        divisor_dia_fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
 
         # Resumo: fundo cinza-claro
         resumo_fill = PatternFill(start_color="F3F3F3", end_color="F3F3F3", fill_type="solid")
@@ -596,7 +609,7 @@ class ExportadorEscalas:
             ws.merge_cells(f"O{van1_start_row}:O{van1_end_row}")
             rent1_cell = ws.cell(row=van1_start_row, column=15)
             rent1_cell.value = f"=SUM(K{van1_start_row}:K{van1_end_row})-{CUSTO_DIARIO}"
-            rent1_cell.font = rent_negative_font  # Sempre vermelho para -635.17
+            rent1_cell.font = resumo_font  # Fonte padrão sem cor
             rent1_cell.fill = resumo_fill
             rent1_cell.alignment = center_alignment
             rent1_cell.number_format = 'R$ #,##0.00'
@@ -643,7 +656,7 @@ class ExportadorEscalas:
             ws.merge_cells(f"O{van2_start_row}:O{van2_end_row}")
             rent2_cell = ws.cell(row=van2_start_row, column=15)
             rent2_cell.value = f"=SUM(K{van2_start_row}:K{van2_end_row})-{CUSTO_DIARIO}"
-            rent2_cell.font = rent_negative_font  # Sempre vermelho para -635.17
+            rent2_cell.font = resumo_font  # Fonte padrão sem cor
             rent2_cell.fill = resumo_fill
             rent2_cell.alignment = center_alignment
             rent2_cell.number_format = 'R$ #,##0.00'
@@ -665,6 +678,23 @@ class ExportadorEscalas:
 
             # Atualiza current_row para próxima escala
             current_row = van2_end_row + 1
+
+        # ===== FORMATAÇÃO CONDICIONAL PARA TODAS AS COLUNAS RENT =====
+        from openpyxl.formatting.rule import CellIsRule
+        
+        # Regra para valores negativos (vermelho)
+        red_font = Font(color="FF0000", bold=True)
+        negative_rule = CellIsRule(operator='lessThan', formula=['0'], font=red_font)
+        
+        # Regra para valores positivos ou zero (verde)
+        green_font = Font(color="34A853", bold=True)
+        positive_rule = CellIsRule(operator='greaterThanOrEqual', formula=['0'], font=green_font)
+        
+        # Aplicar formatação condicional a intervalo específico da coluna O (Rent)
+        # Usar um intervalo que cubra todas as possíveis linhas de dados
+        rent_range = f"O2:O{current_row}"
+        ws.conditional_formatting.add(rent_range, negative_rule)
+        ws.conditional_formatting.add(rent_range, positive_rule)
 
         # Salva em buffer
         buffer = io.BytesIO()

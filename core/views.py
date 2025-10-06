@@ -198,6 +198,20 @@ class UploadPlanilhaView(View):
             processador = ProcessadorPlanilhaOS()
             servicos, processamento = processador.processar_planilha(arquivo)
             
+            # Atualiza informações adicionais do processamento
+            if processamento:
+                processamento.tamanho_arquivo = arquivo.size
+                processamento.usuario_upload = request.user.username
+                processamento.total_servicos_criados = len(servicos)
+                
+                # Determina período dos serviços
+                if servicos:
+                    datas_servicos = [s.data_do_servico for s in servicos]
+                    processamento.data_primeira_linha = min(datas_servicos)
+                    processamento.data_ultima_linha = max(datas_servicos)
+                
+                processamento.save()
+            
             # Limpa cache relacionado após nova importação
             cache.delete_many([
                 f"dashboard_stats_{request.user.id}",
@@ -209,12 +223,162 @@ class UploadPlanilhaView(View):
                 f'Planilha processada com sucesso! {len(servicos)} serviços foram importados.'
             )
             
-            return redirect('core:lista_servicos')
+            return redirect('core:lista_arquivos')
             
         except Exception as e:
             logger.error(f"Erro no upload: {e}")
             messages.error(request, f'Erro ao processar planilha: {str(e)}')
             return redirect('core:upload_planilha')
+
+
+class ListaArquivosView(ListView):
+    """View para listar arquivos uploadados"""
+    
+    model = ProcessamentoPlanilha
+    template_name = 'core/lista_arquivos.html'
+    context_object_name = 'arquivos'
+    paginate_by = 20
+    
+    def get_queryset(self):
+        return ProcessamentoPlanilha.objects.filter(
+            status='CONCLUIDO'
+        ).order_by('-created_at')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Importar aqui para evitar dependência circular
+        from escalas.models import AlocacaoVan
+        
+        # Estatísticas dos arquivos com queries otimizadas
+        queryset = self.get_queryset()
+        total_arquivos = queryset.count()
+        
+        # Calcular total de serviços de forma mais eficiente
+        total_servicos_calculado = 0
+        for arquivo in queryset:
+            if arquivo.total_servicos_criados:
+                total_servicos_calculado += arquivo.total_servicos_criados
+            else:
+                # Fallback: contar serviços reais
+                servicos_count = Servico.objects.filter(arquivo_origem=arquivo.nome_arquivo).count()
+                total_servicos_calculado += servicos_count
+        
+        # Adicionar informações sobre serviços escalados para cada arquivo
+        arquivos_com_info = []
+        arquivos_queryset = context.get('arquivos', []) or context.get('object_list', [])
+        
+        for arquivo in arquivos_queryset:
+            # Buscar serviços relacionados
+            servicos = Servico.objects.filter(arquivo_origem=arquivo.nome_arquivo)
+            
+            if not servicos.exists():
+                # Fallback por data
+                servicos = Servico.objects.filter(created_at__date=arquivo.created_at.date())
+            
+            # Contar serviços escalados
+            servicos_escalados = 0
+            for servico in servicos:
+                if AlocacaoVan.objects.filter(servico=servico).exists():
+                    servicos_escalados += 1
+            
+            # Adicionar informações ao arquivo
+            arquivo.total_servicos = servicos.count()
+            arquivo.servicos_escalados = servicos_escalados
+            arquivo.servicos_deletaveis = arquivo.total_servicos - servicos_escalados
+            arquivo.pode_deletar_completo = (servicos_escalados == 0 and arquivo.total_servicos > 0)
+            
+            # Adicionar propriedades auxiliares para o template
+            if not hasattr(arquivo, 'tamanho_formatado'):
+                arquivo.tamanho_formatado = f"{arquivo.tamanho_arquivo / 1024:.1f} KB" if arquivo.tamanho_arquivo else "N/A"
+            
+            if not hasattr(arquivo, 'periodo_servicos'):
+                if arquivo.data_primeira_linha and arquivo.data_ultima_linha:
+                    arquivo.periodo_servicos = f"{arquivo.data_primeira_linha.strftime('%d/%m')} - {arquivo.data_ultima_linha.strftime('%d/%m/%Y')}"
+                elif arquivo.data_primeira_linha:
+                    arquivo.periodo_servicos = arquivo.data_primeira_linha.strftime('%d/%m/%Y')
+                else:
+                    arquivo.periodo_servicos = "N/A"
+            
+            arquivos_com_info.append(arquivo)
+        
+        # Verificar se há dados reais e debug
+        logger.info(f"Lista Arquivos - Total arquivos: {total_arquivos}, Total serviços: {total_servicos_calculado}")
+        
+        # Formatação da hora atual
+        hora_atual = timezone.now().strftime('%d/%m/%Y às %H:%M')
+        logger.info(f"Hora formatada: {hora_atual}")
+        
+        context.update({
+            'total_arquivos': total_arquivos,
+            'total_servicos': total_servicos_calculado,
+            'arquivos': arquivos_com_info,
+            'arquivos_ativos': len(arquivos_com_info),
+            'ultima_atualizacao': hora_atual,
+        })
+        return context
+
+
+class ServicosArquivoView(ListView):
+    """View para listar serviços de um arquivo específico"""
+    
+    model = Servico
+    template_name = 'core/lista_servicos.html'
+    context_object_name = 'servicos'
+    paginate_by = 50
+    
+    def get_queryset(self):
+        arquivo_id = self.kwargs.get('arquivo_id')
+        self.arquivo = get_object_or_404(ProcessamentoPlanilha, id=arquivo_id, status='CONCLUIDO')
+        
+        # Primeiro tenta usar o campo arquivo_origem para associação direta
+        queryset = Servico.objects.filter(
+            arquivo_origem=self.arquivo.nome_arquivo
+        ).select_related()
+        
+        # Se não encontrar serviços com arquivo_origem, usa data como fallback
+        if not queryset.exists():
+            data_upload = self.arquivo.created_at.date()
+            queryset = Servico.objects.filter(
+                created_at__date=data_upload
+            ).select_related()
+        
+        # Aplicar filtros da URL
+        data_inicio = self.request.GET.get('data_inicio')
+        data_fim = self.request.GET.get('data_fim')
+        tipo = self.request.GET.get('tipo')
+        
+        if data_inicio:
+            queryset = queryset.filter(data_do_servico__gte=parse_data_brasileira(data_inicio))
+        if data_fim:
+            queryset = queryset.filter(data_do_servico__lte=parse_data_brasileira(data_fim))
+        if tipo:
+            queryset = queryset.filter(tipo=tipo)
+        
+        return queryset.order_by('-data_do_servico', 'horario')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Informações do arquivo
+        context['arquivo'] = self.arquivo
+        context['mostrar_info_arquivo'] = True
+        
+        # Cache das estatísticas por 5 minutos
+        cache_key = f"servicos_arquivo_stats_{self.arquivo.id}_{hash(str(self.request.GET))}"
+        stats = cache.get(cache_key)
+        
+        if not stats:
+            queryset = self.get_queryset()
+            stats = queryset.aggregate(
+                total_transfers=Count('id', filter=Q(tipo='TRANSFER')),
+                total_disposicoes=Count('id', filter=Q(tipo='DISPOSICAO')),
+                total_tours=Count('id', filter=Q(tipo='TOUR'))
+            )
+            cache.set(cache_key, stats, 300)
+        
+        context.update(stats)
+        return context
 
 
 class ListaServicosView(ListView):
@@ -387,6 +551,116 @@ class DiagnosticoView(View):
 
 
 # Views AJAX para melhor experiência do usuário
+class DeletarArquivoView(View):
+    """View para deletar arquivo e seus serviços relacionados"""
+    
+    def post(self, request, arquivo_id):
+        try:
+            arquivo = get_object_or_404(ProcessamentoPlanilha, id=arquivo_id)
+            nome_arquivo = arquivo.nome_arquivo
+            
+            logger.info(f"Iniciando deleção do arquivo {nome_arquivo} pelo usuário {request.user.username}")
+            
+            # Busca serviços relacionados a este arquivo
+            servicos_relacionados = Servico.objects.filter(arquivo_origem=arquivo.nome_arquivo)
+            
+            # Se não encontrar por nome do arquivo, tenta por data (fallback)
+            if not servicos_relacionados.exists():
+                data_upload = arquivo.created_at.date()
+                servicos_relacionados = Servico.objects.filter(created_at__date=data_upload)
+                logger.info(f"Usando fallback por data para arquivo {nome_arquivo}: {servicos_relacionados.count()} serviços encontrados")
+            
+            # Verifica se há serviços escalados (protegidos)
+            from escalas.models import AlocacaoVan
+            servicos_escalados = []
+            servicos_deletaveis = []
+            
+            for servico in servicos_relacionados:
+                # Verifica se o serviço tem alguma alocação de van (está escalado)
+                tem_escala = AlocacaoVan.objects.filter(
+                    servico_id=servico.id
+                ).exists()
+                
+                if tem_escala:
+                    servicos_escalados.append(servico)
+                else:
+                    servicos_deletaveis.append(servico)
+            
+            logger.info(f"Arquivo {nome_arquivo}: {len(servicos_deletaveis)} serviços deletáveis, {len(servicos_escalados)} protegidos")
+            
+            # Preparar mensagens de resposta
+            mensagens = []
+            
+            # Informa sobre serviços escalados que não podem ser deletados
+            if servicos_escalados:
+                mensagem_protegidos = f'{len(servicos_escalados)} serviços não foram deletados pois já estão escalados e são protegidos.'
+                mensagens.append({'tipo': 'warning', 'texto': mensagem_protegidos})
+                
+                if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    messages.warning(request, mensagem_protegidos)
+            
+            # Deleta serviços que não estão escalados
+            if servicos_deletaveis:
+                for servico in servicos_deletaveis:
+                    servico.delete()
+                
+                logger.info(f"Deletados {len(servicos_deletaveis)} serviços do arquivo {nome_arquivo}")
+                mensagem_deletados = f'{len(servicos_deletaveis)} serviços foram deletados com sucesso.'
+                mensagens.append({'tipo': 'success', 'texto': mensagem_deletados})
+                
+                if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    messages.success(request, mensagem_deletados)
+            
+            # Se não há mais serviços relacionados, deleta o arquivo
+            servicos_restantes = Servico.objects.filter(arquivo_origem=arquivo.nome_arquivo)
+            if not servicos_restantes.exists():
+                arquivo.delete()  # Deleta o arquivo físico e o registro
+                logger.info(f"Arquivo {nome_arquivo} deletado completamente")
+                mensagem_arquivo = f'Arquivo "{nome_arquivo}" foi deletado completamente.'
+                mensagens.append({'tipo': 'success', 'texto': mensagem_arquivo})
+                
+                if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    messages.success(request, mensagem_arquivo)
+            else:
+                logger.info(f"Arquivo {nome_arquivo} mantido com {servicos_restantes.count()} serviços escalados")
+                mensagem_mantido = f'Arquivo mantido pois ainda há {servicos_restantes.count()} serviços escalados relacionados.'
+                mensagens.append({'tipo': 'info', 'texto': mensagem_mantido})
+                
+                if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    messages.info(request, mensagem_mantido)
+            
+            # Limpa cache relacionado
+            cache.delete_many([
+                f"dashboard_stats_{request.user.id}",
+                "lista_servicos_stats_*"
+            ])
+            
+            # Se for requisição AJAX, retorna JSON
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({
+                    'status': 'success',
+                    'mensagens': mensagens,
+                    'arquivo_deletado': not servicos_restantes.exists(),
+                    'servicos_deletados': len(servicos_deletaveis),
+                    'servicos_protegidos': len(servicos_escalados)
+                })
+            
+        except Exception as e:
+            logger.error(f"Erro ao deletar arquivo {arquivo_id}: {e}")
+            erro_msg = f'Erro ao deletar arquivo: {str(e)}'
+            
+            # Se for requisição AJAX, retorna erro JSON
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({
+                    'status': 'error',
+                    'mensagem': erro_msg
+                }, status=400)
+            
+            messages.error(request, erro_msg)
+        
+        return redirect('core:lista_arquivos')
+
+
 class StatusProcessamentoView(View):
     """View AJAX para verificar status de processamento"""
     

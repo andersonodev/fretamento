@@ -59,6 +59,7 @@ class Servico(models.Model):
     
     # Metadados
     linha_original = models.IntegerField(null=True, blank=True, help_text="Linha na planilha original")
+    arquivo_origem = models.CharField(max_length=255, blank=True, help_text="Nome do arquivo de origem")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -216,6 +217,13 @@ class ProcessamentoPlanilha(models.Model):
     linhas_erro = models.IntegerField(default=0)
     log_processamento = models.TextField(blank=True)
     
+    # Campos adicionais para melhor controle
+    tamanho_arquivo = models.BigIntegerField(default=0, help_text="Tamanho do arquivo em bytes")
+    usuario_upload = models.CharField(max_length=150, blank=True, help_text="Usuário que fez o upload")
+    total_servicos_criados = models.IntegerField(default=0, help_text="Total de serviços criados a partir desta planilha")
+    data_primeira_linha = models.DateField(null=True, blank=True, help_text="Data do primeiro serviço na planilha")
+    data_ultima_linha = models.DateField(null=True, blank=True, help_text="Data do último serviço na planilha")
+    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -226,6 +234,26 @@ class ProcessamentoPlanilha(models.Model):
     
     def __str__(self):
         return f"{self.nome_arquivo} - {self.status}"
+    
+    @property
+    def tamanho_formatado(self):
+        """Retorna o tamanho do arquivo formatado"""
+        if self.tamanho_arquivo < 1024:
+            return f"{self.tamanho_arquivo} bytes"
+        elif self.tamanho_arquivo < 1024 * 1024:
+            return f"{self.tamanho_arquivo / 1024:.1f} KB"
+        else:
+            return f"{self.tamanho_arquivo / (1024 * 1024):.1f} MB"
+    
+    @property
+    def periodo_servicos(self):
+        """Retorna o período dos serviços desta planilha"""
+        if self.data_primeira_linha and self.data_ultima_linha:
+            if self.data_primeira_linha == self.data_ultima_linha:
+                return self.data_primeira_linha.strftime("%d/%m/%Y")
+            else:
+                return f"{self.data_primeira_linha.strftime('%d/%m/%Y')} a {self.data_ultima_linha.strftime('%d/%m/%Y')}"
+        return "N/A"
 
 
 class CalculoPreco(models.Model):

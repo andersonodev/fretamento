@@ -1,14 +1,40 @@
 {% extends 'base.html' %}
 {% load core_extras %}
 
-{% block title %}Lista de Serviços - Sistema de Fretamento{% endblock %}
+{% block title %}
+    {% if mostrar_info_arquivo %}
+        Serviços do Arquivo {{ arquivo.nome_arquivo }} - Sistema de Fretamento
+    {% else %}
+        Lista de Serviços - Sistema de Fretamento
+    {% endif %}
+{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
     <div class="row">
         <div class="col-12">
-            <h2><i class="fas fa-list"></i> Lista de Serviços</h2>
-            <p class="text-muted">Serviços processados no sistema</p>
+            {% if mostrar_info_arquivo %}
+                <div class="d-flex align-items-center mb-3">
+                    <a href="{% url 'core:lista_arquivos' %}" class="btn btn-outline-secondary me-3">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div>
+                        <h2><i class="fas fa-file-excel text-success"></i> {{ arquivo.nome_arquivo }}</h2>
+                        <p class="text-muted mb-0">
+                            Arquivo processado em {{ arquivo.created_at|date:"d/m/Y às H:i" }} por {{ arquivo.usuario_upload|default:"Sistema" }}
+                            <br>
+                            <small>
+                                <i class="fas fa-calendar"></i> Período: {{ arquivo.periodo_servicos }} |
+                                <i class="fas fa-chart-line"></i> {{ arquivo.total_servicos_criados }} serviços |
+                                <i class="fas fa-weight-hanging"></i> {{ arquivo.tamanho_formatado }}
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            {% else %}
+                <h2><i class="fas fa-list"></i> Lista de Serviços</h2>
+                <p class="text-muted">Serviços processados no sistema</p>
+            {% endif %}
         </div>
     </div>
 
@@ -22,12 +48,12 @@
                 <div class="col-md-3">
                     <label for="data_inicio" class="form-label">Data Início</label>
                     <input type="date" class="form-control" id="data_inicio" name="data_inicio" 
-                           value="{{ request.GET.data_inicio }}">
+                           value="{{ request.GET.data_inicio }}" lang="pt-BR">
                 </div>
                 <div class="col-md-3">
                     <label for="data_fim" class="form-label">Data Fim</label>
                     <input type="date" class="form-control" id="data_fim" name="data_fim" 
-                           value="{{ request.GET.data_fim }}">
+                           value="{{ request.GET.data_fim }}" lang="pt-BR">
                 </div>
                 <div class="col-md-3">
                     <label for="tipo" class="form-label">Tipo</label>
@@ -78,7 +104,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card text-white bg-warning">
+            <div class="card text-black bg-warning">
                 <div class="card-body text-center">
                     <h5 class="card-title">Tours</h5>
                     <h3>{{ total_tours|default:0 }}</h3>
@@ -220,6 +246,18 @@
     <div class="row mt-4">
         <div class="col-12">
             <div class="d-flex gap-2">
+                {% if mostrar_info_arquivo %}
+                    <a href="{% url 'core:lista_arquivos' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar aos Arquivos
+                    </a>
+                    <a href="{% url 'core:lista_servicos' %}" class="btn btn-info">
+                        <i class="fas fa-list"></i> Todos os Serviços
+                    </a>
+                {% else %}
+                    <a href="{% url 'core:lista_arquivos' %}" class="btn btn-primary">
+                        <i class="fas fa-file-excel"></i> Ver por Arquivo
+                    </a>
+                {% endif %}
                 <a href="{% url 'core:upload_planilha' %}" class="btn btn-primary">
                     <i class="fas fa-upload"></i> Novo Upload
                 </a>
@@ -229,9 +267,11 @@
                 <a href="{% url 'escalas:gerenciar_escalas' %}" class="btn btn-success">
                     <i class="fas fa-calendar"></i> Gerenciar Escalas
                 </a>
-                <a href="{% url 'core:home' %}" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Voltar
-                </a>
+                {% if not mostrar_info_arquivo %}
+                    <a href="{% url 'core:home' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>

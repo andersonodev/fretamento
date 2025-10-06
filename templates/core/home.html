@@ -464,8 +464,8 @@
         </div>
         <div class="col-md-4 text-end">
             {% if user_info.permissoes_especiais %}
-                <div class="badge bg-warning fs-6 px-3 py-2">
-                    <i class="fas fa-crown me-2"></i>Supervisor
+                <div class="badge bg-success fs-6 px-3 py-2">
+                    <i class="fas fa-shield-alt me-2"></i>Administrador
                 </div>
             {% endif %}
         </div>
@@ -550,8 +550,8 @@
                 <a href="{% url 'escalas:gerenciar_escalas' %}" class="action-btn success">
                     <i class="fas fa-calendar-plus"></i>Criar Nova Escala
                 </a>
-                <a href="{% url 'core:lista_servicos' %}" class="action-btn info">
-                    <i class="fas fa-list-alt"></i>Visualizar Serviços
+                <a href="{% url 'core:lista_arquivos' %}" class="action-btn info">
+                    <i class="fas fa-file-excel"></i>Visualizar Serviços
                 </a>
                 <a href="{% url 'core:diagnostico' %}" class="action-btn warning">
                     <i class="fas fa-chart-bar"></i>Ver Analytics

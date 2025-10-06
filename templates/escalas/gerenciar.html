@@ -53,7 +53,7 @@
                             {{ mes }}/{{ ano }}
                         {% endif %}
                     </h1>
-                    <p class="text-muted">Sistema de duas etapas: Criar estrutura → Puxar dados → Otimizar</p>
+                    <p class="text-muted">Sistema de três etapas: Criar estrutura → Puxar dados → Formatar (se necessário)</p>
                 </div>
                 <div class="d-flex gap-2">
                     <a href="{% url 'escalas:exportar_mes' ano=ano mes=mes %}" 
@@ -84,7 +84,7 @@
                         <input type="hidden" name="acao" value="criar_estrutura">
                         <div class="col-md-4">
                             <label for="data" class="form-label">Data da Escala</label>
-                            <input type="date" class="form-control" name="data" id="data" required>
+                            <input type="date" class="form-control" name="data" id="data" required lang="pt-BR">
                         </div>
                         <div class="col-md-4 d-flex align-items-end">
                             <button type="submit" class="btn btn-primary">
@@ -183,16 +183,17 @@
                                                     </a>
                                                 {% endif %}
                                                 
-                                                <!-- Otimizar -->
+                                                <!-- Formatar Escala -->
                                                 {% if escala.etapa == 'DADOS_PUXADOS' %}
-                                                    <form method="post" class="d-inline">
-                                                        {% csrf_token %}
-                                                        <input type="hidden" name="data" value="{{ escala.data|date_br }}">
-                                                        <button type="submit" name="acao" value="otimizar" 
-                                                                class="btn btn-outline-warning" title="Otimizar">
-                                                            <i class="fas fa-magic"></i>
-                                                        </button>
-                                                    </form>
+                                                    <button type="button" 
+                                                            class="btn btn-outline-danger" 
+                                                            title="Formatar Escala"
+                                                            data-bs-toggle="modal" 
+                                                            data-bs-target="#modalFormatarEscala"
+                                                            data-data="{{ escala.data|date_br }}"
+                                                            onclick="definirDataFormatar('{{ escala.data|date_br }}')">
+                                                        <i class="fas fa-eraser"></i>
+                                                    </button>
                                                 {% endif %}
                                                 
                                                 <!-- Exportar -->
@@ -249,8 +250,8 @@
                             <p class="small">Selecione uma data de origem e puxe os serviços, que serão distribuídos automaticamente entre as vans.</p>
                         </div>
                         <div class="col-md-4">
-                            <h6><i class="fas fa-magic text-warning"></i> Etapa 3: Otimizar</h6>
-                            <p class="small">Otimize a distribuição dos serviços baseado na lucratividade e balanceamento de PAX.</p>
+                            <h6><i class="fas fa-eraser text-danger"></i> Etapa 3: Formatar (Opcional)</h6>
+                            <p class="small">Desfaz agrupamentos, remove precificação e reseta otimização, mantendo os dados dos serviços.</p>
                         </div>
                     </div>
                 </div>
@@ -310,5 +311,63 @@ function confirmarExclusao(data, dataFormatada, totalServicos, etapa) {
         form.submit();
     }
 }
+
+function definirDataFormatar(data) {
+    document.getElementById('dataFormatar').value = data;
+    document.getElementById('textoDataFormatar').textContent = data;
+}
 </script>
+
+<!-- Modal Formatar Escala -->
+<div class="modal fade" id="modalFormatarEscala" tabindex="-1" aria-labelledby="modalFormatarEscalaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="modalFormatarEscalaLabel">
+                    <i class="fas fa-eraser me-2"></i>Formatar Escala
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="{% url 'escalas:formatar_escala' %}">
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <input type="hidden" id="dataFormatar" name="data" value="">
+                    
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>ATENÇÃO:</strong> Esta ação irá <strong>FORMATAR</strong> a escala do dia <strong id="textoDataFormatar"></strong>:
+                        <ul class="mt-2 mb-0">
+                            <li><strong>Desfazer todos os grupos</strong> (serviços voltam a ser individuais)</li>
+                            <li><strong>Remover precificação</strong> (preços calculados serão limpos)</li>
+                            <li><strong>Resetar otimização</strong> (volta para estado "Dados Puxados")</li>
+                            <li class="text-success"><strong>Manter todos os dados dos serviços</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Esta operação será <strong>registrada no log do sistema</strong> com seu usuário e IP para auditoria.
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="senhaFormatar" class="form-label">
+                            <i class="fas fa-lock me-1"></i>Digite sua senha para confirmar:
+                        </label>
+                        <input type="password" class="form-control" id="senhaFormatar" name="senha" required 
+                               placeholder="Sua senha de login">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-1"></i>Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-eraser me-1"></i>Formatar Escala
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

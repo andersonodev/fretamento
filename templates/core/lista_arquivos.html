@@ -1,0 +1,985 @@
+{% extends 'base.html' %}
+
+{% block title %}Arquivos de Serviços - Sistema de Fretamento{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="mb-0"><i class="fas fa-file-excel text-success me-2"></i> Arquivos de Serviços</h2>
+                    <p class="text-muted mb-0">Gerencie seus arquivos de importação de serviços</p>
+                </div>
+                <a href="{% url 'core:upload_planilha' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-plus me-2"></i> Novo Upload
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estatísticas Melhoradas -->
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card bg-gradient-primary text-black h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="fas fa-folder-open fa-2x opacity-75"></i>
+                    </div>
+                    <div>
+                        <h4 class="mb-0">{{ total_arquivos }}</h4>
+                        <small class="opacity-75">Arquivos Processados</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card bg-gradient-success text-black h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="fas fa-bus fa-2x opacity-75"></i>
+                    </div>
+                    <div>
+                        <h4 class="mb-0">{{ total_servicos }}</h4>
+                        <small class="opacity-75">Serviços Importados</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card bg-gradient-info text-black h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="fas fa-calendar-check fa-2x opacity-75"></i>
+                    </div>
+                    <div>
+                        <h4 class="mb-0">{{ arquivos_ativos }}</h4>
+                        <small class="opacity-75">Arquivos Ativos</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card bg-gradient-warning text-black h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3">
+                        <i class="fas fa-clock fa-2x opacity-75"></i>
+                    </div>
+                    <div>
+                        <h4 class="mb-0">{{ ultima_atualizacao }}</h4>
+                        <small class="opacity-75">Última Atualização</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de Arquivos Melhorada -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-white border-bottom">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-table me-2 text-primary"></i> Arquivos Processados</h5>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-secondary btn-sm" id="toggleView" title="Alternar visualização">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <div class="input-group input-group-sm" style="width: 200px;">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" class="form-control" id="searchFiles" placeholder="Buscar arquivos...">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            {% if arquivos %}
+            <div class="row" id="arquivosContainer">
+                {% for arquivo in arquivos %}
+                {% if arquivo.nome_arquivo and arquivo.id %}
+                <div class="col-xl-4 col-lg-6 col-md-6 mb-4 arquivo-item" data-nome="{{ arquivo.nome_arquivo|lower }}">
+                    <div class="card arquivo-card h-100 border-0 shadow-sm">
+                        <!-- Header do Card -->
+                        <div class="card-header bg-gradient-light border-0 d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <div class="file-icon me-2">
+                                    <i class="fas fa-file-excel text-success fa-lg"></i>
+                                </div>
+                                <span class="badge bg-success-soft text-success">Processado</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="btn btn-outline-danger btn-sm" 
+                                        onclick="abrirModalDelecao({{ arquivo.id }}, '{{ arquivo.nome_arquivo|escapejs }}', {{ arquivo.total_servicos|default:0 }}, {{ arquivo.servicos_escalados|default:0 }})"
+                                        title="Excluir arquivo">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Corpo do Card -->
+                        <div class="card-body clickable-card" onclick="location.href='{% url 'core:servicos_arquivo' arquivo.id %}'">
+                            <h6 class="card-title fw-bold text-truncate mb-2" title="{{ arquivo.nome_arquivo }}">
+                                {{ arquivo.nome_arquivo }}
+                            </h6>
+                            
+                            <!-- Informações do Arquivo -->
+                            <div class="file-info mb-3">
+                                <div class="d-flex align-items-center mb-1">
+                                    <i class="fas fa-user text-muted me-2" style="width: 16px;"></i>
+                                    <small class="text-muted">{{ arquivo.usuario_upload|default:"Sistema" }}</small>
+                                </div>
+                                <div class="d-flex align-items-center mb-1">
+                                    <i class="fas fa-weight-hanging text-muted me-2" style="width: 16px;"></i>
+                                    <small class="text-muted">{{ arquivo.tamanho_formatado|default:"N/A" }}</small>
+                                </div>
+                                <div class="d-flex align-items-center mb-1">
+                                    <i class="fas fa-calendar text-muted me-2" style="width: 16px;"></i>
+                                    <small class="text-muted">{{ arquivo.periodo_servicos|default:"N/A" }}</small>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-clock text-muted me-2" style="width: 16px;"></i>
+                                    <small class="text-muted">{{ arquivo.created_at|date:"d/m/Y H:i" }}</small>
+                                </div>
+                                {% if arquivo.linhas_erro > 0 %}
+                                <div class="d-flex align-items-center mt-2">
+                                    <i class="fas fa-exclamation-triangle text-danger me-2" style="width: 16px;"></i>
+                                    <small class="text-danger">{{ arquivo.linhas_erro }} erro(s) encontrado(s)</small>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Footer do Card -->
+                        <div class="card-footer bg-transparent border-0 pt-0">
+                            <div class="text-center">
+                                <small class="text-primary fw-medium">
+                                    <i class="fas fa-mouse-pointer me-1"></i> Clique para ver serviços
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Paginação -->
+            {% if page_obj.has_other_pages %}
+            <nav>
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                <i class="fas fa-angle-left"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+
+            {% else %}
+            <div class="empty-state text-center py-5">
+                <div class="empty-icon mb-4">
+                    <i class="fas fa-inbox fa-4x text-muted opacity-50"></i>
+                </div>
+                <h5 class="text-muted mb-3">Nenhum arquivo encontrado</h5>
+                <p class="text-muted mb-4">Comece fazendo upload de uma planilha Excel com seus serviços</p>
+                <a href="{% url 'core:upload_planilha' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-upload me-2"></i> Fazer Primeiro Upload
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div class="modal fade" id="modalConfirmarDelecao" tabindex="-1" aria-labelledby="modalConfirmarDelecaoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <!-- Token CSRF para requisições AJAX -->
+                {% csrf_token %}
+                
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="modalConfirmarDelecaoLabel">
+                        <i class="fas fa-exclamation-triangle me-2"></i> Confirmar Exclusão
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <div class="warning-icon mb-3">
+                            <i class="fas fa-trash-alt fa-3x text-danger opacity-75"></i>
+                        </div>
+                        <h6 class="fw-bold">Tem certeza que deseja excluir este arquivo?</h6>
+                        <p class="text-muted mb-4">Você está prestes a excluir o arquivo:</p>
+                        <div class="alert alert-light border">
+                            <i class="fas fa-file-excel text-success me-2"></i>
+                            <strong id="nomeArquivoExcluir"></strong>
+                        </div>
+                    </div>
+
+                    <!-- Informações detalhadas dos serviços -->
+                    <div id="infoServicos" class="mb-3">
+                        <!-- Será preenchido dinamicamente pelo JavaScript -->
+                    </div>
+
+                    <div class="alert alert-warning border-warning">
+                        <h6 class="alert-heading">
+                            <i class="fas fa-info-circle me-2"></i> Esta ação irá:
+                        </h6>
+                        <ul class="mb-0">
+                            <li>Remover o arquivo do sistema</li>
+                            <li>Deletar todos os serviços relacionados</li>
+                            <li><strong>Manter apenas serviços que já foram escalados</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="alert alert-danger border-danger">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-exclamation-triangle text-danger me-2"></i>
+                            <strong>Esta ação NÃO pode ser desfeita!</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i> Cancelar
+                    </button>
+                    <button type="button" class="btn btn-danger" id="confirmarDelecao">
+                        <i class="fas fa-trash me-2"></i> Sim, Excluir Arquivo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ações da Página -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="d-flex flex-wrap gap-2 justify-content-center">
+                <a href="{% url 'core:upload_planilha' %}" class="btn btn-primary">
+                    <i class="fas fa-upload me-2"></i> Novo Upload
+                </a>
+                <a href="{% url 'core:lista_servicos' %}" class="btn btn-outline-info">
+                    <i class="fas fa-list me-2"></i> Todos os Serviços
+                </a>
+                <a href="{% url 'core:visualizar_tarifarios' %}" class="btn btn-outline-success">
+                    <i class="fas fa-dollar-sign me-2"></i> Ver Tarifários
+                </a>
+                <a href="{% url 'core:home' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i> Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+/* Gradientes para os cards de estatísticas */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #6f42c1 0%, #007bff 100%);
+}
+
+.bg-gradient-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.bg-gradient-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #6f42c1 100%);
+}
+
+.bg-gradient-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+}
+
+.bg-gradient-light {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Badges coloridos suaves */
+.bg-success-soft {
+    background-color: rgba(40, 167, 69, 0.1) !important;
+    border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+.bg-warning-soft {
+    background-color: rgba(255, 193, 7, 0.1) !important;
+    border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+/* Cards de arquivo melhorados */
+.arquivo-card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.arquivo-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15) !important;
+}
+
+.arquivo-card .card-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.clickable-card {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.clickable-card:hover {
+    background-color: rgba(0,0,0,0.02);
+}
+
+/* Ícone de arquivo estilizado */
+.file-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(40, 167, 69, 0.1);
+    border-radius: 8px;
+    margin-right: 12px;
+}
+
+/* Informações do arquivo */
+.file-info {
+    background: rgba(0,0,0,0.02);
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+/* Ações do card */
+.card-actions {
+    z-index: 10;
+    position: relative;
+}
+
+.card-actions .btn {
+    transition: all 0.3s ease;
+    border-radius: 6px;
+}
+
+.card-actions .btn-outline-danger:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Estado vazio melhorado */
+.empty-state {
+    padding: 60px 20px;
+}
+
+.empty-icon {
+    opacity: 0.3;
+}
+
+/* Modal melhorado */
+.modal-content {
+    border-radius: 15px;
+}
+
+.modal-header {
+    border-radius: 15px 15px 0 0;
+}
+
+.warning-icon {
+    padding: 20px;
+    background: rgba(220, 53, 69, 0.1);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Garantir que apenas um modal seja visível */
+.modal.show {
+    z-index: 1055 !important;
+}
+
+.modal-backdrop {
+    z-index: 1050 !important;
+}
+
+/* Prevenir duplicação de modais */
+.modal-backdrop + .modal-backdrop {
+    display: none !important;
+}
+
+/* Busca de arquivos */
+#searchFiles {
+    border-left: 0;
+}
+
+#searchFiles:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+.input-group-text {
+    background: #f8f9fa;
+    border-right: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .arquivo-card:hover {
+        transform: none;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    }
+}
+
+/* Melhorias na paginação */
+.pagination .page-link {
+    border-radius: 8px;
+    margin: 0 2px;
+    border: 1px solid #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+    background: linear-gradient(135deg, #007bff 0%, #6f42c1 100%);
+    border-color: #007bff;
+}
+
+/* Prevenir mini-modals vazios */
+.modal:empty,
+.modal-dialog:empty,
+.modal-content:empty {
+    display: none !important;
+}
+
+.modal[style*="display: none"] {
+    display: none !important;
+}
+
+/* Garantir que modals sem conteúdo não apareçam */
+.modal-dialog:not(:has(.modal-content)) {
+    display: none !important;
+}
+
+/* Remover qualquer elemento modal mal formado */
+.modal:not(:has(.modal-dialog)) {
+    display: none !important;
+}
+
+/* Esconder elementos Bootstrap vazios */
+.modal-backdrop:empty {
+    display: none !important;
+}
+
+/* Garantir visibilidade das cores no modal */
+.modal .text-primary {
+    color: #0d6efd !important;
+}
+
+.modal .text-success {
+    color: #198754 !important;
+}
+
+.modal .text-warning {
+    color: #fd7e14 !important;
+}
+
+.modal .text-info {
+    color: #0dcaf0 !important;
+}
+
+.modal .text-dark {
+    color: #212529 !important;
+}
+
+.modal .text-muted {
+    color: #6c757d !important;
+}
+
+/* Garantir contraste nos cards de informação */
+.modal .bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.modal small {
+    color: #495057 !important;
+    font-weight: 500 !important;
+}
+
+/* Alertas no modal com cores mais fortes */
+.modal .alert-info {
+    background-color: #cff4fc !important;
+    border-color: #9eeaf9 !important;
+    color: #055160 !important;
+}
+
+.modal .alert-warning {
+    background-color: #fff3cd !important;
+    border-color: #ffe69c !important;
+    color: #664d03 !important;
+}
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Variáveis globais para controle do modal
+let arquivoIdParaExcluir = null;
+
+// Função para limpar elementos modais vazios ou mal formados
+function limparElementosModaisVazios() {
+    console.log('🧹 Iniciando limpeza de elementos modais vazios...');
+    
+    // Remover modais vazios
+    const modalsVazios = document.querySelectorAll('.modal:empty, .modal-dialog:empty, .modal-content:empty');
+    modalsVazios.forEach(modal => {
+        console.log('🗑️ Removendo modal vazio:', modal);
+        modal.remove();
+    });
+    
+    // Remover backdrops órfãos
+    const backdropsOrfaos = document.querySelectorAll('.modal-backdrop:empty');
+    backdropsOrfaos.forEach(backdrop => {
+        console.log('🗑️ Removendo backdrop órfão:', backdrop);
+        backdrop.remove();
+    });
+    
+    // Verificar modals com style="display: none" permanentemente
+    const modalsOcultos = document.querySelectorAll('.modal[style*="display: none"]');
+    modalsOcultos.forEach(modal => {
+        if (!modal.innerHTML.trim() || !modal.querySelector('.modal-content')) {
+            console.log('🗑️ Removendo modal oculto sem conteúdo:', modal);
+            modal.remove();
+        }
+    });
+    
+    console.log('✅ Limpeza de modais concluída');
+}
+
+// Função para abrir o modal de exclusão
+function abrirModalDelecao(arquivoId, nomeArquivo, totalServicos, servicosEscalados) {
+    console.log('🔧 abrirModalDelecao chamada:', arquivoId, nomeArquivo, totalServicos, servicosEscalados);
+    
+    // Primeiro, garantir que não há modal aberto
+    const modalExistente = document.getElementById('modalConfirmarDelecao');
+    if (modalExistente) {
+        const modalInstance = bootstrap.Modal.getInstance(modalExistente);
+        if (modalInstance) {
+            modalInstance.hide();
+        }
+    }
+    
+    // Aguardar um pequeno delay para garantir que o modal anterior fechou
+    setTimeout(() => {
+        arquivoIdParaExcluir = arquivoId;
+        
+        // Definir nome do arquivo
+        const nomeElement = document.getElementById('nomeArquivoExcluir');
+        if (nomeElement) {
+            nomeElement.textContent = nomeArquivo;
+            console.log('✅ Nome do arquivo definido no modal');
+        }
+        
+        // Atualizar informações de serviços no modal
+        const infoServicos = document.getElementById('infoServicos');
+        if (infoServicos && totalServicos !== undefined && servicosEscalados !== undefined) {
+            const servicosDeletaveis = totalServicos - servicosEscalados;
+            
+            let infoHTML = `
+                <div class="row text-center mb-3">
+                    <div class="col-4">
+                        <div class="border rounded p-2 bg-light">
+                            <strong class="text-primary fs-5">${totalServicos}</strong>
+                            <br><small class="text-dark fw-medium">Total de Serviços</small>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="border rounded p-2 bg-light">
+                            <strong class="text-success fs-5">${servicosEscalados}</strong>
+                            <br><small class="text-dark fw-medium">Protegidos</small>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="border rounded p-2 bg-light">
+                            <strong class="text-warning fs-5" style="color: #d63384 !important;">${servicosDeletaveis}</strong>
+                            <br><small class="text-dark fw-medium">Deletáveis</small>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            if (servicosEscalados === totalServicos && totalServicos > 0) {
+                infoHTML += `
+                    <div class="alert alert-info border-info">
+                        <i class="fas fa-shield-alt me-2 text-info"></i>
+                        <strong class="text-dark">Todos os serviços estão protegidos!</strong>
+                        <br><span class="text-dark">Este arquivo não será deletado, mas permanecerá no sistema para manter a integridade das escalas.</span>
+                    </div>
+                `;
+            } else if (servicosDeletaveis > 0) {
+                infoHTML += `
+                    <div class="alert alert-warning border-warning">
+                        <i class="fas fa-info-circle me-2 text-warning"></i>
+                        <span class="text-dark">Apenas <strong>${servicosDeletaveis}</strong> serviços serão deletados. Os <strong>${servicosEscalados}</strong> serviços escalados permanecerão protegidos.</span>
+                    </div>
+                `;
+            }
+            
+            infoServicos.innerHTML = infoHTML;
+        }
+        
+        const modalElement = document.getElementById('modalConfirmarDelecao');
+        if (modalElement) {
+            // Remover qualquer instância anterior
+            const oldInstance = bootstrap.Modal.getInstance(modalElement);
+            if (oldInstance) {
+                oldInstance.dispose();
+            }
+            
+            // Criar nova instância
+            const modal = new bootstrap.Modal(modalElement, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+            console.log('✅ Modal aberto com nova instância');
+        } else {
+            console.error('❌ Modal modalConfirmarDelecao não encontrado');
+        }
+    }, 100);
+}
+
+// Função para confirmar e executar a exclusão
+function executarDelecao() {
+    console.log('🚀 executarDelecao chamada, arquivoIdParaExcluir:', arquivoIdParaExcluir);
+    
+    if (!arquivoIdParaExcluir) {
+        console.error('❌ ID do arquivo não definido');
+        alert('Erro: ID do arquivo não foi definido. Recarregue a página e tente novamente.');
+        return;
+    }
+    
+    const botaoConfirmar = document.getElementById('confirmarDelecao');
+    if (!botaoConfirmar) {
+        console.error('❌ Botão confirmarDelecao não encontrado');
+        return;
+    }
+    
+    const textoOriginal = botaoConfirmar.innerHTML;
+    
+    // Mostrar loading
+    botaoConfirmar.disabled = true;
+    botaoConfirmar.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Excluindo...';
+    console.log('⏳ Botão alterado para loading');
+    
+    // Obter token CSRF - múltiplas estratégias
+    let csrfToken = null;
+    
+    // Estratégia 1: Input hidden no modal
+    const csrfInput = document.querySelector('#modalConfirmarDelecao [name=csrfmiddlewaretoken]');
+    if (csrfInput && csrfInput.value) {
+        csrfToken = csrfInput.value;
+        console.log('✅ Token CSRF encontrado no modal:', csrfToken.substring(0, 10) + '...');
+    }
+    
+    // Estratégia 2: Qualquer input csrf na página
+    if (!csrfToken) {
+        const anyCSRFInput = document.querySelector('[name=csrfmiddlewaretoken]');
+        if (anyCSRFInput && anyCSRFInput.value) {
+            csrfToken = anyCSRFInput.value;
+            console.log('✅ Token CSRF encontrado na página:', csrfToken.substring(0, 10) + '...');
+        }
+    }
+    
+    // Estratégia 3: Meta tag
+    if (!csrfToken) {
+        const metaTag = document.querySelector('meta[name="csrf-token"]');
+        if (metaTag) {
+            csrfToken = metaTag.getAttribute('content');
+            console.log('✅ Token CSRF encontrado em meta tag:', csrfToken.substring(0, 10) + '...');
+        }
+    }
+    
+    // Estratégia 4: Cookies (último recurso)
+    if (!csrfToken) {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith('csrftoken=')) {
+                csrfToken = cookie.substring('csrftoken='.length);
+                console.log('✅ Token CSRF encontrado em cookies:', csrfToken.substring(0, 10) + '...');
+                break;
+            }
+        }
+    }
+    
+    if (!csrfToken) {
+        console.error('❌ Token CSRF não encontrado em nenhuma fonte');
+        alert('Erro de segurança: Token CSRF não encontrado. Recarregue a página e tente novamente.');
+        botaoConfirmar.disabled = false;
+        botaoConfirmar.innerHTML = textoOriginal;
+        return;
+    }
+    
+    // Preparar URL e dados
+    const url = `/core/arquivos/${arquivoIdParaExcluir}/deletar/`;
+    console.log('🎯 URL da requisição:', url);
+    
+    const formData = new FormData();
+    formData.append('csrfmiddlewaretoken', csrfToken);
+    
+    // Configuração da requisição
+    const requestConfig = {
+        method: 'POST',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: formData,
+        credentials: 'same-origin'
+    };
+    
+    console.log('📡 Fazendo requisição AJAX...', requestConfig);
+    
+    // Fazer requisição AJAX
+    fetch(url, requestConfig)
+    .then(response => {
+        console.log('📨 Resposta recebida - Status:', response.status);
+        console.log('📨 Headers da resposta:', Object.fromEntries(response.headers.entries()));
+        
+        if (response.ok) {
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                return response.json();
+            } else {
+                console.log('⚠️ Resposta não é JSON, tentando como texto');
+                return response.text().then(text => {
+                    console.log('📄 Resposta em texto:', text.substring(0, 200));
+                    return { status: 'success', message: 'Arquivo deletado com sucesso' };
+                });
+            }
+        } else {
+            return response.text().then(text => {
+                console.error('❌ Erro na resposta:', response.status, text);
+                throw new Error(`HTTP ${response.status}: ${text}`);
+            });
+        }
+    })
+    .then(data => {
+        console.log('✅ Sucesso na deleção:', data);
+        
+        // Mostrar notificação de sucesso
+        mostrarNotificacao('Arquivo excluído com sucesso!', 'success');
+        
+        // Fechar modal
+        const modalElement = document.getElementById('modalConfirmarDelecao');
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        if (modal) {
+            modal.hide();
+            console.log('✅ Modal fechado');
+            
+            // Aguardar o modal fechar completamente antes de recarregar
+            modalElement.addEventListener('hidden.bs.modal', function() {
+                setTimeout(() => {
+                    console.log('🔄 Recarregando página...');
+                    window.location.reload();
+                }, 500);
+            }, { once: true });
+        } else {
+            // Se não conseguir fechar o modal, recarregar imediatamente
+            setTimeout(() => {
+                console.log('🔄 Recarregando página (fallback)...');
+                window.location.reload();
+            }, 1500);
+        }
+    })
+    .catch(error => {
+        console.error('❌ Erro ao excluir arquivo:', error);
+        
+        let mensagemErro = 'Erro ao excluir arquivo. Tente novamente.';
+        if (error.message.includes('403')) {
+            mensagemErro = 'Erro de permissão. Recarregue a página e tente novamente.';
+        } else if (error.message.includes('404')) {
+            mensagemErro = 'Arquivo não encontrado.';
+        } else if (error.message.includes('500')) {
+            mensagemErro = 'Erro interno do servidor. Tente novamente mais tarde.';
+        }
+        
+        mostrarNotificacao(mensagemErro, 'error');
+        
+        // Restaurar botão
+        botaoConfirmar.disabled = false;
+        botaoConfirmar.innerHTML = textoOriginal;
+    });
+}
+
+// Função para mostrar notificações temporárias
+function mostrarNotificacao(mensagem, tipo = 'info') {
+    console.log(`📢 Mostrando notificação: ${tipo} - ${mensagem}`);
+    
+    // Criar elemento de notificação
+    const notificacao = document.createElement('div');
+    notificacao.className = `alert alert-${tipo === 'success' ? 'success' : 'danger'} alert-dismissible fade show position-fixed`;
+    notificacao.style.cssText = `
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        min-width: 300px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    `;
+    
+    notificacao.innerHTML = `
+        <i class="fas fa-${tipo === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+        ${mensagem}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    document.body.appendChild(notificacao);
+    
+    // Remover após 5 segundos
+    setTimeout(() => {
+        if (notificacao.parentNode) {
+            notificacao.remove();
+        }
+    }, 5000);
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 DOM carregado, inicializando event listeners');
+    
+    // Limpar elementos modais vazios primeiro
+    limparElementosModaisVazios();
+    
+    // Botão de confirmar exclusão
+    const botaoConfirmar = document.getElementById('confirmarDelecao');
+    if (botaoConfirmar) {
+        botaoConfirmar.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('🔄 Clique no botão confirmar detectado');
+            executarDelecao();
+        });
+        console.log('✅ Event listener do botão confirmar adicionado');
+    } else {
+        console.error('❌ Botão confirmarDelecao não encontrado no DOM');
+    }
+    
+    // Funcionalidade de busca
+    const searchInput = document.getElementById('searchFiles');
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+            const termo = e.target.value.toLowerCase();
+            const arquivos = document.querySelectorAll('.arquivo-item');
+            
+            arquivos.forEach(arquivo => {
+                const nome = arquivo.getAttribute('data-nome');
+                if (nome && nome.includes(termo)) {
+                    arquivo.style.display = 'block';
+                } else {
+                    arquivo.style.display = 'none';
+                }
+            });
+            
+            // Mostrar mensagem se nenhum resultado
+            const arquivosVisiveis = document.querySelectorAll('.arquivo-item[style="display: block"], .arquivo-item:not([style*="display: none"])');
+            const container = document.getElementById('arquivosContainer');
+            
+            let mensagemNaoEncontrado = document.getElementById('mensagemNaoEncontrado');
+            if (arquivosVisiveis.length === 0 && termo.length > 0) {
+                if (!mensagemNaoEncontrado) {
+                    mensagemNaoEncontrado = document.createElement('div');
+                    mensagemNaoEncontrado.id = 'mensagemNaoEncontrado';
+                    mensagemNaoEncontrado.className = 'col-12 text-center py-4';
+                    mensagemNaoEncontrado.innerHTML = `
+                        <i class="fas fa-search fa-2x text-muted mb-3"></i>
+                        <h6 class="text-muted">Nenhum arquivo encontrado</h6>
+                        <p class="text-muted">Tente usar outros termos de busca</p>
+                    `;
+                    container.appendChild(mensagemNaoEncontrado);
+                }
+            } else if (mensagemNaoEncontrado) {
+                mensagemNaoEncontrado.remove();
+            }
+        });
+        console.log('✅ Event listener da busca adicionado');
+    }
+    
+    // Adiciona feedback visual ao clicar nos cards
+    document.querySelectorAll('.clickable-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Não redireciona se clicou em botão, dropdown ou card-actions
+            if (e.target.closest('.card-actions') || e.target.closest('button') || e.target.closest('.dropdown')) {
+                e.stopPropagation();
+                return;
+            }
+            
+            // Adiciona classe de loading temporariamente
+            this.style.opacity = '0.7';
+            this.style.pointerEvents = 'none';
+            
+            // Remove após 1 segundo (tempo para navegação)
+            setTimeout(() => {
+                this.style.opacity = '1';
+                this.style.pointerEvents = 'auto';
+            }, 1000);
+        });
+    });
+    
+    // Prevenir que cliques nos botões de ação redirecionem
+    document.querySelectorAll('.card-actions').forEach(actions => {
+        actions.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
+    
+    // Adicionar ao botão de toggle se existir
+    const toggleBtn = document.getElementById('toggleView');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+            console.log('Toggle view - funcionalidade futura');
+        });
+    }
+    
+    console.log('✅ Todos os event listeners inicializados');
+});
+
+// Debugging: Loggar todos os cliques em botões
+document.addEventListener('click', function(e) {
+    if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+        const button = e.target.tagName === 'BUTTON' ? e.target : e.target.closest('button');
+        console.log('🔘 Clique em botão detectado:', button.id || button.className, button);
+    }
+});
+</script>
+{% endblock %}

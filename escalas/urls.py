@@ -15,6 +15,7 @@ urlpatterns = [
     path('exportar/<str:data>/', views.ExportarEscalaView.as_view(), name='exportar_escala'),
     path('exportar-mes/<int:ano>/<int:mes>/', views.ExportarMesView.as_view(), name='exportar_mes'),
     path('excluir/<str:data>/', views.ExcluirEscalaView.as_view(), name='excluir_escala'),
+    path('formatar-escala/', views.FormatarEscalaView.as_view(), name='formatar_escala'),
     
     path('mover-servico/', views.MoverServicoView.as_view(), name='mover_servico'),
     path('agrupar-servicos/', views.AgruparServicosView.as_view(), name='agrupar_servicos'),

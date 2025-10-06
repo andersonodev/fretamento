@@ -14,7 +14,7 @@ from decimal import Decimal, InvalidOperation
 from calendar import monthrange
 import re
 from core.models import Servico, ProcessamentoPlanilha
-from escalas.models import Escala, AlocacaoVan, GrupoServico, ServicoGrupo
+from escalas.models import Escala, AlocacaoVan, GrupoServico, ServicoGrupo, LogEscala
 from core.processors import ProcessadorPlanilhaOS
 from escalas.services import GerenciadorEscalas, ExportadorEscalas
 from core.tarifarios import calcular_preco_servico
@@ -904,6 +904,139 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
             alocacao.save()
         
         logger.info(f"✅ ALOCADO: {candidato['cliente_principal']} ({candidato['pax_total']} PAX) -> {van_nome} #{ordem}")
+
+
+class FormatarEscalaView(LoginRequiredMixin, View):
+    """View para formatação de escala com autenticação por senha"""
+    
+    def post(self, request):
+        data_str = request.POST.get('data')
+        senha = request.POST.get('senha')
+        
+        if not data_str:
+            messages.error(request, 'Data é obrigatória.')
+            return redirect('escalas:selecionar_ano')
+        
+        if not senha:
+            messages.error(request, 'Senha é obrigatória para formatar escala.')
+            return redirect('escalas:visualizar_escala', data=data_str)
+        
+        try:
+            data_alvo = parse_data_brasileira(data_str)
+            escala = get_object_or_404(Escala, data=data_alvo)
+            
+            # Verificar senha do usuário
+            from django.contrib.auth import authenticate
+            user = authenticate(username=request.user.username, password=senha)
+            
+            if not user:
+                messages.error(request, 'Senha incorreta. Formatação não autorizada.')
+                return redirect('escalas:visualizar_escala', data=data_str)
+            
+            # Obter IP do usuário
+            ip_address = self._get_client_ip(request)
+            
+            # Salvar estado antes da formatação
+            dados_antes = {
+                'total_alocacoes': escala.alocacoes.count(),
+                'total_van1': escala.alocacoes.filter(van='VAN1').count(),
+                'total_van2': escala.alocacoes.filter(van='VAN2').count(),
+                'total_grupos': escala.grupos.count(),
+                'alocacoes_com_preco': escala.alocacoes.filter(preco_calculado__isnull=False).count(),
+                'etapa': escala.etapa,
+                'status': escala.status,
+            }
+            
+            # === FORMATAÇÃO NÃO DESTRUTIVA ===
+            # 1. Desfazer todos os grupos (mas manter alocações individuais)
+            grupos_removidos = 0
+            for grupo in escala.grupos.all():
+                # Contar serviços no grupo antes de deletar
+                servicos_no_grupo = grupo.servicos.count()
+                grupos_removidos += 1
+                # Deletar o grupo automaticamente remove os ServicoGrupo relacionados
+                grupo.delete()
+            
+            # 2. Desprecificar todas as alocações
+            alocacoes_desprecificadas = 0
+            for alocacao in escala.alocacoes.all():
+                if alocacao.preco_calculado is not None or alocacao.veiculo_recomendado:
+                    logger.info(f"Desprecificando alocação {alocacao.id}: preço={alocacao.preco_calculado}, veículo={alocacao.veiculo_recomendado}")
+                    alocacao.preco_calculado = None
+                    alocacao.veiculo_recomendado = None
+                    alocacao.lucratividade = None
+                    alocacao.detalhes_precificacao = None
+                    alocacao.save()
+                    alocacoes_desprecificadas += 1
+            
+            logger.info(f"Total de alocações desprecificadas: {alocacoes_desprecificadas}")
+            
+            # 3. Resetar etapa da escala para DADOS_PUXADOS (desfazer otimização)
+            escala.etapa = 'DADOS_PUXADOS'
+            escala.save()
+            
+            # Forçar atualização do cache do objeto
+            escala.refresh_from_db()
+            
+            # Salvar estado após formatação
+            dados_depois = {
+                'total_alocacoes': escala.alocacoes.count(),  # Deve ser igual ao anterior
+                'total_van1': escala.alocacoes.filter(van='VAN1').count(),
+                'total_van2': escala.alocacoes.filter(van='VAN2').count(),
+                'total_grupos': 0,  # Todos os grupos foram removidos
+                'alocacoes_com_preco': 0,  # Todas foram desprecificadas
+                'etapa': escala.etapa,
+                'status': escala.status,
+                'grupos_removidos': grupos_removidos,
+                'alocacoes_desprecificadas': alocacoes_desprecificadas,
+            }
+            
+            # Registrar no log
+            LogEscala.objects.create(
+                escala=escala,
+                acao='FORMATAR',
+                usuario=request.user,
+                ip_address=ip_address,
+                descricao=f'Escala formatada - {grupos_removidos} grupos removidos, {alocacoes_desprecificadas} alocações desprecificadas (dados mantidos)',
+                dados_antes=dados_antes,
+                dados_depois=dados_depois
+            )
+            
+            # Log de aplicação
+            logger.warning(
+                f'FORMATAÇÃO DE ESCALA - Usuário: {request.user.username} | '
+                f'Data: {data_alvo.strftime("%d/%m/%Y")} | '
+                f'IP: {ip_address} | '
+                f'Grupos removidos: {grupos_removidos} | '
+                f'Alocações desprecificadas: {alocacoes_desprecificadas} | '
+                f'Dados mantidos: {escala.alocacoes.count()} alocações'
+            )
+            
+            # Limpar qualquer cache relacionado
+            from django.core.cache import cache
+            cache.clear()
+            
+            messages.success(
+                request, 
+                f'Escala de {data_alvo.strftime("%d/%m/%Y")} formatada com sucesso! '
+                f'{grupos_removidos} grupos removidos, {alocacoes_desprecificadas} alocações desprecificadas. '
+                f'Os dados dos serviços foram mantidos.'
+            )
+            
+        except Exception as e:
+            logger.error(f"Erro ao formatar escala {data_str}: {e}")
+            messages.error(request, f'Erro ao formatar escala: {str(e)}')
+        
+        return redirect('escalas:visualizar_escala', data=data_str)
+    
+    def _get_client_ip(self, request):
+        """Obtém o IP do cliente"""
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
     
 
 class VisualizarEscalaView(LoginRequiredMixin, View):
@@ -1659,6 +1792,10 @@ class ExcluirEscalaView(LoginRequiredMixin, View):
             data_obj = parse_data_brasileira(data)
             escala = get_object_or_404(Escala, data=data_obj)
             
+            # Salvar mês e ano para redirecionamento
+            mes = data_obj.month
+            ano = data_obj.year
+            
             # Verificar se é seguro excluir
             if escala.etapa == 'OTIMIZADA':
                 messages.warning(
@@ -1687,15 +1824,25 @@ class ExcluirEscalaView(LoginRequiredMixin, View):
                     f'Estrutura de escala de {data_formatada} excluída com sucesso!'
                 )
             
+            # Redirecionar para a página do mês específico
+            return redirect('escalas:gerenciar_escalas_mes', mes=mes, ano=ano)
+            
         except Exception as e:
             messages.error(request, f'Erro ao excluir escala: {str(e)}')
-            
-        return redirect('escalas:gerenciar_escalas')
+            # Em caso de erro, redirecionar para o ano atual
+            return redirect('escalas:selecionar_ano')
     
     def get(self, request, data):
         """Redireciona para gerenciamento se acessado via GET"""
         messages.info(request, 'Acesso inválido. Use o botão de exclusão na interface.')
-        return redirect('escalas:gerenciar_escalas')
+        # Tentar extrair mês e ano da data para redirecionamento mais específico
+        try:
+            data_obj = parse_data_brasileira(data)
+            mes = data_obj.month
+            ano = data_obj.year
+            return redirect('escalas:gerenciar_escalas_mes', mes=mes, ano=ano)
+        except:
+            return redirect('escalas:selecionar_ano')
 
 
 class DesagruparGrupoCompletoView(View):

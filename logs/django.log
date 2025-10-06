@@ -6047,3 +6047,1068 @@ INFO 2025-10-06 14:40:47,418 basehttp 54876 6200946688 "GET /escalas/api/detalhe
 INFO 2025-10-06 14:40:50,648 basehttp 54876 6200946688 "GET /escalas/api/tarifarios/ HTTP/1.1" 200 6005
 INFO 2025-10-06 14:41:01,571 autoreload 54876 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
 INFO 2025-10-06 14:41:02,404 autoreload 55022 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 14:41:41,571 log 55022 6166097920 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:41:41,572 basehttp 55022 6166097920 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 14:42:41,557 log 55022 6166097920 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:42:41,560 basehttp 55022 6166097920 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 14:43:20,523 basehttp 55022 6182924288 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-06 14:43:20,531 basehttp 55022 6166097920 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 104
+INFO 2025-10-06 14:43:21,691 basehttp 55022 6166097920 - Broken pipe from ('127.0.0.1', 52702)
+INFO 2025-10-06 14:43:21,701 basehttp 55022 6182924288 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 377626
+INFO 2025-10-06 14:43:26,708 basehttp 55022 6182924288 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-06 14:43:26,716 basehttp 55022 6166097920 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-06 14:43:27,820 basehttp 55022 6166097920 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 377626
+WARNING 2025-10-06 14:44:28,572 log 55022 6166097920 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:44:28,573 basehttp 55022 6166097920 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 14:45:28,573 log 55022 6166097920 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:45:28,575 basehttp 55022 6166097920 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 14:46:28,566 log 55022 6166097920 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:46:28,567 basehttp 55022 6166097920 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 14:46:48,660 autoreload 55022 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 14:46:49,135 autoreload 55708 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 14:47:28,592 log 55708 6130544640 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:47:28,593 basehttp 55708 6130544640 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 14:48:28,576 log 55708 6130544640 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:48:28,578 basehttp 55708 6130544640 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 14:49:28,569 log 55708 6130544640 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:49:28,570 basehttp 55708 6130544640 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 14:49:54,859 autoreload 55708 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 14:49:55,426 autoreload 56094 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 14:50:04,404 autoreload 56094 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 14:50:04,720 autoreload 56126 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 14:50:13,366 autoreload 56126 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 14:50:13,651 autoreload 56150 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 14:50:21,321 autoreload 56150 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 14:50:21,641 autoreload 56169 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 14:50:28,586 log 56169 6161379328 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:50:28,586 basehttp 56169 6161379328 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 14:50:38,562 autoreload 56169 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 14:50:38,963 autoreload 56205 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 14:50:52,972 autoreload 56205 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 14:50:53,584 autoreload 56232 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 14:51:29,186 log 56232 6173995008 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:51:29,187 basehttp 56232 6173995008 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 14:51:30,916 basehttp 56232 6173995008 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 377626
+INFO 2025-10-06 14:51:56,781 autoreload 56232 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 14:51:57,471 autoreload 56437 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 14:52:15,106 basehttp 56437 6194229248 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 377626
+INFO 2025-10-06 14:52:17,064 basehttp 56437 6194229248 "GET /escalas/exportar/02-10-2025/ HTTP/1.1" 200 10126
+INFO 2025-10-06 14:52:42,241 basehttp 56437 6194229248 "GET /escalas/ HTTP/1.1" 200 32477
+INFO 2025-10-06 14:52:48,120 basehttp 56437 6194229248 "GET /escalas/ano/2025/ HTTP/1.1" 200 44587
+INFO 2025-10-06 14:52:54,886 basehttp 56437 6194229248 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 40792
+INFO 2025-10-06 14:53:01,575 basehttp 56437 6194229248 "GET /escalas/exportar-mes/2025/10/ HTTP/1.1" 200 12091
+INFO 2025-10-06 14:53:13,299 autoreload 56437 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 14:53:13,700 autoreload 56661 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 14:53:55,582 log 56661 6209187840 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:53:55,583 basehttp 56661 6209187840 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 14:54:55,567 log 56661 6209187840 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:54:55,569 basehttp 56661 6209187840 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 14:55:25,535 basehttp 56661 6209187840 "GET /core/diagnostico/ HTTP/1.1" 200 48300
+INFO 2025-10-06 14:55:31,301 autoreload 56661 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 14:55:31,637 autoreload 56868 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 14:55:33,113 views 56868 6209908736 Gerando dashboard com consultas otimizadas
+INFO 2025-10-06 14:55:33,137 basehttp 56868 6209908736 "GET /core/ HTTP/1.1" 200 54951
+INFO 2025-10-06 14:55:34,787 basehttp 56868 6209908736 "GET /core/diagnostico/ HTTP/1.1" 200 48300
+INFO 2025-10-06 14:55:38,560 views 56868 6209335296 Dashboard carregado do cache
+INFO 2025-10-06 14:55:38,566 basehttp 56868 6209335296 "GET /core/ HTTP/1.1" 200 54951
+INFO 2025-10-06 14:55:38,580 basehttp 56868 6209335296 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-06 14:55:46,445 autoreload 56868 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 14:55:46,813 autoreload 56893 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 14:55:51,965 basehttp 56893 6210187264 "GET /core/servicos/ HTTP/1.1" 200 86327
+WARNING 2025-10-06 14:56:52,576 log 56893 6210187264 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:56:52,577 basehttp 56893 6210187264 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 14:57:52,571 log 56893 6210187264 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:57:52,573 basehttp 56893 6210187264 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 14:58:00,449 basehttp 56893 6210187264 "GET /core/servicos/ HTTP/1.1" 200 86353
+INFO 2025-10-06 14:58:07,253 basehttp 56893 6210187264 "GET /escalas/ HTTP/1.1" 200 32566
+INFO 2025-10-06 14:58:15,311 basehttp 56893 6210187264 "GET /escalas/ HTTP/1.1" 200 32566
+WARNING 2025-10-06 14:59:15,588 log 56893 6210187264 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 14:59:15,590 basehttp 56893 6210187264 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:00:15,579 log 56893 6210187264 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:00:15,580 basehttp 56893 6210187264 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:01:15,568 log 56893 6210187264 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:01:15,570 basehttp 56893 6210187264 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:02:15,578 log 56893 6210187264 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:02:15,580 basehttp 56893 6210187264 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:03:15,573 log 56893 6210187264 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:03:15,574 basehttp 56893 6210187264 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:03:27,002 basehttp 56893 6210187264 "GET /escalas/ HTTP/1.1" 200 32566
+INFO 2025-10-06 15:03:39,675 basehttp 56893 6210187264 "GET /escalas/ HTTP/1.1" 200 32566
+INFO 2025-10-06 15:03:46,924 basehttp 56893 6210187264 "GET /escalas/ano/2025/ HTTP/1.1" 200 44641
+INFO 2025-10-06 15:03:56,012 basehttp 56893 6210187264 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 40846
+INFO 2025-10-06 15:04:01,699 basehttp 56893 6210187264 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 15:04:01,725 basehttp 56893 6210187264 "GET /escalas/visualizar/2025-10-08/ HTTP/1.1" 200 133564
+INFO 2025-10-06 15:04:03,294 basehttp 56893 6210187264 "GET /escalas/puxar-dados/08-10-2025/ HTTP/1.1" 200 38656
+INFO 2025-10-06 15:04:09,640 basehttp 56893 6210187264 "POST /escalas/puxar-dados/08-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 15:04:09,676 basehttp 56893 6210187264 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 248343
+INFO 2025-10-06 15:04:18,086 basehttp 56893 6210187264 "GET /auth/logout/ HTTP/1.1" 302 0
+INFO 2025-10-06 15:04:18,093 basehttp 56893 6210187264 "GET /auth/login/ HTTP/1.1" 200 12604
+INFO 2025-10-06 15:04:18,117 basehttp 56893 6210187264 "GET /static/images/logointertouring.png HTTP/1.1" 200 148745
+INFO 2025-10-06 15:04:30,109 basehttp 56893 6210187264 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-06 15:04:30,112 views 56893 6210187264 Gerando dashboard com consultas otimizadas
+INFO 2025-10-06 15:04:30,124 basehttp 56893 6210187264 "GET /core/ HTTP/1.1" 200 56979
+INFO 2025-10-06 15:04:53,566 basehttp 56893 6227013632 "GET /auth/logout/ HTTP/1.1" 302 0
+INFO 2025-10-06 15:04:53,670 basehttp 56893 6227013632 "GET /auth/login/ HTTP/1.1" 200 12604
+INFO 2025-10-06 15:04:56,457 basehttp 56893 6210187264 "GET /escalas/ HTTP/1.1" 200 32925
+INFO 2025-10-06 15:04:56,457 basehttp 56893 6210187264 - Broken pipe from ('127.0.0.1', 53494)
+INFO 2025-10-06 15:04:59,241 basehttp 56893 6210187264 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-06 15:04:59,245 views 56893 6210187264 Gerando dashboard com consultas otimizadas
+INFO 2025-10-06 15:04:59,252 basehttp 56893 6210187264 "GET /core/ HTTP/1.1" 200 56949
+INFO 2025-10-06 15:05:08,631 autoreload 56893 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 15:05:09,122 autoreload 57830 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 15:05:59,589 log 57830 6136950784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:05:59,590 basehttp 57830 6136950784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:06:53,576 basehttp 57830 6136950784 "GET /escalas/ HTTP/1.1" 200 32907
+WARNING 2025-10-06 15:07:54,553 log 57830 6136950784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:07:54,554 basehttp 57830 6136950784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:08:54,553 log 57830 6136950784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:08:54,554 basehttp 57830 6136950784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:09:54,552 log 57830 6136950784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:09:54,553 basehttp 57830 6136950784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:10:54,560 log 57830 6136950784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:10:54,561 basehttp 57830 6136950784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:11:54,550 log 57830 6136950784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:11:54,551 basehttp 57830 6136950784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:12:54,555 log 57830 6136950784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:12:54,556 basehttp 57830 6136950784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:13:09,619 autoreload 57830 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/models.py changed, reloading.
+INFO 2025-10-06 15:13:10,481 autoreload 58489 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:13:29,705 autoreload 58489 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 15:13:30,003 autoreload 58523 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:13:43,733 autoreload 58523 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 15:13:44,037 autoreload 58546 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 15:13:54,568 log 58546 6202863616 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:13:54,569 basehttp 58546 6202863616 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:13:59,885 autoreload 58546 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 15:14:00,194 autoreload 58576 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 15:14:55,581 log 58576 6139637760 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:14:55,582 basehttp 58576 6139637760 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:15:37,890 autoreload 58576 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/urls.py changed, reloading.
+INFO 2025-10-06 15:15:38,252 autoreload 58713 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:15:45,984 basehttp 58713 6168866816 "GET /escalas/ HTTP/1.1" 200 32907
+INFO 2025-10-06 15:16:43,844 autoreload 58931 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 15:16:46,568 log 58713 6168293376 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:16:46,568 basehttp 58713 6168293376 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:16:58,616 autoreload 59016 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 15:17:14,031 log 59016 6202470400 Not Found: /arquivos/
+WARNING 2025-10-06 15:17:14,031 basehttp 59016 6202470400 "GET /arquivos/?id=14eed94b-eda1-4aee-afaa-a4876fabe2b5&vscodeBrowserReqId=1759774634017 HTTP/1.1" 404 2750
+INFO 2025-10-06 15:17:22,663 autoreload 59016 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/models.py changed, reloading.
+INFO 2025-10-06 15:17:22,975 autoreload 59058 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:17:38,813 autoreload 59058 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 15:17:39,128 autoreload 59083 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 15:17:46,572 log 59083 6199242752 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:17:46,573 basehttp 59083 6199242752 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:17:48,849 autoreload 59083 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 15:17:49,155 autoreload 59100 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:20:35,959 autoreload 59466 8529070080 Watching for file changes with StatReloader
+ERROR 2025-10-06 15:20:38,932 log 59466 6132658176 Internal Server Error: /core/servicos/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such column: core_servico.processamento_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 320, in render
+    if match:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 412, in __bool__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such column: core_servico.processamento_id
+ERROR 2025-10-06 15:20:38,934 basehttp 59466 6132658176 "GET /core/servicos/ HTTP/1.1" 500 221069
+ERROR 2025-10-06 15:20:39,886 log 59466 6132658176 Internal Server Error: /core/servicos/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such column: core_servico.processamento_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 320, in render
+    if match:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 412, in __bool__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such column: core_servico.processamento_id
+ERROR 2025-10-06 15:20:39,887 basehttp 59466 6132658176 "GET /core/servicos/ HTTP/1.1" 500 221069
+ERROR 2025-10-06 15:20:40,537 log 59466 6132658176 Internal Server Error: /core/servicos/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such column: core_servico.processamento_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 320, in render
+    if match:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 412, in __bool__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such column: core_servico.processamento_id
+ERROR 2025-10-06 15:20:40,538 basehttp 59466 6132658176 "GET /core/servicos/ HTTP/1.1" 500 221069
+INFO 2025-10-06 15:21:14,494 autoreload 59466 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/models.py changed, reloading.
+INFO 2025-10-06 15:21:14,832 autoreload 59569 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:21:31,871 autoreload 59569 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 15:21:32,184 autoreload 59596 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:21:41,939 autoreload 59596 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 15:21:42,261 autoreload 59609 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:21:48,488 basehttp 59609 6127529984 "GET /core/servicos/?id=14eed94b-eda1-4aee-afaa-a4876fabe2b5&vscodeBrowserReqId=1759774908429 HTTP/1.1" 200 84072
+WARNING 2025-10-06 15:21:53,129 log 59609 6127529984 Not Found: /arquivos/
+WARNING 2025-10-06 15:21:53,129 basehttp 59609 6127529984 "GET /arquivos/?id=14eed94b-eda1-4aee-afaa-a4876fabe2b5&vscodeBrowserReqId=1759774913117 HTTP/1.1" 404 2750
+INFO 2025-10-06 15:21:56,995 basehttp 59609 6127529984 "GET /?id=14eed94b-eda1-4aee-afaa-a4876fabe2b5&vscodeBrowserReqId=1759774916992 HTTP/1.1" 302 0
+INFO 2025-10-06 15:21:56,998 basehttp 59609 6127529984 "GET /auth/login/ HTTP/1.1" 200 12318
+INFO 2025-10-06 15:22:06,257 autoreload 59609 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/models.py changed, reloading.
+INFO 2025-10-06 15:22:06,593 autoreload 59646 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:23:06,379 autoreload 59646 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/processors.py changed, reloading.
+INFO 2025-10-06 15:23:06,751 autoreload 59799 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:23:16,474 autoreload 59799 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/processors.py changed, reloading.
+INFO 2025-10-06 15:23:16,790 autoreload 59812 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:23:27,534 autoreload 59812 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/processors.py changed, reloading.
+INFO 2025-10-06 15:23:27,989 autoreload 59829 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:23:42,939 autoreload 59829 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 15:23:43,277 autoreload 59860 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:23:48,180 basehttp 59860 6175141888 "GET /?id=14eed94b-eda1-4aee-afaa-a4876fabe2b5&vscodeBrowserReqId=1759775028167 HTTP/1.1" 302 0
+INFO 2025-10-06 15:23:48,185 basehttp 59860 6175141888 "GET /auth/login/ HTTP/1.1" 200 12318
+WARNING 2025-10-06 15:23:51,528 log 59860 6175141888 Not Found: /arquivos/
+WARNING 2025-10-06 15:23:51,528 basehttp 59860 6175141888 "GET /arquivos/?id=14eed94b-eda1-4aee-afaa-a4876fabe2b5&vscodeBrowserReqId=1759775031515 HTTP/1.1" 404 2750
+INFO 2025-10-06 15:23:54,815 basehttp 59860 6174568448 "GET /core/servicos/?id=14eed94b-eda1-4aee-afaa-a4876fabe2b5&vscodeBrowserReqId=1759775034790 HTTP/1.1" 200 84072
+WARNING 2025-10-06 15:25:25,536 log 59860 6174568448 Not Found: /arquivos/1/servicos/
+WARNING 2025-10-06 15:25:25,536 basehttp 59860 6174568448 "GET /arquivos/1/servicos/?id=14eed94b-eda1-4aee-afaa-a4876fabe2b5&vscodeBrowserReqId=1759775125526 HTTP/1.1" 404 2783
+INFO 2025-10-06 15:25:27,865 basehttp 59860 6174568448 "GET /core/servicos/ HTTP/1.1" 200 86998
+INFO 2025-10-06 15:25:34,095 basehttp 59860 6174568448 "GET /core/servicos/ HTTP/1.1" 200 86998
+INFO 2025-10-06 15:25:42,099 basehttp 59860 6174568448 "GET /core/arquivos/ HTTP/1.1" 200 36268
+INFO 2025-10-06 15:25:53,773 basehttp 59860 6174568448 "GET /core/arquivos/ HTTP/1.1" 200 36268
+INFO 2025-10-06 15:25:57,403 basehttp 59860 6174568448 "GET /core/servicos/ HTTP/1.1" 200 86998
+INFO 2025-10-06 15:26:00,986 basehttp 59860 6174568448 "GET /core/arquivos/ HTTP/1.1" 200 36268
+INFO 2025-10-06 15:26:02,402 views 59860 6174568448 Gerando dashboard com consultas otimizadas
+INFO 2025-10-06 15:26:02,429 basehttp 59860 6174568448 "GET /core/ HTTP/1.1" 200 56395
+INFO 2025-10-06 15:26:03,689 basehttp 59860 6174568448 "GET /core/servicos/ HTTP/1.1" 200 86998
+INFO 2025-10-06 15:26:08,432 basehttp 59860 6174568448 "GET /core/arquivos/ HTTP/1.1" 200 36268
+INFO 2025-10-06 15:26:34,994 basehttp 59860 6174568448 "GET /core/servicos/ HTTP/1.1" 200 86998
+INFO 2025-10-06 15:27:02,139 basehttp 59860 6174568448 "GET /core/arquivos/ HTTP/1.1" 200 36268
+WARNING 2025-10-06 15:28:02,182 log 59860 6174568448 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:28:02,183 basehttp 59860 6174568448 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:28:19,844 autoreload 59860 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 15:28:20,268 autoreload 60322 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:28:28,085 autoreload 60322 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/urls.py changed, reloading.
+INFO 2025-10-06 15:28:28,403 autoreload 60336 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 15:29:02,577 log 60336 6169407488 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:29:02,578 basehttp 60336 6169407488 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:29:33,501 log 60336 6169407488 Not Found: /arquivos/
+WARNING 2025-10-06 15:29:33,502 basehttp 60336 6169407488 "GET /arquivos/?id=e2110e27-c847-440f-a951-3ecb7b2b5e46&vscodeBrowserReqId=1759775373494 HTTP/1.1" 404 2750
+INFO 2025-10-06 15:29:37,497 basehttp 60336 6169407488 "GET /?id=e2110e27-c847-440f-a951-3ecb7b2b5e46&vscodeBrowserReqId=1759775377489 HTTP/1.1" 302 0
+INFO 2025-10-06 15:29:37,502 basehttp 60336 6169407488 "GET /auth/login/ HTTP/1.1" 200 12318
+INFO 2025-10-06 15:29:56,362 basehttp 60336 6169407488 "GET /escalas/ HTTP/1.1" 200 33076
+INFO 2025-10-06 15:30:03,586 autoreload 60336 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 15:30:03,933 autoreload 60499 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:30:54,488 basehttp 60499 6138703872 "GET /escalas/ano/2025/ HTTP/1.1" 200 45151
+INFO 2025-10-06 15:31:08,706 basehttp 60499 6138703872 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 46129
+WARNING 2025-10-06 15:32:09,572 log 60499 6138703872 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:32:09,573 basehttp 60499 6138703872 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:32:31,302 basehttp 60499 6138703872 "GET /core/servicos/ HTTP/1.1" 200 87167
+INFO 2025-10-06 15:32:34,864 basehttp 60499 6138703872 "GET /core/arquivos/ HTTP/1.1" 200 39666
+INFO 2025-10-06 15:32:45,304 basehttp 60499 6138703872 "GET /core/arquivos/7/servicos/ HTTP/1.1" 200 87968
+INFO 2025-10-06 15:32:54,604 basehttp 60499 6138703872 "GET /core/arquivos/ HTTP/1.1" 200 39666
+INFO 2025-10-06 15:33:20,563 autoreload 60499 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-06 15:33:20,956 autoreload 60762 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:33:53,430 autoreload 60762 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-06 15:33:54,043 autoreload 60810 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 15:33:55,553 log 60810 6141702144 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:33:55,553 basehttp 60810 6141702144 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:34:31,617 autoreload 60810 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 15:34:31,991 autoreload 60863 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 15:34:54,644 log 60863 6202585088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:34:54,644 basehttp 60863 6202585088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:35:14,928 basehttp 60863 6219411456 "GET /core/servicos/ HTTP/1.1" 200 87167
+INFO 2025-10-06 15:35:15,003 basehttp 60863 6219411456 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-06 15:35:17,234 basehttp 60863 6202585088 "GET /escalas/ HTTP/1.1" 200 33076
+INFO 2025-10-06 15:35:17,234 basehttp 60863 6202585088 - Broken pipe from ('127.0.0.1', 54515)
+INFO 2025-10-06 15:35:17,264 autoreload 60863 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 15:35:17,594 autoreload 60935 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:35:23,946 basehttp 60935 6208860160 "GET /escalas/ HTTP/1.1" 200 33076
+WARNING 2025-10-06 15:36:23,988 log 60935 6208286720 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:36:23,989 basehttp 60935 6208286720 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:36:24,375 autoreload 60935 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/urls.py changed, reloading.
+INFO 2025-10-06 15:36:24,730 autoreload 61008 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 15:37:24,561 log 61008 6194720768 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:37:24,562 basehttp 61008 6194720768 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:37:57,024 autoreload 61253 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:38:04,311 basehttp 61008 6194720768 "GET /escalas/ano/2025/ HTTP/1.1" 200 45151
+INFO 2025-10-06 15:38:08,424 autoreload 61317 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:38:13,302 basehttp 61008 6194720768 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 48824
+WARNING 2025-10-06 15:39:13,346 log 61008 6194720768 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:39:13,348 basehttp 61008 6194720768 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:39:24,809 views 61008 6194720768 FORMATAÇÃO DE ESCALA - Usuário: lucy.leite | Data: 08/10/2025 | IP: 127.0.0.1 | Alocações removidas: 22
+INFO 2025-10-06 15:39:24,810 basehttp 61008 6194720768 "POST /escalas/formatar-escala/ HTTP/1.1" 302 0
+INFO 2025-10-06 15:39:24,833 basehttp 61008 6194720768 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 148719
+WARNING 2025-10-06 15:39:41,228 views 61008 6194720768 FORMATAÇÃO DE ESCALA - Usuário: lucy.leite | Data: 08/10/2025 | IP: 127.0.0.1 | Alocações removidas: 0
+INFO 2025-10-06 15:39:41,229 basehttp 61008 6194720768 "POST /escalas/formatar-escala/ HTTP/1.1" 302 0
+INFO 2025-10-06 15:39:41,239 basehttp 61008 6194720768 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 148718
+INFO 2025-10-06 15:39:48,097 views 61008 6194720768 Gerando dashboard com consultas otimizadas
+INFO 2025-10-06 15:39:48,124 basehttp 61008 6194720768 "GET /core/ HTTP/1.1" 200 56564
+INFO 2025-10-06 15:39:53,506 basehttp 61008 6194720768 "GET /escalas/ HTTP/1.1" 200 33076
+INFO 2025-10-06 15:40:00,392 basehttp 61008 6194720768 "GET /escalas/ano/2025/ HTTP/1.1" 200 45151
+INFO 2025-10-06 15:40:12,183 basehttp 61008 6194720768 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 48417
+INFO 2025-10-06 15:40:19,928 basehttp 61008 6194720768 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 148113
+INFO 2025-10-06 15:40:31,108 basehttp 61008 6194720768 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 148113
+WARNING 2025-10-06 15:41:31,553 log 61008 6194720768 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:41:31,554 basehttp 61008 6194720768 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:42:31,564 log 61008 6194720768 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:42:31,566 basehttp 61008 6194720768 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:43:31,157 log 61008 6194720768 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:43:31,159 basehttp 61008 6194720768 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:43:33,651 basehttp 61008 6194720768 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 147951
+WARNING 2025-10-06 15:44:34,571 log 61008 6194720768 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:44:34,573 basehttp 61008 6194720768 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:45:20,304 autoreload 61008 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 15:45:20,307 autoreload 61317 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 15:45:20,785 autoreload 62070 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:45:20,785 autoreload 62071 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 15:45:34,574 log 62070 6202339328 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:45:34,575 basehttp 62070 6202339328 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:45:59,759 log 62070 6202339328 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:45:59,760 basehttp 62070 6202339328 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:46:03,603 basehttp 62070 6202339328 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 378028
+INFO 2025-10-06 15:46:10,121 basehttp 62070 6219165696 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-06 15:46:10,129 basehttp 62070 6202339328 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-06 15:46:11,307 basehttp 62070 6219165696 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 376018
+INFO 2025-10-06 15:46:11,325 basehttp 62070 6202339328 - Broken pipe from ('127.0.0.1', 54977)
+INFO 2025-10-06 15:46:14,453 basehttp 62070 6219165696 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-06 15:46:14,463 basehttp 62070 6202339328 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-06 15:46:15,648 basehttp 62070 6219165696 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 374038
+INFO 2025-10-06 15:46:15,659 basehttp 62070 6202339328 - Broken pipe from ('127.0.0.1', 54986)
+INFO 2025-10-06 15:46:17,228 basehttp 62070 6202339328 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-06 15:46:17,236 basehttp 62070 6219165696 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-06 15:46:18,364 basehttp 62070 6219165696 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 369444
+INFO 2025-10-06 15:46:21,981 basehttp 62070 6202339328 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-06 15:46:23,117 basehttp 62070 6202339328 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 367647
+INFO 2025-10-06 15:46:28,368 views 62070 6202339328 🚀 INICIANDO PRECIFICAÇÃO INTELIGENTE - Escala 2025-10-02
+INFO 2025-10-06 15:46:28,369 views 62070 6202339328 📋 Total de alocações a precificar: 50
+INFO 2025-10-06 15:46:28,457 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-06 15:46:28,541 views 62070 6202339328 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:28,611 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-06 15:46:28,680 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-06 15:46:28,745 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-06 15:46:28,809 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:28,873 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-06 15:46:28,936 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:29,006 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-06 15:46:29,081 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-06 15:46:29,152 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-06 15:46:29,223 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-06 15:46:29,303 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-06 15:46:29,383 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:29,462 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-06 15:46:29,541 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:29,620 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-06 15:46:29,700 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:29,781 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BARRA DA TIJUCA PAR... | PAX: 3 | Veículo: Executivo | Preço: R$ 240.00 | Fonte: padrão (PAX: 3)
+INFO 2025-10-06 15:46:29,861 views 62070 6202339328 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 240.00
+INFO 2025-10-06 15:46:29,941 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 7 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-06 15:46:30,021 views 62070 6202339328 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:30,084 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-06 15:46:30,148 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:30,227 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-06 15:46:30,307 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-06 15:46:30,371 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-06 15:46:30,434 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:30,501 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-06 15:46:30,569 views 62070 6202339328 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:30,664 models 62070 6202339328 Precificação - Serviço: TOUR REGULAR UM DIA NO RIO: PÃO DE AÇÚCAR, CORCOVA... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-06 15:46:30,759 views 62070 6202339328 🔄 Atualização - TOUR REGULAR UM DIA NO RIO: PÃ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-06 15:46:30,866 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT REGULAR BARRA DA TIJUCA OU RECREIO DO... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-06 15:46:30,973 views 62070 6202339328 🔄 Atualização - TRANSFER OUT REGULAR BARRA DA ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-06 15:46:31,044 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-06 15:46:31,115 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 40.00
+INFO 2025-10-06 15:46:31,185 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-06 15:46:31,253 views 62070 6202339328 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-06 15:46:31,349 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-06 15:46:31,467 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 81.00
+INFO 2025-10-06 15:46:31,548 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-06 15:46:31,628 views 62070 6202339328 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:31,696 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-06 15:46:31,763 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-06 15:46:31,830 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-06 15:46:31,898 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-06 15:46:31,978 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-06 15:46:32,058 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:32,140 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-06 15:46:32,221 views 62070 6202339328 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:32,301 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-06 15:46:32,381 views 62070 6202339328 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:32,461 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-06 15:46:32,542 views 62070 6202339328 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:32,615 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-06 15:46:32,688 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-06 15:46:32,756 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-06 15:46:32,823 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-06 15:46:32,934 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 2 | Veículo: Executivo | Preço: R$ 400.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-06 15:46:33,045 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 400.00
+INFO 2025-10-06 15:46:33,113 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-06 15:46:33,181 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-06 15:46:33,263 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-06 15:46:33,344 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:33,435 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-06 15:46:33,526 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-06 15:46:33,607 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-06 15:46:33,688 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-06 15:46:33,767 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-06 15:46:33,897 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:33,977 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-06 15:46:34,060 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:34,150 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-06 15:46:34,245 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-06 15:46:34,343 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.37)
+INFO 2025-10-06 15:46:34,427 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-06 15:46:34,511 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-06 15:46:34,594 views 62070 6202339328 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:34,659 models 62070 6202339328 Precificação - Serviço: TRANSFER IN PRIVATIVO AEROPORTO INTER. GALEÃO RJ (... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 390.00 | Fonte: padrão (PAX: 4)
+INFO 2025-10-06 15:46:34,725 views 62070 6202339328 🔄 Atualização - TRANSFER IN PRIVATIVO AEROPORT... | N/A → Van 15 lugares | R$ 0.00 → R$ 390.00
+INFO 2025-10-06 15:46:34,810 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-06 15:46:34,892 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-06 15:46:34,972 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-06 15:46:35,052 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:35,144 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-06 15:46:35,227 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-06 15:46:35,297 models 62070 6202339328 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-06 15:46:35,367 views 62070 6202339328 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-06 15:46:35,452 models 62070 6202339328 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.37)
+INFO 2025-10-06 15:46:35,536 views 62070 6202339328 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-06 15:46:35,618 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-06 15:46:35,701 views 62070 6202339328 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-06 15:46:35,796 models 62070 6202339328 Precificação - Serviço: TOUR REGULAR BOULEVARD OLÍMPICO PANORÂMICO COM VLT... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-06 15:46:35,888 views 62070 6202339328 🔄 Atualização - TOUR REGULAR BOULEVARD OLÍMPIC... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-06 15:46:36,000 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT REGULAR BÚZIOS (ARMAÇÃO, JOÃO FERNAND... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-06 15:46:36,112 views 62070 6202339328 🔄 Atualização - TRANSFER OUT REGULAR BÚZIOS (A... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-06 15:46:36,226 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT REGULAR BÚZIOS (ARMAÇÃO, JOÃO FERNAND... | PAX: 3 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-06 15:46:36,338 views 62070 6202339328 🔄 Atualização - TRANSFER OUT REGULAR BÚZIOS (A... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-06 15:46:36,418 models 62070 6202339328 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-06 15:46:36,499 views 62070 6202339328 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-06 15:46:36,500 views 62070 6202339328 🔄 Recalculando totais de 5 grupos...
+INFO 2025-10-06 15:46:36,511 views 62070 6202339328 📊 ESTATÍSTICAS DA PRECIFICAÇÃO:
+INFO 2025-10-06 15:46:36,511 views 62070 6202339328    • Tarifário JW: 0 serviços
+INFO 2025-10-06 15:46:36,511 views 62070 6202339328    • Tarifário Motoristas: 42 serviços
+INFO 2025-10-06 15:46:36,511 views 62070 6202339328    • Preços padrão: 8 serviços
+INFO 2025-10-06 15:46:36,511 views 62070 6202339328    • Valor total: R$ 4,965.00
+INFO 2025-10-06 15:46:36,511 views 62070 6202339328    • Valor médio por serviço: R$ 99.30
+INFO 2025-10-06 15:46:36,512 basehttp 62070 6202339328 "POST /escalas/precificar/02-10-2025/ HTTP/1.1" 200 361
+INFO 2025-10-06 15:46:38,710 basehttp 62070 6202339328 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 441386
+INFO 2025-10-06 15:47:05,234 basehttp 62070 6202339328 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 441386
+WARNING 2025-10-06 15:47:07,546 log 62070 6202339328 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:47:07,547 basehttp 62070 6202339328 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:47:12,218 log 62070 6202339328 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:47:12,219 basehttp 62070 6202339328 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 15:47:16,394 views 62070 6202339328 FORMATAÇÃO DE ESCALA - Usuário: lucy.leite | Data: 02/10/2025 | IP: 127.0.0.1 | Grupos removidos: 5 | Alocações desprecificadas: 50 | Dados mantidos: 50 alocações
+INFO 2025-10-06 15:47:16,395 basehttp 62070 6202339328 "POST /escalas/formatar-escala/ HTTP/1.1" 302 0
+INFO 2025-10-06 15:47:16,431 basehttp 62070 6202339328 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 381689
+INFO 2025-10-06 15:47:35,929 basehttp 62070 6202339328 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 48731
+INFO 2025-10-06 15:47:43,706 basehttp 62070 6202339328 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 48731
+WARNING 2025-10-06 15:48:43,741 log 62070 6202339328 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:48:43,743 basehttp 62070 6202339328 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:49:08,401 basehttp 62070 6202339328 "GET /core/arquivos/ HTTP/1.1" 200 39504
+INFO 2025-10-06 15:49:11,422 basehttp 62070 6202339328 "GET /core/arquivos/ HTTP/1.1" 200 39504
+INFO 2025-10-06 15:49:17,705 autoreload 62070 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-06 15:49:18,089 autoreload 62395 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:49:18,411 autoreload 62071 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-06 15:49:18,660 autoreload 62399 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:49:23,219 basehttp 62395 6129528832 "GET /core/arquivos/7/servicos/ HTTP/1.1" 200 87806
+INFO 2025-10-06 15:49:45,425 autoreload 62395 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 15:49:45,643 autoreload 62399 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 15:49:45,763 autoreload 62451 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:49:45,930 autoreload 62452 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:50:13,091 basehttp 62451 6199078912 "GET /core/servicos/ HTTP/1.1" 200 87005
+INFO 2025-10-06 15:50:16,742 basehttp 62451 6199078912 "GET /core/arquivos/ HTTP/1.1" 200 39504
+INFO 2025-10-06 15:50:18,581 basehttp 62451 6199078912 "GET /core/arquivos/7/servicos/ HTTP/1.1" 200 87806
+INFO 2025-10-06 15:50:25,563 basehttp 62451 6199078912 "GET /core/servicos/ HTTP/1.1" 200 87005
+INFO 2025-10-06 15:50:28,261 basehttp 62451 6199078912 "GET /core/arquivos/ HTTP/1.1" 200 39504
+INFO 2025-10-06 15:50:34,407 autoreload 62452 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 15:50:34,441 autoreload 62451 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 15:50:34,846 autoreload 62551 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:50:34,847 autoreload 62550 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:53:00,840 autoreload 62919 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:53:23,252 basehttp 62919 6168342528 "GET /escalas/ HTTP/1.1" 200 32624
+INFO 2025-10-06 15:53:23,276 basehttp 62919 6168342528 "GET /static/css/dashboard.css HTTP/1.1" 200 15603
+INFO 2025-10-06 15:53:23,276 basehttp 62919 6185168896 "GET /static/css/whatsapp-dark.css HTTP/1.1" 200 22967
+INFO 2025-10-06 15:53:23,277 basehttp 62919 6201995264 "GET /static/js/dashboard.js HTTP/1.1" 200 23337
+INFO 2025-10-06 15:53:25,049 basehttp 62919 6168342528 "GET /escalas/ano/2025/ HTTP/1.1" 200 44706
+INFO 2025-10-06 15:53:27,119 basehttp 62919 6168342528 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 48726
+INFO 2025-10-06 15:53:37,442 basehttp 62919 6168342528 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 15:53:37,463 basehttp 62919 6168342528 "GET /escalas/visualizar/2025-10-29/ HTTP/1.1" 200 133912
+INFO 2025-10-06 15:53:40,205 basehttp 62919 6168342528 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 52662
+INFO 2025-10-06 15:54:02,142 basehttp 62919 6168342528 "GET /escalas/puxar-dados/29-10-2025/ HTTP/1.1" 200 39004
+INFO 2025-10-06 15:54:11,991 basehttp 62919 6168342528 "GET /escalas/exportar/06-10-2025/ HTTP/1.1" 200 7568
+INFO 2025-10-06 15:54:33,802 basehttp 62919 6168342528 "POST /escalas/excluir/08-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 15:54:33,850 basehttp 62919 6168342528 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 48921
+INFO 2025-10-06 15:55:16,236 basehttp 62919 6168342528 "GET /escalas/ HTTP/1.1" 200 32624
+INFO 2025-10-06 15:55:18,868 basehttp 62919 6168342528 "GET /core/arquivos/ HTTP/1.1" 200 39504
+INFO 2025-10-06 15:55:20,181 basehttp 62919 6168342528 "GET /escalas/ HTTP/1.1" 200 32624
+INFO 2025-10-06 15:55:31,319 basehttp 62919 6168342528 "GET /escalas/ano/2025/ HTTP/1.1" 200 44706
+WARNING 2025-10-06 15:56:31,571 log 62919 6168342528 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:56:31,572 basehttp 62919 6168342528 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:56:59,232 basehttp 62919 6168342528 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 48334
+INFO 2025-10-06 15:57:01,338 basehttp 62919 6168342528 "GET /core/arquivos/ HTTP/1.1" 200 46486
+WARNING 2025-10-06 15:58:01,375 log 62919 6168342528 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:58:01,377 basehttp 62919 6168342528 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:58:05,040 basehttp 62919 6168342528 "GET /core/arquivos/ HTTP/1.1" 200 49474
+INFO 2025-10-06 15:58:12,780 basehttp 62919 6168342528 "GET /core/servicos/ HTTP/1.1" 200 87005
+INFO 2025-10-06 15:58:17,067 basehttp 62919 6168342528 "GET /core/arquivos/ HTTP/1.1" 200 49474
+INFO 2025-10-06 15:58:34,127 basehttp 62919 6168342528 "GET /core/arquivos/7/servicos/ HTTP/1.1" 200 87806
+INFO 2025-10-06 15:58:56,415 basehttp 62919 6168342528 "GET /core/arquivos/7/servicos/ HTTP/1.1" 200 87806
+WARNING 2025-10-06 15:59:17,107 log 62919 6168342528 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 15:59:17,108 basehttp 62919 6168342528 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 15:59:24,644 autoreload 62919 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 15:59:25,083 autoreload 63493 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 15:59:40,616 autoreload 63564 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 16:00:17,116 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:00:17,117 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 16:00:52,530 basehttp 63493 6197424128 "GET /core/arquivos/ HTTP/1.1" 200 55512
+INFO 2025-10-06 16:01:09,855 basehttp 63493 6197424128 "GET /core/arquivos/ HTTP/1.1" 200 55512
+WARNING 2025-10-06 16:02:10,563 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:02:10,565 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:03:10,555 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:03:10,556 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:04:10,572 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:04:10,574 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:05:10,568 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:05:10,570 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:06:10,571 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:06:10,574 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:07:10,605 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:07:10,607 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:08:10,608 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:08:10,611 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:09:11,593 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:09:11,595 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:10:12,609 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:10:12,611 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:11:13,598 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:11:13,600 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:12:14,598 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:12:14,600 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:13:15,626 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:13:15,628 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:14:15,634 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:14:15,637 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:15:15,613 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:15:15,614 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:16:15,599 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:16:15,601 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:17:10,763 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:17:10,768 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 16:17:12,179 basehttp 63493 6197424128 "GET /core/arquivos/ HTTP/1.1" 200 49736
+WARNING 2025-10-06 16:18:12,287 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:18:12,289 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:19:12,290 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:19:12,292 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:20:12,298 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:20:12,300 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:21:12,304 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:21:12,306 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:22:12,316 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:22:12,318 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:23:12,303 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:23:12,307 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:24:12,298 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:24:12,300 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:25:12,299 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:25:12,301 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:26:12,336 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:26:12,339 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:27:12,305 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:27:12,307 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:28:12,299 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:28:12,301 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 16:29:12,301 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:29:12,303 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 16:29:30,881 basehttp 63493 6197424128 "GET /escalas/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:29:30,952 basehttp 63493 6197424128 "GET /auth/login/?next=/escalas/ HTTP/1.1" 200 12318
+INFO 2025-10-06 16:29:31,371 basehttp 63493 6197424128 "GET /static/images/logointertouring.png HTTP/1.1" 200 148745
+INFO 2025-10-06 16:44:10,636 basehttp 63493 6197424128 "POST /auth/login/?next=/escalas/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:44:10,639 views 63493 6197424128 Gerando dashboard com consultas otimizadas
+INFO 2025-10-06 16:44:10,661 basehttp 63493 6197424128 "GET /core/ HTTP/1.1" 200 56918
+INFO 2025-10-06 16:44:10,727 basehttp 63493 6197424128 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-06 16:44:14,051 basehttp 63493 6197424128 "GET /escalas/ HTTP/1.1" 200 32569
+INFO 2025-10-06 16:44:17,881 basehttp 63493 6197424128 "GET /core/arquivos/ HTTP/1.1" 200 52931
+WARNING 2025-10-06 16:44:32,768 log 63493 6197424128 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-06 16:44:32,769 basehttp 63493 6197424128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 2790
+WARNING 2025-10-06 16:45:17,915 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:45:17,916 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 16:45:42,395 basehttp 63493 6197424128 "GET /escalas/ HTTP/1.1" 200 32569
+INFO 2025-10-06 16:45:44,575 basehttp 63493 6197424128 "GET /escalas/ano/2025/ HTTP/1.1" 200 44651
+INFO 2025-10-06 16:45:46,936 basehttp 63493 6197424128 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 48279
+INFO 2025-10-06 16:45:50,277 basehttp 63493 6197424128 "POST /escalas/excluir/02-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:45:50,296 basehttp 63493 6197424128 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 44161
+WARNING 2025-10-06 16:46:50,627 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:46:50,628 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 16:47:16,757 autoreload 67027 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 16:47:50,335 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:47:50,337 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 16:47:54,724 basehttp 63493 6197424128 "GET /core/arquivos/ HTTP/1.1" 200 50648
+WARNING 2025-10-06 16:48:06,605 log 63493 6197424128 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /core/arquivos/7/deletar/
+WARNING 2025-10-06 16:48:06,606 basehttp 63493 6197424128 "POST /core/arquivos/7/deletar/ HTTP/1.1" 403 2565
+WARNING 2025-10-06 16:48:08,906 log 63493 6197424128 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /core/arquivos/7/deletar/
+WARNING 2025-10-06 16:48:08,907 basehttp 63493 6197424128 "POST /core/arquivos/7/deletar/ HTTP/1.1" 403 2565
+WARNING 2025-10-06 16:48:12,388 log 63493 6197424128 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-06 16:48:12,388 basehttp 63493 6197424128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 2790
+WARNING 2025-10-06 16:48:14,360 log 63493 6197424128 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /core/arquivos/7/deletar/
+WARNING 2025-10-06 16:48:14,361 basehttp 63493 6197424128 "POST /core/arquivos/7/deletar/ HTTP/1.1" 403 2565
+WARNING 2025-10-06 16:48:55,625 log 63493 6197424128 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 16:48:55,630 basehttp 63493 6197424128 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 16:49:40,474 autoreload 67277 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 16:51:42,832 basehttp 67277 6204092416 "GET /core/arquivos/ HTTP/1.1" 200 51960
+INFO 2025-10-06 16:51:42,850 basehttp 67277 6204092416 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-06 16:51:48,938 views 67277 6204092416 Iniciando deleção do arquivo Cópia van fret (1).xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 16:51:48,991 views 67277 6204092416 Arquivo Cópia van fret (1).xlsx: 275 serviços deletáveis, 8 protegidos
+INFO 2025-10-06 16:51:49,230 views 67277 6204092416 Deletados 275 serviços do arquivo Cópia van fret (1).xlsx
+INFO 2025-10-06 16:51:49,231 views 67277 6204092416 Arquivo Cópia van fret (1).xlsx mantido com 8 serviços escalados
+INFO 2025-10-06 16:51:49,232 basehttp 67277 6204092416 "POST /core/arquivos/7/deletar/ HTTP/1.1" 200 432
+INFO 2025-10-06 16:51:50,261 basehttp 67277 6204092416 "GET /core/arquivos/ HTTP/1.1" 200 51960
+INFO 2025-10-06 16:51:54,478 views 67277 6204092416 Iniciando deleção do arquivo Cópia van fret (1).xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 16:51:54,485 views 67277 6204092416 Arquivo Cópia van fret (1).xlsx: 0 serviços deletáveis, 8 protegidos
+INFO 2025-10-06 16:51:54,487 views 67277 6204092416 Arquivo Cópia van fret (1).xlsx mantido com 8 serviços escalados
+INFO 2025-10-06 16:51:54,489 basehttp 67277 6204092416 "POST /core/arquivos/7/deletar/ HTTP/1.1" 200 350
+INFO 2025-10-06 16:51:55,524 basehttp 67277 6204092416 "GET /core/arquivos/ HTTP/1.1" 200 51960
+WARNING 2025-10-06 16:52:00,272 log 67277 6204092416 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-06 16:52:00,273 basehttp 67277 6204092416 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 2790
+INFO 2025-10-06 16:52:02,830 views 67277 6204092416 Iniciando deleção do arquivo Cópia van fret (1).xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 16:52:02,836 views 67277 6204092416 Arquivo Cópia van fret (1).xlsx: 0 serviços deletáveis, 8 protegidos
+INFO 2025-10-06 16:52:02,837 views 67277 6204092416 Arquivo Cópia van fret (1).xlsx mantido com 8 serviços escalados
+INFO 2025-10-06 16:52:02,839 basehttp 67277 6204092416 "POST /core/arquivos/7/deletar/ HTTP/1.1" 200 350
+INFO 2025-10-06 16:52:03,880 basehttp 67277 6204092416 "GET /core/arquivos/ HTTP/1.1" 200 51960
+WARNING 2025-10-06 16:52:03,906 log 67277 6204092416 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-06 16:52:03,907 basehttp 67277 6204092416 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 2790
+INFO 2025-10-06 16:52:29,978 basehttp 67277 6204092416 "GET /core/upload/ HTTP/1.1" 200 28668
+INFO 2025-10-06 16:52:43,403 processors 67277 6204092416 Planilha lida com 57 linhas e 9 colunas
+INFO 2025-10-06 16:52:43,415 processors 67277 6204092416 Linhas removidas durante a limpeza: 0
+INFO 2025-10-06 16:52:43,436 processors 67277 6204092416 Inseridos 57 serviços usando bulk_create
+INFO 2025-10-06 16:52:43,440 basehttp 67277 6204092416 "POST /core/upload/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:52:43,453 basehttp 67277 6204092416 "GET /core/arquivos/ HTTP/1.1" 200 56077
+INFO 2025-10-06 16:52:55,774 basehttp 67277 6204092416 "GET /core/arquivos/8/servicos/ HTTP/1.1" 200 86756
+INFO 2025-10-06 16:52:59,949 basehttp 67277 6204092416 "GET /core/servicos/ HTTP/1.1" 200 85970
+INFO 2025-10-06 16:53:03,396 basehttp 67277 6204092416 "GET /core/arquivos/ HTTP/1.1" 200 55483
+INFO 2025-10-06 16:53:13,693 basehttp 67277 6204092416 "GET /escalas/ HTTP/1.1" 200 32568
+INFO 2025-10-06 16:53:15,579 basehttp 67277 6204092416 "GET /escalas/ano/2025/ HTTP/1.1" 200 44650
+INFO 2025-10-06 16:53:17,870 basehttp 67277 6204092416 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 43547
+INFO 2025-10-06 16:53:23,690 basehttp 67277 6204092416 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:53:23,701 basehttp 67277 6204092416 "GET /escalas/visualizar/2025-10-06/ HTTP/1.1" 200 133813
+INFO 2025-10-06 16:53:25,560 basehttp 67277 6204092416 "GET /escalas/puxar-dados/06-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:53:25,578 basehttp 67277 6204092416 "GET /escalas/visualizar/06-10-2025/ HTTP/1.1" 200 133820
+INFO 2025-10-06 16:53:27,143 basehttp 67277 6204092416 "GET /escalas/puxar-dados/06-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:53:27,161 basehttp 67277 6204092416 "GET /escalas/visualizar/06-10-2025/ HTTP/1.1" 200 133820
+INFO 2025-10-06 16:53:32,178 basehttp 67277 6204092416 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 43547
+INFO 2025-10-06 16:53:36,283 basehttp 67277 6204092416 "POST /escalas/excluir/06-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:53:36,290 basehttp 67277 6204092416 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 40378
+INFO 2025-10-06 16:53:43,095 basehttp 67277 6204092416 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:53:43,111 basehttp 67277 6204092416 "GET /escalas/visualizar/2025-10-06/ HTTP/1.1" 200 133858
+INFO 2025-10-06 16:53:45,192 basehttp 67277 6204092416 "GET /escalas/puxar-dados/06-10-2025/ HTTP/1.1" 200 35055
+INFO 2025-10-06 16:53:48,680 basehttp 67277 6204092416 "POST /escalas/puxar-dados/06-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:53:48,705 basehttp 67277 6204092416 "GET /escalas/visualizar/06-10-2025/ HTTP/1.1" 200 184412
+INFO 2025-10-06 16:54:00,207 autoreload 67683 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 16:54:04,711 basehttp 67277 6204092416 "GET /escalas/puxar-dados/06-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:54:04,739 basehttp 67277 6204092416 "GET /escalas/visualizar/06-10-2025/ HTTP/1.1" 200 184355
+INFO 2025-10-06 16:54:08,801 basehttp 67277 6204092416 "GET /escalas/ HTTP/1.1" 200 32568
+INFO 2025-10-06 16:54:10,718 basehttp 67277 6204092416 "GET /escalas/ano/2025/ HTTP/1.1" 200 44650
+INFO 2025-10-06 16:54:15,403 autoreload 67762 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 16:54:19,105 basehttp 67762 6128218112 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 44495
+INFO 2025-10-06 16:54:26,096 basehttp 67762 6127644672 "POST /escalas/excluir/06-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:54:26,112 basehttp 67762 6127644672 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 40378
+INFO 2025-10-06 16:54:33,872 basehttp 67762 6127644672 "POST /escalas/excluir/29-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:54:33,879 basehttp 67762 6127644672 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 35846
+INFO 2025-10-06 16:55:41,520 autoreload 68017 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 16:55:46,487 basehttp 68017 6173519872 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:55:46,510 basehttp 68017 6173519872 "GET /escalas/visualizar/2025-10-06/ HTTP/1.1" 200 133858
+INFO 2025-10-06 16:55:49,253 basehttp 68017 6172946432 "GET /escalas/puxar-dados/06-10-2025/ HTTP/1.1" 200 35055
+INFO 2025-10-06 16:56:05,055 basehttp 68017 6172946432 "POST /escalas/puxar-dados/06-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 16:56:05,114 basehttp 68017 6172946432 "GET /escalas/visualizar/06-10-2025/ HTTP/1.1" 200 414430
+INFO 2025-10-06 16:56:07,996 views 68065 8529070080 Iniciando deleção do arquivo upar.xlsx pelo usuário 
+INFO 2025-10-06 16:56:08,006 views 68065 8529070080 Arquivo upar.xlsx: 0 serviços deletáveis, 57 protegidos
+INFO 2025-10-06 16:56:08,007 views 68065 8529070080 Arquivo upar.xlsx mantido com 57 serviços escalados
+INFO 2025-10-06 16:56:17,856 autoreload 68214 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 16:56:21,457 basehttp 68214 6138343424 "GET /escalas/ HTTP/1.1" 200 32569
+INFO 2025-10-06 16:56:25,716 basehttp 68214 6137769984 "GET /core/arquivos/ HTTP/1.1" 200 56514
+INFO 2025-10-06 16:56:51,077 views 68214 6137769984 Iniciando deleção do arquivo Cópia van fret (1).xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 16:56:51,096 views 68214 6137769984 Arquivo Cópia van fret (1).xlsx: 8 serviços deletáveis, 0 protegidos
+INFO 2025-10-06 16:56:51,110 views 68214 6137769984 Deletados 8 serviços do arquivo Cópia van fret (1).xlsx
+INFO 2025-10-06 16:56:51,111 views 68214 6137769984 Arquivo Cópia van fret (1).xlsx deletado completamente
+INFO 2025-10-06 16:56:51,113 basehttp 68214 6137769984 "POST /core/arquivos/7/deletar/ HTTP/1.1" 200 294
+INFO 2025-10-06 16:56:52,147 basehttp 68214 6137769984 "GET /core/arquivos/ HTTP/1.1" 200 52944
+INFO 2025-10-06 16:56:59,237 views 68214 6137769984 Iniciando deleção do arquivo Cópia van fret (1).xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 16:56:59,240 views 68214 6137769984 Usando fallback por data para arquivo Cópia van fret (1).xlsx: 57 serviços encontrados
+INFO 2025-10-06 16:56:59,263 views 68214 6137769984 Arquivo Cópia van fret (1).xlsx: 0 serviços deletáveis, 57 protegidos
+INFO 2025-10-06 16:56:59,265 views 68214 6137769984 Arquivo Cópia van fret (1).xlsx deletado completamente
+INFO 2025-10-06 16:56:59,266 basehttp 68214 6137769984 "POST /core/arquivos/6/deletar/ HTTP/1.1" 200 349
+INFO 2025-10-06 16:57:00,307 basehttp 68214 6137769984 "GET /core/arquivos/ HTTP/1.1" 200 49374
+INFO 2025-10-06 16:59:21,460 autoreload 68653 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 16:59:22,200 basehttp 68653 6199799808 "GET /escalas/ HTTP/1.1" 200 32569
+WARNING 2025-10-06 17:00:22,353 log 68653 6199226368 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:00:22,355 basehttp 68653 6199226368 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 17:01:22,332 log 68653 6199226368 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:01:22,335 basehttp 68653 6199226368 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 17:01:41,821 basehttp 68653 6199226368 "GET /core/upload/ HTTP/1.1" 200 28668
+INFO 2025-10-06 17:01:43,962 basehttp 68653 6199226368 "GET /core/arquivos/ HTTP/1.1" 200 52127
+INFO 2025-10-06 17:01:51,335 views 68653 6199226368 Iniciando deleção do arquivo Servicos_03-10-2025-124248.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:01:51,340 views 68653 6199226368 Usando fallback por data para arquivo Servicos_03-10-2025-124248.xlsx: 0 serviços encontrados
+INFO 2025-10-06 17:01:51,343 views 68653 6199226368 Arquivo Servicos_03-10-2025-124248.xlsx: 0 serviços deletáveis, 0 protegidos
+INFO 2025-10-06 17:01:51,345 views 68653 6199226368 Arquivo Servicos_03-10-2025-124248.xlsx deletado completamente
+INFO 2025-10-06 17:01:51,347 basehttp 68653 6199226368 "POST /core/arquivos/5/deletar/ HTTP/1.1" 200 218
+INFO 2025-10-06 17:01:52,883 basehttp 68653 6199226368 "GET /core/arquivos/ HTTP/1.1" 200 48518
+INFO 2025-10-06 17:02:00,035 views 68653 6199226368 Iniciando deleção do arquivo upar.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:02:00,060 views 68653 6199226368 Arquivo upar.xlsx: 0 serviços deletáveis, 57 protegidos
+INFO 2025-10-06 17:02:00,062 views 68653 6199226368 Arquivo upar.xlsx mantido com 57 serviços escalados
+INFO 2025-10-06 17:02:00,063 basehttp 68653 6199226368 "POST /core/arquivos/8/deletar/ HTTP/1.1" 200 353
+INFO 2025-10-06 17:02:01,607 basehttp 68653 6199226368 "GET /core/arquivos/ HTTP/1.1" 200 48518
+INFO 2025-10-06 17:02:04,165 basehttp 68653 6199226368 "GET /core/arquivos/ HTTP/1.1" 200 48518
+INFO 2025-10-06 17:02:06,582 views 68653 6199226368 Iniciando deleção do arquivo upar.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:02:06,610 views 68653 6199226368 Arquivo upar.xlsx: 0 serviços deletáveis, 57 protegidos
+INFO 2025-10-06 17:02:06,611 views 68653 6199226368 Arquivo upar.xlsx mantido com 57 serviços escalados
+INFO 2025-10-06 17:02:06,612 basehttp 68653 6199226368 "POST /core/arquivos/8/deletar/ HTTP/1.1" 200 353
+INFO 2025-10-06 17:02:08,143 basehttp 68653 6199226368 "GET /core/arquivos/ HTTP/1.1" 200 48518
+INFO 2025-10-06 17:02:12,514 basehttp 68653 6199226368 "GET /escalas/ HTTP/1.1" 200 32569
+INFO 2025-10-06 17:02:15,210 basehttp 68653 6199226368 "GET /core/arquivos/ HTTP/1.1" 200 48518
+WARNING 2025-10-06 17:03:15,698 log 68653 6199226368 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:03:15,698 basehttp 68653 6199226368 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 17:04:14,861 autoreload 69094 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 17:05:15,244 log 69094 6209089536 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:05:15,245 basehttp 69094 6209089536 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 17:05:51,892 basehttp 69094 6209089536 "GET /core/arquivos/ HTTP/1.1" 200 49812
+INFO 2025-10-06 17:06:04,839 views 69094 6209089536 Iniciando deleção do arquivo upar.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:06:04,866 views 69094 6209089536 Arquivo upar.xlsx: 0 serviços deletáveis, 57 protegidos
+INFO 2025-10-06 17:06:04,867 views 69094 6209089536 Arquivo upar.xlsx mantido com 57 serviços escalados
+INFO 2025-10-06 17:06:04,868 basehttp 69094 6209089536 "POST /core/arquivos/8/deletar/ HTTP/1.1" 200 353
+INFO 2025-10-06 17:06:05,719 basehttp 69094 6209089536 "GET /core/arquivos/ HTTP/1.1" 200 49812
+INFO 2025-10-06 17:06:36,689 basehttp 69094 6209089536 "GET /core/arquivos/ HTTP/1.1" 200 49812
+INFO 2025-10-06 17:06:37,992 basehttp 69094 6209089536 "GET /core/upload/ HTTP/1.1" 200 28668
+INFO 2025-10-06 17:08:16,626 autoreload 69518 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 17:09:09,332 autoreload 69746 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 17:09:49,831 processors 69746 6129709056 Planilha lida com 57 linhas e 9 colunas
+INFO 2025-10-06 17:09:49,838 processors 69746 6129709056 Linhas removidas durante a limpeza: 0
+INFO 2025-10-06 17:09:49,856 processors 69746 6129709056 Inseridos 57 serviços usando bulk_create
+INFO 2025-10-06 17:09:49,864 basehttp 69746 6129709056 "POST /core/upload/ HTTP/1.1" 302 0
+INFO 2025-10-06 17:09:49,962 basehttp 69746 6129709056 "GET /core/arquivos/ HTTP/1.1" 200 59975
+INFO 2025-10-06 17:09:55,677 basehttp 69746 6129709056 "GET /core/arquivos/10/servicos/ HTTP/1.1" 200 87188
+INFO 2025-10-06 17:10:07,055 views 69746 6129709056 Iniciando deleção do arquivo upar.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:10:07,093 views 69746 6129709056 Arquivo upar.xlsx: 57 serviços deletáveis, 57 protegidos
+INFO 2025-10-06 17:10:07,161 views 69746 6129709056 Deletados 57 serviços do arquivo upar.xlsx
+INFO 2025-10-06 17:10:07,162 views 69746 6129709056 Arquivo upar.xlsx mantido com 57 serviços escalados
+INFO 2025-10-06 17:10:07,163 basehttp 69746 6129709056 "POST /core/arquivos/10/deletar/ HTTP/1.1" 200 433
+INFO 2025-10-06 17:10:08,059 basehttp 69746 6129709056 "GET /core/arquivos/ HTTP/1.1" 200 59378
+INFO 2025-10-06 17:10:12,020 views 69746 6129709056 Iniciando deleção do arquivo upar.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:10:12,050 views 69746 6129709056 Arquivo upar.xlsx: 0 serviços deletáveis, 57 protegidos
+INFO 2025-10-06 17:10:12,052 views 69746 6129709056 Arquivo upar.xlsx mantido com 57 serviços escalados
+INFO 2025-10-06 17:10:12,053 basehttp 69746 6129709056 "POST /core/arquivos/8/deletar/ HTTP/1.1" 200 353
+INFO 2025-10-06 17:10:12,949 basehttp 69746 6129709056 "GET /core/arquivos/ HTTP/1.1" 200 59378
+INFO 2025-10-06 17:10:18,972 views 69746 6129709056 Iniciando deleção do arquivo upar.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:10:18,998 views 69746 6129709056 Arquivo upar.xlsx: 0 serviços deletáveis, 57 protegidos
+INFO 2025-10-06 17:10:18,999 views 69746 6129709056 Arquivo upar.xlsx mantido com 57 serviços escalados
+INFO 2025-10-06 17:10:19,001 basehttp 69746 6129709056 "POST /core/arquivos/10/deletar/ HTTP/1.1" 200 353
+INFO 2025-10-06 17:10:19,882 basehttp 69746 6129709056 "GET /core/arquivos/ HTTP/1.1" 200 59378
+INFO 2025-10-06 17:10:23,555 basehttp 69746 6129709056 "GET /escalas/ HTTP/1.1" 200 32569
+INFO 2025-10-06 17:10:25,295 basehttp 69746 6129709056 "GET /escalas/ano/2025/ HTTP/1.1" 200 44651
+INFO 2025-10-06 17:10:27,520 basehttp 69746 6129709056 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 40562
+INFO 2025-10-06 17:10:32,248 basehttp 69746 6129709056 "GET /escalas/visualizar/06-10-2025/ HTTP/1.1" 200 413801
+INFO 2025-10-06 17:10:40,913 basehttp 69746 6129709056 "POST /escalas/excluir/06-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 17:10:40,923 basehttp 69746 6129709056 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 35873
+INFO 2025-10-06 17:10:44,829 basehttp 69746 6129709056 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 35259
+INFO 2025-10-06 17:10:46,656 basehttp 69746 6129709056 "GET /escalas/ HTTP/1.1" 200 31418
+INFO 2025-10-06 17:10:47,842 basehttp 69746 6129709056 "GET /core/arquivos/ HTTP/1.1" 200 59375
+INFO 2025-10-06 17:10:50,803 views 69746 6129709056 Iniciando deleção do arquivo upar.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:10:50,829 views 69746 6129709056 Arquivo upar.xlsx: 57 serviços deletáveis, 0 protegidos
+INFO 2025-10-06 17:10:50,890 views 69746 6129709056 Deletados 57 serviços do arquivo upar.xlsx
+INFO 2025-10-06 17:10:50,891 views 69746 6129709056 Arquivo upar.xlsx deletado completamente
+INFO 2025-10-06 17:10:50,891 basehttp 69746 6129709056 "POST /core/arquivos/10/deletar/ HTTP/1.1" 200 276
+INFO 2025-10-06 17:10:51,730 basehttp 69746 6129709056 "GET /core/arquivos/ HTTP/1.1" 200 55841
+INFO 2025-10-06 17:10:54,791 views 69746 6129709056 Iniciando deleção do arquivo teste_delecao.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:10:54,794 views 69746 6129709056 Usando fallback por data para arquivo teste_delecao.xlsx: 0 serviços encontrados
+INFO 2025-10-06 17:10:54,795 views 69746 6129709056 Arquivo teste_delecao.xlsx: 0 serviços deletáveis, 0 protegidos
+INFO 2025-10-06 17:10:54,798 views 69746 6129709056 Arquivo teste_delecao.xlsx deletado completamente
+INFO 2025-10-06 17:10:54,799 basehttp 69746 6129709056 "POST /core/arquivos/9/deletar/ HTTP/1.1" 200 205
+INFO 2025-10-06 17:10:55,635 basehttp 69746 6129709056 "GET /core/arquivos/ HTTP/1.1" 200 52294
+INFO 2025-10-06 17:10:58,736 views 69746 6129709056 Iniciando deleção do arquivo upar.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:10:58,739 views 69746 6129709056 Usando fallback por data para arquivo upar.xlsx: 0 serviços encontrados
+INFO 2025-10-06 17:10:58,740 views 69746 6129709056 Arquivo upar.xlsx: 0 serviços deletáveis, 0 protegidos
+INFO 2025-10-06 17:10:58,742 views 69746 6129709056 Arquivo upar.xlsx deletado completamente
+INFO 2025-10-06 17:10:58,743 basehttp 69746 6129709056 "POST /core/arquivos/8/deletar/ HTTP/1.1" 200 196
+INFO 2025-10-06 17:10:59,572 basehttp 69746 6129709056 "GET /core/arquivos/ HTTP/1.1" 200 49203
+WARNING 2025-10-06 17:11:59,801 log 69746 6129709056 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:11:59,811 basehttp 69746 6129709056 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 17:15:58,761 autoreload 70483 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 17:15:59,804 log 70483 6139883520 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:15:59,918 basehttp 70483 6139883520 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 17:16:53,862 basehttp 70483 6139310080 "GET /core/arquivos/ HTTP/1.1" 200 50473
+INFO 2025-10-06 17:17:00,629 views 70483 6139310080 Gerando dashboard com consultas otimizadas
+INFO 2025-10-06 17:17:00,649 basehttp 70483 6139310080 "GET /core/ HTTP/1.1" 200 49697
+INFO 2025-10-06 17:17:02,360 basehttp 70483 6139310080 "GET /core/arquivos/ HTTP/1.1" 200 50473
+INFO 2025-10-06 17:17:59,199 basehttp 70483 6139310080 "GET /escalas/ HTTP/1.1" 200 31418
+INFO 2025-10-06 17:18:03,475 basehttp 70483 6139310080 "GET /core/arquivos/ HTTP/1.1" 200 50473
+WARNING 2025-10-06 17:19:03,573 log 70483 6139310080 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:19:03,574 basehttp 70483 6139310080 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 17:19:23,698 basehttp 70483 6139310080 "GET /core/arquivos/ HTTP/1.1" 200 50798
+INFO 2025-10-06 17:19:29,831 basehttp 70483 6139310080 "GET /core/arquivos/ HTTP/1.1" 200 50798
+INFO 2025-10-06 17:19:32,020 views 70483 6139310080 Dashboard carregado do cache
+INFO 2025-10-06 17:19:32,033 basehttp 70483 6139310080 "GET /core/ HTTP/1.1" 200 49697
+INFO 2025-10-06 17:19:35,556 basehttp 70483 6139310080 "GET /core/arquivos/ HTTP/1.1" 200 50798
+INFO 2025-10-06 17:19:37,974 basehttp 70483 6139310080 "GET /core/servicos/ HTTP/1.1" 200 29763
+INFO 2025-10-06 17:19:45,280 basehttp 70483 6139310080 "GET /core/arquivos/ HTTP/1.1" 200 50798
+WARNING 2025-10-06 17:20:45,325 log 70483 6139310080 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:20:45,326 basehttp 70483 6139310080 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 17:21:45,611 log 70483 6139310080 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:21:45,612 basehttp 70483 6139310080 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 17:22:45,322 log 70483 6139310080 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:22:45,323 basehttp 70483 6139310080 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 17:23:34,967 autoreload 70483 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 17:23:35,385 autoreload 71454 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 17:23:45,323 log 71454 6127579136 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:23:45,324 basehttp 71454 6127579136 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 17:25:18,340 autoreload 71853 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 17:25:43,153 views 71853 6137098240 Lista Arquivos - Total arquivos: 3, Total serviços: 75
+INFO 2025-10-06 17:25:43,171 basehttp 71853 6137098240 "GET /core/arquivos/ HTTP/1.1" 200 61200
+INFO 2025-10-06 17:25:51,659 autoreload 71853 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/processors.py changed, reloading.
+INFO 2025-10-06 17:25:51,997 autoreload 71906 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 17:26:26,619 views 71906 6135132160 Lista Arquivos - Total arquivos: 3, Total serviços: 75
+INFO 2025-10-06 17:26:27,136 basehttp 71906 6135132160 "GET /core/arquivos/ HTTP/1.1" 200 61200
+WARNING 2025-10-06 17:27:27,318 log 71906 6135132160 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:27:27,319 basehttp 71906 6135132160 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 17:28:27,320 log 71906 6135132160 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:28:27,321 basehttp 71906 6135132160 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 17:29:12,425 views 71906 6135132160 Lista Arquivos - Total arquivos: 3, Total serviços: 75
+INFO 2025-10-06 17:29:12,438 basehttp 71906 6135132160 "GET /core/arquivos/ HTTP/1.1" 200 61247
+INFO 2025-10-06 17:29:32,179 views 71906 6135132160 Lista Arquivos - Total arquivos: 3, Total serviços: 75
+INFO 2025-10-06 17:29:32,190 basehttp 71906 6135132160 "GET /core/arquivos/ HTTP/1.1" 200 61247
+WARNING 2025-10-06 17:30:32,247 log 71906 6135132160 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:30:32,248 basehttp 71906 6135132160 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 17:30:33,623 views 71906 6135132160 Lista Arquivos - Total arquivos: 3, Total serviços: 75
+INFO 2025-10-06 17:30:33,632 basehttp 71906 6135132160 "GET /core/arquivos/ HTTP/1.1" 200 61200
+INFO 2025-10-06 17:30:40,726 autoreload 71906 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 17:30:41,181 autoreload 72366 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 17:30:47,396 views 72366 6199160832 Iniciando deleção do arquivo exemplo_marco.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:30:47,397 views 72366 6199160832 Usando fallback por data para arquivo exemplo_marco.xlsx: 0 serviços encontrados
+INFO 2025-10-06 17:30:47,399 views 72366 6199160832 Arquivo exemplo_marco.xlsx: 0 serviços deletáveis, 0 protegidos
+INFO 2025-10-06 17:30:47,400 views 72366 6199160832 Arquivo exemplo_marco.xlsx deletado completamente
+INFO 2025-10-06 17:30:47,400 basehttp 72366 6199160832 "POST /core/arquivos/13/deletar/ HTTP/1.1" 200 205
+INFO 2025-10-06 17:30:48,243 views 72366 6199160832 Lista Arquivos - Total arquivos: 2, Total serviços: 43
+INFO 2025-10-06 17:30:48,261 basehttp 72366 6199160832 "GET /core/arquivos/ HTTP/1.1" 200 57607
+INFO 2025-10-06 17:30:51,672 views 72366 6199160832 Iniciando deleção do arquivo exemplo_fevereiro.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:30:51,673 views 72366 6199160832 Usando fallback por data para arquivo exemplo_fevereiro.xlsx: 0 serviços encontrados
+INFO 2025-10-06 17:30:51,673 views 72366 6199160832 Arquivo exemplo_fevereiro.xlsx: 0 serviços deletáveis, 0 protegidos
+INFO 2025-10-06 17:30:51,674 views 72366 6199160832 Arquivo exemplo_fevereiro.xlsx deletado completamente
+INFO 2025-10-06 17:30:51,675 basehttp 72366 6199160832 "POST /core/arquivos/12/deletar/ HTTP/1.1" 200 209
+INFO 2025-10-06 17:30:52,524 views 72366 6199160832 Lista Arquivos - Total arquivos: 1, Total serviços: 25
+INFO 2025-10-06 17:30:52,529 basehttp 72366 6199160832 "GET /core/arquivos/ HTTP/1.1" 200 53988
+INFO 2025-10-06 17:30:56,707 views 72366 6199160832 Iniciando deleção do arquivo exemplo_janeiro.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:30:56,711 views 72366 6199160832 Usando fallback por data para arquivo exemplo_janeiro.xlsx: 0 serviços encontrados
+INFO 2025-10-06 17:30:56,712 views 72366 6199160832 Arquivo exemplo_janeiro.xlsx: 0 serviços deletáveis, 0 protegidos
+INFO 2025-10-06 17:30:56,715 views 72366 6199160832 Arquivo exemplo_janeiro.xlsx deletado completamente
+INFO 2025-10-06 17:30:56,717 basehttp 72366 6199160832 "POST /core/arquivos/11/deletar/ HTTP/1.1" 200 207
+INFO 2025-10-06 17:30:57,557 views 72366 6199160832 Lista Arquivos - Total arquivos: 0, Total serviços: 0
+INFO 2025-10-06 17:30:57,563 basehttp 72366 6199160832 "GET /core/arquivos/ HTTP/1.1" 200 50814
+INFO 2025-10-06 17:30:59,361 views 72366 6199160832 Lista Arquivos - Total arquivos: 0, Total serviços: 0
+INFO 2025-10-06 17:30:59,366 basehttp 72366 6199160832 "GET /core/arquivos/ HTTP/1.1" 200 50814
+INFO 2025-10-06 17:31:15,453 basehttp 72366 6199160832 "GET /core/upload/ HTTP/1.1" 200 28668
+INFO 2025-10-06 17:31:24,150 processors 72366 6199160832 Planilha lida com 57 linhas e 9 colunas
+INFO 2025-10-06 17:31:24,158 processors 72366 6199160832 Linhas removidas durante a limpeza: 0
+INFO 2025-10-06 17:31:24,173 processors 72366 6199160832 Inseridos 57 serviços usando bulk_create
+INFO 2025-10-06 17:31:24,175 basehttp 72366 6199160832 "POST /core/upload/ HTTP/1.1" 302 0
+INFO 2025-10-06 17:31:24,195 views 72366 6199160832 Lista Arquivos - Total arquivos: 1, Total serviços: 57
+INFO 2025-10-06 17:31:24,197 basehttp 72366 6199160832 "GET /core/arquivos/ HTTP/1.1" 200 54536
+INFO 2025-10-06 17:31:27,395 basehttp 72366 6199160832 "GET /core/arquivos/14/servicos/ HTTP/1.1" 200 86756
+INFO 2025-10-06 17:32:06,064 autoreload 72589 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 17:32:09,668 basehttp 72589 6132838400 "GET /core/arquivos/14/servicos/?page=2 HTTP/1.1" 200 39720
+INFO 2025-10-06 17:32:13,597 basehttp 72589 6132264960 "GET /core/servicos/ HTTP/1.1" 200 85970
+INFO 2025-10-06 17:32:17,120 views 72589 6132264960 Lista Arquivos - Total arquivos: 2, Total serviços: 67
+INFO 2025-10-06 17:32:17,125 basehttp 72589 6132264960 "GET /core/arquivos/ HTTP/1.1" 200 57594
+INFO 2025-10-06 17:32:21,042 views 72589 6132264960 Lista Arquivos - Total arquivos: 2, Total serviços: 67
+INFO 2025-10-06 17:32:21,045 basehttp 72589 6132264960 "GET /core/arquivos/ HTTP/1.1" 200 57594
+INFO 2025-10-06 17:32:30,837 views 72589 6132264960 Iniciando deleção do arquivo teste_horario.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-06 17:32:30,842 views 72589 6132264960 Usando fallback por data para arquivo teste_horario.xlsx: 57 serviços encontrados
+INFO 2025-10-06 17:32:30,864 views 72589 6132264960 Arquivo teste_horario.xlsx: 57 serviços deletáveis, 0 protegidos
+INFO 2025-10-06 17:32:30,931 views 72589 6132264960 Deletados 57 serviços do arquivo teste_horario.xlsx
+INFO 2025-10-06 17:32:30,932 views 72589 6132264960 Arquivo teste_horario.xlsx deletado completamente
+INFO 2025-10-06 17:32:30,933 basehttp 72589 6132264960 "POST /core/arquivos/15/deletar/ HTTP/1.1" 200 285
+INFO 2025-10-06 17:32:31,770 views 72589 6132264960 Lista Arquivos - Total arquivos: 1, Total serviços: 57
+INFO 2025-10-06 17:32:31,778 basehttp 72589 6132264960 "GET /core/arquivos/ HTTP/1.1" 200 54002
+INFO 2025-10-06 17:33:20,383 autoreload 72832 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 17:33:22,826 views 72832 6135820288 Lista Arquivos - Total arquivos: 1, Total serviços: 57
+INFO 2025-10-06 17:33:22,827 views 72832 6135820288 Hora formatada: 06/10/2025 às 20:33
+INFO 2025-10-06 17:33:22,848 basehttp 72832 6135820288 "GET /core/arquivos/ HTTP/1.1" 200 53941
+INFO 2025-10-06 17:34:08,874 autoreload 72832 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-06 17:34:09,471 autoreload 72896 8529070080 Watching for file changes with StatReloader

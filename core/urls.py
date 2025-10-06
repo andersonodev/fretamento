@@ -9,7 +9,13 @@ urlpatterns = [
     # Views principais
     path('', views.HomeView.as_view(), name='home'),
     path('upload/', views.UploadPlanilhaView.as_view(), name='upload_planilha'),
+    
+    # Arquivos e serviços
+    path('arquivos/', views.ListaArquivosView.as_view(), name='lista_arquivos'),
+    path('arquivos/<int:arquivo_id>/servicos/', views.ServicosArquivoView.as_view(), name='servicos_arquivo'),
+    path('arquivos/<int:arquivo_id>/deletar/', views.DeletarArquivoView.as_view(), name='deletar_arquivo'),
     path('servicos/', views.ListaServicosView.as_view(), name='lista_servicos'),
+    
     path('diagnostico/', views.DiagnosticoView.as_view(), name='diagnostico'),
     path('processamento/<int:processamento_id>/status/', 
          views.StatusProcessamentoView.as_view(), name='status_processamento'),

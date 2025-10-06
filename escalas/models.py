@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 from core.models import GrupoServico, Servico
 
 
@@ -53,21 +54,19 @@ class Escala(models.Model):
     @property
     def total_van1_valor(self):
         """Retorna o valor total da Van 1"""
-        from core.tarifarios import calcular_preco_servico
         total = 0
         for alocacao in self.alocacoes.filter(van='VAN1'):
-            _, preco = calcular_preco_servico(alocacao.servico)
-            total += preco
+            if alocacao.preco_calculado:
+                total += alocacao.preco_calculado
         return total
     
     @property
     def total_van2_valor(self):
         """Retorna o valor total da Van 2"""
-        from core.tarifarios import calcular_preco_servico
         total = 0
         for alocacao in self.alocacoes.filter(van='VAN2'):
-            _, preco = calcular_preco_servico(alocacao.servico)
-            total += preco
+            if alocacao.preco_calculado:
+                total += alocacao.preco_calculado
         return total
     
     @property
@@ -405,3 +404,35 @@ class AlocacaoVan(models.Model):
             
             self.save()
             return veiculo_padrao, preco_padrao
+
+
+class LogEscala(models.Model):
+    """Model para registrar logs de ações importantes nas escalas"""
+    
+    ACAO_CHOICES = [
+        ('CRIAR', 'Escala Criada'),
+        ('PUXAR_DADOS', 'Dados Puxados'),
+        ('OTIMIZAR', 'Escala Otimizada'),
+        ('FORMATAR', 'Escala Formatada'),
+        ('APROVAR', 'Escala Aprovada'),
+        ('REJEITAR', 'Escala Rejeitada'),
+        ('EXPORTAR', 'Escala Exportada'),
+        ('EXCLUIR', 'Escala Excluída'),
+    ]
+    
+    escala = models.ForeignKey(Escala, on_delete=models.CASCADE, related_name='logs')
+    acao = models.CharField(max_length=20, choices=ACAO_CHOICES)
+    usuario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    descricao = models.TextField(blank=True, help_text="Detalhes da ação realizada")
+    dados_antes = models.JSONField(null=True, blank=True, help_text="Estado antes da ação")
+    dados_depois = models.JSONField(null=True, blank=True, help_text="Estado depois da ação")
+    timestamp = models.DateTimeField(default=timezone.now)
+    
+    class Meta:
+        ordering = ['-timestamp']
+        verbose_name = 'Log de Escala'
+        verbose_name_plural = 'Logs de Escalas'
+    
+    def __str__(self):
+        return f"{self.get_acao_display()} - {self.escala.data.strftime('%d/%m/%Y')} por {self.usuario.username if self.usuario else 'Sistema'}"
