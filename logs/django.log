@@ -3799,3 +3799,165 @@ INFO 2025-10-06 08:21:20,036 basehttp 15031 6171291648 "GET /escalas/visualizar/
 INFO 2025-10-06 08:21:22,332 basehttp 15031 6171291648 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 1098
 INFO 2025-10-06 08:21:35,825 autoreload 15031 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/templatetags/custom_filters.py changed, reloading.
 INFO 2025-10-06 08:21:36,239 autoreload 15187 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 08:22:20,093 log 15187 6203191296 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:22:20,094 basehttp 15187 6203191296 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 08:22:26,313 basehttp 15187 6203191296 "GET /escalas/exportar/02-10-2025/ HTTP/1.1" 200 9497
+WARNING 2025-10-06 08:23:20,976 log 15187 6203191296 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:23:20,978 basehttp 15187 6203191296 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:24:20,963 log 15187 6203191296 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:24:20,965 basehttp 15187 6203191296 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:25:20,973 log 15187 6203191296 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:25:20,975 basehttp 15187 6203191296 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:26:20,967 log 15187 6203191296 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:26:20,969 basehttp 15187 6203191296 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 08:26:31,738 autoreload 15187 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:26:32,596 autoreload 15604 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 08:26:45,736 autoreload 15604 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:26:46,362 autoreload 15626 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 08:26:55,213 autoreload 15626 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:26:55,606 autoreload 15647 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 08:27:08,391 autoreload 15647 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:27:09,061 autoreload 15675 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 08:27:17,088 autoreload 15675 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:27:17,442 autoreload 15689 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 08:27:20,973 log 15689 6162706432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:27:20,974 basehttp 15689 6162706432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 08:27:29,423 autoreload 15689 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:27:30,023 autoreload 15705 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 08:27:50,141 autoreload 15705 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:27:50,472 autoreload 15738 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 08:28:20,996 log 15738 6206926848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:28:20,997 basehttp 15738 6206926848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:29:21,961 log 15738 6206926848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:29:21,963 basehttp 15738 6206926848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:30:22,954 log 15738 6206926848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:30:22,956 basehttp 15738 6206926848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:31:23,960 log 15738 6206926848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:31:23,962 basehttp 15738 6206926848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:32:24,959 log 15738 6206926848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:32:24,960 basehttp 15738 6206926848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:33:25,995 log 15738 6206926848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:33:25,996 basehttp 15738 6206926848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:34:26,935 log 15738 6206926848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:34:26,936 basehttp 15738 6206926848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:35:27,949 log 15738 6206926848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:35:27,951 basehttp 15738 6206926848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:36:28,948 log 15738 6206926848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:36:28,950 basehttp 15738 6206926848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:37:29,953 log 15738 6206926848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:37:29,954 basehttp 15738 6206926848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 08:38:00,268 autoreload 15738 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:38:00,994 autoreload 16284 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 08:38:30,955 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:38:30,956 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:39:31,955 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:39:31,956 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:40:32,948 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:40:32,949 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 08:40:36,907 basehttp 16284 6129479680 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 384221
+INFO 2025-10-06 08:40:39,692 basehttp 16284 6129479680 "GET /escalas/exportar/02-10-2025/ HTTP/1.1" 200 10060
+WARNING 2025-10-06 08:41:37,944 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:41:37,945 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:42:37,934 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:42:37,935 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:43:37,933 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:43:37,935 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:44:37,925 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:44:37,928 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:45:37,920 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:45:37,921 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:46:37,941 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:46:37,951 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:47:37,921 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:47:37,923 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:48:38,933 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:48:38,935 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:49:39,929 log 16284 6129479680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:49:39,931 basehttp 16284 6129479680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 08:49:59,439 autoreload 16284 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:50:00,117 autoreload 16958 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 08:50:40,930 log 16958 6139375616 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:50:40,931 basehttp 16958 6139375616 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:51:41,947 log 16958 6139375616 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:51:41,949 basehttp 16958 6139375616 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:52:42,918 log 16958 6139375616 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:52:42,921 basehttp 16958 6139375616 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:53:43,903 log 16958 6139375616 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:53:43,906 basehttp 16958 6139375616 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:54:37,903 log 16958 6139375616 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:54:37,904 basehttp 16958 6139375616 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 08:55:05,298 basehttp 16958 6139375616 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 384221
+INFO 2025-10-06 08:55:08,408 basehttp 16958 6139375616 "GET /escalas/exportar/02-10-2025/ HTTP/1.1" 200 9939
+WARNING 2025-10-06 08:56:05,913 log 16958 6139375616 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:56:05,914 basehttp 16958 6139375616 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:57:05,903 log 16958 6139375616 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:57:05,904 basehttp 16958 6139375616 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 08:58:05,905 log 16958 6139375616 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:58:06,111 basehttp 16958 6139375616 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 08:58:06,449 autoreload 16958 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:58:06,905 autoreload 17597 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 08:58:49,413 autoreload 17597 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:58:49,782 autoreload 17663 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 08:59:05,915 log 17663 6167490560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 08:59:05,916 basehttp 17663 6167490560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 08:59:44,453 autoreload 17663 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:59:44,787 autoreload 17756 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 08:59:58,653 autoreload 17756 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 08:59:58,971 autoreload 17773 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 09:00:05,900 log 17773 6141505536 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:00:05,901 basehttp 17773 6141505536 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:01:05,893 log 17773 6141505536 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:01:05,894 basehttp 17773 6141505536 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:02:05,895 log 17773 6141505536 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:02:05,896 basehttp 17773 6141505536 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 09:02:22,848 basehttp 17773 6141505536 "GET /escalas/exportar/02-10-2025/ HTTP/1.1" 200 9942
+INFO 2025-10-06 09:02:26,551 basehttp 17773 6141505536 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 384221
+INFO 2025-10-06 09:02:27,842 basehttp 17773 6141505536 "GET /escalas/exportar/02-10-2025/ HTTP/1.1" 200 9942
+INFO 2025-10-06 09:03:03,375 basehttp 17773 6141505536 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 384221
+INFO 2025-10-06 09:03:04,734 basehttp 17773 6141505536 "GET /escalas/exportar/02-10-2025/ HTTP/1.1" 200 9942
+WARNING 2025-10-06 09:04:03,480 log 17773 6141505536 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:04:03,481 basehttp 17773 6141505536 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:05:03,893 log 17773 6141505536 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:05:03,893 basehttp 17773 6141505536 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 09:14:53,589 autoreload 27549 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 09:14:59,893 basehttp 27549 6176550912 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 09:14:59,903 basehttp 27549 6176550912 "GET /auth/login/?next=/escalas/visualizar/02-10-2025/ HTTP/1.1" 200 9170
+WARNING 2025-10-06 09:14:59,985 log 27549 6176550912 Not Found: /favicon.ico
+WARNING 2025-10-06 09:14:59,985 basehttp 27549 6176550912 "GET /favicon.ico HTTP/1.1" 404 2679
+INFO 2025-10-06 09:15:13,282 basehttp 27549 6176550912 "POST /auth/login/?next=/escalas/visualizar/02-10-2025/ HTTP/1.1" 200 9806
+INFO 2025-10-06 09:15:18,494 basehttp 27549 6176550912 "POST /auth/login/?next=/escalas/visualizar/02-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 09:15:18,497 views 27549 6176550912 Gerando dashboard com consultas otimizadas
+INFO 2025-10-06 09:15:18,512 basehttp 27549 6176550912 "GET /core/ HTTP/1.1" 200 52291
+INFO 2025-10-06 09:15:44,469 basehttp 27549 6176550912 "GET /escalas/ HTTP/1.1" 200 32658
+INFO 2025-10-06 09:15:54,346 basehttp 27549 6176550912 "GET /escalas/ano/2025/ HTTP/1.1" 200 44768
+INFO 2025-10-06 09:16:02,579 basehttp 27549 6176550912 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 36895
+INFO 2025-10-06 09:16:13,624 basehttp 27549 6176550912 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 384846
+INFO 2025-10-06 09:16:34,024 basehttp 27549 6176550912 "GET /escalas/exportar/02-10-2025/ HTTP/1.1" 200 9954
+INFO 2025-10-06 09:16:58,791 autoreload 27549 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 09:16:59,823 autoreload 27819 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 09:17:14,396 log 27819 6207205376 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:17:14,396 basehttp 27819 6207205376 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:18:13,742 log 27819 6207205376 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:18:13,743 basehttp 27819 6207205376 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 09:18:31,508 autoreload 27819 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/templatetags/custom_filters.py changed, reloading.
+INFO 2025-10-06 09:18:31,915 autoreload 27911 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 09:19:14,384 log 27911 6173618176 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:19:14,385 basehttp 27911 6173618176 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:20:13,750 log 27911 6173618176 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:20:13,752 basehttp 27911 6173618176 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:21:14,367 log 27911 6173618176 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:21:14,368 basehttp 27911 6173618176 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:22:14,366 log 27911 6173618176 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:22:14,374 basehttp 27911 6173618176 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:23:13,749 log 27911 6173618176 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:23:13,751 basehttp 27911 6173618176 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:24:13,742 log 27911 6173618176 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:24:13,743 basehttp 27911 6173618176 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:25:13,745 log 27911 6173618176 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:25:13,747 basehttp 27911 6173618176 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:26:13,850 log 27911 6173618176 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:26:13,852 basehttp 27911 6173618176 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 09:26:34,054 basehttp 27911 6173618176 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 384843
+INFO 2025-10-06 09:26:45,096 basehttp 27911 6173618176 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 1098
+INFO 2025-10-06 09:26:59,213 autoreload 27911 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/templatetags/custom_filters.py changed, reloading.
+INFO 2025-10-06 09:26:59,662 autoreload 28466 8529070080 Watching for file changes with StatReloader

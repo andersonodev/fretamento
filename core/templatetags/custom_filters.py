@@ -381,3 +381,26 @@ def profit_score(value):
         return f"{value:.2f}".replace('.', ',')
     except (ValueError, TypeError):
         return "0,00"
+
+
+@register.filter
+def grupo_sequencial(grupo, todos_grupos):
+    """
+    Converte ID do grupo em número sequencial baseado na ordem
+    Uso: {{ grupo|grupo_sequencial:todos_grupos_da_van }}
+    """
+    try:
+        if not todos_grupos:
+            return 1
+        
+        # Ordenar grupos por ordem e depois por ID para garantir consistência
+        grupos_ordenados = sorted(todos_grupos, key=lambda g: (g.ordem or 0, g.id))
+        
+        # Encontrar posição do grupo atual
+        for i, g in enumerate(grupos_ordenados, 1):
+            if g.id == grupo.id:
+                return i
+        
+        return 1
+    except (AttributeError, TypeError):
+        return 1

@@ -237,7 +237,7 @@
                                             <div class="card-body p-2">
                                                 <div class="d-flex justify-content-between">
                                                     <div>
-                                                        <strong>Grupo #{{ grupo.id }}</strong>
+                                                        <strong>Grupo #{{ grupo|grupo_sequencial:grupos_van1 }}</strong>
                                                         <small class="d-block text-muted">{{ grupo.cliente_principal }}</small>
                                                     </div>
                                                     <div class="text-end">
@@ -259,7 +259,7 @@
                                             <div class="card-body p-2">
                                                 <div class="d-flex justify-content-between">
                                                     <div>
-                                                        <strong>Grupo #{{ grupo.id }}</strong>
+                                                        <strong>Grupo #{{ grupo|grupo_sequencial:grupos_van2 }}</strong>
                                                         <small class="d-block text-muted">{{ grupo.cliente_principal }}</small>
                                                     </div>
                                                     <div class="text-end">
@@ -307,7 +307,7 @@
                                         <div class="card-header p-1 bg-light">
                                             <small class="text-success">
                                                 <i class="fas fa-layer-group"></i> 
-                                                Grupo {{ alocacao.grupo_info.grupo.id }} 
+                                                Grupo #{{ alocacao.grupo_info.grupo|grupo_sequencial:grupos_van1 }} 
                                                 ({{ alocacao.grupo_info.grupo.servicos.count }} serviços){% if alocacao.grupo_info.grupo.get_vendas_unicas %}<br><i class="fas fa-hashtag"></i> {{ alocacao.grupo_info.grupo.get_vendas_unicas }}{% endif %}
                                                 <button type="button" 
                                                         class="btn btn-outline-danger btn-sm float-end py-0 px-1"
@@ -394,12 +394,14 @@
                                                 {% endif %}
                                                 
                                                 <div class="row g-1">
-                                                    {% if alocacao.servico.horario %}
-                                                        <div class="col-6">
-                                                            <i class="fas fa-clock text-info"></i>
+                                                    <div class="col-6">
+                                                        <i class="fas fa-clock text-info"></i>
+                                                        {% if alocacao.servico.horario %}
                                                             {{ alocacao.servico.horario|time:"H:i" }}
-                                                        </div>
-                                                    {% endif %}
+                                                        {% else %}
+                                                            <span class="text-warning">SEM HORARIO</span>
+                                                        {% endif %}
+                                                    </div>
                                                     
                                                     {% if alocacao.servico.numero_venda %}
                                                         <div class="col-6">
@@ -464,7 +466,7 @@
                                         <div class="card-header p-1 bg-light">
                                             <small class="text-success">
                                                 <i class="fas fa-layer-group"></i> 
-                                                Grupo {{ alocacao.grupo_info.grupo.id }} 
+                                                Grupo #{{ alocacao.grupo_info.grupo|grupo_sequencial:grupos_van2 }} 
                                                 ({{ alocacao.grupo_info.grupo.servicos.count }} serviços){% if alocacao.grupo_info.grupo.get_vendas_unicas %}<br><i class="fas fa-hashtag"></i> {{ alocacao.grupo_info.grupo.get_vendas_unicas }}{% endif %}
                                                 <button type="button" 
                                                         class="btn btn-outline-danger btn-sm float-end py-0 px-1"
@@ -551,12 +553,14 @@
                                                 {% endif %}
                                                 
                                                 <div class="row g-1">
-                                                    {% if alocacao.servico.horario %}
-                                                        <div class="col-6">
-                                                            <i class="fas fa-clock text-info"></i>
+                                                    <div class="col-6">
+                                                        <i class="fas fa-clock text-info"></i>
+                                                        {% if alocacao.servico.horario %}
                                                             {{ alocacao.servico.horario|time:"H:i" }}
-                                                        </div>
-                                                    {% endif %}
+                                                        {% else %}
+                                                            <span class="text-warning">SEM HORARIO</span>
+                                                        {% endif %}
+                                                    </div>
                                                     
                                                     {% if alocacao.servico.numero_venda %}
                                                         <div class="col-6">
@@ -1176,7 +1180,7 @@ function preencherModalGrupo(grupo, servicos) {
     listaContainer.innerHTML = '';
     
     servicos.forEach((servico, index) => {
-        const horarioFormatado = servico.horario ? servico.horario : 'Sem horário';
+        const horarioFormatado = servico.horario ? servico.horario : 'SEM HORARIO';
         const servicoHtml = `
             <div class="border-bottom pb-2 mb-2" data-servico-id="${servico.alocacao_id}">
                 <div class="row">

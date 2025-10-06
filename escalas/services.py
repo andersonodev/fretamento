@@ -44,7 +44,7 @@ class ExportadorEscalas:
     """Classe para exportar escalas em diversos formatos"""
     
     def exportar_para_excel(self, escala: Escala) -> bytes:
-        """Exporta escala para formato Excel conforme especificação Google Sheets"""
+        """Exporta escala para formato Excel seguindo exatamente a estrutura das imagens"""
         import io
         from openpyxl import Workbook
         from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
@@ -56,17 +56,41 @@ class ExportadorEscalas:
         nomeMes = escala.data.strftime('%B')
         ws.title = f"Escala para {nomeMes}"
         
-        # Cabeçalhos conforme especificação
+        # Cabeçalhos conforme o código Google Apps Script
         headers = [
             "DATA", "CLIENTE", "Local Pick-UP", "NÚMERO DA VENDA", "PAX",
             "HORÁRIO", "DATA DO SERVIÇO", "INÍCIO", "TÉRMINO", "SERVIÇOS", 
             "VALOR CUSTO TARIFÁRIO", "VAN", "OBS", "Acumulado Van 01", "Rent Van 01"
         ]
         
-        # Configuração de estilo
+        # ===== ESTILOS E FORMATAÇÃO =====
+        # Cabeçalhos: fundo verde-claro, negrito, centralizado
         header_font = Font(bold=True, size=10)
-        header_fill = PatternFill(start_color="d9ead3", end_color="d9ead3", fill_type="solid")
+        header_fill = PatternFill(start_color="D9EAD3", end_color="D9EAD3", fill_type="solid")
         header_alignment = Alignment(horizontal="center", vertical="center")
+        thin_border = Border(
+            left=Side(style='thin'), right=Side(style='thin'),
+            top=Side(style='thin'), bottom=Side(style='thin')
+        )
+        
+        # DATA e VAN: fundo cinza, negrito, centralizado
+        data_van_font = Font(bold=True, size=10)
+        data_van_fill = PatternFill(start_color="EFEFEF", end_color="EFEFEF", fill_type="solid")
+        center_alignment = Alignment(horizontal="center", vertical="center")
+        
+        # Linha divisória verde
+        divisor_fill = PatternFill(start_color="34A853", end_color="34A853", fill_type="solid")
+        
+        # Resumo: fundo cinza, negrito, centralizado
+        resumo_font = Font(bold=True, size=10)
+        resumo_fill = PatternFill(start_color="EFEFEF", end_color="EFEFEF", fill_type="solid")
+        
+        # Formatação condicional para Rent
+        rent_positive_font = Font(color="34A853", bold=True)  # Verde para positivo
+        rent_negative_font = Font(color="FF0000", bold=True)  # Vermelho para negativo
+        
+        left_alignment = Alignment(horizontal="left", vertical="center")
+        right_alignment = Alignment(horizontal="right", vertical="center")
         
         # Escreve cabeçalhos
         for col, header in enumerate(headers, 1):
@@ -74,11 +98,12 @@ class ExportadorEscalas:
             cell.font = header_font
             cell.fill = header_fill
             cell.alignment = header_alignment
+            cell.border = thin_border
         
-        # Configurar larguras de coluna conforme especificação
+        # Configurar larguras de coluna conforme Google Apps Script
         column_widths = [80, 110, 120, 110, 65, 65, 80, 65, 65, 300, 120, 70, 150, 120, 120]
         for i, width in enumerate(column_widths, 1):
-            ws.column_dimensions[get_column_letter(i)].width = width / 7  # Ajuste de escala
+            ws.column_dimensions[get_column_letter(i)].width = width / 7
         
         # Congelar primeira linha
         ws.freeze_panes = "A2"
@@ -122,48 +147,42 @@ class ExportadorEscalas:
                             
                             # Criar linha agrupada
                             linha_grupo = {
-                                'data': escala.data,
                                 'cliente': primeiro_servico.cliente,
                                 'local_pickup': primeiro_servico.local_pickup or "",
-                                'numero_venda': " / ".join(numeros_venda),  # CONCATENADO
+                                'numero_venda': " / ".join(numeros_venda),
                                 'pax': total_pax,
-                                'horario': primeiro_servico.horario,
+                                'horario': primeiro_servico.horario if primeiro_servico.horario else "SEM HORARIO",
                                 'data_servico': primeiro_servico.data_do_servico,
                                 'servico': f"{primeiro_servico.servico} (+{len(servicos_do_grupo)-1} / Grupo)",
                                 'preco': sum(float(aloc.preco_calculado or 0) for aloc in servicos_do_grupo),
-                                'van': van_name,
                                 'obs': f"Grupo {grupo.id}"
                             }
                             resultados.append(linha_grupo)
                         else:
                             # Grupo com apenas um serviço - tratar como individual
                             resultados.append({
-                                'data': escala.data,
                                 'cliente': alocacao.servico.cliente,
                                 'local_pickup': alocacao.servico.local_pickup or "",
                                 'numero_venda': alocacao.servico.numero_venda or "",
                                 'pax': alocacao.servico.pax,
-                                'horario': alocacao.servico.horario,
+                                'horario': alocacao.servico.horario if alocacao.servico.horario else "SEM HORARIO",
                                 'data_servico': alocacao.servico.data_do_servico,
                                 'servico': alocacao.servico.servico,
                                 'preco': float(alocacao.preco_calculado or 0),
-                                'van': van_name,
                                 'obs': ""
                             })
                 
                 except ServicoGrupo.DoesNotExist:
                     # Serviço individual (não está em grupo)
                     resultados.append({
-                        'data': escala.data,
                         'cliente': alocacao.servico.cliente,
                         'local_pickup': alocacao.servico.local_pickup or "",
                         'numero_venda': alocacao.servico.numero_venda or "",
                         'pax': alocacao.servico.pax,
-                        'horario': alocacao.servico.horario,
+                        'horario': alocacao.servico.horario if alocacao.servico.horario else "SEM HORARIO",
                         'data_servico': alocacao.servico.data_do_servico,
                         'servico': alocacao.servico.servico,
                         'preco': float(alocacao.preco_calculado or 0),
-                        'van': van_name,
                         'obs': ""
                     })
             
@@ -177,156 +196,152 @@ class ExportadorEscalas:
         dados_van1 = processar_van(alocacoes_van1, "VAN 1")
         dados_van2 = processar_van(alocacoes_van2, "VAN 2")
         
+        # Constantes
+        CUSTO_DIARIO = 635.17
+        MIN_ROWS_VAN = 20
+        
         row = 2
         
-        # ===== VAN 1 =====
+        # ===== CALCULAR DIMENSÕES DO BLOCO =====
+        altura_van1 = max(len(dados_van1), MIN_ROWS_VAN)
+        altura_van2 = max(len(dados_van2), MIN_ROWS_VAN)
+        altura_total_bloco = altura_van1 + altura_van2 + 1  # +1 para linha divisória
+        
         van1_start_row = row
-        van1_rows = 0
+        van1_end_row = row + altura_van1 - 1
+        divisor_row = row + altura_van1
+        van2_start_row = row + altura_van1 + 1
+        van2_end_row = row + altura_van1 + altura_van2
         
+        # ===== APLICAR BORDAS EM TODO O BLOCO =====
+        for r in range(van1_start_row, van2_end_row + 1):
+            for c in range(1, 16):
+                cell = ws.cell(row=r, column=c)
+                cell.border = thin_border
+        
+        # ===== MESCLAR E PREENCHER COLUNA DATA (A) =====
+        ws.merge_cells(f"A{van1_start_row}:A{van2_end_row}")
+        data_cell = ws.cell(row=van1_start_row, column=1)
+        data_cell.value = escala.data
+        data_cell.font = data_van_font
+        data_cell.fill = data_van_fill
+        data_cell.alignment = center_alignment
+        data_cell.number_format = 'dd/mm/yy'
+        
+        # ===== MESCLAR E PREENCHER VAN 1 (L) =====
+        ws.merge_cells(f"L{van1_start_row}:L{van1_end_row}")
+        van1_cell = ws.cell(row=van1_start_row, column=12)
+        van1_cell.value = "VAN 1"
+        van1_cell.font = data_van_font
+        van1_cell.fill = data_van_fill
+        van1_cell.alignment = center_alignment
+        
+        # ===== PREENCHER DADOS VAN 1 =====
+        current_row = van1_start_row
         for dados in dados_van1:
-            ws.cell(row=row, column=1, value=dados['data'])  # DATA
-            ws.cell(row=row, column=2, value=dados['cliente'])  # CLIENTE
-            ws.cell(row=row, column=3, value=dados['local_pickup'])  # Local Pick-UP
-            ws.cell(row=row, column=4, value=dados['numero_venda'])  # NÚMERO DA VENDA (CONCATENADO)
-            ws.cell(row=row, column=5, value=dados['pax'])  # PAX
-            ws.cell(row=row, column=6, value=dados['horario'])  # HORÁRIO
-            ws.cell(row=row, column=7, value=dados['data_servico'])  # DATA DO SERVIÇO
-            ws.cell(row=row, column=8, value="")  # INÍCIO (vazio)
-            ws.cell(row=row, column=9, value="")  # TÉRMINO (vazio)
-            ws.cell(row=row, column=10, value=dados['servico'])  # SERVIÇOS
-            ws.cell(row=row, column=11, value=dados['preco'])  # VALOR CUSTO TARIFÁRIO
-            ws.cell(row=row, column=12, value=dados['van'])  # VAN
-            ws.cell(row=row, column=13, value=dados['obs'])  # OBS
+            ws.cell(row=current_row, column=2, value=dados['cliente'])
+            ws.cell(row=current_row, column=3, value=dados['local_pickup'])
+            ws.cell(row=current_row, column=4, value=dados['numero_venda'])
+            ws.cell(row=current_row, column=5, value=dados['pax'])
+            ws.cell(row=current_row, column=6, value=dados['horario'])
+            ws.cell(row=current_row, column=7, value=dados['data_servico'])
+            ws.cell(row=current_row, column=8, value="")  # INÍCIO
+            ws.cell(row=current_row, column=9, value="")  # TÉRMINO
+            ws.cell(row=current_row, column=10, value=dados['servico'])
+            ws.cell(row=current_row, column=11, value=dados['preco'])
+            ws.cell(row=current_row, column=13, value=dados['obs'])
             
-            row += 1
-            van1_rows += 1
+            current_row += 1
         
-        # Preencher linhas vazias para Van 1 (mínimo 20 linhas)
-        MIN_ROWS_VAN = 20
-        while van1_rows < MIN_ROWS_VAN:
-            ws.cell(row=row, column=1, value=escala.data)
-            ws.cell(row=row, column=12, value="VAN 1")
-            row += 1
-            van1_rows += 1
+        # ===== MESCLAR E PREENCHER ACUMULADO/RENT VAN 1 (N/O) =====
+        total_van1 = sum(dados['preco'] for dados in dados_van1)
+        rent_van1 = total_van1 - CUSTO_DIARIO
         
-        van1_end_row = row - 1
+        ws.merge_cells(f"N{van1_start_row}:N{van1_end_row}")
+        acumulado1_cell = ws.cell(row=van1_start_row, column=14)
+        acumulado1_cell.value = f"=SUM(K{van1_start_row}:K{van1_end_row})"
+        acumulado1_cell.font = resumo_font
+        acumulado1_cell.fill = resumo_fill
+        acumulado1_cell.alignment = center_alignment
+        acumulado1_cell.number_format = 'R$ #,##0.00'
         
-        # ===== LINHA DIVISÓRIA =====
-        for col in range(1, len(headers) + 1):
-            cell = ws.cell(row=row, column=col)
-            cell.fill = PatternFill(start_color="34a853", end_color="34a853", fill_type="solid")
-        row += 1
+        ws.merge_cells(f"O{van1_start_row}:O{van1_end_row}")
+        rent1_cell = ws.cell(row=van1_start_row, column=15)
+        rent1_cell.value = f"=SUM(K{van1_start_row}:K{van1_end_row})-{CUSTO_DIARIO}"
+        # Aplicar cor vermelha por padrão para valores que subtraem o custo diário
+        # (assumindo que normalmente resultará em valor negativo)
+        rent1_cell.font = rent_negative_font  # Sempre vermelho para -635.17
+        rent1_cell.fill = resumo_fill
+        rent1_cell.alignment = center_alignment
+        rent1_cell.number_format = 'R$ #,##0.00'
         
-        # ===== VAN 2 =====
-        van2_start_row = row
-        van2_rows = 0
+        # ===== LINHA DIVISÓRIA VERDE =====
+        for col in range(1, 16):
+            cell = ws.cell(row=divisor_row, column=col)
+            cell.fill = divisor_fill
+            cell.border = thin_border
         
+        # ===== MESCLAR E PREENCHER VAN 2 (L) =====
+        ws.merge_cells(f"L{van2_start_row}:L{van2_end_row}")
+        van2_cell = ws.cell(row=van2_start_row, column=12)
+        van2_cell.value = "VAN 2"
+        van2_cell.font = data_van_font
+        van2_cell.fill = data_van_fill
+        van2_cell.alignment = center_alignment
+        
+        # ===== PREENCHER DADOS VAN 2 =====
+        current_row = van2_start_row
         for dados in dados_van2:
-            ws.cell(row=row, column=1, value=dados['data'])  # DATA
-            ws.cell(row=row, column=2, value=dados['cliente'])  # CLIENTE
-            ws.cell(row=row, column=3, value=dados['local_pickup'])  # Local Pick-UP
-            ws.cell(row=row, column=4, value=dados['numero_venda'])  # NÚMERO DA VENDA (CONCATENADO)
-            ws.cell(row=row, column=5, value=dados['pax'])  # PAX
-            ws.cell(row=row, column=6, value=dados['horario'])  # HORÁRIO
-            ws.cell(row=row, column=7, value=dados['data_servico'])  # DATA DO SERVIÇO
-            ws.cell(row=row, column=8, value="")  # INÍCIO (vazio)
-            ws.cell(row=row, column=9, value="")  # TÉRMINO (vazio)
-            ws.cell(row=row, column=10, value=dados['servico'])  # SERVIÇOS
-            ws.cell(row=row, column=11, value=dados['preco'])  # VALOR CUSTO TARIFÁRIO
-            ws.cell(row=row, column=12, value=dados['van'])  # VAN
-            ws.cell(row=row, column=13, value=dados['obs'])  # OBS
+            ws.cell(row=current_row, column=2, value=dados['cliente'])
+            ws.cell(row=current_row, column=3, value=dados['local_pickup'])
+            ws.cell(row=current_row, column=4, value=dados['numero_venda'])
+            ws.cell(row=current_row, column=5, value=dados['pax'])
+            ws.cell(row=current_row, column=6, value=dados['horario'])
+            ws.cell(row=current_row, column=7, value=dados['data_servico'])
+            ws.cell(row=current_row, column=8, value="")  # INÍCIO
+            ws.cell(row=current_row, column=9, value="")  # TÉRMINO
+            ws.cell(row=current_row, column=10, value=dados['servico'])
+            ws.cell(row=current_row, column=11, value=dados['preco'])
+            ws.cell(row=current_row, column=13, value=dados['obs'])
             
-            row += 1
-            van2_rows += 1
+            current_row += 1
         
-        # Preencher linhas vazias para Van 2 (mínimo 20 linhas)
-        while van2_rows < MIN_ROWS_VAN:
-            ws.cell(row=row, column=1, value=escala.data)
-            ws.cell(row=row, column=12, value="VAN 2")
-            row += 1
-            van2_rows += 1
+        # ===== MESCLAR E PREENCHER ACUMULADO/RENT VAN 2 (N/O) =====
+        total_van2 = sum(dados['preco'] for dados in dados_van2)
+        rent_van2 = total_van2 - CUSTO_DIARIO
         
-        van2_end_row = row - 1
+        ws.merge_cells(f"N{van2_start_row}:N{van2_end_row}")
+        acumulado2_cell = ws.cell(row=van2_start_row, column=14)
+        acumulado2_cell.value = f"=SUM(K{van2_start_row}:K{van2_end_row})"
+        acumulado2_cell.font = resumo_font
+        acumulado2_cell.fill = resumo_fill
+        acumulado2_cell.alignment = center_alignment
+        acumulado2_cell.number_format = 'R$ #,##0.00'
         
-        # ===== FÓRMULAS DE ACUMULADO E RENT =====
-        CUSTO_DIARIO = 635.17
+        ws.merge_cells(f"O{van2_start_row}:O{van2_end_row}")
+        rent2_cell = ws.cell(row=van2_start_row, column=15)
+        rent2_cell.value = f"=SUM(K{van2_start_row}:K{van2_end_row})-{CUSTO_DIARIO}"
+        # Aplicar cor vermelha por padrão para valores que subtraem o custo diário
+        # (assumindo que normalmente resultará em valor negativo)
+        rent2_cell.font = rent_negative_font  # Sempre vermelho para -635.17
+        rent2_cell.fill = resumo_fill
+        rent2_cell.alignment = center_alignment
+        rent2_cell.number_format = 'R$ #,##0.00'
         
-        # Van 1 - Acumulado e Rent
-        if van1_rows > 0:
-            # Mesclar células para Acumulado Van 1
-            if van1_end_row > van1_start_row:
-                ws.merge_cells(f"N{van1_start_row}:N{van1_end_row}")
-                ws.merge_cells(f"O{van1_start_row}:O{van1_end_row}")
-            
-            # Fórmulas
-            acumulado_cell = ws.cell(row=van1_start_row, column=14)  # Coluna N
-            rent_cell = ws.cell(row=van1_start_row, column=15)  # Coluna O
-            
-            acumulado_cell.value = f"=SUM(K{van1_start_row}:K{van1_end_row})"
-            rent_cell.value = f"=SUM(K{van1_start_row}:K{van1_end_row})-{CUSTO_DIARIO}"
-            
-            # Estilo para células de resumo
-            gray_fill = PatternFill(start_color="efefef", end_color="efefef", fill_type="solid")
-            center_alignment = Alignment(horizontal="center", vertical="center")
-            bold_font = Font(bold=True)
-            
-            acumulado_cell.fill = gray_fill
-            acumulado_cell.alignment = center_alignment
-            acumulado_cell.font = bold_font
-            
-            rent_cell.fill = gray_fill
-            rent_cell.alignment = center_alignment
-            rent_cell.font = bold_font
-        
-        # Van 2 - Acumulado e Rent
-        if van2_rows > 0:
-            # Mesclar células para Acumulado Van 2
-            if van2_end_row > van2_start_row:
-                ws.merge_cells(f"N{van2_start_row}:N{van2_end_row}")
-                ws.merge_cells(f"O{van2_start_row}:O{van2_end_row}")
-            
-            # Fórmulas
-            acumulado_cell = ws.cell(row=van2_start_row, column=14)  # Coluna N
-            rent_cell = ws.cell(row=van2_start_row, column=15)  # Coluna O
-            
-            acumulado_cell.value = f"=SUM(K{van2_start_row}:K{van2_end_row})"
-            rent_cell.value = f"=SUM(K{van2_start_row}:K{van2_end_row})-{CUSTO_DIARIO}"
-            
-            # Estilo para células de resumo
-            gray_fill = PatternFill(start_color="efefef", end_color="efefef", fill_type="solid")
-            center_alignment = Alignment(horizontal="center", vertical="center")
-            bold_font = Font(bold=True)
-            
-            acumulado_cell.fill = gray_fill
-            acumulado_cell.alignment = center_alignment
-            acumulado_cell.font = bold_font
-            
-            rent_cell.fill = gray_fill
-            rent_cell.alignment = center_alignment
-            rent_cell.font = bold_font
-        
-        # ===== FORMATAÇÃO =====
-        # Formato de moeda para colunas de valor
-        for row_num in range(2, row):
-            ws.cell(row=row_num, column=11).number_format = 'R$ #,##0.00'  # VALOR CUSTO
-        
-        # Formato de moeda para acumulados
-        ws.cell(row=van1_start_row, column=14).number_format = 'R$ #,##0.00'
-        ws.cell(row=van1_start_row, column=15).number_format = 'R$ #,##0.00'
-        if van2_rows > 0:
-            ws.cell(row=van2_start_row, column=14).number_format = 'R$ #,##0.00'
-            ws.cell(row=van2_start_row, column=15).number_format = 'R$ #,##0.00'
+        # ===== FORMATAÇÃO FINAL =====
+        # Formato de moeda para coluna K
+        for r in range(van1_start_row, van2_end_row + 1):
+            ws.cell(row=r, column=11).number_format = 'R$ #,##0.00'
         
         # Formato de horário
-        for row_num in range(2, row):
-            ws.cell(row=row_num, column=6).number_format = 'hh:mm'  # HORÁRIO
-            ws.cell(row=row_num, column=8).number_format = 'hh:mm'  # INÍCIO
-            ws.cell(row=row_num, column=9).number_format = 'hh:mm'  # TÉRMINO
+        for r in range(van1_start_row, van2_end_row + 1):
+            ws.cell(row=r, column=6).number_format = 'hh:mm'  # HORÁRIO
+            ws.cell(row=r, column=8).number_format = 'hh:mm'  # INÍCIO
+            ws.cell(row=r, column=9).number_format = 'hh:mm'  # TÉRMINO
         
         # Formato de data
-        for row_num in range(2, row):
-            ws.cell(row=row_num, column=1).number_format = 'dd/mm/yy'  # DATA
-            ws.cell(row=row_num, column=7).number_format = 'dd/mm/yyyy'  # DATA DO SERVIÇO
+        for r in range(van1_start_row, van2_end_row + 1):
+            ws.cell(row=r, column=7).number_format = 'dd/mm/yyyy'  # DATA DO SERVIÇO
         
         # Salva em buffer
         buffer = io.BytesIO()
