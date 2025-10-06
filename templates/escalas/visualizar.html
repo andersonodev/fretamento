@@ -30,20 +30,26 @@
                             <i class="fas fa-file-excel"></i> Excel
                         </a>
                     {% endif %}
-                    {% if escala.etapa == 'DADOS_PUXADOS' %}
-                        <button type="button" class="btn btn-primary" onclick="precificarEscala()">
-                            <i class="fas fa-calculator"></i> Precificar
+                    {% if escala.tem_dados %}
+                        <button type="button" class="btn btn-primary" id="btn-precificar" onclick="precificarEscala()">
+                            <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
+                            <i class="fas fa-calculator button-icon"></i>
+                            <span class="button-text ms-1">Precificar</span>
                         </button>
                         <form method="post" class="d-inline" id="form-agrupar">
                             {% csrf_token %}
-                            <button type="submit" name="acao" value="agrupar" class="btn btn-info">
-                                <i class="fas fa-layer-group"></i> Agrupar
+                            <button type="submit" name="acao" value="agrupar" class="btn btn-info" id="btn-agrupar">
+                                <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
+                                <i class="fas fa-layer-group button-icon"></i>
+                                <span class="button-text ms-1">Agrupar</span>
                             </button>
                         </form>
                         <form method="post" class="d-inline" id="form-escalar">
                             {% csrf_token %}
-                            <button type="submit" name="acao" value="otimizar" class="btn btn-warning">
-                                <i class="fas fa-magic"></i> Escalar
+                            <button type="submit" name="acao" value="otimizar" class="btn btn-warning" id="btn-escalar">
+                                <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
+                                <i class="fas fa-magic button-icon"></i>
+                                <span class="button-text ms-1">Escalar</span>
                             </button>
                         </form>
                     {% endif %}
@@ -446,28 +452,28 @@
                                                 </div>
                                             {% endif %}
                                             
-                                            {% if alocacao.veiculo_recomendado %}
-                                                <div class="mt-1 d-flex justify-content-between align-items-center">
-                                                    <div>
+                                            <div class="mt-1 d-flex justify-content-between align-items-center flex-wrap gap-1">
+                                                <div class="d-flex flex-wrap align-items-center gap-1">
+                                                    {% if alocacao.veiculo_recomendado %}
                                                         <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
-                                                        {% if alocacao.lucratividade %}
-                                                            <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
-                                                        {% endif %}
-                                                        {% if alocacao.automatica %}
-                                                            <span class="badge bg-info">Auto</span>
-                                                        {% else %}
-                                                            <span class="badge bg-dark">Manual</span>
-                                                        {% endif %}
-                                                    </div>
-                                                    <div>
-                                                        {% if alocacao.status_alocacao == 'ALOCADO' %}
-                                                            <span class="badge bg-success">Alocado</span>
-                                                        {% else %}
-                                                            <span class="badge bg-danger">Não alocado</span>
-                                                        {% endif %}
-                                                    </div>
+                                                    {% endif %}
+                                                    {% if alocacao.lucratividade %}
+                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
+                                                    {% endif %}
+                                                    {% if alocacao.automatica %}
+                                                        <span class="badge bg-info">Auto</span>
+                                                    {% else %}
+                                                        <span class="badge bg-dark">Manual</span>
+                                                    {% endif %}
                                                 </div>
-                                            {% endif %}
+                                                <div>
+                                                    {% if alocacao.status_alocacao == 'ALOCADO' %}
+                                                        <span class="badge bg-success px-3 py-2 text-uppercase fw-semibold status-badge">Alocado</span>
+                                                    {% else %}
+                                                        <span class="badge bg-danger px-3 py-2 text-uppercase fw-semibold status-badge">Não alocado</span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -616,28 +622,28 @@
                                                 </div>
                                             {% endif %}
                                             
-                                            {% if alocacao.veiculo_recomendado %}
-                                                <div class="mt-1 d-flex justify-content-between align-items-center">
-                                                    <div>
+                                            <div class="mt-1 d-flex justify-content-between align-items-center flex-wrap gap-1">
+                                                <div class="d-flex flex-wrap align-items-center gap-1">
+                                                    {% if alocacao.veiculo_recomendado %}
                                                         <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
-                                                        {% if alocacao.lucratividade %}
-                                                            <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
-                                                        {% endif %}
-                                                        {% if alocacao.automatica %}
-                                                            <span class="badge bg-info">Auto</span>
-                                                        {% else %}
-                                                            <span class="badge bg-dark">Manual</span>
-                                                        {% endif %}
-                                                    </div>
-                                                    <div>
-                                                        {% if alocacao.status_alocacao == 'ALOCADO' %}
-                                                            <span class="badge bg-success">Alocado</span>
-                                                        {% else %}
-                                                            <span class="badge bg-danger">Não alocado</span>
-                                                        {% endif %}
-                                                    </div>
+                                                    {% endif %}
+                                                    {% if alocacao.lucratividade %}
+                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
+                                                    {% endif %}
+                                                    {% if alocacao.automatica %}
+                                                        <span class="badge bg-info">Auto</span>
+                                                    {% else %}
+                                                        <span class="badge bg-dark">Manual</span>
+                                                    {% endif %}
                                                 </div>
-                                            {% endif %}
+                                                <div>
+                                                    {% if alocacao.status_alocacao == 'ALOCADO' %}
+                                                        <span class="badge bg-success px-3 py-2 text-uppercase fw-semibold status-badge">Alocado</span>
+                                                    {% else %}
+                                                        <span class="badge bg-danger px-3 py-2 text-uppercase fw-semibold status-badge">Não alocado</span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -2539,19 +2545,86 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function setButtonLoading(button, isLoading, loadingText) {
+    if (!button) {
+        return;
+    }
+
+    const spinner = button.querySelector('.button-spinner');
+    const icon = button.querySelector('.button-icon');
+    const text = button.querySelector('.button-text');
+
+    if (isLoading) {
+        if (text && !button.dataset.originalText) {
+            button.dataset.originalText = text.textContent.trim();
+        }
+
+        if (text && loadingText) {
+            text.textContent = loadingText;
+        }
+
+        if (spinner) {
+            spinner.classList.remove('d-none');
+        }
+
+        if (icon) {
+            icon.classList.add('d-none');
+        }
+
+        button.setAttribute('disabled', 'disabled');
+    } else {
+        if (spinner) {
+            spinner.classList.add('d-none');
+        }
+
+        if (icon) {
+            icon.classList.remove('d-none');
+        }
+
+        if (text) {
+            const originalText = button.dataset.originalText;
+            if (originalText) {
+                text.textContent = originalText;
+            }
+        }
+
+        button.removeAttribute('disabled');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const formAgrupar = document.getElementById('form-agrupar');
+    if (formAgrupar) {
+        formAgrupar.addEventListener('submit', function() {
+            const button = formAgrupar.querySelector('button[type="submit"]');
+            setButtonLoading(button, true, 'Agrupando...');
+        });
+    }
+
+    const formEscalar = document.getElementById('form-escalar');
+    if (formEscalar) {
+        formEscalar.addEventListener('submit', function() {
+            const button = formEscalar.querySelector('button[type="submit"]');
+            setButtonLoading(button, true, 'Escalando...');
+        });
+    }
+});
+
 // Função para precificar escala manualmente
 function precificarEscala() {
     const dataEscala = '{{ data }}';
-    
+    const precificarButton = document.getElementById('btn-precificar');
+
     // Verificar se data existe
     if (!dataEscala) {
         showMessage('Erro: Data da escala não encontrada', 'error');
         return;
     }
-    
+
     // Mostrar mensagem de carregamento
     showMessage('Precificando escala...', 'success');
-    
+    setButtonLoading(precificarButton, true, 'Precificando...');
+
     // Fazer requisição AJAX para precificar a escala
     fetch(`/escalas/precificar/${dataEscala}/`, {
         method: 'POST',
@@ -2581,6 +2654,9 @@ function precificarEscala() {
     .catch(error => {
         console.error('Erro na precificação:', error);
         showMessage(`Erro ao precificar escala: ${error.message}`, 'error');
+    })
+    .finally(() => {
+        setButtonLoading(precificarButton, false);
     });
 }
 </script>
