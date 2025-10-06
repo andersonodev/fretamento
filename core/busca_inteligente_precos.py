@@ -186,9 +186,9 @@ class BuscadorInteligentePrecosCodigoDoAnalista:
         if not nome_servico:
             return ("Executivo", 0.0, "não encontrado")
         
-        # 1. Busca no TARIFARIO_JW primeiro (mais específico)
+        # 1. Busca no TARIFARIO_JW primeiro (mais específico e confiável)
         chave_jw, preco_jw, sim_jw = self.buscar_melhor_match_tarifario(
-            nome_servico, TARIFARIO_JW, threshold=0.4
+            nome_servico, self.TARIFARIO_JW, threshold=0.4
         )
         
         if chave_jw and sim_jw > 0.6:  # Alta confiança no JW
@@ -201,31 +201,40 @@ class BuscadorInteligentePrecosCodigoDoAnalista:
                 preco_final = preco_jw
             return (veiculo, float(preco_final), f"JW (sim: {sim_jw:.2f})")
         
-        # 2. Busca no TARIFARIO_MOTORISTAS
+        # 2. Busca no TARIFARIO_MOTORISTAS (com lógica corrigida de multiplicador)
         chave_mot, preco_mot, sim_mot = self.buscar_melhor_match_tarifario(
-            nome_servico, TARIFARIO_MOTORISTAS, threshold=0.3
+            nome_servico, self.TARIFARIO_MOTORISTAS, threshold=0.25  # Threshold mais baixo
         )
         
-        if chave_mot:
+        if chave_mot and sim_mot > 0.25:  # Threshold de confiança mais baixo
             from core.tarifarios import calcular_veiculo_recomendado
             veiculo = calcular_veiculo_recomendado(pax)
             
-            # Aplica multiplicador do número de venda
-            multiplicador = 1
-            try:
-                if numero_venda and numero_venda.strip():
-                    multiplicador = int(numero_venda.strip())
-            except (ValueError, TypeError):
-                pass
+            # CORREÇÃO: Não usar número de venda como multiplicador direto
+            # Número de venda é apenas um identificador, não um fator de preço
+            # O preço do tarifário motoristas já é um preço fixo por serviço
+            preco_final = float(preco_mot)
             
-            preco_final = float(preco_mot * multiplicador)
-            return (veiculo, preco_final, f"Motoristas (sim: {sim_mot:.2f}, mult: {multiplicador})")
+            return (veiculo, preco_final, f"Motoristas (sim: {sim_mot:.2f})")
         
-        # 3. Se não encontrou nada, usa preço padrão baseado no veículo
+        # 3. Busca com threshold mais baixo no JW para matches parciais
+        if chave_jw and sim_jw > 0.4:  # Threshold menor para casos intermediários
+            from core.tarifarios import calcular_veiculo_recomendado
+            veiculo = calcular_veiculo_recomendado(pax)
+            if isinstance(preco_jw, dict):
+                preco_final = preco_jw.get(veiculo, preco_jw.get("Executivo", 0))
+            else:
+                preco_final = preco_jw
+            
+            if preco_final > 0:
+                return (veiculo, float(preco_final), f"JW-parcial (sim: {sim_jw:.2f})")
+        
+        # 4. Se não encontrou nada, usa preço padrão baseado no veículo e PAX
         from core.tarifarios import calcular_veiculo_recomendado
         veiculo = calcular_veiculo_recomendado(pax)
         
-        precos_padrao = {
+        # Preços padrão baseados no veículo e ajustados por PAX
+        precos_base = {
             "Executivo": 200.0,
             "Van 15 lugares": 300.0,
             "Van 18 lugares": 350.0,
@@ -233,8 +242,12 @@ class BuscadorInteligentePrecosCodigoDoAnalista:
             "Ônibus": 800.0
         }
         
-        preco_padrao = precos_padrao.get(veiculo, 200.0)
-        return (veiculo, preco_padrao, "padrão")
+        preco_base = precos_base.get(veiculo, 200.0)
+        # Ajuste por PAX (pequeno fator para refletir complexidade)
+        ajuste_pax = 1.0 + (pax - 1) * 0.1  # 10% a mais por PAX adicional
+        preco_final = preco_base * min(ajuste_pax, 2.0)  # Máximo 2x o preço base
+        
+        return (veiculo, preco_final, f"padrão (PAX: {pax})")
     
     def buscar_preco_jw(self, nome_servico: str, veiculo: str = "Executivo") -> float:
         """
@@ -265,7 +278,7 @@ class BuscadorInteligentePrecosCodigoDoAnalista:
         
         Args:
             nome_servico: Nome do serviço a buscar
-            numero_venda: Número de vendas para multiplicador
+            numero_venda: Número de vendas (usado apenas como referência, não multiplicador)
             
         Returns:
             Preço encontrado ou 0.0 se não encontrado
@@ -274,15 +287,10 @@ class BuscadorInteligentePrecosCodigoDoAnalista:
             nome_servico, self.TARIFARIO_MOTORISTAS, threshold=0.2  # Threshold mais baixo
         )
         
-        if chave and similaridade > 0.4:  # Threshold de confiança mais baixo
-            multiplicador = 1
-            try:
-                if numero_venda and str(numero_venda).strip():
-                    multiplicador = int(numero_venda.strip())
-            except (ValueError, TypeError):
-                pass
-            
-            return float(preco * multiplicador)
+        if chave and similaridade > 0.4:  # Threshold de confiança
+            # CORREÇÃO: Não usar número de venda como multiplicador
+            # O preço já está correto no tarifário
+            return float(preco)
         
         return 0.0
 

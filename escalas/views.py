@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.db.models import Count, Q, Sum, F
 from django.db import transaction
 from datetime import datetime, date, timedelta
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from calendar import monthrange
 import re
 from core.models import Servico, ProcessamentoPlanilha
@@ -19,6 +19,40 @@ from core.processors import ProcessadorPlanilhaOS
 from escalas.services import GerenciadorEscalas, ExportadorEscalas
 from core.tarifarios import calcular_preco_servico
 import json
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+def converter_para_decimal_seguro(valor, padrao=0):
+    """
+    Converte um valor para Decimal de forma segura
+    
+    Args:
+        valor: Valor a ser convertido
+        padrao: Valor padrão em caso de erro (default: 0)
+        
+    Returns:
+        Decimal: Valor convertido ou valor padrão
+    """
+    if valor is None:
+        return Decimal(str(padrao))
+    
+    try:
+        # Converter para string e limpar
+        valor_str = str(valor).strip()
+        
+        # Se string vazia, usar padrão
+        if not valor_str:
+            return Decimal(str(padrao))
+        
+        # Tentar converter diretamente
+        return Decimal(valor_str)
+        
+    except (InvalidOperation, ValueError, TypeError):
+        # Em caso de erro, usar o padrão
+        logger.warning(f"Erro ao converter '{valor}' para Decimal. Usando padrão: {padrao}")
+        return Decimal(str(padrao))
 import random
 import logging
 
@@ -349,14 +383,16 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
                 
             elif acao == 'otimizar':
                 escala = get_object_or_404(Escala, data=data_alvo)
-                if escala.etapa != 'DADOS_PUXADOS':
-                    messages.error(request, 'Para otimizar, é necessário ter dados puxados.')
+                if escala.etapa not in ['DADOS_PUXADOS', 'OTIMIZADA']:
+                    messages.error(request, 'Para escalar, é necessário ter dados puxados.')
                     if mes and ano:
                         return redirect('escalas:gerenciar_escalas_mes', mes=mes, ano=ano)
                     return redirect('escalas:selecionar_ano')
                 
-                self._otimizar_escala(escala)
-                messages.success(request, f'Escala para {data_alvo.strftime("%d/%m/%Y")} otimizada com sucesso!')
+                # Usar a função de otimização da VisualizarEscalaView
+                visualizar_view = VisualizarEscalaView()
+                visualizar_view._otimizar_escala(escala)
+                messages.success(request, f'Escala para {data_alvo.strftime("%d/%m/%Y")} escalada com sucesso!')
                 
                 return redirect('escalas:visualizar_escala', data=data_str)
                 
@@ -369,41 +405,75 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
         return redirect('escalas:selecionar_ano')
     
     def _otimizar_escala(self, escala):
-        """Otimiza a distribuição dos serviços nas vans baseado em lucratividade"""
+        """
+        Sistema de escalar completo seguindo as regras especificadas:
+        
+        1. SELEÇÃO INICIAL: Selecionar todos os serviços agrupados que tenham entre 4 e 10 PAX
+        2. PRIORIZAÇÃO: 
+           - Serviços IN e OUT da Hotelbeds e Holiday
+           - Serviços com destino à Barra da Tijuca
+           - Serviços que tenham um preço alto "tours"
+        3. ALOCAÇÃO INICIAL: Prioritários são distribuídos primeiro entre Van 1 e Van 2
+           - Intervalo mínimo de 3 horas entre serviços
+           - Tours ocupam o tempo especificado no nome (6H, 8H, 10H, etc.)
+        4. AJUSTE RESTANTES: Não prioritários nos intervalos livres
+        5. STATUS: Marca como 'Alocado' ou 'Não alocado'
+        """
+        logger.info(f"🚀 INICIANDO ESCALAR - Sistema de otimização avançado para escala {escala.id}")
+        
         with transaction.atomic():
-            # Recalcular todos os preços e lucratividade
-            for alocacao in escala.alocacoes.all():
-                alocacao.calcular_preco_e_veiculo()
+            # RESETAR TODOS OS STATUS PARA NÃO ALOCADO
+            logger.info("📋 Resetando status de todas as alocações para 'Não alocado'")
+            escala.alocacoes.update(status_alocacao='NAO_ALOCADO', ordem=0)
             
-            # Obter todos os serviços ordenados por lucratividade (maior primeiro)
-            alocacoes = list(escala.alocacoes.order_by('-lucratividade', '-preco_calculado'))
+            # ETAPA 1: SELEÇÃO INICIAL (4-10 PAX)
+            candidatos = self._selecionar_candidatos_4_10_pax(escala)
+            logger.info(f"✅ ETAPA 1 - Encontrados {len(candidatos)} candidatos (4-10 PAX)")
             
-            # Redistribuir de forma otimizada
-            van1_servicos = []
-            van2_servicos = []
-            van1_pax = 0
-            van2_pax = 0
+            if not candidatos:
+                logger.warning("⚠️ Nenhum candidato encontrado com 4-10 PAX")
+                escala.etapa = 'OTIMIZADA'
+                escala.save()
+                return
             
-            for alocacao in alocacoes:
-                # Escolhe a van com menos PAX (balanceamento)
-                # Prioriza serviços mais lucrativos para van com mais capacidade
-                if van1_pax <= van2_pax:
-                    van1_servicos.append(alocacao)
-                    van1_pax += alocacao.servico.pax
-                    alocacao.van = 'VAN1'
-                    alocacao.ordem = len(van1_servicos)
-                else:
-                    van2_servicos.append(alocacao)
-                    van2_pax += alocacao.servico.pax
-                    alocacao.van = 'VAN2'
-                    alocacao.ordem = len(van2_servicos)
-                
-                alocacao.automatica = True
-                alocacao.save()
+            # ETAPA 2: PRIORIZAÇÃO
+            prioritarios, nao_prioritarios = self._aplicar_priorizacao(candidatos)
+            logger.info(f"✅ ETAPA 2 - Prioritários: {len(prioritarios)} | Não prioritários: {len(nao_prioritarios)}")
             
-            # Atualizar status da escala
+            # ETAPA 3: ALOCAÇÃO INICIAL NAS VANS (Prioritários)
+            logger.info("🎯 ETAPA 3 - Alocando serviços prioritários...")
+            van1_schedule = []  # [(horario_inicio, horario_fim)]
+            van2_schedule = []
+            
+            alocados_prioritarios = 0
+            for candidato in prioritarios:
+                if self._alocar_candidato_respeitando_intervalo_3h(candidato, van1_schedule, van2_schedule):
+                    alocados_prioritarios += 1
+                    
+            logger.info(f"✅ ETAPA 3 - {alocados_prioritarios}/{len(prioritarios)} prioritários alocados")
+            
+            # ETAPA 4: AJUSTE DE SERVIÇOS RESTANTES (Não prioritários)
+            logger.info("🔄 ETAPA 4 - Tentando alocar não prioritários nos intervalos livres...")
+            alocados_nao_prioritarios = 0
+            for candidato in nao_prioritarios:
+                if self._alocar_candidato_respeitando_intervalo_3h(candidato, van1_schedule, van2_schedule):
+                    alocados_nao_prioritarios += 1
+                    
+            logger.info(f"✅ ETAPA 4 - {alocados_nao_prioritarios}/{len(nao_prioritarios)} não prioritários alocados")
+            
+            # MARCAR ESCALA COMO OTIMIZADA
             escala.etapa = 'OTIMIZADA'
             escala.save()
+            
+            # ESTATÍSTICAS FINAIS
+            total_alocados = escala.alocacoes.filter(status_alocacao='ALOCADO').count()
+            total_nao_alocados = escala.alocacoes.filter(status_alocacao='NAO_ALOCADO').count()
+            
+            logger.info(f"🎉 ESCALAR CONCLUÍDO!")
+            logger.info(f"   📊 Alocados: {total_alocados}")
+            logger.info(f"   📊 Não alocados: {total_nao_alocados}")
+            logger.info(f"   📊 Van 1: {escala.alocacoes.filter(status_alocacao='ALOCADO', van='VAN1').count()} serviços")
+            logger.info(f"   📊 Van 2: {escala.alocacoes.filter(status_alocacao='ALOCADO', van='VAN2').count()} serviços")
 
     def _agrupar_servicos(self, escala):
         """Agrupa serviços compatíveis na escala"""
@@ -441,6 +511,7 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
                     # Adicionar serviços ao grupo
                     total_pax = 0
                     total_valor = 0
+                    vendas = []
                     
                     for servico_alocacao in [alocacao] + servicos_compativeis:
                         ServicoGrupo.objects.create(
@@ -449,10 +520,15 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
                         )
                         total_pax += servico_alocacao.servico.pax
                         total_valor += servico_alocacao.preco_calculado or 0
+                        
+                        # Coletar números de venda
+                        if servico_alocacao.servico.numero_venda:
+                            vendas.append(servico_alocacao.servico.numero_venda)
                     
                     # Atualizar grupo com totais
                     grupo.total_pax = total_pax
                     grupo.total_valor = total_valor
+                    grupo.numeros_venda = ' / '.join(vendas)
                     grupo.save()
                     
                     grupos_criados += 1
@@ -577,6 +653,258 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
         padrao = r'GUIA\s*À\s*DISPOSIÇÃO\s*\d+\s*HORAS?'
         return bool(re.search(padrao, nome_upper))
     
+    def _selecionar_candidatos_4_10_pax(self, escala):
+        """
+        ETAPA 1: Selecionar todos os serviços agrupados que tenham entre 4 e 10 PAX
+        """
+        candidatos = []
+        alocacoes_processadas = set()
+        
+        # Primeiro: processar grupos (prioridade sobre individuais)
+        grupos = escala.grupos.all()
+        for grupo in grupos:
+            if 4 <= grupo.total_pax <= 10:
+                alocacoes_grupo = [sg.alocacao for sg in grupo.servicos.all()]
+                candidatos.append({
+                    'tipo': 'grupo',
+                    'grupo': grupo,
+                    'alocacoes': alocacoes_grupo,
+                    'pax_total': grupo.total_pax,
+                    'horario_principal': self._obter_horario_mais_cedo(alocacoes_grupo),
+                    'cliente_principal': grupo.cliente_principal,
+                    'servico_principal': grupo.servico_principal,
+                    'eh_in_out': self._verificar_servico_in_out(grupo.servico_principal)
+                })
+                
+                # Marcar alocações como processadas
+                for alocacao in alocacoes_grupo:
+                    alocacoes_processadas.add(alocacao.id)
+        
+        # Segundo: processar serviços individuais não agrupados
+        alocacoes_individuais = escala.alocacoes.filter(grupo_info__isnull=True)
+        for alocacao in alocacoes_individuais:
+            if (alocacao.id not in alocacoes_processadas and 
+                4 <= alocacao.servico.pax <= 10):
+                candidatos.append({
+                    'tipo': 'individual',
+                    'grupo': None,
+                    'alocacoes': [alocacao],
+                    'pax_total': alocacao.servico.pax,
+                    'horario_principal': alocacao.servico.horario,
+                    'cliente_principal': alocacao.servico.cliente,
+                    'servico_principal': alocacao.servico.servico,
+                    'eh_in_out': self._verificar_servico_in_out(alocacao.servico.servico)
+                })
+        
+        return candidatos
+    
+    def _obter_horario_mais_cedo(self, alocacoes):
+        """Obtém o horário mais cedo de uma lista de alocações"""
+        horarios = []
+        for alocacao in alocacoes:
+            if alocacao.servico.horario:
+                horarios.append(alocacao.servico.horario)
+        return min(horarios) if horarios else None
+    
+    def _verificar_servico_in_out(self, nome_servico):
+        """Verifica se é serviço IN ou OUT"""
+        nome_upper = nome_servico.upper()
+        return ('TRANSFER' in nome_upper and ('IN' in nome_upper or 'OUT' in nome_upper))
+    
+    def _aplicar_priorizacao(self, candidatos):
+        """
+        ETAPA 2: Dentro desse conjunto, dar prioridade para:
+        - Serviços IN e OUT da Hotelbeds e Holiday
+        - Serviços com destino à Barra da Tijuca  
+        - Serviços que tenham um preço alto "tours"
+        """
+        for candidato in candidatos:
+            score = self._calcular_score_prioridade_negocio(candidato)
+            candidato['score_prioridade'] = score
+        
+        # Separar em prioritários (score > 0) e não prioritários
+        prioritarios = [c for c in candidatos if c['score_prioridade'] > 0]
+        nao_prioritarios = [c for c in candidatos if c['score_prioridade'] == 0]
+        
+        # Ordenar prioritários por score (maior primeiro)
+        prioritarios.sort(key=lambda x: x['score_prioridade'], reverse=True)
+        
+        # Ordenar não prioritários por horário (mais cedo primeiro)
+        nao_prioritarios.sort(key=lambda x: x['horario_principal'] or timezone.time(23, 59))
+        
+        return prioritarios, nao_prioritarios
+    
+    def _calcular_score_prioridade_negocio(self, candidato):
+        """
+        Calcula score de prioridade baseado nas regras de negócio:
+        - Hotelbeds e Holiday: +100 pontos
+        - Barra da Tijuca: +50 pontos  
+        - Tours: +75 pontos
+        """
+        score = 0
+        cliente = candidato['cliente_principal'].upper()
+        servico = candidato['servico_principal'].upper()
+        
+        # PRIORIDADE 1: Serviços IN e OUT da Hotelbeds e Holiday
+        if candidato['eh_in_out']:
+            if 'HOTELBEDS' in cliente or 'HOLIDAY' in cliente:
+                score += 100
+                logger.debug(f"   🏆 Hotelbeds/Holiday IN/OUT: {candidato['cliente_principal']} (+100)")
+        
+        # PRIORIDADE 2: Serviços com destino à Barra da Tijuca
+        if 'BARRA' in servico or 'BARRA DA TIJUCA' in servico or 'RECREIO' in servico:
+            score += 50
+            logger.debug(f"   🏖️ Destino Barra: {candidato['servico_principal'][:50]}... (+50)")
+        
+        # PRIORIDADE 3: Serviços que tenham preço alto "tours"
+        if self._eh_tour_alto_valor(servico):
+            score += 75
+            logger.debug(f"   🎯 Tour alto valor: {candidato['servico_principal'][:50]}... (+75)")
+        
+        # Bonus menor por PAX (desempate)
+        score += candidato['pax_total'] * 1
+        
+        return score
+    
+    def _eh_tour_alto_valor(self, nome_servico):
+        """Verifica se é um tour de alto valor"""
+        nome_upper = nome_servico.upper()
+        return (
+            'TOUR' in nome_upper or 
+            'VEÍCULO + GUIA À DISPOSIÇÃO' in nome_upper or
+            'VEICULO + GUIA A DISPOSICAO' in nome_upper or
+            'GUIA À DISPOSIÇÃO' in nome_upper or
+            'GUIA A DISPOSICAO' in nome_upper
+        )
+    
+    def _alocar_candidato_respeitando_intervalo_3h(self, candidato, van1_schedule, van2_schedule):
+        """
+        ETAPA 3 & 4: Alocação nas vans respeitando:
+        - Intervalo mínimo de 3 horas
+        - Tours ocupam toda sua duração especificada
+        """
+        horario_inicio = candidato['horario_principal']
+        
+        if not horario_inicio:
+            logger.debug(f"   ⚠️ {candidato['cliente_principal']} - sem horário, não alocado")
+            return False
+        
+        # Calcular duração baseada no tipo de serviço
+        duracao_minutos = self._calcular_duracao_ocupacao_van(candidato['servico_principal'])
+        horario_fim = self._somar_minutos_ao_horario(horario_inicio, duracao_minutos)
+        
+        logger.debug(f"   🕐 {candidato['cliente_principal']} - {horario_inicio} a {horario_fim} ({duracao_minutos}min)")
+        
+        # Tentar Van 1 primeiro
+        if self._van_pode_aceitar_servico(horario_inicio, horario_fim, van1_schedule):
+            self._confirmar_alocacao_na_van(candidato, 'VAN1', van1_schedule, horario_inicio, horario_fim)
+            return True
+        
+        # Tentar Van 2
+        elif self._van_pode_aceitar_servico(horario_inicio, horario_fim, van2_schedule):
+            self._confirmar_alocacao_na_van(candidato, 'VAN2', van2_schedule, horario_inicio, horario_fim)
+            return True
+        
+        # Não conseguiu alocar em nenhuma van
+        logger.debug(f"   ❌ {candidato['cliente_principal']} - não coube em nenhuma van")
+        return False
+    
+    def _calcular_duracao_ocupacao_van(self, nome_servico):
+        """
+        Calcula quantos minutos a van ficará ocupada.
+        Tours especiais: conforme especificado no nome (6H, 8H, 10H)
+        Outros serviços: 3 horas padrão
+        """
+        nome_upper = nome_servico.upper()
+        
+        # Buscar padrões de horas nos tours
+        import re
+        
+        # Padrão: "VEÍCULO + GUIA À DISPOSIÇÃO 06 HORAS"
+        match = re.search(r'(\d+)\s*HORAS?', nome_upper)
+        if match:
+            horas = int(match.group(1))
+            logger.debug(f"     ⏱️ Tour de {horas} horas detectado")
+            return horas * 60
+        
+        # Padrão: "GUIA À DISPOSIÇÃO 08 HORAS"  
+        match = re.search(r'GUIA.*DISPOSIÇÃO.*(\d+)\s*HORAS?', nome_upper)
+        if match:
+            horas = int(match.group(1))
+            logger.debug(f"     ⏱️ Guia {horas} horas detectado")
+            return horas * 60
+        
+        # Padrão: "DISPOSIÇÃO 10H" ou variações
+        match = re.search(r'DISPOSIÇÃO.*(\d+)H', nome_upper)
+        if match:
+            horas = int(match.group(1))
+            logger.debug(f"     ⏱️ Disposição {horas}H detectado")
+            return horas * 60
+        
+        # Transfers e outros: 3 horas padrão
+        logger.debug(f"     ⏱️ Serviço padrão: 3 horas")
+        return 180  # 3 horas = 180 minutos
+    
+    def _somar_minutos_ao_horario(self, horario, minutos):
+        """Adiciona minutos a um horário"""
+        from datetime import datetime, timedelta
+        dt = datetime.combine(datetime.today(), horario)
+        dt_fim = dt + timedelta(minutes=minutos)
+        return dt_fim.time()
+    
+    def _van_pode_aceitar_servico(self, inicio, fim, schedule_van):
+        """
+        Verifica se a van pode aceitar o serviço:
+        - Não pode haver sobreposição
+        - Deve ter 3 horas de intervalo após o último serviço
+        """
+        INTERVALO_MINIMO_MINUTOS = 180  # 3 horas
+        
+        for agendado_inicio, agendado_fim in schedule_van:
+            # Verificar sobreposição
+            if not (fim <= agendado_inicio or inicio >= agendado_fim):
+                logger.debug(f"     ❌ Conflito de horário: {inicio}-{fim} vs {agendado_inicio}-{agendado_fim}")
+                return False
+            
+            # Verificar intervalo mínimo (3 horas após o fim do último)
+            if agendado_fim <= inicio:
+                diferenca_minutos = self._calcular_diferenca_minutos(agendado_fim, inicio)
+                if diferenca_minutos < INTERVALO_MINIMO_MINUTOS:
+                    logger.debug(f"     ❌ Intervalo insuficiente: {diferenca_minutos}min < 180min")
+                    return False
+        
+        return True
+    
+    def _calcular_diferenca_minutos(self, horario1, horario2):
+        """Calcula diferença em minutos entre dois horários"""
+        from datetime import datetime, timedelta
+        
+        dt1 = datetime.combine(datetime.today(), horario1)
+        dt2 = datetime.combine(datetime.today(), horario2)
+        
+        # Lidar com horários que passam da meia-noite
+        if dt2 < dt1:
+            dt2 += timedelta(days=1)
+        
+        return (dt2 - dt1).total_seconds() / 60
+    
+    def _confirmar_alocacao_na_van(self, candidato, van_nome, schedule_van, horario_inicio, horario_fim):
+        """Confirma alocação do candidato na van especificada"""
+        # Adicionar ao schedule da van
+        schedule_van.append((horario_inicio, horario_fim))
+        schedule_van.sort()
+        
+        # Marcar todas as alocações do candidato como alocadas
+        ordem = len([s for s in schedule_van if s[0] <= horario_inicio])
+        
+        for alocacao in candidato['alocacoes']:
+            alocacao.status_alocacao = 'ALOCADO'
+            alocacao.van = van_nome
+            alocacao.ordem = ordem
+            alocacao.save()
+        
+        logger.info(f"✅ ALOCADO: {candidato['cliente_principal']} ({candidato['pax_total']} PAX) -> {van_nome} #{ordem}")
+    
 
 class VisualizarEscalaView(LoginRequiredMixin, View):
     """View para visualizar uma escala específica"""
@@ -650,222 +978,78 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
         grupos_van1 = escala.grupos.filter(van='VAN1').order_by('ordem')
         grupos_van2 = escala.grupos.filter(van='VAN2').order_by('ordem')
         
+        # Adicionar data formatada para JavaScript
+        data_str = self.kwargs.get('data')
+        
         context.update({
             'van1': van1_data,
             'van2': van2_data,
             'grupos_van1': grupos_van1,
             'grupos_van2': grupos_van2,
             'total_servicos': all_van1_alocacoes.count() + all_van2_alocacoes.count(),
+            'data': data_str,  # Adicionar data formatada
         })
         
         return context
 
     def post(self, request, data):
         """Processa ações do botão Agrupar e Otimizar"""
-        print(f"DEBUG: POST recebido na VisualizarEscalaView - data: {data}")
-        print(f"DEBUG: POST data: {request.POST}")
+        print(f"\n=== DEBUG POST VisualizarEscalaView ===")
+        print(f"Data recebida: {data}")
+        print(f"Método: {request.method}")
+        print(f"POST keys: {list(request.POST.keys())}")
+        print(f"POST items: {dict(request.POST.items())}")
         
+        # Verificar se há parâmetro acao
         acao = request.POST.get('acao')
-        print(f"DEBUG: Ação solicitada: {acao}")
+        print(f"Parâmetro 'acao': '{acao}'")
+        
+        if not acao:
+            print("ERRO: Parâmetro 'acao' não encontrado!")
+            messages.error(request, 'Ação não especificada.')
+            return redirect('escalas:visualizar_escala', data=data)
         
         escala = self.get_object()
-        print(f"DEBUG: Escala encontrada: {escala.id}")
+        print(f"Escala ID: {escala.id}, Etapa: {escala.etapa}")
         
         if acao == 'agrupar':
-            logger.debug(f"Processando ação agrupar para escala {escala.id}")
-            
-            if escala.etapa != 'DADOS_PUXADOS':
-                messages.error(request, 'Para agrupar, é necessário ter dados puxados.')
+            print("=== PROCESSANDO AGRUPAMENTO ===")
+            if escala.etapa not in ['DADOS_PUXADOS', 'OTIMIZADA']:
+                messages.error(request, 'Para agrupar, é necessário ter dados puxados ou estar otimizada.')
                 return redirect('escalas:visualizar_escala', data=data)
             
             try:
-                print(f"DEBUG: Tentando agrupar serviços para escala {escala.id}")
-                # Mover a função _agrupar_servicos da GerenciarEscalasView para esta view
                 grupos_criados = self._agrupar_servicos(escala)
-                print(f"DEBUG: Agrupamento retornou {grupos_criados} grupos")
-                logger.debug(f"Agrupamento concluído - Grupos criados: {grupos_criados}")
+                print(f"Agrupamento concluído: {grupos_criados} grupos criados")
                 messages.success(request, f'Agrupamento concluído! {grupos_criados} grupos criados.')
             except Exception as e:
-                print(f"DEBUG: Erro no agrupamento: {e}")
-                logger.error(f"Erro no agrupamento: {e}")
+                print(f"ERRO no agrupamento: {e}")
+                import traceback
+                traceback.print_exc()
                 messages.error(request, f'Erro ao agrupar serviços: {e}')
         
         elif acao == 'otimizar':
-            if escala.etapa != 'DADOS_PUXADOS':
-                messages.error(request, 'Para otimizar, é necessário ter dados puxados.')
+            print("=== PROCESSANDO ESCALONAMENTO ===")
+            if escala.etapa not in ['DADOS_PUXADOS', 'OTIMIZADA']:
+                messages.error(request, 'Para escalar, é necessário ter dados puxados.')
                 return redirect('escalas:visualizar_escala', data=data)
             
             try:
-                # Mover a função _otimizar_escala da GerenciarEscalasView para esta view  
                 self._otimizar_escala(escala)
-                messages.success(request, 'Escala otimizada com sucesso!')
+                print("Escalonamento concluído com sucesso")
+                messages.success(request, 'Escala escalada com sucesso!')
             except Exception as e:
-                logger.error(f"Erro ao otimizar escala: {e}")
-                messages.error(request, f'Erro ao otimizar escala: {e}')
+                print(f"ERRO no escalonamento: {e}")
+                import traceback
+                traceback.print_exc()
+                messages.error(request, f'Erro ao escalar escala: {e}')
         
-        # Manter na mesma página de visualização
+        else:
+            print(f"AÇÃO DESCONHECIDA: '{acao}'")
+            messages.error(request, f'Ação desconhecida: {acao}')
+        
+        print("=== REDIRECIONANDO ===")
         return redirect('escalas:visualizar_escala', data=data)
-
-    def _agrupar_servicos(self, escala):
-        """Agrupa serviços compatíveis na escala"""
-        print(f"DEBUG: ===== INICIANDO AGRUPAMENTO =====")
-        print(f"DEBUG: Escala ID: {escala.id}")
-        print(f"DEBUG: Escala data: {escala.data}")
-        print(f"DEBUG: Escala etapa: {escala.etapa}")
-        
-        grupos_criados = 0
-        
-        logger.debug(f"Iniciando agrupamento para escala {escala.id}")
-        
-        with transaction.atomic():
-            # Buscar alocações que ainda não estão agrupadas
-            alocacoes_disponiveis = escala.alocacoes.filter(
-                grupo_info__isnull=True
-            ).order_by('servico__horario')
-            
-            print(f"DEBUG: Encontradas {alocacoes_disponiveis.count()} alocações disponíveis")
-            logger.debug(f"Encontradas {alocacoes_disponiveis.count()} alocações disponíveis para agrupamento")
-            
-            for alocacao in alocacoes_disponiveis:
-                if hasattr(alocacao, 'grupo_info') and alocacao.grupo_info:
-                    continue  # Já foi agrupada
-                
-                # Buscar serviços compatíveis para agrupamento
-                servicos_compativeis = self._encontrar_servicos_compativeis(alocacao, alocacoes_disponiveis)
-                
-                if servicos_compativeis:
-                    # Criar grupo
-                    grupo = GrupoServico.objects.create(
-                        escala=escala,
-                        van=alocacao.van or 'VAN1',
-                        cliente_principal=alocacao.servico.cliente,
-                        servico_principal=alocacao.servico.servico,
-                        local_pickup_principal=alocacao.servico.local_pickup or ''
-                    )
-                    
-                    # Adicionar serviços ao grupo
-                    total_pax = 0
-                    total_valor = 0
-                    
-                    for servico_alocacao in [alocacao] + servicos_compativeis:
-                        ServicoGrupo.objects.create(
-                            grupo=grupo,
-                            alocacao=servico_alocacao
-                        )
-                        total_pax += servico_alocacao.servico.pax
-                        total_valor += servico_alocacao.preco_calculado or 0
-                    
-                    # Atualizar grupo com totais
-                    grupo.total_pax = total_pax
-                    grupo.total_valor = total_valor
-                    grupo.save()
-                    
-                    grupos_criados += 1
-                    
-                    logger.info(f"Grupo criado: {grupo.cliente_principal} com {len(servicos_compativeis) + 1} serviços e {total_pax} PAX")
-        
-        logger.debug(f"Agrupamento finalizado. Total de grupos criados: {grupos_criados}")
-        return grupos_criados
-    
-    def _encontrar_servicos_compativeis(self, alocacao_base, alocacoes_disponiveis):
-        """Encontra serviços compatíveis para agrupamento"""
-        servicos_compativeis = []
-        servico_base = alocacao_base.servico
-        
-        for outra_alocacao in alocacoes_disponiveis:
-            if outra_alocacao.id == alocacao_base.id:
-                continue
-            if hasattr(outra_alocacao, 'grupo_info') and outra_alocacao.grupo_info:
-                continue
-                
-            outro_servico = outra_alocacao.servico
-            
-            # Verificar compatibilidade
-            if self._servicos_sao_compativeis(servico_base, outro_servico):
-                servicos_compativeis.append(outra_alocacao)
-        
-        return servicos_compativeis
-    
-    def _servicos_sao_compativeis(self, servico1, servico2):
-        """Verifica se dois serviços podem ser agrupados"""
-        # 1. Mesmo nome de serviço e diferença de até 40 minutos
-        if self._normalizar_nome_servico(servico1.servico) == self._normalizar_nome_servico(servico2.servico):
-            if self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40:
-                return True
-        
-        # 2. Transfers OUT regulares com mesmo local de pickup (≥ 4 PAX total)
-        if (self._eh_transfer_out(servico1.servico) and 
-            self._eh_transfer_out(servico2.servico) and
-            servico1.local_pickup == servico2.local_pickup):
-            if (servico1.pax + servico2.pax) >= 4:
-                return True
-        
-        # 3. Serviços de TOUR (incluindo variações)
-        if (self._eh_tour(servico1.servico) and 
-            self._eh_tour(servico2.servico)):
-            if self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40:
-                return True
-        
-        # 4. Serviços de GUIA À DISPOSIÇÃO (diferentes durações)
-        if (self._eh_guia_disposicao(servico1.servico) and 
-            self._eh_guia_disposicao(servico2.servico)):
-            if self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40:
-                return True
-        
-        return False
-    
-    def _normalizar_nome_servico(self, nome):
-        """Normaliza nome do serviço para comparação"""
-        return nome.upper().strip()
-    
-    def _diferenca_horario_minutos(self, horario1, horario2):
-        """Calcula diferença em minutos entre dois horários"""
-        if not horario1 or not horario2:
-            return float('inf')
-        
-        # Se forem strings, converter para datetime
-        if isinstance(horario1, str):
-            horario1 = datetime.strptime(horario1, '%H:%M').time()
-        if isinstance(horario2, str):
-            horario2 = datetime.strptime(horario2, '%H:%M').time()
-            
-        # Converter time para datetime para cálculo
-        data_base = date.today()
-        dt1 = datetime.combine(data_base, horario1)
-        dt2 = datetime.combine(data_base, horario2)
-        
-        diferenca = abs((dt2 - dt1).total_seconds() / 60)
-        return diferenca
-    
-    def _eh_transfer_out(self, nome_servico):
-        """Verifica se é um transfer OUT"""
-        nome_upper = nome_servico.upper()
-        return 'TRANSFER' in nome_upper and 'OUT' in nome_upper
-    
-    def _eh_tour(self, nome_servico):
-        """Verifica se é um serviço de tour"""
-        nome_upper = nome_servico.upper()
-        return ('TOUR' in nome_upper or 
-                'VEÍCULO + GUIA À DISPOSIÇÃO' in nome_upper or
-                'VEICULO + GUIA' in nome_upper)
-    
-    def _eh_guia_disposicao(self, nome_servico):
-        """Verifica se é um serviço de guia à disposição"""
-        nome_upper = nome_servico.upper()
-        # Padrão: GUIA À DISPOSIÇÃO XX HORAS
-        padrao = r'GUIA\s*À\s*DISPOSIÇÃO\s*\d+\s*HORAS?'
-        return bool(re.search(padrao, nome_upper))
-
-    def _otimizar_escala(self, escala):
-        """Otimiza a distribuição dos serviços entre as vans"""
-        logger.debug(f"Iniciando otimização para escala {escala.id}")
-        
-        # Implementação básica da otimização
-        with transaction.atomic():
-            escala.etapa = 'OTIMIZADA'
-            escala.save()
-            logger.info(f"Escala {escala.id} marcada como otimizada")
-
 
 class PuxarDadosView(LoginRequiredMixin, View):
     """View para puxar dados específicos da data indicada pelo usuário"""
@@ -964,8 +1148,8 @@ class PuxarDadosView(LoginRequiredMixin, View):
                     automatica=True
                 )
                 
-                # Calcular preço e veículo
-                alocacao.calcular_preco_e_veiculo()
+                # NÃO calcular preço automaticamente - será feito sob demanda
+                # O preço ficará como R$ 0 até ser precificado manualmente
             
             # Atualizar escala
             escala.data_origem = data_origem
@@ -1154,6 +1338,137 @@ class AgruparServicosView(LoginRequiredMixin, View):
             })
 
 
+class PrecificarEscalaView(LoginRequiredMixin, View):
+    """
+    View para precificar todos os serviços de uma escala usando sistema inteligente
+    que consulta tarifários JW e Motoristas com busca fuzzy avançada
+    """
+    
+    def post(self, request, data):
+        """Precifica todos os serviços da escala usando busca inteligente"""
+        try:
+            # Buscar a escala
+            data_obj = parse_data_brasileira(data)
+            escala = get_object_or_404(Escala, data=data_obj)
+            
+            # Verificar se a escala tem dados puxados
+            if escala.etapa == 'ESTRUTURA':
+                return JsonResponse({
+                    'status': 'error',
+                    'success': False,
+                    'message': 'Esta escala não tem dados puxados ainda.',
+                    'error': 'Esta escala não tem dados puxados ainda.'
+                })
+            
+            # Inicializar contadores e estatísticas detalhadas
+            servicos_precificados = 0
+            servicos_com_erro = 0
+            total_valor = 0.0
+            estatisticas_fonte = {'JW': 0, 'Motoristas': 0, 'padrão': 0}
+            
+            logger.info(f"🚀 INICIANDO PRECIFICAÇÃO INTELIGENTE - Escala {escala.data}")
+            
+            with transaction.atomic():
+                # Buscar todas as alocações da escala
+                alocacoes = escala.alocacoes.all()
+                logger.info(f"📋 Total de alocações a precificar: {alocacoes.count()}")
+                
+                for alocacao in alocacoes:
+                    try:
+                        # Calcular preço e veículo usando sistema inteligente
+                        veiculo_anterior = alocacao.veiculo_recomendado
+                        preco_anterior = alocacao.preco_calculado
+                        
+                        veiculo, preco = alocacao.calcular_preco_e_veiculo()
+                        
+                        # Estatísticas por fonte (extrair do log)
+                        # O log é gerado no modelo, então vamos inferir a fonte baseada no preço
+                        if preco > 0:
+                            # Busca inteligente para determinar fonte
+                            from core.busca_inteligente_precos import BuscadorInteligentePrecosCodigoDoAnalista
+                            buscador = BuscadorInteligentePrecosCodigoDoAnalista()
+                            _, _, fonte = buscador.buscar_preco_inteligente(
+                                alocacao.servico.servico, 
+                                alocacao.servico.pax, 
+                                str(alocacao.servico.numero_venda or "1")
+                            )
+                            
+                            # Categorizar fonte
+                            if 'JW' in fonte:
+                                estatisticas_fonte['JW'] += 1
+                            elif 'Motoristas' in fonte:
+                                estatisticas_fonte['Motoristas'] += 1
+                            else:
+                                estatisticas_fonte['padrão'] += 1
+                        
+                        servicos_precificados += 1
+                        total_valor += preco
+                        
+                        # Log detalhado de mudanças
+                        if veiculo != veiculo_anterior or abs(preco - (preco_anterior or 0)) > 0.01:
+                            logger.info(f"🔄 Atualização - {alocacao.servico.servico[:30]}... | "
+                                       f"{veiculo_anterior or 'N/A'} → {veiculo} | "
+                                       f"R$ {preco_anterior or 0:.2f} → R$ {preco:.2f}")
+                        
+                    except Exception as e:
+                        logger.error(f"❌ Erro ao precificar alocação {alocacao.id}: {e}")
+                        servicos_com_erro += 1
+                
+                # Recalcular totais de grupos se existirem
+                grupos = escala.grupos.all()
+                if grupos.exists():
+                    logger.info(f"🔄 Recalculando totais de {grupos.count()} grupos...")
+                    for grupo in grupos:
+                        try:
+                            grupo.recalcular_totais()
+                        except Exception as e:
+                            logger.error(f"❌ Erro ao calcular totais do grupo {grupo.id}: {e}")
+            
+            # Preparar mensagem detalhada
+            valor_medio = total_valor / max(servicos_precificados, 1)
+            
+            if servicos_com_erro == 0:
+                mensagem = (f"✅ Precificação inteligente concluída! "
+                          f"{servicos_precificados} serviços precificados. "
+                          f"Valor total: R$ {total_valor:,.2f} | "
+                          f"Valor médio: R$ {valor_medio:.2f}")
+            else:
+                mensagem = (f"⚠️ Precificação concluída com avisos: "
+                          f"{servicos_precificados} serviços OK, {servicos_com_erro} com erro. "
+                          f"Valor total: R$ {total_valor:,.2f}")
+            
+            # Log das estatísticas finais
+            logger.info(f"📊 ESTATÍSTICAS DA PRECIFICAÇÃO:")
+            logger.info(f"   • Tarifário JW: {estatisticas_fonte['JW']} serviços")
+            logger.info(f"   • Tarifário Motoristas: {estatisticas_fonte['Motoristas']} serviços")
+            logger.info(f"   • Preços padrão: {estatisticas_fonte['padrão']} serviços")
+            logger.info(f"   • Valor total: R$ {total_valor:,.2f}")
+            logger.info(f"   • Valor médio por serviço: R$ {valor_medio:.2f}")
+            
+            return JsonResponse({
+                'status': 'success',
+                'success': True,
+                'message': mensagem,
+                'servicos_precificados': servicos_precificados,
+                'servicos_com_erro': servicos_com_erro,
+                'valor_total': round(total_valor, 2),
+                'valor_medio': round(valor_medio, 2),
+                'estatisticas_fonte': estatisticas_fonte
+            })
+            
+        except Exception as e:
+            logger.error(f"❌ ERRO CRÍTICO na precificação da escala {data}: {e}")
+            import traceback
+            logger.error(traceback.format_exc())
+            
+            return JsonResponse({
+                'status': 'error',
+                'success': False,
+                'message': f'Erro na precificação: {str(e)}',
+                'error': f'Erro na precificação: {str(e)}'
+            })
+
+
 class DesagruparServicoView(View):
     """
     View para remover um serviço de um grupo
@@ -1202,6 +1517,66 @@ class DesagruparServicoView(View):
                 'success': False,
                 'error': str(e)
             })
+
+
+class ApiDetalhesPrecificacaoView(LoginRequiredMixin, View):
+    """
+    API para retornar detalhes completos da precificação de uma alocação
+    """
+    
+    def get(self, request, alocacao_id):
+        """Retorna detalhes da precificação"""
+        try:
+            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
+            logger.info(f"📊 Buscando detalhes para alocação {alocacao_id}")
+            
+            # Extrair detalhes da precificação salvos
+            detalhes = alocacao.detalhes_precificacao or {}
+            logger.info(f"📊 Detalhes encontrados: {detalhes}")
+            
+            # Construir resposta no formato que o JavaScript espera
+            dados = {
+                # Informações básicas do serviço
+                'numero_venda': alocacao.servico.numero_venda or 'N/A',
+                'servico_nome': alocacao.servico.servico,
+                'cliente': alocacao.servico.cliente,
+                'pax': alocacao.servico.pax,
+                'origem': alocacao.servico.local_pickup or 'N/A',
+                'destino': f"{alocacao.servico.regiao} ({alocacao.servico.aeroporto})" if alocacao.servico.regiao != 'N/A' else 'N/A',
+                'tipo_servico': alocacao.servico.get_tipo_display(),
+                'direcao': alocacao.servico.direcao,
+                
+                # Informações de precificação
+                'preco_calculado': f"{float(alocacao.preco_calculado):,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.') if alocacao.preco_calculado else "0,00",
+                'veiculo_recomendado': alocacao.veiculo_recomendado or 'N/A',
+                'lucratividade': f"{float(alocacao.lucratividade):,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.') if alocacao.lucratividade else "0,00",
+                
+                # Detalhes do tarifário
+                'fonte_tarifario': detalhes.get('fonte', detalhes.get('tarifario', 'Não especificado')),
+                'metodo_calculo': detalhes.get('metodo', detalhes.get('metodo_calculo', 'Cálculo padrão')),
+                'tarifa_encontrada': detalhes.get('tarifa_encontrada', detalhes.get('chave_encontrada', detalhes.get('servico_encontrado', ''))),
+                'score_similaridade': detalhes.get('score_similaridade', detalhes.get('similaridade', detalhes.get('score', None))),
+                'preco_tabela': f"{float(detalhes.get('preco_tabela', 0)):,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.') if detalhes.get('preco_tabela') else None,
+                'multiplicador': detalhes.get('multiplicador', 1),
+                
+                # Informações adicionais
+                'observacoes': detalhes.get('observacoes', 'Preço calculado com sucesso' if alocacao.preco_calculado else 'Sem observações disponíveis'),
+                'data_calculo': detalhes.get('data_calculo', 'N/A'),
+                'historico_busca': detalhes.get('historico_busca', []),
+                
+                # Status e debug
+                'tem_detalhes_salvos': bool(alocacao.detalhes_precificacao),
+                'todos_detalhes': detalhes  # Para debug, pode ser removido depois
+            }
+            
+            logger.info(f"📊 Retornando dados expandidos: {len(str(dados))} caracteres")
+            return JsonResponse(dados)
+            
+        except Exception as e:
+            logger.error(f"❌ Erro ao buscar detalhes da precificação para alocação {alocacao_id}: {e}")
+            return JsonResponse({
+                'error': f'Erro interno: {str(e)}'
+            }, status=500)
 
 
 class ExportarEscalaView(LoginRequiredMixin, View):
@@ -1817,7 +2192,7 @@ class ApiAtualizarPrecoView(LoginRequiredMixin, View):
                     'error': 'Dados incompletos'
                 })
             
-            novo_preco = Decimal(str(preco))
+            novo_preco = converter_para_decimal_seguro(preco)
             
             if tipo == 'grupo' and grupo_id:
                 # Atualizar preço do grupo

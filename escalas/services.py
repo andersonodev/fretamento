@@ -189,8 +189,9 @@ class ExportadorEscalas:
             return resultados
         
         # Obtém alocações da escala ordenadas por van e ordem
-        alocacoes_van1 = escala.alocacoes.filter(van='VAN1').order_by('ordem')
-        alocacoes_van2 = escala.alocacoes.filter(van='VAN2').order_by('ordem')
+        # Obter alocações organizadas por van - APENAS ALOCADOS
+        alocacoes_van1 = escala.alocacoes.filter(van='VAN1', status_alocacao='ALOCADO').order_by('ordem')
+        alocacoes_van2 = escala.alocacoes.filter(van='VAN2', status_alocacao='ALOCADO').order_by('ordem')
         
         # Processar cada van
         dados_van1 = processar_van(alocacoes_van1, "VAN 1")
@@ -527,9 +528,9 @@ class ExportadorEscalas:
                 
                 return resultados
 
-            # Processa VAN1 e VAN2 da escala atual
-            alocacoes_van1 = escala.alocacoes.filter(van='VAN1').order_by('ordem')
-            alocacoes_van2 = escala.alocacoes.filter(van='VAN2').order_by('ordem')
+            # Processa VAN1 e VAN2 da escala atual - APENAS ALOCADOS
+            alocacoes_van1 = escala.alocacoes.filter(van='VAN1', status_alocacao='ALOCADO').order_by('ordem')
+            alocacoes_van2 = escala.alocacoes.filter(van='VAN2', status_alocacao='ALOCADO').order_by('ordem')
             
             dados_van1 = processar_van(alocacoes_van1, "VAN 1")
             dados_van2 = processar_van(alocacoes_van2, "VAN 2")

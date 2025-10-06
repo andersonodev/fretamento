@@ -111,6 +111,7 @@ class GrupoServico(models.Model):
     # Totais calculados
     total_pax = models.IntegerField(default=0)
     total_valor = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    numeros_venda = models.TextField(blank=True, help_text="Números de venda concatenados separados por ' / '")
     
     # Controle
     created_at = models.DateTimeField(auto_now_add=True)
@@ -129,6 +130,14 @@ class GrupoServico(models.Model):
         servicos = self.servicos.all()
         self.total_pax = sum(s.servico.pax for s in servicos)
         self.total_valor = sum(s.preco_calculado or 0 for s in servicos)
+        
+        # Concatenar números de venda
+        vendas = []
+        for s in servicos:
+            if s.servico.numero_venda:
+                vendas.append(s.servico.numero_venda)
+        self.numeros_venda = ' / '.join(vendas)
+        
         self.save()
     
     def get_clientes_unicos(self):
@@ -230,6 +239,19 @@ class AlocacaoVan(models.Model):
     preco_calculado = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     veiculo_recomendado = models.CharField(max_length=50, null=True, blank=True)
     lucratividade = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, help_text="Score de lucratividade")
+    detalhes_precificacao = models.JSONField(null=True, blank=True, help_text="Detalhes de como o preço foi calculado")
+    
+    # Status de alocação para otimização
+    STATUS_ALOCACAO_CHOICES = [
+        ('ALOCADO', 'Alocado'),
+        ('NAO_ALOCADO', 'Não alocado'),
+    ]
+    status_alocacao = models.CharField(
+        max_length=20, 
+        choices=STATUS_ALOCACAO_CHOICES, 
+        default='ALOCADO',
+        help_text="Status da alocação após otimização"
+    )
     
     class Meta:
         ordering = ['van', 'ordem']
@@ -241,18 +263,145 @@ class AlocacaoVan(models.Model):
         return f"{self.servico.cliente} - {self.van} (Ordem: {self.ordem})"
     
     def calcular_preco_e_veiculo(self):
-        """Calcula e armazena preço e veículo recomendado"""
-        from core.tarifarios import calcular_preco_servico
-        veiculo, preco = calcular_preco_servico(self.servico)
+        """
+        Calcula e armazena preço e veículo recomendado usando sistema inteligente
+        que consulta tanto o tarifário JW quanto o de motoristas com busca fuzzy
+        """
+        from core.busca_inteligente_precos import BuscadorInteligentePrecosCodigoDoAnalista
+        from decimal import Decimal, InvalidOperation
+        from django.utils import timezone
+        import logging
         
-        self.veiculo_recomendado = veiculo
-        self.preco_calculado = preco
+        logger = logging.getLogger(__name__)
         
-        # Calcular lucratividade (baseado no valor vs pax)
-        if self.servico.pax > 0:
-            self.lucratividade = float(preco) / self.servico.pax
-        else:
-            self.lucratividade = 0
-        
-        self.save()
-        return veiculo, preco
+        try:
+            # Inicializar buscador inteligente
+            buscador = BuscadorInteligentePrecosCodigoDoAnalista()
+            
+            # Buscar preço usando algoritmo inteligente
+            veiculo, preco, fonte = buscador.buscar_preco_inteligente(
+                nome_servico=self.servico.servico,
+                pax=self.servico.pax,
+                numero_venda=str(self.servico.numero_venda) if self.servico.numero_venda else "1"
+            )
+            
+            # Obter detalhes adicionais da precificação
+            detalhes = {
+                'metodo': 'busca_inteligente',
+                'servico_original': self.servico.servico,
+                'pax': self.servico.pax,
+                'numero_venda': self.servico.numero_venda,
+                'veiculo_calculado': veiculo,
+                'preco_encontrado': float(preco),
+                'fonte_tarifario': fonte,
+                'data_calculo': timezone.now().isoformat(),
+                'algoritmo_usado': 'fuzzy_search_v2'
+            }
+            
+            # Tentar obter mais detalhes específicos do tarifário usado
+            if 'JW' in fonte:
+                # Buscar chave específica no JW
+                chave_jw, preco_jw, sim_jw = buscador.buscar_melhor_match_tarifario(
+                    self.servico.servico, buscador.TARIFARIO_JW, 0.4
+                )
+                detalhes.update({
+                    'tarifario': 'JW',
+                    'chave_encontrada': chave_jw,
+                    'similaridade': float(sim_jw),
+                    'preco_tabela': float(preco_jw.get(veiculo, 0) if isinstance(preco_jw, dict) else preco_jw),
+                    'observacoes': f'Preço do veículo {veiculo} na tabela JW'
+                })
+            elif 'Motoristas' in fonte:
+                # Buscar chave específica no Motoristas
+                chave_mot, preco_mot, sim_mot = buscador.buscar_melhor_match_tarifario(
+                    self.servico.servico, buscador.TARIFARIO_MOTORISTAS, 0.25
+                )
+                detalhes.update({
+                    'tarifario': 'Motoristas',
+                    'chave_encontrada': chave_mot,
+                    'similaridade': float(sim_mot),
+                    'preco_tabela': float(preco_mot),
+                    'multiplicador': 1,  # Não usamos mais multiplicador
+                    'observacoes': 'Preço base do tarifário de motoristas'
+                })
+            else:
+                # Preço padrão
+                detalhes.update({
+                    'tarifario': 'Padrão',
+                    'chave_encontrada': 'N/A',
+                    'similaridade': 0.0,
+                    'preco_tabela': float(preco),
+                    'observacoes': f'Preço padrão baseado no veículo {veiculo} e {self.servico.pax} PAX'
+                })
+            
+            # Validar resultado
+            if preco is None or preco == '' or str(preco).strip() == '':
+                preco = 0.0
+                logger.warning(f"Preço inválido para serviço {self.servico.id}. Usando 0.0")
+            
+            # Converter para float seguro
+            preco = float(preco) if preco else 0.0
+            
+            # Armazenar resultados
+            self.veiculo_recomendado = veiculo
+            self.preco_calculado = preco
+            self.detalhes_precificacao = detalhes
+            
+            # Calcular lucratividade (baseado no valor vs pax)
+            if self.servico.pax > 0:
+                self.lucratividade = preco / self.servico.pax
+            else:
+                self.lucratividade = 0.0
+            
+            # Log detalhado para debug
+            logger.info(f"Precificação - Serviço: {self.servico.servico[:50]}... | "
+                       f"PAX: {self.servico.pax} | Veículo: {veiculo} | "
+                       f"Preço: R$ {preco:.2f} | Fonte: {fonte}")
+            
+            self.save()
+            return veiculo, preco
+            
+        except (InvalidOperation, ValueError, TypeError, ZeroDivisionError) as e:
+            # Em caso de erro, usar valores padrão inteligentes baseados no PAX
+            logger.error(f"Erro ao calcular preço para alocação {self.id}: {e}")
+            
+            # Veículo baseado no PAX
+            pax = getattr(self.servico, 'pax', 0) or 0
+            if pax <= 3:
+                veiculo_padrao = "Executivo"
+                preco_padrao = 200.0
+            elif pax <= 11:
+                veiculo_padrao = "Van 15 lugares"
+                preco_padrao = 300.0
+            elif pax <= 14:
+                veiculo_padrao = "Van 18 lugares"
+                preco_padrao = 350.0
+            elif pax <= 26:
+                veiculo_padrao = "Micro"
+                preco_padrao = 500.0
+            else:
+                veiculo_padrao = "Ônibus"
+                preco_padrao = 800.0
+            
+            self.veiculo_recomendado = veiculo_padrao
+            self.preco_calculado = preco_padrao
+            self.lucratividade = preco_padrao / max(pax, 1)
+            
+            # Salvar detalhes do erro também
+            self.detalhes_precificacao = {
+                'metodo': 'erro_fallback',
+                'servico_original': getattr(self.servico, 'servico', 'N/A'),
+                'pax': pax,
+                'veiculo_calculado': veiculo_padrao,
+                'preco_encontrado': preco_padrao,
+                'fonte_tarifario': 'Padrão (erro)',
+                'data_calculo': timezone.now().isoformat(),
+                'erro_original': str(e),
+                'tarifario': 'Padrão',
+                'observacoes': f'Preço de fallback devido a erro no cálculo principal'
+            }
+            
+            logger.info(f"Usando preço padrão - PAX: {pax} | Veículo: {veiculo_padrao} | Preço: R$ {preco_padrao:.2f}")
+            
+            self.save()
+            return veiculo_padrao, preco_padrao

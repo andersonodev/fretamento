@@ -18,6 +18,7 @@ urlpatterns = [
     
     path('mover-servico/', views.MoverServicoView.as_view(), name='mover_servico'),
     path('agrupar-servicos/', views.AgruparServicosView.as_view(), name='agrupar_servicos'),
+    path('precificar/<str:data>/', views.PrecificarEscalaView.as_view(), name='precificar_escala'),
     path('desagrupar-servico/', views.DesagruparServicoView.as_view(), name='desagrupar_servico'),
     path('desagrupar-grupo-completo/', views.DesagruparGrupoCompletoView.as_view(), name='desagrupar_grupo_completo'),
     path('excluir-servico/', views.ExcluirServicoView.as_view(), name='excluir_servico'),
@@ -32,5 +33,6 @@ urlpatterns = [
     path('api/servico/<int:alocacao_id>/', views.ApiServicoDetailView.as_view(), name='api_servico_detail'),
     path('api/tarifarios/', views.ApiTarifariosView.as_view(), name='api_tarifarios'),
     path('api/atualizar-preco/', views.ApiAtualizarPrecoView.as_view(), name='api_atualizar_preco'),
+    path('api/detalhes-precificacao/<int:alocacao_id>/', views.ApiDetalhesPrecificacaoView.as_view(), name='api_detalhes_precificacao'),
     path('desfazer-agrupamentos-automaticos/', views.DesfazerAgrupamentosAutomaticosView.as_view(), name='desfazer_agrupamentos_automaticos'),
 ]

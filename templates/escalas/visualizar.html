@@ -27,20 +27,23 @@
                     </a>
                     {% if escala.tem_dados %}
                         <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" class="btn btn-success">
-                            <i class="fas fa-file-excel"></i> Exportar Excel
+                            <i class="fas fa-file-excel"></i> Excel
                         </a>
                     {% endif %}
                     {% if escala.etapa == 'DADOS_PUXADOS' %}
-                        <form method="post" class="d-inline">
+                        <button type="button" class="btn btn-primary" onclick="precificarEscala()">
+                            <i class="fas fa-calculator"></i> Precificar
+                        </button>
+                        <form method="post" class="d-inline" id="form-agrupar">
                             {% csrf_token %}
                             <button type="submit" name="acao" value="agrupar" class="btn btn-info">
                                 <i class="fas fa-layer-group"></i> Agrupar
                             </button>
                         </form>
-                        <form method="post" class="d-inline">
+                        <form method="post" class="d-inline" id="form-escalar">
                             {% csrf_token %}
                             <button type="submit" name="acao" value="otimizar" class="btn btn-warning">
-                                <i class="fas fa-magic"></i> Otimizar Escala
+                                <i class="fas fa-magic"></i> Escalar
                             </button>
                         </form>
                     {% endif %}
@@ -181,6 +184,20 @@
                                     <option value="VAN2">Van 2</option>
                                 </select>
                             </div>
+                            
+                            <!-- Filtro por Status -->
+                            {% if escala.esta_otimizada %}
+                            <div class="col-md-2">
+                                <label for="filtro-status" class="form-label small">
+                                    <i class="fas fa-check-circle text-success"></i> Status
+                                </label>
+                                <select class="form-select form-select-sm" id="filtro-status">
+                                    <option value="">Todos</option>
+                                    <option value="ALOCADO">Alocados</option>
+                                    <option value="NAO_ALOCADO">Não alocados</option>
+                                </select>
+                            </div>
+                            {% endif %}
                         </div>
                         
                         <!-- Estatísticas de Filtro -->
@@ -191,20 +208,35 @@
                                         Mostrando todos os serviços
                                     </small>
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <button type="button" class="btn btn-outline-primary" id="filtro-pax-alto" title="PAX Alto (4+)">
-                                            <i class="fas fa-users"></i> 4+
+                                        <button type="button" class="btn btn-outline-primary" id="filtro-pax-alto" title="PAX Acima de 4 (Clique novamente para remover filtro)">
+                                            <i class="fas fa-users"></i> PAX 4+
                                         </button>
-                                        <button type="button" class="btn btn-outline-success" id="filtro-pax-medio" title="PAX Médio (7+)">
-                                            <i class="fas fa-users"></i> 7+
+                                        <button type="button" class="btn btn-outline-secondary" id="filtro-pax-baixo" title="PAX de 1 a 3 (Clique novamente para remover filtro)">
+                                            <i class="fas fa-user"></i> PAX 1-3
                                         </button>
-                                        <button type="button" class="btn btn-outline-danger" id="filtro-pax-muito-alto" title="PAX Muito Alto (10+)">
-                                            <i class="fas fa-users"></i> 10+
+                                        <button type="button" class="btn btn-outline-info" id="filtro-hotelbeds" title="HOTELBEDS (Clique novamente para remover filtro)">
+                                            <i class="fas fa-hotel"></i> HOTELBEDS
                                         </button>
-                                        <button type="button" class="btn btn-outline-warning" id="filtro-transfer" title="Transfers">
-                                            <i class="fas fa-car"></i> Transfer
+                                        <button type="button" class="btn btn-outline-success" id="filtro-holiday" title="Holiday (Clique novamente para remover filtro)">
+                                            <i class="fas fa-plane"></i> Holiday
                                         </button>
-                                        <button type="button" class="btn btn-outline-info" id="filtro-tour" title="Tours">
-                                            <i class="fas fa-route"></i> Tour
+                                        <button type="button" class="btn btn-outline-warning" id="filtro-transfer-in" title="Transfer IN (Clique novamente para remover filtro)">
+                                            <i class="fas fa-arrow-right"></i> IN
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger" id="filtro-transfer-out" title="Transfer OUT (Clique novamente para remover filtro)">
+                                            <i class="fas fa-arrow-left"></i> OUT
+                                        </button>
+                                        <button type="button" class="btn btn-outline-dark" id="filtro-barra" title="Barra da Tijuca (Clique novamente para remover filtro)">
+                                            <i class="fas fa-map-marker-alt"></i> Barra
+                                        </button>
+                                        <button type="button" class="btn btn-outline-warning" id="filtro-prioritarios" title="Serviços Prioritários (4-10 PAX + Hotelbeds/Holiday/Barra) (Clique novamente para remover filtro)">
+                                            <i class="fas fa-star"></i> Prioritários
+                                        </button>
+                                        <button type="button" class="btn btn-outline-success" id="filtro-alocados" title="Serviços Alocados (Clique novamente para remover filtro)">
+                                            <i class="fas fa-check"></i> Alocados
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger" id="filtro-nao-alocados" title="Serviços Não Alocados (Clique novamente para remover filtro)">
+                                            <i class="fas fa-times"></i> Não Alocados
                                         </button>
                                     </div>
                                 </div>
@@ -300,7 +332,9 @@
                                  data-pax="{{ alocacao.servico.pax }}"
                                  data-servico="{{ alocacao.servico.servico|lower }}"
                                  data-pickup="{{ alocacao.servico.local_pickup|lower|default:'' }}"
+                                 data-cliente="{{ alocacao.servico.cliente|lower }}"
                                  data-van="VAN1"
+                                 data-status="{{ alocacao.status_alocacao }}"
                                  draggable="true">
                                 <div class="card mb-2 border {% if alocacao.grupo_info %}border-success{% endif %}" {% if alocacao.grupo_info %}title="Duplo clique para desagrupar | Clique direito para mais opções"{% endif %}>
                                     {% if alocacao.grupo_info %}
@@ -413,16 +447,25 @@
                                             {% endif %}
                                             
                                             {% if alocacao.veiculo_recomendado %}
-                                                <div class="mt-1">
-                                                    <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
-                                                    {% if alocacao.lucratividade %}
-                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
-                                                    {% endif %}
-                                                    {% if alocacao.automatica %}
-                                                        <span class="badge bg-info">Auto</span>
-                                                    {% else %}
-                                                        <span class="badge bg-dark">Manual</span>
-                                                    {% endif %}
+                                                <div class="mt-1 d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
+                                                        {% if alocacao.lucratividade %}
+                                                            <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
+                                                        {% endif %}
+                                                        {% if alocacao.automatica %}
+                                                            <span class="badge bg-info">Auto</span>
+                                                        {% else %}
+                                                            <span class="badge bg-dark">Manual</span>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div>
+                                                        {% if alocacao.status_alocacao == 'ALOCADO' %}
+                                                            <span class="badge bg-success">Alocado</span>
+                                                        {% else %}
+                                                            <span class="badge bg-danger">Não alocado</span>
+                                                        {% endif %}
+                                                    </div>
                                                 </div>
                                             {% endif %}
                                         </div>
@@ -459,7 +502,9 @@
                                  data-pax="{{ alocacao.servico.pax }}"
                                  data-servico="{{ alocacao.servico.servico|lower }}"
                                  data-pickup="{{ alocacao.servico.local_pickup|lower|default:'' }}"
+                                 data-cliente="{{ alocacao.servico.cliente|lower }}"
                                  data-van="VAN2"
+                                 data-status="{{ alocacao.status_alocacao }}"
                                  draggable="true">
                                 <div class="card mb-2 border {% if alocacao.grupo_info %}border-success{% endif %}" {% if alocacao.grupo_info %}title="Duplo clique para desagrupar | Clique direito para mais opções"{% endif %}>
                                     {% if alocacao.grupo_info %}
@@ -572,16 +617,25 @@
                                             {% endif %}
                                             
                                             {% if alocacao.veiculo_recomendado %}
-                                                <div class="mt-1">
-                                                    <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
-                                                    {% if alocacao.lucratividade %}
-                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
-                                                    {% endif %}
-                                                    {% if alocacao.automatica %}
-                                                        <span class="badge bg-info">Auto</span>
-                                                    {% else %}
-                                                        <span class="badge bg-dark">Manual</span>
-                                                    {% endif %}
+                                                <div class="mt-1 d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
+                                                        {% if alocacao.lucratividade %}
+                                                            <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
+                                                        {% endif %}
+                                                        {% if alocacao.automatica %}
+                                                            <span class="badge bg-info">Auto</span>
+                                                        {% else %}
+                                                            <span class="badge bg-dark">Manual</span>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div>
+                                                        {% if alocacao.status_alocacao == 'ALOCADO' %}
+                                                            <span class="badge bg-success">Alocado</span>
+                                                        {% else %}
+                                                            <span class="badge bg-danger">Não alocado</span>
+                                                        {% endif %}
+                                                    </div>
                                                 </div>
                                             {% endif %}
                                         </div>
@@ -828,6 +882,40 @@ function showMessage(text, type) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Event listeners específicos para os formulários de ação
+    const formAgrupar = document.getElementById('form-agrupar');
+    const formEscalar = document.getElementById('form-escalar');
+    
+    if (formAgrupar) {
+        console.log('Form Agrupar encontrado');
+        formAgrupar.addEventListener('submit', function(e) {
+            console.log('=== FORM AGRUPAR SUBMIT ===');
+            console.log('Dados do formulário:', new FormData(this));
+            const formData = new FormData(this);
+            for (let pair of formData.entries()) {
+                console.log(pair[0], pair[1]);
+            }
+            // Permitir o submit normal
+        });
+    } else {
+        console.log('Form Agrupar NÃO encontrado');
+    }
+    
+    if (formEscalar) {
+        console.log('Form Escalar encontrado');
+        formEscalar.addEventListener('submit', function(e) {
+            console.log('=== FORM ESCALAR SUBMIT ===');
+            console.log('Dados do formulário:', new FormData(this));
+            const formData = new FormData(this);
+            for (let pair of formData.entries()) {
+                console.log(pair[0], pair[1]);
+            }
+            // Permitir o submit normal
+        });
+    } else {
+        console.log('Form Escalar NÃO encontrado');
+    }
+    
     const servicoCards = document.querySelectorAll('.servico-card');
     const containers = document.querySelectorAll('[data-van]');
     
@@ -1090,6 +1178,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Não abrir modal se clicou em botão específico ou ícone de edição
         if (e.target.closest('button') || e.target.closest('.btn') || e.target.classList.contains('fa-edit')) {
+            console.log('DEBUG: Clique em botão detectado, não processando modal');
+            return;
+        }
+        
+        // Não processar se clicou em formulário
+        if (e.target.closest('form')) {
+            console.log('DEBUG: Clique em formulário detectado, não processando modal');
             return;
         }
         
@@ -1540,15 +1635,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const filtroServico = document.getElementById('filtro-servico');
     const filtroPickup = document.getElementById('filtro-pickup');
     const filtroVan = document.getElementById('filtro-van');
+    const filtroStatus = document.getElementById('filtro-status');
     const clearFilters = document.getElementById('clearFilters');
     const filtroStats = document.getElementById('filtro-stats');
     
     // Botões de filtro rápido
     const filtroPaxAlto = document.getElementById('filtro-pax-alto');
-    const filtroPaxMedio = document.getElementById('filtro-pax-medio');
-    const filtroPaxMuitoAlto = document.getElementById('filtro-pax-muito-alto');
-    const filtroTransfer = document.getElementById('filtro-transfer');
-    const filtroTour = document.getElementById('filtro-tour');
+    const filtroPaxBaixo = document.getElementById('filtro-pax-baixo');
+    const filtroHotelbeds = document.getElementById('filtro-hotelbeds');
+    const filtroHoliday = document.getElementById('filtro-holiday');
+    const filtroTransferIn = document.getElementById('filtro-transfer-in');
+    const filtroTransferOut = document.getElementById('filtro-transfer-out');
+    const filtroBarra = document.getElementById('filtro-barra');
+    const filtroPrioritarios = document.getElementById('filtro-prioritarios');
+    const filtroAlocados = document.getElementById('filtro-alocados');
+    const filtroNaoAlocados = document.getElementById('filtro-nao-alocados');
     
     // Todos os cards de serviço
     const servicoCards = document.querySelectorAll('.servico-card');
@@ -1560,6 +1661,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const servicoTexto = filtroServico.value.toLowerCase();
         const pickupTexto = filtroPickup.value.toLowerCase();
         const vanSelecionada = filtroVan.value;
+        const statusSelecionado = filtroStatus ? filtroStatus.value : '';
         
         let servicosVisiveis = 0;
         let paxVisivel = 0;
@@ -1571,15 +1673,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const servico = card.dataset.servico;
             const pickup = card.dataset.pickup;
             const van = card.dataset.van;
+            const status = card.dataset.status;
             
             // Verificar filtros
             const passaPax = pax >= paxMin && pax <= paxMax;
             const passaServico = !servicoTexto || servico.includes(servicoTexto);
             const passaPickup = !pickupTexto || pickup.includes(pickupTexto);
             const passaVan = !vanSelecionada || van === vanSelecionada;
+            const passaStatus = !statusSelecionado || status === statusSelecionado;
             
             // Mostrar/ocultar card
-            if (passaPax && passaServico && passaPickup && passaVan) {
+            if (passaPax && passaServico && passaPickup && passaVan && passaStatus) {
                 card.style.display = 'block';
                 servicosVisiveis++;
                 paxVisivel += pax;
@@ -1614,12 +1718,135 @@ document.addEventListener('DOMContentLoaded', function() {
         filtroServico.value = '';
         filtroPickup.value = '';
         filtroVan.value = '';
+        if (filtroStatus) filtroStatus.value = '';
         
-        // Remover classes ativas dos botões
-        document.querySelectorAll('.btn-outline-primary.active, .btn-outline-warning.active, .btn-outline-info.active')
+        // Remover classes ativas dos botões - incluindo todas as variações
+        document.querySelectorAll('.btn-outline-primary.active, .btn-outline-secondary.active, .btn-outline-warning.active, .btn-outline-info.active, .btn-outline-success.active, .btn-outline-danger.active, .btn-outline-dark.active')
                 .forEach(btn => btn.classList.remove('active'));
         
         aplicarFiltros();
+    }
+    
+    // Função para aplicar filtro por cliente
+    function aplicarFiltroCliente(clienteBusca) {
+        let servicosVisiveis = 0;
+        let paxVisivel = 0;
+        let van1Visiveis = 0;
+        let van2Visiveis = 0;
+        
+        servicoCards.forEach(card => {
+            const pax = parseInt(card.dataset.pax);
+            const cliente = card.dataset.cliente ? card.dataset.cliente.toLowerCase() : '';
+            
+            if (cliente.includes(clienteBusca.toLowerCase())) {
+                card.style.display = 'block';
+                servicosVisiveis++;
+                paxVisivel += pax;
+                if (card.dataset.van === 'VAN1') van1Visiveis++;
+                else van2Visiveis++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Atualizar estatísticas
+        atualizarEstatisticas(servicosVisiveis, paxVisivel, van1Visiveis, van2Visiveis);
+    }
+    
+    // Função para aplicar filtro por serviço
+    function aplicarFiltroServico(servicoBusca) {
+        let servicosVisiveis = 0;
+        let paxVisivel = 0;
+        let van1Visiveis = 0;
+        let van2Visiveis = 0;
+        
+        servicoCards.forEach(card => {
+            const pax = parseInt(card.dataset.pax);
+            const servico = card.dataset.servico ? card.dataset.servico.toLowerCase() : '';
+            
+            if (servico.includes(servicoBusca.toLowerCase())) {
+                card.style.display = 'block';
+                servicosVisiveis++;
+                paxVisivel += pax;
+                if (card.dataset.van === 'VAN1') van1Visiveis++;
+                else van2Visiveis++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Atualizar estatísticas
+        atualizarEstatisticas(servicosVisiveis, paxVisivel, van1Visiveis, van2Visiveis);
+    }
+    
+    // Função para aplicar filtro de prioritários
+    function aplicarFiltroPrioritarios() {
+        let servicosVisiveis = 0;
+        let paxVisivel = 0;
+        let van1Visiveis = 0;
+        let van2Visiveis = 0;
+        
+        servicoCards.forEach(card => {
+            const pax = parseInt(card.dataset.pax);
+            const servico = card.dataset.servico ? card.dataset.servico.toLowerCase() : '';
+            const cliente = card.dataset.cliente ? card.dataset.cliente.toLowerCase() : '';
+            
+            // Critérios para prioritários:
+            // 1. PAX entre 4-10
+            const isPaxPrioritario = pax >= 4 && pax <= 10;
+            
+            if (isPaxPrioritario) {
+                // 2. Hotelbeds ou Holiday no cliente
+                const isHotelbedsHoliday = cliente.includes('hotelbeds') || cliente.includes('holiday');
+                
+                // 3. Barra da Tijuca no serviço  
+                const isBarraTijuca = servico.includes('barra') || servico.includes('recreio');
+                
+                // É prioritário se tem 4-10 PAX E (Hotelbeds/Holiday OU Barra)
+                const isPrioritario = isHotelbedsHoliday || isBarraTijuca;
+                
+                if (isPrioritario) {
+                    card.style.display = 'block';
+                    servicosVisiveis++;
+                    paxVisivel += pax;
+                    if (card.dataset.van === 'VAN1') van1Visiveis++;
+                    else van2Visiveis++;
+                } else {
+                    card.style.display = 'none';
+                }
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Atualizar estatísticas
+        atualizarEstatisticas(servicosVisiveis, paxVisivel, van1Visiveis, van2Visiveis);
+    }
+    
+    // Função para aplicar filtro por status
+    function aplicarFiltroStatus(statusBusca) {
+        let servicosVisiveis = 0;
+        let paxVisivel = 0;
+        let van1Visiveis = 0;
+        let van2Visiveis = 0;
+        
+        servicoCards.forEach(card => {
+            const pax = parseInt(card.dataset.pax);
+            const status = card.dataset.status;
+            
+            if (status === statusBusca) {
+                card.style.display = 'block';
+                servicosVisiveis++;
+                paxVisivel += pax;
+                if (card.dataset.van === 'VAN1') van1Visiveis++;
+                else van2Visiveis++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Atualizar estatísticas
+        atualizarEstatisticas(servicosVisiveis, paxVisivel, van1Visiveis, van2Visiveis);
     }
     
     // Event listeners para filtros
@@ -1628,43 +1855,143 @@ document.addEventListener('DOMContentLoaded', function() {
     filtroServico.addEventListener('input', aplicarFiltros);
     filtroPickup.addEventListener('input', aplicarFiltros);
     filtroVan.addEventListener('change', aplicarFiltros);
+    if (filtroStatus) filtroStatus.addEventListener('change', aplicarFiltros);
     clearFilters.addEventListener('click', limparFiltros);
     
     // Filtros rápidos
-    filtroPaxAlto.addEventListener('click', function() {
-        limparFiltros();
-        filtroPaxMin.value = '4';
-        this.classList.add('active');
-        aplicarFiltros();
-    });
+    // Event listeners para botões de filtro rápido
+    if (filtroPaxAlto) {
+        filtroPaxAlto.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                // Duplo clique - remover filtro
+                limparFiltros();
+            } else {
+                limparFiltros();
+                filtroPaxMin.value = '4';
+                this.classList.add('active');
+                aplicarFiltros();
+            }
+        });
+    }
     
-    filtroPaxMedio.addEventListener('click', function() {
-        limparFiltros();
-        filtroPaxMin.value = '7';
-        this.classList.add('active');
-        aplicarFiltros();
-    });
+    if (filtroPaxBaixo) {
+        filtroPaxBaixo.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                // Duplo clique - remover filtro
+                limparFiltros();
+            } else {
+                limparFiltros();
+                filtroPaxMin.value = '1';
+                filtroPaxMax.value = '3';
+                this.classList.add('active');
+                aplicarFiltros();
+            }
+        });
+    }
     
-    filtroPaxMuitoAlto.addEventListener('click', function() {
-        limparFiltros();
-        filtroPaxMin.value = '10';
-        this.classList.add('active');
-        aplicarFiltros();
-    });
+    if (filtroHotelbeds) {
+        filtroHotelbeds.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                // Duplo clique - remover filtro
+                limparFiltros();
+            } else {
+                limparFiltros();
+                aplicarFiltroCliente('hotelbeds');
+                this.classList.add('active');
+            }
+        });
+    }
     
-    filtroTransfer.addEventListener('click', function() {
-        limparFiltros();
-        filtroServico.value = 'transfer';
-        this.classList.add('active');
-        aplicarFiltros();
-    });
+    if (filtroHoliday) {
+        filtroHoliday.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                // Duplo clique - remover filtro
+                limparFiltros();
+            } else {
+                limparFiltros();
+                aplicarFiltroCliente('holiday');
+                this.classList.add('active');
+            }
+        });
+    }
     
-    filtroTour.addEventListener('click', function() {
-        limparFiltros();
-        filtroServico.value = 'tour';
-        this.classList.add('active');
-        aplicarFiltros();
-    });
+    if (filtroTransferIn) {
+        filtroTransferIn.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                // Duplo clique - remover filtro
+                limparFiltros();
+            } else {
+                limparFiltros();
+                aplicarFiltroServico('transfer in');
+                this.classList.add('active');
+            }
+        });
+    }
+    
+    if (filtroTransferOut) {
+        filtroTransferOut.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                // Duplo clique - remover filtro
+                limparFiltros();
+            } else {
+                limparFiltros();
+                aplicarFiltroServico('transfer out');
+                this.classList.add('active');
+            }
+        });
+    }
+    
+    if (filtroBarra) {
+        filtroBarra.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                // Duplo clique - remover filtro
+                limparFiltros();
+            } else {
+                limparFiltros();
+                aplicarFiltroServico('barra');
+                this.classList.add('active');
+            }
+        });
+    }
+    
+    if (filtroPrioritarios) {
+        filtroPrioritarios.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                // Duplo clique - remover filtro
+                limparFiltros();
+            } else {
+                limparFiltros();
+                aplicarFiltroPrioritarios();
+                this.classList.add('active');
+            }
+        });
+    }
+    
+    if (filtroAlocados) {
+        filtroAlocados.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                // Duplo clique - remover filtro
+                limparFiltros();
+            } else {
+                limparFiltros();
+                aplicarFiltroStatus('ALOCADO');
+                this.classList.add('active');
+            }
+        });
+    }
+    
+    if (filtroNaoAlocados) {
+        filtroNaoAlocados.addEventListener('click', function() {
+            if (this.classList.contains('active')) {
+                // Duplo clique - remover filtro
+                limparFiltros();
+            } else {
+                limparFiltros();
+                aplicarFiltroStatus('NAO_ALOCADO');
+                this.classList.add('active');
+            }
+        });
+    }
     
     // Aplicar filtros inicial
     aplicarFiltros();
@@ -2098,16 +2425,31 @@ function mostrarNotificacaoSucesso(mensagem) {
 // Função para aplicar preço customizado
 function aplicarPrecoCustomizado() {
     const precoInput = document.getElementById('precoCustomizado');
-    const preco = parseFloat(precoInput.value);
-    
-    if (isNaN(preco) || preco <= 0) {
-        alert('Por favor, insira um preço válido.');
+    if (!precoInput) {
+        showMessage('Erro: Campo de preço não encontrado', 'error');
         return;
     }
     
-    const servicoId = document.getElementById('servicoIdSelecionado').value;
-    const tipo = document.getElementById('tipoSelecionado').value;
-    const grupoId = document.getElementById('grupoIdSelecionado').value;
+    const preco = parseFloat(precoInput.value);
+    
+    if (isNaN(preco) || preco <= 0) {
+        showMessage('Por favor, insira um preço válido.', 'error');
+        return;
+    }
+    
+    // Verificar se os elementos existem antes de usar
+    const servicoIdEl = document.getElementById('servicoIdSelecionado');
+    const tipoEl = document.getElementById('tipoSelecionado');
+    const grupoIdEl = document.getElementById('grupoIdSelecionado');
+    
+    if (!servicoIdEl || !tipoEl || !grupoIdEl) {
+        showMessage('Erro: Dados do serviço não encontrados', 'error');
+        return;
+    }
+    
+    const servicoId = servicoIdEl.value;
+    const tipo = tipoEl.value;
+    const grupoId = grupoIdEl.value;
     
     // Armazenar dados para confirmação
     window.precoParaConfirmar = {
@@ -2119,13 +2461,23 @@ function aplicarPrecoCustomizado() {
         grupoId: grupoId
     };
     
-    // Preencher modal de confirmação
-    document.getElementById('precoConfirmacao').textContent = `R$ ${preco.toFixed(2)}`;
-    document.getElementById('origemConfirmacao').textContent = 'Preço Customizado';
+    // Verificar se elementos de confirmação existem
+    const precoConfirmacaoEl = document.getElementById('precoConfirmacao');
+    const origemConfirmacaoEl = document.getElementById('origemConfirmacao');
+    
+    if (precoConfirmacaoEl && origemConfirmacaoEl) {
+        precoConfirmacaoEl.textContent = `R$ ${preco.toFixed(2)}`;
+        origemConfirmacaoEl.textContent = 'Preço Customizado';
+    }
     
     // Fechar modal de tarifários e abrir modal de confirmação
-    const modalTarifarios = bootstrap.Modal.getInstance(document.getElementById('modalTarifarios'));
-    modalTarifarios.hide();
+    const modalTarifariosEl = document.getElementById('modalTarifarios');
+    if (modalTarifariosEl) {
+        const modalTarifarios = bootstrap.Modal.getInstance(modalTarifariosEl);
+        if (modalTarifarios) {
+            modalTarifarios.hide();
+        }
+    }
     
     const modalConfirmacao = new bootstrap.Modal(document.getElementById('modalConfirmacaoPreco'));
     modalConfirmacao.show();
@@ -2186,6 +2538,51 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✅ Todos os elementos essenciais para tarifários encontrados!');
     }
 });
+
+// Função para precificar escala manualmente
+function precificarEscala() {
+    const dataEscala = '{{ data }}';
+    
+    // Verificar se data existe
+    if (!dataEscala) {
+        showMessage('Erro: Data da escala não encontrada', 'error');
+        return;
+    }
+    
+    // Mostrar mensagem de carregamento
+    showMessage('Precificando escala...', 'success');
+    
+    // Fazer requisição AJAX para precificar a escala
+    fetch(`/escalas/precificar/${dataEscala}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({})
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(result => {
+        if (result.status === 'success' || result.success === true) {
+            showMessage(result.message || 'Precificação concluída com sucesso!', 'success');
+            // Recarregar a página após 2 segundos para mostrar os preços atualizados
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+        } else {
+            showMessage(result.message || result.error || 'Erro ao precificar escala', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Erro na precificação:', error);
+        showMessage(`Erro ao precificar escala: ${error.message}`, 'error');
+    });
+}
 </script>
 
 <!-- Modal de Detalhes e Edição do Serviço -->
@@ -2576,6 +2973,33 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
+<!-- Modal de Detalhes de Precificação -->
+<div class="modal fade" id="modalDetalhesPrecificacao" tabindex="-1" aria-labelledby="modalDetalhesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title" id="modalDetalhesLabel">
+                    <i class="fas fa-chart-line"></i> Detalhes da Precificação
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="conteudoDetalhesPreco">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Carregando...</span>
+                    </div>
+                    <p class="mt-2">Carregando detalhes...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal de Confirmação de Aplicação de Preço -->
 <div class="modal fade" id="modalConfirmacaoPreco" tabindex="-1" aria-labelledby="modalConfirmacaoLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -2622,5 +3046,280 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 </div>
+
+<script>
+// Função para exibir detalhes da precificação
+function verDetalhesPreco(alocacaoId) {
+    console.log('📊 Abrindo detalhes de precificação para alocação:', alocacaoId);
+    
+    // Exibir o modal com loading
+    const modal = new bootstrap.Modal(document.getElementById('modalDetalhesPrecificacao'));
+    modal.show();
+    
+    // Carregar os detalhes via AJAX
+    fetch(`/escalas/api/detalhes-precificacao/${alocacaoId}/`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Construir o HTML com os detalhes expandidos
+            let html = `
+                <!-- Informações do Serviço -->
+                <div class="card mb-3">
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="mb-0"><i class="fas fa-info-circle"></i> Informações do Serviço</h6>
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="row">
+                            <div class="col-4"><strong>Número de Venda:</strong></div>
+                            <div class="col-8"><code>${data.numero_venda}</code></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><strong>Cliente:</strong></div>
+                            <div class="col-8">${data.cliente}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><strong>Serviço:</strong></div>
+                            <div class="col-8"><small>${data.servico_nome}</small></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><strong>PAX:</strong></div>
+                            <div class="col-8"><span class="badge bg-info">${data.pax}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><strong>Origem/Pickup:</strong></div>
+                            <div class="col-8">${data.origem}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><strong>Destino/Região:</strong></div>
+                            <div class="col-8">${data.destino}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><strong>Tipo:</strong></div>
+                            <div class="col-8"><span class="badge bg-secondary">${data.tipo_servico || 'N/A'}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"><strong>Direção:</strong></div>
+                            <div class="col-8"><span class="badge bg-primary">${data.direcao || 'N/A'}</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detalhes da Precificação -->
+                <div class="card mb-3">
+                    <div class="card-header bg-success text-white">
+                        <h6 class="mb-0"><i class="fas fa-calculator"></i> Cálculo de Preço</h6>
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="row mb-2">
+                            <div class="col-6"><strong>Preço Final:</strong></div>
+                            <div class="col-6"><span class="badge bg-success fs-6">R$ ${data.preco_calculado}</span></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6"><strong>Veículo Recomendado:</strong></div>
+                            <div class="col-6"><span class="badge bg-info">${data.veiculo_recomendado}</span></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6"><strong>Lucratividade/PAX:</strong></div>
+                            <div class="col-6"><span class="badge bg-warning text-dark">R$ ${data.lucratividade}</span></div>
+                        </div>
+            `;
+            
+            // Detalhes do tarifário
+            if (data.preco_tabela) {
+                html += `
+                        <div class="row mb-2">
+                            <div class="col-6"><strong>Preço da Tabela:</strong></div>
+                            <div class="col-6"><span class="badge bg-secondary">R$ ${data.preco_tabela}</span></div>
+                        </div>
+                `;
+            }
+            
+            if (data.multiplicador && data.multiplicador !== 1) {
+                html += `
+                        <div class="row mb-2">
+                            <div class="col-6"><strong>Multiplicador:</strong></div>
+                            <div class="col-6"><span class="badge bg-warning text-dark">${data.multiplicador}x</span></div>
+                        </div>
+                `;
+            }
+            
+            html += `
+                    </div>
+                </div>
+
+                <!-- Fonte do Tarifário -->
+                <div class="card mb-3">
+                    <div class="card-header bg-info text-white">
+                        <h6 class="mb-0"><i class="fas fa-database"></i> Fonte dos Dados</h6>
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="row mb-2">
+                            <div class="col-6"><strong>Tarifário Utilizado:</strong></div>
+                            <div class="col-6"><span class="badge bg-info">${data.fonte_tarifario}</span></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6"><strong>Método de Cálculo:</strong></div>
+                            <div class="col-6"><span class="badge bg-secondary">${data.metodo_calculo}</span></div>
+                        </div>
+            `;
+            
+            if (data.tarifa_encontrada) {
+                html += `
+                        <div class="row mb-2">
+                            <div class="col-6"><strong>Termo Encontrado:</strong></div>
+                            <div class="col-6"><code class="small">${data.tarifa_encontrada}</code></div>
+                        </div>
+                `;
+            }
+            
+            if (data.score_similaridade !== undefined && data.score_similaridade !== null) {
+                const corScore = data.score_similaridade >= 0.8 ? 'success' : 
+                               data.score_similaridade >= 0.6 ? 'warning' : 'danger';
+                html += `
+                        <div class="row mb-2">
+                            <div class="col-6"><strong>Confiança da Busca:</strong></div>
+                            <div class="col-6"><span class="badge bg-${corScore}">${(data.score_similaridade * 100).toFixed(1)}%</span></div>
+                        </div>
+                `;
+            }
+            
+            if (data.data_calculo && data.data_calculo !== 'N/A') {
+                html += `
+                        <div class="row mb-2">
+                            <div class="col-6"><strong>Data do Cálculo:</strong></div>
+                            <div class="col-6"><small>${data.data_calculo}</small></div>
+                        </div>
+                `;
+            }
+            
+            html += `
+                    </div>
+                </div>
+            `;
+            
+            // Observações
+            if (data.observacoes) {
+                html += `
+                    <div class="card mb-3">
+                        <div class="card-header bg-warning text-dark">
+                            <h6 class="mb-0"><i class="fas fa-sticky-note"></i> Observações</h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <small>${data.observacoes}</small>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Histórico de busca
+            if (data.historico_busca && data.historico_busca.length > 0) {
+                html += `
+                    <div class="card mb-3">
+                        <div class="card-header bg-secondary text-white">
+                            <h6 class="mb-0"><i class="fas fa-history"></i> Histórico de Busca</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-sm mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Termo Pesquisado</th>
+                                            <th>Confiança</th>
+                                            <th>Preço</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                `;
+                
+                data.historico_busca.forEach(item => {
+                    const cor = item.score >= 0.8 ? 'success' : 
+                               item.score >= 0.6 ? 'warning' : 'danger';
+                    html += `
+                        <tr>
+                            <td><code class="small">${item.termo}</code></td>
+                            <td><span class="badge bg-${cor}">${(item.score * 100).toFixed(1)}%</span></td>
+                            <td>R$ ${item.preco}</td>
+                        </tr>
+                    `;
+                });
+                
+                html += `
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Debug info (opcional - pode ser removido em produção)
+            if (data.todos_detalhes && Object.keys(data.todos_detalhes).length > 0) {
+                html += `
+                    <div class="card mb-3">
+                        <div class="card-header bg-dark text-white">
+                            <h6 class="mb-0"><i class="fas fa-bug"></i> Debug - Dados Brutos 
+                                <button class="btn btn-sm btn-outline-light float-end" type="button" data-bs-toggle="collapse" data-bs-target="#debugData">
+                                    Ver/Ocultar
+                                </button>
+                            </h6>
+                        </div>
+                        <div class="collapse" id="debugData">
+                            <div class="card-body p-2">
+                                <pre class="small">${JSON.stringify(data.todos_detalhes, null, 2)}</pre>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Atualizar o conteúdo do modal
+            document.getElementById('conteudoDetalhesPreco').innerHTML = html;
+        })
+        .catch(error => {
+            console.error('❌ Erro ao carregar detalhes:', error);
+            document.getElementById('conteudoDetalhesPreco').innerHTML = `
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Erro ao carregar os detalhes da precificação.
+                    <br><small>Erro: ${error.message}</small>
+                </div>
+            `;
+        });
+}
+
+// Adicionar listener para tornar os badges de preço clicáveis ao carregar a página
+document.addEventListener('DOMContentLoaded', function() {
+    // Encontrar todos os badges de preço que contêm valor monetário
+    const precosBadges = document.querySelectorAll('.badge.bg-success');
+    
+    precosBadges.forEach(badge => {
+        // Verificar se o badge contém valor monetário (R$)
+        if (badge.textContent.includes('R$')) {
+            // Encontrar o elemento pai que contém o data-alocacao-id
+            const servicoItem = badge.closest('[data-alocacao-id]');
+            
+            if (servicoItem) {
+                const alocacaoId = servicoItem.getAttribute('data-alocacao-id');
+                
+                // Adicionar classe e eventos de clique
+                badge.classList.add('preco-clicavel');
+                badge.style.cursor = 'pointer';
+                badge.title = 'Clique para ver detalhes da precificação';
+                
+                badge.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    verDetalhesPreco(alocacaoId);
+                });
+            }
+        }
+    });
+    
+    console.log('✅ Listeners de detalhes de precificação configurados');
+});
+</script>
 
 {% endblock %}
