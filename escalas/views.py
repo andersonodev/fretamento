@@ -13,6 +13,7 @@ from datetime import datetime, date, timedelta
 from decimal import Decimal, InvalidOperation
 from calendar import monthrange
 import re
+import unicodedata
 from core.models import Servico, ProcessamentoPlanilha
 from escalas.models import Escala, AlocacaoVan, GrupoServico, ServicoGrupo
 from core.processors import ProcessadorPlanilhaOS
@@ -381,7 +382,7 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
                 
                 return redirect('escalas:visualizar_escala', data=data_str)
                 
-            elif acao == 'otimizar':
+            elif acao in {'otimizar', 'escalar'}:
                 escala = get_object_or_404(Escala, data=data_alvo)
                 if escala.etapa not in ['DADOS_PUXADOS', 'OTIMIZADA']:
                     messages.error(request, 'Para escalar, é necessário ter dados puxados.')
@@ -484,56 +485,82 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
         
         with transaction.atomic():
             # Buscar alocações que ainda não estão agrupadas
-            alocacoes_disponiveis = escala.alocacoes.filter(
-                grupo_info__isnull=True
-            ).order_by('servico__horario')
-            
-            print(f"DEBUG: Encontradas {alocacoes_disponiveis.count()} alocações disponíveis")
-            logger.debug(f"Encontradas {alocacoes_disponiveis.count()} alocações disponíveis para agrupamento")
-            
+            alocacoes_disponiveis = list(
+                escala.alocacoes.filter(grupo_info__isnull=True)
+                .select_related('servico')
+                .order_by('servico__horario', 'id')
+            )
+
+            logger.debug(
+                "Encontradas %s alocações disponíveis para agrupamento",
+                len(alocacoes_disponiveis)
+            )
+
             for alocacao in alocacoes_disponiveis:
-                if hasattr(alocacao, 'grupo_info') and alocacao.grupo_info:
-                    continue  # Já foi agrupada
-                
+                if getattr(alocacao, 'grupo_info', None):
+                    # Já foi agrupada em uma iteração anterior
+                    continue
+
                 # Buscar serviços compatíveis para agrupamento
-                servicos_compativeis = self._encontrar_servicos_compativeis(alocacao, alocacoes_disponiveis)
-                
-                if servicos_compativeis:
-                    # Criar grupo
-                    grupo = GrupoServico.objects.create(
-                        escala=escala,
-                        van=alocacao.van or 'VAN1',
-                        cliente_principal=alocacao.servico.cliente,
-                        servico_principal=alocacao.servico.servico,
-                        local_pickup_principal=alocacao.servico.local_pickup or ''
+                servicos_compativeis, regra_agrupamento = self._encontrar_servicos_compativeis(
+                    alocacao,
+                    alocacoes_disponiveis
+                )
+
+                if not servicos_compativeis:
+                    continue
+
+                # Criar grupo consolidado
+                grupo = GrupoServico.objects.create(
+                    escala=escala,
+                    van=alocacao.van or 'VAN1',
+                    cliente_principal=alocacao.servico.cliente,
+                    servico_principal=alocacao.servico.servico,
+                    local_pickup_principal=alocacao.servico.local_pickup or '',
+                    ordem=alocacao.ordem,
+                )
+
+                total_pax = 0
+                total_valor = Decimal('0')
+                vendas = []
+
+                for servico_alocacao in [alocacao] + servicos_compativeis:
+                    ServicoGrupo.objects.create(
+                        grupo=grupo,
+                        alocacao=servico_alocacao
                     )
-                    
-                    # Adicionar serviços ao grupo
-                    total_pax = 0
-                    total_valor = 0
-                    vendas = []
-                    
-                    for servico_alocacao in [alocacao] + servicos_compativeis:
-                        ServicoGrupo.objects.create(
-                            grupo=grupo,
-                            alocacao=servico_alocacao
-                        )
-                        total_pax += servico_alocacao.servico.pax
-                        total_valor += servico_alocacao.preco_calculado or 0
-                        
-                        # Coletar números de venda
-                        if servico_alocacao.servico.numero_venda:
-                            vendas.append(servico_alocacao.servico.numero_venda)
-                    
-                    # Atualizar grupo com totais
-                    grupo.total_pax = total_pax
-                    grupo.total_valor = total_valor
-                    grupo.numeros_venda = ' / '.join(vendas)
-                    grupo.save()
-                    
-                    grupos_criados += 1
-                    
-                    logger.info(f"Grupo criado: {grupo.cliente_principal} com {len(servicos_compativeis) + 1} serviços e {total_pax} PAX")
+
+                    pax_atual = servico_alocacao.servico.pax or 0
+                    total_pax += pax_atual
+
+                    valor_atual = servico_alocacao.preco_calculado or Decimal('0')
+                    total_valor += Decimal(valor_atual)
+
+                    numero_venda = servico_alocacao.servico.numero_venda
+                    if numero_venda:
+                        numero_venda_str = str(numero_venda).strip()
+                        if numero_venda_str.endswith('.0'):
+                            numero_venda_str = numero_venda_str[:-2]
+                        vendas.append(numero_venda_str)
+
+                grupo.total_pax = total_pax
+                grupo.total_valor = total_valor
+                if vendas:
+                    vendas_unicas = list(dict.fromkeys(vendas))
+                    grupo.numeros_venda = ' / '.join(vendas_unicas)
+                else:
+                    grupo.numeros_venda = ''
+                grupo.save()
+
+                grupos_criados += 1
+
+                logger.info(
+                    "Grupo criado (%s): %s com %s serviços e %s PAX",
+                    regra_agrupamento,
+                    grupo.cliente_principal,
+                    len(servicos_compativeis) + 1,
+                    total_pax
+                )
         
         logger.debug(f"Agrupamento finalizado. Total de grupos criados: {grupos_criados}")
         return grupos_criados
@@ -542,54 +569,71 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
         """Encontra serviços compatíveis para agrupamento"""
         servicos_compativeis = []
         servico_base = alocacao_base.servico
-        
+        regra_agrupamento = self._detectar_regra_agrupamento(servico_base)
+
+        considerar_total_pax = regra_agrupamento != 'TRANSFER_OUT_REGULAR'
+
         for outra_alocacao in alocacoes_disponiveis:
             if outra_alocacao.id == alocacao_base.id:
                 continue
-            if hasattr(outra_alocacao, 'grupo_info') and outra_alocacao.grupo_info:
+            if getattr(outra_alocacao, 'grupo_info', None):
                 continue
-                
+
             outro_servico = outra_alocacao.servico
-            
-            # Verificar compatibilidade
-            if self._servicos_sao_compativeis(servico_base, outro_servico):
+
+            if self._servicos_sao_compativeis(
+                servico_base,
+                outro_servico,
+                considerar_total_pax=considerar_total_pax
+            ):
                 servicos_compativeis.append(outra_alocacao)
-        
-        return servicos_compativeis
-    
-    def _servicos_sao_compativeis(self, servico1, servico2):
+
+        if not servicos_compativeis:
+            return [], regra_agrupamento
+
+        if regra_agrupamento == 'TRANSFER_OUT_REGULAR':
+            total_pax = (servico_base.pax or 0) + sum(
+                outra.servico.pax or 0 for outra in servicos_compativeis
+            )
+            if total_pax < 4:
+                return [], regra_agrupamento
+
+        return servicos_compativeis, regra_agrupamento
+
+    def _servicos_sao_compativeis(self, servico1, servico2, considerar_total_pax=True):
         """Verifica se dois serviços podem ser agrupados"""
         # 1. Mesmo nome de serviço e diferença de até 40 minutos
-        if self._normalizar_nome_servico(servico1.servico) == self._normalizar_nome_servico(servico2.servico):
+        if self._nomes_equivalentes(servico1.servico, servico2.servico):
             if self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40:
                 return True
-        
-        # 2. Transfers OUT regulares com mesmo local de pickup (≥ 4 PAX total)
-        if (self._eh_transfer_out(servico1.servico) and 
-            self._eh_transfer_out(servico2.servico) and
-            servico1.local_pickup == servico2.local_pickup):
-            if (servico1.pax + servico2.pax) >= 4:
-                return True
-        
-        # 3. Serviços de TOUR (incluindo variações)
-        if (self._eh_tour(servico1.servico) and 
-            self._eh_tour(servico2.servico)):
-            if self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40:
-                return True
-        
-        # 4. Serviços de GUIA À DISPOSIÇÃO (diferentes durações)
-        if (self._eh_guia_disposicao(servico1.servico) and 
-            self._eh_guia_disposicao(servico2.servico)):
-            if self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40:
-                return True
-        
+
+        # 2. Transfers OUT regulares com mesmo local de pickup
+        if (
+            self._eh_transfer_out_regular(servico1.servico)
+            and self._eh_transfer_out_regular(servico2.servico)
+            and self._mesmo_local_pickup(servico1, servico2)
+            and self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40
+        ):
+            total_pax = (servico1.pax or 0) + (servico2.pax or 0)
+            if considerar_total_pax and total_pax < 4:
+                return False
+            return True
+
+        # 3. Serviços de TOUR / GUIA À DISPOSIÇÃO (qualquer variação)
+        if (
+            self._eh_servico_tour_equivalente(servico1.servico)
+            and self._eh_servico_tour_equivalente(servico2.servico)
+            and self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40
+        ):
+            return True
+
         return False
-    
+
     def _normalizar_nome_servico(self, nome):
         """Normaliza nome do serviço para comparação"""
         import re
-        
-        nome_normalizado = nome.upper().strip()
+
+        nome_normalizado = self._remover_acentos(nome).upper().strip()
         
         # 1. Normalizar espaços múltiplos
         nome_normalizado = re.sub(r'\s+', ' ', nome_normalizado)
@@ -615,6 +659,35 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
         nome_normalizado = re.sub(r'TRANSFER\s+OUT\s+VEÍCULO\s+PRIVATIVO', 'TRANSFER OUT PRIVATIVO', nome_normalizado)
         
         return nome_normalizado.strip()
+
+    def _nomes_equivalentes(self, nome1, nome2):
+        """Compara nomes de serviço considerando normalização"""
+        return self._normalizar_nome_servico(nome1) == self._normalizar_nome_servico(nome2)
+
+    def _detectar_regra_agrupamento(self, servico):
+        """Define qual regra de agrupamento aplicar para o serviço base"""
+        if self._eh_transfer_out_regular(servico.servico):
+            return 'TRANSFER_OUT_REGULAR'
+        if self._eh_servico_tour_equivalente(servico.servico):
+            return 'TOUR'
+        return 'NOME'
+
+    def _remover_acentos(self, texto):
+        """Remove acentos para comparações resilientes"""
+        if not texto:
+            return ''
+        if isinstance(texto, str):
+            texto_normalizado = unicodedata.normalize('NFKD', texto)
+            return ''.join(c for c in texto_normalizado if not unicodedata.combining(c))
+        return str(texto)
+
+    def _mesmo_local_pickup(self, servico1, servico2):
+        """Compara o local de pickup considerando normalização"""
+        pickup1 = self._remover_acentos(getattr(servico1, 'local_pickup', '')).strip().upper()
+        pickup2 = self._remover_acentos(getattr(servico2, 'local_pickup', '')).strip().upper()
+        if not pickup1 or not pickup2:
+            return False
+        return pickup1 == pickup2
     def _diferenca_horario_minutos(self, horario1, horario2):
         """Calcula diferença em minutos entre dois horários"""
         if not horario1 or not horario2:
@@ -636,21 +709,33 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
     
     def _eh_transfer_out(self, nome_servico):
         """Verifica se é um transfer OUT"""
-        nome_upper = nome_servico.upper()
+        nome_upper = self._remover_acentos(nome_servico).upper()
         return 'TRANSFER' in nome_upper and 'OUT' in nome_upper
-    
+
+    def _eh_transfer_out_regular(self, nome_servico):
+        """Identifica transfers OUT regulares"""
+        nome_upper = self._remover_acentos(nome_servico).upper()
+        return 'TRANSFER' in nome_upper and 'OUT' in nome_upper and 'REGULAR' in nome_upper
+
+    def _eh_servico_tour_equivalente(self, nome_servico):
+        """Verifica se o nome indica um tour ou guia à disposição"""
+        nome_upper = self._remover_acentos(nome_servico).upper()
+        palavras_chave = [
+            'TOUR',
+            'GUIA A DISPOSICAO',
+            'VEICULO + GUIA',
+            'VEICULO E GUIA',
+        ]
+        return any(chave in nome_upper for chave in palavras_chave)
+
     def _eh_tour(self, nome_servico):
-        """Verifica se é um serviço de tour"""
-        nome_upper = nome_servico.upper()
-        return ('TOUR' in nome_upper or 
-                'VEÍCULO + GUIA À DISPOSIÇÃO' in nome_upper or
-                'VEICULO + GUIA' in nome_upper)
-    
+        """Mantido para compatibilidade com testes anteriores"""
+        return self._eh_servico_tour_equivalente(nome_servico)
+
     def _eh_guia_disposicao(self, nome_servico):
         """Verifica se é um serviço de guia à disposição"""
-        nome_upper = nome_servico.upper()
-        # Padrão: GUIA À DISPOSIÇÃO XX HORAS
-        padrao = r'GUIA\s*À\s*DISPOSIÇÃO\s*\d+\s*HORAS?'
+        nome_upper = self._remover_acentos(nome_servico).upper()
+        padrao = r'GUIA\s*A\s*DISPOSICAO\s*\d+\s*HORAS?'
         return bool(re.search(padrao, nome_upper))
     
     def _selecionar_candidatos_4_10_pax(self, escala):
@@ -1017,9 +1102,10 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
             if escala.etapa not in ['DADOS_PUXADOS', 'OTIMIZADA']:
                 messages.error(request, 'Para agrupar, é necessário ter dados puxados ou estar otimizada.')
                 return redirect('escalas:visualizar_escala', data=data)
-            
+
             try:
-                grupos_criados = self._agrupar_servicos(escala)
+                gerenciar_view = GerenciarEscalasView()
+                grupos_criados = gerenciar_view._agrupar_servicos(escala)
                 print(f"Agrupamento concluído: {grupos_criados} grupos criados")
                 messages.success(request, f'Agrupamento concluído! {grupos_criados} grupos criados.')
             except Exception as e:
@@ -1027,15 +1113,18 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
                 import traceback
                 traceback.print_exc()
                 messages.error(request, f'Erro ao agrupar serviços: {e}')
-        
-        elif acao == 'otimizar':
+
+            return redirect('escalas:visualizar_escala', data=data)
+
+        elif acao in {'otimizar', 'escalar'}:
             print("=== PROCESSANDO ESCALONAMENTO ===")
             if escala.etapa not in ['DADOS_PUXADOS', 'OTIMIZADA']:
                 messages.error(request, 'Para escalar, é necessário ter dados puxados.')
                 return redirect('escalas:visualizar_escala', data=data)
-            
+
             try:
-                self._otimizar_escala(escala)
+                gerenciar_view = GerenciarEscalasView()
+                gerenciar_view._otimizar_escala(escala)
                 print("Escalonamento concluído com sucesso")
                 messages.success(request, 'Escala escalada com sucesso!')
             except Exception as e:
@@ -1043,11 +1132,13 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
                 import traceback
                 traceback.print_exc()
                 messages.error(request, f'Erro ao escalar escala: {e}')
-        
+
+            return redirect('escalas:visualizar_escala', data=data)
+
         else:
             print(f"AÇÃO DESCONHECIDA: '{acao}'")
             messages.error(request, f'Ação desconhecida: {acao}')
-        
+
         print("=== REDIRECIONANDO ===")
         return redirect('escalas:visualizar_escala', data=data)
 
