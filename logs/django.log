@@ -7112,3 +7112,7 @@ INFO 2025-10-06 17:33:22,827 views 72832 6135820288 Hora formatada: 06/10/2025 Ã
 INFO 2025-10-06 17:33:22,848 basehttp 72832 6135820288 "GET /core/arquivos/ HTTP/1.1" 200 53941
 INFO 2025-10-06 17:34:08,874 autoreload 72832 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
 INFO 2025-10-06 17:34:09,471 autoreload 72896 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 17:34:22,886 log 72896 6139654144 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:34:22,887 basehttp 72896 6139654144 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 17:35:22,898 log 72896 6139654144 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 17:35:22,923 basehttp 72896 6139654144 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
