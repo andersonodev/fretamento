@@ -22,7 +22,9 @@ from django.conf.urls.static import static
 from django.shortcuts import redirect
 
 def root_redirect(request):
-    """Redireciona a raiz para o login"""
+    """Redireciona a raiz - dashboard para autenticados, login para não autenticados"""
+    if request.user.is_authenticated:
+        return redirect('core:home')
     return redirect('authentication:login')
 
 urlpatterns = [

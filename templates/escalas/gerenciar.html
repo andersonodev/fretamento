@@ -15,14 +15,52 @@
 
 {% block content %}
 <div class="container-fluid">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'escalas:selecionar_ano' %}">
+                    <i class="fas fa-calendar-alt"></i> Anos
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}">
+                    <i class="fas fa-calendar-check"></i> Meses de {{ ano }}
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <i class="fas fa-list-alt"></i> Escalas de 
+                {% if mes_atual %}
+                    {{ mes_atual.nome }} {{ ano }}
+                {% else %}
+                    {{ mes }}/{{ ano }}
+                {% endif %}
+            </li>
+        </ol>
+    </nav>
+
     <!-- Cabeçalho -->
     <div class="row mb-4">
         <div class="col-12">
-            <h1 class="mb-0">
-                <i class="fas fa-calendar-alt text-primary"></i>
-                Gerenciar Escalas
-            </h1>
-            <p class="text-muted">Sistema de duas etapas: Criar estrutura → Puxar dados → Otimizar</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="mb-0">
+                        <i class="fas fa-calendar-alt text-primary"></i>
+                        Escalas de
+                        {% if mes_atual %}
+                            {{ mes_atual.nome }} {{ ano }}
+                        {% else %}
+                            {{ mes }}/{{ ano }}
+                        {% endif %}
+                    </h1>
+                    <p class="text-muted">Sistema de duas etapas: Criar estrutura → Puxar dados → Otimizar</p>
+                </div>
+                <div>
+                    <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar aos Meses
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -122,7 +160,7 @@
                                             <span class="badge bg-warning text-dark">{{ escala.total_van1_pax|add:escala.total_van2_pax }}</span>
                                         </td>
                                         <td>
-                                            <span class="text-success">R$ {{ escala.total_van1_valor|add:escala.total_van2_valor|floatformat:2 }}</span>
+                                            <span class="text-success">{{ escala.total_van1_valor|add:escala.total_van2_valor|currency }}</span>
                                         </td>
                                         <td>
                                             <div class="btn-group btn-group-sm" role="group">
@@ -217,13 +255,20 @@
 </div>
 
 <script>
-// Auto-definir data para hoje
+// Auto-definir data para hoje ou para o mês selecionado
 document.addEventListener('DOMContentLoaded', function() {
     const dataInput = document.getElementById('data');
     
     if (dataInput && !dataInput.value) {
-        const hoje = new Date().toISOString().split('T')[0];
-        dataInput.value = hoje;
+        {% if mes_atual and primeiro_dia %}
+            // Se estamos em um mês específico, usar o primeiro dia do mês
+            const primeiroDia = '{{ primeiro_dia|date:"Y-m-d" }}';
+            dataInput.value = primeiroDia;
+        {% else %}
+            // Caso contrário, usar hoje
+            const hoje = new Date().toISOString().split('T')[0];
+            dataInput.value = hoje;
+        {% endif %}
     }
 });
 

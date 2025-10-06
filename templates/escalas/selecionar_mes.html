@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block title %}Selecionar Mês {{ ano }} - Escalas{% endblock %}
+
+{% block extra_css %}
+<style>
+.card-mes {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.card-mes:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-color: #007bff;
+}
+
+.card-mes.mes-atual {
+    border-color: #28a745;
+    background: linear-gradient(135deg, #f8fff9 0%, #f0fff4 100%);
+}
+
+.card-mes.mes-atual:hover {
+    border-color: #20c997;
+}
+
+.badge-escalas {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+}
+
+.mes-stats {
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.stat-item:last-child {
+    margin-bottom: 0;
+}
+
+.icon-mes {
+    font-size: 2.5rem;
+    opacity: 0.7;
+    margin-bottom: 1rem;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'escalas:selecionar_ano' %}">
+                    <i class="fas fa-calendar-alt"></i> Anos
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <i class="fas fa-calendar-check"></i> Meses de {{ ano }}
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Cabeçalho -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="mb-0">
+                <i class="fas fa-calendar-alt text-primary"></i>
+                Meses de {{ ano }}
+            </h1>
+            <p class="text-muted">Selecione o mês para visualizar e gerenciar as escalas</p>
+        </div>
+    </div>
+
+    <!-- Criar Nova Escala -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-plus-circle"></i> Criar Nova Escala
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'escalas:selecionar_mes_ano' ano=ano %}" class="row g-3">
+                        {% csrf_token %}
+                        <input type="hidden" name="acao" value="criar_estrutura">
+                        <div class="col-md-4">
+                            <label for="data" class="form-label">Data da Escala</label>
+                            <input type="date" class="form-control" name="data" id="data" required 
+                                   min="{{ ano }}-01-01" max="{{ ano }}-12-31">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Criar Estrutura
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <small class="text-muted">
+                                <strong>Etapa 1:</strong> Cria apenas a estrutura básica da escala
+                            </small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid de Meses -->
+    <div class="row g-4">
+        {% for mes in meses %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card card-mes h-100 {% if mes.eh_atual %}mes-atual{% endif %}" 
+                 onclick="window.location.href='{% url 'escalas:gerenciar_escalas_mes' mes=mes.mes_numero ano=mes.ano %}'">
+                <div class="card-body text-center">
+                    <!-- Ícone do Mês -->
+                    <div class="icon-mes">
+                        {% if mes.eh_atual %}
+                            <i class="fas fa-calendar-check text-success"></i>
+                        {% elif mes.total_escalas > 0 %}
+                            <i class="fas fa-calendar-day text-primary"></i>
+                        {% else %}
+                            <i class="fas fa-calendar text-muted"></i>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Nome do Mês -->
+                    <h5 class="card-title mb-0">{{ mes.nome }}</h5>
+                    
+                    {% if mes.eh_atual %}
+                        <span class="badge bg-success badge-escalas mb-3">Mês Atual</span>
+                    {% elif mes.total_escalas > 0 %}
+                        <span class="badge bg-primary badge-escalas mb-3">{{ mes.total_escalas }} Escala{{ mes.total_escalas|pluralize:"s" }}</span>
+                    {% else %}
+                        <span class="badge bg-secondary badge-escalas mb-3">Sem Escalas</span>
+                    {% endif %}
+                    
+                    <!-- Estatísticas -->
+                    {% if mes.total_escalas > 0 %}
+                    <div class="mes-stats">
+                        <div class="stat-item">
+                            <span><i class="fas fa-calendar-day text-primary me-2"></i>Escalas:</span>
+                            <strong>{{ mes.total_escalas }}</strong>
+                        </div>
+                        
+                        {% if mes.escalas_pendentes > 0 %}
+                        <div class="stat-item">
+                            <span><i class="fas fa-clock text-warning me-2"></i>Pendentes:</span>
+                            <strong class="text-warning">{{ mes.escalas_pendentes }}</strong>
+                        </div>
+                        {% endif %}
+                        
+                        {% if mes.escalas_aprovadas > 0 %}
+                        <div class="stat-item">
+                            <span><i class="fas fa-check-circle text-success me-2"></i>Aprovadas:</span>
+                            <strong class="text-success">{{ mes.escalas_aprovadas }}</strong>
+                        </div>
+                        {% endif %}
+                        
+                        {% if mes.total_servicos > 0 %}
+                        <div class="stat-item">
+                            <span><i class="fas fa-briefcase text-info me-2"></i>Serviços:</span>
+                            <strong class="text-info">{{ mes.total_servicos }}</strong>
+                        </div>
+                        {% endif %}
+                        
+                        {% if mes.total_valor > 0 %}
+                        <div class="stat-item">
+                            <span><i class="fas fa-dollar-sign text-success me-2"></i>Valor:</span>
+                            <strong class="text-success">{{ mes.total_valor|currency }}</strong>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="mes-stats">
+                        <p class="text-muted small mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Nenhuma escala criada neste mês
+                        </p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Informações de Uso -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-info">
+                <div class="card-header bg-light">
+                    <h6 class="card-title mb-0">
+                        <i class="fas fa-info-circle text-info"></i> Como Usar
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-calendar-alt text-primary"></i> Seleção de Mês</h6>
+                            <p class="small mb-3">Clique no card do mês desejado para visualizar e gerenciar as escalas daquele período.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-chart-bar text-success"></i> Estatísticas</h6>
+                            <p class="small mb-3">Cada card mostra um resumo das escalas, incluindo status de aprovação e totais financeiros.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-calendar-check text-success"></i> Mês Atual</h6>
+                            <p class="small mb-0">O mês atual é destacado em verde para fácil identificação.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-plus-circle text-primary"></i> Criar Escalas</h6>
+                            <p class="small mb-0">Entre no mês desejado para criar novas escalas ou gerenciar as existentes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Efeito de hover nos cards
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card-mes');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+});
+</script>
+{% endblock %}

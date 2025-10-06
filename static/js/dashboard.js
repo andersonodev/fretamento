@@ -580,10 +580,95 @@ class DashboardManager {
  */
 const DashboardUtils = {
     /**
-     * Formata números com separadores
+     * Formata números com separadores brasileiros
      */
     formatNumber(num) {
-        return new Intl.NumberFormat('pt-BR').format(num);
+        try {
+            if (num == null || isNaN(num)) return '0';
+            return new Intl.NumberFormat('pt-BR').format(num);
+        } catch (e) {
+            return num.toString();
+        }
+    },
+
+    /**
+     * Formata valores monetários em padrão brasileiro
+     */
+    formatCurrency(value) {
+        try {
+            if (value == null || isNaN(value)) return 'R$ 0,00';
+            
+            const num = parseFloat(value);
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(num);
+        } catch (e) {
+            return 'R$ 0,00';
+        }
+    },
+
+    /**
+     * Formata valores monetários compactos (K, M)
+     */
+    formatCurrencyCompact(value) {
+        try {
+            if (value == null || isNaN(value)) return 'R$ 0';
+            
+            const num = parseFloat(value);
+            
+            if (Math.abs(num) >= 1000000) {
+                return `R$ ${(num / 1000000).toFixed(1).replace('.', ',')}M`;
+            } else if (Math.abs(num) >= 1000) {
+                return `R$ ${(num / 1000).toFixed(1).replace('.', ',')}K`;
+            } else if (Math.abs(num) >= 100) {
+                return `R$ ${num.toFixed(0)}`;
+            } else {
+                return `R$ ${num.toFixed(2).replace('.', ',')}`;
+            }
+        } catch (e) {
+            return 'R$ 0';
+        }
+    },
+
+    /**
+     * Formata percentuais em padrão brasileiro
+     */
+    formatPercentage(value) {
+        try {
+            if (value == null || isNaN(value)) return '0,00%';
+            
+            const num = parseFloat(value);
+            return `${num.toFixed(2).replace('.', ',')}%`;
+        } catch (e) {
+            return '0,00%';
+        }
+    },
+
+    /**
+     * Calcula diferença entre preços
+     */
+    formatPriceDifference(price1, price2) {
+        try {
+            if (price1 == null || price2 == null || isNaN(price1) || isNaN(price2)) {
+                return 'N/A';
+            }
+            
+            const diff = parseFloat(price1) - parseFloat(price2);
+            const formatted = Math.abs(diff).toFixed(2).replace('.', ',');
+            
+            if (diff > 0) {
+                return `+R$ ${formatted}`;
+            } else if (diff < 0) {
+                return `-R$ ${formatted}`;
+            } else {
+                return 'R$ 0,00';
+            }
+        } catch (e) {
+            return 'N/A';
+        }
     },
 
     /**

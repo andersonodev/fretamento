@@ -22,7 +22,7 @@
                     </p>
                 </div>
                 <div class="btn-group" role="group">
-                    <a href="{% url 'escalas:gerenciar_escalas' %}" class="btn btn-secondary">
+                    <a href="{% url 'escalas:gerenciar_escalas_mes' mes=mes ano=ano %}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Voltar
                     </a>
                     {% if escala.tem_dados %}
@@ -31,9 +31,14 @@
                         </a>
                     {% endif %}
                     {% if escala.etapa == 'DADOS_PUXADOS' %}
-                        <form method="post" action="{% url 'escalas:gerenciar_escalas' %}" class="d-inline">
+                        <form method="post" class="d-inline">
                             {% csrf_token %}
-                            <input type="hidden" name="data" value="{{ escala.data|date_br }}">
+                            <button type="submit" name="acao" value="agrupar" class="btn btn-info">
+                                <i class="fas fa-layer-group"></i> Agrupar
+                            </button>
+                        </form>
+                        <form method="post" class="d-inline">
+                            {% csrf_token %}
                             <button type="submit" name="acao" value="otimizar" class="btn btn-warning">
                                 <i class="fas fa-magic"></i> Otimizar Escala
                             </button>
@@ -95,7 +100,7 @@
                         <h5 class="card-title">
                             <i class="fas fa-dollar-sign"></i> Valor Total
                         </h5>
-                        <h3>R$ {{ van1.total_valor|add:van2.total_valor|floatformat:2 }}</h3>
+                        <h3>{{ van1.total_valor|add:van2.total_valor|currency }}</h3>
                     </div>
                 </div>
             </div>
@@ -283,7 +288,7 @@
                         <h5 class="card-title mb-0">
                             <i class="fas fa-van-shuttle"></i> Van 1
                             <span class="badge bg-light text-dark ms-2">{{ van1.total_pax }} PAX</span>
-                            <span class="badge bg-light text-dark ms-1">R$ {{ van1.total_valor|floatformat:2 }}</span>
+                            <span class="badge bg-light text-dark ms-1">{{ van1.total_valor|currency }}</span>
                             <span class="badge bg-light text-dark ms-1">{{ van1.count }} serviços</span>
                         </h5>
                     </div>
@@ -332,14 +337,14 @@
                                             <div class="text-end">
                                                 {% if alocacao.grupo_info %}
                                                     <span class="badge bg-primary">{{ alocacao.grupo_info.grupo.total_pax }} PAX</span>
-                                                    <br><span class="badge bg-success">R$ {{ alocacao.grupo_info.grupo.total_valor|floatformat:2 }}</span>
+                                                    <br><span class="badge bg-success">{{ alocacao.grupo_info.grupo.total_valor|currency }}</span>
                                                     <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
                                                        onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'grupo', '{{ alocacao.grupo_info.grupo.id }}')"
                                                        title="Editar preço"></i>
                                                 {% else %}
                                                     <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
                                                     {% if alocacao.preco_calculado %}
-                                                        <br><span class="badge bg-success">R$ {{ alocacao.preco_calculado|floatformat:2 }}</span>
+                                                        <br><span class="badge bg-success">{{ alocacao.preco_calculado|currency }}</span>
                                                         <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
                                                            onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'individual')"
                                                            title="Editar preço"></i>
@@ -409,7 +414,7 @@
                                                 <div class="mt-1">
                                                     <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
                                                     {% if alocacao.lucratividade %}
-                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|floatformat:1 }}</span>
+                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
                                                     {% endif %}
                                                     {% if alocacao.automatica %}
                                                         <span class="badge bg-info">Auto</span>
@@ -440,7 +445,7 @@
                         <h5 class="card-title mb-0">
                             <i class="fas fa-van-shuttle"></i> Van 2
                             <span class="badge bg-light text-dark ms-2">{{ van2.total_pax }} PAX</span>
-                            <span class="badge bg-light text-dark ms-1">R$ {{ van2.total_valor|floatformat:2 }}</span>
+                            <span class="badge bg-light text-dark ms-1">{{ van2.total_valor|currency }}</span>
                             <span class="badge bg-light text-dark ms-1">{{ van2.count }} serviços</span>
                         </h5>
                     </div>
@@ -489,14 +494,14 @@
                                             <div class="text-end">
                                                 {% if alocacao.grupo_info %}
                                                     <span class="badge bg-primary">{{ alocacao.grupo_info.grupo.total_pax }} PAX</span>
-                                                    <br><span class="badge bg-success">R$ {{ alocacao.grupo_info.grupo.total_valor|floatformat:2 }}</span>
+                                                    <br><span class="badge bg-success">{{ alocacao.grupo_info.grupo.total_valor|currency }}</span>
                                                     <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
                                                        onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'grupo', '{{ alocacao.grupo_info.grupo.id }}')"
                                                        title="Editar preço"></i>
                                                 {% else %}
                                                     <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
                                                     {% if alocacao.preco_calculado %}
-                                                        <br><span class="badge bg-success">R$ {{ alocacao.preco_calculado|floatformat:2 }}</span>
+                                                        <br><span class="badge bg-success">{{ alocacao.preco_calculado|currency }}</span>
                                                         <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
                                                            onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'individual')"
                                                            title="Editar preço"></i>
@@ -566,7 +571,7 @@
                                                 <div class="mt-1">
                                                     <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
                                                     {% if alocacao.lucratividade %}
-                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|floatformat:1 }}</span>
+                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
                                                     {% endif %}
                                                     {% if alocacao.automatica %}
                                                         <span class="badge bg-info">Auto</span>
@@ -1171,15 +1176,28 @@ function preencherModalGrupo(grupo, servicos) {
     listaContainer.innerHTML = '';
     
     servicos.forEach((servico, index) => {
+        const horarioFormatado = servico.horario ? servico.horario : 'Sem horário';
         const servicoHtml = `
             <div class="border-bottom pb-2 mb-2" data-servico-id="${servico.alocacao_id}">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <strong>${servico.cliente}</strong>
                         <br><small class="text-muted">${servico.servico}</small>
+                        ${servico.local_pickup ? `<br><small class="text-success"><i class="fas fa-location-dot"></i> ${servico.local_pickup}</small>` : ''}
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <span class="badge bg-info">${servico.pax} PAX</span>
                     </div>
                     <div class="col-md-3 text-center">
-                        <span class="badge bg-info">${servico.pax} PAX</span>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="fas fa-clock text-primary me-1"></i>
+                            <span class="fw-bold">${horarioFormatado}</span>
+                            <button type="button" class="btn btn-sm btn-outline-primary ms-2" 
+                                    onclick="editarHorarioServico(${servico.alocacao_id}, '${servico.horario || ''}')"
+                                    title="Editar horário">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="col-md-3 text-end">
                         <button type="button" class="btn btn-sm btn-outline-danger" 
@@ -1188,7 +1206,6 @@ function preencherModalGrupo(grupo, servicos) {
                         </button>
                     </div>
                 </div>
-                ${servico.local_pickup ? `<small class="text-success"><i class="fas fa-location-dot"></i> ${servico.local_pickup}</small>` : ''}
             </div>
         `;
         listaContainer.insertAdjacentHTML('beforeend', servicoHtml);
@@ -1468,6 +1485,46 @@ function desagruparGrupoCompleto(alocacaoId) {
     .catch(error => {
         console.error('Erro:', error);
         showMessage('Erro ao desagrupar grupo', 'error');
+    });
+}
+
+// Função para editar horário de serviço individual em grupo
+function editarHorarioServico(alocacaoId, horarioAtual) {
+    const novoHorario = prompt(`Editar horário do serviço:\n\nFormato: HH:MM (exemplo: 14:30)`, horarioAtual || '');
+    
+    if (novoHorario === null) {
+        return; // Usuário cancelou
+    }
+    
+    // Validar formato do horário
+    if (novoHorario && !/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(novoHorario)) {
+        alert('Formato de horário inválido. Use HH:MM (exemplo: 14:30)');
+        return;
+    }
+    
+    fetch('{% url "escalas:editar_horario_servico" %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            alocacao_id: alocacaoId,
+            horario: novoHorario
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showMessage('Horário atualizado com sucesso!', 'success');
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showMessage('Erro: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        showMessage('Erro ao editar horário', 'error');
     });
 }
 

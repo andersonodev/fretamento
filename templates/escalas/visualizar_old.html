@@ -44,7 +44,7 @@
                     <h5 class="card-title">
                         <i class="fas fa-dollar-sign"></i> Valor Total
                     </h5>
-                    <h3>R$ {{ van1.total_valor|add:van2.total_valor|floatformat:2 }}</h3>
+                    <h3>{{ van1.total_valor|add:van2.total_valor|currency }}</h3>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
                     <h5 class="card-title mb-0">
                         <i class="fas fa-van-shuttle"></i> Van 1
                         <span class="badge bg-light text-dark ms-2">{{ van1.total_pax }} PAX</span>
-                        <span class="badge bg-light text-dark ms-1">R$ {{ van1.total_valor|floatformat:2 }}</span>
+                        <span class="badge bg-light text-dark ms-1">{{ van1.total_valor|currency }}</span>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -92,7 +92,7 @@
                                     Grupo {{ grupo_data.grupo.id }}
                                     <span class="badge bg-primary">{{ grupo_data.grupo.pax_total }} PAX</span>
                                 </h6>
-                                <span class="text-success fw-bold">R$ {{ grupo_data.grupo.preco_estimado|floatformat:2 }}</span>
+                                <span class="text-success fw-bold">{{ grupo_data.grupo.preco_estimado|currency }}</span>
                             </div>
                             
                             <div class="small text-muted mb-2">
@@ -128,13 +128,13 @@
                         <div class="border-top pt-3 mt-3">
                             <div class="d-flex justify-content-between">
                                 <strong>Custo Diário:</strong>
-                                <strong class="text-danger">R$ {{ van1.custo_diario|floatformat:2 }}</strong>
+                                <strong class="text-danger">{{ van1.custo_diario|currency }}</strong>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <strong>Lucro Bruto:</strong>
                                 {% with lucro_van1=van1.total_valor|subtract:van1.custo_diario %}
                                 <strong class="{% if lucro_van1 > 0 %}text-success{% else %}text-danger{% endif %}">
-                                    R$ {{ lucro_van1|floatformat:2 }}
+                                    {{ lucro_van1|currency }}
                                 </strong>
                                 {% endwith %}
                             </div>
@@ -156,7 +156,7 @@
                     <h5 class="card-title mb-0">
                         <i class="fas fa-van-shuttle"></i> Van 2
                         <span class="badge bg-light text-dark ms-2">{{ van2.total_pax }} PAX</span>
-                        <span class="badge bg-light text-dark ms-1">R$ {{ van2.total_valor|floatformat:2 }}</span>
+                        <span class="badge bg-light text-dark ms-1">{{ van2.total_valor|currency }}</span>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -169,7 +169,7 @@
                                     Grupo {{ grupo_data.grupo.id }}
                                     <span class="badge bg-info">{{ grupo_data.grupo.pax_total }} PAX</span>
                                 </h6>
-                                <span class="text-success fw-bold">R$ {{ grupo_data.grupo.preco_estimado|floatformat:2 }}</span>
+                                <span class="text-success fw-bold">{{ grupo_data.grupo.preco_estimado|currency }}</span>
                             </div>
                             
                             <div class="small text-muted mb-2">
@@ -205,13 +205,13 @@
                         <div class="border-top pt-3 mt-3">
                             <div class="d-flex justify-content-between">
                                 <strong>Custo Diário:</strong>
-                                <strong class="text-danger">R$ {{ van2.custo_diario|floatformat:2 }}</strong>
+                                <strong class="text-danger">{{ van2.custo_diario|currency }}</strong>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <strong>Lucro Bruto:</strong>
                                 {% with lucro_van2=van2.total_valor|subtract:van2.custo_diario %}
                                 <strong class="{% if lucro_van2 > 0 %}text-success{% else %}text-danger{% endif %}">
-                                    R$ {{ lucro_van2|floatformat:2 }}
+                                    {{ lucro_van2|currency }}
                                 </strong>
                                 {% endwith %}
                             </div>
@@ -241,13 +241,13 @@
                         <div class="col-md-3">
                             <div class="text-center">
                                 <h6>Receita Total</h6>
-                                <h4 class="text-success">R$ {{ van1.total_valor|add:van2.total_valor|floatformat:2 }}</h4>
+                                <h4 class="text-success">{{ van1.total_valor|add:van2.total_valor|currency }}</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="text-center">
                                 <h6>Custo Total</h6>
-                                <h4 class="text-danger">R$ {{ van1.custo_diario|add:van2.custo_diario|floatformat:2 }}</h4>
+                                <h4 class="text-danger">{{ van1.custo_diario|add:van2.custo_diario|currency }}</h4>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -257,7 +257,7 @@
                                 {% with custo_total=van1.custo_diario|add:van2.custo_diario %}
                                 {% with lucro_total=receita_total|subtract:custo_total %}
                                 <h4 class="{% if lucro_total > 0 %}text-success{% else %}text-danger{% endif %}">
-                                    R$ {{ lucro_total|floatformat:2 }}
+                                    {{ lucro_total|currency }}
                                 </h4>
                                 {% endwith %}
                                 {% endwith %}

@@ -498,7 +498,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'escalas:gerenciar_escalas' %}">
+                        <a class="nav-link" href="{% url 'escalas:selecionar_ano' %}">
                             <i class="fas fa-calendar-check"></i>Escalas
                         </a>
                     </li>
@@ -549,7 +549,7 @@
                                 </li>
                                 {% if user.username in 'cristiane.aguiar,lucy.leite' %}
                                 <li>
-                                    <a class="dropdown-item" href="{% url 'escalas:gerenciar_escalas' %}">
+                                    <a class="dropdown-item" href="{% url 'escalas:selecionar_ano' %}">
                                         <i class="fas fa-check-circle me-2"></i>Aprovar Escalas
                                     </a>
                                 </li>
@@ -611,7 +611,7 @@
                 <div class="footer-links">
                     <a href="{% url 'core:home' %}" class="footer-link">Dashboard</a>
                     <a href="{% url 'core:lista_servicos' %}" class="footer-link">Serviços</a>
-                    <a href="{% url 'escalas:gerenciar_escalas' %}" class="footer-link">Escalas</a>
+                    <a href="{% url 'escalas:selecionar_ano' %}" class="footer-link">Escalas</a>
                     <a href="{% url 'core:diagnostico' %}" class="footer-link">Analytics</a>
                 </div>
                 <div class="text-muted">

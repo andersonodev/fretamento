@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block title %}Selecionar Ano - Escalas{% endblock %}
+
+{% block extra_css %}
+<style>
+.card-ano {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    min-height: 280px;
+}
+
+.card-ano:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    border-color: #007bff;
+}
+
+.card-ano.ano-atual {
+    border-color: #28a745;
+    background: linear-gradient(135deg, #f8fff9 0%, #f0fff4 100%);
+}
+
+.card-ano.ano-atual:hover {
+    border-color: #20c997;
+}
+
+.ano-numero {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.ano-stats {
+    background: #f8f9fa;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0;
+}
+
+.stat-row:last-child {
+    margin-bottom: 0;
+}
+
+.stat-icon {
+    margin-right: 0.5rem;
+    width: 16px;
+}
+
+.badge-ano {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.icon-ano {
+    font-size: 3.5rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.resumo-meses {
+    background: linear-gradient(90deg, #e3f2fd 0%, #f3e5f5 100%);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Cabeçalho -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="mb-0">
+                <i class="fas fa-calendar-alt text-primary"></i>
+                Gerenciar Escalas
+            </h1>
+            <p class="text-muted">Selecione o ano para continuar</p>
+        </div>
+    </div>
+
+    <!-- Criar Nova Escala -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-plus-circle"></i> Criar Nova Escala
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'escalas:selecionar_ano' %}" class="row g-3">
+                        {% csrf_token %}
+                        <input type="hidden" name="acao" value="criar_estrutura">
+                        <div class="col-md-4">
+                            <label for="data" class="form-label">Data da Escala</label>
+                            <input type="date" class="form-control" name="data" id="data" required>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Criar Estrutura
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <small class="text-muted">
+                                <strong>Etapa 1:</strong> Cria apenas a estrutura básica da escala
+                            </small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid de Anos -->
+    <div class="row g-4 justify-content-center">
+        {% for ano_info in anos %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card card-ano h-100 {% if ano_info.eh_atual %}ano-atual{% endif %}" 
+                 onclick="window.location.href='{% url 'escalas:selecionar_mes_ano' ano=ano_info.ano %}'">
+                <div class="card-body text-center d-flex flex-column">
+                    <!-- Ícone do Ano -->
+                    <div class="icon-ano">
+                        {% if ano_info.eh_atual %}
+                            <i class="fas fa-calendar-star text-success"></i>
+                        {% elif ano_info.total_escalas > 0 %}
+                            <i class="fas fa-calendar-alt text-primary"></i>
+                        {% else %}
+                            <i class="fas fa-calendar text-muted"></i>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Número do Ano -->
+                    <div class="ano-numero">{{ ano_info.ano }}</div>
+                    
+                    <!-- Badge Status -->
+                    {% if ano_info.eh_atual %}
+                        <span class="badge bg-success badge-ano">Ano Atual</span>
+                    {% elif ano_info.total_escalas > 0 %}
+                        <span class="badge bg-primary badge-ano">{{ ano_info.total_escalas }} Escala{{ ano_info.total_escalas|pluralize:"s" }}</span>
+                    {% else %}
+                        <span class="badge bg-secondary badge-ano">Sem Escalas</span>
+                    {% endif %}
+                    
+                    <!-- Resumo de Meses -->
+                    {% if ano_info.meses_com_escalas > 0 %}
+                    <div class="resumo-meses">
+                        <small>
+                            <i class="fas fa-calendar-week text-primary me-1"></i>
+                            <strong>{{ ano_info.meses_com_escalas }}</strong> 
+                            mês{{ ano_info.meses_com_escalas|pluralize:"es" }} com escalas
+                        </small>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Estatísticas Detalhadas -->
+                    {% if ano_info.total_escalas > 0 %}
+                    <div class="ano-stats mt-auto">
+                        <div class="stat-row">
+                            <span><i class="fas fa-calendar-day stat-icon text-primary"></i>Escalas:</span>
+                            <strong>{{ ano_info.total_escalas }}</strong>
+                        </div>
+                        
+                        {% if ano_info.escalas_pendentes > 0 %}
+                        <div class="stat-row">
+                            <span><i class="fas fa-clock stat-icon text-warning"></i>Pendentes:</span>
+                            <strong class="text-warning">{{ ano_info.escalas_pendentes }}</strong>
+                        </div>
+                        {% endif %}
+                        
+                        {% if ano_info.escalas_aprovadas > 0 %}
+                        <div class="stat-row">
+                            <span><i class="fas fa-check-circle stat-icon text-success"></i>Aprovadas:</span>
+                            <strong class="text-success">{{ ano_info.escalas_aprovadas }}</strong>
+                        </div>
+                        {% endif %}
+                        
+                        {% if ano_info.escalas_rejeitadas > 0 %}
+                        <div class="stat-row">
+                            <span><i class="fas fa-times-circle stat-icon text-danger"></i>Rejeitadas:</span>
+                            <strong class="text-danger">{{ ano_info.escalas_rejeitadas }}</strong>
+                        </div>
+                        {% endif %}
+                        
+                        {% if ano_info.total_servicos > 0 %}
+                        <div class="stat-row">
+                            <span><i class="fas fa-briefcase stat-icon text-info"></i>Serviços:</span>
+                            <strong class="text-info">{{ ano_info.total_servicos }}</strong>
+                        </div>
+                        {% endif %}
+                        
+                        {% if ano_info.total_valor > 0 %}
+                        <div class="stat-row">
+                            <span><i class="fas fa-dollar-sign stat-icon text-success"></i>Valor Total:</span>
+                            <strong class="text-success">{{ ano_info.total_valor|currency_no_cents }}</strong>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="ano-stats mt-auto">
+                        <p class="text-muted small mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Nenhuma escala criada neste ano
+                        </p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Informações de Uso -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-info">
+                <div class="card-header bg-light">
+                    <h6 class="card-title mb-0">
+                        <i class="fas fa-info-circle text-info"></i> Navegação por Anos
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-calendar-alt text-primary"></i> Seleção de Ano</h6>
+                            <p class="small mb-3">Clique no card do ano desejado para ver os meses disponíveis naquele período.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-chart-line text-success"></i> Visão Geral</h6>
+                            <p class="small mb-3">Cada card mostra estatísticas anuais completas, incluindo meses ativos e totais financeiros.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-calendar-star text-warning"></i> Ano Atual</h6>
+                            <p class="small mb-0">O ano atual é destacado em verde para fácil identificação e acesso rápido.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Efeito de hover aprimorado nos cards
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card-ano');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px)';
+            this.style.boxShadow = '0 12px 30px rgba(0,0,0,0.15)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '';
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -483,7 +483,7 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
     
     def _servicos_sao_compativeis(self, servico1, servico2):
         """Verifica se dois serviços podem ser agrupados"""
-        # 1. Mesmo nome de serviço e diferença de até 40 minutos
+        # 1. Mesmo nome de serviço e diferença de até 35 minutos
         if self._normalizar_nome_servico(servico1.servico) == self._normalizar_nome_servico(servico2.servico):
             if self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40:
                 return True
@@ -511,34 +511,8 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
     
     def _normalizar_nome_servico(self, nome):
         """Normaliza nome do serviço para comparação"""
-        import re
-        
-        nome_normalizado = nome.upper().strip()
-        
-        # 1. Normalizar espaços múltiplos
-        nome_normalizado = re.sub(r'\s+', ' ', nome_normalizado)
-        
-        # 2. Normalizar códigos de aeroportos
-        nome_normalizado = re.sub(r'RJ\s*\(GIG\)', 'GIG', nome_normalizado)
-        nome_normalizado = re.sub(r'RJ\s*\(SDU\)', 'SDU', nome_normalizado)
-        nome_normalizado = re.sub(r'\(GIG\)', 'GIG', nome_normalizado)
-        nome_normalizado = re.sub(r'\(SDU\)', 'SDU', nome_normalizado)
-        
-        # 3. Normalizar aeroportos
-        nome_normalizado = re.sub(r'AEROPORTO\s+INTER\.\s+GALEÃO', 'AEROPORTO GALEAO', nome_normalizado)
-        nome_normalizado = re.sub(r'AEROPORTO\s+SANTOS\s+DUMONT', 'AEROPORTO SDU', nome_normalizado)
-        
-        # 4. Remover pontuações desnecessárias
-        nome_normalizado = re.sub(r'[,\.](?!\d)', '', nome_normalizado)
-        nome_normalizado = re.sub(r'\s+', ' ', nome_normalizado)  # Limpar espaços novamente
-        
-        # 5. Normalizar variações específicas comuns
-        nome_normalizado = re.sub(r'TRANSFER\s+IN\s+REGULAR', 'TRANSFER IN REGULAR', nome_normalizado)
-        nome_normalizado = re.sub(r'TRANSFER\s+OUT\s+REGULAR', 'TRANSFER OUT REGULAR', nome_normalizado)
-        nome_normalizado = re.sub(r'TRANSFER\s+IN\s+VEÍCULO\s+PRIVATIVO', 'TRANSFER IN PRIVATIVO', nome_normalizado)
-        nome_normalizado = re.sub(r'TRANSFER\s+OUT\s+VEÍCULO\s+PRIVATIVO', 'TRANSFER OUT PRIVATIVO', nome_normalizado)
-        
-        return nome_normalizado.strip()
+        return nome.upper().strip()
+    
     def _diferenca_horario_minutos(self, horario1, horario2):
         """Calcula diferença em minutos entre dois horários"""
         if not horario1 or not horario2:
@@ -788,7 +762,7 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
     
     def _servicos_sao_compativeis(self, servico1, servico2):
         """Verifica se dois serviços podem ser agrupados"""
-        # 1. Mesmo nome de serviço e diferença de até 40 minutos
+        # 1. Mesmo nome de serviço e diferença de até 35 minutos
         if self._normalizar_nome_servico(servico1.servico) == self._normalizar_nome_servico(servico2.servico):
             if self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40:
                 return True
@@ -1509,9 +1483,8 @@ class SalvarEdicaoServicoView(View):
                 
                 # Recalcular preço
                 from core.tarifarios import calcular_preco_servico
-                veiculo_recomendado, preco_calculado = calcular_preco_servico(servico)
+                preco_calculado = calcular_preco_servico(servico)
                 alocacao.preco_calculado = preco_calculado
-                alocacao.veiculo_recomendado = veiculo_recomendado
                 alocacao.save()
             
             return JsonResponse({
@@ -1889,63 +1862,6 @@ class DesfazerAgrupamentosAutomaticosView(LoginRequiredMixin, View):
                 'success': True,
                 'message': f'{grupos_desfeitos} agrupamentos automáticos foram desfeitos',
                 'grupos_desfeitos': grupos_desfeitos
-            })
-            
-        except Exception as e:
-            return JsonResponse({
-                'success': False,
-                'error': str(e)
-            })
-
-
-class EditarHorarioServicoView(LoginRequiredMixin, View):
-    """
-    View para editar horário de um serviço específico
-    """
-    
-    def post(self, request):
-        try:
-            data = json.loads(request.body)
-            alocacao_id = data.get('alocacao_id')
-            horario_str = data.get('horario')
-            
-            if not alocacao_id:
-                return JsonResponse({
-                    'success': False,
-                    'error': 'ID da alocação não fornecido'
-                })
-            
-            # Buscar alocação
-            alocacao = get_object_or_404(AlocacaoVan, id=alocacao_id)
-            servico = alocacao.servico
-            
-            with transaction.atomic():
-                # Atualizar horário
-                if horario_str:
-                    from datetime import datetime
-                    try:
-                        servico.horario = datetime.strptime(horario_str, '%H:%M').time()
-                    except ValueError:
-                        return JsonResponse({
-                            'success': False,
-                            'error': 'Formato de horário inválido. Use HH:MM'
-                        })
-                else:
-                    servico.horario = None
-                
-                servico.save()
-                
-                # Se o serviço estiver em um grupo, recalcular totais
-                try:
-                    grupo_info = alocacao.grupo_info
-                    if grupo_info:
-                        grupo_info.grupo.recalcular_totais()
-                except ServicoGrupo.DoesNotExist:
-                    pass  # Serviço não está em grupo
-            
-            return JsonResponse({
-                'success': True,
-                'message': f'Horário atualizado para {horario_str if horario_str else "sem horário"}'
             })
             
         except Exception as e:

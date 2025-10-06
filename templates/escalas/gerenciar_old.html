@@ -130,11 +130,11 @@
                                     </td>
                                     <td>
                                         <span class="badge bg-primary">{{ escala.total_van1_pax }} PAX</span><br>
-                                        <small class="text-muted">R$ {{ escala.total_van1_valor|floatformat:2 }}</small>
+                                        <small class="text-muted">{{ escala.total_van1_valor|currency }}</small>
                                     </td>
                                     <td>
                                         <span class="badge bg-info">{{ escala.total_van2_pax }} PAX</span><br>
-                                        <small class="text-muted">R$ {{ escala.total_van2_valor|floatformat:2 }}</small>
+                                        <small class="text-muted">{{ escala.total_van2_valor|currency }}</small>
                                     </td>
                                     <td>{{ escala.created_at|date:"d/m/Y H:i" }}</td>
                                     <td>

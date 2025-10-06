@@ -10,7 +10,7 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
     
     def get_success_url(self):
-        return reverse_lazy('escalas:gerenciar_escalas')
+        return reverse_lazy('core:home')
     
     def form_valid(self, form):
         messages.success(self.request, f'Bem-vindo(a), {form.get_user().get_full_name() or form.get_user().username}!')

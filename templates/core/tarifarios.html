@@ -34,7 +34,7 @@
             <div class="card text-white bg-info">
                 <div class="card-body">
                     <h5 class="card-title">Menor Preço JW</h5>
-                    <h3>R$ {{ estatisticas.menor_preco_jw|floatformat:2 }}</h3>
+                    <h3>{{ estatisticas.menor_preco_jw|currency }}</h3>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
             <div class="card text-white bg-warning">
                 <div class="card-body">
                     <h5 class="card-title">Maior Preço JW</h5>
-                    <h3>R$ {{ estatisticas.maior_preco_jw|floatformat:2 }}</h3>
+                    <h3>{{ estatisticas.maior_preco_jw|currency }}</h3>
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
                                     <td>
                                         {% if precos|get_item:veiculo %}
                                             <span class="badge bg-success">
-                                                R$ {{ precos|get_item:veiculo|floatformat:2 }}
+                                                {{ precos|get_item:veiculo|currency }}
                                             </span>
                                         {% else %}
                                             <span class="badge bg-secondary">N/A</span>
@@ -133,7 +133,7 @@
                                     <td><strong>{{ servico }}</strong></td>
                                     <td>
                                         <span class="badge bg-primary fs-6">
-                                            R$ {{ preco|floatformat:2 }}
+                                            {{ preco|currency }}
                                         </span>
                                     </td>
                                     <td>
@@ -185,7 +185,7 @@
                     <div class="alert alert-info mt-3">
                         <h6><i class="fas fa-info-circle"></i> Informações Importantes:</h6>
                         <ul class="mb-0">
-                            <li><strong>Custo Diário Van:</strong> R$ {{ estatisticas.custo_diario_van|floatformat:2 }}</li>
+                            <li><strong>Custo Diário Van:</strong> {{ estatisticas.custo_diario_van|currency }}</li>
                             <li><strong>Tarifário JW:</strong> Preços específicos por tipo de veículo</li>
                             <li><strong>Tarifário Motoristas:</strong> Preço base multiplicado por número de venda</li>
                             <li>O sistema seleciona automaticamente o veículo mais adequado baseado no número de PAX</li>
