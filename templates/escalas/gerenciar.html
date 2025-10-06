@@ -55,7 +55,12 @@
                     </h1>
                     <p class="text-muted">Sistema de duas etapas: Criar estrutura → Puxar dados → Otimizar</p>
                 </div>
-                <div>
+                <div class="d-flex gap-2">
+                    <a href="{% url 'escalas:exportar_mes' ano=ano mes=mes %}" 
+                       class="btn btn-success" 
+                       title="Exportar todas as escalas do mês em Excel">
+                        <i class="fas fa-file-excel"></i> Exportar Mês
+                    </a>
                     <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}" class="btn btn-outline-secondary">
                         <i class="fas fa-arrow-left"></i> Voltar aos Meses
                     </a>

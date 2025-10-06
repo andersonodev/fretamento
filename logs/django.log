@@ -3961,3 +3961,214 @@ INFO 2025-10-06 09:26:34,054 basehttp 27911 6173618176 "GET /escalas/visualizar/
 INFO 2025-10-06 09:26:45,096 basehttp 27911 6173618176 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 1098
 INFO 2025-10-06 09:26:59,213 autoreload 27911 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/templatetags/custom_filters.py changed, reloading.
 INFO 2025-10-06 09:26:59,662 autoreload 28466 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 09:28:10,282 log 28466 6202503168 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:28:10,284 basehttp 28466 6202503168 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:29:10,357 log 28466 6202503168 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:29:10,359 basehttp 28466 6202503168 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:30:10,350 log 28466 6202503168 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:30:10,351 basehttp 28466 6202503168 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:31:10,352 log 28466 6202503168 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:31:10,354 basehttp 28466 6202503168 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:32:10,348 log 28466 6202503168 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:32:10,351 basehttp 28466 6202503168 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 09:32:56,970 autoreload 28466 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 09:32:57,961 autoreload 28803 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 09:33:10,351 log 28803 6160068608 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:33:10,351 basehttp 28803 6160068608 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:34:10,350 log 28803 6160068608 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:34:10,352 basehttp 28803 6160068608 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 09:34:40,227 autoreload 28803 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-06 09:34:40,655 autoreload 28892 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 09:35:11,341 log 28892 6174683136 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:35:11,342 basehttp 28892 6174683136 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 09:35:16,940 autoreload 28892 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/urls.py changed, reloading.
+INFO 2025-10-06 09:35:17,297 autoreload 28928 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 09:35:32,757 basehttp 28928 6202634240 "GET /escalas/ano/2025/ HTTP/1.1" 200 44768
+INFO 2025-10-06 09:36:21,633 basehttp 28928 6202634240 "GET /escalas/ano/2025/ HTTP/1.1" 200 44768
+INFO 2025-10-06 09:36:34,970 basehttp 28928 6202634240 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 37198
+INFO 2025-10-06 09:36:55,268 basehttp 28928 6202634240 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 37198
+INFO 2025-10-06 09:37:06,081 basehttp 28928 6202634240 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 09:37:06,102 basehttp 28928 6202634240 "GET /escalas/visualizar/2025-10-01/ HTTP/1.1" 200 106593
+ERROR 2025-10-06 09:37:07,735 log 28928 6202634240 Internal Server Error: /escalas/puxar-dados/01-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 906, in get
+    return render(request, 'escalas/puxar_dados.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'selecionar_mes' not found. 'selecionar_mes' is not a valid view function or pattern name.
+ERROR 2025-10-06 09:37:07,737 basehttp 28928 6202634240 "GET /escalas/puxar-dados/01-10-2025/ HTTP/1.1" 500 200163
+WARNING 2025-10-06 09:38:06,327 log 28928 6202634240 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:38:06,328 basehttp 28928 6202634240 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:39:06,327 log 28928 6202634240 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:39:06,328 basehttp 28928 6202634240 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:40:06,322 log 28928 6202634240 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:40:06,323 basehttp 28928 6202634240 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-06 09:41:06,335 log 28928 6202634240 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:41:06,336 basehttp 28928 6202634240 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 09:41:10,440 autoreload 28928 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 09:41:10,774 autoreload 29357 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-06 09:42:06,349 log 29357 6160134144 Not Found: /api/dashboard/updates/
+WARNING 2025-10-06 09:42:06,351 basehttp 29357 6160134144 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-06 09:42:08,433 basehttp 29357 6160134144 "GET /escalas/visualizar/2025-10-01/ HTTP/1.1" 200 105996
+ERROR 2025-10-06 09:42:10,215 log 29357 6160134144 Internal Server Error: /escalas/puxar-dados/01-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 906, in get
+    return render(request, 'escalas/puxar_dados.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'selecionar_mes' not found. 'selecionar_mes' is not a valid view function or pattern name.
+ERROR 2025-10-06 09:42:10,217 basehttp 29357 6160134144 "GET /escalas/puxar-dados/01-10-2025/ HTTP/1.1" 500 209511
+INFO 2025-10-06 09:43:12,471 autoreload 29581 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 09:43:39,323 basehttp 29357 6160134144 "GET /escalas/puxar-dados/01-10-2025/ HTTP/1.1" 200 40728
+INFO 2025-10-06 09:43:50,811 basehttp 29357 6160134144 "POST /escalas/puxar-dados/01-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 09:43:50,860 basehttp 29357 6160134144 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 383623
+INFO 2025-10-06 09:44:05,848 basehttp 29357 6160134144 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 41972
+INFO 2025-10-06 09:44:09,872 basehttp 29357 6160134144 "GET /escalas/exportar-mes/2025/10/ HTTP/1.1" 200 13531
+INFO 2025-10-06 09:44:47,164 basehttp 29357 6160134144 "GET /escalas/ano/2025/ HTTP/1.1" 200 45804
+INFO 2025-10-06 09:45:00,470 autoreload 29581 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 09:45:00,472 autoreload 29357 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/services.py changed, reloading.
+INFO 2025-10-06 09:45:01,329 autoreload 29702 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 09:45:01,329 autoreload 29701 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 09:45:14,322 basehttp 29702 6137720832 "GET /auth/logout/ HTTP/1.1" 302 0
+INFO 2025-10-06 09:45:14,331 basehttp 29702 6137720832 "GET /auth/login/ HTTP/1.1" 200 9456
+INFO 2025-10-06 09:48:54,562 basehttp 29702 6137720832 "GET /auth/login/ HTTP/1.1" 200 9175
+INFO 2025-10-06 09:48:55,295 basehttp 29702 6137720832 "GET /auth/login/ HTTP/1.1" 200 9175
+INFO 2025-10-06 09:49:03,933 basehttp 29702 6137720832 "GET /auth/login/ HTTP/1.1" 200 9175
+INFO 2025-10-06 09:50:09,646 basehttp 29702 6137720832 "GET /auth/login/ HTTP/1.1" 200 9377
+INFO 2025-10-06 09:50:09,665 basehttp 29702 6137720832 "GET /static/images/logointertouring.png HTTP/1.1" 200 148745
+INFO 2025-10-06 09:50:43,673 autoreload 30339 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 09:53:14,253 basehttp 29702 6137720832 "GET /auth/login/ HTTP/1.1" 200 8835
+INFO 2025-10-06 09:53:14,263 basehttp 29702 6137720832 "GET /static/images/logointertouring.png HTTP/1.1" 304 0
+INFO 2025-10-06 09:53:26,805 basehttp 29702 6137720832 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-06 09:53:26,808 views 29702 6137720832 Gerando dashboard com consultas otimizadas
+INFO 2025-10-06 09:53:26,826 basehttp 29702 6137720832 "GET /core/ HTTP/1.1" 200 55986
+INFO 2025-10-06 09:53:54,561 basehttp 29702 6137720832 "GET /auth/logout/ HTTP/1.1" 302 0
+INFO 2025-10-06 09:53:54,573 basehttp 29702 6137720832 "GET /auth/login/ HTTP/1.1" 200 9121
+INFO 2025-10-06 09:53:54,749 basehttp 29702 6137720832 "GET /static/images/logointertouring.png HTTP/1.1" 304 0
+INFO 2025-10-06 09:55:52,477 autoreload 30675 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 09:56:13,474 autoreload 30760 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 09:58:36,732 autoreload 31021 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 09:58:39,865 basehttp 31021 6165639168 "GET /auth/login/ HTTP/1.1" 200 12318
+INFO 2025-10-06 09:58:39,888 basehttp 31021 6165639168 "GET /static/images/logointertouring.png HTTP/1.1" 304 0
+INFO 2025-10-06 09:58:52,827 basehttp 31021 6165065728 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-06 09:58:52,831 views 31021 6165065728 Gerando dashboard com consultas otimizadas
+INFO 2025-10-06 09:58:52,844 basehttp 31021 6165065728 "GET /core/ HTTP/1.1" 200 55986
+INFO 2025-10-06 09:58:55,120 views 31021 6165065728 Dashboard carregado do cache
+INFO 2025-10-06 09:58:55,130 basehttp 31021 6165065728 "GET /core/ HTTP/1.1" 200 55424
+INFO 2025-10-06 09:58:55,815 views 31021 6165065728 Dashboard carregado do cache
+INFO 2025-10-06 09:58:55,822 basehttp 31021 6165065728 "GET /core/ HTTP/1.1" 200 55424
+INFO 2025-10-06 09:59:23,170 basehttp 31021 6165065728 "GET /escalas/ HTTP/1.1" 200 32661
+INFO 2025-10-06 09:59:31,572 basehttp 31021 6165065728 "POST /escalas/ HTTP/1.1" 302 0
+INFO 2025-10-06 09:59:31,594 basehttp 31021 6165065728 "GET /escalas/visualizar/11-09-2025/ HTTP/1.1" 200 106743
+INFO 2025-10-06 09:59:33,513 basehttp 31021 6165065728 "GET /escalas/puxar-dados/11-09-2025/ HTTP/1.1" 200 40901
+INFO 2025-10-06 09:59:41,115 basehttp 31021 6165065728 "POST /escalas/puxar-dados/11-09-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 09:59:41,157 basehttp 31021 6165065728 "GET /escalas/visualizar/11-09-2025/ HTTP/1.1" 200 406778
+INFO 2025-10-06 09:59:55,790 basehttp 31021 6165065728 "GET /escalas/gerenciar/9/2025/ HTTP/1.1" 200 37374
+INFO 2025-10-06 10:00:04,407 autoreload 31209 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 10:00:05,578 basehttp 31209 6194933760 "GET /escalas/visualizar/11-09-2025/ HTTP/1.1" 200 406149
+INFO 2025-10-06 10:00:15,770 basehttp 31209 6194360320 "POST /escalas/visualizar/11-09-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 10:00:15,836 basehttp 31209 6194360320 "GET /escalas/visualizar/11-09-2025/ HTTP/1.1" 200 406149
+INFO 2025-10-06 10:00:24,772 basehttp 31209 6194360320 "POST /escalas/visualizar/11-09-2025/ HTTP/1.1" 302 0
+INFO 2025-10-06 10:00:24,837 basehttp 31209 6194360320 "GET /escalas/visualizar/11-09-2025/ HTTP/1.1" 200 406149
+INFO 2025-10-06 10:01:16,913 autoreload 31432 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-06 10:01:23,829 basehttp 31432 6209859584 "GET /escalas/gerenciar/9/2025/ HTTP/1.1" 200 37374
+INFO 2025-10-06 10:01:41,209 basehttp 31432 6209286144 "GET /escalas/visualizar/11-09-2025/ HTTP/1.1" 200 406149
+INFO 2025-10-06 10:01:43,898 basehttp 31432 6209286144 "GET /escalas/api/tarifarios/ HTTP/1.1" 200 6005
+INFO 2025-10-06 10:01:55,362 basehttp 31432 6209286144 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 583
+INFO 2025-10-06 10:01:58,881 basehttp 31432 6209286144 "GET /escalas/api/tarifarios/ HTTP/1.1" 200 6005

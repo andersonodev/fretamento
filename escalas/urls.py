@@ -13,6 +13,7 @@ urlpatterns = [
     path('puxar-dados/<str:data>/', views.PuxarDadosView.as_view(), name='puxar_dados'),
     path('visualizar/<str:data>/', views.VisualizarEscalaView.as_view(), name='visualizar_escala'),
     path('exportar/<str:data>/', views.ExportarEscalaView.as_view(), name='exportar_escala'),
+    path('exportar-mes/<int:ano>/<int:mes>/', views.ExportarMesView.as_view(), name='exportar_mes'),
     path('excluir/<str:data>/', views.ExcluirEscalaView.as_view(), name='excluir_escala'),
     
     path('mover-servico/', views.MoverServicoView.as_view(), name='mover_servico'),

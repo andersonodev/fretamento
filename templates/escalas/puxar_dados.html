@@ -16,7 +16,7 @@
                     </h1>
                     <p class="text-muted">Etapa 2: Selecione uma data de origem para importar os serviços</p>
                 </div>
-                <a href="{% url 'escalas:selecionar_mes' %}" class="btn btn-secondary">
+                <a href="{% url 'escalas:gerenciar_escalas_mes' mes=escala.data.month ano=escala.data.year %}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Voltar
                 </a>
             </div>

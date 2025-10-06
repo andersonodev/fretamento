@@ -1225,6 +1225,56 @@ class ExportarEscalaView(LoginRequiredMixin, View):
         return response
 
 
+class ExportarMesView(LoginRequiredMixin, View):
+    """View para exportar escalas mensais em Excel"""
+    
+    def get(self, request, ano, mes):
+        """
+        Exporta todas as escalas de um mês específico
+        :param ano: Ano (ex: 2024)
+        :param mes: Mês (ex: 01, 02, ..., 12)
+        """
+        try:
+            ano = int(ano)
+            mes = int(mes)
+            
+            if mes < 1 or mes > 12:
+                messages.error(request, "Mês inválido. Use valores entre 1 e 12.")
+                return redirect('escalas:listar')
+            
+            # Busca todas as escalas do mês ordenadas por data
+            escalas_mes = Escala.objects.filter(
+                data__year=ano,
+                data__month=mes
+            ).order_by('data')
+            
+            if not escalas_mes.exists():
+                messages.warning(request, f"Nenhuma escala encontrada para {MESES_PORTUGUES[mes]}/{ano}")
+                return redirect('escalas:listar')
+            
+            # Exporta para Excel
+            exportador = ExportadorEscalas()
+            excel_data = exportador.exportar_mes_para_excel(list(escalas_mes))
+            
+            # Resposta HTTP
+            nome_arquivo = f"escalas_{MESES_PORTUGUES[mes].lower()}_{ano}.xlsx"
+            response = HttpResponse(
+                excel_data,
+                content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            )
+            response['Content-Disposition'] = f'attachment; filename="{nome_arquivo}"'
+            
+            return response
+            
+        except ValueError:
+            messages.error(request, "Ano ou mês inválido. Use formato numérico.")
+            return redirect('escalas:listar')
+        except Exception as e:
+            logger.error(f"Erro ao exportar escalas mensais: {str(e)}")
+            messages.error(request, "Erro interno. Tente novamente.")
+            return redirect('escalas:listar')
+
+
 class ExcluirEscalaView(LoginRequiredMixin, View):
     """View para excluir uma escala"""
     
