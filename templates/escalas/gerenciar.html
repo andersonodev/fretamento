@@ -6,7 +6,7 @@
 
 {% block extra_css %}
 <style>
-/* Efeito hover nos botões da tabela */
+/* Efeito hover nos botões da ta                                                        onclick="confirmarExclusao('{{ escala.data|date_br }}', '{{ escala.data|date:'d/m/Y' }}', {{ escala.alocacoes.count }}, '{{ escala.get_etapa_display }}');">ela */
 .btn-group .btn:hover {
     z-index: 1;
 }
@@ -159,13 +159,13 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            <span class="badge bg-info">{{ escala.total_servicos }}</span>
+                                            <span class="badge bg-info">{{ escala.alocacoes.count }}</span>
                                         </td>
                                         <td>
-                                            <span class="badge bg-warning text-dark">{{ escala.total_pax }}</span>
+                                            <span class="badge bg-warning text-dark">{{ escala.total_van1_pax|add:escala.total_van2_pax }}</span>
                                         </td>
                                         <td>
-                                            <span class="text-success">{{ escala.total_valor|currency }}</span>
+                                            <span class="text-success">{{ escala.total_van1_valor|add:escala.total_van2_valor|currency }}</span>
                                         </td>
                                         <td>
                                             <div class="btn-group btn-group-sm" role="group">
@@ -197,8 +197,8 @@
                                                 {% endif %}
                                                 
                                                 <!-- Exportar -->
-                                                {% if escala.total_servicos > 0 %}
-                                                    <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}"
+                                                {% if escala.alocacoes.count > 0 %}
+                                                    <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" 
                                                        class="btn btn-outline-success" title="Exportar Excel">
                                                         <i class="fas fa-file-excel"></i>
                                                     </a>
@@ -208,7 +208,7 @@
                                                 <button type="button" 
                                                         class="btn btn-outline-danger" 
                                                         title="Excluir Escala"
-                                                        onclick="confirmarExclusao('{{ escala.data|date_br }}', '{{ escala.data|date:'d/m/Y' }}', {{ escala.total_servicos }}, '{{ escala.get_etapa_display }}')">
+                                                        onclick="confirmarExclusao('{{ escala.data|date_br }}', '{{ escala.data|date:'d/m/Y' }}', {{ escala.alocacoes.count }}, '{{ escala.get_etapa_display }}')">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
