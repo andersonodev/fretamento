@@ -787,4 +787,4 @@ Implementa as funções originais:
 
 **🚌 Sistema completo de fretamento desenvolvido com Django**
 
-*Automatize suas escalas com a mesma lógica confiável do Google Apps Script, agora com interface web moderna e recursos avançados.*
+*Automatize suas escalas com a mesma lógica confiável do Google Apps Script, agora com interface web moderna e recursos avançados.*# Azure Web App URL: https://fretamento-d9gefzhga7e9dsag.brazilsouth-01.azurewebsites.net
