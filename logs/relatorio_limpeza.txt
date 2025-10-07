@@ -1,0 +1,70 @@
+
+=== RELATÓRIO DE LIMPEZA DO SISTEMA ===
+
+Data/Hora: 07/10/2025 17:35:12
+
+OPERAÇÕES REALIZADAS:
+✅ Remoção de todos os serviços importados
+✅ Remoção de todas as escalas criadas
+✅ Remoção de todas as alocações
+✅ Remoção de todos os grupos de serviços
+✅ Remoção de logs de escalas
+✅ Remoção de registros de processamento
+✅ Remoção de cálculos de preços
+✅ Limpeza de arquivos temporários
+✅ Restauração de arquivos originais
+
+RESULTADO:
+O sistema foi completamente limpo e está pronto para uma nova importação
+ou uso normal sem dados históricos.
+
+PRÓXIMOS PASSOS:
+- O sistema está limpo e pronto para uso
+- Para reimportar dados, execute novamente os scripts de importação
+- Todos os arquivos de configuração originais foram preservados
+
+LOG DETALHADO:
+[2025-10-07 17:35:12] === INICIANDO LIMPEZA COMPLETA DO SISTEMA ===
+[2025-10-07 17:35:12] === ESTATÍSTICAS ANTES DA LIMPEZA ===
+[2025-10-07 17:35:12] servicos: 1871
+[2025-10-07 17:35:12] escalas: 144
+[2025-10-07 17:35:12] alocacoes: 1302
+[2025-10-07 17:35:12] grupos_escala: 39
+[2025-10-07 17:35:12] servicos_grupo: 91
+[2025-10-07 17:35:12] grupos_core: 0
+[2025-10-07 17:35:12] processamentos: 5
+[2025-10-07 17:35:12] calculos_preco: 0
+[2025-10-07 17:35:12] logs_escala: 1
+[2025-10-07 17:35:12] Limpando dados de escalas...
+[2025-10-07 17:35:12] Removidos 91 serviços de grupos
+[2025-10-07 17:35:12] Removidos 39 grupos de escalas
+[2025-10-07 17:35:12] Removidas 1302 alocações
+[2025-10-07 17:35:12] Removidos 1 logs de escalas
+[2025-10-07 17:35:12] Removidas 144 escalas
+[2025-10-07 17:35:12] Limpando dados de serviços...
+[2025-10-07 17:35:12] Removidos 0 grupos de serviços (core)
+[2025-10-07 17:35:12] Removidos 1871 serviços
+[2025-10-07 17:35:12] Limpando dados de processamento...
+[2025-10-07 17:35:12] Removidos 0 cálculos de preço
+[2025-10-07 17:35:12] Removidos 5 registros de processamento
+[2025-10-07 17:35:12] Limpando arquivos temporários...
+[2025-10-07 17:35:12] Arquivo removido: tarifario_otimizado.json
+[2025-10-07 17:35:12] Arquivo removido: busca_inteligente_precos.py.backup
+[2025-10-07 17:35:12] Arquivo removido: relatorio_importacao.txt
+[2025-10-07 17:35:12] Arquivo removido: relatorio_otimizacao.txt
+[2025-10-07 17:35:12] Arquivo removido: relatorio_melhorias_busca.txt
+[2025-10-07 17:35:12] Arquivo removido: relatorio_final_otimizacao.txt
+[2025-10-07 17:35:12] Total de arquivos removidos: 6
+[2025-10-07 17:35:12] Nenhum backup encontrado para restaurar
+[2025-10-07 17:35:12] === VERIFICAÇÃO PÓS-LIMPEZA ===
+[2025-10-07 17:35:12] ✅ servicos: 0
+[2025-10-07 17:35:12] ✅ escalas: 0
+[2025-10-07 17:35:12] ✅ alocacoes: 0
+[2025-10-07 17:35:12] ✅ grupos_escala: 0
+[2025-10-07 17:35:12] ✅ servicos_grupo: 0
+[2025-10-07 17:35:12] ✅ grupos_core: 0
+[2025-10-07 17:35:12] ✅ processamentos: 0
+[2025-10-07 17:35:12] ✅ calculos_preco: 0
+[2025-10-07 17:35:12] ✅ logs_escala: 0
+[2025-10-07 17:35:12] ✅ LIMPEZA COMPLETA: Todos os dados foram removidos
+[2025-10-07 17:35:12] === LIMPEZA CONCLUÍDA ===

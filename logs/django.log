@@ -10062,3 +10062,649 @@ WARNING 2025-10-07 16:35:41,622 log 21327 6130806784 Not Found: /api/dashboard/u
 WARNING 2025-10-07 16:35:41,625 basehttp 21327 6130806784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
 WARNING 2025-10-07 16:36:41,605 log 21327 6130806784 Not Found: /api/dashboard/updates/
 WARNING 2025-10-07 16:36:41,606 basehttp 21327 6130806784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 16:59:20,386 autoreload 27172 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 16:59:23,349 views 27172 6128005120 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 16:59:23,397 basehttp 27172 6128005120 "GET /core/ HTTP/1.1" 200 59709
+INFO 2025-10-07 16:59:27,003 views 27172 6127431680 Dashboard carregado do cache
+INFO 2025-10-07 16:59:27,008 basehttp 27172 6127431680 "GET /core/ HTTP/1.1" 200 59709
+INFO 2025-10-07 16:59:28,532 basehttp 27172 6127431680 "GET /escalas/ HTTP/1.1" 200 33149
+INFO 2025-10-07 16:59:31,664 basehttp 27172 6127431680 "GET /escalas/ano/2025/ HTTP/1.1" 200 50174
+INFO 2025-10-07 16:59:38,780 basehttp 27172 6127431680 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 60099
+INFO 2025-10-07 16:59:46,501 basehttp 27172 6127431680 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 16:59:46,524 basehttp 27172 6127431680 "GET /escalas/visualizar/2025-10-03/ HTTP/1.1" 200 167646
+INFO 2025-10-07 16:59:48,599 basehttp 27172 6127431680 "GET /escalas/puxar-dados/03-10-2025/ HTTP/1.1" 200 176395
+INFO 2025-10-07 16:59:59,282 basehttp 27172 6127431680 "POST /escalas/puxar-dados/03-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 16:59:59,329 basehttp 27172 6127431680 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 554246
+INFO 2025-10-07 17:00:06,412 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-07 17:00:06,420 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 3 serviços e 7 PAX
+INFO 2025-10-07 17:00:06,430 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-07 17:00:06,450 views 27172 6127431680 Grupo criado (NOME): AZUL VIAGENS com 3 serviços e 8 PAX
+INFO 2025-10-07 17:00:06,454 views 27172 6127431680 Grupo criado (NOME): E-HTL com 2 serviços e 3 PAX
+INFO 2025-10-07 17:00:06,466 views 27172 6127431680 Grupo criado (NOME): FRT OPERADORA DE TURISMO com 2 serviços e 11 PAX
+INFO 2025-10-07 17:00:06,470 views 27172 6127431680 Grupo criado (NOME): ORINTER com 2 serviços e 3 PAX
+INFO 2025-10-07 17:00:06,473 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 2 serviços e 14 PAX
+INFO 2025-10-07 17:00:06,476 views 27172 6127431680 Grupo criado (NOME): HOLIDAY TAXIS GROUP LIMITED com 2 serviços e 3 PAX
+INFO 2025-10-07 17:00:06,479 views 27172 6127431680 Grupo criado (NOME): ORINTER com 2 serviços e 4 PAX
+INFO 2025-10-07 17:00:06,484 views 27172 6127431680 Grupo criado (NOME): E-HTL com 2 serviços e 4 PAX
+INFO 2025-10-07 17:00:06,503 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-07 17:00:06,506 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-07 17:00:06,509 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-07 17:00:06,514 basehttp 27172 6127431680 "POST /escalas/visualizar/03-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:00:06,556 basehttp 27172 6127431680 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 548695
+WARNING 2025-10-07 17:01:06,621 log 27172 6127431680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:01:06,622 basehttp 27172 6127431680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 17:01:30,209 views 27172 6127431680 🚀 INICIANDO PRECIFICAÇÃO INTELIGENTE - Escala 2025-10-03
+INFO 2025-10-07 17:01:30,212 views 27172 6127431680 📋 Total de alocações a precificar: 61
+INFO 2025-10-07 17:01:30,321 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:30,407 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:30,494 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:30,576 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:30,655 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:30,735 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 17:01:30,755 models 27172 6127431680 Precificação - Serviço: Disposição 06h... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 209.00 | Fonte: Motoristas (sim: 1.00)
+INFO 2025-10-07 17:01:30,775 views 27172 6127431680 🔄 Atualização - Disposição 06h... | N/A → Van 15 lugares | R$ 0.00 → R$ 209.00
+INFO 2025-10-07 17:01:30,837 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 17:01:30,898 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:30,979 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 17:01:31,058 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 17:01:31,139 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:31,218 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:31,300 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:31,378 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:31,458 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:31,537 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:31,618 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 17:01:31,698 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 17:01:31,777 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:31,855 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:31,936 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 3 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.38)
+INFO 2025-10-07 17:01:32,018 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 17:01:32,084 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 17:01:32,149 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:32,231 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:32,311 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:32,392 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:32,475 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:32,540 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 17:01:32,605 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:32,678 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-07 17:01:32,751 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 17:01:32,823 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-07 17:01:32,896 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 17:01:32,968 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-07 17:01:33,040 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 17:01:33,122 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:33,205 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:33,275 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 17:01:33,345 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 17:01:33,427 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 7 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:33,509 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 17:01:33,580 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 3 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-07 17:01:33,650 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-07 17:01:33,729 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 7 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:33,811 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 17:01:33,893 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BARRA DA TIJUCA PAR... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 17:01:33,975 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 17:01:34,038 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 17:01:34,101 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:34,180 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:34,258 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:34,331 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-07 17:01:34,403 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-07 17:01:34,482 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:34,561 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:34,631 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-07 17:01:34,701 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 17:01:34,780 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:34,859 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 17:01:34,939 models 27172 6127431680 Precificação - Serviço: FULLDAY ARRAIAL DO CABO COM PASSEIO DE BARCO E ALM... | PAX: 1 | Veículo: Executivo | Preço: R$ 568.00 | Fonte: Motoristas (sim: 0.25)
+INFO 2025-10-07 17:01:35,021 views 27172 6127431680 🔄 Atualização - FULLDAY ARRAIAL DO CABO COM PA... | N/A → Executivo | R$ 0.00 → R$ 568.00
+INFO 2025-10-07 17:01:35,088 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 17:01:35,156 views 27172 6127431680 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Van 15 lugares | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 17:01:35,270 models 27172 6127431680 Precificação - Serviço: NOVO: TRANSFER REGULAR IN AEROPORTO INTER. GALEÃO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-07 17:01:35,383 views 27172 6127431680 🔄 Atualização - NOVO: TRANSFER REGULAR IN AERO... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 17:01:35,450 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 17:01:35,517 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 17:01:35,629 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT REGULAR BÚZIOS (ARMAÇÃO, JOÃO FERNAND... | PAX: 1 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:35,742 views 27172 6127431680 🔄 Atualização - TRANSFER OUT REGULAR BÚZIOS (A... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-07 17:01:35,804 models 27172 6127431680 Precificação - Serviço: TOUR REGULAR CORCOVADO COM INGRESSO EM VAN E CITY ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 568.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:35,866 views 27172 6127431680 🔄 Atualização - TOUR REGULAR CORCOVADO COM ING... | N/A → Van 15 lugares | R$ 0.00 → R$ 568.00
+INFO 2025-10-07 17:01:35,982 models 27172 6127431680 Precificação - Serviço: NOVO: TRANSFER REGULAR IN AEROPORTO INTER. GALEÃO ... | PAX: 1 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-07 17:01:36,097 views 27172 6127431680 🔄 Atualização - NOVO: TRANSFER REGULAR IN AERO... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 17:01:36,192 models 27172 6127431680 Precificação - Serviço: TOUR REGULAR UM DIA NO RIO: PÃO DE AÇÚCAR, CORCOVA... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-07 17:01:36,288 views 27172 6127431680 🔄 Atualização - TOUR REGULAR UM DIA NO RIO: PÃ... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-07 17:01:36,384 models 27172 6127431680 Precificação - Serviço: TOUR REGULAR UM DIA NO RIO: PÃO DE AÇÚCAR, CORCOVA... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 17:01:36,479 views 27172 6127431680 🔄 Atualização - TOUR REGULAR UM DIA NO RIO: PÃ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 17:01:36,559 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:36,639 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:36,718 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:36,798 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 17:01:36,861 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 17:01:36,924 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:36,987 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 17:01:37,050 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:37,117 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 17:01:37,184 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 17:01:37,265 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:37,346 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:37,426 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:37,506 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:37,586 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:37,667 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:37,781 models 27172 6127431680 Precificação - Serviço: NOVO: TRANSFER REGULAR IN AEROPORTO INTER. GALEÃO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-07 17:01:37,894 views 27172 6127431680 🔄 Atualização - NOVO: TRANSFER REGULAR IN AERO... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 17:01:37,979 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 3 | Veículo: Executivo | Preço: R$ 240.00 | Fonte: padrão (PAX: 3)
+INFO 2025-10-07 17:01:38,064 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 240.00
+INFO 2025-10-07 17:01:38,144 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:38,224 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:38,304 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:38,385 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:38,464 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 17:01:38,545 views 27172 6127431680 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:38,608 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 17:01:38,671 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:38,750 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:38,829 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:38,920 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-07 17:01:39,009 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-07 17:01:39,077 models 27172 6127431680 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 17:01:39,144 views 27172 6127431680 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:39,212 models 27172 6127431680 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 17:01:39,280 views 27172 6127431680 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 17:01:39,361 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 240.00 | Fonte: padrão (PAX: 3)
+INFO 2025-10-07 17:01:39,442 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 240.00
+INFO 2025-10-07 17:01:39,521 models 27172 6127431680 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:39,600 views 27172 6127431680 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 17:01:39,670 models 27172 6127431680 Precificação - Serviço: TOUR REGULAR CORCOVADO S/ INGRESSO E CITY TOUR - P... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 568.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 17:01:39,740 views 27172 6127431680 🔄 Atualização - TOUR REGULAR CORCOVADO S/ INGR... | N/A → Van 15 lugares | R$ 0.00 → R$ 568.00
+INFO 2025-10-07 17:01:39,742 views 27172 6127431680 🔄 Recalculando totais de 14 grupos...
+INFO 2025-10-07 17:01:39,765 views 27172 6127431680 📊 ESTATÍSTICAS DA PRECIFICAÇÃO:
+INFO 2025-10-07 17:01:39,765 views 27172 6127431680    • Tarifário JW: 0 serviços
+INFO 2025-10-07 17:01:39,765 views 27172 6127431680    • Tarifário Motoristas: 53 serviços
+INFO 2025-10-07 17:01:39,765 views 27172 6127431680    • Preços padrão: 8 serviços
+INFO 2025-10-07 17:01:39,765 views 27172 6127431680    • Valor total: R$ 6,796.00
+INFO 2025-10-07 17:01:39,765 views 27172 6127431680    • Valor médio por serviço: R$ 111.41
+INFO 2025-10-07 17:01:39,766 basehttp 27172 6127431680 "POST /escalas/precificar/03-10-2025/ HTTP/1.1" 200 364
+INFO 2025-10-07 17:01:41,866 basehttp 27172 6127431680 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 581257
+INFO 2025-10-07 17:01:43,474 views 27172 6127431680 🚀 INICIANDO ESCALAR - Sistema de otimização avançado para escala 194
+INFO 2025-10-07 17:01:43,474 views 27172 6127431680 📋 Resetando status de todas as alocações para 'Não alocado'
+INFO 2025-10-07 17:01:43,489 views 27172 6127431680 ✅ ETAPA 1 - Encontrados 15 candidatos (4-10 PAX)
+INFO 2025-10-07 17:01:43,490 views 27172 6127431680 ✅ ETAPA 2 - Prioritários: 15 | Não prioritários: 0
+INFO 2025-10-07 17:01:43,490 views 27172 6127431680 🎯 ETAPA 3 - Alocando serviços prioritários...
+INFO 2025-10-07 17:01:43,491 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (5 PAX) -> VAN1 #1
+INFO 2025-10-07 17:01:43,492 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (9 PAX) -> VAN1 #2
+INFO 2025-10-07 17:01:43,492 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (8 PAX) -> VAN1 #1
+INFO 2025-10-07 17:01:43,493 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (7 PAX) -> VAN2 #1
+INFO 2025-10-07 17:01:43,494 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (5 PAX) -> VAN1 #2
+INFO 2025-10-07 17:01:43,495 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (5 PAX) -> VAN2 #2
+INFO 2025-10-07 17:01:43,495 views 27172 6127431680 ✅ ALOCADO: E-HTL (4 PAX) -> VAN2 #2
+INFO 2025-10-07 17:01:43,496 views 27172 6127431680 ✅ ETAPA 3 - 7/15 prioritários alocados
+INFO 2025-10-07 17:01:43,496 views 27172 6127431680 🔄 ETAPA 4 - Tentando alocar não prioritários nos intervalos livres...
+INFO 2025-10-07 17:01:43,496 views 27172 6127431680 ✅ ETAPA 4 - 0/0 não prioritários alocados
+INFO 2025-10-07 17:01:43,496 views 27172 6127431680 🔧 ETAPA 5 - Preenchendo furos com serviços de 1-3 PAX...
+INFO 2025-10-07 17:01:43,507 views 27172 6127431680 ✅ ETAPA 5 - Encontrados 25 candidatos pequenos (1-3 PAX)
+INFO 2025-10-07 17:01:43,507 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (2 PAX) -> VAN2 #1
+INFO 2025-10-07 17:01:43,508 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (2 PAX) -> VAN1 #1
+INFO 2025-10-07 17:01:43,509 views 27172 6127431680 ✅ ETAPA 5 - 2/25 serviços pequenos alocados
+INFO 2025-10-07 17:01:43,509 views 27172 6127431680    📊 Prioritários: 2
+INFO 2025-10-07 17:01:43,510 views 27172 6127431680    📊 Não prioritários: 0
+INFO 2025-10-07 17:01:43,511 views 27172 6127431680 🎉 ESCALAR CONCLUÍDO!
+INFO 2025-10-07 17:01:43,511 views 27172 6127431680    📊 Alocados: 15
+INFO 2025-10-07 17:01:43,511 views 27172 6127431680    📊 Não alocados: 46
+INFO 2025-10-07 17:01:43,512 views 27172 6127431680    📊 Van 1: 7 serviços
+INFO 2025-10-07 17:01:43,512 views 27172 6127431680    📊 Van 2: 8 serviços
+INFO 2025-10-07 17:01:43,513 basehttp 27172 6127431680 "POST /escalas/visualizar/03-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:01:43,561 basehttp 27172 6127431680 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 551731
+INFO 2025-10-07 17:02:20,484 views 27172 6127431680 Dashboard carregado do cache
+INFO 2025-10-07 17:02:20,494 basehttp 27172 6127431680 "GET /core/ HTTP/1.1" 200 59709
+INFO 2025-10-07 17:02:23,499 basehttp 27172 6127431680 "GET /escalas/ HTTP/1.1" 200 33149
+INFO 2025-10-07 17:02:25,466 basehttp 27172 6127431680 "GET /escalas/ano/2025/ HTTP/1.1" 200 50174
+INFO 2025-10-07 17:02:27,383 basehttp 27172 6127431680 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 64842
+INFO 2025-10-07 17:02:33,185 basehttp 27172 6127431680 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:02:33,207 basehttp 27172 6127431680 "GET /escalas/visualizar/2025-10-04/ HTTP/1.1" 200 167642
+INFO 2025-10-07 17:02:34,629 basehttp 27172 6127431680 "GET /escalas/puxar-dados/04-10-2025/ HTTP/1.1" 200 176391
+INFO 2025-10-07 17:02:40,531 basehttp 27172 6127431680 "POST /escalas/puxar-dados/04-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:02:40,571 basehttp 27172 6127431680 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 493252
+INFO 2025-10-07 17:02:47,197 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 3 serviços e 20 PAX
+INFO 2025-10-07 17:02:47,220 views 27172 6127431680 Grupo criado (NOME): HOLIDAY TAXIS GROUP LIMITED com 2 serviços e 5 PAX
+INFO 2025-10-07 17:02:47,259 views 27172 6127431680 Grupo criado (TRANSFER_OUT_REGULAR): FRT OPERADORA DE TURISMO com 2 serviços e 4 PAX
+INFO 2025-10-07 17:02:47,266 views 27172 6127431680 Grupo criado (NOME): HOLIDAY TAXIS GROUP LIMITED com 2 serviços e 4 PAX
+INFO 2025-10-07 17:02:47,272 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 3 serviços e 5 PAX
+INFO 2025-10-07 17:02:47,277 basehttp 27172 6127431680 "POST /escalas/visualizar/04-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:02:47,343 basehttp 27172 6127431680 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 503477
+INFO 2025-10-07 17:03:15,500 basehttp 27172 6127431680 "GET /escalas/ HTTP/1.1" 200 33149
+INFO 2025-10-07 17:03:17,358 basehttp 27172 6127431680 "GET /escalas/ano/2025/ HTTP/1.1" 200 50174
+INFO 2025-10-07 17:03:20,243 basehttp 27172 6127431680 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 69575
+INFO 2025-10-07 17:03:32,069 basehttp 27172 6127431680 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:03:32,089 basehttp 27172 6127431680 "GET /escalas/visualizar/2025-10-05/ HTTP/1.1" 200 167642
+INFO 2025-10-07 17:03:33,322 basehttp 27172 6127431680 "GET /escalas/puxar-dados/05-10-2025/ HTTP/1.1" 200 176391
+INFO 2025-10-07 17:03:37,429 basehttp 27172 6127431680 "POST /escalas/puxar-dados/05-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:03:37,473 basehttp 27172 6127431680 "GET /escalas/visualizar/05-10-2025/ HTTP/1.1" 200 529426
+INFO 2025-10-07 17:03:41,169 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-07 17:03:41,189 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 3 serviços e 8 PAX
+INFO 2025-10-07 17:03:41,198 views 27172 6127431680 Grupo criado (NOME): ABREU ONLINE com 2 serviços e 6 PAX
+INFO 2025-10-07 17:03:41,201 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 2 serviços e 10 PAX
+INFO 2025-10-07 17:03:41,221 views 27172 6127431680 Grupo criado (NOME): TREND OPERADORA com 2 serviços e 5 PAX
+INFO 2025-10-07 17:03:41,230 views 27172 6127431680 Grupo criado (NOME): HOTELBEDS com 4 serviços e 8 PAX
+INFO 2025-10-07 17:03:41,241 views 27172 6127431680 Grupo criado (TRANSFER_OUT_REGULAR): ORINTER com 3 serviços e 8 PAX
+INFO 2025-10-07 17:03:41,244 views 27172 6127431680 Grupo criado (NOME): ABREU ONLINE com 2 serviços e 4 PAX
+INFO 2025-10-07 17:03:41,255 views 27172 6127431680 Grupo criado (NOME): ABREU ONLINE com 2 serviços e 3 PAX
+INFO 2025-10-07 17:03:41,260 basehttp 27172 6127431680 "POST /escalas/visualizar/05-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:03:41,301 basehttp 27172 6127431680 "GET /escalas/visualizar/05-10-2025/ HTTP/1.1" 200 536898
+INFO 2025-10-07 17:04:00,865 basehttp 27172 6127431680 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 804
+WARNING 2025-10-07 17:04:41,617 log 27172 6127431680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:04:41,619 basehttp 27172 6127431680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 17:05:00,253 views 27172 6127431680 🚀 INICIANDO ESCALAR - Sistema de otimização avançado para escala 196
+INFO 2025-10-07 17:05:00,253 views 27172 6127431680 📋 Resetando status de todas as alocações para 'Não alocado'
+INFO 2025-10-07 17:05:00,269 views 27172 6127431680 ✅ ETAPA 1 - Encontrados 19 candidatos (4-10 PAX)
+INFO 2025-10-07 17:05:00,270 views 27172 6127431680 ✅ ETAPA 2 - Prioritários: 19 | Não prioritários: 0
+INFO 2025-10-07 17:05:00,270 views 27172 6127431680 🎯 ETAPA 3 - Alocando serviços prioritários...
+INFO 2025-10-07 17:05:00,271 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (4 PAX) -> VAN1 #1
+INFO 2025-10-07 17:05:00,272 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (10 PAX) -> VAN2 #1
+INFO 2025-10-07 17:05:00,273 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (8 PAX) -> VAN1 #2
+INFO 2025-10-07 17:05:00,273 views 27172 6127431680 ✅ ALOCADO: HOTELBEDS (7 PAX) -> VAN2 #1
+INFO 2025-10-07 17:05:00,274 views 27172 6127431680 ✅ ALOCADO: ORINTER (8 PAX) -> VAN2 #3
+INFO 2025-10-07 17:05:00,275 views 27172 6127431680 ✅ ETAPA 3 - 5/19 prioritários alocados
+INFO 2025-10-07 17:05:00,275 views 27172 6127431680 🔄 ETAPA 4 - Tentando alocar não prioritários nos intervalos livres...
+INFO 2025-10-07 17:05:00,275 views 27172 6127431680 ✅ ETAPA 4 - 0/0 não prioritários alocados
+INFO 2025-10-07 17:05:00,275 views 27172 6127431680 🔧 ETAPA 5 - Preenchendo furos com serviços de 1-3 PAX...
+INFO 2025-10-07 17:05:00,287 views 27172 6127431680 ✅ ETAPA 5 - Encontrados 24 candidatos pequenos (1-3 PAX)
+INFO 2025-10-07 17:05:00,288 views 27172 6127431680 ✅ ALOCADO: AZUL VIAGENS (3 PAX) -> VAN1 #3
+INFO 2025-10-07 17:05:00,289 views 27172 6127431680 ✅ ALOCADO: AZUL VIAGENS (2 PAX) -> VAN1 #4
+INFO 2025-10-07 17:05:00,289 views 27172 6127431680 ✅ ETAPA 5 - 2/24 serviços pequenos alocados
+INFO 2025-10-07 17:05:00,289 views 27172 6127431680    📊 Prioritários: 2
+INFO 2025-10-07 17:05:00,289 views 27172 6127431680    📊 Não prioritários: 0
+INFO 2025-10-07 17:05:00,291 views 27172 6127431680 🎉 ESCALAR CONCLUÍDO!
+INFO 2025-10-07 17:05:00,291 views 27172 6127431680    📊 Alocados: 14
+INFO 2025-10-07 17:05:00,291 views 27172 6127431680    📊 Não alocados: 43
+INFO 2025-10-07 17:05:00,291 views 27172 6127431680    📊 Van 1: 8 serviços
+INFO 2025-10-07 17:05:00,292 views 27172 6127431680    📊 Van 2: 6 serviços
+INFO 2025-10-07 17:05:00,293 basehttp 27172 6127431680 "POST /escalas/visualizar/05-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:05:00,341 basehttp 27172 6127431680 "GET /escalas/visualizar/05-10-2025/ HTTP/1.1" 200 515782
+INFO 2025-10-07 17:05:00,356 basehttp 27172 6127431680 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-07 17:05:22,019 basehttp 27172 6127431680 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 1256
+WARNING 2025-10-07 17:06:00,617 log 27172 6127431680 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:06:00,618 basehttp 27172 6127431680 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 17:06:22,177 basehttp 27172 6127431680 "GET /escalas/visualizar/05-10-2025/ HTTP/1.1" 200 515223
+INFO 2025-10-07 17:06:26,054 basehttp 27172 6127431680 "GET /escalas/ HTTP/1.1" 200 33149
+INFO 2025-10-07 17:06:27,490 basehttp 27172 6127431680 "GET /escalas/ano/2025/ HTTP/1.1" 200 50174
+INFO 2025-10-07 17:06:30,722 basehttp 27172 6127431680 "GET /escalas/gerenciar/9/2025/ HTTP/1.1" 200 188696
+INFO 2025-10-07 17:06:37,191 basehttp 27172 6127431680 "GET /escalas/visualizar/30-09-2025/ HTTP/1.1" 200 231338
+INFO 2025-10-07 17:07:43,879 autoreload 29225 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 17:07:48,591 basehttp 29225 6138507264 "GET /escalas/visualizar/30-09-2025/ HTTP/1.1" 200 231338
+INFO 2025-10-07 17:07:50,878 basehttp 29225 6155333632 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-07 17:07:50,893 basehttp 29225 6138507264 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-07 17:07:51,943 basehttp 29225 6138507264 "GET /escalas/visualizar/30-09-2025/ HTTP/1.1" 200 230957
+INFO 2025-10-07 17:07:54,825 views 29225 6137933824 🚀 INICIANDO ESCALAR - Sistema de otimização avançado para escala 85
+INFO 2025-10-07 17:07:54,825 views 29225 6137933824 📋 Resetando status de todas as alocações para 'Não alocado'
+INFO 2025-10-07 17:07:54,833 views 29225 6137933824 ✅ ETAPA 1 - Encontrados 4 candidatos (4-10 PAX)
+INFO 2025-10-07 17:07:54,833 views 29225 6137933824 ✅ ETAPA 2 - Prioritários: 4 | Não prioritários: 0
+INFO 2025-10-07 17:07:54,833 views 29225 6137933824 🎯 ETAPA 3 - Alocando serviços prioritários...
+INFO 2025-10-07 17:07:54,835 views 29225 6137933824 ✅ ALOCADO: HISTÓRICO - Setembro 25 (9 PAX) -> VAN1 #1
+INFO 2025-10-07 17:07:54,835 views 29225 6137933824 ✅ ALOCADO: HISTÓRICO - Setembro 25 (9 PAX) -> VAN1 #2
+INFO 2025-10-07 17:07:54,836 views 29225 6137933824 ✅ ALOCADO: HISTÓRICO - Setembro 25 (7 PAX) -> VAN2 #1
+INFO 2025-10-07 17:07:54,836 views 29225 6137933824 ✅ ALOCADO: HISTÓRICO - Setembro 25 (6 PAX) -> VAN2 #2
+INFO 2025-10-07 17:07:54,837 views 29225 6137933824 ✅ ETAPA 3 - 4/4 prioritários alocados
+INFO 2025-10-07 17:07:54,837 views 29225 6137933824 🔄 ETAPA 4 - Tentando alocar não prioritários nos intervalos livres...
+INFO 2025-10-07 17:07:54,837 views 29225 6137933824 ✅ ETAPA 4 - 0/0 não prioritários alocados
+INFO 2025-10-07 17:07:54,837 views 29225 6137933824 🔧 ETAPA 5 - Preenchendo furos com serviços de 1-3 PAX...
+INFO 2025-10-07 17:07:54,842 views 29225 6137933824 ✅ ETAPA 5 - Encontrados 3 candidatos pequenos (1-3 PAX)
+INFO 2025-10-07 17:07:54,842 views 29225 6137933824 ✅ ETAPA 5 - 0/3 serviços pequenos alocados
+INFO 2025-10-07 17:07:54,843 views 29225 6137933824    📊 Prioritários: 0
+INFO 2025-10-07 17:07:54,843 views 29225 6137933824    📊 Não prioritários: 0
+INFO 2025-10-07 17:07:54,846 views 29225 6137933824 🎉 ESCALAR CONCLUÍDO!
+INFO 2025-10-07 17:07:54,846 views 29225 6137933824    📊 Alocados: 4
+INFO 2025-10-07 17:07:54,846 views 29225 6137933824    📊 Não alocados: 4
+INFO 2025-10-07 17:07:54,847 views 29225 6137933824    📊 Van 1: 2 serviços
+INFO 2025-10-07 17:07:54,848 views 29225 6137933824    📊 Van 2: 2 serviços
+INFO 2025-10-07 17:07:54,850 basehttp 29225 6137933824 "POST /escalas/visualizar/30-09-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:07:54,869 basehttp 29225 6137933824 "GET /escalas/visualizar/30-09-2025/ HTTP/1.1" 200 233170
+INFO 2025-10-07 17:08:52,010 basehttp 29225 6137933824 "GET /escalas/visualizar/30-09-2025/ HTTP/1.1" 200 232611
+WARNING 2025-10-07 17:09:52,068 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:09:52,069 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:10:52,054 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:10:52,055 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:11:52,068 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:11:52,069 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:12:52,054 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:12:52,055 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:13:52,050 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:13:52,051 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:14:52,059 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:14:52,061 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:15:52,051 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:15:52,053 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:16:52,050 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:16:52,052 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:17:52,067 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:17:52,069 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:18:52,052 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:18:52,054 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:19:52,055 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:19:52,057 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:20:52,051 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:20:52,052 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:21:52,053 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:21:52,055 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:22:52,052 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:22:52,054 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:23:52,064 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:23:52,066 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:24:52,049 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:24:52,051 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:25:52,050 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:25:52,052 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:26:52,050 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:26:52,051 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:27:52,050 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:27:52,051 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:28:52,064 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:28:52,077 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:29:52,067 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:29:52,069 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:30:52,053 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:30:52,054 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:31:52,058 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:31:52,059 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:32:52,055 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:32:52,056 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:33:52,055 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:33:52,056 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 17:34:44,205 views 29225 6137933824 Gerando dashboard com consultas otimizadas
+ERROR 2025-10-07 17:34:44,279 log 29225 6137933824 Internal Server Error: /core/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 52, in get
+    'nome': request.user.get_full_name() or request.user.username,
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'AnonymousUser' object has no attribute 'get_full_name'
+ERROR 2025-10-07 17:34:44,280 basehttp 29225 6137933824 "GET /core/ HTTP/1.1" 500 87020
+WARNING 2025-10-07 17:34:44,381 log 29225 6137933824 Not Found: /favicon.ico
+WARNING 2025-10-07 17:34:44,382 basehttp 29225 6137933824 "GET /favicon.ico HTTP/1.1" 404 2807
+INFO 2025-10-07 17:34:46,654 basehttp 29225 6137933824 "GET /escalas/visualizar/30-09-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:34:46,666 basehttp 29225 6137933824 "GET /auth/login/?next=/escalas/visualizar/30-09-2025/ HTTP/1.1" 200 12318
+INFO 2025-10-07 17:34:46,684 basehttp 29225 6137933824 "GET /static/images/logointertouring.png HTTP/1.1" 304 0
+INFO 2025-10-07 17:34:55,423 basehttp 29225 6137933824 "POST /auth/login/?next=/escalas/visualizar/30-09-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:34:55,426 views 29225 6137933824 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 17:34:55,448 basehttp 29225 6137933824 "GET /core/ HTTP/1.1" 200 60264
+INFO 2025-10-07 17:35:01,985 basehttp 29225 6137933824 "GET /escalas/ HTTP/1.1" 200 33149
+INFO 2025-10-07 17:35:04,508 basehttp 29225 6137933824 "GET /escalas/ano/2025/ HTTP/1.1" 200 50174
+INFO 2025-10-07 17:35:15,176 basehttp 29225 6137933824 "GET /escalas/ano/2025/ HTTP/1.1" 200 43899
+INFO 2025-10-07 17:35:17,693 views 29225 6137933824 Dashboard carregado do cache
+INFO 2025-10-07 17:35:17,705 basehttp 29225 6137933824 "GET /core/ HTTP/1.1" 200 59702
+INFO 2025-10-07 17:35:37,154 basehttp 29225 6137933824 "GET /escalas/ HTTP/1.1" 200 31418
+INFO 2025-10-07 17:35:40,534 basehttp 29225 6137933824 "GET /escalas/ano/2025/ HTTP/1.1" 200 43899
+INFO 2025-10-07 17:35:45,160 basehttp 29225 6137933824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 45301
+INFO 2025-10-07 17:35:50,104 basehttp 29225 6137933824 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:35:50,122 basehttp 29225 6137933824 "GET /escalas/visualizar/2025-10-02/ HTTP/1.1" 200 167647
+INFO 2025-10-07 17:35:52,607 basehttp 29225 6137933824 "GET /escalas/puxar-dados/02-10-2025/ HTTP/1.1" 200 33000
+INFO 2025-10-07 17:35:56,560 basehttp 29225 6137933824 "GET /core/upload/ HTTP/1.1" 200 28668
+INFO 2025-10-07 17:36:08,837 processors 29225 6137933824 Planilha lida com 823 linhas e 35 colunas
+INFO 2025-10-07 17:36:08,850 processors 29225 6137933824 Linhas removidas durante a limpeza: 256
+INFO 2025-10-07 17:36:08,960 processors 29225 6137933824 Inseridos 567 serviços usando bulk_create
+INFO 2025-10-07 17:36:08,962 basehttp 29225 6137933824 "POST /core/upload/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:36:09,093 views 29225 6137933824 Lista Arquivos - Total arquivos: 1, Total serviços: 567
+INFO 2025-10-07 17:36:09,093 views 29225 6137933824 Hora formatada: 07/10/2025 às 20:36
+INFO 2025-10-07 17:36:09,098 basehttp 29225 6137933824 "GET /core/arquivos/ HTTP/1.1" 200 54656
+INFO 2025-10-07 17:36:23,854 views 29225 6137933824 Iniciando deleção do arquivo Servicos_07-10-2025-161951.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-07 17:36:23,964 views 29225 6137933824 Arquivo Servicos_07-10-2025-161951.xlsx: 567 serviços deletáveis, 0 protegidos
+INFO 2025-10-07 17:36:24,423 views 29225 6137933824 Deletados 567 serviços do arquivo Servicos_07-10-2025-161951.xlsx
+INFO 2025-10-07 17:36:24,424 views 29225 6137933824 Arquivo Servicos_07-10-2025-161951.xlsx deletado completamente
+INFO 2025-10-07 17:36:24,424 basehttp 29225 6137933824 "POST /core/arquivos/20/deletar/ HTTP/1.1" 200 300
+INFO 2025-10-07 17:36:25,263 views 29225 6137933824 Lista Arquivos - Total arquivos: 0, Total serviços: 0
+INFO 2025-10-07 17:36:25,264 views 29225 6137933824 Hora formatada: 07/10/2025 às 20:36
+INFO 2025-10-07 17:36:25,270 basehttp 29225 6137933824 "GET /core/arquivos/ HTTP/1.1" 200 50814
+INFO 2025-10-07 17:36:37,506 views 29225 6137933824 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 17:36:37,524 basehttp 29225 6137933824 "GET /core/ HTTP/1.1" 200 50366
+WARNING 2025-10-07 17:37:37,552 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:37:37,552 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 17:38:15,013 basehttp 29225 6137933824 "GET /core/upload/ HTTP/1.1" 200 28668
+INFO 2025-10-07 17:38:23,497 processors 29225 6137933824 Planilha lida com 823 linhas e 35 colunas
+INFO 2025-10-07 17:38:23,503 processors 29225 6137933824 Linhas removidas durante a limpeza: 256
+INFO 2025-10-07 17:38:23,591 processors 29225 6137933824 Inseridos 567 serviços usando bulk_create
+INFO 2025-10-07 17:38:23,593 basehttp 29225 6137933824 "POST /core/upload/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:38:23,675 views 29225 6137933824 Lista Arquivos - Total arquivos: 1, Total serviços: 567
+INFO 2025-10-07 17:38:23,675 views 29225 6137933824 Hora formatada: 07/10/2025 às 20:38
+INFO 2025-10-07 17:38:23,677 basehttp 29225 6137933824 "GET /core/arquivos/ HTTP/1.1" 200 54656
+INFO 2025-10-07 17:38:30,690 basehttp 29225 6137933824 "GET /escalas/ HTTP/1.1" 200 32296
+INFO 2025-10-07 17:38:33,655 basehttp 29225 6137933824 "GET /escalas/ano/2025/ HTTP/1.1" 200 44382
+INFO 2025-10-07 17:38:37,706 basehttp 29225 6137933824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 49808
+INFO 2025-10-07 17:38:42,584 basehttp 29225 6137933824 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:38:42,602 basehttp 29225 6137933824 "GET /escalas/visualizar/2025-10-03/ HTTP/1.1" 200 167646
+INFO 2025-10-07 17:38:44,303 basehttp 29225 6137933824 "GET /escalas/puxar-dados/03-10-2025/ HTTP/1.1" 200 42861
+INFO 2025-10-07 17:38:52,425 basehttp 29225 6137933824 "POST /escalas/puxar-dados/03-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:38:52,472 basehttp 29225 6137933824 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 554246
+INFO 2025-10-07 17:39:00,138 basehttp 29225 6137933824 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 546
+WARNING 2025-10-07 17:39:52,518 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:39:52,519 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 17:39:52,727 basehttp 29225 6137933824 "GET /core/upload/ HTTP/1.1" 200 28668
+INFO 2025-10-07 17:40:04,761 processors 29225 6137933824 Planilha lida com 60 linhas e 35 colunas
+INFO 2025-10-07 17:40:04,765 processors 29225 6137933824 Linhas removidas durante a limpeza: 1
+INFO 2025-10-07 17:40:04,786 processors 29225 6137933824 Inseridos 59 serviços usando bulk_create
+INFO 2025-10-07 17:40:04,789 basehttp 29225 6137933824 "POST /core/upload/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:40:04,885 views 29225 6137933824 Lista Arquivos - Total arquivos: 2, Total serviços: 626
+INFO 2025-10-07 17:40:04,885 views 29225 6137933824 Hora formatada: 07/10/2025 às 20:40
+INFO 2025-10-07 17:40:04,888 basehttp 29225 6137933824 "GET /core/arquivos/ HTTP/1.1" 200 58324
+INFO 2025-10-07 17:40:07,159 basehttp 29225 6137933824 "GET /escalas/ HTTP/1.1" 200 32569
+INFO 2025-10-07 17:40:09,059 basehttp 29225 6137933824 "GET /escalas/ano/2025/ HTTP/1.1" 200 44651
+INFO 2025-10-07 17:40:10,654 basehttp 29225 6137933824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 54545
+INFO 2025-10-07 17:40:16,334 basehttp 29225 6137933824 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:40:16,355 basehttp 29225 6137933824 "GET /escalas/visualizar/2025-10-11/ HTTP/1.1" 200 167642
+INFO 2025-10-07 17:40:17,885 basehttp 29225 6137933824 "GET /escalas/puxar-dados/11-10-2025/ HTTP/1.1" 200 43825
+INFO 2025-10-07 17:40:24,938 basehttp 29225 6137933824 "POST /escalas/puxar-dados/11-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:40:25,020 basehttp 29225 6137933824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 541938
+INFO 2025-10-07 17:40:35,572 views 29225 6137933824 Grupo criado (NOME): AZUL VIAGENS com 2 serviços e 4 PAX
+INFO 2025-10-07 17:40:35,584 views 29225 6137933824 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-07 17:40:35,633 views 29225 6137933824 Grupo criado (NOME): FRT OPERADORA DE TURISMO com 2 serviços e 2 PAX
+INFO 2025-10-07 17:40:35,637 views 29225 6137933824 Grupo criado (NOME): HOTELBEDS com 2 serviços e 6 PAX
+INFO 2025-10-07 17:40:35,662 views 29225 6137933824 Grupo criado (NOME): HOLIDAY TAXIS GROUP LIMITED com 2 serviços e 5 PAX
+INFO 2025-10-07 17:40:35,680 basehttp 29225 6137933824 "POST /escalas/visualizar/11-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:40:35,719 basehttp 29225 6137933824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 548877
+WARNING 2025-10-07 17:41:35,768 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:41:35,770 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:42:35,763 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:42:35,764 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:43:35,767 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:43:35,768 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:44:35,764 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:44:35,765 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:45:35,765 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:45:35,766 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 17:45:57,975 basehttp 29225 6137933824 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 787
+WARNING 2025-10-07 17:46:35,773 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:46:35,775 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 17:46:51,219 basehttp 29225 6137933824 "GET /escalas/exportar/11-10-2025/ HTTP/1.1" 200 10962
+WARNING 2025-10-07 17:47:35,779 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:47:35,780 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 17:48:03,987 views 29225 6137933824 📝 Status de alocação alterado: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... -> NAO_ALOCADO (usuário: cristiane.aguiar)
+INFO 2025-10-07 17:48:03,987 basehttp 29225 6137933824 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 86
+INFO 2025-10-07 17:48:05,086 basehttp 29225 6137933824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 548312
+INFO 2025-10-07 17:48:26,572 basehttp 29225 6154760192 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-07 17:48:26,584 basehttp 29225 6137933824 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-07 17:48:27,669 basehttp 29225 6137933824 - Broken pipe from ('127.0.0.1', 53329)
+INFO 2025-10-07 17:48:27,689 basehttp 29225 6154760192 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 544846
+INFO 2025-10-07 17:48:42,579 basehttp 29225 6137933824 "GET /auth/logout/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:48:42,586 basehttp 29225 6137933824 "GET /auth/login/ HTTP/1.1" 200 12604
+INFO 2025-10-07 17:48:52,395 basehttp 29225 6137933824 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-07 17:48:52,399 views 29225 6137933824 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 17:48:52,413 basehttp 29225 6137933824 "GET /core/ HTTP/1.1" 200 54221
+INFO 2025-10-07 17:49:15,666 basehttp 29225 6137933824 "GET /escalas/ HTTP/1.1" 200 32570
+INFO 2025-10-07 17:49:17,257 basehttp 29225 6137933824 "GET /escalas/ano/2025/ HTTP/1.1" 200 44652
+INFO 2025-10-07 17:49:21,205 basehttp 29225 6137933824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 59278
+INFO 2025-10-07 17:49:23,983 basehttp 29225 6137933824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 544846
+INFO 2025-10-07 17:50:10,058 views 29225 6137933824 📝 Status de alocação alterado: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... -> NAO_ALOCADO (usuário: cristiane.aguiar)
+INFO 2025-10-07 17:50:10,059 basehttp 29225 6137933824 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 86
+INFO 2025-10-07 17:50:11,133 basehttp 29225 6137933824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 544853
+INFO 2025-10-07 17:50:19,875 basehttp 29225 6154760192 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-07 17:50:19,895 basehttp 29225 6137933824 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-07 17:50:20,987 basehttp 29225 6137933824 - Broken pipe from ('127.0.0.1', 53355)
+INFO 2025-10-07 17:50:21,007 basehttp 29225 6154760192 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 541384
+INFO 2025-10-07 17:50:23,831 basehttp 29225 6137933824 "GET /escalas/api/tarifarios/ HTTP/1.1" 200 6005
+INFO 2025-10-07 17:50:29,515 basehttp 29225 6137933824 "POST /escalas/api/atualizar-preco/ HTTP/1.1" 200 113
+INFO 2025-10-07 17:50:31,158 basehttp 29225 6137933824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 541398
+WARNING 2025-10-07 17:51:31,199 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:51:31,200 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:52:31,196 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:52:31,198 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:53:31,196 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:53:31,197 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:54:31,193 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:54:31,195 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:55:31,204 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:55:31,205 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:56:31,212 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:56:31,214 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 17:56:46,834 basehttp 29225 6137933824 "GET /escalas/api/tarifarios/ HTTP/1.1" 200 6005
+WARNING 2025-10-07 17:57:31,212 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:57:31,214 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:58:31,217 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:58:31,219 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 17:59:31,213 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 17:59:31,214 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 18:00:31,217 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 18:00:31,219 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 18:01:31,216 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 18:01:31,217 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 18:01:39,822 basehttp 29225 6137933824 "GET /auth/logout/ HTTP/1.1" 302 0
+INFO 2025-10-07 18:01:39,827 basehttp 29225 6137933824 "GET /auth/login/ HTTP/1.1" 200 12604
+INFO 2025-10-07 18:11:36,778 basehttp 29225 6137933824 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-07 18:11:36,782 views 29225 6137933824 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 18:11:36,803 basehttp 29225 6137933824 "GET /core/ HTTP/1.1" 200 54221
+INFO 2025-10-07 18:11:54,263 basehttp 29225 6137933824 "GET /escalas/ HTTP/1.1" 200 32570
+INFO 2025-10-07 18:11:56,081 basehttp 29225 6137933824 "GET /escalas/ano/2025/ HTTP/1.1" 200 44652
+INFO 2025-10-07 18:11:58,037 basehttp 29225 6137933824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 59278
+INFO 2025-10-07 18:12:01,496 basehttp 29225 6137933824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 541398
+INFO 2025-10-07 18:12:34,886 views 29225 6137933824 📝 Status de alocação alterado: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... -> NAO_ALOCADO (usuário: cristiane.aguiar)
+INFO 2025-10-07 18:12:34,887 basehttp 29225 6137933824 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 86
+INFO 2025-10-07 18:12:35,967 basehttp 29225 6137933824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 541405
+INFO 2025-10-07 18:12:45,195 basehttp 29225 6137933824 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 576
+INFO 2025-10-07 18:13:03,605 basehttp 29225 6137933824 "POST /escalas/mover-servico/ HTTP/1.1" 200 76
+INFO 2025-10-07 18:13:04,666 basehttp 29225 6137933824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 541407
+INFO 2025-10-07 18:13:08,912 basehttp 29225 6154760192 "POST /escalas/mover-servico/ HTTP/1.1" 200 76
+INFO 2025-10-07 18:13:08,934 basehttp 29225 6137933824 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-07 18:13:10,018 basehttp 29225 6137933824 - Broken pipe from ('127.0.0.1', 53519)
+INFO 2025-10-07 18:13:10,040 basehttp 29225 6154760192 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 525037
+INFO 2025-10-07 18:13:23,178 basehttp 29225 6137933824 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-07 18:13:24,259 basehttp 29225 6137933824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 525039
+WARNING 2025-10-07 18:14:24,640 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 18:14:24,642 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 18:15:24,628 log 29225 6137933824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 18:15:24,631 basehttp 29225 6137933824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 18:16:20,934 views 29225 6137933824 Dashboard carregado do cache
+INFO 2025-10-07 18:16:20,944 basehttp 29225 6137933824 "GET /core/ HTTP/1.1" 200 53659
+INFO 2025-10-07 18:16:35,811 basehttp 29225 6137933824 "GET /core/diagnostico/ HTTP/1.1" 200 59735
+INFO 2025-10-07 18:16:47,334 basehttp 29225 6137933824 "GET /escalas/ HTTP/1.1" 200 32570
+INFO 2025-10-07 18:16:51,513 views 29225 6137933824 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 18:16:51,538 basehttp 29225 6137933824 "GET /core/ HTTP/1.1" 200 53659
+ERROR 2025-10-07 18:16:54,269 log 29225 6137933824 Internal Server Error: /core/simulador-precos/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views_tarifarios.py", line 96, in simulador_precos
+    return render(request, 'core/simulador_precos.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 484, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 698, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 606, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'currency'
+ERROR 2025-10-07 18:16:54,271 basehttp 29225 6137933824 "GET /core/simulador-precos/ HTTP/1.1" 500 232231
+INFO 2025-10-07 18:18:05,598 autoreload 34601 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 18:18:26,832 autoreload 34702 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 18:20:07,515 autoreload 34909 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 18:22:04,966 autoreload 35225 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 18:22:15,538 autoreload 35287 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-07 18:22:33,878 log 35287 6202437632 Not Found: /simulador-precos/
+WARNING 2025-10-07 18:22:33,878 basehttp 35287 6202437632 "GET /simulador-precos/?id=a387a47d-22bc-4e27-bb8c-67335f83d68d&vscodeBrowserReqId=1759872153865 HTTP/1.1" 404 2902
+INFO 2025-10-07 18:23:09,808 autoreload 35409 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 18:23:12,700 basehttp 35409 6166638592 "GET /core/simulador-precos/ HTTP/1.1" 200 32840
+INFO 2025-10-07 18:23:16,704 views 35409 6166065152 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 18:23:16,736 basehttp 35409 6166065152 "GET /core/ HTTP/1.1" 200 53659
+INFO 2025-10-07 18:23:18,063 basehttp 35409 6166065152 "GET /escalas/ HTTP/1.1" 200 32570
+INFO 2025-10-07 18:23:19,480 basehttp 35409 6166065152 "GET /escalas/ano/2025/ HTTP/1.1" 200 44652
+INFO 2025-10-07 18:23:21,672 basehttp 35409 6166065152 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 59278
+INFO 2025-10-07 18:23:24,385 basehttp 35409 6166065152 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 525039
+INFO 2025-10-07 18:23:27,268 basehttp 35409 6182891520 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-07 18:23:27,286 basehttp 35409 6166065152 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-07 18:23:28,372 basehttp 35409 6166065152 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 516448
+INFO 2025-10-07 18:23:30,836 basehttp 35409 6166065152 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 1866
+INFO 2025-10-07 18:23:45,571 basehttp 35409 6166065152 "GET /escalas/gerenciar/ HTTP/1.1" 200 32570
+INFO 2025-10-07 18:23:47,569 basehttp 35409 6166065152 "GET /escalas/ano/2026/ HTTP/1.1" 200 43885
+INFO 2025-10-07 18:23:53,662 views 35409 6166065152 Dashboard carregado do cache
+INFO 2025-10-07 18:23:53,669 basehttp 35409 6166065152 "GET /core/ HTTP/1.1" 200 53659
+INFO 2025-10-07 18:24:42,110 views 35409 6166065152 Lista Arquivos - Total arquivos: 2, Total serviços: 626
+INFO 2025-10-07 18:24:42,110 views 35409 6166065152 Hora formatada: 07/10/2025 às 21:24
+INFO 2025-10-07 18:24:42,114 basehttp 35409 6166065152 "GET /core/arquivos/ HTTP/1.1" 200 57731
+INFO 2025-10-07 18:24:45,493 basehttp 35409 6166065152 "GET /core/arquivos/22/servicos/ HTTP/1.1" 200 86922
+INFO 2025-10-07 18:24:50,116 basehttp 35409 6166065152 "GET /core/arquivos/22/servicos/?page=2 HTTP/1.1" 200 42031
+INFO 2025-10-07 18:24:53,666 basehttp 35409 6166065152 "GET /escalas/gerenciar/ HTTP/1.1" 200 32570
+INFO 2025-10-07 18:24:55,780 basehttp 35409 6166065152 "GET /escalas/ano/2025/ HTTP/1.1" 200 44652
+INFO 2025-10-07 18:24:58,221 basehttp 35409 6166065152 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 59278
+INFO 2025-10-07 18:25:07,740 views 35409 6166065152 Dashboard carregado do cache
+INFO 2025-10-07 18:25:07,747 basehttp 35409 6166065152 "GET /core/ HTTP/1.1" 200 53659
+INFO 2025-10-07 18:25:46,675 basehttp 35409 6166065152 "GET /escalas/ HTTP/1.1" 200 32570
+INFO 2025-10-07 18:25:48,818 basehttp 35409 6166065152 "GET /escalas/ano/2025/ HTTP/1.1" 200 44652
+INFO 2025-10-07 18:25:51,518 basehttp 35409 6166065152 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 59278
+INFO 2025-10-07 18:25:54,178 basehttp 35409 6166065152 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 516448
+INFO 2025-10-07 18:26:04,656 basehttp 35409 6166065152 "POST /escalas/desagrupar-servico/ HTTP/1.1" 200 62
+INFO 2025-10-07 18:26:05,737 basehttp 35409 6166065152 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 512287
+INFO 2025-10-07 18:26:19,229 basehttp 35409 6182891520 "POST /escalas/mover-servico/ HTTP/1.1" 200 76
+INFO 2025-10-07 18:26:19,272 basehttp 35409 6166065152 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-07 18:26:20,312 basehttp 35409 6166065152 - Broken pipe from ('127.0.0.1', 53923)
+INFO 2025-10-07 18:26:20,344 basehttp 35409 6182891520 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 506279
+INFO 2025-10-07 18:26:23,738 basehttp 35409 6166065152 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-07 18:26:24,823 basehttp 35409 6166065152 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 500243
+INFO 2025-10-07 18:26:27,301 basehttp 35409 6166065152 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 2332
