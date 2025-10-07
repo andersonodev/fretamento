@@ -11,9 +11,22 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import environ
+
+# Initialize environment variables
+env = environ.Env(
+    # Set casting and default values
+    DEBUG=(bool, True),
+    USE_DOCKER=(bool, False),
+    DATABASE_URL=(str, ''),
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Read .env file if it exists
+environ.Env.read_env(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,9 +36,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-!ybpw6s0nsg=d_j@n(4aj7z1tu2ok&y99r_$1&t-2&%xst-9p)"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver', '0.0.0.0']
 
 
 # Application definition
@@ -82,12 +95,45 @@ WSGI_APPLICATION = "fretamento_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+# Multi-database configuration
+USE_DOCKER = env('USE_DOCKER')
+DATABASE_URL = env('DATABASE_URL')
+
+if USE_DOCKER or DATABASE_URL:
+    # PostgreSQL configuration for Docker/Production
+    if DATABASE_URL:
+        # Parse DATABASE_URL
+        DATABASES = {
+            'default': env.db()
+        }
+    else:
+        # Default Docker PostgreSQL configuration
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': env('DB_NAME', default='fretamento_db'),
+                'USER': env('DB_USER', default='fretamento_user'),
+                'PASSWORD': env('DB_PASSWORD', default='fretamento_password'),
+                'HOST': env('DB_HOST', default='db'),
+                'PORT': env('DB_PORT', default='5432'),
+                'OPTIONS': {
+                    'connect_timeout': 10,
+                },
+                'CONN_MAX_AGE': 600,
+            }
+        }
+else:
+    # SQLite configuration for local development
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+            'OPTIONS': {
+                'timeout': 20,
+            },
+            'CONN_MAX_AGE': 600,
+        }
     }
-}
 
 
 # Password validation
@@ -175,13 +221,23 @@ CACHES = {
     }
 }
 
-# Database Performance (SQLite specific)
-DATABASES['default'].update({
-    'OPTIONS': {
-        'timeout': 20,  # SQLite timeout
-    },
-    'CONN_MAX_AGE': 600,  # Connection pooling
-})
+# Database Performance
+if not USE_DOCKER:
+    # SQLite specific optimizations
+    DATABASES['default'].update({
+        'OPTIONS': {
+            'timeout': 20,  # SQLite timeout
+        },
+        'CONN_MAX_AGE': 600,  # Connection pooling
+    })
+else:
+    # PostgreSQL specific optimizations
+    DATABASES['default'].update({
+        'CONN_MAX_AGE': 600,
+        'OPTIONS': {
+            'connect_timeout': 10,
+        }
+    })
 
 # Session Configuration
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'

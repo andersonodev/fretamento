@@ -1,0 +1,166 @@
+site_name: Fretamento Intertouring - Documentação
+site_description: Sistema de Gestão de Escalas e Fretamento
+site_author: Equipe Fretamento Intertouring
+site_url: https://andersonodev.github.io/fretamento-intertouring
+
+repo_name: fretamento-intertouring
+repo_url: https://github.com/andersonodev/fretamento-intertouring
+
+theme:
+  name: material
+  language: pt
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Modo escuro
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Modo claro
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - content.action.view
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search:
+      lang: pt
+  - mermaid2:
+      arguments:
+        theme: base
+        themeVariables:
+          primaryColor: "#1976d2"
+          primaryTextColor: "#ffffff"
+          primaryBorderColor: "#1565c0"
+          lineColor: "#1976d2"
+          secondaryColor: "#bbdefb"
+          tertiaryColor: "#e3f2fd"
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+
+nav:
+  - Home: index.md
+  - 🎯 Visão Geral:
+    - Arquitetura Completa: architecture.md
+    - Algoritmos e Lógica: algorithms.md
+    - Business Intelligence: business-intelligence.md
+  - 👤 Guia do Usuário:
+    - Introdução: user-guide/introducao.md
+    - Login e Acesso: user-guide/login.md
+    - Gestão de Escalas: user-guide/escalas.md
+    - Upload de Planilhas: user-guide/upload.md
+    - Sistema Kanban: user-guide/kanban.md
+    - Tarifários: user-guide/tarifarios.md
+    - Relatórios: user-guide/relatorios.md
+    - Aprovação de Escalas: user-guide/aprovacao.md
+  - 🔧 Manual Técnico:
+    - Visão Geral: technical/arquitetura.md
+    - Modelos de Dados: technical/modelos.md
+    - Sistema de Precificação: technical/precificacao.md
+    - Algoritmos de Otimização: technical/otimizacao.md
+    - APIs e Endpoints: technical/apis.md
+    - Performance e Cache: technical/performance.md
+    - Segurança: technical/seguranca.md
+    - Logs e Auditoria: technical/logs.md
+  - 🚀 Deploy e Infraestrutura:
+    - Requisitos do Sistema: deploy/requisitos.md
+    - Configuração Inicial: deploy/configuracao.md
+    - Deploy com Docker: deploy/docker.md
+    - Deploy na Vercel: deploy/vercel.md
+    - Ambiente de Produção: deploy/producao.md
+    - Monitoramento: deploy/monitoramento.md
+    - Backup e Recovery: deploy/backup.md
+  - 💻 Desenvolvimento:
+    - Ambiente de Dev: development/ambiente.md
+    - Guia de Contribuição: development/contribuicao.md
+    - Testes Automatizados: development/testes.md
+    - Debugging: development/debugging.md
+    - Troubleshooting: development/troubleshooting.md
+    - Code Review: development/code-review.md
+  - 📊 Analytics e Relatórios:
+    - Dashboard Executivo: analytics/dashboard.md
+    - KPIs e Métricas: analytics/kpis.md
+    - Análise de Lucratividade: analytics/lucratividade.md
+    - Relatórios Customizados: analytics/relatorios.md
+    - Exportação de Dados: analytics/exportacao.md
+  - 🔧 Administração:
+    - Gestão de Usuários: admin/usuarios.md
+    - Configurações do Sistema: admin/configuracoes.md
+    - Tarifários e Preços: admin/tarifarios.md
+    - Backup de Dados: admin/backup.md
+    - Manutenção: admin/manutencao.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/andersonodev/fretamento-intertouring
+      name: GitHub
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/andersonodev
+      name: LinkedIn
+  generator: false
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX
+  version:
+    provider: mike
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/seu-usuario/fretamento-intertouring
+    - icon: fontawesome/solid/envelope
+      link: mailto:contato@exemplo.com
+
+copyright: Copyright &copy; 2024 Fretamento Intertouring - Desenvolvido com ❤️ para otimizar operações de fretamento
