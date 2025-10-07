@@ -1,22 +1,26 @@
-# Azure Web App Deploy Workflow
-# Este arquivo é criado automaticamente quando você conecta o GitHub ao Azure Web App
-# Para configurar:
-# 1. Acesse o Azure Portal
-# 2. Vá para seu Web App
-# 3. Deployment Center > GitHub > Autorize e configure
+# Azure Web App Deploy Workflow (DESABILITADO - usando main_fretamento.yml)
+# Este arquivo é mantido como referência
+# O workflow principal está em: main_fretamento.yml
 
-name: 🚀 Build and deploy Python app to Azure Web App - fretamento
+name: 🚀 Build and deploy Python app to Azure Web App - fretamento (DISABLED)
 
 on:
-  push:
-    branches:
-      - main
+  # Desabilitado para evitar conflito com main_fretamento.yml
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
+    inputs:
+      force_run:
+        description: 'Force run this workflow (use main_fretamento.yml instead)'
+        required: false
+        default: 'false'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: 🔨 Build
+    name: 🔨 Build (DISABLED - use main_fretamento.yml)
+    if: false  # Desabilita este job
 
     steps:
       - name: 📥 Checkout repository
