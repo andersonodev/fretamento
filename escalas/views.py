@@ -1006,21 +1006,20 @@ class FormatarEscalaView(LoginRequiredMixin, View):
             messages.error(request, 'Senha é obrigatória para formatar escala.')
             return redirect('escalas:visualizar_escala', data=data_str)
         
+        ip_address = self._get_client_ip(request)
+
         try:
             data_alvo = parse_data_brasileira(data_str)
             escala = get_object_or_404(Escala, data=data_alvo)
-            
+
             # Verificar senha do usuário
             from django.contrib.auth import authenticate
             user = authenticate(username=request.user.username, password=senha)
-            
+
             if not user:
                 messages.error(request, 'Senha incorreta. Formatação não autorizada.')
                 return redirect('escalas:visualizar_escala', data=data_str)
-            
-            # Obter IP do usuário
-            ip_address = self._get_client_ip(request)
-            
+
             # Salvar estado antes da formatação
             dados_antes = {
                 'total_alocacoes': escala.alocacoes.count(),
