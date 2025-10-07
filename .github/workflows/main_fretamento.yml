@@ -24,21 +24,21 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Create and start virtual environment
-        run: |
-          python -m venv venv
-          source venv/bin/activate
-      
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements-azure.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install dependencies
         run: |
-          source venv/bin/activate
           python -m pip install --upgrade pip
-          # Instalar dependências mínimas para Azure
           pip install -r requirements-azure.txt
       
       - name: Run Django checks
         run: |
-          source venv/bin/activate
           python manage.py check --deploy
         env:
           DEBUG: False
@@ -48,7 +48,6 @@ jobs:
       
       - name: Collect static files (Django)
         run: |
-          source venv/bin/activate
           python manage.py collectstatic --noinput --clear
         env:
           DEBUG: False
