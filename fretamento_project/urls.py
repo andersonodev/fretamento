@@ -20,6 +20,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.shortcuts import redirect
+from health_check import health_check
 
 def root_redirect(request):
     """Redireciona a raiz - dashboard para autenticados, login para não autenticados"""
@@ -30,6 +31,7 @@ def root_redirect(request):
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", root_redirect, name='root'),
+    path("health/", health_check, name='health_check'),
     path("auth/", include("authentication.urls")),
     path("core/", include("core.urls")),
     path("escalas/", include("escalas.urls")),

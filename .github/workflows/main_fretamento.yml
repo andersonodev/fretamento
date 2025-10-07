@@ -33,27 +33,23 @@ jobs:
         run: |
           source venv/bin/activate
           python -m pip install --upgrade pip
-          # Usar requirements específicos para Azure (mais leve)
-          if [ -f requirements-azure.txt ]; then
-            pip install -r requirements-azure.txt
-          else
-            pip install -r requirements.txt
-          fi
+          # Instalar dependências mínimas para Azure
+          pip install -r requirements-azure.txt
       
-      - name: Collect static files (Django)
+      - name: Run Django checks
         run: |
           source venv/bin/activate
-          python manage.py collectstatic --noinput --clear
+          python manage.py check --deploy
         env:
           DEBUG: False
           USE_DOCKER: False
           SECRET_KEY: 'django-insecure-build-key-temp-12345'
           DJANGO_SETTINGS_MODULE: 'fretamento_project.settings'
       
-      - name: Run Django checks
+      - name: Collect static files (Django)
         run: |
           source venv/bin/activate
-          python manage.py check --deploy
+          python manage.py collectstatic --noinput --clear
         env:
           DEBUG: False
           USE_DOCKER: False

@@ -8,6 +8,9 @@ export DEBUG=False
 export USE_DOCKER=False
 export DJANGO_SETTINGS_MODULE=fretamento_project.settings
 
+# Ir para o diretório correto
+cd /home/site/wwwroot
+
 # Instalar dependências
 echo "📦 Instalando dependências..."
 python -m pip install --upgrade pip
@@ -22,14 +25,15 @@ fi
 # Configurar Django
 echo "🔧 Configurando Django..."
 
-# Coletar arquivos estáticos
-echo "📊 Coletando arquivos estáticos..."
-python manage.py collectstatic --noinput --clear
-
 # Executar migrações
-echo "🗄️ Executando migrações..."
+echo "�️ Executando migrações..."
 python manage.py migrate --noinput
 
-# Iniciar Gunicorn
+# Coletar arquivos estáticos
+echo "� Coletando arquivos estáticos..."
+python manage.py collectstatic --noinput --clear
+
+# Iniciar Gunicorn na porta especificada pelo Azure
 echo "🌐 Iniciando servidor Gunicorn..."
-exec gunicorn --bind 0.0.0.0:8000 --workers 2 --timeout 600 --keep-alive 2 fretamento_project.wsgi:application
+port=${PORT:-8000}
+exec gunicorn --bind 0.0.0.0:$port --workers 2 --timeout 600 --keep-alive 2 --access-logfile - --error-logfile - fretamento_project.wsgi:application
