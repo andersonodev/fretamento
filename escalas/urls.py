@@ -15,6 +15,7 @@ urlpatterns = [
     path('exportar/<str:data>/', views.ExportarEscalaView.as_view(), name='exportar_escala'),
     path('exportar-mes/<int:ano>/<int:mes>/', views.ExportarMesView.as_view(), name='exportar_mes'),
     path('excluir/<str:data>/', views.ExcluirEscalaView.as_view(), name='excluir_escala'),
+    path('verificar-senha-exclusao/', views.VerificarSenhaExclusaoView.as_view(), name='verificar_senha_exclusao'),
     path('formatar-escala/', views.FormatarEscalaView.as_view(), name='formatar_escala'),
     
     path('mover-servico/', views.MoverServicoView.as_view(), name='mover_servico'),
@@ -36,4 +37,5 @@ urlpatterns = [
     path('api/atualizar-preco/', views.ApiAtualizarPrecoView.as_view(), name='api_atualizar_preco'),
     path('api/detalhes-precificacao/<int:alocacao_id>/', views.ApiDetalhesPrecificacaoView.as_view(), name='api_detalhes_precificacao'),
     path('desfazer-agrupamentos-automaticos/', views.DesfazerAgrupamentosAutomaticosView.as_view(), name='desfazer_agrupamentos_automaticos'),
+    path('toggle-status-alocacao/', views.ToggleStatusAlocacaoView.as_view(), name='toggle_status_alocacao'),
 ]

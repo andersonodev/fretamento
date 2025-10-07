@@ -53,7 +53,7 @@
                             {{ mes }}/{{ ano }}
                         {% endif %}
                     </h1>
-                    <p class="text-muted">Sistema de três etapas: Criar estrutura → Puxar dados → Formatar (se necessário)</p>
+                    <p class="text-muted">Criar estrutura → Puxar dados → Agrupar/Otimizar → Formatar quando necessário</p>
                 </div>
                 <div class="d-flex gap-2">
                     <a href="{% url 'escalas:exportar_mes' ano=ano mes=mes %}" 
@@ -184,15 +184,15 @@
                                                 {% endif %}
                                                 
                                                 <!-- Formatar Escala -->
-                                                {% if escala.etapa == 'DADOS_PUXADOS' %}
+                                                {% if escala.tem_dados %}
                                                     <button type="button" 
                                                             class="btn btn-outline-danger" 
-                                                            title="Formatar Escala"
+                                                            title="{% if escala.etapa == 'OTIMIZADA' %}Formatar Escala Otimizada{% else %}Formatar Escala{% endif %}"
                                                             data-bs-toggle="modal" 
                                                             data-bs-target="#modalFormatarEscala"
                                                             data-data="{{ escala.data|date_br }}"
                                                             onclick="definirDataFormatar('{{ escala.data|date_br }}')">
-                                                        <i class="fas fa-eraser"></i>
+                                                        <i class="fas fa-paint-brush"></i>
                                                     </button>
                                                 {% endif %}
                                                 
@@ -208,7 +208,7 @@
                                                 <button type="button" 
                                                         class="btn btn-outline-danger" 
                                                         title="Excluir Escala"
-                                                        onclick="confirmarExclusao('{{ escala.data|date_br }}', '{{ escala.data|date:'d/m/Y' }}', {{ escala.alocacoes.count }}, '{{ escala.get_etapa_display }}')">
+                                                        onclick="abrirModalExclusao('{{ escala.data|date_br }}', '{{ escala.data|date:'d/m/Y' }}', {{ escala.alocacoes.count }}, '{{ escala.get_etapa_display }}')">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
@@ -250,8 +250,8 @@
                             <p class="small">Selecione uma data de origem e puxe os serviços, que serão distribuídos automaticamente entre as vans.</p>
                         </div>
                         <div class="col-md-4">
-                            <h6><i class="fas fa-eraser text-danger"></i> Etapa 3: Formatar (Opcional)</h6>
-                            <p class="small">Desfaz agrupamentos, remove precificação e reseta otimização, mantendo os dados dos serviços.</p>
+                            <h6><i class="fas fa-paint-brush text-danger"></i> Formatação (Sempre Disponível)</h6>
+                            <p class="small">Desfaz agrupamentos, remove precificação e reseta otimização, mantendo os dados dos serviços. Disponível em qualquer momento após puxar dados.</p>
                         </div>
                     </div>
                 </div>
@@ -278,38 +278,234 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Função para confirmar exclusão
-function confirmarExclusao(data, dataFormatada, totalServicos, etapa) {
-    let mensagem = `Tem certeza que deseja excluir a escala de ${dataFormatada}?`;
+// Variáveis globais para o modal de exclusão
+let dadosExclusao = {};
+
+// Função para abrir modal de exclusão
+function abrirModalExclusao(data, dataFormatada, totalServicos, etapa) {
+    // Armazenar dados para uso posterior
+    dadosExclusao = {
+        data: data,
+        dataFormatada: dataFormatada,
+        totalServicos: totalServicos,
+        etapa: etapa
+    };
     
-    if (totalServicos > 0) {
-        mensagem += `\n\n⚠️ ATENÇÃO: Esta ação irá excluir ${totalServicos} serviços da escala!`;
-    }
+    // Construir detalhes da exclusão
+    let detalhesHtml = `
+        <div class="text-center mb-3">
+            <i class="fas fa-calendar-alt text-danger" style="font-size: 3rem;"></i>
+            <h4 class="mt-2 text-danger">Escala de ${dataFormatada}</h4>
+        </div>
+        
+        <div class="row text-center">
+            <div class="col-md-6">
+                <div class="card border-warning">
+                    <div class="card-body">
+                        <i class="fas fa-users text-warning"></i>
+                        <h6 class="card-title mt-2">Serviços</h6>
+                        <h4 class="text-warning">${totalServicos}</h4>
+                        <small class="text-muted">serviços serão excluídos</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-info">
+                    <div class="card-body">
+                        <i class="fas fa-cog text-info"></i>
+                        <h6 class="card-title mt-2">Status</h6>
+                        <h4 class="text-info">${etapa}</h4>
+                        <small class="text-muted">estado atual</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
     
     if (etapa === 'Otimizada') {
-        mensagem += `\n\n💡 Esta escala está otimizada. Todos os dados serão perdidos permanentemente.`;
+        detalhesHtml += `
+            <div class="alert alert-danger mt-3" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <strong>Escala Otimizada!</strong> Todos os dados de otimização serão perdidos permanentemente.
+            </div>
+        `;
     }
     
-    mensagem += `\n\nEsta ação não pode ser desfeita.`;
-    
-    if (confirm(mensagem)) {
-        // Criar formulário dinamicamente
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = `/escalas/excluir/${data}/`;
-        
-        // Token CSRF
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-        const csrfInput = document.createElement('input');
-        csrfInput.type = 'hidden';
-        csrfInput.name = 'csrfmiddlewaretoken';
-        csrfInput.value = csrfToken;
-        form.appendChild(csrfInput);
-        
-        // Adicionar ao DOM e submeter
-        document.body.appendChild(form);
-        form.submit();
+    // Preencher modal
+    const detalhesElement = document.getElementById('detalhesExclusao');
+    if (detalhesElement) {
+        detalhesElement.innerHTML = detalhesHtml;
     }
+    
+    // Limpar campos
+    const senhaInput = document.getElementById('senhaConfirmacao');
+    if (senhaInput) {
+        senhaInput.value = '';
+    }
+    
+    // Verificar se elemento existe antes de manipular
+    const erroSenha = document.getElementById('erroSenha');
+    if (erroSenha) {
+        erroSenha.classList.add('d-none');
+    }
+    
+    // Abrir modal
+    const modalElement = document.getElementById('modalExclusaoEscala');
+    if (modalElement) {
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+    } else {
+        console.error('Modal de exclusão não encontrado!');
+        alert('Erro: Modal não encontrado. Recarregue a página.');
+    }
+}
+
+// Event listener para confirmação
+document.addEventListener('DOMContentLoaded', function() {
+    const btnConfirmar = document.getElementById('btnConfirmarExclusao');
+    const inputSenha = document.getElementById('senhaConfirmacao');
+    
+    if (btnConfirmar) {
+        btnConfirmar.addEventListener('click', function() {
+            const senha = inputSenha ? inputSenha.value : '';
+            
+            if (!senha) {
+                if (inputSenha) inputSenha.focus();
+                return;
+            }
+            
+            // Desabilitar botão e mostrar loading
+            btnConfirmar.disabled = true;
+            btnConfirmar.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Verificando...';
+            
+            // TESTE: Verificar se consegue comunicar com o servidor
+            console.log('🧪 Testando comunicação...');
+            
+            // Tentar verificação direta primeiro
+            verificarSenhaEExcluir(senha);
+        });
+    }
+    
+    // Enter no campo de senha
+    if (inputSenha) {
+        inputSenha.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                btnConfirmar.click();
+            }
+        });
+    }
+});
+
+// Função para verificar senha e excluir escala
+function verificarSenhaEExcluir(senha) {
+    console.log('🔍 Verificando senha...', dadosExclusao);
+    
+    fetch('{% url "escalas:verificar_senha_exclusao" %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({
+            'senha': senha,
+            'data': dadosExclusao.data
+        })
+    })
+    .then(response => {
+        console.log('📡 Resposta recebida:', response.status);
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('📋 Dados recebidos:', data);
+        const btnConfirmar = document.getElementById('btnConfirmarExclusao');
+        
+        if (data.senha_correta) {
+            console.log('✅ Senha correta, excluindo escala...');
+            // Senha correta, excluir escala
+            excluirEscala();
+        } else {
+            console.log('❌ Senha incorreta');
+            // Senha incorreta
+            const erroSenha = document.getElementById('erroSenha');
+            if (erroSenha) {
+                erroSenha.classList.remove('d-none');
+            }
+            
+            const senhaInput = document.getElementById('senhaConfirmacao');
+            if (senhaInput) {
+                senhaInput.value = '';
+                senhaInput.focus();
+            }
+            
+            // Restaurar botão
+            if (btnConfirmar) {
+                btnConfirmar.disabled = false;
+                btnConfirmar.innerHTML = '<i class="fas fa-trash me-1"></i>Excluir Escala';
+            }
+        }
+    })
+    .catch(error => {
+        console.error('❌ Erro na verificação:', error);
+        
+        // Mostrar erro específico baseado no tipo
+        let mensagemErro = 'Erro ao verificar senha.';
+        if (error.message.includes('404')) {
+            mensagemErro = 'Erro 404: URL de verificação não encontrada.';
+        } else if (error.message.includes('403')) {
+            mensagemErro = 'Erro 403: Token CSRF inválido. Recarregue a página.';
+        } else if (error.message.includes('500')) {
+            mensagemErro = 'Erro 500: Problema no servidor.';
+        }
+        
+        // Oferecer opção de continuar sem verificação de senha
+        const continuar = confirm(
+            mensagemErro + '\n\n' +
+            '⚠️ AVISO: Falha na verificação de senha.\n\n' +
+            'Deseja continuar mesmo assim?\n' +
+            '(A exclusão será registrada no log)'
+        );
+        
+        if (continuar) {
+            console.log('⚠️ Usuário optou por continuar sem verificação de senha');
+            excluirEscala();
+        } else {
+            // Restaurar botão
+            const btnConfirmar = document.getElementById('btnConfirmarExclusao');
+            if (btnConfirmar) {
+                btnConfirmar.disabled = false;
+                btnConfirmar.innerHTML = '<i class="fas fa-trash me-1"></i>Excluir Escala';
+            }
+        }
+    });
+}
+
+// Função para excluir escala
+function excluirEscala() {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = `/escalas/excluir/${dadosExclusao.data}/`;
+    
+    // Token CSRF
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const csrfInput = document.createElement('input');
+    csrfInput.type = 'hidden';
+    csrfInput.name = 'csrfmiddlewaretoken';
+    csrfInput.value = csrfToken;
+    form.appendChild(csrfInput);
+    
+    // Adicionar dados adicionais para log
+    const dadosInput = document.createElement('input');
+    dadosInput.type = 'hidden';
+    dadosInput.name = 'dados_exclusao';
+    dadosInput.value = JSON.stringify(dadosExclusao);
+    form.appendChild(dadosInput);
+    
+    // Adicionar ao DOM e submeter
+    document.body.appendChild(form);
+    form.submit();
 }
 
 function definirDataFormatar(data) {
@@ -340,8 +536,13 @@ function definirDataFormatar(data) {
                             <li><strong>Desfazer todos os grupos</strong> (serviços voltam a ser individuais)</li>
                             <li><strong>Remover precificação</strong> (preços calculados serão limpos)</li>
                             <li><strong>Resetar otimização</strong> (volta para estado "Dados Puxados")</li>
-                            <li class="text-success"><strong>Manter todos os dados dos serviços</strong></li>
+                            <li><strong>Limpar veículos recomendados</strong> e status de alocação</li>
+                            <li class="text-success"><strong>✅ Manter todos os dados dos serviços</strong> (clientes, horários, PAX, etc.)</li>
                         </ul>
+                        <div class="mt-2 p-2 bg-info text-white rounded">
+                            <i class="fas fa-info-circle me-1"></i>
+                            <strong>Após formatação:</strong> A escala poderá ser reagrupada e reotimizada quantas vezes necessário.
+                        </div>
                     </div>
                     
                     <div class="alert alert-info">
@@ -366,6 +567,59 @@ function definirDataFormatar(data) {
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Confirmação de Exclusão -->
+<div class="modal fade" id="modalExclusaoEscala" tabindex="-1" aria-labelledby="modalExclusaoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="modalExclusaoLabel">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Confirmar Exclusão
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning border-warning" role="alert">
+                    <i class="fas fa-warning me-2"></i>
+                    <strong>Atenção!</strong> Esta ação não pode ser desfeita.
+                </div>
+                
+                <div id="detalhesExclusao" class="mb-4">
+                    <!-- Detalhes serão preenchidos dinamicamente -->
+                </div>
+                
+                <div class="mb-3">
+                    <label for="senhaConfirmacao" class="form-label">
+                        <i class="fas fa-lock me-1"></i>
+                        <strong>Digite sua senha para confirmar:</strong>
+                    </label>
+                    <input type="password" 
+                           class="form-control" 
+                           id="senhaConfirmacao" 
+                           placeholder="Sua senha atual"
+                           required>
+                    <div class="form-text text-muted">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Por segurança, é necessário confirmar sua senha.
+                    </div>
+                </div>
+                
+                <div id="erroSenha" class="alert alert-danger d-none" role="alert">
+                    <i class="fas fa-times-circle me-2"></i>
+                    Senha incorreta. Tente novamente.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-1"></i>Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" id="btnConfirmarExclusao">
+                    <i class="fas fa-trash me-1"></i>Excluir Escala
+                </button>
+            </div>
         </div>
     </div>
 </div>

@@ -462,6 +462,34 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
                     
             logger.info(f"✅ ETAPA 4 - {alocados_nao_prioritarios}/{len(nao_prioritarios)} não prioritários alocados")
             
+            # ETAPA 5: PREENCHIMENTO COM SERVIÇOS PEQUENOS (1-3 PAX)
+            logger.info("🔧 ETAPA 5 - Preenchendo furos com serviços de 1-3 PAX...")
+            candidatos_pequenos = self._selecionar_candidatos_1_3_pax(escala)
+            logger.info(f"✅ ETAPA 5 - Encontrados {len(candidatos_pequenos)} candidatos pequenos (1-3 PAX)")
+            
+            if candidatos_pequenos:
+                # Aplicar priorização também nos serviços pequenos
+                prioritarios_pequenos, nao_prioritarios_pequenos = self._aplicar_priorizacao(candidatos_pequenos)
+                
+                # Tentar alocar prioritários pequenos primeiro
+                alocados_pequenos_prioritarios = 0
+                for candidato in prioritarios_pequenos:
+                    if self._alocar_candidato_respeitando_intervalo_3h(candidato, van1_schedule, van2_schedule):
+                        alocados_pequenos_prioritarios += 1
+                
+                # Depois tentar não prioritários pequenos
+                alocados_pequenos_nao_prioritarios = 0
+                for candidato in nao_prioritarios_pequenos:
+                    if self._alocar_candidato_respeitando_intervalo_3h(candidato, van1_schedule, van2_schedule):
+                        alocados_pequenos_nao_prioritarios += 1
+                
+                total_pequenos_alocados = alocados_pequenos_prioritarios + alocados_pequenos_nao_prioritarios
+                logger.info(f"✅ ETAPA 5 - {total_pequenos_alocados}/{len(candidatos_pequenos)} serviços pequenos alocados")
+                logger.info(f"   📊 Prioritários: {alocados_pequenos_prioritarios}")
+                logger.info(f"   📊 Não prioritários: {alocados_pequenos_nao_prioritarios}")
+            else:
+                logger.info("ℹ️ ETAPA 5 - Nenhum serviço pequeno (1-3 PAX) encontrado")
+            
             # MARCAR ESCALA COMO OTIMIZADA
             escala.etapa = 'OTIMIZADA'
             escala.save()
@@ -502,10 +530,12 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
                     continue
 
                 # Buscar serviços compatíveis para agrupamento
+                print(f"Analisando alocação {alocacao.id}: {alocacao.servico.cliente} - {alocacao.servico.servico}")
                 servicos_compativeis, regra_agrupamento = self._encontrar_servicos_compativeis(
                     alocacao,
                     alocacoes_disponiveis
                 )
+                print(f"Encontrados {len(servicos_compativeis)} serviços compatíveis com regra: {regra_agrupamento}")
 
                 if not servicos_compativeis:
                     continue
@@ -570,6 +600,8 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
         servicos_compativeis = []
         servico_base = alocacao_base.servico
         regra_agrupamento = self._detectar_regra_agrupamento(servico_base)
+        
+        print(f"  Base: {servico_base.servico} | Regra: {regra_agrupamento}")
 
         considerar_total_pax = regra_agrupamento != 'TRANSFER_OUT_REGULAR'
 
@@ -580,22 +612,30 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
                 continue
 
             outro_servico = outra_alocacao.servico
-
-            if self._servicos_sao_compativeis(
+            
+            compativel = self._servicos_sao_compativeis(
                 servico_base,
                 outro_servico,
                 considerar_total_pax=considerar_total_pax
-            ):
+            )
+            
+            if compativel:
+                print(f"    ✅ Compatível: {outro_servico.servico}")
                 servicos_compativeis.append(outra_alocacao)
+            else:
+                print(f"    ❌ Incompatível: {outro_servico.servico}")
 
         if not servicos_compativeis:
+            print(f"    Nenhum serviço compatível encontrado")
             return [], regra_agrupamento
 
         if regra_agrupamento == 'TRANSFER_OUT_REGULAR':
             total_pax = (servico_base.pax or 0) + sum(
                 outra.servico.pax or 0 for outra in servicos_compativeis
             )
+            print(f"    Transfer OUT: PAX total = {total_pax}")
             if total_pax < 4:
+                print(f"    PAX insuficiente para transfer OUT ({total_pax} < 4)")
                 return [], regra_agrupamento
 
         return servicos_compativeis, regra_agrupamento
@@ -781,6 +821,59 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
                     'eh_in_out': self._verificar_servico_in_out(alocacao.servico.servico)
                 })
         
+        return candidatos
+    
+    def _selecionar_candidatos_1_3_pax(self, escala):
+        """
+        ETAPA 5: Selecionar todos os serviços agrupados que tenham entre 1 e 3 PAX
+        para preencher os "furos" nas vans após a alocação principal
+        """
+        candidatos = []
+        alocacoes_processadas = set()
+        
+        logger.debug(f"🔍 Buscando candidatos 1-3 PAX...")
+        
+        # Primeiro: processar grupos pequenos
+        grupos = escala.grupos.all()
+        for grupo in grupos:
+            if 1 <= grupo.total_pax <= 3:
+                alocacoes_grupo = [sg.alocacao for sg in grupo.servicos.all()]
+                
+                # Verificar se já não estão alocadas
+                if not any(alocacao.status_alocacao == 'ALOCADO' for alocacao in alocacoes_grupo):
+                    candidatos.append({
+                        'tipo': 'grupo',
+                        'grupo': grupo,
+                        'alocacoes': alocacoes_grupo,
+                        'pax_total': grupo.total_pax,
+                        'horario_principal': self._obter_horario_mais_cedo(alocacoes_grupo),
+                        'cliente_principal': grupo.cliente_principal,
+                        'servico_principal': grupo.servico_principal,
+                        'eh_in_out': self._verificar_servico_in_out(grupo.servico_principal)
+                    })
+                    
+                    # Marcar alocações como processadas
+                    for alocacao in alocacoes_grupo:
+                        alocacoes_processadas.add(alocacao.id)
+        
+        # Segundo: processar serviços individuais pequenos não agrupados
+        alocacoes_individuais = escala.alocacoes.filter(grupo_info__isnull=True)
+        for alocacao in alocacoes_individuais:
+            if (alocacao.id not in alocacoes_processadas and 
+                1 <= alocacao.servico.pax <= 3 and
+                alocacao.status_alocacao != 'ALOCADO'):
+                candidatos.append({
+                    'tipo': 'individual',
+                    'grupo': None,
+                    'alocacoes': [alocacao],
+                    'pax_total': alocacao.servico.pax,
+                    'horario_principal': alocacao.servico.horario,
+                    'cliente_principal': alocacao.servico.cliente,
+                    'servico_principal': alocacao.servico.servico,
+                    'eh_in_out': self._verificar_servico_in_out(alocacao.servico.servico)
+                })
+        
+        logger.debug(f"✅ Encontrados {len(candidatos)} candidatos 1-3 PAX")
         return candidatos
     
     def _obter_horario_mais_cedo(self, alocacoes):
@@ -1015,8 +1108,25 @@ class FormatarEscalaView(LoginRequiredMixin, View):
             user = authenticate(username=request.user.username, password=senha)
             
             if not user:
+                # Log de tentativa de acesso negado
+                logger.warning(
+                    f'FORMATAÇÃO NEGADA - Senha incorreta | '
+                    f'Usuário: {request.user.username} | '
+                    f'Data: {data_alvo.strftime("%d/%m/%Y") if "data_alvo" in locals() else data_str} | '
+                    f'IP: {self._get_client_ip(request)} | '
+                    f'Timestamp: {timezone.now().strftime("%d/%m/%Y %H:%M:%S")}'
+                )
                 messages.error(request, 'Senha incorreta. Formatação não autorizada.')
                 return redirect('escalas:visualizar_escala', data=data_str)
+            
+            # Log de início da formatação
+            logger.warning(
+                f'FORMATAÇÃO INICIADA | '
+                f'Usuário: {request.user.username} | '
+                f'Data: {data_alvo.strftime("%d/%m/%Y")} | '
+                f'IP: {ip_address} | '
+                f'Timestamp: {timezone.now().strftime("%d/%m/%Y %H:%M:%S")}'
+            )
             
             # Obter IP do usuário
             ip_address = self._get_client_ip(request)
@@ -1087,14 +1197,18 @@ class FormatarEscalaView(LoginRequiredMixin, View):
                 dados_depois=dados_depois
             )
             
-            # Log de aplicação
+            # Log de aplicação detalhado
             logger.warning(
-                f'FORMATAÇÃO DE ESCALA - Usuário: {request.user.username} | '
-                f'Data: {data_alvo.strftime("%d/%m/%Y")} | '
+                f'FORMATAÇÃO CONCLUÍDA | '
+                f'Usuário: {request.user.username} ({request.user.get_full_name() or request.user.username}) | '
+                f'Data Escala: {data_alvo.strftime("%d/%m/%Y")} | '
                 f'IP: {ip_address} | '
+                f'Timestamp: {timezone.now().strftime("%d/%m/%Y %H:%M:%S")} | '
                 f'Grupos removidos: {grupos_removidos} | '
                 f'Alocações desprecificadas: {alocacoes_desprecificadas} | '
-                f'Dados mantidos: {escala.alocacoes.count()} alocações'
+                f'Total alocações: {escala.alocacoes.count()} | '
+                f'Etapa anterior: {dados_antes.get("etapa")} → Nova etapa: {escala.etapa} | '
+                f'Status: {escala.status}'
             )
             
             # Limpar qualquer cache relacionado
@@ -1105,11 +1219,20 @@ class FormatarEscalaView(LoginRequiredMixin, View):
                 request, 
                 f'Escala de {data_alvo.strftime("%d/%m/%Y")} formatada com sucesso! '
                 f'{grupos_removidos} grupos removidos, {alocacoes_desprecificadas} alocações desprecificadas. '
-                f'Os dados dos serviços foram mantidos.'
+                f'Os dados dos serviços foram mantidos. A escala pode agora ser reagrupada e reotimizada.'
             )
             
         except Exception as e:
-            logger.error(f"Erro ao formatar escala {data_str}: {e}")
+            # Log detalhado do erro
+            logger.error(
+                f'ERRO NA FORMATAÇÃO | '
+                f'Usuário: {request.user.username} | '
+                f'Data: {data_str} | '
+                f'IP: {self._get_client_ip(request)} | '
+                f'Timestamp: {timezone.now().strftime("%d/%m/%Y %H:%M:%S")} | '
+                f'Erro: {str(e)} | '
+                f'Tipo: {type(e).__name__}'
+            )
             messages.error(request, f'Erro ao formatar escala: {str(e)}')
         
         return redirect('escalas:visualizar_escala', data=data_str)
@@ -1136,6 +1259,9 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
 
     def get(self, request, data):
         """Exibe a escala"""
+        import sys
+        print(f"🟢 GET CHAMADO! VisualizarEscalaView - Data: {data}", file=sys.stderr)
+        
         escala = self.get_object()
         context = self.get_context_data(escala=escala)
         return render(request, self.template_name, context)
@@ -1149,9 +1275,10 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
         context['ano'] = escala.data.year
         context['mes'] = escala.data.month
         
-        # Obter todas as alocações
-        all_van1_alocacoes = escala.alocacoes.filter(van='VAN1').order_by('ordem')
-        all_van2_alocacoes = escala.alocacoes.filter(van='VAN2').order_by('ordem')
+        # Obter todas as alocações - ordenar por status de alocação primeiro
+        # ALOCADO vem antes de NAO_ALOCADO (ordenação ascendente alfabética)
+        all_van1_alocacoes = escala.alocacoes.filter(van='VAN1').order_by('status_alocacao', 'ordem')
+        all_van2_alocacoes = escala.alocacoes.filter(van='VAN2').order_by('status_alocacao', 'ordem')
         
         # Filtrar para mostrar apenas um representante por grupo
         def get_unique_alocacoes(alocacoes):
@@ -1212,6 +1339,16 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
 
     def post(self, request, data):
         """Processa ações do botão Agrupar e Otimizar"""
+        import sys
+        print(f"\n" + "="*60, file=sys.stderr)
+        print(f"🔥 POST CHAMADO! VisualizarEscalaView", file=sys.stderr)
+        print(f"🔥 Data: {data}", file=sys.stderr)
+        print(f"🔥 Método: {request.method}", file=sys.stderr)
+        print(f"🔥 User: {request.user}", file=sys.stderr)
+        print(f"🔥 POST keys: {list(request.POST.keys())}", file=sys.stderr)
+        print(f"🔥 POST items: {dict(request.POST.items())}", file=sys.stderr)
+        print("="*60, file=sys.stderr)
+        
         print(f"\n=== DEBUG POST VisualizarEscalaView ===")
         print(f"Data recebida: {data}")
         print(f"Método: {request.method}")
@@ -1230,17 +1367,37 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
         escala = self.get_object()
         print(f"Escala ID: {escala.id}, Etapa: {escala.etapa}")
         
+        # Log detalhado das alocações
+        total_alocacoes = escala.alocacoes.count()
+        alocacoes_sem_grupo = escala.alocacoes.filter(grupo_info__isnull=True).count()
+        print(f"Total alocações: {total_alocacoes}, Sem grupo: {alocacoes_sem_grupo}")
+        
         if acao == 'agrupar':
             print("=== PROCESSANDO AGRUPAMENTO ===")
+            print(f"Etapa da escala: '{escala.etapa}'")
+            print(f"Etapas válidas: ['DADOS_PUXADOS', 'OTIMIZADA']")
+            print(f"Etapa é válida? {escala.etapa in ['DADOS_PUXADOS', 'OTIMIZADA']}")
+            
             if escala.etapa not in ['DADOS_PUXADOS', 'OTIMIZADA']:
-                messages.error(request, 'Para agrupar, é necessário ter dados puxados ou estar otimizada.')
+                error_msg = f'Para agrupar, é necessário ter dados puxados ou estar otimizada. Etapa atual: {escala.etapa}'
+                print(f"ERRO ETAPA: {error_msg}")
+                messages.error(request, error_msg)
+                return redirect('escalas:visualizar_escala', data=data)
+
+            if alocacoes_sem_grupo == 0:
+                print("AVISO: Não há alocações disponíveis para agrupamento")
+                messages.warning(request, 'Não há serviços disponíveis para agrupamento.')
                 return redirect('escalas:visualizar_escala', data=data)
 
             try:
+                print(f"Iniciando agrupamento com {alocacoes_sem_grupo} alocações disponíveis...")
                 gerenciar_view = GerenciarEscalasView()
                 grupos_criados = gerenciar_view._agrupar_servicos(escala)
                 print(f"Agrupamento concluído: {grupos_criados} grupos criados")
-                messages.success(request, f'Agrupamento concluído! {grupos_criados} grupos criados.')
+                if grupos_criados > 0:
+                    messages.success(request, f'Agrupamento concluído! {grupos_criados} grupos criados.')
+                else:
+                    messages.info(request, 'Nenhum grupo foi criado. Verifique se há serviços compatíveis para agrupamento.')
             except Exception as e:
                 print(f"ERRO no agrupamento: {e}")
                 import traceback
@@ -1249,13 +1406,30 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
 
             return redirect('escalas:visualizar_escala', data=data)
 
+        elif acao == 'teste':
+            print("=== TESTE EXECUTADO COM SUCESSO ===")
+            messages.success(request, '🔥 TESTE: Botão funcionando perfeitamente!')
+            return redirect('escalas:visualizar_escala', data=data)
+            
+        elif acao == 'debug':
+            print("=== DEBUG EXECUTADO COM SUCESSO ===")
+            messages.info(request, '🛠️ DEBUG: Formulário com input hidden funcionando!')
+            return redirect('escalas:visualizar_escala', data=data)
+
         elif acao in {'otimizar', 'escalar'}:
             print("=== PROCESSANDO ESCALONAMENTO ===")
+            print(f"Etapa da escala: '{escala.etapa}'")
+            print(f"Etapas válidas: ['DADOS_PUXADOS', 'OTIMIZADA']")
+            print(f"Etapa é válida? {escala.etapa in ['DADOS_PUXADOS', 'OTIMIZADA']}")
+            
             if escala.etapa not in ['DADOS_PUXADOS', 'OTIMIZADA']:
-                messages.error(request, 'Para escalar, é necessário ter dados puxados.')
+                error_msg = f'Para escalar, é necessário ter dados puxados. Etapa atual: {escala.etapa}'
+                print(f"ERRO ETAPA: {error_msg}")
+                messages.error(request, error_msg)
                 return redirect('escalas:visualizar_escala', data=data)
 
             try:
+                print(f"Iniciando escalonamento/otimização da escala {escala.id}...")
                 gerenciar_view = GerenciarEscalasView()
                 gerenciar_view._otimizar_escala(escala)
                 print("Escalonamento concluído com sucesso")
@@ -1264,7 +1438,7 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
                 print(f"ERRO no escalonamento: {e}")
                 import traceback
                 traceback.print_exc()
-                messages.error(request, f'Erro ao escalar escala: {e}')
+                messages.error(request, f'Erro ao escalar: {e}')
 
             return redirect('escalas:visualizar_escala', data=data)
 
@@ -1452,15 +1626,10 @@ class MoverServicoView(LoginRequiredMixin, View):
                 
                 # Reorganizar a van de origem apenas se for diferente da destino
                 if van_origem != nova_van:
-                    van_origem_alocacoes = AlocacaoVan.objects.filter(
-                        escala=alocacao.escala,
-                        van=van_origem
-                    ).order_by('ordem')
-                    
-                    for i, alocacao_origem in enumerate(van_origem_alocacoes, 1):
-                        if alocacao_origem.ordem != i:
-                            alocacao_origem.ordem = i
-                            alocacao_origem.save()
+                    reorganizar_ordem_por_status(alocacao.escala, van_origem)
+                
+                # Reorganizar também a van de destino se houve mudança
+                reorganizar_ordem_por_status(alocacao.escala, nova_van)
             
             return JsonResponse({
                 'success': True, 
@@ -1874,6 +2043,53 @@ class ExportarMesView(LoginRequiredMixin, View):
             return redirect('escalas:listar')
 
 
+class VerificarSenhaExclusaoView(LoginRequiredMixin, View):
+    """View para verificar senha antes da exclusão"""
+    
+    def get(self, request):
+        """Teste de conectividade"""
+        return JsonResponse({
+            'status': 'ok',
+            'usuario': request.user.username,
+            'mensagem': 'Endpoint funcionando'
+        })
+    
+    def post(self, request):
+        import json
+        from django.contrib.auth import authenticate
+        
+        try:
+            logger.info(f"🔍 Verificação de senha iniciada para usuário: {request.user.username}")
+            
+            data = json.loads(request.body)
+            senha = data.get('senha')
+            data_escala = data.get('data')
+            
+            logger.info(f"📊 Dados recebidos - Usuário: {request.user.username}, Data escala: {data_escala}")
+            
+            # Verificar senha do usuário atual
+            user = authenticate(username=request.user.username, password=senha)
+            senha_correta = user is not None
+            
+            logger.info(f"🔐 Resultado verificação senha: {'✅ Correta' if senha_correta else '❌ Incorreta'}")
+            
+            return JsonResponse({
+                'senha_correta': senha_correta,
+                'usuario': request.user.username if senha_correta else None,
+                'debug': f'Usuario: {request.user.username}, Verificacao: {senha_correta}'
+            })
+            
+        except Exception as e:
+            logger.error(f"❌ Erro ao verificar senha para exclusão: {e}")
+            logger.error(f"❌ Request body: {request.body}")
+            logger.error(f"❌ Usuario: {request.user.username if request.user else 'Anonimo'}")
+            return JsonResponse({
+                'senha_correta': False, 
+                'erro': str(e),
+                'debug': f'Erro: {str(e)}'
+            })
+
+
 class ExcluirEscalaView(LoginRequiredMixin, View):
     """View para excluir uma escala"""
     
@@ -1887,38 +2103,82 @@ class ExcluirEscalaView(LoginRequiredMixin, View):
             mes = data_obj.month
             ano = data_obj.year
             
-            # Verificar se é seguro excluir
-            if escala.etapa == 'OTIMIZADA':
-                messages.warning(
-                    request, 
-                    f'Escala de {data_obj.strftime("%d/%m/%Y")} está otimizada. '
-                    'Tem certeza que deseja excluir? Todos os dados serão perdidos permanentemente.'
-                )
-                
+            # Coletar dados para log antes da exclusão
+            dados_log = {
+                'data_escala': data_obj.strftime('%d/%m/%Y'),
+                'etapa': escala.etapa,
+                'total_servicos': escala.alocacoes.count(),
+                'usuario': request.user.username,
+                'ip_usuario': request.META.get('REMOTE_ADDR', 'N/A'),
+                'user_agent': request.META.get('HTTP_USER_AGENT', 'N/A')[:200]
+            }
+            
+            # Verificar se é uma escala otimizada
+            escala_otimizada = escala.etapa == 'OTIMIZADA'
+            
             # Salvar informações para a mensagem
             data_formatada = data_obj.strftime('%d/%m/%Y')
             total_servicos = escala.alocacoes.count()
+            
+            # Registrar log ANTES da exclusão
+            logger.warning(
+                f"🗑️ EXCLUSÃO DE ESCALA INICIADA | "
+                f"Data: {dados_log['data_escala']} | "
+                f"Etapa: {dados_log['etapa']} | "
+                f"Serviços: {dados_log['total_servicos']} | "
+                f"Usuário: {dados_log['usuario']} | "
+                f"IP: {dados_log['ip_usuario']}"
+            )
             
             # Excluir escala (cascata exclui as alocações)
             with transaction.atomic():
                 escala.delete()
             
+            # Log de sucesso
+            logger.error(
+                f"❌ ESCALA EXCLUÍDA COM SUCESSO | "
+                f"Data: {dados_log['data_escala']} | "
+                f"Total serviços excluídos: {dados_log['total_servicos']} | "
+                f"Era otimizada: {'Sim' if escala_otimizada else 'Não'} | "
+                f"Usuário responsável: {dados_log['usuario']} | "
+                f"IP: {dados_log['ip_usuario']}"
+            )
+            
             if total_servicos > 0:
-                messages.success(
-                    request,
-                    f'Escala de {data_formatada} excluída com sucesso! '
-                    f'{total_servicos} serviços foram removidos da escala.'
-                )
+                if escala_otimizada:
+                    messages.success(
+                        request,
+                        f'Escala de {data_formatada} excluída com sucesso! '
+                        f'{total_servicos} serviços otimizados foram removidos permanentemente. '
+                        f'Exclusão registrada no log do sistema.'
+                    )
+                else:
+                    messages.success(
+                        request,
+                        f'Escala de {data_formatada} excluída com sucesso! '
+                        f'{total_servicos} serviços foram removidos da escala. '
+                        f'Exclusão registrada no log do sistema.'
+                    )
             else:
                 messages.success(
                     request,
-                    f'Estrutura de escala de {data_formatada} excluída com sucesso!'
+                    f'Estrutura de escala de {data_formatada} excluída com sucesso! '
+                    f'Exclusão registrada no log do sistema.'
                 )
             
             # Redirecionar para a página do mês específico
             return redirect('escalas:gerenciar_escalas_mes', mes=mes, ano=ano)
             
         except Exception as e:
+            # Log de erro
+            logger.error(
+                f"❌ ERRO AO EXCLUIR ESCALA | "
+                f"Data: {data} | "
+                f"Usuário: {request.user.username} | "
+                f"Erro: {str(e)} | "
+                f"IP: {request.META.get('REMOTE_ADDR', 'N/A')}"
+            )
+            
             messages.error(request, f'Erro ao excluir escala: {str(e)}')
             # Em caso de erro, redirecionar para o ano atual
             return redirect('escalas:selecionar_ano')
@@ -2024,16 +2284,8 @@ class ExcluirServicoView(LoginRequiredMixin, View):
                 # Excluir a alocação (o serviço pode ser reutilizado em outras escalas)
                 alocacao.delete()
                 
-                # Reorganizar ordem das demais alocações na van
-                alocacoes_restantes = AlocacaoVan.objects.filter(
-                    escala=escala,
-                    van=van
-                ).order_by('ordem')
-                
-                for i, alocacao_restante in enumerate(alocacoes_restantes, 1):
-                    if alocacao_restante.ordem != i:
-                        alocacao_restante.ordem = i
-                        alocacao_restante.save()
+                # Reorganizar ordem das demais alocações na van respeitando status
+                reorganizar_ordem_por_status(escala, van)
                 
                 return JsonResponse({
                     'success': True,
@@ -2233,6 +2485,7 @@ class DetalhesGrupoView(View):
                     'servico': servico.servico,
                     'local_pickup': servico.local_pickup,
                     'horario': servico.horario.strftime('%H:%M') if servico.horario else '',
+                    'numero_venda': servico.numero_venda or '',
                 })
             
             return JsonResponse({
@@ -2615,4 +2868,79 @@ class EditarHorarioServicoView(LoginRequiredMixin, View):
             return JsonResponse({
                 'success': False,
                 'error': str(e)
+            })
+
+
+
+def reorganizar_ordem_por_status(escala, van):
+    """
+    Reorganiza a ordem das alocações de uma van priorizando serviços alocados
+    """
+    # Buscar alocações da van ordenadas por status (ALOCADO primeiro) e depois por ordem atual
+    alocacoes = AlocacaoVan.objects.filter(
+        escala=escala, 
+        van=van
+    ).order_by('status_alocacao', 'ordem')
+    
+    # Reorganizar as ordens sequencialmente
+    for i, alocacao in enumerate(alocacoes, 1):
+        if alocacao.ordem != i:
+            alocacao.ordem = i
+            alocacao.save()
+
+
+class ToggleStatusAlocacaoView(LoginRequiredMixin, View):
+    """View para alternar o status de alocação de um serviço"""
+    
+    def post(self, request):
+        import json
+        
+        try:
+            data = json.loads(request.body)
+            alocacao_id = data.get("alocacao_id")
+            novo_status = data.get("novo_status")
+            
+            if not alocacao_id or not novo_status:
+                return JsonResponse({
+                    "success": False,
+                    "message": "Dados incompletos"
+                })
+            
+            # Verificar se o status é válido
+            if novo_status not in ["ALOCADO", "NAO_ALOCADO"]:
+                return JsonResponse({
+                    "success": False,
+                    "message": "Status inválido"
+                })
+            
+            # Buscar a alocação
+            try:
+                alocacao = AlocacaoVan.objects.get(id=alocacao_id)
+            except AlocacaoVan.DoesNotExist:
+                return JsonResponse({
+                    "success": False,
+                    "message": "Serviço não encontrado"
+                })
+            
+            # Atualizar o status
+            alocacao.status_alocacao = novo_status
+            alocacao.save()
+            
+            # Reorganizar a ordem da van para manter alocados primeiro
+            reorganizar_ordem_por_status(alocacao.escala, alocacao.van)
+            
+            # Log da alteração
+            logger.info(f"📝 Status de alocação alterado: {alocacao.servico.servico[:50]}... -> {novo_status} (usuário: {request.user.username})")
+            
+            return JsonResponse({
+                "success": True,
+                "message": f"Status alterado para {novo_status}",
+                "reorganizado": True
+            })
+            
+        except Exception as e:
+            logger.error(f"❌ Erro ao alterar status de alocação: {e}")
+            return JsonResponse({
+                "success": False,
+                "message": f"Erro interno: {str(e)}"
             })
