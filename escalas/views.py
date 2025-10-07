@@ -1119,6 +1119,9 @@ class FormatarEscalaView(LoginRequiredMixin, View):
                 messages.error(request, 'Senha incorreta. Formatação não autorizada.')
                 return redirect('escalas:visualizar_escala', data=data_str)
             
+            # Obter IP do usuário
+            ip_address = self._get_client_ip(request)
+            
             # Log de início da formatação
             logger.warning(
                 f'FORMATAÇÃO INICIADA | '
@@ -1127,9 +1130,6 @@ class FormatarEscalaView(LoginRequiredMixin, View):
                 f'IP: {ip_address} | '
                 f'Timestamp: {timezone.now().strftime("%d/%m/%Y %H:%M:%S")}'
             )
-            
-            # Obter IP do usuário
-            ip_address = self._get_client_ip(request)
             
             # Salvar estado antes da formatação
             dados_antes = {
