@@ -9658,3 +9658,407 @@ INFO 2025-10-07 15:27:21,571 autoreload 13588 8529070080 Watching for file chang
 INFO 2025-10-07 15:27:36,203 autoreload 13684 8529070080 Watching for file changes with StatReloader
 INFO 2025-10-07 15:27:57,221 autoreload 13775 8529070080 Watching for file changes with StatReloader
 INFO 2025-10-07 16:01:44,364 autoreload 18485 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 16:18:45,678 autoreload 20376 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 16:18:49,896 basehttp 20376 6196228096 "GET / HTTP/1.1" 302 0
+INFO 2025-10-07 16:18:49,900 views 20376 6196228096 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 16:18:49,935 basehttp 20376 6196228096 "GET /core/ HTTP/1.1" 200 53457
+INFO 2025-10-07 16:18:52,187 basehttp 20376 6196228096 "GET /escalas/ HTTP/1.1" 200 32859
+INFO 2025-10-07 16:18:53,630 basehttp 20376 6196228096 "GET /escalas/ano/2025/ HTTP/1.1" 200 44934
+INFO 2025-10-07 16:18:55,338 basehttp 20376 6196228096 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 55351
+INFO 2025-10-07 16:18:58,127 basehttp 20376 6196228096 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 554920
+WARNING 2025-10-07 16:19:58,610 log 20376 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:19:58,611 basehttp 20376 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 16:20:31,473 basehttp 20376 6195654656 "GET /core/upload/ HTTP/1.1" 200 28668
+INFO 2025-10-07 16:21:20,083 processors 20376 6195654656 Planilha lida com 823 linhas e 35 colunas
+INFO 2025-10-07 16:21:20,094 processors 20376 6195654656 Linhas removidas durante a limpeza: 256
+INFO 2025-10-07 16:21:20,193 processors 20376 6195654656 Inseridos 567 serviços usando bulk_create
+INFO 2025-10-07 16:21:20,198 basehttp 20376 6195654656 "POST /core/upload/ HTTP/1.1" 302 0
+INFO 2025-10-07 16:21:20,335 views 20376 6195654656 Lista Arquivos - Total arquivos: 3, Total serviços: 681
+INFO 2025-10-07 16:21:20,335 views 20376 6195654656 Hora formatada: 07/10/2025 às 19:21
+INFO 2025-10-07 16:21:20,339 basehttp 20376 6195654656 "GET /core/arquivos/ HTTP/1.1" 200 61788
+INFO 2025-10-07 16:21:25,444 basehttp 20376 6195654656 "GET /core/arquivos/17/servicos/ HTTP/1.1" 200 87688
+INFO 2025-10-07 16:21:32,016 basehttp 20376 6195654656 "GET /escalas/ HTTP/1.1" 200 32859
+INFO 2025-10-07 16:21:36,562 basehttp 20376 6195654656 "POST /escalas/ HTTP/1.1" 302 0
+INFO 2025-10-07 16:21:36,581 basehttp 20376 6195654656 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 167624
+INFO 2025-10-07 16:21:38,448 basehttp 20376 6195654656 "GET /escalas/puxar-dados/02-10-2025/ HTTP/1.1" 200 42867
+INFO 2025-10-07 16:21:44,495 basehttp 20376 6195654656 "POST /escalas/puxar-dados/02-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 16:21:44,535 basehttp 20376 6195654656 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 487082
+INFO 2025-10-07 16:21:52,258 views 20376 6195654656 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-07 16:21:52,268 views 20376 6195654656 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-07 16:21:52,277 views 20376 6195654656 Grupo criado (NOME): ORINTER com 2 serviços e 4 PAX
+INFO 2025-10-07 16:21:52,286 views 20376 6195654656 Grupo criado (NOME): AZUL VIAGENS com 2 serviços e 4 PAX
+INFO 2025-10-07 16:21:52,319 views 20376 6195654656 Grupo criado (NOME): HOTELBEDS com 3 serviços e 11 PAX
+INFO 2025-10-07 16:21:52,322 views 20376 6195654656 Grupo criado (NOME): AZUL VIAGENS com 4 serviços e 8 PAX
+INFO 2025-10-07 16:21:52,345 views 20376 6195654656 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-07 16:21:52,348 views 20376 6195654656 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-07 16:21:52,363 views 20376 6195654656 Grupo criado (TRANSFER_OUT_REGULAR): E-HTL com 2 serviços e 5 PAX
+INFO 2025-10-07 16:21:52,364 basehttp 20376 6195654656 "POST /escalas/visualizar/02-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 16:21:52,436 basehttp 20376 6195654656 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 500454
+INFO 2025-10-07 16:22:25,229 basehttp 20376 6195654656 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 1187
+WARNING 2025-10-07 16:22:52,485 log 20376 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:22:52,486 basehttp 20376 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 16:23:17,343 basehttp 20376 6195654656 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 1068
+INFO 2025-10-07 16:23:44,325 views 20376 6195654656 🚀 INICIANDO PRECIFICAÇÃO INTELIGENTE - Escala 2025-10-02
+INFO 2025-10-07 16:23:44,327 views 20376 6195654656 📋 Total de alocações a precificar: 50
+INFO 2025-10-07 16:23:44,425 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 16:23:44,497 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 16:23:44,609 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT REGULAR BÚZIOS (ARMAÇÃO, JOÃO FERNAND... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 16:23:44,720 views 20376 6195654656 🔄 Atualização - TRANSFER OUT REGULAR BÚZIOS (A... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-07 16:23:44,799 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 16:23:44,878 views 20376 6195654656 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:44,961 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 16:23:45,041 views 20376 6195654656 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:45,122 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.37)
+INFO 2025-10-07 16:23:45,203 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-07 16:23:45,266 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 16:23:45,330 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:45,394 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 16:23:45,457 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:45,536 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 16:23:45,619 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:45,700 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 7 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 16:23:45,779 views 20376 6195654656 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:45,859 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 16:23:45,940 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 16:23:46,004 models 20376 6195654656 Precificação - Serviço: TRANSFER IN PRIVATIVO AEROPORTO INTER. GALEÃO RJ (... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 390.00 | Fonte: padrão (PAX: 4)
+INFO 2025-10-07 16:23:46,067 views 20376 6195654656 🔄 Atualização - TRANSFER IN PRIVATIVO AEROPORT... | N/A → Van 15 lugares | R$ 0.00 → R$ 390.00
+INFO 2025-10-07 16:23:46,139 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 16:23:46,212 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 16:23:46,279 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 16:23:46,346 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 16:23:46,453 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT REGULAR BARRA DA TIJUCA OU RECREIO DO... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 16:23:46,558 views 20376 6195654656 🔄 Atualização - TRANSFER OUT REGULAR BARRA DA ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 16:23:46,638 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 16:23:46,716 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:46,795 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 16:23:46,874 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:46,952 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 16:23:47,031 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:47,098 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 16:23:47,165 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 16:23:47,245 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 16:23:47,324 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 16:23:47,395 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-07 16:23:47,467 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 16:23:47,547 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 16:23:47,626 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 16:23:47,705 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 16:23:47,784 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 16:23:47,895 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 2 | Veículo: Executivo | Preço: R$ 400.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 16:23:48,007 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 400.00
+INFO 2025-10-07 16:23:48,070 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 16:23:48,132 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:48,213 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 16:23:48,292 views 20376 6195654656 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:48,371 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 16:23:48,450 views 20376 6195654656 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 16:23:48,530 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 16:23:48,610 views 20376 6195654656 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:48,680 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-07 16:23:48,750 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 16:23:48,817 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 16:23:48,885 views 20376 6195654656 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:48,948 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 16:23:49,010 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:49,081 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-07 16:23:49,151 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 16:23:49,232 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 16:23:49,312 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 16:23:49,393 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.37)
+INFO 2025-10-07 16:23:49,474 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-07 16:23:49,554 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 16:23:49,634 views 20376 6195654656 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:49,701 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 16:23:49,768 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 16:23:49,857 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-07 16:23:49,946 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-07 16:23:50,036 models 20376 6195654656 Precificação - Serviço: TOUR REGULAR BOULEVARD OLÍMPICO PANORÂMICO COM VLT... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-07 16:23:50,126 views 20376 6195654656 🔄 Atualização - TOUR REGULAR BOULEVARD OLÍMPIC... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-07 16:23:50,205 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 16:23:50,285 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:50,376 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-07 16:23:50,466 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 81.00
+INFO 2025-10-07 16:23:50,577 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT REGULAR BÚZIOS (ARMAÇÃO, JOÃO FERNAND... | PAX: 3 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 16:23:50,688 views 20376 6195654656 🔄 Atualização - TRANSFER OUT REGULAR BÚZIOS (A... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-07 16:23:50,767 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 16:23:50,846 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:50,925 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 16:23:51,003 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:51,084 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BARRA DA TIJUCA PAR... | PAX: 3 | Veículo: Executivo | Preço: R$ 240.00 | Fonte: padrão (PAX: 3)
+INFO 2025-10-07 16:23:51,165 views 20376 6195654656 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 240.00
+INFO 2025-10-07 16:23:51,259 models 20376 6195654656 Precificação - Serviço: TOUR REGULAR UM DIA NO RIO: PÃO DE AÇÚCAR, CORCOVA... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 16:23:51,352 views 20376 6195654656 🔄 Atualização - TOUR REGULAR UM DIA NO RIO: PÃ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 16:23:51,432 models 20376 6195654656 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 16:23:51,510 views 20376 6195654656 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:51,577 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 16:23:51,644 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 16:23:51,723 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 16:23:51,802 views 20376 6195654656 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:51,881 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 16:23:51,961 views 20376 6195654656 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 16:23:52,028 models 20376 6195654656 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 16:23:52,095 views 20376 6195654656 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 16:23:52,163 models 20376 6195654656 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 16:23:52,231 views 20376 6195654656 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 16:23:52,233 views 20376 6195654656 🔄 Recalculando totais de 9 grupos...
+INFO 2025-10-07 16:23:52,252 views 20376 6195654656 📊 ESTATÍSTICAS DA PRECIFICAÇÃO:
+INFO 2025-10-07 16:23:52,252 views 20376 6195654656    • Tarifário JW: 0 serviços
+INFO 2025-10-07 16:23:52,252 views 20376 6195654656    • Tarifário Motoristas: 42 serviços
+INFO 2025-10-07 16:23:52,252 views 20376 6195654656    • Preços padrão: 8 serviços
+INFO 2025-10-07 16:23:52,252 views 20376 6195654656    • Valor total: R$ 4,965.00
+INFO 2025-10-07 16:23:52,252 views 20376 6195654656    • Valor médio por serviço: R$ 99.30
+INFO 2025-10-07 16:23:52,252 basehttp 20376 6195654656 "POST /escalas/precificar/02-10-2025/ HTTP/1.1" 200 361
+WARNING 2025-10-07 16:23:52,466 log 20376 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:23:52,466 basehttp 20376 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 16:23:54,355 basehttp 20376 6195654656 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 529987
+INFO 2025-10-07 16:23:57,159 views 20376 6195654656 🚀 INICIANDO ESCALAR - Sistema de otimização avançado para escala 55
+INFO 2025-10-07 16:23:57,159 views 20376 6195654656 📋 Resetando status de todas as alocações para 'Não alocado'
+INFO 2025-10-07 16:23:57,174 views 20376 6195654656 ✅ ETAPA 1 - Encontrados 14 candidatos (4-10 PAX)
+INFO 2025-10-07 16:23:57,174 views 20376 6195654656 ✅ ETAPA 2 - Prioritários: 14 | Não prioritários: 0
+INFO 2025-10-07 16:23:57,174 views 20376 6195654656 🎯 ETAPA 3 - Alocando serviços prioritários...
+INFO 2025-10-07 16:23:57,176 views 20376 6195654656 ✅ ALOCADO: HOTELBEDS (4 PAX) -> VAN1 #1
+INFO 2025-10-07 16:23:57,177 views 20376 6195654656 ✅ ALOCADO: HOTELBEDS (5 PAX) -> VAN1 #1
+INFO 2025-10-07 16:23:57,177 views 20376 6195654656 ✅ ALOCADO: HOTELBEDS (5 PAX) -> VAN2 #1
+INFO 2025-10-07 16:23:57,178 views 20376 6195654656 ✅ ALOCADO: HOTELBEDS (4 PAX) -> VAN1 #2
+INFO 2025-10-07 16:23:57,178 views 20376 6195654656 ✅ ALOCADO: FRT OPERADORA DE TURISMO (4 PAX) -> VAN2 #1
+INFO 2025-10-07 16:23:57,179 views 20376 6195654656 ✅ ALOCADO: AZUL VIAGENS (8 PAX) -> VAN1 #3
+INFO 2025-10-07 16:23:57,180 views 20376 6195654656 ✅ ALOCADO: ORINTER (6 PAX) -> VAN2 #2
+INFO 2025-10-07 16:23:57,180 views 20376 6195654656 ✅ ETAPA 3 - 7/14 prioritários alocados
+INFO 2025-10-07 16:23:57,180 views 20376 6195654656 🔄 ETAPA 4 - Tentando alocar não prioritários nos intervalos livres...
+INFO 2025-10-07 16:23:57,180 views 20376 6195654656 ✅ ETAPA 4 - 0/0 não prioritários alocados
+INFO 2025-10-07 16:23:57,181 views 20376 6195654656 🔧 ETAPA 5 - Preenchendo furos com serviços de 1-3 PAX...
+INFO 2025-10-07 16:23:57,190 views 20376 6195654656 ✅ ETAPA 5 - Encontrados 23 candidatos pequenos (1-3 PAX)
+INFO 2025-10-07 16:23:57,191 views 20376 6195654656 ✅ ALOCADO: HOTELBEDS (2 PAX) -> VAN2 #1
+INFO 2025-10-07 16:23:57,193 views 20376 6195654656 ✅ ETAPA 5 - 1/23 serviços pequenos alocados
+INFO 2025-10-07 16:23:57,193 views 20376 6195654656    📊 Prioritários: 1
+INFO 2025-10-07 16:23:57,193 views 20376 6195654656    📊 Não prioritários: 0
+INFO 2025-10-07 16:23:57,195 views 20376 6195654656 🎉 ESCALAR CONCLUÍDO!
+INFO 2025-10-07 16:23:57,195 views 20376 6195654656    📊 Alocados: 14
+INFO 2025-10-07 16:23:57,195 views 20376 6195654656    📊 Não alocados: 36
+INFO 2025-10-07 16:23:57,195 views 20376 6195654656    📊 Van 1: 10 serviços
+INFO 2025-10-07 16:23:57,196 views 20376 6195654656    📊 Van 2: 4 serviços
+INFO 2025-10-07 16:23:57,198 basehttp 20376 6195654656 "POST /escalas/visualizar/02-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 16:23:57,244 basehttp 20376 6195654656 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 500407
+WARNING 2025-10-07 16:24:57,290 log 20376 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:24:57,291 basehttp 20376 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 16:25:57,285 log 20376 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:25:57,287 basehttp 20376 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 16:26:39,180 basehttp 20376 6195654656 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 1072
+INFO 2025-10-07 16:26:41,340 basehttp 20376 6195654656 "GET /escalas/api/tarifarios/ HTTP/1.1" 302 0
+INFO 2025-10-07 16:26:41,372 basehttp 20376 6195654656 "GET /auth/login/?next=/escalas/api/tarifarios/ HTTP/1.1" 200 12318
+INFO 2025-10-07 16:26:51,889 basehttp 20376 6195654656 "GET /escalas/api/tarifarios/ HTTP/1.1" 302 0
+INFO 2025-10-07 16:26:51,917 basehttp 20376 6195654656 "GET /auth/login/?next=/escalas/api/tarifarios/ HTTP/1.1" 200 12318
+WARNING 2025-10-07 16:26:57,279 log 20376 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:26:57,280 basehttp 20376 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 16:27:03,646 basehttp 20376 6195654656 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 16:27:03,651 basehttp 20376 6195654656 "GET /auth/login/?next=/escalas/visualizar/02-10-2025/ HTTP/1.1" 200 12318
+INFO 2025-10-07 16:27:09,011 basehttp 20376 6195654656 "POST /auth/login/?next=/escalas/visualizar/02-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 16:27:09,014 views 20376 6195654656 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 16:27:09,027 basehttp 20376 6195654656 "GET /core/ HTTP/1.1" 200 55631
+INFO 2025-10-07 16:27:10,545 basehttp 20376 6195654656 "GET /escalas/ HTTP/1.1" 200 32860
+INFO 2025-10-07 16:27:12,021 basehttp 20376 6195654656 "GET /escalas/ano/2025/ HTTP/1.1" 200 44935
+INFO 2025-10-07 16:27:13,644 basehttp 20376 6195654656 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 60095
+INFO 2025-10-07 16:27:17,819 basehttp 20376 6195654656 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 499848
+INFO 2025-10-07 16:27:21,328 basehttp 20376 6195654656 "GET /escalas/api/tarifarios/ HTTP/1.1" 200 6005
+WARNING 2025-10-07 16:28:18,599 log 20376 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:28:18,601 basehttp 20376 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 16:28:48,931 basehttp 20376 6195654656 "GET /escalas/exportar/02-10-2025/ HTTP/1.1" 200 8369
+WARNING 2025-10-07 16:29:17,872 log 20376 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:29:17,873 basehttp 20376 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-07 16:29:34,972 views 20376 6195654656 Dashboard carregado do cache
+INFO 2025-10-07 16:29:34,978 basehttp 20376 6195654656 "GET /core/ HTTP/1.1" 200 55069
+INFO 2025-10-07 16:29:40,684 autoreload 20376 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/fretamento_project/settings.py changed, reloading.
+INFO 2025-10-07 16:29:41,435 autoreload 21327 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-07 16:30:35,621 log 21327 6130806784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:30:35,622 basehttp 21327 6130806784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+ERROR 2025-10-07 16:31:16,452 log 21327 6130806784 Internal Server Error: /core/simulador-precos/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views_tarifarios.py", line 96, in simulador_precos
+    return render(request, 'core/simulador_precos.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 484, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 698, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 606, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'currency'
+ERROR 2025-10-07 16:31:16,454 basehttp 21327 6130806784 "GET /core/simulador-precos/ HTTP/1.1" 500 232232
+ERROR 2025-10-07 16:31:18,824 log 21327 6130806784 Internal Server Error: /core/simulador-precos/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views_tarifarios.py", line 96, in simulador_precos
+    return render(request, 'core/simulador_precos.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 484, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 698, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 606, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'currency'
+ERROR 2025-10-07 16:31:18,825 basehttp 21327 6130806784 "GET /core/simulador-precos/ HTTP/1.1" 500 232369
+INFO 2025-10-07 16:31:21,909 basehttp 21327 6130806784 "GET /core/diagnostico/ HTTP/1.1" 200 56725
+INFO 2025-10-07 16:31:25,047 basehttp 21327 6130806784 "GET /core/tarifarios/ HTTP/1.1" 200 127162
+ERROR 2025-10-07 16:31:28,901 log 21327 6130806784 Internal Server Error: /core/simulador-precos/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views_tarifarios.py", line 96, in simulador_precos
+    return render(request, 'core/simulador_precos.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 953, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 484, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 482, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 600, in compile_filter
+    return FilterExpression(token, self)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 698, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 606, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'currency'
+ERROR 2025-10-07 16:31:28,902 basehttp 21327 6130806784 "GET /core/simulador-precos/ HTTP/1.1" 500 232232
+INFO 2025-10-07 16:31:32,315 views 21327 6130806784 Lista Arquivos - Total arquivos: 3, Total serviços: 681
+INFO 2025-10-07 16:31:32,315 views 21327 6130806784 Hora formatada: 07/10/2025 às 19:31
+INFO 2025-10-07 16:31:32,319 basehttp 21327 6130806784 "GET /core/arquivos/ HTTP/1.1" 200 61194
+INFO 2025-10-07 16:31:35,373 basehttp 21327 6130806784 "GET /escalas/gerenciar/ HTTP/1.1" 200 32860
+INFO 2025-10-07 16:31:39,023 basehttp 21327 6130806784 "GET /core/upload/ HTTP/1.1" 200 28668
+WARNING 2025-10-07 16:32:41,613 log 21327 6130806784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:32:41,616 basehttp 21327 6130806784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 16:33:41,605 log 21327 6130806784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:33:41,606 basehttp 21327 6130806784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 16:34:41,612 log 21327 6130806784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:34:41,615 basehttp 21327 6130806784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 16:35:41,622 log 21327 6130806784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:35:41,625 basehttp 21327 6130806784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 16:36:41,605 log 21327 6130806784 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 16:36:41,606 basehttp 21327 6130806784 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
