@@ -1,0 +1,28 @@
+site_name: Documentação Fretamento
+site_description: Portal técnico do sistema de gestão de escalas
+site_author: Equipe de Fretamento
+repo_url: https://example.com/repo
+nav:
+  - Início: index.md
+  - Arquitetura: architecture.md
+  - Performance: performance.md
+  - Segurança: security.md
+  - Deploy: deployment.md
+  - Diagramas:
+      - Visão Geral: diagrams/README.md
+      - Arquitetura (Mermaid): diagrams/architecture.mmd
+      - Fluxo de Requisição: diagrams/request-flow.mmd
+theme:
+  name: mkdocs
+  language: pt
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.details
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://example.com/repo

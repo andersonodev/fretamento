@@ -1,0 +1,21 @@
+%% Fluxo de interação para gerenciamento de escalas
+sequenceDiagram
+    participant U as Usuário
+    participant A as Django Auth
+    participant G as GerenciarEscalasView
+    participant V as VisualizarEscalaView
+    participant S as Services
+    participant DB as SQLite
+
+    U->>A: Login
+    A-->>U: Sessão autenticada
+    U->>G: GET /escalas/<ano>/<mes>
+    G->>DB: Consulta agregada (annotate)
+    G-->>U: Lista de escalas com totais
+    U->>V: GET /escalas/<data>
+    V->>DB: Prefetch alocações/grupos
+    V-->>U: Detalhes otimizados
+    U->>V: POST acao=agrupar/otimizar
+    V->>S: Executa regras de negócio
+    S->>DB: Atualiza registros
+    V-->>U: Mensagem de sucesso
