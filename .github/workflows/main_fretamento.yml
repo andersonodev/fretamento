@@ -22,7 +22,7 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: '3.11'
 
       - name: Create and start virtual environment
         run: |
@@ -30,9 +30,30 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r requirements.txt
-        
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+        run: |
+          source venv/bin/activate
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Collect static files (Django)
+        run: |
+          source venv/bin/activate
+          python manage.py collectstatic --noinput --clear
+        env:
+          DEBUG: False
+          USE_DOCKER: False
+          SECRET_KEY: 'django-insecure-build-key-temp-12345'
+          DJANGO_SETTINGS_MODULE: 'fretamento_project.settings'
+      
+      - name: Run Django checks
+        run: |
+          source venv/bin/activate
+          python manage.py check --deploy
+        env:
+          DEBUG: False
+          USE_DOCKER: False
+          SECRET_KEY: 'django-insecure-build-key-temp-12345'
+          DJANGO_SETTINGS_MODULE: 'fretamento_project.settings'
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
@@ -45,6 +66,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
       - name: Download artifact from build job
