@@ -1442,16 +1442,6 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
 
             return redirect('escalas:visualizar_escala', data=data)
 
-        elif acao == 'teste':
-            print("=== TESTE EXECUTADO COM SUCESSO ===")
-            messages.success(request, '🔥 TESTE: Botão funcionando perfeitamente!')
-            return redirect('escalas:visualizar_escala', data=data)
-            
-        elif acao == 'debug':
-            print("=== DEBUG EXECUTADO COM SUCESSO ===")
-            messages.info(request, '🛠️ DEBUG: Formulário com input hidden funcionando!')
-            return redirect('escalas:visualizar_escala', data=data)
-
         elif acao in {'otimizar', 'escalar'}:
             print("=== PROCESSANDO ESCALONAMENTO ===")
             print(f"Etapa da escala: '{escala.etapa}'")

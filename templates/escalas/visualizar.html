@@ -44,25 +44,6 @@
                                 <span class="button-text ms-1">Agrupar</span>
                             </button>
                         </form>
-                        <form method="post" class="d-inline" id="form-teste">
-                            {% csrf_token %}
-                            <button type="submit" name="acao" value="teste" class="btn btn-success" id="btn-teste">
-                                <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
-                                <i class="fas fa-bug button-icon"></i>
-                                <span class="button-text ms-1">Teste</span>
-                            </button>
-                        </form>
-                        
-                        <!-- Formulário super simples para debug -->
-                        <form method="post" class="d-inline" id="form-debug">
-                            {% csrf_token %}
-                            <input type="hidden" name="acao" value="debug">
-                            <button type="submit" class="btn btn-warning" id="btn-debug">
-                                <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
-                                <i class="fas fa-cog button-icon"></i>
-                                <span class="button-text ms-1">Debug</span>
-                            </button>
-                        </form>
                         <form method="post" class="d-inline" id="form-escalar">
                             {% csrf_token %}
                             <button type="submit" name="acao" value="otimizar" class="btn btn-warning" id="btn-escalar">
@@ -979,8 +960,6 @@ function setButtonLoading(button, isLoading, customText = null) {
                 'btn-agrupar': 'Agrupar',
                 'btn-escalar': 'Escalar',
                 'btn-precificar': 'Precificar',
-                'btn-teste': 'Teste',
-                'btn-debug': 'Debug',
                 'btn-confirmar-exclusao': 'Excluir Escala'
             };
             
@@ -992,7 +971,7 @@ function setButtonLoading(button, isLoading, customText = null) {
 
 // Reset do estado dos botões quando a página é descarregada
 window.addEventListener('beforeunload', function() {
-    const actionButtons = ['btn-agrupar', 'btn-escalar', 'btn-precificar', 'btn-teste', 'btn-debug'];
+    const actionButtons = ['btn-agrupar', 'btn-escalar', 'btn-precificar'];
     
     actionButtons.forEach(buttonId => {
         const button = document.getElementById(buttonId);
@@ -1004,8 +983,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listeners específicos para os formulários de ação
     const formAgrupar = document.getElementById('form-agrupar');
     const formEscalar = document.getElementById('form-escalar');
-    const formTeste = document.getElementById('form-teste');
-    const formDebug = document.getElementById('form-debug');
     
     // Verificar se elementos existem antes de adicionar listeners
     if (formAgrupar) {
@@ -1090,25 +1067,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         console.warn('Botão Escalar NÃO encontrado');
-    }
-    
-    // Event listeners para outros formulários
-    if (formTeste) {
-        formTeste.addEventListener('submit', function(e) {
-            const btnTeste = document.getElementById('btn-teste');
-            if (btnTeste) {
-                setButtonLoading(btnTeste, true, 'Testando...');
-            }
-        });
-    }
-    
-    if (formDebug) {
-        formDebug.addEventListener('submit', function(e) {
-            const btnDebug = document.getElementById('btn-debug');
-            if (btnDebug) {
-                setButtonLoading(btnDebug, true, 'Executando debug...');
-            }
-        });
     }
     
     // Event listener para o botão precificar (não é um form submit)

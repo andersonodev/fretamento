@@ -9521,3 +9521,139 @@ INFO 2025-10-07 15:24:41,623 basehttp 13090 6185873408 "POST /escalas/agrupar-se
 INFO 2025-10-07 15:24:42,700 basehttp 13090 6169047040 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 516954
 INFO 2025-10-07 15:24:50,850 basehttp 13090 6169047040 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
 INFO 2025-10-07 15:24:51,961 basehttp 13090 6169047040 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 513763
+INFO 2025-10-07 15:26:01,063 autoreload 13445 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 15:26:03,277 basehttp 13445 6132543488 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 513763
+INFO 2025-10-07 15:26:04,719 basehttp 13445 6132543488 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 577
+INFO 2025-10-07 15:26:13,576 views 13445 6131970048 🚀 INICIANDO PRECIFICAÇÃO INTELIGENTE - Escala 2025-10-08
+INFO 2025-10-07 15:26:13,580 views 13445 6131970048 📋 Total de alocações a precificar: 57
+INFO 2025-10-07 15:26:13,694 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 15:26:13,783 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:13,857 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 15:26:13,927 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 15:26:13,995 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 15:26:14,063 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 15:26:14,146 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 34 | Veículo: Ônibus | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 15:26:14,227 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Ônibus | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 15:26:14,308 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 15:26:14,389 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:14,457 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 15:26:14,526 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:14,609 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 15:26:14,691 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 15:26:14,760 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 15:26:14,829 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 15:26:14,943 models 13445 6131970048 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 3 | Veículo: Executivo | Preço: R$ 400.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 15:26:15,101 views 13445 6131970048 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 400.00
+INFO 2025-10-07 15:26:15,171 models 13445 6131970048 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 15:26:15,240 views 13445 6131970048 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 15:26:15,311 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR CENTRO RJ PARA AEROPORTO INTE... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-07 15:26:15,380 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR CENTRO RJ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-07 15:26:15,450 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 15:26:15,520 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 15:26:15,595 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 15:26:15,670 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 15:26:15,751 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 15:26:15,832 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:15,914 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BARRA DA TIJUCA PAR... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 15:26:15,998 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 15:26:16,071 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR CENTRO RJ PARA AEROPORTO INTE... | PAX: 3 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-07 15:26:16,143 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR CENTRO RJ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-07 15:26:16,225 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 15:26:16,307 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:16,388 models 13445 6131970048 Precificação - Serviço: UM DIA NO RIO REGULAR: PÃO DE AÇÚCAR, CORCOVADO EM... | PAX: 10 | Veículo: Van 15 lugares | Preço: R$ 570.00 | Fonte: padrão (PAX: 10)
+INFO 2025-10-07 15:26:16,469 views 13445 6131970048 🔄 Atualização - UM DIA NO RIO REGULAR: PÃO DE ... | N/A → Van 15 lugares | R$ 0.00 → R$ 570.00
+INFO 2025-10-07 15:26:16,550 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 15:26:16,633 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:16,702 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 15:26:16,770 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:16,844 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-07 15:26:16,918 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-07 15:26:16,983 models 13445 6131970048 Precificação - Serviço: TOUR REGULAR HERANÇAS EUROPEIAS PELO CENTRO DO RIO... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.45)
+INFO 2025-10-07 15:26:17,048 views 13445 6131970048 🔄 Atualização - TOUR REGULAR HERANÇAS EUROPEIA... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 15:26:17,130 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 15:26:17,212 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 15:26:17,284 models 13445 6131970048 Precificação - Serviço: TOUR PRIVATIVO PÃO DE AÇÚCAR C/ VISITA CENTRO RIO ... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 400.00 | Fonte: Motoristas (sim: 0.43)
+INFO 2025-10-07 15:26:17,356 views 13445 6131970048 🔄 Atualização - TOUR PRIVATIVO PÃO DE AÇÚCAR C... | N/A → Van 15 lugares | R$ 0.00 → R$ 400.00
+INFO 2025-10-07 15:26:17,396 models 13445 6131970048 Precificação - Serviço: TRANSFER ENTRE BAIRROS (POR VEÍCULO E POR TRECHO)... | PAX: 1 | Veículo: Executivo | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 15:26:17,437 views 13445 6131970048 🔄 Atualização - TRANSFER ENTRE BAIRROS (POR VE... | N/A → Executivo | R$ 0.00 → R$ 326.00
+INFO 2025-10-07 15:26:17,518 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 15:26:17,598 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:17,679 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 15:26:17,761 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:17,841 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 15:26:17,923 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:17,992 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 15:26:18,060 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:18,129 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 15:26:18,197 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:18,267 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 15:26:18,335 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:18,442 models 13445 6131970048 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 2 | Veículo: Executivo | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 15:26:18,597 views 13445 6131970048 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 103.00
+INFO 2025-10-07 15:26:18,689 models 13445 6131970048 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-07 15:26:18,782 views 13445 6131970048 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-07 15:26:18,851 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 15:26:18,920 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:19,001 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 15:26:19,082 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 15:26:19,159 models 13445 6131970048 Precificação - Serviço: TRANSFER IN PRIVATIVO AEROPORTO SANTOS DUMONT (SDU... | PAX: 1 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 15:26:19,237 views 13445 6131970048 🔄 Atualização - TRANSFER IN PRIVATIVO AEROPORT... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-07 15:26:19,320 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BARRA DA TIJUCA PAR... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-07 15:26:19,402 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-07 15:26:19,472 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 15:26:19,540 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:19,628 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 15:26:19,714 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 15:26:19,795 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 15:26:19,875 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:19,967 models 13445 6131970048 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-07 15:26:20,059 views 13445 6131970048 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-07 15:26:20,082 models 13445 6131970048 Precificação - Serviço: Disposição 06h... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 209.00 | Fonte: Motoristas (sim: 1.00)
+INFO 2025-10-07 15:26:20,104 views 13445 6131970048 🔄 Atualização - Disposição 06h... | N/A → Van 15 lugares | R$ 0.00 → R$ 209.00
+INFO 2025-10-07 15:26:20,211 models 13445 6131970048 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 15:26:20,319 views 13445 6131970048 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 103.00
+INFO 2025-10-07 15:26:20,388 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 15:26:20,457 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:20,532 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BÚZIOS PARA AEROPOR... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-07 15:26:20,607 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-07 15:26:20,628 models 13445 6131970048 Precificação - Serviço: Disposição 04h... | PAX: 2 | Veículo: Executivo | Preço: R$ 170.00 | Fonte: Motoristas (sim: 1.00)
+INFO 2025-10-07 15:26:20,650 views 13445 6131970048 🔄 Atualização - Disposição 04h... | N/A → Executivo | R$ 0.00 → R$ 170.00
+INFO 2025-10-07 15:26:20,731 models 13445 6131970048 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-07 15:26:20,811 views 13445 6131970048 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 15:26:20,846 models 13445 6131970048 Precificação - Serviço: INGRESSO TREM DO CORCOVADO... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 600.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-07 15:26:20,881 views 13445 6131970048 🔄 Atualização - INGRESSO TREM DO CORCOVADO... | N/A → Van 15 lugares | R$ 0.00 → R$ 600.00
+INFO 2025-10-07 15:26:20,962 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 15:26:21,044 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:21,125 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 15:26:21,207 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:21,276 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-07 15:26:21,346 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-07 15:26:21,427 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 15:26:21,509 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:21,590 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 15:26:21,671 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:21,788 models 13445 6131970048 Precificação - Serviço: NOVO: TRANSFER REGULAR IN AEROPORTO INTER. GALEÃO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-07 15:26:21,906 views 13445 6131970048 🔄 Atualização - NOVO: TRANSFER REGULAR IN AERO... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-07 15:26:21,975 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 15:26:22,044 views 13445 6131970048 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:22,109 models 13445 6131970048 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-07 15:26:22,173 views 13445 6131970048 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:22,255 models 13445 6131970048 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-07 15:26:22,336 views 13445 6131970048 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-07 15:26:22,338 views 13445 6131970048 🔄 Recalculando totais de 2 grupos...
+INFO 2025-10-07 15:26:22,347 views 13445 6131970048 📊 ESTATÍSTICAS DA PRECIFICAÇÃO:
+INFO 2025-10-07 15:26:22,347 views 13445 6131970048    • Tarifário JW: 0 serviços
+INFO 2025-10-07 15:26:22,347 views 13445 6131970048    • Tarifário Motoristas: 49 serviços
+INFO 2025-10-07 15:26:22,347 views 13445 6131970048    • Preços padrão: 8 serviços
+INFO 2025-10-07 15:26:22,347 views 13445 6131970048    • Valor total: R$ 7,118.00
+INFO 2025-10-07 15:26:22,347 views 13445 6131970048    • Valor médio por serviço: R$ 124.88
+INFO 2025-10-07 15:26:22,348 basehttp 13445 6131970048 "POST /escalas/precificar/08-10-2025/ HTTP/1.1" 200 364
+INFO 2025-10-07 15:26:24,460 basehttp 13445 6131970048 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 555754
+INFO 2025-10-07 15:26:29,896 basehttp 13445 6131970048 "GET /escalas/api/tarifarios/ HTTP/1.1" 200 6005
+INFO 2025-10-07 15:26:54,342 basehttp 13445 6131970048 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 55351
+INFO 2025-10-07 15:26:58,336 basehttp 13445 6131970048 "GET /escalas/exportar/08-10-2025/ HTTP/1.1" 200 10729
+INFO 2025-10-07 15:27:03,667 basehttp 13445 6131970048 "GET /escalas/exportar-mes/2025/10/ HTTP/1.1" 200 13001
+INFO 2025-10-07 15:27:21,005 autoreload 13445 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 15:27:21,571 autoreload 13588 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 15:27:36,203 autoreload 13684 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 15:27:57,221 autoreload 13775 8529070080 Watching for file changes with StatReloader
