@@ -1,0 +1,288 @@
+/* Estilos customizados para a documentação */
+
+:root {
+  --md-primary-fg-color: #1976d2;
+  --md-primary-fg-color--light: #42a5f5;
+  --md-primary-fg-color--dark: #1565c0;
+  --md-accent-fg-color: #2196f3;
+  --md-code-hl-color: rgba(25, 118, 210, 0.1);
+}
+
+/* Melhoria nos diagramas Mermaid */
+.mermaid {
+  background-color: transparent !important;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para cards de feature */
+.feature-card {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border: 1px solid #1976d2;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(25, 118, 210, 0.25);
+}
+
+.feature-card h3 {
+  color: #1565c0;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feature-card .icon {
+  font-size: 1.5em;
+  margin-right: 0.5rem;
+}
+
+/* Melhorias nos blocos de código */
+.highlight pre {
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+/* Estilo para badges */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0.25rem;
+}
+
+.badge-success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.badge-warning {
+  background-color: #ff9800;
+  color: white;
+}
+
+.badge-danger {
+  background-color: #f44336;
+  color: white;
+}
+
+.badge-info {
+  background-color: #2196f3;
+  color: white;
+}
+
+/* Grid responsivo para cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Estilo para estatísticas */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.stat {
+  flex: 1;
+  min-width: 200px;
+  padding: 1rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  border-radius: 8px;
+  border-left: 4px solid #1976d2;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1976d2;
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Melhorias em tabelas */
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.md-typeset table:not([class]) th {
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+}
+
+.md-typeset table:not([class]) tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Estilo para call-to-action */
+.cta {
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  margin: 2rem 0;
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.3);
+}
+
+.cta h3 {
+  margin-top: 0;
+  color: white;
+}
+
+.cta .btn {
+  background-color: white;
+  color: #1976d2;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.cta .btn:hover {
+  transform: translateY(-2px);
+  color: #1976d2;
+}
+
+/* Estilo para timeline */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #1976d2;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -0.5rem;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  background: #1976d2;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 0 3px #1976d2;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats {
+    flex-direction: column;
+  }
+  
+  .stat {
+    min-width: unset;
+  }
+}
+
+/* Animações suaves */
+.md-nav__link {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.md-search__result {
+  transition: background-color 0.2s ease;
+}
+
+/* Estilo para notas importantes */
+.admonition.note {
+  border-left-color: #1976d2;
+}
+
+.admonition.tip {
+  border-left-color: #4caf50;
+}
+
+.admonition.warning {
+  border-left-color: #ff9800;
+}
+
+.admonition.danger {
+  border-left-color: #f44336;
+}
+
+/* Melhorias na navegação */
+.md-tabs__link {
+  font-weight: 500;
+}
+
+.md-tabs__link--active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilo para código inline */
+.md-typeset code {
+  background-color: rgba(25, 118, 210, 0.1);
+  color: #1565c0;
+  border-radius: 4px;
+  padding: 0.1rem 0.3rem;
+}
+
+/* Print styles */
+@media print {
+  .mermaid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .feature-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

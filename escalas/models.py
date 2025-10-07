@@ -37,6 +37,13 @@ class Escala(models.Model):
         ordering = ['data']
         verbose_name = 'Escala'
         verbose_name_plural = 'Escalas'
+        indexes = [
+            models.Index(fields=['data']),
+            models.Index(fields=['etapa']),
+            models.Index(fields=['status']),
+            models.Index(fields=['data', 'etapa']),
+            models.Index(fields=['created_at']),
+        ]
     
     def __str__(self):
         return f"Escala {self.data.strftime('%d/%m/%Y')} - {self.get_etapa_display()}"
@@ -120,6 +127,16 @@ class GrupoServico(models.Model):
         ordering = ['van', 'ordem']
         verbose_name = 'Grupo de Serviços'
         verbose_name_plural = 'Grupos de Serviços'
+        # Índices para otimização de performance
+        indexes = [
+            models.Index(fields=['escala']),
+            models.Index(fields=['van']),
+            models.Index(fields=['ordem']),
+            models.Index(fields=['escala', 'van']),
+            models.Index(fields=['van', 'ordem']),
+            models.Index(fields=['created_at']),
+            models.Index(fields=['updated_at']),
+        ]
     
     def __str__(self):
         return f"{self.cliente_principal} - {self.van} ({self.servicos.count()} serviços)"
@@ -208,6 +225,11 @@ class ServicoGrupo(models.Model):
     class Meta:
         verbose_name = 'Serviço no Grupo'
         verbose_name_plural = 'Serviços nos Grupos'
+        # Índices para otimização de performance
+        indexes = [
+            models.Index(fields=['grupo']),
+            models.Index(fields=['alocacao']),
+        ]
     
     @property
     def servico(self):
@@ -257,6 +279,16 @@ class AlocacaoVan(models.Model):
         unique_together = ['escala', 'servico']
         verbose_name = 'Alocação Van'
         verbose_name_plural = 'Alocações Van'
+        # Índices para otimização de performance
+        indexes = [
+            models.Index(fields=['escala']),
+            models.Index(fields=['van']),
+            models.Index(fields=['ordem']),
+            models.Index(fields=['status_alocacao']),
+            models.Index(fields=['escala', 'van']),
+            models.Index(fields=['van', 'ordem']),
+            models.Index(fields=['escala', 'status_alocacao']),
+        ]
     
     def __str__(self):
         return f"{self.servico.cliente} - {self.van} (Ordem: {self.ordem})"
@@ -433,6 +465,16 @@ class LogEscala(models.Model):
         ordering = ['-timestamp']
         verbose_name = 'Log de Escala'
         verbose_name_plural = 'Logs de Escalas'
+        # Índices para otimização de performance
+        indexes = [
+            models.Index(fields=['escala']),
+            models.Index(fields=['acao']),
+            models.Index(fields=['usuario']),
+            models.Index(fields=['timestamp']),
+            models.Index(fields=['escala', 'acao']),
+            models.Index(fields=['escala', 'timestamp']),
+            models.Index(fields=['usuario', 'timestamp']),
+        ]
     
     def __str__(self):
         return f"{self.get_acao_display()} - {self.escala.data.strftime('%d/%m/%Y')} por {self.usuario.username if self.usuario else 'Sistema'}"

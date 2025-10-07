@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from . import views_tarifarios
+from .health_views import HealthCheckView, MetricsView
 from escalas.views import ApiTarifariosView
 
 app_name = 'core'
@@ -27,4 +28,8 @@ urlpatterns = [
     path('historico-calculos/', views_tarifarios.historico_calculos, name='historico_calculos'),
     path('api/calcular-preco/', views_tarifarios.api_calcular_preco, name='api_calcular_preco'),
     path('api/tarifarios/', ApiTarifariosView.as_view(), name='api_tarifarios'),
+    
+    # Health Check e Métricas
+    path('health/', HealthCheckView.as_view(), name='health_check'),
+    path('metrics/', MetricsView.as_view(), name='metrics'),
 ]

@@ -8518,3 +8518,1006 @@ WARNING 2025-10-07 13:22:04,506 log 96667 6166786048 Not Found: /api/dashboard/u
 WARNING 2025-10-07 13:22:04,509 basehttp 96667 6166786048 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
 WARNING 2025-10-07 13:23:04,503 log 96667 6166786048 Not Found: /api/dashboard/updates/
 WARNING 2025-10-07 13:23:04,505 basehttp 96667 6166786048 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 14:23:08,427 autoreload 6861 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-07 14:23:25,571 log 6861 6197555200 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:23:25,571 basehttp 6861 6197555200 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 14:23:46,133 basehttp 6861 6197555200 "GET /escalas/visualizar/07-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 14:23:46,143 basehttp 6861 6197555200 "GET /auth/login/?next=/escalas/visualizar/07-10-2025/ HTTP/1.1" 200 12318
+INFO 2025-10-07 14:23:49,498 basehttp 6861 6197555200 "POST /auth/login/?next=/escalas/visualizar/07-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 14:23:49,501 views 6861 6197555200 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 14:23:49,516 basehttp 6861 6197555200 "GET /core/ HTTP/1.1" 200 53088
+INFO 2025-10-07 14:23:51,655 basehttp 6861 6197555200 "GET /escalas/ HTTP/1.1" 200 32569
+INFO 2025-10-07 14:23:53,116 basehttp 6861 6197555200 "GET /escalas/ano/2025/ HTTP/1.1" 200 44651
+INFO 2025-10-07 14:23:54,839 basehttp 6861 6197555200 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 50611
+INFO 2025-10-07 14:24:03,452 views 6861 6197555200 🔍 Verificação de senha iniciada para usuário: cristiane.aguiar
+INFO 2025-10-07 14:24:03,453 views 6861 6197555200 📊 Dados recebidos - Usuário: cristiane.aguiar, Data escala: 01-10-2025
+INFO 2025-10-07 14:24:03,551 views 6861 6197555200 🔐 Resultado verificação senha: ✅ Correta
+INFO 2025-10-07 14:24:03,551 basehttp 6861 6197555200 "POST /escalas/verificar-senha-exclusao/ HTTP/1.1" 200 111
+WARNING 2025-10-07 14:24:03,564 views 6861 6197555200 🗑️ EXCLUSÃO DE ESCALA INICIADA | Data: 01/10/2025 | Etapa: OTIMIZADA | Serviços: 57 | Usuário: cristiane.aguiar | IP: 127.0.0.1
+ERROR 2025-10-07 14:24:03,568 views 6861 6197555200 ❌ ESCALA EXCLUÍDA COM SUCESSO | Data: 01/10/2025 | Total serviços excluídos: 57 | Era otimizada: Sim | Usuário responsável: cristiane.aguiar | IP: 127.0.0.1
+INFO 2025-10-07 14:24:03,569 basehttp 6861 6197555200 "POST /escalas/excluir/01-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 14:24:03,572 basehttp 6861 6197555200 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 45972
+INFO 2025-10-07 14:24:07,107 basehttp 6861 6197555200 "GET /escalas/ano/2025/ HTTP/1.1" 200 43899
+INFO 2025-10-07 14:24:09,265 basehttp 6861 6197555200 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 45301
+INFO 2025-10-07 14:24:11,736 basehttp 6861 6197555200 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 14:24:11,761 basehttp 6861 6197555200 "GET /escalas/visualizar/2025-10-01/ HTTP/1.1" 200 165956
+INFO 2025-10-07 14:24:13,051 basehttp 6861 6197555200 "GET /escalas/puxar-dados/01-10-2025/ HTTP/1.1" 200 34082
+INFO 2025-10-07 14:24:16,119 basehttp 6861 6197555200 "POST /escalas/puxar-dados/01-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 14:24:16,180 basehttp 6861 6197555200 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 529532
+WARNING 2025-10-07 14:25:16,530 log 6861 6197555200 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:25:16,531 basehttp 6861 6197555200 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:26:16,523 log 6861 6197555200 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:26:16,524 basehttp 6861 6197555200 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 14:26:24,500 basehttp 6861 6197555200 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 528903
+INFO 2025-10-07 14:27:13,827 basehttp 6861 6197555200 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 50609
+INFO 2025-10-07 14:27:19,810 basehttp 6861 6197555200 "GET /escalas/exportar/01-10-2025/ HTTP/1.1" 200 10866
+INFO 2025-10-07 14:28:07,208 basehttp 6861 6197555200 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 528851
+INFO 2025-10-07 14:28:38,723 basehttp 6861 6214381568 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-07 14:28:38,742 basehttp 6861 6197555200 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-07 14:28:39,849 basehttp 6861 6197555200 - Broken pipe from ('127.0.0.1', 61977)
+INFO 2025-10-07 14:28:39,869 basehttp 6861 6214381568 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 526358
+INFO 2025-10-07 14:28:42,023 basehttp 6861 6214381568 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 855
+INFO 2025-10-07 14:28:48,757 views 6861 6197555200 Grupo criado (TRANSFER_OUT_REGULAR): E-HTL com 2 serviços e 4 PAX
+INFO 2025-10-07 14:28:48,767 views 6861 6197555200 Grupo criado (TRANSFER_OUT_REGULAR): AZUL VIAGENS com 2 serviços e 4 PAX
+INFO 2025-10-07 14:28:48,791 views 6861 6197555200 Grupo criado (NOME): FRT OPERADORA DE TURISMO com 2 serviços e 4 PAX
+INFO 2025-10-07 14:28:48,810 views 6861 6197555200 Grupo criado (NOME): HOLIDAY TAXIS GROUP LIMITED com 2 serviços e 11 PAX
+INFO 2025-10-07 14:28:48,813 views 6861 6197555200 Grupo criado (TRANSFER_OUT_REGULAR): TREND OPERADORA com 3 serviços e 11 PAX
+INFO 2025-10-07 14:28:48,819 views 6861 6197555200 Grupo criado (TRANSFER_OUT_REGULAR): E-HTL com 2 serviços e 4 PAX
+INFO 2025-10-07 14:28:48,830 views 6861 6197555200 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-07 14:28:48,832 basehttp 6861 6197555200 "POST /escalas/visualizar/01-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 14:28:49,022 basehttp 6861 6197555200 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 543029
+INFO 2025-10-07 14:28:53,313 views 6861 6197555200 🚀 INICIANDO ESCALAR - Sistema de otimização avançado para escala 53
+INFO 2025-10-07 14:28:53,314 views 6861 6197555200 📋 Resetando status de todas as alocações para 'Não alocado'
+INFO 2025-10-07 14:28:53,348 views 6861 6197555200 ✅ ETAPA 1 - Encontrados 10 candidatos (4-10 PAX)
+INFO 2025-10-07 14:28:53,349 views 6861 6197555200 ✅ ETAPA 2 - Prioritários: 10 | Não prioritários: 0
+INFO 2025-10-07 14:28:53,349 views 6861 6197555200 🎯 ETAPA 3 - Alocando serviços prioritários...
+INFO 2025-10-07 14:28:53,350 views 6861 6197555200 ✅ ALOCADO: HOTELBEDS (4 PAX) -> VAN1 #1
+INFO 2025-10-07 14:28:53,350 views 6861 6197555200 ✅ ALOCADO: E-HTL (5 PAX) -> VAN1 #1
+INFO 2025-10-07 14:28:53,351 views 6861 6197555200 ✅ ALOCADO: FRT OPERADORA DE TURISMO (4 PAX) -> VAN2 #1
+INFO 2025-10-07 14:28:53,351 views 6861 6197555200 ✅ ALOCADO: E-HTL (4 PAX) -> VAN1 #2
+INFO 2025-10-07 14:28:53,352 views 6861 6197555200 ✅ ALOCADO: E-HTL (4 PAX) -> VAN2 #1
+INFO 2025-10-07 14:28:53,352 views 6861 6197555200 ✅ ETAPA 3 - 5/10 prioritários alocados
+INFO 2025-10-07 14:28:53,352 views 6861 6197555200 🔄 ETAPA 4 - Tentando alocar não prioritários nos intervalos livres...
+INFO 2025-10-07 14:28:53,352 views 6861 6197555200 ✅ ETAPA 4 - 0/0 não prioritários alocados
+INFO 2025-10-07 14:28:53,352 views 6861 6197555200 🔧 ETAPA 5 - Preenchendo furos com serviços de 1-3 PAX...
+INFO 2025-10-07 14:28:53,368 views 6861 6197555200 ✅ ETAPA 5 - Encontrados 35 candidatos pequenos (1-3 PAX)
+INFO 2025-10-07 14:28:53,370 views 6861 6197555200 ✅ ALOCADO: HOTELBEDS (2 PAX) -> VAN1 #1
+INFO 2025-10-07 14:28:53,371 views 6861 6197555200 ✅ ALOCADO: HOTELBEDS (2 PAX) -> VAN2 #1
+INFO 2025-10-07 14:28:53,373 views 6861 6197555200 ✅ ETAPA 5 - 2/35 serviços pequenos alocados
+INFO 2025-10-07 14:28:53,373 views 6861 6197555200    📊 Prioritários: 2
+INFO 2025-10-07 14:28:53,373 views 6861 6197555200    📊 Não prioritários: 0
+INFO 2025-10-07 14:28:53,375 views 6861 6197555200 🎉 ESCALAR CONCLUÍDO!
+INFO 2025-10-07 14:28:53,375 views 6861 6197555200    📊 Alocados: 11
+INFO 2025-10-07 14:28:53,375 views 6861 6197555200    📊 Não alocados: 46
+INFO 2025-10-07 14:28:53,375 views 6861 6197555200    📊 Van 1: 6 serviços
+INFO 2025-10-07 14:28:53,376 views 6861 6197555200    📊 Van 2: 5 serviços
+INFO 2025-10-07 14:28:53,377 basehttp 6861 6197555200 "POST /escalas/visualizar/01-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 14:28:53,543 basehttp 6861 6197555200 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 522202
+ERROR 2025-10-07 14:29:06,169 views 6861 6197555200 ERRO NA FORMATAÇÃO | Usuário: cristiane.aguiar | Data: 01-10-2025 | IP: 127.0.0.1 | Timestamp: 07/10/2025 17:29:06 | Erro: local variable 'ip_address' referenced before assignment | Tipo: UnboundLocalError
+INFO 2025-10-07 14:29:06,170 basehttp 6861 6197555200 "POST /escalas/formatar-escala/ HTTP/1.1" 302 0
+INFO 2025-10-07 14:29:06,375 basehttp 6861 6197555200 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 522579
+ERROR 2025-10-07 14:29:38,660 views 6861 6197555200 ERRO NA FORMATAÇÃO | Usuário: cristiane.aguiar | Data: 01-10-2025 | IP: 127.0.0.1 | Timestamp: 07/10/2025 17:29:38 | Erro: local variable 'ip_address' referenced before assignment | Tipo: UnboundLocalError
+INFO 2025-10-07 14:29:38,661 basehttp 6861 6197555200 "POST /escalas/formatar-escala/ HTTP/1.1" 302 0
+INFO 2025-10-07 14:29:38,847 basehttp 6861 6197555200 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 522667
+WARNING 2025-10-07 14:30:39,530 log 6861 6197555200 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:30:39,531 basehttp 6861 6197555200 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 14:30:46,920 basehttp 6861 6214381568 "POST /escalas/mover-servico/ HTTP/1.1" 200 76
+INFO 2025-10-07 14:30:46,934 basehttp 6861 6197555200 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-07 14:30:48,336 basehttp 6861 6197555200 - Broken pipe from ('127.0.0.1', 62100)
+INFO 2025-10-07 14:30:48,352 basehttp 6861 6214381568 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 521429
+INFO 2025-10-07 14:30:50,451 basehttp 6861 6197555200 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 1259
+INFO 2025-10-07 14:30:54,756 basehttp 6861 6197555200 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 801
+INFO 2025-10-07 14:30:57,214 basehttp 6861 6197555200 "POST /escalas/desagrupar-grupo-completo/ HTTP/1.1" 200 87
+INFO 2025-10-07 14:30:58,432 basehttp 6861 6197555200 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 524883
+WARNING 2025-10-07 14:31:58,525 log 6861 6197555200 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:31:58,526 basehttp 6861 6197555200 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:32:58,485 log 6861 6197555200 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:32:58,486 basehttp 6861 6197555200 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 14:33:17,878 autoreload 6861 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 14:33:18,254 autoreload 7951 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-07 14:33:58,535 log 7951 6129741824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:33:58,536 basehttp 7951 6129741824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:34:29,187 views 7951 6129741824 FORMATAÇÃO INICIADA | Usuário: cristiane.aguiar | Data: 01/10/2025 | IP: 127.0.0.1 | Timestamp: 07/10/2025 17:34:29
+INFO 2025-10-07 14:34:29,201 views 7951 6129741824 Total de alocações desprecificadas: 0
+WARNING 2025-10-07 14:34:29,206 views 7951 6129741824 FORMATAÇÃO CONCLUÍDA | Usuário: cristiane.aguiar (Cristiane Aguiar) | Data Escala: 01/10/2025 | IP: 127.0.0.1 | Timestamp: 07/10/2025 17:34:29 | Grupos removidos: 6 | Alocações desprecificadas: 0 | Total alocações: 57 | Etapa anterior: OTIMIZADA → Nova etapa: DADOS_PUXADOS | Status: PENDENTE
+INFO 2025-10-07 14:34:29,212 basehttp 7951 6129741824 "POST /escalas/formatar-escala/ HTTP/1.1" 302 0
+INFO 2025-10-07 14:34:29,270 basehttp 7951 6129741824 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 532468
+INFO 2025-10-07 14:34:41,403 basehttp 7951 6129741824 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 610
+INFO 2025-10-07 14:34:44,011 views 7951 6129741824 📝 Status de alocação alterado: NOVO: TRANSFER REGULAR IN AEROPORTO INTER. GALEÃO ... -> ALOCADO (usuário: cristiane.aguiar)
+INFO 2025-10-07 14:34:44,012 basehttp 7951 6129741824 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 82
+INFO 2025-10-07 14:34:45,108 basehttp 7951 6129741824 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 531747
+INFO 2025-10-07 14:34:49,405 basehttp 7951 6129741824 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 595
+INFO 2025-10-07 14:34:51,852 views 7951 6129741824 📝 Status de alocação alterado: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... -> NAO_ALOCADO (usuário: cristiane.aguiar)
+INFO 2025-10-07 14:34:51,853 basehttp 7951 6129741824 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 86
+INFO 2025-10-07 14:34:52,953 basehttp 7951 6129741824 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 531754
+INFO 2025-10-07 14:34:55,276 views 7951 6129741824 📝 Status de alocação alterado: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... -> NAO_ALOCADO (usuário: cristiane.aguiar)
+INFO 2025-10-07 14:34:55,277 basehttp 7951 6129741824 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 86
+INFO 2025-10-07 14:34:56,358 basehttp 7951 6129741824 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 531761
+INFO 2025-10-07 14:35:01,142 autoreload 7951 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 14:35:01,523 autoreload 8155 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 14:35:02,570 views 8155 6176616448 📝 Status de alocação alterado: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... -> NAO_ALOCADO (usuário: cristiane.aguiar)
+INFO 2025-10-07 14:35:02,570 basehttp 8155 6176616448 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 86
+ERROR 2025-10-07 14:35:03,640 log 8155 6176616448 Internal Server Error: /escalas/visualizar/01-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1268, in get
+    escala = self.get_object()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1258, in get_object
+    return get_object_or_404(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1367, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'criada_por'. Choices are: aprovada_por
+ERROR 2025-10-07 14:35:03,642 basehttp 8155 6176616448 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 500 144981
+ERROR 2025-10-07 14:35:06,074 log 8155 6176616448 Internal Server Error: /escalas/visualizar/01-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1268, in get
+    escala = self.get_object()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1258, in get_object
+    return get_object_or_404(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1367, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'criada_por'. Choices are: aprovada_por
+ERROR 2025-10-07 14:35:06,075 basehttp 8155 6176616448 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 500 144981
+ERROR 2025-10-07 14:35:09,599 log 8155 6176616448 Internal Server Error: /escalas/visualizar/01-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1268, in get
+    escala = self.get_object()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1258, in get_object
+    return get_object_or_404(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1367, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'criada_por'. Choices are: aprovada_por
+ERROR 2025-10-07 14:35:09,600 basehttp 8155 6176616448 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 500 144981
+INFO 2025-10-07 14:35:10,356 autoreload 8155 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 14:35:10,714 autoreload 8171 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 14:35:13,254 basehttp 8171 6200012800 "GET / HTTP/1.1" 302 0
+INFO 2025-10-07 14:35:13,257 views 8171 6200012800 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 14:35:13,277 basehttp 8171 6200012800 "GET /core/ HTTP/1.1" 200 52530
+INFO 2025-10-07 14:35:15,418 basehttp 8171 6200012800 "GET /escalas/ HTTP/1.1" 200 32569
+INFO 2025-10-07 14:35:16,758 basehttp 8171 6200012800 "GET /escalas/ano/2025/ HTTP/1.1" 200 44651
+INFO 2025-10-07 14:35:18,444 basehttp 8171 6200012800 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 50609
+ERROR 2025-10-07 14:35:20,587 log 8171 6199439360 Internal Server Error: /escalas/visualizar/01-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1268, in get
+    escala = self.get_object()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1258, in get_object
+    return get_object_or_404(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1367, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'criada_por'. Choices are: aprovada_por
+ERROR 2025-10-07 14:35:20,589 basehttp 8171 6199439360 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 500 144840
+INFO 2025-10-07 14:35:21,529 autoreload 8171 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 14:35:21,849 autoreload 8191 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 14:35:37,658 autoreload 8191 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 14:35:37,983 autoreload 8223 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 14:35:50,715 autoreload 8223 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-07 14:35:51,021 autoreload 8245 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-07 14:36:18,540 log 8245 6135803904 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:36:18,541 basehttp 8245 6135803904 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 14:37:16,463 autoreload 8245 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-07 14:37:16,812 autoreload 8350 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-07 14:37:18,523 log 8350 6134476800 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:37:18,524 basehttp 8350 6134476800 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 14:37:30,624 autoreload 8350 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-07 14:37:30,925 autoreload 8377 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 14:37:44,661 autoreload 8377 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-07 14:37:44,980 autoreload 8400 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 14:37:53,656 autoreload 8400 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-07 14:37:53,959 autoreload 8420 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-07 14:38:18,538 log 8420 6126465024 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:38:18,538 basehttp 8420 6126465024 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 14:38:19,995 autoreload 8420 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 14:38:20,300 autoreload 8460 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 14:38:36,042 autoreload 8460 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 14:38:36,368 autoreload 8484 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 14:38:48,097 autoreload 8484 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 14:38:48,394 autoreload 8506 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-07 14:39:18,533 log 8506 6127939584 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:39:18,533 basehttp 8506 6127939584 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:40:18,524 log 8506 6127939584 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:40:18,525 basehttp 8506 6127939584 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:41:18,542 log 8506 6127939584 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:41:18,544 basehttp 8506 6127939584 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:42:18,531 log 8506 6127939584 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:42:18,532 basehttp 8506 6127939584 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:43:19,638 log 8506 6127939584 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:43:19,639 basehttp 8506 6127939584 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 14:44:07,760 autoreload 8506 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/urls.py changed, reloading.
+INFO 2025-10-07 14:44:08,208 autoreload 9075 8529070080 Watching for file changes with StatReloader
+WARNING 2025-10-07 14:44:18,564 log 9075 6203535360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:44:18,565 basehttp 9075 6203535360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:45:19,526 log 9075 6203535360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:45:19,528 basehttp 9075 6203535360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:46:20,527 log 9075 6203535360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:46:20,528 basehttp 9075 6203535360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:47:21,525 log 9075 6203535360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:47:21,527 basehttp 9075 6203535360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:48:22,527 log 9075 6203535360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:48:22,528 basehttp 9075 6203535360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:49:23,541 log 9075 6203535360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:49:23,543 basehttp 9075 6203535360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:50:24,552 log 9075 6203535360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:50:24,553 basehttp 9075 6203535360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:51:25,525 log 9075 6203535360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:51:25,527 basehttp 9075 6203535360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:52:26,527 log 9075 6203535360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:52:26,528 basehttp 9075 6203535360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 14:53:27,549 log 9075 6203535360 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 14:53:27,550 basehttp 9075 6203535360 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 14:54:02,964 autoreload 10342 8529070080 Watching for file changes with StatReloader
+ERROR 2025-10-07 14:54:15,587 log 9075 6203535360 Internal Server Error: /escalas/gerenciar/10/2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 335, in get
+    return render(request, 'escalas/gerenciar.html', {
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 320, in render
+    if match:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 412, in __bool__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1367, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'criada_por'. Choices are: aprovada_por
+ERROR 2025-10-07 14:54:15,589 basehttp 9075 6203535360 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 500 224067
+ERROR 2025-10-07 14:54:16,537 log 9075 6203535360 Internal Server Error: /escalas/gerenciar/10/2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 335, in get
+    return render(request, 'escalas/gerenciar.html', {
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 320, in render
+    if match:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 412, in __bool__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1367, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'criada_por'. Choices are: aprovada_por
+ERROR 2025-10-07 14:54:16,538 basehttp 9075 6203535360 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 500 224067
+ERROR 2025-10-07 14:54:16,708 log 9075 6203535360 Internal Server Error: /escalas/gerenciar/10/2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 335, in get
+    return render(request, 'escalas/gerenciar.html', {
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 320, in render
+    if match:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 412, in __bool__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1367, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'criada_por'. Choices are: aprovada_por
+ERROR 2025-10-07 14:54:16,709 basehttp 9075 6203535360 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 500 224067
+INFO 2025-10-07 14:55:17,500 autoreload 9075 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/fretamento_project/wsgi.py changed, reloading.
+INFO 2025-10-07 14:55:17,890 autoreload 10525 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 14:59:20,331 autoreload 10525 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 14:59:20,742 autoreload 10882 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 15:00:30,070 basehttp 10882 6139654144 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 50609
+ERROR 2025-10-07 15:00:32,783 log 10882 6139654144 Internal Server Error: /escalas/visualizar/01-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1287, in get
+    escala = self.get_object()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1269, in get_object
+    return get_object_or_404(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1367, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'criada_por'. Choices are: aprovada_por
+ERROR 2025-10-07 15:00:32,785 basehttp 10882 6139654144 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 500 144913
+INFO 2025-10-07 15:01:05,280 basehttp 10882 6139654144 "GET /escalas/exportar/01-10-2025/ HTTP/1.1" 200 8269
+INFO 2025-10-07 15:01:07,569 views 10882 6139654144 Lista Arquivos - Total arquivos: 2, Total serviços: 114
+INFO 2025-10-07 15:01:07,569 views 10882 6139654144 Hora formatada: 07/10/2025 às 18:01
+INFO 2025-10-07 15:01:07,574 basehttp 10882 6139654144 "GET /core/arquivos/ HTTP/1.1" 200 57510
+INFO 2025-10-07 15:01:11,311 views 10882 6139654144 Iniciando deleção do arquivo upar.xlsx pelo usuário cristiane.aguiar
+INFO 2025-10-07 15:01:11,343 views 10882 6139654144 Arquivo upar.xlsx: 0 serviços deletáveis, 57 protegidos
+INFO 2025-10-07 15:01:11,344 views 10882 6139654144 Arquivo upar.xlsx mantido com 57 serviços escalados
+INFO 2025-10-07 15:01:11,345 basehttp 10882 6139654144 "POST /core/arquivos/14/deletar/ HTTP/1.1" 200 353
+INFO 2025-10-07 15:01:12,218 views 10882 6139654144 Lista Arquivos - Total arquivos: 2, Total serviços: 114
+INFO 2025-10-07 15:01:12,218 views 10882 6139654144 Hora formatada: 07/10/2025 às 18:01
+INFO 2025-10-07 15:01:12,221 basehttp 10882 6139654144 "GET /core/arquivos/ HTTP/1.1" 200 57510
+INFO 2025-10-07 15:01:19,908 views 10882 6139654144 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 15:01:19,932 basehttp 10882 6139654144 "GET /core/ HTTP/1.1" 200 52530
+WARNING 2025-10-07 15:02:20,560 log 10882 6139654144 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 15:02:20,561 basehttp 10882 6139654144 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 15:03:20,561 log 10882 6139654144 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 15:03:20,563 basehttp 10882 6139654144 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 15:04:20,581 log 10882 6139654144 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 15:04:20,582 basehttp 10882 6139654144 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 15:05:20,573 log 10882 6139654144 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 15:05:20,575 basehttp 10882 6139654144 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+WARNING 2025-10-07 15:06:20,561 log 10882 6139654144 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 15:06:20,562 basehttp 10882 6139654144 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 15:06:41,239 basehttp 10882 6139654144 "GET /escalas/ HTTP/1.1" 200 32569
+INFO 2025-10-07 15:06:42,662 basehttp 10882 6139654144 "GET /escalas/ano/2025/ HTTP/1.1" 200 44651
+INFO 2025-10-07 15:06:44,109 basehttp 10882 6139654144 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 50609
+INFO 2025-10-07 15:06:48,341 basehttp 10882 6139654144 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+ERROR 2025-10-07 15:06:48,385 log 10882 6139654144 Internal Server Error: /escalas/visualizar/2025-10-08/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1287, in get
+    escala = self.get_object()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1269, in get_object
+    return get_object_or_404(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1367, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'criada_por'. Choices are: aprovada_por
+ERROR 2025-10-07 15:06:48,386 basehttp 10882 6139654144 "GET /escalas/visualizar/2025-10-08/ HTTP/1.1" 500 145364
+WARNING 2025-10-07 15:16:32,245 log 10882 6139654144 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 15:16:32,247 basehttp 10882 6139654144 "GET /api/dashboard/updates/ HTTP/1.1" 404 2712
+INFO 2025-10-07 15:16:34,030 basehttp 10882 6139654144 "GET /escalas/ HTTP/1.1" 200 33166
+INFO 2025-10-07 15:16:35,884 basehttp 10882 6139654144 "GET /escalas/ano/2025/ HTTP/1.1" 200 44651
+INFO 2025-10-07 15:16:37,881 basehttp 10882 6139654144 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 54546
+ERROR 2025-10-07 15:16:40,585 log 10882 6139654144 Internal Server Error: /escalas/visualizar/08-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1287, in get
+    escala = self.get_object()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1269, in get_object
+    return get_object_or_404(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1549, in execute_sql
+    sql, params = self.as_sql()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 736, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1367, in get_related_selections
+    raise FieldError(
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'criada_por'. Choices are: aprovada_por
+ERROR 2025-10-07 15:16:40,585 basehttp 10882 6139654144 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 500 144913
+INFO 2025-10-07 15:19:07,588 autoreload 10882 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 15:19:08,101 autoreload 12510 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 15:19:26,177 autoreload 12510 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 15:19:26,539 autoreload 12540 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 15:20:02,679 autoreload 12642 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 15:20:04,877 basehttp 12540 6201405440 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 167884
+INFO 2025-10-07 15:20:07,022 basehttp 12540 6201405440 "GET /escalas/puxar-dados/08-10-2025/ HTTP/1.1" 200 34082
+INFO 2025-10-07 15:20:13,579 basehttp 12540 6201405440 "POST /escalas/puxar-dados/08-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 15:20:13,630 basehttp 12540 6201405440 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 532057
+INFO 2025-10-07 15:20:17,822 autoreload 12725 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 15:20:20,864 basehttp 12725 6133313536 "GET /escalas/ HTTP/1.1" 200 32570
+INFO 2025-10-07 15:20:22,251 basehttp 12725 6133313536 "GET /escalas/ano/2025/ HTTP/1.1" 200 44652
+INFO 2025-10-07 15:20:23,765 basehttp 12725 6132740096 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 55347
+INFO 2025-10-07 15:20:26,891 basehttp 12725 6132740096 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 531768
+INFO 2025-10-07 15:20:29,738 basehttp 12725 6132740096 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 531428
+INFO 2025-10-07 15:20:31,952 basehttp 12725 6149566464 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-07 15:20:31,964 basehttp 12725 6132740096 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+ERROR 2025-10-07 15:20:33,088 log 12725 6132740096 Internal Server Error: /escalas/visualizar/08-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1288, in get
+    return render(request, self.template_name, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1064, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 742, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/templatetags/custom_filters.py", line 393, in grupo_sequencial
+    if not todos_grupos:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 412, in __bool__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1883, in _fetch_all
+    self._prefetch_related_objects()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1273, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 2310, in prefetch_related_objects
+    raise ValueError(
+ValueError: 'servicos__servico' does not resolve to an item that supports prefetching - this is an invalid parameter to prefetch_related().
+ERROR 2025-10-07 15:20:33,090 basehttp 12725 6132740096 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 500 380989
+ERROR 2025-10-07 15:20:48,329 log 12725 6132740096 Internal Server Error: /escalas/visualizar/08-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1288, in get
+    return render(request, self.template_name, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1064, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 742, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/templatetags/custom_filters.py", line 393, in grupo_sequencial
+    if not todos_grupos:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 412, in __bool__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1883, in _fetch_all
+    self._prefetch_related_objects()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1273, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 2310, in prefetch_related_objects
+    raise ValueError(
+ValueError: 'servicos__servico' does not resolve to an item that supports prefetching - this is an invalid parameter to prefetch_related().
+ERROR 2025-10-07 15:20:48,333 basehttp 12725 6132740096 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 500 380989
+ERROR 2025-10-07 15:20:49,212 log 12725 6132740096 Internal Server Error: /escalas/visualizar/08-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1288, in get
+    return render(request, self.template_name, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1064, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 742, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/templatetags/custom_filters.py", line 393, in grupo_sequencial
+    if not todos_grupos:
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 412, in __bool__
+    self._fetch_all()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1883, in _fetch_all
+    self._prefetch_related_objects()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 1273, in _prefetch_related_objects
+    prefetch_related_objects(self._result_cache, *self._prefetch_related_lookups)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/db/models/query.py", line 2310, in prefetch_related_objects
+    raise ValueError(
+ValueError: 'servicos__servico' does not resolve to an item that supports prefetching - this is an invalid parameter to prefetch_related().
+ERROR 2025-10-07 15:20:49,213 basehttp 12725 6132740096 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 500 380989
+INFO 2025-10-07 15:21:15,538 autoreload 12725 8529070080 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-07 15:21:15,901 autoreload 12820 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 15:24:20,263 autoreload 13090 8529070080 Watching for file changes with StatReloader
+INFO 2025-10-07 15:24:21,394 basehttp 13090 6169620480 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 15:24:21,404 basehttp 13090 6169620480 "GET /auth/login/?next=/escalas/visualizar/08-10-2025/ HTTP/1.1" 200 12318
+INFO 2025-10-07 15:24:26,508 basehttp 13090 6169047040 "POST /auth/login/?next=/escalas/visualizar/08-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-07 15:24:26,512 views 13090 6169047040 Gerando dashboard com consultas otimizadas
+INFO 2025-10-07 15:24:26,529 basehttp 13090 6169047040 "GET /core/ HTTP/1.1" 200 54019
+INFO 2025-10-07 15:24:28,110 basehttp 13090 6169047040 "GET /escalas/ HTTP/1.1" 200 32570
+INFO 2025-10-07 15:24:29,587 basehttp 13090 6169047040 "GET /escalas/ano/2025/ HTTP/1.1" 200 44652
+INFO 2025-10-07 15:24:31,590 basehttp 13090 6169047040 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 55347
+INFO 2025-10-07 15:24:33,766 basehttp 13090 6169047040 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 529005
+INFO 2025-10-07 15:24:38,227 basehttp 13090 6185873408 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-07 15:24:38,249 basehttp 13090 6169047040 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-07 15:24:39,336 basehttp 13090 6169047040 - Broken pipe from ('127.0.0.1', 64379)
+INFO 2025-10-07 15:24:39,356 basehttp 13090 6185873408 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 525821
+INFO 2025-10-07 15:24:41,607 basehttp 13090 6202699776 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-07 15:24:41,623 basehttp 13090 6185873408 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-07 15:24:42,700 basehttp 13090 6169047040 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 516954
+INFO 2025-10-07 15:24:50,850 basehttp 13090 6169047040 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
+INFO 2025-10-07 15:24:51,961 basehttp 13090 6169047040 "GET /escalas/visualizar/08-10-2025/ HTTP/1.1" 200 513763

@@ -312,9 +312,20 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
         primeiro_dia = date(ano, mes, 1)
         ultimo_dia = date(ano, mes, monthrange(ano, mes)[1])
         
+        # Filtrar escalas do mês com otimização de queries
         escalas = Escala.objects.filter(
             data__gte=primeiro_dia,
             data__lte=ultimo_dia
+        ).select_related(
+            'aprovada_por'
+        ).prefetch_related(
+            'alocacoes__servico',
+            'grupos__servicos__alocacao__servico',
+            'logs__usuario'
+        ).annotate(
+            total_servicos=Count('alocacoes'),
+            total_pax=Sum('alocacoes__servico__pax'),
+            total_valor=Sum('alocacoes__preco_calculado')
         ).order_by('-data')
         
         # Informações do mês
@@ -1255,7 +1266,17 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
     def get_object(self):
         data_str = self.kwargs.get('data')
         data = parse_data_brasileira(data_str)
-        return get_object_or_404(Escala, data=data)
+        return get_object_or_404(
+            Escala.objects.select_related(
+                'aprovada_por'
+            ).prefetch_related(
+                'alocacoes__servico',
+                'alocacoes__grupo_info__grupo__servicos__alocacao__servico',
+                'grupos__servicos__alocacao__servico',
+                'logs__usuario'
+            ),
+            data=data
+        )
 
     def get(self, request, data):
         """Exibe a escala"""
@@ -1275,10 +1296,21 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
         context['ano'] = escala.data.year
         context['mes'] = escala.data.month
         
-        # Obter todas as alocações - ordenar por status de alocação primeiro
+        # Obter todas as alocações com otimização de queries - ordenar por status de alocação primeiro
         # ALOCADO vem antes de NAO_ALOCADO (ordenação ascendente alfabética)
-        all_van1_alocacoes = escala.alocacoes.filter(van='VAN1').order_by('status_alocacao', 'ordem')
-        all_van2_alocacoes = escala.alocacoes.filter(van='VAN2').order_by('status_alocacao', 'ordem')
+        all_van1_alocacoes = escala.alocacoes.filter(van='VAN1').select_related(
+            'servico', 
+            'escala__aprovada_por'
+        ).prefetch_related(
+            'grupo_info__grupo__servicos__alocacao__servico'
+        ).order_by('status_alocacao', 'ordem')
+        
+        all_van2_alocacoes = escala.alocacoes.filter(van='VAN2').select_related(
+            'servico', 
+            'escala__aprovada_por'
+        ).prefetch_related(
+            'grupo_info__grupo__servicos__alocacao__servico'
+        ).order_by('status_alocacao', 'ordem')
         
         # Filtrar para mostrar apenas um representante por grupo
         def get_unique_alocacoes(alocacoes):
@@ -1319,9 +1351,13 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
             'count': all_van2_alocacoes.count()
         }
         
-        # Informações sobre grupos
-        grupos_van1 = escala.grupos.filter(van='VAN1').order_by('ordem')
-        grupos_van2 = escala.grupos.filter(van='VAN2').order_by('ordem')
+        # Informações sobre grupos com otimização
+        grupos_van1 = escala.grupos.filter(van='VAN1').select_related().prefetch_related(
+            'servicos__alocacao__servico'
+        ).order_by('ordem')
+        grupos_van2 = escala.grupos.filter(van='VAN2').select_related().prefetch_related(
+            'servicos__alocacao__servico'
+        ).order_by('ordem')
         
         # Adicionar data formatada para JavaScript
         data_str = self.kwargs.get('data')
