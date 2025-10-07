@@ -1,0 +1,27 @@
+%% Arquitetura de alto nível do sistema de fretamento
+flowchart LR
+    subgraph Frontend
+        Templates[Templates Django]
+        Static[Arquivos Estáticos]
+    end
+
+    subgraph Backend
+        Views[Views e URLs]
+        Services[Serviços e Processadores]
+        Models[Modelos Django]
+    end
+
+    subgraph Infra
+        SQLite[(SQLite)]
+        Cache[(LocMem Cache)]
+        WhiteNoise[WhiteNoise]
+    end
+
+    Templates --> Views
+    Static --> WhiteNoise
+    Views --> Services
+    Services --> Models
+    Models --> SQLite
+    Views --> Cache
+    WhiteNoise --> Users[Usuários]
+    Views --> Users

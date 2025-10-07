@@ -7,13 +7,15 @@ from django.views import View
 from django.views.generic import ListView, DetailView
 from django.utils.dateparse import parse_date
 from django.utils import timezone
-from django.db.models import Count, Q, Sum, F
+from django.db.models import Count, Q, Sum, F, Prefetch, Value, DecimalField
+from django.db.models.functions import Coalesce, ExtractMonth, ExtractYear
 from django.db import transaction
 from datetime import datetime, date, timedelta
 from decimal import Decimal, InvalidOperation
 from calendar import monthrange
 import re
 import unicodedata
+from django.utils.functional import cached_property
 from core.models import Servico, ProcessamentoPlanilha
 from escalas.models import Escala, AlocacaoVan, GrupoServico, ServicoGrupo, LogEscala
 from core.processors import ProcessadorPlanilhaOS
@@ -123,42 +125,69 @@ class SelecionarAnoView(LoginRequiredMixin, View):
     def get(self, request):
         hoje = date.today()
         ano_atual = hoje.year
-        
-        # Apenas anos 2025 e 2026
-        anos = []
-        for ano in [2025, 2026]:
-            
-            # Contar escalas do ano
-            primeiro_dia_ano = date(ano, 1, 1)
-            ultimo_dia_ano = date(ano, 12, 31)
-            
-            escalas_ano = Escala.objects.filter(
-                data__gte=primeiro_dia_ano,
-                data__lte=ultimo_dia_ano
+
+        anos_considerados = [2025, 2026]
+        estatisticas_por_ano = {
+            item["ano"]: item
+            for item in (
+                Escala.objects.filter(data__year__in=anos_considerados)
+                .annotate(ano=ExtractYear("data"))
+                .values("ano")
+                .annotate(
+                    total_escalas=Count("id", distinct=True),
+                    escalas_pendentes=Count(
+                        "id", filter=Q(status="PENDENTE"), distinct=True
+                    ),
+                    escalas_aprovadas=Count(
+                        "id", filter=Q(status="APROVADA"), distinct=True
+                    ),
+                    escalas_rejeitadas=Count(
+                        "id", filter=Q(status="REJEITADA"), distinct=True
+                    ),
+                    total_servicos=Count("alocacoes", distinct=True),
+                    total_valor=Coalesce(
+                        Sum(
+                            "alocacoes__preco_calculado",
+                            output_field=DecimalField(max_digits=12, decimal_places=2),
+                        ),
+                        Value(
+                            Decimal("0"),
+                            output_field=DecimalField(max_digits=12, decimal_places=2),
+                        ),
+                    ),
+                    meses_com_escalas=Count("data__month", distinct=True),
+                )
             )
-            
-            # Estatísticas do ano
-            total_escalas = escalas_ano.count()
-            escalas_pendentes = escalas_ano.filter(status='PENDENTE').count()
-            escalas_aprovadas = escalas_ano.filter(status='APROVADA').count()
-            escalas_rejeitadas = escalas_ano.filter(status='REJEITADA').count()
-            total_servicos = sum(e.alocacoes.count() for e in escalas_ano)
-            total_valor = sum((e.total_van1_valor or 0) + (e.total_van2_valor or 0) for e in escalas_ano)
-            
-            # Contar meses com escalas
-            meses_com_escalas = escalas_ano.values_list('data__month', flat=True).distinct().count()
-            
-            anos.append({
-                'ano': ano,
-                'eh_atual': ano == ano_atual,
-                'total_escalas': total_escalas,
-                'escalas_pendentes': escalas_pendentes,
-                'escalas_aprovadas': escalas_aprovadas,
-                'escalas_rejeitadas': escalas_rejeitadas,
-                'total_servicos': total_servicos,
-                'total_valor': total_valor,
-                'meses_com_escalas': meses_com_escalas,
-            })
+        }
+
+        anos = []
+        for ano in anos_considerados:
+            stats = estatisticas_por_ano.get(
+                ano,
+                {
+                    "total_escalas": 0,
+                    "escalas_pendentes": 0,
+                    "escalas_aprovadas": 0,
+                    "escalas_rejeitadas": 0,
+                    "total_servicos": 0,
+                    "total_valor": Decimal("0"),
+                    "meses_com_escalas": 0,
+                },
+            )
+
+            anos.append(
+                {
+                    "ano": ano,
+                    "eh_atual": ano == ano_atual,
+                    "total_escalas": stats["total_escalas"],
+                    "escalas_pendentes": stats["escalas_pendentes"],
+                    "escalas_aprovadas": stats["escalas_aprovadas"],
+                    "escalas_rejeitadas": stats["escalas_rejeitadas"],
+                    "total_servicos": stats["total_servicos"],
+                    "total_valor": stats["total_valor"],
+                    "meses_com_escalas": stats["meses_com_escalas"],
+                }
+            )
         
         return render(request, 'escalas/selecionar_ano.html', {
             'anos': anos,
@@ -209,42 +238,67 @@ class SelecionarMesView(LoginRequiredMixin, View):
             ano = date.today().year
         else:
             ano = int(ano)
-        
+
         hoje = date.today()
-        
+
+        estatisticas_por_mes = {
+            item["mes"]: item
+            for item in (
+                Escala.objects.filter(data__year=ano)
+                .annotate(mes=ExtractMonth("data"))
+                .values("mes")
+                .annotate(
+                    total_escalas=Count("id", distinct=True),
+                    escalas_pendentes=Count(
+                        "id", filter=Q(status="PENDENTE"), distinct=True
+                    ),
+                    escalas_aprovadas=Count(
+                        "id", filter=Q(status="APROVADA"), distinct=True
+                    ),
+                    total_servicos=Count("alocacoes", distinct=True),
+                    total_valor=Coalesce(
+                        Sum(
+                            "alocacoes__preco_calculado",
+                            output_field=DecimalField(max_digits=12, decimal_places=2),
+                        ),
+                        Value(
+                            Decimal("0"),
+                            output_field=DecimalField(max_digits=12, decimal_places=2),
+                        ),
+                    ),
+                )
+            )
+        }
+
         # Gerar todos os 12 meses do ano
         meses = []
         for mes_numero in range(1, 13):
             mes_atual = date(ano, mes_numero, 1)
-            
-            # Contar escalas do mês
-            primeiro_dia = date(ano, mes_numero, 1)
-            ultimo_dia = date(ano, mes_numero, monthrange(ano, mes_numero)[1])
-            
-            escalas_mes = Escala.objects.filter(
-                data__gte=primeiro_dia,
-                data__lte=ultimo_dia
+            stats = estatisticas_por_mes.get(
+                mes_numero,
+                {
+                    "total_escalas": 0,
+                    "escalas_pendentes": 0,
+                    "escalas_aprovadas": 0,
+                    "total_servicos": 0,
+                    "total_valor": Decimal("0"),
+                },
             )
-            
-            # Estatísticas do mês
-            total_escalas = escalas_mes.count()
-            escalas_pendentes = escalas_mes.filter(status='PENDENTE').count()
-            escalas_aprovadas = escalas_mes.filter(status='APROVADA').count()
-            total_servicos = sum(e.alocacoes.count() for e in escalas_mes)
-            total_valor = sum((e.total_van1_valor or 0) + (e.total_van2_valor or 0) for e in escalas_mes)
-            
-            meses.append({
-                'data': mes_atual,
-                'nome': MESES_PORTUGUES[mes_numero],
-                'mes_numero': mes_numero,
-                'ano': ano,
-                'eh_atual': mes_numero == hoje.month and ano == hoje.year,
-                'total_escalas': total_escalas,
-                'escalas_pendentes': escalas_pendentes,
-                'escalas_aprovadas': escalas_aprovadas,
-                'total_servicos': total_servicos,
-                'total_valor': total_valor,
-            })
+
+            meses.append(
+                {
+                    "data": mes_atual,
+                    "nome": MESES_PORTUGUES[mes_numero],
+                    "mes_numero": mes_numero,
+                    "ano": ano,
+                    "eh_atual": mes_numero == hoje.month and ano == hoje.year,
+                    "total_escalas": stats["total_escalas"],
+                    "escalas_pendentes": stats["escalas_pendentes"],
+                    "escalas_aprovadas": stats["escalas_aprovadas"],
+                    "total_servicos": stats["total_servicos"],
+                    "total_valor": stats["total_valor"],
+                }
+            )
         
         return render(request, 'escalas/selecionar_mes.html', {
             'meses': meses,
@@ -311,11 +365,29 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
         # Filtrar escalas do mês
         primeiro_dia = date(ano, mes, 1)
         ultimo_dia = date(ano, mes, monthrange(ano, mes)[1])
-        
-        escalas = Escala.objects.filter(
-            data__gte=primeiro_dia,
-            data__lte=ultimo_dia
-        ).order_by('-data')
+
+        escalas = (
+            Escala.objects.filter(
+                data__gte=primeiro_dia,
+                data__lte=ultimo_dia
+            )
+            .select_related('aprovada_por')
+            .annotate(
+                total_servicos=Count('alocacoes', distinct=True),
+                total_pax=Coalesce(Sum('alocacoes__servico__pax'), Value(0)),
+                total_valor=Coalesce(
+                    Sum(
+                        'alocacoes__preco_calculado',
+                        output_field=DecimalField(max_digits=12, decimal_places=2),
+                    ),
+                    Value(
+                        Decimal('0'),
+                        output_field=DecimalField(max_digits=12, decimal_places=2),
+                    ),
+                ),
+            )
+            .order_by('-data')
+        )
         
         # Informações do mês
         mes_nome = f"{MESES_PORTUGUES[mes]} {ano}"
@@ -370,14 +442,12 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
                     return redirect('escalas:selecionar_ano')
                 
                 try:
-                    print(f"DEBUG: Tentando agrupar serviços para escala {escala.id}")
+                    logger.debug("Iniciando agrupamento manual para escala %s", escala.id)
                     grupos_criados = self._agrupar_servicos(escala)
-                    print(f"DEBUG: Agrupamento retornou {grupos_criados} grupos")
-                    logger.debug(f"Agrupamento concluído - Grupos criados: {grupos_criados}")
+                    logger.debug("Agrupamento concluído - Grupos criados: %s", grupos_criados)
                     messages.success(request, f'Agrupamento concluído! {grupos_criados} grupos criados para {data_alvo.strftime("%d/%m/%Y")}.')
                 except Exception as e:
-                    print(f"DEBUG: Erro no agrupamento: {e}")
-                    logger.error(f"Erro no agrupamento: {e}")
+                    logger.exception("Erro no agrupamento manual", extra={'escala_id': escala.id})
                     messages.error(request, f'Erro ao agrupar serviços: {e}')
                 
                 return redirect('escalas:visualizar_escala', data=data_str)
@@ -478,10 +548,9 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
 
     def _agrupar_servicos(self, escala):
         """Agrupa serviços compatíveis na escala"""
-        print(f"DEBUG: Iniciando _agrupar_servicos para escala {escala.id}")
         grupos_criados = 0
-        
-        logger.debug(f"Iniciando agrupamento para escala {escala.id}")
+
+        logger.debug("Iniciando agrupamento para escala %s", escala.id)
         
         with transaction.atomic():
             # Buscar alocações que ainda não estão agrupadas
@@ -1125,13 +1194,34 @@ class FormatarEscalaView(LoginRequiredMixin, View):
 
 class VisualizarEscalaView(LoginRequiredMixin, View):
     """View para visualizar uma escala específica"""
-    
+
     template_name = 'escalas/visualizar.html'
-    
-    def get_object(self):
+
+    def _get_queryset(self):
+        alocacoes_prefetch = Prefetch(
+            'alocacoes',
+            queryset=AlocacaoVan.objects.select_related('servico', 'grupo_info__grupo')
+            .order_by('van', 'ordem')
+        )
+        grupos_prefetch = Prefetch(
+            'grupos',
+            queryset=GrupoServico.objects.prefetch_related(
+                'servicos__alocacao__servico'
+            ).order_by('van', 'ordem')
+        )
+        return (
+            Escala.objects.select_related('aprovada_por')
+            .prefetch_related(alocacoes_prefetch, grupos_prefetch)
+        )
+
+    @cached_property
+    def escala_cached(self):
         data_str = self.kwargs.get('data')
         data = parse_data_brasileira(data_str)
-        return get_object_or_404(Escala, data=data)
+        return get_object_or_404(self._get_queryset(), data=data)
+
+    def get_object(self):
+        return self.escala_cached
 
     def get(self, request, data):
         """Exibe a escala"""
@@ -1140,97 +1230,109 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
         return render(request, self.template_name, context)
     
     def get_context_data(self, **kwargs):
-        escala = kwargs.get('escala')
-        context = {}
-        
-        # Adicionar ano e mês da escala para navegação
-        context['escala'] = escala
-        context['ano'] = escala.data.year
-        context['mes'] = escala.data.month
-        
-        # Obter todas as alocações
-        all_van1_alocacoes = escala.alocacoes.filter(van='VAN1').order_by('ordem')
-        all_van2_alocacoes = escala.alocacoes.filter(van='VAN2').order_by('ordem')
-        
-        # Filtrar para mostrar apenas um representante por grupo
-        def get_unique_alocacoes(alocacoes):
-            """Retorna apenas um representante por grupo + alocações não agrupadas"""
+        escala = kwargs.get('escala') or self.get_object()
+        context = {
+            'escala': escala,
+            'ano': escala.data.year,
+            'mes': escala.data.month,
+        }
+
+        alocacoes = list(escala.alocacoes.all())
+        van1_alocacoes = [alocacao for alocacao in alocacoes if alocacao.van == 'VAN1']
+        van2_alocacoes = [alocacao for alocacao in alocacoes if alocacao.van == 'VAN2']
+
+        def get_unique_alocacoes(alocacoes_list):
             grupos_vistos = set()
             alocacoes_unicas = []
-            
-            for alocacao in alocacoes:
-                try:
-                    # Se tem grupo_info, verificar se já mostramos este grupo
-                    grupo_id = alocacao.grupo_info.grupo.id
-                    if grupo_id not in grupos_vistos:
-                        grupos_vistos.add(grupo_id)
-                        alocacoes_unicas.append(alocacao)
-                except:
-                    # Se não tem grupo_info, é uma alocação individual
-                    alocacoes_unicas.append(alocacao)
-            
+
+            for alocacao in alocacoes_list:
+                grupo_info = getattr(alocacao, 'grupo_info', None)
+                grupo_id = getattr(grupo_info, 'grupo_id', None)
+
+                if grupo_id:
+                    if grupo_id in grupos_vistos:
+                        continue
+                    grupos_vistos.add(grupo_id)
+
+                alocacoes_unicas.append(alocacao)
+
             return alocacoes_unicas
-        
-        # Obter alocações únicas (representantes de grupos)
-        van1_alocacoes_unicas = get_unique_alocacoes(all_van1_alocacoes)
-        van2_alocacoes_unicas = get_unique_alocacoes(all_van2_alocacoes)
-        
-        # Dados da Van 1
+
+        def calcular_total_pax(alocacoes_list):
+            return sum(
+                (alocacao.servico.pax or 0)
+                for alocacao in alocacoes_list
+                if alocacao.servico
+            )
+
+        def calcular_total_valor(alocacoes_list):
+            total = Decimal('0')
+            for alocacao in alocacoes_list:
+                if alocacao.preco_calculado:
+                    total += alocacao.preco_calculado
+            return total
+
         van1_data = {
-            'servicos': van1_alocacoes_unicas,  # Usar alocações únicas
-            'total_pax': sum(a.servico.pax for a in all_van1_alocacoes),  # Totais baseados em todas
-            'total_valor': sum(a.preco_calculado or 0 for a in all_van1_alocacoes),
-            'count': all_van1_alocacoes.count()
+            'servicos': get_unique_alocacoes(van1_alocacoes),
+            'total_pax': calcular_total_pax(van1_alocacoes),
+            'total_valor': calcular_total_valor(van1_alocacoes),
+            'count': len(van1_alocacoes),
         }
-        
-        # Dados da Van 2
+
         van2_data = {
-            'servicos': van2_alocacoes_unicas,  # Usar alocações únicas
-            'total_pax': sum(a.servico.pax for a in all_van2_alocacoes),  # Totais baseados em todas
-            'total_valor': sum(a.preco_calculado or 0 for a in all_van2_alocacoes),
-            'count': all_van2_alocacoes.count()
+            'servicos': get_unique_alocacoes(van2_alocacoes),
+            'total_pax': calcular_total_pax(van2_alocacoes),
+            'total_valor': calcular_total_valor(van2_alocacoes),
+            'count': len(van2_alocacoes),
         }
-        
-        # Informações sobre grupos
-        grupos_van1 = escala.grupos.filter(van='VAN1').order_by('ordem')
-        grupos_van2 = escala.grupos.filter(van='VAN2').order_by('ordem')
-        
-        # Adicionar data formatada para JavaScript
+
+        grupos = list(escala.grupos.all())
+        grupos_van1 = [grupo for grupo in grupos if grupo.van == 'VAN1']
+        grupos_van2 = [grupo for grupo in grupos if grupo.van == 'VAN2']
+
         data_str = self.kwargs.get('data')
-        
-        context.update({
-            'van1': van1_data,
-            'van2': van2_data,
-            'grupos_van1': grupos_van1,
-            'grupos_van2': grupos_van2,
-            'total_servicos': all_van1_alocacoes.count() + all_van2_alocacoes.count(),
-            'data': data_str,  # Adicionar data formatada
-        })
-        
+
+        context.update(
+            {
+                'van1': van1_data,
+                'van2': van2_data,
+                'grupos_van1': grupos_van1,
+                'grupos_van2': grupos_van2,
+                'total_servicos': len(alocacoes),
+                'total_pax_geral': van1_data['total_pax'] + van2_data['total_pax'],
+                'total_valor_geral': van1_data['total_valor'] + van2_data['total_valor'],
+                'data': data_str,
+            }
+        )
+
         return context
 
     def post(self, request, data):
         """Processa ações do botão Agrupar e Otimizar"""
-        print(f"\n=== DEBUG POST VisualizarEscalaView ===")
-        print(f"Data recebida: {data}")
-        print(f"Método: {request.method}")
-        print(f"POST keys: {list(request.POST.keys())}")
-        print(f"POST items: {dict(request.POST.items())}")
-        
-        # Verificar se há parâmetro acao
         acao = request.POST.get('acao')
-        print(f"Parâmetro 'acao': '{acao}'")
-        
+
+        logger.debug(
+            "VisualizarEscalaView POST recebido",
+            extra={
+                'user': request.user.username,
+                'data': data,
+                'acao': acao,
+                'payload': dict(request.POST),
+            }
+        )
+
         if not acao:
-            print("ERRO: Parâmetro 'acao' não encontrado!")
+            logger.warning("Ação não especificada na visualização da escala")
             messages.error(request, 'Ação não especificada.')
             return redirect('escalas:visualizar_escala', data=data)
-        
+
         escala = self.get_object()
-        print(f"Escala ID: {escala.id}, Etapa: {escala.etapa}")
-        
+        logger.debug(
+            "Processando ação na escala",
+            extra={'escala_id': escala.id, 'etapa': escala.etapa, 'acao': acao}
+        )
+
         if acao == 'agrupar':
-            print("=== PROCESSANDO AGRUPAMENTO ===")
             if escala.etapa not in ['DADOS_PUXADOS', 'OTIMIZADA']:
                 messages.error(request, 'Para agrupar, é necessário ter dados puxados ou estar otimizada.')
                 return redirect('escalas:visualizar_escala', data=data)
@@ -1238,18 +1340,18 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
             try:
                 gerenciar_view = GerenciarEscalasView()
                 grupos_criados = gerenciar_view._agrupar_servicos(escala)
-                print(f"Agrupamento concluído: {grupos_criados} grupos criados")
+                logger.info(
+                    "Agrupamento concluído",
+                    extra={'escala_id': escala.id, 'grupos_criados': grupos_criados}
+                )
                 messages.success(request, f'Agrupamento concluído! {grupos_criados} grupos criados.')
-            except Exception as e:
-                print(f"ERRO no agrupamento: {e}")
-                import traceback
-                traceback.print_exc()
-                messages.error(request, f'Erro ao agrupar serviços: {e}')
+            except Exception as exc:
+                logger.exception("Erro ao agrupar serviços", extra={'escala_id': escala.id})
+                messages.error(request, f'Erro ao agrupar serviços: {exc}')
 
             return redirect('escalas:visualizar_escala', data=data)
 
-        elif acao in {'otimizar', 'escalar'}:
-            print("=== PROCESSANDO ESCALONAMENTO ===")
+        if acao in {'otimizar', 'escalar'}:
             if escala.etapa not in ['DADOS_PUXADOS', 'OTIMIZADA']:
                 messages.error(request, 'Para escalar, é necessário ter dados puxados.')
                 return redirect('escalas:visualizar_escala', data=data)
@@ -1257,21 +1359,16 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
             try:
                 gerenciar_view = GerenciarEscalasView()
                 gerenciar_view._otimizar_escala(escala)
-                print("Escalonamento concluído com sucesso")
+                logger.info("Escalonamento concluído", extra={'escala_id': escala.id})
                 messages.success(request, 'Escala escalada com sucesso!')
-            except Exception as e:
-                print(f"ERRO no escalonamento: {e}")
-                import traceback
-                traceback.print_exc()
-                messages.error(request, f'Erro ao escalar escala: {e}')
+            except Exception as exc:
+                logger.exception("Erro ao escalar escala", extra={'escala_id': escala.id})
+                messages.error(request, f'Erro ao escalar escala: {exc}')
 
             return redirect('escalas:visualizar_escala', data=data)
 
-        else:
-            print(f"AÇÃO DESCONHECIDA: '{acao}'")
-            messages.error(request, f'Ação desconhecida: {acao}')
-
-        print("=== REDIRECIONANDO ===")
+        logger.warning("Ação desconhecida na visualização da escala", extra={'acao': acao})
+        messages.error(request, f'Ação desconhecida: {acao}')
         return redirect('escalas:visualizar_escala', data=data)
 
 class PuxarDadosView(LoginRequiredMixin, View):
