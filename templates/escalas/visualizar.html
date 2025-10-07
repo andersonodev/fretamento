@@ -999,24 +999,24 @@ window.addEventListener('beforeunload', function() {
         if (button) setButtonLoading(button, false);
     });
 });
-        button.classList.remove('loading');
-    }
-}
 
 document.addEventListener('DOMContentLoaded', function() {
     // Event listeners específicos para os formulários de ação
     const formAgrupar = document.getElementById('form-agrupar');
     const formEscalar = document.getElementById('form-escalar');
+    const formTeste = document.getElementById('form-teste');
+    const formDebug = document.getElementById('form-debug');
     
+    // Verificar se elementos existem antes de adicionar listeners
     if (formAgrupar) {
-        console.log('Form Agrupar encontrado');
+        console.log('Form Agrupar encontrado - configurando listener');
         formAgrupar.addEventListener('submit', function(e) {
             console.log('=== FORM AGRUPAR SUBMIT ===');
             
             // Ativar loading no botão agrupar
             const btnAgrupar = document.getElementById('btn-agrupar');
             if (btnAgrupar) {
-                setButtonLoading(btnAgrupar, true);
+                setButtonLoading(btnAgrupar, true, 'Agrupando...');
             }
             
             // CORREÇÃO: Garantir que o parâmetro acao seja enviado
@@ -1031,35 +1031,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Permitir o submit normal
+            return true;
         });
     } else {
-        console.log('Form Agrupar NÃO encontrado');
+        console.warn('Form Agrupar NÃO encontrado');
     }
     
     // Debug específico do botão agrupar
     const btnAgrupar = document.getElementById('btn-agrupar');
     if (btnAgrupar) {
-        console.log('Botão Agrupar encontrado');
+        console.log('Botão Agrupar encontrado - configurando listener adicional');
         btnAgrupar.addEventListener('click', function(e) {
             console.log('=== BOTÃO AGRUPAR CLICADO ===');
             console.log('Target:', e.target);
-            console.log('Name:', this.getAttribute('name'));
-            console.log('Value:', this.getAttribute('value'));
             console.log('Form:', this.form);
         });
     } else {
-        console.log('Botão Agrupar NÃO encontrado');
+        console.warn('Botão Agrupar NÃO encontrado');
     }
     
     if (formEscalar) {
-        console.log('Form Escalar encontrado');
+        console.log('Form Escalar encontrado - configurando listener');
         formEscalar.addEventListener('submit', function(e) {
             console.log('=== FORM ESCALAR SUBMIT ===');
             
             // Ativar loading no botão escalar
             const btnEscalar = document.getElementById('btn-escalar');
             if (btnEscalar) {
-                setButtonLoading(btnEscalar, true);
+                setButtonLoading(btnEscalar, true, 'Otimizando...');
             }
             
             // CORREÇÃO: Garantir que o parâmetro acao seja enviado
@@ -1074,43 +1073,40 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Permitir o submit normal
+            return true;
         });
     } else {
-        console.log('Form Escalar NÃO encontrado');
+        console.warn('Form Escalar NÃO encontrado');
     }
     
     // Debug específico do botão escalar
     const btnEscalar = document.getElementById('btn-escalar');
     if (btnEscalar) {
-        console.log('Botão Escalar encontrado');
+        console.log('Botão Escalar encontrado - configurando listener adicional');
         btnEscalar.addEventListener('click', function(e) {
             console.log('=== BOTÃO ESCALAR CLICADO ===');
             console.log('Target:', e.target);
-            console.log('Name:', this.getAttribute('name'));
-            console.log('Value:', this.getAttribute('value'));
             console.log('Form:', this.form);
         });
     } else {
-        console.log('Botão Escalar NÃO encontrado');
+        console.warn('Botão Escalar NÃO encontrado');
     }
     
     // Event listeners para outros formulários
-    const formTeste = document.getElementById('form-teste');
     if (formTeste) {
         formTeste.addEventListener('submit', function(e) {
             const btnTeste = document.getElementById('btn-teste');
             if (btnTeste) {
-                setButtonLoading(btnTeste, true);
+                setButtonLoading(btnTeste, true, 'Testando...');
             }
         });
     }
     
-    const formDebug = document.getElementById('form-debug');
     if (formDebug) {
         formDebug.addEventListener('submit', function(e) {
             const btnDebug = document.getElementById('btn-debug');
             if (btnDebug) {
-                setButtonLoading(btnDebug, true);
+                setButtonLoading(btnDebug, true, 'Executando debug...');
             }
         });
     }
@@ -1118,17 +1114,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listener para o botão precificar (não é um form submit)
     const btnPrecificar = document.getElementById('btn-precificar');
     if (btnPrecificar) {
+        console.log('Botão Precificar encontrado');
         btnPrecificar.addEventListener('click', function(e) {
-            setButtonLoading(btnPrecificar, true);
+            console.log('=== BOTÃO PRECIFICAR CLICADO ===');
+            setButtonLoading(btnPrecificar, true, 'Precificando...');
             // O loading será resetado quando a página recarregar ou pelo beforeunload
         });
+    } else {
+        console.warn('Botão Precificar NÃO encontrado');
     }
     
+    // Configuração do sistema Kanban
     const servicoCards = document.querySelectorAll('.servico-card');
     const containers = document.querySelectorAll('[data-van]');
     
+    console.log(`Sistema Kanban: ${servicoCards.length} cards encontrados, ${containers.length} containers encontrados`);
+    
     // Configurar drag and drop para cada cartão de serviço
-    servicoCards.forEach(card => {
+    servicoCards.forEach((card, index) => {
+        // Verificar se o card tem os atributos necessários
+        if (!card.dataset.alocacaoId) {
+            console.warn(`Card ${index} não tem alocacao-id:`, card);
+        }
+        
         card.addEventListener('dragstart', handleDragStart);
         card.addEventListener('dragend', handleDragEnd);
         card.addEventListener('dragover', handleCardDragOver);
@@ -1145,7 +1153,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Configurar drop zones
-    containers.forEach(container => {
+    containers.forEach((container, index) => {
+        console.log(`Configurando container ${index}:`, container.id, 'van:', container.dataset.van);
         container.addEventListener('dragover', handleDragOver);
         container.addEventListener('drop', handleDrop);
         container.addEventListener('dragenter', handleDragEnter);
@@ -1155,18 +1164,33 @@ document.addEventListener('DOMContentLoaded', function() {
     let draggedElement = null;
     
     function handleDragStart(e) {
+        console.log('Drag started:', this.dataset.alocacaoId);
         this.classList.add('dragging');
         draggedElement = this;
+        
+        // Verificar se tem o ID necessário
+        if (!this.dataset.alocacaoId) {
+            console.error('Card não tem alocacao-id:', this);
+            e.preventDefault();
+            return false;
+        }
+        
         e.dataTransfer.setData('text/plain', this.dataset.alocacaoId);
         e.dataTransfer.effectAllowed = 'move';
+        
+        return true;
     }
     
     function handleDragEnd(e) {
+        console.log('Drag ended');
         this.classList.remove('dragging');
         draggedElement = null;
-        // Remover highlights de todos os cards
+        // Remover highlights de todos os cards e containers
         document.querySelectorAll('.servico-card').forEach(card => {
             card.classList.remove('drop-target');
+        });
+        document.querySelectorAll('[data-van]').forEach(container => {
+            container.classList.remove('drag-over');
         });
     }
     
@@ -1242,12 +1266,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function handleDragOver(e) {
         e.preventDefault();
-        e.dataTransfer.dropEffect = 'move';
+        if (draggedElement) {
+            e.dataTransfer.dropEffect = 'move';
+            
+            // Adicionar destaque visual se não está sobre um card
+            if (!e.target.closest('.servico-card')) {
+                this.classList.add('drag-over');
+            }
+        }
     }
     
     function handleDragEnter(e) {
         e.preventDefault();
-        if (!e.target.closest('.servico-card')) {
+        if (draggedElement && !e.target.closest('.servico-card')) {
+            console.log('Entering drop zone:', this.dataset.van);
             this.classList.add('drag-over');
         }
     }
@@ -1255,6 +1287,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleDragLeave(e) {
         // Só remove se realmente saiu do container
         if (!this.contains(e.relatedTarget)) {
+            console.log('Leaving drop zone:', this.dataset.van);
             this.classList.remove('drag-over');
         }
     }
@@ -1266,7 +1299,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const alocacaoId = e.dataTransfer.getData('text/plain');
         const novaVan = this.dataset.van;
         
-        if (!draggedElement) {
+        console.log('Drop:', {alocacaoId, novaVan, draggedElement});
+        
+        if (!draggedElement || !alocacaoId) {
+            console.warn('Drop inválido: elemento não arrastado ou ID ausente');
             return;
         }
         
@@ -1277,6 +1313,8 @@ document.addEventListener('DOMContentLoaded', function() {
             showMessage('Serviço já está nesta van', 'info');
             return;
         }
+        
+        console.log(`Movendo serviço de ${vanAtual} para ${novaVan}`);
         
         // Mover o serviço via AJAX
         fetch('{% url "escalas:mover_servico" %}', {
@@ -1291,7 +1329,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 nova_posicao: 0
             })
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.success) {
                 const mensagem = data.message || `Serviço movido para ${novaVan === 'VAN1' ? 'Van 1' : 'Van 2'}!`;
@@ -1866,6 +1909,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Função para aplicar filtros
     function aplicarFiltros() {
+        // Validar se os elementos existem
+        if (!filtroPaxMin || !filtroPaxMax || !filtroServico || !filtroPickup || !filtroVan) {
+            console.warn('Alguns elementos de filtro não foram encontrados');
+            return;
+        }
+        
         const paxMin = parseInt(filtroPaxMin.value) || 0;
         const paxMax = parseInt(filtroPaxMax.value) || 999;
         const servicoTexto = filtroServico.value.toLowerCase();
@@ -1879,11 +1928,11 @@ document.addEventListener('DOMContentLoaded', function() {
         let van2Visiveis = 0;
         
         servicoCards.forEach(card => {
-            const pax = parseInt(card.dataset.pax);
-            const servico = card.dataset.servico;
-            const pickup = card.dataset.pickup;
-            const van = card.dataset.van;
-            const status = card.dataset.status;
+            const pax = parseInt(card.dataset.pax) || 0;
+            const servico = (card.dataset.servico || '').toLowerCase();
+            const pickup = (card.dataset.pickup || '').toLowerCase();
+            const van = card.dataset.van || '';
+            const status = card.dataset.status || '';
             
             // Verificar filtros
             const passaPax = pax >= paxMin && pax <= paxMax;
@@ -1969,11 +2018,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Função para limpar filtros
     function limparFiltros() {
-        filtroPaxMin.value = '';
-        filtroPaxMax.value = '';
-        filtroServico.value = '';
-        filtroPickup.value = '';
-        filtroVan.value = '';
+        if (filtroPaxMin) filtroPaxMin.value = '';
+        if (filtroPaxMax) filtroPaxMax.value = '';
+        if (filtroServico) filtroServico.value = '';
+        if (filtroPickup) filtroPickup.value = '';
+        if (filtroVan) filtroVan.value = '';
         if (filtroStatus) filtroStatus.value = '';
         
         // Remover classes ativas dos botões - incluindo todas as variações
@@ -2106,13 +2155,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Event listeners para filtros
-    filtroPaxMin.addEventListener('input', aplicarFiltros);
-    filtroPaxMax.addEventListener('input', aplicarFiltros);
-    filtroServico.addEventListener('input', aplicarFiltros);
-    filtroPickup.addEventListener('input', aplicarFiltros);
-    filtroVan.addEventListener('change', aplicarFiltros);
+    if (filtroPaxMin) filtroPaxMin.addEventListener('input', aplicarFiltros);
+    if (filtroPaxMax) filtroPaxMax.addEventListener('input', aplicarFiltros);
+    if (filtroServico) filtroServico.addEventListener('input', aplicarFiltros);
+    if (filtroPickup) filtroPickup.addEventListener('input', aplicarFiltros);
+    if (filtroVan) filtroVan.addEventListener('change', aplicarFiltros);
     if (filtroStatus) filtroStatus.addEventListener('change', aplicarFiltros);
-    clearFilters.addEventListener('click', limparFiltros);
+    if (clearFilters) clearFilters.addEventListener('click', limparFiltros);
     
     // Filtros rápidos
     // Event listeners para botões de filtro rápido
