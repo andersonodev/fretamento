@@ -33,7 +33,12 @@ jobs:
         run: |
           source venv/bin/activate
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          # Usar requirements específicos para Azure (mais leve)
+          if [ -f requirements-azure.txt ]; then
+            pip install -r requirements-azure.txt
+          else
+            pip install -r requirements.txt
+          fi
       
       - name: Collect static files (Django)
         run: |
@@ -62,6 +67,16 @@ jobs:
           path: |
             .
             !venv/
+            !.git/
+            !.github/
+            !docs/
+            !tests/
+            !__pycache__/
+            !*.pyc
+            !.env
+            !.env.*
+            !logs/
+            !media/planilhas/
 
   deploy:
     runs-on: ubuntu-latest
