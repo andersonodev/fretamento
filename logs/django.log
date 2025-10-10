@@ -10708,3 +10708,1107 @@ INFO 2025-10-07 18:26:20,344 basehttp 35409 6182891520 "GET /escalas/visualizar/
 INFO 2025-10-07 18:26:23,738 basehttp 35409 6166065152 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 105
 INFO 2025-10-07 18:26:24,823 basehttp 35409 6166065152 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 500243
 INFO 2025-10-07 18:26:27,301 basehttp 35409 6166065152 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 2332
+WARNING 2025-10-07 18:27:25,712 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 18:27:25,713 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 19:25:01,891 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 19:25:01,893 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:33:02,480 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:33:02,483 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:38:27,512 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:38:27,514 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:39:27,484 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:39:27,485 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:46:17,514 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:46:17,516 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:47:17,490 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:47:17,490 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:48:18,492 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:48:18,492 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:49:19,501 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:49:19,502 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:50:20,493 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:50:20,495 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:51:21,486 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:51:21,487 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:52:22,490 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:52:22,492 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:53:23,481 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:53:23,483 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:54:24,485 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:54:24,488 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:55:25,482 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:55:25,484 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:56:26,483 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:56:26,484 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:57:27,481 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:57:27,483 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:58:28,479 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:58:28,481 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 20:59:29,481 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 20:59:29,481 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:00:30,471 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:00:30,472 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:01:30,474 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:01:30,474 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:02:30,468 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:02:30,468 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:03:30,467 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:03:30,468 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:04:30,468 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:04:30,469 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:05:30,464 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:05:30,465 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:06:30,463 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:06:30,463 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:07:30,461 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:07:30,462 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:08:30,464 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:08:30,464 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:09:30,464 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:09:30,465 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:10:30,455 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:10:30,455 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:11:30,454 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:11:30,455 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:12:30,454 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:12:30,454 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:13:30,448 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:13:30,453 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:14:30,454 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:14:30,455 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:15:30,456 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:15:30,457 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:16:30,451 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:16:30,452 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:17:30,457 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:17:30,457 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:18:30,455 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:18:30,455 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:19:30,453 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:19:30,455 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:20:30,464 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:20:30,465 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:21:30,463 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:21:30,467 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:22:30,457 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:22:30,458 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:23:30,986 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:23:30,989 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:24:30,535 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:24:30,536 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:25:30,532 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:25:30,533 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:26:30,535 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:26:30,536 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:27:30,528 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:27:30,529 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:28:30,527 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:28:30,528 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:29:30,525 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:29:30,526 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:30:30,547 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:30:30,548 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:31:30,535 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:31:30,536 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:32:30,524 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:32:30,524 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:33:30,536 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:33:30,537 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:34:30,532 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:34:30,533 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:35:30,533 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:35:30,534 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:36:30,534 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:36:30,535 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:37:30,526 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:37:30,526 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:38:30,526 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:38:30,526 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:39:30,527 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:39:30,527 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:40:30,535 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:40:30,535 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:41:30,534 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:41:30,536 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:42:30,525 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:42:30,526 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:43:30,530 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:43:30,532 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:44:30,532 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:44:30,532 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:45:30,533 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:45:30,534 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:46:30,555 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:46:30,558 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:47:30,530 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:47:30,531 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:48:30,529 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:48:30,530 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:49:30,523 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:49:30,524 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:50:30,530 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:50:30,531 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:51:30,524 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:51:30,525 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:52:30,532 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:52:30,534 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:53:30,571 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:53:30,573 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:54:30,526 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:54:30,526 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:55:30,523 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:55:30,524 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:56:30,531 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:56:30,531 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:57:30,524 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:57:30,524 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:58:30,530 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:58:30,530 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 21:59:30,529 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 21:59:30,530 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:00:30,531 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:00:30,532 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:01:30,532 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:01:30,533 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:02:30,531 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:02:30,532 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:03:30,529 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:03:30,530 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:04:30,539 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:04:30,545 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:05:30,649 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:05:30,650 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:06:30,657 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:06:30,658 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:07:30,654 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:07:30,655 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:08:30,653 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:08:30,654 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:09:30,655 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:09:30,656 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:10:30,671 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:10:30,673 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:11:30,667 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:11:30,668 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:12:30,666 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:12:30,667 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:13:30,667 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:13:30,668 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:14:30,673 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:14:30,674 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:15:30,688 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:15:30,690 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:16:30,677 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:16:30,678 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:17:30,681 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:17:30,681 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:18:30,670 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:18:30,671 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:19:30,678 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:19:30,679 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:20:30,683 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:20:30,684 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:21:30,710 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:21:30,712 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:22:30,679 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:22:30,680 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:23:30,680 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:23:30,680 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:24:30,681 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:24:30,682 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:25:30,684 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:25:30,684 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:26:30,689 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:26:30,689 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:27:30,692 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:27:30,695 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:28:30,698 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:28:30,699 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:29:30,698 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:29:30,699 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:30:30,698 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:30:30,699 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:31:30,706 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:31:30,707 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:32:30,704 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:32:30,705 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:33:30,719 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:33:30,720 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:34:30,698 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:34:30,699 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:35:30,702 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:35:30,703 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:36:30,709 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:36:30,710 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:37:30,711 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:37:30,712 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:38:30,720 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:38:30,722 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:39:30,712 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:39:30,712 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:40:30,720 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:40:30,721 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:41:30,725 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:41:30,726 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:42:30,724 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:42:30,726 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:43:30,718 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:43:30,719 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:44:30,721 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:44:30,723 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:45:30,725 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:45:30,726 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:46:30,725 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:46:30,726 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:47:30,727 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:47:30,728 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:48:30,731 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:48:30,732 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:49:30,733 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:49:30,735 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:50:30,738 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:50:30,739 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:51:30,747 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:51:30,748 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:52:30,747 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:52:30,749 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:53:30,745 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:53:30,746 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:54:30,744 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:54:30,744 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:55:30,711 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:55:30,712 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:56:30,712 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:56:30,713 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:57:30,713 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:57:30,714 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:58:30,710 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:58:30,712 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 22:59:30,741 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 22:59:30,743 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:00:30,712 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:00:30,713 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:01:30,709 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:01:30,709 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:02:30,723 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:02:30,724 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:03:30,711 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:03:30,712 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:04:30,718 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:04:30,718 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:05:30,716 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:05:30,717 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:06:30,718 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:06:30,719 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:07:30,720 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:07:30,721 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:08:30,713 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:08:30,713 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:09:30,713 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:09:30,713 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:10:30,713 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:10:30,714 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:11:30,717 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:11:30,718 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:12:30,720 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:12:30,721 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:13:30,718 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:13:30,719 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:14:30,714 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:14:30,715 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:15:30,715 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:15:30,716 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:16:30,727 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:16:30,729 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:17:30,715 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:17:30,716 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:18:30,735 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:18:30,737 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:19:30,723 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:19:30,724 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:20:30,725 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:20:30,726 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:21:30,725 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:21:30,727 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:22:30,600 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:22:30,602 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:23:30,600 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:23:30,603 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:24:30,592 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:24:30,593 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:25:30,591 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:25:30,592 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:26:30,582 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:26:30,584 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:27:30,580 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:27:30,581 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:28:30,577 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:28:30,578 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:29:30,573 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:29:30,573 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:30:30,565 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:30:30,566 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:31:30,574 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:31:30,574 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:32:30,566 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:32:30,567 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:33:30,559 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:33:30,559 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:34:30,563 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:34:30,563 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:35:30,559 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:35:30,560 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:36:30,556 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:36:30,558 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:37:30,549 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:37:30,549 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:38:30,556 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:38:30,557 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:39:30,546 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:39:30,548 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:40:30,542 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:40:30,543 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:41:30,542 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:41:30,543 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:42:30,537 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:42:30,537 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:43:30,534 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:43:30,534 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:44:30,532 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:44:30,533 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:45:30,560 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:45:30,561 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:46:30,532 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:46:30,535 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-07 23:52:59,994 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-07 23:52:59,995 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 01:07:06,045 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 01:07:06,047 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 03:08:00,146 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 03:08:00,148 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 05:10:00,657 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 05:10:00,659 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 07:03:16,019 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 07:03:16,021 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 08:12:53,315 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 08:12:53,318 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 09:13:50,970 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 09:13:50,973 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 09:48:25,443 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 09:48:25,445 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:08:09,360 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:08:09,361 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:09:10,345 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:09:10,347 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:10:11,341 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:10:11,342 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:11:12,337 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:11:12,338 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:12:13,338 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:12:13,339 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:13:15,264 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:13:15,265 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:29:15,147 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:29:15,148 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:30:16,166 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:30:16,168 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:31:17,091 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:31:17,093 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:32:18,096 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:32:18,099 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:33:19,106 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:33:19,108 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:34:20,097 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:34:20,098 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:35:21,098 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:35:21,099 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:39:54,346 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:39:54,347 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:40:54,203 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:40:54,206 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:41:54,181 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:41:54,182 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:42:54,198 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:42:54,199 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:43:54,187 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:43:54,188 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 10:59:54,000 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 10:59:54,002 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:00:53,967 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:00:53,968 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:01:54,000 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:01:54,001 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:02:53,993 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:02:53,996 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:03:53,969 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:03:53,970 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:04:53,971 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:04:53,973 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:05:53,997 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:05:54,000 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:06:53,968 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:06:53,969 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:07:53,971 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:07:53,973 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:08:53,997 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:08:54,000 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:09:53,969 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:09:53,971 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:10:53,989 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:10:53,990 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:11:53,977 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:11:53,979 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:12:53,976 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:12:53,978 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:13:53,977 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:13:53,979 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:14:53,993 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:14:53,996 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:15:53,995 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:15:53,998 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:16:53,969 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:16:53,970 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:17:54,004 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:17:54,006 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:18:53,975 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:18:53,977 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:19:53,977 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:19:53,977 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:20:54,010 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:20:54,013 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:21:53,970 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:21:53,972 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:22:54,016 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:22:54,018 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:23:53,986 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:23:53,988 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:24:53,967 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:24:53,967 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:25:53,965 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:25:53,966 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:26:53,974 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:26:53,976 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:27:53,974 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:27:53,976 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:28:53,972 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:28:53,975 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:29:53,999 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:29:54,002 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:41:11,579 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:41:11,581 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:57:11,016 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:57:11,018 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:58:10,950 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:58:10,951 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 11:59:10,952 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 11:59:10,954 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 12:15:25,478 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 12:15:25,480 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 12:20:22,621 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 12:20:22,622 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 12:25:37,179 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 12:25:37,182 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 12:30:51,640 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 12:30:51,642 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 12:46:54,723 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 12:46:54,725 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 14:22:13,446 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 14:22:13,448 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 15:00:46,151 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 15:00:46,154 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 15:01:45,923 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 15:01:45,924 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 15:02:45,916 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 15:02:45,917 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 15:03:45,905 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 15:03:45,906 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 15:04:45,913 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 15:04:45,914 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 15:05:45,914 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 15:05:45,915 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 15:06:45,931 log 35409 6166065152 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 15:06:45,933 basehttp 35409 6166065152 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-08 20:41:24,642 autoreload 6126 8519878656 Watching for file changes with StatReloader
+INFO 2025-10-08 20:41:33,834 basehttp 6126 6134034432 "GET / HTTP/1.1" 302 0
+INFO 2025-10-08 20:41:33,842 basehttp 6126 6134034432 "GET /auth/login/ HTTP/1.1" 200 12318
+INFO 2025-10-08 20:41:33,893 basehttp 6126 6134034432 "GET /static/images/logointertouring.png HTTP/1.1" 200 148745
+INFO 2025-10-08 20:42:54,475 basehttp 6126 6134034432 "GET /auth/login/ HTTP/1.1" 200 12318
+INFO 2025-10-08 20:42:57,539 basehttp 6126 6134034432 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-08 20:42:57,547 views 6126 6134034432 Gerando dashboard com consultas otimizadas
+INFO 2025-10-08 20:42:57,571 basehttp 6126 6134034432 "GET /core/ HTTP/1.1" 200 54221
+INFO 2025-10-08 20:42:57,594 basehttp 6126 6134034432 "GET /static/css/dashboard.css HTTP/1.1" 200 15603
+INFO 2025-10-08 20:42:57,594 basehttp 6126 6150860800 "GET /static/css/whatsapp-dark.css HTTP/1.1" 200 22967
+INFO 2025-10-08 20:42:57,595 basehttp 6126 6167687168 "GET /static/js/dashboard.js HTTP/1.1" 200 23337
+INFO 2025-10-08 20:43:00,248 basehttp 6126 6134034432 "GET /escalas/ HTTP/1.1" 200 32570
+INFO 2025-10-08 20:43:11,964 basehttp 6126 6134034432 "GET /escalas/ano/2025/ HTTP/1.1" 200 44652
+INFO 2025-10-08 20:43:17,172 basehttp 6126 6134034432 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 59278
+INFO 2025-10-08 20:43:34,167 basehttp 6126 6134034432 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 553617
+WARNING 2025-10-08 20:43:49,928 log 6126 6134034432 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-08 20:43:49,929 basehttp 6126 6134034432 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 2918
+INFO 2025-10-08 20:44:01,746 basehttp 6126 6134034432 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 553617
+INFO 2025-10-08 20:44:10,259 basehttp 6126 6134034432 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 546
+INFO 2025-10-08 20:44:14,822 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-08 20:44:14,829 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 3 serviços e 7 PAX
+INFO 2025-10-08 20:44:14,838 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-08 20:44:14,855 views 6126 6134034432 Grupo criado (NOME): AZUL VIAGENS com 3 serviços e 8 PAX
+INFO 2025-10-08 20:44:14,859 views 6126 6134034432 Grupo criado (NOME): E-HTL com 2 serviços e 3 PAX
+INFO 2025-10-08 20:44:14,871 views 6126 6134034432 Grupo criado (NOME): FRT OPERADORA DE TURISMO com 2 serviços e 11 PAX
+INFO 2025-10-08 20:44:14,874 views 6126 6134034432 Grupo criado (NOME): ORINTER com 2 serviços e 3 PAX
+INFO 2025-10-08 20:44:14,878 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 14 PAX
+INFO 2025-10-08 20:44:14,881 views 6126 6134034432 Grupo criado (NOME): HOLIDAY TAXIS GROUP LIMITED com 2 serviços e 3 PAX
+INFO 2025-10-08 20:44:14,884 views 6126 6134034432 Grupo criado (NOME): ORINTER com 2 serviços e 4 PAX
+INFO 2025-10-08 20:44:14,888 views 6126 6134034432 Grupo criado (NOME): E-HTL com 2 serviços e 4 PAX
+INFO 2025-10-08 20:44:14,905 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-08 20:44:14,908 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-08 20:44:14,910 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-08 20:44:14,916 basehttp 6126 6134034432 "POST /escalas/visualizar/03-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-08 20:44:14,962 basehttp 6126 6134034432 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 579149
+INFO 2025-10-08 20:44:16,623 views 6126 6134034432 🚀 INICIANDO PRECIFICAÇÃO INTELIGENTE - Escala 2025-10-03
+INFO 2025-10-08 20:44:16,624 views 6126 6134034432 📋 Total de alocações a precificar: 61
+INFO 2025-10-08 20:44:16,766 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-08 20:44:16,839 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:44:16,956 models 6126 6134034432 Precificação - Serviço: NOVO: TRANSFER REGULAR IN AEROPORTO INTER. GALEÃO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-08 20:44:17,074 views 6126 6134034432 🔄 Atualização - NOVO: TRANSFER REGULAR IN AERO... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:44:17,157 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:17,237 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:17,304 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:44:17,371 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:44:17,452 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-08 20:44:17,533 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-08 20:44:17,612 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:17,691 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:17,771 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:17,850 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:17,911 models 6126 6134034432 Precificação - Serviço: TOUR REGULAR CORCOVADO COM INGRESSO EM VAN E CITY ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 568.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:17,972 views 6126 6134034432 🔄 Atualização - TOUR REGULAR CORCOVADO COM ING... | N/A → Van 15 lugares | R$ 0.00 → R$ 568.00
+INFO 2025-10-08 20:44:18,051 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:18,130 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:18,209 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:18,289 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:44:18,405 models 6126 6134034432 Precificação - Serviço: NOVO: TRANSFER REGULAR IN AEROPORTO INTER. GALEÃO ... | PAX: 1 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-08 20:44:18,519 views 6126 6134034432 🔄 Atualização - NOVO: TRANSFER REGULAR IN AERO... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:44:18,587 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:44:18,656 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:44:18,720 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-08 20:44:18,783 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:18,862 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:18,941 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:19,009 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:44:19,076 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:44:19,146 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-08 20:44:19,217 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:44:19,285 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:44:19,353 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Van 15 lugares | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:44:19,433 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:19,514 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:19,594 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:19,673 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:19,753 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 7 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:19,832 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:44:19,895 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-08 20:44:19,957 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:19,978 models 6126 6134034432 Precificação - Serviço: Disposição 06h... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 209.00 | Fonte: Motoristas (sim: 1.00)
+INFO 2025-10-08 20:44:19,998 views 6126 6134034432 🔄 Atualização - Disposição 06h... | N/A → Van 15 lugares | R$ 0.00 → R$ 209.00
+INFO 2025-10-08 20:44:20,078 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:20,158 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:20,269 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR BÚZIOS (ARMAÇÃO, JOÃO FERNAND... | PAX: 1 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:20,379 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR BÚZIOS (A... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-08 20:44:20,460 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 3 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.38)
+INFO 2025-10-08 20:44:20,541 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:44:20,622 models 6126 6134034432 Precificação - Serviço: FULLDAY ARRAIAL DO CABO COM PASSEIO DE BARCO E ALM... | PAX: 1 | Veículo: Executivo | Preço: R$ 568.00 | Fonte: Motoristas (sim: 0.25)
+INFO 2025-10-08 20:44:20,702 views 6126 6134034432 🔄 Atualização - FULLDAY ARRAIAL DO CABO COM PA... | N/A → Executivo | R$ 0.00 → R$ 568.00
+INFO 2025-10-08 20:44:20,785 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 240.00 | Fonte: padrão (PAX: 3)
+INFO 2025-10-08 20:44:20,867 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 240.00
+INFO 2025-10-08 20:44:20,939 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-08 20:44:21,009 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:44:21,090 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:21,170 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:21,239 models 6126 6134034432 Precificação - Serviço: TOUR REGULAR CORCOVADO S/ INGRESSO E CITY TOUR - P... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 568.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:21,308 views 6126 6134034432 🔄 Atualização - TOUR REGULAR CORCOVADO S/ INGR... | N/A → Van 15 lugares | R$ 0.00 → R$ 568.00
+INFO 2025-10-08 20:44:21,389 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:21,468 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:21,553 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 3 | Veículo: Executivo | Preço: R$ 240.00 | Fonte: padrão (PAX: 3)
+INFO 2025-10-08 20:44:21,638 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 240.00
+INFO 2025-10-08 20:44:21,700 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-08 20:44:21,763 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:21,844 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BARRA DA TIJUCA PAR... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-08 20:44:21,924 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-08 20:44:21,992 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-08 20:44:22,059 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:22,138 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 7 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:22,216 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:44:22,297 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:22,377 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:22,470 models 6126 6134034432 Precificação - Serviço: TOUR REGULAR UM DIA NO RIO: PÃO DE AÇÚCAR, CORCOVA... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-08 20:44:22,563 views 6126 6134034432 🔄 Atualização - TOUR REGULAR UM DIA NO RIO: PÃ... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-08 20:44:22,631 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:44:22,698 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:44:22,778 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:22,858 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:22,930 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-08 20:44:23,000 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:44:23,081 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-08 20:44:23,161 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-08 20:44:23,223 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-08 20:44:23,286 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:23,399 models 6126 6134034432 Precificação - Serviço: NOVO: TRANSFER REGULAR IN AEROPORTO INTER. GALEÃO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-08 20:44:23,513 views 6126 6134034432 🔄 Atualização - NOVO: TRANSFER REGULAR IN AERO... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:44:23,593 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:23,674 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:23,737 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-08 20:44:23,800 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:23,863 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-08 20:44:23,926 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:24,021 models 6126 6134034432 Precificação - Serviço: TOUR REGULAR UM DIA NO RIO: PÃO DE AÇÚCAR, CORCOVA... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-08 20:44:24,115 views 6126 6134034432 🔄 Atualização - TOUR REGULAR UM DIA NO RIO: PÃ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-08 20:44:24,195 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:24,276 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:24,339 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-08 20:44:24,402 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:24,481 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:24,560 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:24,640 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:24,719 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:44:24,800 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:44:24,881 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:24,950 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 3 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-08 20:44:25,019 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-08 20:44:25,092 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-08 20:44:25,164 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-08 20:44:25,255 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-08 20:44:25,345 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-08 20:44:25,424 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:25,504 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:44:25,583 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:25,662 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:25,742 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:25,822 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:25,901 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:25,981 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:26,060 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:44:26,139 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:44:26,140 views 6126 6134034432 🔄 Recalculando totais de 14 grupos...
+INFO 2025-10-08 20:44:26,164 views 6126 6134034432 📊 ESTATÍSTICAS DA PRECIFICAÇÃO:
+INFO 2025-10-08 20:44:26,165 views 6126 6134034432    • Tarifário JW: 0 serviços
+INFO 2025-10-08 20:44:26,165 views 6126 6134034432    • Tarifário Motoristas: 53 serviços
+INFO 2025-10-08 20:44:26,165 views 6126 6134034432    • Preços padrão: 8 serviços
+INFO 2025-10-08 20:44:26,165 views 6126 6134034432    • Valor total: R$ 6,796.00
+INFO 2025-10-08 20:44:26,165 views 6126 6134034432    • Valor médio por serviço: R$ 111.41
+INFO 2025-10-08 20:44:26,165 basehttp 6126 6134034432 "POST /escalas/precificar/03-10-2025/ HTTP/1.1" 200 364
+INFO 2025-10-08 20:44:28,261 basehttp 6126 6134034432 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 613060
+INFO 2025-10-08 20:44:31,045 views 6126 6134034432 🚀 INICIANDO ESCALAR - Sistema de otimização avançado para escala 198
+INFO 2025-10-08 20:44:31,045 views 6126 6134034432 📋 Resetando status de todas as alocações para 'Não alocado'
+INFO 2025-10-08 20:44:31,059 views 6126 6134034432 ✅ ETAPA 1 - Encontrados 15 candidatos (4-10 PAX)
+INFO 2025-10-08 20:44:31,060 views 6126 6134034432 ✅ ETAPA 2 - Prioritários: 15 | Não prioritários: 0
+INFO 2025-10-08 20:44:31,060 views 6126 6134034432 🎯 ETAPA 3 - Alocando serviços prioritários...
+INFO 2025-10-08 20:44:31,061 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (5 PAX) -> VAN1 #1
+INFO 2025-10-08 20:44:31,062 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (9 PAX) -> VAN1 #2
+INFO 2025-10-08 20:44:31,062 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (8 PAX) -> VAN1 #1
+INFO 2025-10-08 20:44:31,063 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (7 PAX) -> VAN2 #1
+INFO 2025-10-08 20:44:31,064 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (5 PAX) -> VAN1 #2
+INFO 2025-10-08 20:44:31,064 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (5 PAX) -> VAN2 #2
+INFO 2025-10-08 20:44:31,065 views 6126 6134034432 ✅ ALOCADO: ORINTER (4 PAX) -> VAN2 #2
+INFO 2025-10-08 20:44:31,066 views 6126 6134034432 ✅ ETAPA 3 - 7/15 prioritários alocados
+INFO 2025-10-08 20:44:31,066 views 6126 6134034432 🔄 ETAPA 4 - Tentando alocar não prioritários nos intervalos livres...
+INFO 2025-10-08 20:44:31,066 views 6126 6134034432 ✅ ETAPA 4 - 0/0 não prioritários alocados
+INFO 2025-10-08 20:44:31,066 views 6126 6134034432 🔧 ETAPA 5 - Preenchendo furos com serviços de 1-3 PAX...
+INFO 2025-10-08 20:44:31,076 views 6126 6134034432 ✅ ETAPA 5 - Encontrados 25 candidatos pequenos (1-3 PAX)
+INFO 2025-10-08 20:44:31,077 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (2 PAX) -> VAN2 #1
+INFO 2025-10-08 20:44:31,077 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (2 PAX) -> VAN1 #1
+INFO 2025-10-08 20:44:31,079 views 6126 6134034432 ✅ ETAPA 5 - 2/25 serviços pequenos alocados
+INFO 2025-10-08 20:44:31,079 views 6126 6134034432    📊 Prioritários: 2
+INFO 2025-10-08 20:44:31,079 views 6126 6134034432    📊 Não prioritários: 0
+INFO 2025-10-08 20:44:31,080 views 6126 6134034432 🎉 ESCALAR CONCLUÍDO!
+INFO 2025-10-08 20:44:31,080 views 6126 6134034432    📊 Alocados: 15
+INFO 2025-10-08 20:44:31,081 views 6126 6134034432    📊 Não alocados: 46
+INFO 2025-10-08 20:44:31,081 views 6126 6134034432    📊 Van 1: 7 serviços
+INFO 2025-10-08 20:44:31,081 views 6126 6134034432    📊 Van 2: 8 serviços
+INFO 2025-10-08 20:44:31,082 basehttp 6126 6134034432 "POST /escalas/visualizar/03-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-08 20:44:31,132 basehttp 6126 6134034432 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 591627
+INFO 2025-10-08 20:44:50,293 basehttp 6126 6134034432 "GET /escalas/api/tarifarios/ HTTP/1.1" 200 6005
+WARNING 2025-10-08 20:45:31,167 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 20:45:31,168 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-08 20:45:40,786 basehttp 6126 6134034432 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 1050
+WARNING 2025-10-08 20:46:08,767 views 6126 6134034432 FORMATAÇÃO INICIADA | Usuário: cristiane.aguiar | Data: 03/10/2025 | IP: 127.0.0.1 | Timestamp: 08/10/2025 23:46:08
+INFO 2025-10-08 20:46:08,791 views 6126 6134034432 Desprecificando alocação 3152: preço=40.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,792 views 6126 6134034432 Desprecificando alocação 3156: preço=44.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,793 views 6126 6134034432 Desprecificando alocação 3162: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,795 views 6126 6134034432 Desprecificando alocação 3164: preço=568.00, veículo=Van 15 lugares
+INFO 2025-10-08 20:46:08,795 views 6126 6134034432 Desprecificando alocação 3168: preço=44.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,796 views 6126 6134034432 Desprecificando alocação 3170: preço=40.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,797 views 6126 6134034432 Desprecificando alocação 3172: preço=44.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,798 views 6126 6134034432 Desprecificando alocação 3174: preço=77.00, veículo=Van 15 lugares
+INFO 2025-10-08 20:46:08,799 views 6126 6134034432 Desprecificando alocação 3176: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,799 views 6126 6134034432 Desprecificando alocação 3178: preço=44.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,800 views 6126 6134034432 Desprecificando alocação 3180: preço=40.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,801 views 6126 6134034432 Desprecificando alocação 3182: preço=44.00, veículo=Van 15 lugares
+INFO 2025-10-08 20:46:08,802 views 6126 6134034432 Desprecificando alocação 3188: preço=44.00, veículo=Van 15 lugares
+INFO 2025-10-08 20:46:08,803 views 6126 6134034432 Desprecificando alocação 3190: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,803 views 6126 6134034432 Desprecificando alocação 3192: preço=209.00, veículo=Van 15 lugares
+INFO 2025-10-08 20:46:08,804 views 6126 6134034432 Desprecificando alocação 3196: preço=63.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,805 views 6126 6134034432 Desprecificando alocação 3198: preço=40.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,806 views 6126 6134034432 Desprecificando alocação 3200: preço=568.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,807 views 6126 6134034432 Desprecificando alocação 3204: preço=40.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,808 views 6126 6134034432 Desprecificando alocação 3206: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,810 views 6126 6134034432 Desprecificando alocação 3208: preço=568.00, veículo=Van 15 lugares
+INFO 2025-10-08 20:46:08,810 views 6126 6134034432 Desprecificando alocação 3210: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,811 views 6126 6134034432 Desprecificando alocação 3158: preço=220.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,812 views 6126 6134034432 Desprecificando alocação 3189: preço=77.00, veículo=Van 15 lugares
+INFO 2025-10-08 20:46:08,813 views 6126 6134034432 Desprecificando alocação 3194: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,814 views 6126 6134034432 Desprecificando alocação 3202: preço=240.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,815 views 6126 6134034432 Desprecificando alocação 3154: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,816 views 6126 6134034432 Desprecificando alocação 3177: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,816 views 6126 6134034432 Desprecificando alocação 3186: preço=77.00, veículo=Van 15 lugares
+INFO 2025-10-08 20:46:08,817 views 6126 6134034432 Desprecificando alocação 3151: preço=240.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,818 views 6126 6134034432 Desprecificando alocação 3153: preço=77.00, veículo=Van 15 lugares
+INFO 2025-10-08 20:46:08,819 views 6126 6134034432 Desprecificando alocação 3155: preço=220.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,820 views 6126 6134034432 Desprecificando alocação 3157: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,820 views 6126 6134034432 Desprecificando alocação 3159: preço=44.00, veículo=Van 15 lugares
+INFO 2025-10-08 20:46:08,821 views 6126 6134034432 Desprecificando alocação 3163: preço=200.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,822 views 6126 6134034432 Desprecificando alocação 3165: preço=44.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,823 views 6126 6134034432 Desprecificando alocação 3167: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,824 views 6126 6134034432 Desprecificando alocação 3171: preço=220.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,824 views 6126 6134034432 Desprecificando alocação 3173: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,825 views 6126 6134034432 Desprecificando alocação 3175: preço=40.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,826 views 6126 6134034432 Desprecificando alocação 3179: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,827 views 6126 6134034432 Desprecificando alocação 3181: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,828 views 6126 6134034432 Desprecificando alocação 3183: preço=220.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,828 views 6126 6134034432 Desprecificando alocação 3185: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,829 views 6126 6134034432 Desprecificando alocação 3187: preço=77.00, veículo=Van 15 lugares
+INFO 2025-10-08 20:46:08,831 views 6126 6134034432 Desprecificando alocação 3191: preço=44.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,832 views 6126 6134034432 Desprecificando alocação 3193: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,833 views 6126 6134034432 Desprecificando alocação 3195: preço=63.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,834 views 6126 6134034432 Desprecificando alocação 3197: preço=200.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,836 views 6126 6134034432 Desprecificando alocação 3199: preço=81.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,837 views 6126 6134034432 Desprecificando alocação 3201: preço=44.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,838 views 6126 6134034432 Desprecificando alocação 3203: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,840 views 6126 6134034432 Desprecificando alocação 3209: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,841 views 6126 6134034432 Desprecificando alocação 3160: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,841 views 6126 6134034432 Desprecificando alocação 3161: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,843 views 6126 6134034432 Desprecificando alocação 3166: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,844 views 6126 6134034432 Desprecificando alocação 3184: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,845 views 6126 6134034432 Desprecificando alocação 3150: preço=40.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,846 views 6126 6134034432 Desprecificando alocação 3169: preço=40.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,847 views 6126 6134034432 Desprecificando alocação 3205: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,848 views 6126 6134034432 Desprecificando alocação 3207: preço=77.00, veículo=Executivo
+INFO 2025-10-08 20:46:08,849 views 6126 6134034432 Total de alocações desprecificadas: 61
+WARNING 2025-10-08 20:46:08,853 views 6126 6134034432 FORMATAÇÃO CONCLUÍDA | Usuário: cristiane.aguiar (Cristiane Aguiar) | Data Escala: 03/10/2025 | IP: 127.0.0.1 | Timestamp: 08/10/2025 23:46:08 | Grupos removidos: 14 | Alocações desprecificadas: 61 | Total alocações: 61 | Etapa anterior: OTIMIZADA → Nova etapa: DADOS_PUXADOS | Status: PENDENTE
+INFO 2025-10-08 20:46:08,854 basehttp 6126 6134034432 "POST /escalas/formatar-escala/ HTTP/1.1" 302 0
+INFO 2025-10-08 20:46:08,887 basehttp 6126 6134034432 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 554655
+INFO 2025-10-08 20:46:17,782 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-08 20:46:17,790 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 3 serviços e 7 PAX
+INFO 2025-10-08 20:46:17,800 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-08 20:46:17,821 views 6126 6134034432 Grupo criado (NOME): AZUL VIAGENS com 3 serviços e 8 PAX
+INFO 2025-10-08 20:46:17,825 views 6126 6134034432 Grupo criado (NOME): E-HTL com 2 serviços e 3 PAX
+INFO 2025-10-08 20:46:17,838 views 6126 6134034432 Grupo criado (NOME): FRT OPERADORA DE TURISMO com 2 serviços e 11 PAX
+INFO 2025-10-08 20:46:17,841 views 6126 6134034432 Grupo criado (NOME): ORINTER com 2 serviços e 3 PAX
+INFO 2025-10-08 20:46:17,844 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 14 PAX
+INFO 2025-10-08 20:46:17,848 views 6126 6134034432 Grupo criado (NOME): HOLIDAY TAXIS GROUP LIMITED com 2 serviços e 3 PAX
+INFO 2025-10-08 20:46:17,851 views 6126 6134034432 Grupo criado (NOME): ORINTER com 2 serviços e 4 PAX
+INFO 2025-10-08 20:46:17,856 views 6126 6134034432 Grupo criado (NOME): E-HTL com 2 serviços e 4 PAX
+INFO 2025-10-08 20:46:17,876 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-08 20:46:17,879 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-08 20:46:17,882 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-08 20:46:17,887 basehttp 6126 6134034432 "POST /escalas/visualizar/03-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-08 20:46:17,932 basehttp 6126 6134034432 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 556535
+WARNING 2025-10-08 20:47:18,397 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 20:47:18,398 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 20:48:17,983 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 20:48:17,984 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-08 20:48:27,646 basehttp 6126 6134034432 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 815
+WARNING 2025-10-08 20:48:37,232 views 6126 6134034432 FORMATAÇÃO INICIADA | Usuário: cristiane.aguiar | Data: 03/10/2025 | IP: 127.0.0.1 | Timestamp: 08/10/2025 23:48:37
+INFO 2025-10-08 20:48:37,270 views 6126 6134034432 Total de alocações desprecificadas: 0
+WARNING 2025-10-08 20:48:37,274 views 6126 6134034432 FORMATAÇÃO CONCLUÍDA | Usuário: cristiane.aguiar (Cristiane Aguiar) | Data Escala: 03/10/2025 | IP: 127.0.0.1 | Timestamp: 08/10/2025 23:48:37 | Grupos removidos: 14 | Alocações desprecificadas: 0 | Total alocações: 61 | Etapa anterior: DADOS_PUXADOS → Nova etapa: DADOS_PUXADOS | Status: PENDENTE
+INFO 2025-10-08 20:48:37,274 basehttp 6126 6134034432 "POST /escalas/formatar-escala/ HTTP/1.1" 302 0
+INFO 2025-10-08 20:48:37,306 basehttp 6126 6134034432 "GET /escalas/visualizar/03-10-2025/ HTTP/1.1" 200 554654
+INFO 2025-10-08 20:48:39,534 basehttp 6126 6134034432 "GET /escalas/ HTTP/1.1" 200 32570
+INFO 2025-10-08 20:48:42,046 basehttp 6126 6134034432 "GET /escalas/ano/2025/ HTTP/1.1" 200 44652
+INFO 2025-10-08 20:48:43,750 basehttp 6126 6134034432 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 59278
+WARNING 2025-10-08 20:49:43,786 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 20:49:43,788 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-08 20:49:49,053 basehttp 6126 6134034432 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-08 20:49:49,071 basehttp 6126 6134034432 "GET /escalas/visualizar/2025-10-05/ HTTP/1.1" 200 167642
+INFO 2025-10-08 20:49:51,219 basehttp 6126 6134034432 "GET /escalas/puxar-dados/05-10-2025/ HTTP/1.1" 200 43825
+INFO 2025-10-08 20:50:08,389 basehttp 6126 6134034432 "GET /escalas/visualizar/2025-10-05/ HTTP/1.1" 200 167045
+INFO 2025-10-08 20:50:16,774 basehttp 6126 6134034432 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 63210
+WARNING 2025-10-08 20:51:16,808 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 20:51:16,809 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-08 20:51:57,268 basehttp 6126 6134034432 "POST /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-08 20:51:57,289 basehttp 6126 6134034432 "GET /escalas/visualizar/2025-10-06/ HTTP/1.1" 200 167648
+INFO 2025-10-08 20:51:59,320 basehttp 6126 6134034432 "GET /escalas/puxar-dados/06-10-2025/ HTTP/1.1" 200 43831
+INFO 2025-10-08 20:52:54,677 basehttp 6126 6134034432 "POST /escalas/puxar-dados/06-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-08 20:52:54,760 basehttp 6126 6134034432 "GET /escalas/visualizar/06-10-2025/ HTTP/1.1" 200 505406
+INFO 2025-10-08 20:53:01,406 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 6 PAX
+INFO 2025-10-08 20:53:01,432 views 6126 6134034432 Grupo criado (NOME): AZUL VIAGENS com 2 serviços e 4 PAX
+INFO 2025-10-08 20:53:01,442 views 6126 6134034432 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-08 20:53:01,457 views 6126 6134034432 Grupo criado (TRANSFER_OUT_REGULAR): ORINTER com 2 serviços e 4 PAX
+INFO 2025-10-08 20:53:01,463 views 6126 6134034432 Grupo criado (TRANSFER_OUT_REGULAR): AZUL VIAGENS com 3 serviços e 5 PAX
+INFO 2025-10-08 20:53:01,513 basehttp 6126 6134034432 "POST /escalas/visualizar/06-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-08 20:53:01,550 basehttp 6126 6134034432 "GET /escalas/visualizar/06-10-2025/ HTTP/1.1" 200 521440
+INFO 2025-10-08 20:53:04,868 views 6126 6134034432 🚀 INICIANDO PRECIFICAÇÃO INTELIGENTE - Escala 2025-10-06
+INFO 2025-10-08 20:53:04,870 views 6126 6134034432 📋 Total de alocações a precificar: 53
+INFO 2025-10-08 20:53:04,979 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:53:05,060 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:05,168 models 6126 6134034432 Precificação - Serviço: NOVO: TRANSFER REGULAR OUT ZONA SUL OU CENTRO PARA... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:05,277 views 6126 6134034432 🔄 Atualização - NOVO: TRANSFER REGULAR OUT ZON... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:53:05,343 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:05,409 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:05,479 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR HOTÉIS CENTRO PARA AEROPORTO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-08 20:53:05,548 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR HOTÉIS CE... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:53:05,628 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO CENTRO RJ PARA AERO... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:05,710 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-08 20:53:05,779 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR HOTÉIS CENTRO PARA AEROPORTO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-08 20:53:05,849 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR HOTÉIS CE... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:53:05,912 models 6126 6134034432 Precificação - Serviço: FULLDAY TOUR REGULAR - ARRAIAL DO CABO COM PASSEIO... | PAX: 1 | Veículo: Executivo | Preço: R$ 568.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-08 20:53:05,976 views 6126 6134034432 🔄 Atualização - FULLDAY TOUR REGULAR - ARRAIAL... | N/A → Executivo | R$ 0.00 → R$ 568.00
+INFO 2025-10-08 20:53:06,068 models 6126 6134034432 Precificação - Serviço: TOUR REGULAR UM DIA NO RIO: PÃO DE AÇÚCAR, CORCOVA... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 450.00 | Fonte: padrão (PAX: 6)
+INFO 2025-10-08 20:53:06,161 views 6126 6134034432 🔄 Atualização - TOUR REGULAR UM DIA NO RIO: PÃ... | N/A → Van 15 lugares | R$ 0.00 → R$ 450.00
+INFO 2025-10-08 20:53:06,231 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-08 20:53:06,301 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:53:06,381 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:53:06,460 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:06,528 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:06,595 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:06,706 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 400.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:06,817 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 400.00
+INFO 2025-10-08 20:53:06,857 models 6126 6134034432 Precificação - Serviço: TRANSFER ENTRE BAIRROS (POR VEÍCULO E POR TRECHO)... | PAX: 1 | Veículo: Executivo | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:53:06,895 views 6126 6134034432 🔄 Atualização - TRANSFER ENTRE BAIRROS (POR VE... | N/A → Executivo | R$ 0.00 → R$ 326.00
+INFO 2025-10-08 20:53:06,962 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-08 20:53:07,029 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:07,095 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-08 20:53:07,162 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:07,228 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:07,296 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:07,362 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:07,428 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:07,506 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:53:07,585 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:07,674 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO HOTÉIS PETRÓPOLIS O... | PAX: 3 | Veículo: Executivo | Preço: R$ 280.00 | Fonte: Motoristas (sim: 0.41)
+INFO 2025-10-08 20:53:07,766 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 280.00
+INFO 2025-10-08 20:53:07,845 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:53:07,924 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:07,991 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:08,059 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:08,137 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:53:08,217 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:08,295 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:53:08,374 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:08,487 models 6126 6134034432 Precificação - Serviço: NOVO: TRANSFER REGULAR IN AEROPORTO INTER. GALEÃO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-08 20:53:08,599 views 6126 6134034432 🔄 Atualização - NOVO: TRANSFER REGULAR IN AERO... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:53:08,667 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-08 20:53:08,735 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-08 20:53:08,813 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:53:08,892 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:08,971 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:53:09,050 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:09,128 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:53:09,206 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:09,285 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:53:09,364 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:09,443 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:53:09,523 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:09,603 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO CENTRO RJ PARA AERO... | PAX: 1 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:09,684 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-08 20:53:09,764 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 540.00 | Fonte: padrão (PAX: 9)
+INFO 2025-10-08 20:53:09,844 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 540.00
+INFO 2025-10-08 20:53:09,913 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR HOTÉIS CENTRO PARA AEROPORTO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-08 20:53:09,982 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR HOTÉIS CE... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:53:10,060 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:53:10,137 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:10,204 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:10,270 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:10,337 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR CENTRO RJ PARA AEROPORTO INTE... | PAX: 1 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-08 20:53:10,405 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR CENTRO RJ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-08 20:53:10,483 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:53:10,561 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:10,639 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:53:10,718 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:10,798 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:53:10,878 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:10,957 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:53:11,036 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:11,105 models 6126 6134034432 Precificação - Serviço: TOUR REGULAR CORCOVADO S/ INGRESSO E CITY TOUR - P... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 568.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:53:11,174 views 6126 6134034432 🔄 Atualização - TOUR REGULAR CORCOVADO S/ INGR... | N/A → Van 15 lugares | R$ 0.00 → R$ 568.00
+INFO 2025-10-08 20:53:11,253 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:53:11,332 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:11,400 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-08 20:53:11,468 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-08 20:53:11,548 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-08 20:53:11,627 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:11,705 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:53:11,786 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:11,870 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BARRA DA TIJUCA / A... | PAX: 3 | Veículo: Executivo | Preço: R$ 240.00 | Fonte: padrão (PAX: 3)
+INFO 2025-10-08 20:53:11,954 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 240.00
+INFO 2025-10-08 20:53:12,038 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-08 20:53:12,122 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-08 20:53:12,189 models 6126 6134034432 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:12,256 views 6126 6134034432 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:12,336 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO CENTRO RJ PARA AERO... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:12,417 views 6126 6134034432 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-08 20:53:12,484 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-08 20:53:12,552 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-08 20:53:12,621 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR HOTÉIS CENTRO PARA AEROPORTO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-08 20:53:12,691 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR HOTÉIS CE... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-08 20:53:12,758 models 6126 6134034432 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-08 20:53:12,825 views 6126 6134034432 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:12,903 models 6126 6134034432 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-08 20:53:12,982 views 6126 6134034432 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-08 20:53:12,982 views 6126 6134034432 🔄 Recalculando totais de 5 grupos...
+INFO 2025-10-08 20:53:12,993 views 6126 6134034432 📊 ESTATÍSTICAS DA PRECIFICAÇÃO:
+INFO 2025-10-08 20:53:12,993 views 6126 6134034432    • Tarifário JW: 0 serviços
+INFO 2025-10-08 20:53:12,993 views 6126 6134034432    • Tarifário Motoristas: 49 serviços
+INFO 2025-10-08 20:53:12,993 views 6126 6134034432    • Preços padrão: 4 serviços
+INFO 2025-10-08 20:53:12,993 views 6126 6134034432    • Valor total: R$ 6,155.00
+INFO 2025-10-08 20:53:12,993 views 6126 6134034432    • Valor médio por serviço: R$ 116.13
+INFO 2025-10-08 20:53:12,993 basehttp 6126 6134034432 "POST /escalas/precificar/06-10-2025/ HTTP/1.1" 200 364
+INFO 2025-10-08 20:53:15,086 basehttp 6126 6134034432 "GET /escalas/visualizar/06-10-2025/ HTTP/1.1" 200 559532
+INFO 2025-10-08 20:53:24,420 views 6126 6134034432 📊 Buscando detalhes para alocação 3270
+INFO 2025-10-08 20:53:24,420 views 6126 6134034432 📊 Detalhes encontrados: {'metodo': 'busca_inteligente', 'servico_original': 'TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROPORTO INTER. GALEÃO RJ (GIG)', 'pax': 2, 'numero_venda': '49826.0', 'veiculo_calculado': 'Executivo', 'preco_encontrado': 77.0, 'fonte_tarifario': 'Motoristas (sim: 0.28)', 'data_calculo': '2025-10-08T23:53:04.979561+00:00', 'algoritmo_usado': 'fuzzy_search_v2', 'tarifario': 'Motoristas', 'chave_encontrada': 'Transfer In ou Out Gig / Zona Sul ou São Conrado', 'similaridade': 0.27550932744231715, 'preco_tabela': 77.0, 'multiplicador': 1, 'observacoes': 'Preço base do tarifário de motoristas'}
+INFO 2025-10-08 20:53:24,422 views 6126 6134034432 📊 Retornando dados expandidos: 1376 caracteres
+INFO 2025-10-08 20:53:24,423 basehttp 6126 6134034432 "GET /escalas/api/detalhes-precificacao/3270/ HTTP/1.1" 200 1426
+INFO 2025-10-08 20:53:50,445 views 6126 6134034432 🚀 INICIANDO ESCALAR - Sistema de otimização avançado para escala 201
+INFO 2025-10-08 20:53:50,447 views 6126 6134034432 📋 Resetando status de todas as alocações para 'Não alocado'
+INFO 2025-10-08 20:53:50,463 views 6126 6134034432 ✅ ETAPA 1 - Encontrados 13 candidatos (4-10 PAX)
+INFO 2025-10-08 20:53:50,463 views 6126 6134034432 ✅ ETAPA 2 - Prioritários: 13 | Não prioritários: 0
+INFO 2025-10-08 20:53:50,463 views 6126 6134034432 🎯 ETAPA 3 - Alocando serviços prioritários...
+INFO 2025-10-08 20:53:50,464 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (9 PAX) -> VAN1 #1
+INFO 2025-10-08 20:53:50,465 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (6 PAX) -> VAN2 #1
+INFO 2025-10-08 20:53:50,465 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (6 PAX) -> VAN1 #2
+INFO 2025-10-08 20:53:50,466 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (4 PAX) -> VAN1 #2
+INFO 2025-10-08 20:53:50,466 views 6126 6134034432 ✅ ALOCADO: INTERTOURING RECEPTIVO (6 PAX) -> VAN2 #2
+INFO 2025-10-08 20:53:50,467 views 6126 6134034432 ✅ ETAPA 3 - 5/13 prioritários alocados
+INFO 2025-10-08 20:53:50,467 views 6126 6134034432 🔄 ETAPA 4 - Tentando alocar não prioritários nos intervalos livres...
+INFO 2025-10-08 20:53:50,467 views 6126 6134034432 ✅ ETAPA 4 - 0/0 não prioritários alocados
+INFO 2025-10-08 20:53:50,467 views 6126 6134034432 🔧 ETAPA 5 - Preenchendo furos com serviços de 1-3 PAX...
+INFO 2025-10-08 20:53:50,480 views 6126 6134034432 ✅ ETAPA 5 - Encontrados 34 candidatos pequenos (1-3 PAX)
+INFO 2025-10-08 20:53:50,481 views 6126 6134034432 ✅ ALOCADO: HOTELBEDS (2 PAX) -> VAN2 #3
+INFO 2025-10-08 20:53:50,481 views 6126 6134034432 ✅ ALOCADO: HOLIDAY TAXIS GROUP LIMITED (2 PAX) -> VAN2 #3
+INFO 2025-10-08 20:53:50,483 views 6126 6134034432 ✅ ALOCADO: FRT OPERADORA DE TURISMO (2 PAX) -> VAN1 #4
+INFO 2025-10-08 20:53:50,483 views 6126 6134034432 ✅ ALOCADO: FRT OPERADORA DE TURISMO (1 PAX) -> VAN1 #5
+INFO 2025-10-08 20:53:50,484 views 6126 6134034432 ✅ ETAPA 5 - 4/34 serviços pequenos alocados
+INFO 2025-10-08 20:53:50,484 views 6126 6134034432    📊 Prioritários: 4
+INFO 2025-10-08 20:53:50,484 views 6126 6134034432    📊 Não prioritários: 0
+INFO 2025-10-08 20:53:50,485 views 6126 6134034432 🎉 ESCALAR CONCLUÍDO!
+INFO 2025-10-08 20:53:50,486 views 6126 6134034432    📊 Alocados: 11
+INFO 2025-10-08 20:53:50,486 views 6126 6134034432    📊 Não alocados: 42
+INFO 2025-10-08 20:53:50,486 views 6126 6134034432    📊 Van 1: 6 serviços
+INFO 2025-10-08 20:53:50,486 views 6126 6134034432    📊 Van 2: 5 serviços
+INFO 2025-10-08 20:53:50,488 basehttp 6126 6134034432 "POST /escalas/visualizar/06-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-08 20:53:50,544 basehttp 6126 6134034432 "GET /escalas/visualizar/06-10-2025/ HTTP/1.1" 200 546136
+INFO 2025-10-08 20:53:56,470 views 6126 6134034432 📝 Status de alocação alterado: TRANSFER OUT VEÍCULO PRIVATIVO CENTRO RJ PARA AERO... -> NAO_ALOCADO (usuário: cristiane.aguiar)
+INFO 2025-10-08 20:53:56,470 basehttp 6126 6134034432 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 86
+INFO 2025-10-08 20:53:57,559 basehttp 6126 6134034432 "GET /escalas/visualizar/06-10-2025/ HTTP/1.1" 200 545577
+INFO 2025-10-08 20:53:58,967 views 6126 6134034432 📊 Buscando detalhes para alocação 3313
+INFO 2025-10-08 20:53:58,967 views 6126 6134034432 📊 Detalhes encontrados: {'metodo': 'busca_inteligente', 'servico_original': 'TRANSFER OUT VEÍCULO PRIVATIVO CENTRO RJ PARA AEROPORTO INTER. GALEÃO RJ (GIG)', 'pax': 2, 'numero_venda': '57234.0', 'veiculo_calculado': 'Executivo', 'preco_encontrado': 63.0, 'fonte_tarifario': 'Motoristas (sim: 0.32)', 'data_calculo': '2025-10-08T23:53:12.336701+00:00', 'algoritmo_usado': 'fuzzy_search_v2', 'tarifario': 'Motoristas', 'chave_encontrada': 'Transfer In ou Out Gig / Centro', 'similaridade': 0.3205345807804824, 'preco_tabela': 63.0, 'multiplicador': 1, 'observacoes': 'Preço base do tarifário de motoristas'}
+INFO 2025-10-08 20:53:58,969 views 6126 6134034432 📊 Retornando dados expandidos: 1322 caracteres
+INFO 2025-10-08 20:53:58,970 basehttp 6126 6134034432 "GET /escalas/api/detalhes-precificacao/3313/ HTTP/1.1" 200 1362
+WARNING 2025-10-08 20:54:58,382 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 20:54:58,383 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 21:10:59,349 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 21:10:59,351 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 22:18:27,372 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 22:18:27,374 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 22:21:09,714 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 22:21:09,715 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 22:46:42,114 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 22:46:42,116 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 23:11:48,928 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 23:11:48,931 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 23:18:48,311 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 23:18:48,314 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-08 23:41:44,029 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-08 23:41:44,031 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 00:14:21,873 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 00:14:21,876 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 00:42:46,182 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 00:42:46,184 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 01:30:01,907 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 01:30:01,909 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 01:59:16,695 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 01:59:16,698 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 02:39:39,898 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 02:39:39,900 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 02:40:46,117 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 02:40:46,119 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 03:22:59,846 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 03:22:59,848 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 05:24:42,044 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 05:24:42,046 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 05:44:02,164 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 05:44:02,166 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 06:08:24,320 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 06:08:24,322 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 06:57:11,730 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 06:57:11,732 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 07:52:12,434 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 07:52:12,436 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 08:53:10,646 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 08:53:10,649 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 09:35:31,926 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 09:35:31,928 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:13:58,484 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:13:58,486 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:15:01,175 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:15:01,175 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:17:32,257 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:17:32,258 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:19:38,395 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:19:38,396 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:22:16,002 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:22:16,003 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:23:22,479 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:23:22,481 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:26:10,902 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:26:10,903 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:28:47,106 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:28:47,108 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:31:18,438 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:31:18,439 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:41:59,334 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:41:59,337 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:43:04,818 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:43:04,819 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 10:55:32,213 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 10:55:32,214 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 11:27:58,962 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 11:27:58,964 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 11:36:10,875 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 11:36:10,877 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 11:39:10,974 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 11:39:10,976 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 11:41:12,256 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 11:41:12,258 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 13:05:21,330 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 13:05:21,332 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 13:45:27,006 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 13:45:27,008 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 13:51:07,560 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 13:51:07,562 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 13:57:38,762 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 13:57:38,766 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 14:40:42,719 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 14:40:42,721 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 15:04:27,647 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 15:04:27,649 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 15:25:45,869 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 15:25:45,871 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 15:48:14,961 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 15:48:14,963 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 16:29:58,310 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 16:29:58,314 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 17:30:03,115 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 17:30:03,117 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 17:31:41,170 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 17:31:41,171 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 17:38:43,370 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 17:38:43,371 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 17:54:50,539 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 17:54:50,541 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 18:44:35,815 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 18:44:35,817 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 19:15:13,104 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 19:15:13,106 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 19:43:17,861 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 19:43:17,863 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-09 19:44:17,545 log 6126 6134034432 Not Found: /api/dashboard/updates/
+WARNING 2025-10-09 19:44:18,977 basehttp 6126 6134034432 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840

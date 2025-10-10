@@ -1,0 +1,8 @@
+# Arquivo de requisitos específico para MySQL no PythonAnywhere
+-r requirements.txt
+
+# MySQL client para Django
+mysqlclient==2.2.2
+
+# Remova o psycopg2-binary se não for usar PostgreSQL
+# Mas mantemos o dj-database-url para parsing da DATABASE_URL
