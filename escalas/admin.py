@@ -69,10 +69,10 @@ class EscalaAdmin(admin.ModelAdmin):
     def totais_financeiros(self, obj):
         total_geral = (obj.total_van1_valor or 0) + (obj.total_van2_valor or 0)
         return format_html(
-            '<div style="text-align: center;"><div style="color: #47d7ac; font-weight: 700; font-size: 14px;">R$ {:.2f}</div><small style="color: #8e9aaf;">V1: R$ {:.2f} | V2: R$ {:.2f}</small></div>',
-            total_geral,
-            obj.total_van1_valor or 0,
-            obj.total_van2_valor or 0
+            '<div style="text-align: center;"><div style="color: #47d7ac; font-weight: 700; font-size: 14px;">R$ {}</div><small style="color: #8e9aaf;">V1: R$ {} | V2: R$ {}</small></div>',
+            f'{total_geral:.2f}',
+            f'{obj.total_van1_valor or 0:.2f}',
+            f'{obj.total_van2_valor or 0:.2f}'
         )
     totais_financeiros.short_description = "💰 Valores"
     
