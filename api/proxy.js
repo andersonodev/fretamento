@@ -11,15 +11,23 @@ module.exports = async (req, res) => {
   try {
     // Headers básicos
     const headers = {
-      'User-Agent': 'Vercel-Proxy/1.0'
+      'User-Agent': 'Vercel-Proxy/1.0',
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
     };
+    
+    // Criar controller para timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 25000); // 25 segundos
     
     // Fazer requisição usando fetch nativo
     const response = await fetch(targetUrl, {
       method: req.method,
       headers,
-      redirect: 'follow' // Seguir redirects
+      redirect: 'follow', // Seguir redirects
+      signal: controller.signal
     });
+    
+    clearTimeout(timeoutId);
     
     if (!response.ok) {
       console.log(`[PROXY] Error: ${response.status} ${response.statusText}`);
@@ -47,6 +55,22 @@ module.exports = async (req, res) => {
   } catch (error) {
     console.error('[PROXY] Error:', error.message);
     console.error('[PROXY] Stack:', error.stack);
+    
+    // Se for timeout, retornar mensagem específica
+    if (error.name === 'AbortError') {
+      return res.status(504).send(`
+        <html>
+          <head><title>Timeout</title></head>
+          <body style="font-family: Arial; text-align: center; padding: 50px;">
+            <h1>⏱️ Timeout</h1>
+            <p>O servidor demorou muito para responder.</p>
+            <p><a href="/">Tentar novamente</a></p>
+            <hr>
+            <small>Target: ${targetUrl}</small>
+          </body>
+        </html>
+      `);
+    }
     
     return res.status(500).json({
       error: 'Proxy Error',
