@@ -1,6 +1,13 @@
 // Proxy simples e robusto para Node.js 22 (fetch nativo)
 module.exports = async (req, res) => {
+  const startTime = Date.now();
   console.log(`[PROXY] ${req.method} ${req.url}`);
+  
+  // Prevenir loops: não fazer proxy de chamadas que já são do proxy
+  if (req.url.startsWith('/api/')) {
+    console.log('[PROXY] Ignoring API call to prevent loop');
+    return res.status(404).send('Not Found');
+  }
   
   // URL do Heroku
   const herokuUrl = 'https://fretamento-intertouring-d423e478ec7f.herokuapp.com';
@@ -41,14 +48,20 @@ module.exports = async (req, res) => {
     // Configurar resposta
     res.setHeader('Content-Type', contentType);
     
+    // Log de performance
+    const duration = Date.now() - startTime;
+    console.log(`[PROXY] Response received in ${duration}ms`);
+    
     // Se for HTML, substituir URLs do Heroku pela Vercel
     if (contentType.includes('text/html')) {
       const modifiedContent = content.replace(
         /https:\/\/fretamento-intertouring-d423e478ec7f\.herokuapp\.com/g,
         'https://fretamentointertouring.vercel.app'
       );
+      console.log(`[PROXY] HTML modified, sending response (${modifiedContent.length} bytes)`);
       res.send(modifiedContent);
     } else {
+      console.log(`[PROXY] Non-HTML content, sending response (${content.length} bytes)`);
       res.send(content);
     }
     
