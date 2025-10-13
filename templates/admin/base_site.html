@@ -1,20 +1,20 @@
 {% extends "admin/base.html" %}
 
-{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Sistema de Fretamento{% endblock %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Intertouring{% endblock %}
 
 {% block branding %}
-<div style="display: flex; align-items: center; gap: 16px;">
-    <div style="background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%); padding: 12px; border-radius: 12px; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);">
-        <span style="font-size: 28px; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));">🚐</span>
+<div style="display: flex; align-items: center; gap: 14px; padding: 4px 0;">
+    <div style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); padding: 10px; border-radius: 10px; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);">
+        <span style="font-size: 24px; filter: brightness(1.2);">🚐</span>
     </div>
     <div>
         <h1 id="site-name" style="margin: 0; padding: 0;">
-            <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 700; font-size: 20px;">
-                Sistema de Fretamento
+            <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 700; font-size: 19px; color: #f1f5f9;">
+                Fretamento Intertouring
             </a>
         </h1>
-        <p style="color: #94a3b8; font-size: 12px; margin: 4px 0 0 0; font-weight: 500; letter-spacing: 0.3px;">
-            Intertouring Receptivo · Gestão Inteligente
+        <p style="color: #94a3b8; font-size: 11px; margin: 2px 0 0 0; font-weight: 500; letter-spacing: 0.5px;">
+            Sistema de Gestão · Admin Dashboard
         </p>
     </div>
 </div>
@@ -26,32 +26,32 @@
 {{ block.super }}
 <style>
     :root {
-        /* Paleta moderna e coerente - Verde Turquesa + Cinza Azulado */
-        --primary-color: #14b8a6;        /* Turquesa vibrante */
-        --primary-light: #2dd4bf;        /* Turquesa claro */
-        --primary-dark: #0f766e;         /* Turquesa escuro */
+        /* Paleta profissional - Azul + Roxo com acentos vibrantes */
+        --primary-color: #3b82f6;        /* Azul profissional */
+        --primary-light: #60a5fa;        /* Azul claro */
+        --primary-dark: #2563eb;         /* Azul escuro */
         
-        --secondary-color: #1e293b;      /* Azul escuro slate */
-        --secondary-light: #334155;      /* Slate médio */
+        --secondary-color: #1e293b;      /* Cinza azulado escuro */
+        --secondary-light: #334155;      /* Cinza médio */
         
-        --accent-color: #06b6d4;         /* Cyan accent */
-        --accent-light: #22d3ee;         /* Cyan claro */
+        --accent-color: #8b5cf6;         /* Roxo accent */
+        --accent-light: #a78bfa;         /* Roxo claro */
         
-        --bg-base: #0f172a;              /* Fundo principal escuro */
-        --bg-surface: #1e293b;           /* Superfícies (cards) */
+        --bg-base: #0f172a;              /* Fundo principal */
+        --bg-surface: #1e293b;           /* Cards e superfícies */
         --bg-elevated: #334155;          /* Elementos elevados */
         
         --text-primary: #f1f5f9;         /* Texto principal */
         --text-secondary: #cbd5e1;       /* Texto secundário */
         --text-muted: #94a3b8;           /* Texto discreto */
         
-        --border-color: #334155;         /* Bordas */
+        --border-color: #334155;         /* Bordas padrão */
         --border-light: #475569;         /* Bordas claras */
         
         --success-color: #10b981;        /* Verde sucesso */
-        --warning-color: #f59e0b;        /* Amarelo/laranja aviso */
+        --warning-color: #f59e0b;        /* Laranja aviso */
         --error-color: #ef4444;          /* Vermelho erro */
-        --info-color: #3b82f6;           /* Azul info */
+        --info-color: #06b6d4;           /* Cyan info */
     }
 
     /* Tema escuro global */
@@ -79,6 +79,11 @@
     }
 
     #branding h1 a {
+        color: var(--text-primary) !important;
+        transition: all 0.2s ease !important;
+    }
+
+    #branding h1 a:hover {
         background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%) !important;
         -webkit-background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
@@ -150,21 +155,21 @@
     }
 
     .module:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 8px 24px rgba(20, 184, 166, 0.15) !important;
-        border-color: var(--primary-color) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 12px 28px rgba(59, 130, 246, 0.2), 0 4px 12px rgba(139, 92, 246, 0.15) !important;
+        border-color: var(--primary-light) !important;
     }
 
     .module h2 {
-        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%) !important;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%) !important;
         color: white !important;
         font-weight: 700 !important;
-        padding: 16px 20px !important;
+        padding: 14px 20px !important;
         margin: 0 !important;
-        font-size: 15px !important;
-        letter-spacing: 0.3px !important;
-        text-transform: uppercase !important;
         font-size: 12px !important;
+        letter-spacing: 0.8px !important;
+        text-transform: uppercase !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
     }
 
     .module h3 {
@@ -215,21 +220,22 @@
     }
 
     .module a:hover {
-        background: rgba(20, 184, 166, 0.12) !important;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%) !important;
         color: var(--primary-light) !important;
         padding-left: 16px !important;
     }
 
     .module a:before {
-        content: "→" !important;
-        font-size: 14px !important;
+        content: "▸" !important;
+        font-size: 16px !important;
         font-weight: bold !important;
         color: var(--primary-color) !important;
-        transition: transform 0.2s ease !important;
+        transition: all 0.2s ease !important;
     }
 
     .module a:hover:before {
-        transform: translateX(4px) !important;
+        transform: translateX(3px) !important;
+        color: var(--accent-color) !important;
     }
 
     /* Botões de ação com ícones modernos */
@@ -301,17 +307,18 @@
     }
 
     #result_list th {
-        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%) !important;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%) !important;
         color: white !important;
         font-weight: 700 !important;
         padding: 16px !important;
         border-bottom: none !important;
         text-transform: uppercase !important;
         font-size: 11px !important;
-        letter-spacing: 0.5px !important;
+        letter-spacing: 0.8px !important;
         position: sticky !important;
         top: 60px !important;
         z-index: 10 !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
     }
 
     #result_list td {
@@ -323,12 +330,13 @@
     }
 
     #result_list tr:nth-child(even) td {
-        background: rgba(20, 184, 166, 0.02) !important;
+        background: rgba(59, 130, 246, 0.03) !important;
     }
 
     #result_list tr:hover td {
-        background: rgba(20, 184, 166, 0.08) !important;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%) !important;
         transform: scale(1.001) !important;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15) !important;
     }
 
     #result_list a {
@@ -348,26 +356,25 @@
         background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 10px !important;
-        padding: 12px 24px !important;
+        border-radius: 8px !important;
+        padding: 11px 22px !important;
         font-weight: 700 !important;
-        font-size: 14px !important;
-        letter-spacing: 0.3px !important;
+        font-size: 13px !important;
+        letter-spacing: 0.5px !important;
         cursor: pointer !important;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         text-decoration: none !important;
         display: inline-flex !important;
         align-items: center !important;
         gap: 8px !important;
-        box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25) !important;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
         text-transform: uppercase !important;
-        font-size: 12px !important;
     }
 
     .button:hover, input[type="submit"]:hover, 
     input[type="button"]:hover, .submit-row input:hover {
         transform: translateY(-2px) !important;
-        box-shadow: 0 8px 20px rgba(20, 184, 166, 0.4) !important;
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
         background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%) !important;
         color: white !important;
     }
