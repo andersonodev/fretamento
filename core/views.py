@@ -48,12 +48,20 @@ class HomeView(View):
         dados_recentes = self._get_dados_recentes()
         
         # Informações do usuário
-        user_info = {
-            'nome': request.user.get_full_name() or request.user.username,
-            'username': request.user.username,
-            'ultimo_login': request.user.last_login,
-            'permissoes_especiais': request.user.username in ['cristiane.aguiar', 'lucy.leite']
-        }
+        if request.user.is_authenticated:
+            user_info = {
+                'nome': request.user.get_full_name() or request.user.username,
+                'username': request.user.username,
+                'ultimo_login': request.user.last_login,
+                'permissoes_especiais': request.user.username in ['cristiane.aguiar', 'lucy.leite']
+            }
+        else:
+            user_info = {
+                'nome': 'Visitante',
+                'username': 'anonymous',
+                'ultimo_login': None,
+                'permissoes_especiais': False
+            }
         
         context = {
             **stats_basicas,
