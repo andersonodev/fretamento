@@ -787,4 +787,10 @@ Implementa as funções originais:
 
 **🚌 Sistema completo de fretamento desenvolvido com Django**
 
-*Automatize suas escalas com a mesma lógica confiável do Google Apps Script, agora com interface web moderna e recursos avançados.*# Azure Web App URL: https://fretamento-d9gefzhga7e9dsag.brazilsouth-01.azurewebsites.net
+*Automatize suas escalas com a mesma lógica confiável do Google Apps Script, agora com interface web moderna e recursos avançados.*
+
+## 🌐 URLs do Sistema
+
+- **🎯 Domínio Principal**: https://fretamentointertouring.vercel.app
+- **⚙️ Backend Heroku**: https://fretamento-intertouring-d423e478ec7f.herokuapp.com
+- **🔧 Django Admin**: https://fretamentointertouring.vercel.app/admin/
