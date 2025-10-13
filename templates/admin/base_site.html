@@ -1,12 +1,12 @@
-{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}
+{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}
 
 
 
-{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Admin{% endblock %}
 
 
 
-{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Intertouring{% endblock %}
+{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}
 
 <div style="padding: 8px 0;">
 
@@ -14,71 +14,71 @@
 
         <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
 
-            Fretamento Admin{% block branding %}{% block branding %}
+            Fretamento Admin{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Intertouring{% endblock %}
 
         </a>
 
-    </h1><div style="padding: 8px 0;"><div style="display: flex; align-items: center; gap: 14px; padding: 4px 0;">
+    </h1><div style="padding: 8px 0;">
 
 </div>
 
-{% endblock %}    <h1 id="site-name" style="margin: 0;">    <div style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); padding: 10px; border-radius: 10px; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);">
+{% endblock %}    <h1 id="site-name" style="margin: 0;">
 
 
 
-{% block extrahead %}        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">        <span style="font-size: 24px; filter: brightness(1.2);">🚐</span>
+{% block extrahead %}        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
 
 {{ block.super }}
 
-<style>            Fretamento Admin    </div>
+<style>            Fretamento Admin{% block branding %}{% block branding %}
 
     :root {
 
-        --primary: #3b82f6;        </a>    <div>
+        --primary: #3b82f6;        </a>
 
         --bg-dark: #0f172a;
 
-        --bg-surface: #1e293b;    </h1>        <h1 id="site-name" style="margin: 0; padding: 0;">
+        --bg-surface: #1e293b;    </h1><div style="padding: 8px 0;"><div style="display: flex; align-items: center; gap: 14px; padding: 4px 0;">
 
         --text: #f1f5f9;
 
-        --text-muted: #94a3b8;</div>            <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 700; font-size: 19px; color: #f1f5f9;">
+        --text-muted: #94a3b8;</div>
 
         --border: rgba(148, 163, 184, 0.1);
 
-    }{% endblock %}                Fretamento Intertouring
+    }{% endblock %}    <h1 id="site-name" style="margin: 0;">    <div style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); padding: 10px; border-radius: 10px; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);">
 
 
 
-    body {            </a>
+    body {
 
         background: var(--bg-dark) !important;
 
-        color: var(--text) !important;{% block extrahead %}        </h1>
+        color: var(--text) !important;{% block extrahead %}        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">        <span style="font-size: 24px; filter: brightness(1.2);">🚐</span>
 
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
 
-    }{{ block.super }}        <p style="color: #94a3b8; font-size: 11px; margin: 2px 0 0 0; font-weight: 500; letter-spacing: 0.5px;">
+    }{{ block.super }}
 
 
 
-    #header {<style>            Sistema de Gestão · Admin Dashboard
+    #header {<style>            Fretamento Admin    </div>
 
         background: var(--bg-surface) !important;
 
-        border-bottom: 1px solid var(--border) !important;    :root {        </p>
+        border-bottom: 1px solid var(--border) !important;    :root {
 
     }
 
-        --primary: #3b82f6;    </div>
+        --primary: #3b82f6;        </a>    <div>
 
     #branding h1 a {
 
-        color: var(--text) !important;        --bg-dark: #0f172a;</div>
+        color: var(--text) !important;        --bg-dark: #0f172a;
 
     }
 
-        --bg-surface: #1e293b;{% endblock %}
+        --bg-surface: #1e293b;    </h1>        <h1 id="site-name" style="margin: 0; padding: 0;">
 
     #user-tools {
 
@@ -86,7 +86,7 @@
 
     }
 
-        --text-muted: #94a3b8;{% block nav-global %}{% endblock %}
+        --text-muted: #94a3b8;</div>            <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 700; font-size: 19px; color: #f1f5f9;">
 
     #user-tools a {
 
@@ -94,91 +94,272 @@
 
         text-decoration: none !important;
 
-    }    }{% block extrahead %}
+    }    }{% endblock %}                Fretamento Intertouring
 
 
 
-    .breadcrumbs {{{ block.super }}
+    .breadcrumbs {
 
         background: transparent !important;
 
-        color: var(--text-muted) !important;    /* Base */<style>
+        color: var(--text-muted) !important;    body {            </a>
 
         border-bottom: 1px solid var(--border) !important;
 
-    }    body {    :root {
+    }        background: var(--bg-dark) !important;
 
 
 
-    .breadcrumbs a {        background: var(--bg-dark) !important;        /* Paleta profissional - Azul + Roxo com acentos vibrantes */
+    .breadcrumbs a {        color: var(--text) !important;{% block extrahead %}        </h1>
 
         color: var(--primary) !important;
 
-    }        color: var(--text) !important;        --primary-color: #3b82f6;        /* Azul profissional */
+    }        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
 
 
 
-    #content {        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;        --primary-light: #60a5fa;        /* Azul claro */
+    #content {    }{{ block.super }}        <p style="color: #94a3b8; font-size: 11px; margin: 2px 0 0 0; font-weight: 500; letter-spacing: 0.5px;">
 
         background: var(--bg-dark) !important;
-
-        color: var(--text) !important;    }        --primary-dark: #2563eb;         /* Azul escuro */
-
-    }
-
-        
-
-    #content h1, #content h2, #content h3 {
-
-        color: var(--text) !important;    /* Header */        --secondary-color: #1e293b;      /* Cinza azulado escuro */
-
-    }
-
-    #header {        --secondary-light: #334155;      /* Cinza médio */
-
-    .module {
-
-        background: var(--bg-surface) !important;        background: var(--bg-surface) !important;        
-
-        border: 1px solid var(--border) !important;
-
-        border-radius: 8px !important;        border-bottom: 1px solid var(--border) !important;        --accent-color: #8b5cf6;         /* Roxo accent */
-
-    }
-
-    }        --accent-light: #a78bfa;         /* Roxo claro */
-
-    .module h2 {
-
-        background: transparent !important;        
 
         color: var(--text) !important;
 
-        border-bottom: 1px solid var(--border) !important;    #branding h1 a {        --bg-base: #0f172a;              /* Fundo principal */
+    }
+
+    #header {<style>            Sistema de Gestão · Admin Dashboard
+
+    #content h1, #content h2, #content h3 {
+
+        color: var(--text) !important;        background: var(--bg-surface) !important;
 
     }
 
-        color: var(--text) !important;        --bg-surface: #1e293b;           /* Cards e superfícies */
+        border-bottom: 1px solid var(--border) !important;    :root {        </p>
 
-    table {
+    .module {
 
-        background: var(--bg-surface) !important;    }        --bg-elevated: #334155;          /* Elementos elevados */
+        background: var(--bg-surface) !important;    }
 
         border: 1px solid var(--border) !important;
 
-    }        
+        border-radius: 8px !important;        --primary: #3b82f6;    </div>
+
+    }
+
+    #branding h1 a {
+
+    .module h2 {
+
+        background: transparent !important;        color: var(--text) !important;        --bg-dark: #0f172a;</div>
+
+        color: var(--text) !important;
+
+        border-bottom: 1px solid var(--border) !important;    }
+
+    }
+
+        --bg-surface: #1e293b;{% endblock %}
+
+    table {
+
+        background: var(--bg-surface) !important;    #user-tools {
+
+        border: 1px solid var(--border) !important;
+
+    }        color: var(--text-muted) !important;        --text: #f1f5f9;
 
 
 
-    thead th {    #user-tools {        --text-primary: #f1f5f9;         /* Texto principal */
+    thead th {    }
 
         background: var(--bg-dark) !important;
 
-        color: var(--text) !important;        color: var(--text-muted) !important;        --text-secondary: #cbd5e1;       /* Texto secundário */
+        color: var(--text) !important;        --text-muted: #94a3b8;{% block nav-global %}{% endblock %}
 
         border-bottom: 1px solid var(--border) !important;
 
-    }    }        --text-muted: #94a3b8;           /* Texto discreto */
+    }    #user-tools a {
+
+
+
+    tbody tr {        color: var(--primary) !important;        --border: rgba(148, 163, 184, 0.1);
+
+        background: var(--bg-surface) !important;
+
+    }        text-decoration: none !important;
+
+
+
+    tbody tr:hover {    }    }{% block extrahead %}
+
+        background: rgba(59, 130, 246, 0.1) !important;
+
+    }
+
+
+
+    tbody td {    .breadcrumbs {{{ block.super }}
+
+        color: var(--text) !important;
+
+        border-bottom: 1px solid var(--border) !important;        background: transparent !important;
+
+    }
+
+        color: var(--text-muted) !important;    /* Base */<style>
+
+    a {
+
+        color: var(--primary) !important;        border-bottom: 1px solid var(--border) !important;
+
+    }
+
+    }    body {    :root {
+
+    input[type="text"],
+
+    input[type="password"],
+
+    input[type="email"],
+
+    input[type="number"],    .breadcrumbs a {        background: var(--bg-dark) !important;        /* Paleta profissional - Azul + Roxo com acentos vibrantes */
+
+    input[type="date"],
+
+    textarea,        color: var(--primary) !important;
+
+    select {
+
+        background: var(--bg-dark) !important;    }        color: var(--text) !important;        --primary-color: #3b82f6;        /* Azul profissional */
+
+        color: var(--text) !important;
+
+        border: 1px solid rgba(148, 163, 184, 0.2) !important;
+
+        border-radius: 6px !important;
+
+        padding: 8px !important;    #content {        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;        --primary-light: #60a5fa;        /* Azul claro */
+
+    }
+
+        background: var(--bg-dark) !important;
+
+    input:focus, textarea:focus, select:focus {
+
+        border-color: var(--primary) !important;        color: var(--text) !important;    }        --primary-dark: #2563eb;         /* Azul escuro */
+
+        outline: none !important;
+
+    }    }
+
+
+
+    input[type="submit"],        
+
+    button,
+
+    .button {    #content h1, #content h2, #content h3 {
+
+        background: var(--primary) !important;
+
+        color: white !important;        color: var(--text) !important;    /* Header */        --secondary-color: #1e293b;      /* Cinza azulado escuro */
+
+        border: none !important;
+
+        border-radius: 6px !important;    }
+
+        padding: 8px 16px !important;
+
+        cursor: pointer !important;    #header {        --secondary-light: #334155;      /* Cinza médio */
+
+    }
+
+    .module {
+
+    input[type="submit"]:hover,
+
+    button:hover,        background: var(--bg-surface) !important;        background: var(--bg-surface) !important;        
+
+    .button:hover {
+
+        opacity: 0.9 !important;        border: 1px solid var(--border) !important;
+
+    }
+
+        border-radius: 8px !important;        border-bottom: 1px solid var(--border) !important;        --accent-color: #8b5cf6;         /* Roxo accent */
+
+    .success, .messagelist .success {
+
+        background: rgba(16, 185, 129, 0.1) !important;    }
+
+        color: #10b981 !important;
+
+        border: 1px solid rgba(16, 185, 129, 0.3) !important;    }        --accent-light: #a78bfa;         /* Roxo claro */
+
+    }
+
+    .module h2 {
+
+    .error, .messagelist .error {
+
+        background: rgba(239, 68, 68, 0.1) !important;        background: transparent !important;        
+
+        color: #ef4444 !important;
+
+        border: 1px solid rgba(239, 68, 68, 0.3) !important;        color: var(--text) !important;
+
+    }
+
+        border-bottom: 1px solid var(--border) !important;    #branding h1 a {        --bg-base: #0f172a;              /* Fundo principal */
+
+    #content-related {
+
+        background: var(--bg-surface) !important;    }
+
+        border-left: 1px solid var(--border) !important;
+
+    }        color: var(--text) !important;        --bg-surface: #1e293b;           /* Cards e superfícies */
+
+
+
+    .paginator {    table {
+
+        color: var(--text-muted) !important;
+
+    }        background: var(--bg-surface) !important;    }        --bg-elevated: #334155;          /* Elementos elevados */
+
+
+
+    .paginator a {        border: 1px solid var(--border) !important;
+
+        background: var(--bg-surface) !important;
+
+        color: var(--primary) !important;    }        
+
+        border: 1px solid var(--border) !important;
+
+        border-radius: 4px !important;
+
+        padding: 4px 8px !important;
+
+        text-decoration: none !important;    thead th {    #user-tools {        --text-primary: #f1f5f9;         /* Texto principal */
+
+    }
+
+        background: var(--bg-dark) !important;
+
+    .paginator a:hover {
+
+        background: var(--primary) !important;        color: var(--text) !important;        color: var(--text-muted) !important;        --text-secondary: #cbd5e1;       /* Texto secundário */
+
+        color: white !important;
+
+    }        border-bottom: 1px solid var(--border) !important;
+
+</style>
+
+{% endblock %}    }    }        --text-muted: #94a3b8;           /* Texto discreto */
+
 
 
 
