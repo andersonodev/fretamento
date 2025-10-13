@@ -15,9 +15,11 @@ DEBUG = False
 # Secret Key do Heroku Config Vars
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# Allowed Hosts para Heroku
+# Allowed Hosts para Heroku e domínio personalizado
 ALLOWED_HOSTS = [
     '.herokuapp.com',
+    'fretamentointertouring.tech',
+    'www.fretamentointertouring.tech',
     'localhost',
     '127.0.0.1',
     'testserver',  # Para testes Django
