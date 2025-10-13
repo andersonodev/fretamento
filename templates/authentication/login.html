@@ -343,7 +343,7 @@
                 passwordInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') {
                         e.preventDefault();
-                        form.dispatchEvent(new Event('submit'));
+                        form.submit();
                     }
                 });
             }
@@ -378,8 +378,22 @@
                 usernameInput.classList.remove('is-invalid');
                 passwordInput.classList.remove('is-invalid');
                 
+                // Mostrar loading apenas se não foi prevenido o envio
+                if (e.defaultPrevented) {
+                    return false;
+                }
+                
                 loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Entrando...';
                 loginBtn.disabled = true;
+                
+                // Dar um timeout para garantir que o formulário seja enviado
+                setTimeout(function() {
+                    if (loginBtn.disabled) {
+                        // Se ainda estiver disabled após 10 segundos, reativar
+                        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Entrar';
+                        loginBtn.disabled = false;
+                    }
+                }, 10000);
             });
             
             // Auto-focus no campo apropriado
