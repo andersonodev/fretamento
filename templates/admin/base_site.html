@@ -1,1629 +1,436 @@
-{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}
+{% extends "admin/base.html" %}
+{% load static %}
 
-
-
-{% block title %}{{ title }} | Fretamento Admin{% endblock %}{% load static %}
-
-
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block branding %}
-
-<h1 id="site-name">
-
-    <a href="{% url 'admin:index' %}">Fretamento Admin</a>{% block title %}{{ title }} | Fretamento Admin{% endblock %}
-
-</h1>
-
-{% endblock %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Admin{% endblock %}
-
-
-
-{% block extrastyle %}{% block branding %}
-
-{{ block.super }}
-
-<style><h1 id="site-name">
-
-:root {
-
-    --primary: #3b82f6;    <a href="{% url 'admin:index' %}">Fretamento Intertouring</a>
-
-    --bg: #0f172a;
-
-    --surface: #1e293b;</h1>{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}
-
-    --text: #f1f5f9;
-
-    --border: #334155;{% endblock %}
-
-}
-
-<div style="padding: 8px 0;">
-
-body {
-
-    background: var(--bg) !important;{% block extrastyle %}
-
-    color: var(--text) !important;
-
-}{{ block.super }}    <h1 id="site-name" style="margin: 0;">
-
-
-
-#header {<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    background: var(--surface) !important;
-
-    border-bottom: 1px solid var(--border) !important;<style>        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
-
-}
-
-    /* ===== VARIÁVEIS ===== */
-
-#branding h1 a {
-
-    color: var(--text) !important;    :root {            Fretamento Admin{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Intertouring{% endblock %}
-
-}
-
-        --primary: #3b82f6;
-
-.module {
-
-    background: var(--surface) !important;        --primary-dark: #2563eb;        </a>
-
-    border: 1px solid var(--border) !important;
-
-    border-radius: 8px !important;        --bg: #0f172a;
-
-}
-
-        --surface: #1e293b;    </h1><div style="padding: 8px 0;">
-
-table {
-
-    background: var(--surface) !important;        --text: #f1f5f9;
-
-}
-
-        --text-muted: #94a3b8;</div>
-
-input, select, textarea {
-
-    background: var(--surface) !important;        --border: #334155;
-
-    color: var(--text) !important;
-
-    border: 1px solid var(--border) !important;        --success: #10b981;{% endblock %}    <h1 id="site-name" style="margin: 0;">
-
-}
-
-        --error: #ef4444;
-
-.button, input[type="submit"] {
-
-    background: var(--primary) !important;    }
-
-    color: white !important;
-
-}
-
-</style>
-
-{% endblock %}    /* ===== BASE ===== */{% block extrahead %}        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
-
-
-    * {
-
-        margin: 0;{{ block.super }}
-
-        padding: 0;
-
-        box-sizing: border-box;<style>            Fretamento Admin{% block branding %}{% block branding %}
-
-    }
-
-    :root {
-
-    body {
-
-        background: var(--bg) !important;        --primary: #3b82f6;        </a>
-
-        color: var(--text) !important;
-
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;        --bg-dark: #0f172a;
-
-        line-height: 1.6;
-
-    }        --bg-surface: #1e293b;    </h1><div style="padding: 8px 0;"><div style="display: flex; align-items: center; gap: 14px; padding: 4px 0;">
-
-
-
-    /* ===== HEADER ===== */        --text: #f1f5f9;
-
-    #header {
-
-        background: var(--surface) !important;        --text-muted: #94a3b8;</div>
-
-        border-bottom: 1px solid var(--border) !important;
-
-        padding: 16px 24px !important;        --border: rgba(148, 163, 184, 0.1);
-
-    }
-
-    }{% endblock %}    <h1 id="site-name" style="margin: 0;">    <div style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); padding: 10px; border-radius: 10px; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);">
-
-    #branding h1,
-
-    #branding h1 a {
-
-        color: var(--text) !important;
-
-        font-size: 20px !important;    body {
-
-        font-weight: 700 !important;
-
-        text-decoration: none !important;        background: var(--bg-dark) !important;
-
-        margin: 0 !important;
-
-    }        color: var(--text) !important;{% block extrahead %}        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">        <span style="font-size: 24px; filter: brightness(1.2);">🚐</span>
-
-
-
-    #user-tools {        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-
-        color: var(--text-muted) !important;
-
-        font-size: 14px !important;    }{{ block.super }}
-
-    }
-
-
-
-    #user-tools a {
-
-        color: var(--primary) !important;    #header {<style>            Fretamento Admin    </div>
-
-        text-decoration: none !important;
-
-    }        background: var(--bg-surface) !important;
-
-
-
-    #user-tools a:hover {        border-bottom: 1px solid var(--border) !important;    :root {
-
-        color: var(--text) !important;
-
-    }    }
-
-
-
-    /* ===== BREADCRUMBS ===== */        --primary: #3b82f6;        </a>    <div>
-
-    .breadcrumbs {
-
-        background: transparent !important;    #branding h1 a {
-
-        color: var(--text-muted) !important;
-
-        padding: 12px 24px !important;        color: var(--text) !important;        --bg-dark: #0f172a;
-
-        border-bottom: 1px solid var(--border) !important;
-
-    }    }
-
-
-
-    .breadcrumbs a {        --bg-surface: #1e293b;    </h1>        <h1 id="site-name" style="margin: 0; padding: 0;">
-
-        color: var(--primary) !important;
-
-        text-decoration: none !important;    #user-tools {
-
-    }
-
-        color: var(--text-muted) !important;        --text: #f1f5f9;
-
-    /* ===== CONTENT ===== */
-
-    #content {    }
-
-        background: var(--bg) !important;
-
-        padding: 24px !important;        --text-muted: #94a3b8;</div>            <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 700; font-size: 19px; color: #f1f5f9;">
-
-    }
-
-    #user-tools a {
-
-    #content h1,
-
-    #content h2,        color: var(--primary) !important;        --border: rgba(148, 163, 184, 0.1);
-
-    #content h3 {
-
-        color: var(--text) !important;        text-decoration: none !important;
-
-        margin-bottom: 16px !important;
-
-    }    }    }{% endblock %}                Fretamento Intertouring
-
-
-
-    /* ===== MODULES ===== */
-
-    .module {
-
-        background: var(--surface) !important;    .breadcrumbs {
-
-        border: 1px solid var(--border) !important;
-
-        border-radius: 8px !important;        background: transparent !important;
-
-        margin-bottom: 24px !important;
-
-    }        color: var(--text-muted) !important;    body {            </a>
-
-
-
-    .module h2 {        border-bottom: 1px solid var(--border) !important;
-
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
-
-        color: white !important;    }        background: var(--bg-dark) !important;
-
-        padding: 12px 16px !important;
-
-        font-size: 14px !important;
-
-        font-weight: 600 !important;
-
-        margin: 0 !important;    .breadcrumbs a {        color: var(--text) !important;{% block extrahead %}        </h1>
-
-        border-radius: 7px 7px 0 0 !important;
-
-    }        color: var(--primary) !important;
-
-
-
-    .module table {    }        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-
-        background: transparent !important;
-
-        width: 100% !important;
-
-    }
-
-    #content {    }{{ block.super }}        <p style="color: #94a3b8; font-size: 11px; margin: 2px 0 0 0; font-weight: 500; letter-spacing: 0.5px;">
-
-    .module th,
-
-    .module td {        background: var(--bg-dark) !important;
-
-        padding: 12px 16px !important;
-
-        text-align: left !important;        color: var(--text) !important;
-
-    }
-
-    }
-
-    .module a {
-
-        color: var(--text) !important;    #header {<style>            Sistema de Gestão · Admin Dashboard
-
-        text-decoration: none !important;
-
-        display: block !important;    #content h1, #content h2, #content h3 {
-
-        padding: 8px 16px !important;
-
-        transition: all 0.2s !important;        color: var(--text) !important;        background: var(--bg-surface) !important;
-
-    }
-
-    }
-
-    .module a:hover {
-
-        background: rgba(59, 130, 246, 0.1) !important;        border-bottom: 1px solid var(--border) !important;    :root {        </p>
-
-        color: var(--primary) !important;
-
-    }    .module {
-
-
-
-    /* ===== TABLES ===== */        background: var(--bg-surface) !important;    }
-
-    table {
-
-        background: var(--surface) !important;        border: 1px solid var(--border) !important;
-
-        border: 1px solid var(--border) !important;
-
-        border-radius: 8px !important;        border-radius: 8px !important;        --primary: #3b82f6;    </div>
-
-        width: 100% !important;
-
-        border-collapse: separate !important;    }
-
-        border-spacing: 0 !important;
-
-        overflow: hidden !important;    #branding h1 a {
-
-    }
-
-    .module h2 {
-
-    thead th {
-
-        background: var(--primary) !important;        background: transparent !important;        color: var(--text) !important;        --bg-dark: #0f172a;</div>
-
-        color: white !important;
-
-        padding: 12px 16px !important;        color: var(--text) !important;
-
-        font-weight: 600 !important;
-
-        text-align: left !important;        border-bottom: 1px solid var(--border) !important;    }
-
-        border-bottom: none !important;
-
-    }    }
-
-
-
-    tbody tr {        --bg-surface: #1e293b;{% endblock %}
-
-        border-bottom: 1px solid var(--border) !important;
-
-    }    table {
-
-
-
-    tbody tr:hover {        background: var(--bg-surface) !important;    #user-tools {
-
-        background: rgba(59, 130, 246, 0.05) !important;
-
-    }        border: 1px solid var(--border) !important;
-
-
-
-    tbody td {    }        color: var(--text-muted) !important;        --text: #f1f5f9;
-
-        color: var(--text) !important;
-
-        padding: 12px 16px !important;
-
-    }
-
-    thead th {    }
-
-    tbody a {
-
-        color: var(--primary) !important;        background: var(--bg-dark) !important;
-
-        text-decoration: none !important;
-
-    }        color: var(--text) !important;        --text-muted: #94a3b8;{% block nav-global %}{% endblock %}
-
-
-
-    tbody a:hover {        border-bottom: 1px solid var(--border) !important;
-
-        text-decoration: underline !important;
-
-    }    }    #user-tools a {
-
-
-
-    /* ===== FORMS ===== */
-
-    .form-row {
-
-        margin-bottom: 16px !important;    tbody tr {        color: var(--primary) !important;        --border: rgba(148, 163, 184, 0.1);
-
-    }
-
-        background: var(--bg-surface) !important;
-
-    label {
-
-        color: var(--text) !important;    }        text-decoration: none !important;
-
-        font-weight: 500 !important;
-
-        display: block !important;
-
-        margin-bottom: 6px !important;
-
-    }    tbody tr:hover {    }    }{% block extrahead %}
-
-
-
-    input[type="text"],        background: rgba(59, 130, 246, 0.1) !important;
-
-    input[type="password"],
-
-    input[type="email"],    }
-
-    input[type="number"],
-
-    input[type="date"],
-
-    input[type="datetime-local"],
-
-    textarea,    tbody td {    .breadcrumbs {{{ block.super }}
-
-    select {
-
-        background: var(--surface) !important;        color: var(--text) !important;
-
-        color: var(--text) !important;
-
-        border: 1px solid var(--border) !important;        border-bottom: 1px solid var(--border) !important;        background: transparent !important;
-
-        border-radius: 6px !important;
-
-        padding: 8px 12px !important;    }
-
-        width: 100% !important;
-
-        font-family: inherit !important;        color: var(--text-muted) !important;    /* Base */<style>
-
-    }
-
-    a {
-
-    input:focus,
-
-    textarea:focus,        color: var(--primary) !important;        border-bottom: 1px solid var(--border) !important;
-
-    select:focus {
-
-        border-color: var(--primary) !important;    }
-
-        outline: none !important;
-
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;    }    body {    :root {
-
-    }
-
-    input[type="text"],
-
-    /* ===== BUTTONS ===== */
-
-    .button,    input[type="password"],
-
-    input[type="submit"],
-
-    button {    input[type="email"],
-
-        background: var(--primary) !important;
-
-        color: white !important;    input[type="number"],    .breadcrumbs a {        background: var(--bg-dark) !important;        /* Paleta profissional - Azul + Roxo com acentos vibrantes */
-
-        border: none !important;
-
-        border-radius: 6px !important;    input[type="date"],
-
-        padding: 10px 20px !important;
-
-        font-weight: 600 !important;    textarea,        color: var(--primary) !important;
-
-        cursor: pointer !important;
-
-        text-decoration: none !important;    select {
-
-        display: inline-block !important;
-
-        transition: all 0.2s !important;        background: var(--bg-dark) !important;    }        color: var(--text) !important;        --primary-color: #3b82f6;        /* Azul profissional */
-
-    }
-
-        color: var(--text) !important;
-
-    .button:hover,
-
-    input[type="submit"]:hover,        border: 1px solid rgba(148, 163, 184, 0.2) !important;
-
-    button:hover {
-
-        background: var(--primary-dark) !important;        border-radius: 6px !important;
-
-        transform: translateY(-1px) !important;
-
-    }        padding: 8px !important;    #content {        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;        --primary-light: #60a5fa;        /* Azul claro */
-
-
-
-    .button.default,    }
-
-    input[type="submit"].default {
-
-        background: var(--success) !important;        background: var(--bg-dark) !important;
-
-    }
-
-    input:focus, textarea:focus, select:focus {
-
-    .deletelink {
-
-        background: var(--error) !important;        border-color: var(--primary) !important;        color: var(--text) !important;    }        --primary-dark: #2563eb;         /* Azul escuro */
-
-    }
-
-        outline: none !important;
-
-    /* ===== MESSAGES ===== */
-
-    .messagelist {    }    }
-
-        list-style: none !important;
-
-        margin: 0 0 24px 0 !important;
-
-    }
-
-    input[type="submit"],        
-
-    .messagelist li {
-
-        padding: 12px 16px !important;    button,
-
-        border-radius: 6px !important;
-
-        margin-bottom: 8px !important;    .button {    #content h1, #content h2, #content h3 {
-
-        font-weight: 500 !important;
-
-    }        background: var(--primary) !important;
-
-
-
-    .messagelist .success {        color: white !important;        color: var(--text) !important;    /* Header */        --secondary-color: #1e293b;      /* Cinza azulado escuro */
-
-        background: rgba(16, 185, 129, 0.1) !important;
-
-        color: var(--success) !important;        border: none !important;
-
-        border-left: 4px solid var(--success) !important;
-
-    }        border-radius: 6px !important;    }
-
-
-
-    .messagelist .error {        padding: 8px 16px !important;
-
-        background: rgba(239, 68, 68, 0.1) !important;
-
-        color: var(--error) !important;        cursor: pointer !important;    #header {        --secondary-light: #334155;      /* Cinza médio */
-
-        border-left: 4px solid var(--error) !important;
-
-    }    }
-
-
-
-    /* ===== PAGINATION ===== */    .module {
-
-    .paginator {
-
-        color: var(--text-muted) !important;    input[type="submit"]:hover,
-
-        padding: 16px 0 !important;
-
-    }    button:hover,        background: var(--bg-surface) !important;        background: var(--bg-surface) !important;        
-
-
-
-    .paginator a {    .button:hover {
-
-        background: var(--surface) !important;
-
-        color: var(--primary) !important;        opacity: 0.9 !important;        border: 1px solid var(--border) !important;
-
-        padding: 6px 12px !important;
-
-        border-radius: 4px !important;    }
-
-        text-decoration: none !important;
-
-        margin: 0 4px !important;        border-radius: 8px !important;        border-bottom: 1px solid var(--border) !important;        --accent-color: #8b5cf6;         /* Roxo accent */
-
-        display: inline-block !important;
-
-    }    .success, .messagelist .success {
-
-
-
-    .paginator a:hover {        background: rgba(16, 185, 129, 0.1) !important;    }
-
-        background: var(--primary) !important;
-
-        color: white !important;        color: #10b981 !important;
-
-    }
-
-        border: 1px solid rgba(16, 185, 129, 0.3) !important;    }        --accent-light: #a78bfa;         /* Roxo claro */
-
-    /* ===== SIDEBAR ===== */
-
-    #content-related {    }
-
-        background: var(--surface) !important;
-
-        border-left: 1px solid var(--border) !important;    .module h2 {
-
-    }
-
-    .error, .messagelist .error {
-
-    /* ===== CLEAN UP ===== */
-
-    .help {        background: rgba(239, 68, 68, 0.1) !important;        background: transparent !important;        
-
-        display: none !important;
-
-    }        color: #ef4444 !important;
-
-
-
-    /* ===== SCROLLBAR ===== */        border: 1px solid rgba(239, 68, 68, 0.3) !important;        color: var(--text) !important;
-
-    ::-webkit-scrollbar {
-
-        width: 8px;    }
-
-        height: 8px;
-
-    }        border-bottom: 1px solid var(--border) !important;    #branding h1 a {        --bg-base: #0f172a;              /* Fundo principal */
-
-
-
-    ::-webkit-scrollbar-track {    #content-related {
-
-        background: var(--bg);
-
-    }        background: var(--bg-surface) !important;    }
-
-
-
-    ::-webkit-scrollbar-thumb {        border-left: 1px solid var(--border) !important;
-
-        background: var(--border);
-
-        border-radius: 4px;    }        color: var(--text) !important;        --bg-surface: #1e293b;           /* Cards e superfícies */
-
-    }
-
-
-
-    ::-webkit-scrollbar-thumb:hover {
-
-        background: var(--primary);    .paginator {    table {
-
-    }
-
-</style>        color: var(--text-muted) !important;
-
+<div id="site-name">
+    <h1 class="site-header">
+        <i class="fas fa-bus"></i>
+        <a href="{% url 'admin:index' %}">🚐 Sistema de Fretamento Intertouring</a>
+    </h1>
+</div>
 {% endblock %}
 
-    }        background: var(--bg-surface) !important;    }        --bg-elevated: #334155;          /* Elementos elevados */
-
-
-
-    .paginator a {        border: 1px solid var(--border) !important;
-
-        background: var(--bg-surface) !important;
-
-        color: var(--primary) !important;    }        
-
-        border: 1px solid var(--border) !important;
-
-        border-radius: 4px !important;
-
-        padding: 4px 8px !important;
-
-        text-decoration: none !important;    thead th {    #user-tools {        --text-primary: #f1f5f9;         /* Texto principal */
-
-    }
-
-        background: var(--bg-dark) !important;
-
-    .paginator a:hover {
-
-        background: var(--primary) !important;        color: var(--text) !important;        color: var(--text-muted) !important;        --text-secondary: #cbd5e1;       /* Texto secundário */
-
-        color: white !important;
-
-    }        border-bottom: 1px solid var(--border) !important;
-
-</style>
-
-{% endblock %}    }    }        --text-muted: #94a3b8;           /* Texto discreto */
-
-
-
-
-    tbody tr {        
-
-        background: var(--bg-surface) !important;
-
-    }    #user-tools a {        --border-color: #334155;         /* Bordas padrão */
-
-
-
-    tbody tr:hover {        color: var(--primary) !important;        --border-light: #475569;         /* Bordas claras */
-
-        background: rgba(59, 130, 246, 0.1) !important;
-
-    }        text-decoration: none !important;        
-
-
-
-    tbody td {    }        --success-color: #10b981;        /* Verde sucesso */
-
-        color: var(--text) !important;
-
-        border-bottom: 1px solid var(--border) !important;        --warning-color: #f59e0b;        /* Laranja aviso */
-
-    }
-
-    #user-tools a:hover {        --error-color: #ef4444;          /* Vermelho erro */
-
-    a {
-
-        color: var(--primary) !important;        opacity: 0.8 !important;        --info-color: #06b6d4;           /* Cyan info */
-
-    }
-
-    }    }
-
-    input[type="text"],
-
-    input[type="password"],
-
-    input[type="email"],
-
-    input[type="number"],    /* Breadcrumbs */    /* Tema escuro global */
-
-    input[type="date"],
-
-    textarea,    .breadcrumbs {    body {
-
-    select {
-
-        background: var(--bg-dark) !important;        background: transparent !important;        background: var(--bg-base) !important;
-
-        color: var(--text) !important;
-
-        border: 1px solid rgba(148, 163, 184, 0.2) !important;        color: var(--text-muted) !important;        color: var(--text-primary) !important;
-
-        border-radius: 6px !important;
-
-        padding: 8px !important;        padding: 12px 16px !important;        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-
-    }
-
-        border-bottom: 1px solid var(--border) !important;        line-height: 1.6 !important;
-
-    input:focus, textarea:focus, select:focus {
-
-        border-color: var(--primary) !important;    }    }
-
-        outline: none !important;
-
-    }
-
-
-
-    input[type="submit"],    .breadcrumbs a {    /* Header */
-
-    button,
-
-    .button {        color: var(--primary) !important;    #header {
-
-        background: var(--primary) !important;
-
-        color: white !important;        text-decoration: none !important;        background: linear-gradient(135deg, var(--secondary-color) 0%, var(--bg-elevated) 100%) !important;
-
-        border: none !important;
-
-        border-radius: 6px !important;    }        border-bottom: 3px solid var(--primary-color) !important;
-
-        padding: 8px 16px !important;
-
-        cursor: pointer !important;        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4) !important;
-
-    }
-
-    /* Content */        position: sticky !important;
-
-    input[type="submit"]:hover,
-
-    button:hover,    #content {        top: 0 !important;
-
-    .button:hover {
-
-        opacity: 0.9 !important;        background: var(--bg-dark) !important;        z-index: 1000 !important;
-
-    }
-
-        color: var(--text) !important;    }
-
-    .success, .messagelist .success {
-
-        background: rgba(16, 185, 129, 0.1) !important;    }
-
-        color: #10b981 !important;
-
-        border: 1px solid rgba(16, 185, 129, 0.3) !important;    #branding h1 {
-
-    }
-
-    #content h1, #content h2, #content h3 {        color: var(--text-primary) !important;
-
-    .error, .messagelist .error {
-
-        background: rgba(239, 68, 68, 0.1) !important;        color: var(--text) !important;        font-weight: 700 !important;
-
-        color: #ef4444 !important;
-
-        border: 1px solid rgba(239, 68, 68, 0.3) !important;    }        letter-spacing: -0.5px !important;
-
-    }
-
-    }
-
-    #content-related {
-
-        background: var(--bg-surface) !important;    /* Modules */
-
-        border-left: 1px solid var(--border) !important;
-
-    }    .module {    #branding h1 a {
-
-
-
-    .search-form .help {        background: var(--bg-surface) !important;        color: var(--text-primary) !important;
-
-        display: none !important;
-
-    }        border: 1px solid var(--border) !important;        transition: all 0.2s ease !important;
-
-
-
-    .paginator {        border-radius: 8px !important;    }
-
-        color: var(--text-muted) !important;
-
-    }    }
-
-
-
-    .paginator a {    #branding h1 a:hover {
-
-        background: var(--bg-surface) !important;
-
-        color: var(--primary) !important;    .module h2 {        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%) !important;
-
-        border: 1px solid var(--border) !important;
-
-        border-radius: 4px !important;        background: transparent !important;        -webkit-background-clip: text !important;
-
-        padding: 4px 8px !important;
-
-        text-decoration: none !important;        color: var(--text) !important;        -webkit-text-fill-color: transparent !important;
-
-    }
-
-        border-bottom: 1px solid var(--border) !important;        background-clip: text !important;
-
-    .paginator a:hover {
-
-        background: var(--primary) !important;    }    }
-
-        color: white !important;
-
-    }
-
-</style>
-
-{% endblock %}    /* Tables */    /* User info */
-
-
-    table {    #user-tools {
-
-        background: var(--bg-surface) !important;        color: var(--text-secondary) !important;
-
-        border: 1px solid var(--border) !important;        font-weight: 500 !important;
-
-    }        font-size: 13px !important;
-
-    }
-
-    thead th {
-
-        background: var(--bg-dark) !important;    #user-tools a {
-
-        color: var(--text) !important;        color: var(--primary-light) !important;
-
-        border-bottom: 1px solid var(--border) !important;        text-decoration: none !important;
-
-    }        padding: 6px 12px !important;
-
-        border-radius: 6px !important;
-
-    tbody tr {        transition: all 0.2s ease !important;
-
-        background: var(--bg-surface) !important;        display: inline-block !important;
-
-        border-bottom: 1px solid var(--border) !important;    }
-
-    }
-
-    #user-tools a:hover {
-
-    tbody tr:hover {        background: rgba(20, 184, 166, 0.15) !important;
-
-        background: rgba(59, 130, 246, 0.1) !important;        color: var(--primary-light) !important;
-
-    }        transform: translateY(-1px) !important;
-
-    }
-
-    tbody td {
-
-        color: var(--text) !important;    /* Navegação breadcrumb */
-
-        border-bottom: 1px solid var(--border) !important;    .breadcrumbs {
-
-    }        background: var(--bg-surface) !important;
-
-        color: var(--text-muted) !important;
-
-    /* Links */        border-bottom: 1px solid var(--border-color) !important;
-
-    a {        padding: 14px 24px !important;
-
-        color: var(--primary) !important;        font-size: 13px !important;
-
-    }    }
-
-
-
-    a:hover {    .breadcrumbs a {
-
-        opacity: 0.8 !important;        color: var(--primary-light) !important;
-
-    }        text-decoration: none !important;
-
-        transition: color 0.2s ease !important;
-
-    /* Forms */    }
-
-    input[type="text"],
-
-    input[type="password"],    .breadcrumbs a:hover {
-
-    input[type="email"],        color: var(--accent-light) !important;
-
-    input[type="number"],    }
-
-    input[type="date"],
-
-    textarea,    /* Container principal */
-
-    select {    .colM, .colMS, .colSM {
-
-        background: var(--bg-dark) !important;        background: transparent !important;
-
-        color: var(--text) !important;    }
-
-        border: 1px solid rgba(148, 163, 184, 0.2) !important;
-
-        border-radius: 6px !important;    #content {
-
-        padding: 8px !important;        background: var(--bg-base) !important;
-
-    }        margin: 0 !important;
-
-        padding: 24px !important;
-
-    input:focus, textarea:focus, select:focus {        min-height: calc(100vh - 200px) !important;
-
-        border-color: var(--primary) !important;    }
-
-        outline: none !important;
-
-    }    /* Módulos do dashboard */
-
-    .module {
-
-    /* Buttons */        background: var(--bg-surface) !important;
-
-    input[type="submit"],        border: 1px solid var(--border-color) !important;
-
-    button,        border-radius: 16px !important;
-
-    .button {        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-
-        background: var(--primary) !important;        margin-bottom: 24px !important;
-
-        color: white !important;        overflow: hidden !important;
-
-        border: none !important;        transition: all 0.3s ease !important;
-
-        border-radius: 6px !important;    }
-
-        padding: 8px 16px !important;
-
-        cursor: pointer !important;    .module:hover {
-
-        transition: opacity 0.2s !important;        transform: translateY(-3px) !important;
-
-    }        box-shadow: 0 12px 28px rgba(59, 130, 246, 0.2), 0 4px 12px rgba(139, 92, 246, 0.15) !important;
-
-        border-color: var(--primary-light) !important;
-
-    input[type="submit"]:hover,    }
-
-    button:hover,
-
-    .button:hover {    .module h2 {
-
-        opacity: 0.9 !important;        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%) !important;
-
-    }        color: white !important;
-
-        font-weight: 700 !important;
-
-    /* Messages */        padding: 14px 20px !important;
-
-    .success, .messagelist .success {        margin: 0 !important;
-
-        background: rgba(16, 185, 129, 0.1) !important;        font-size: 12px !important;
-
-        color: #10b981 !important;        letter-spacing: 0.8px !important;
-
-        border: 1px solid rgba(16, 185, 129, 0.3) !important;        text-transform: uppercase !important;
-
-    }        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
-
-    }
-
-    .error, .messagelist .error {
-
-        background: rgba(239, 68, 68, 0.1) !important;    .module h3 {
-
-        color: #ef4444 !important;        color: var(--primary-light) !important;
-
-        border: 1px solid rgba(239, 68, 68, 0.3) !important;        font-weight: 600 !important;
-
-    }        font-size: 13px !important;
-
-    }
-
-    .warning, .messagelist .warning {
-
-        background: rgba(245, 158, 11, 0.1) !important;    /* Links dos modelos */
-
-        color: #f59e0b !important;    .module table {
-
-        border: 1px solid rgba(245, 158, 11, 0.3) !important;        width: 100% !important;
-
-    }        border-spacing: 0 !important;
-
-    }
-
-    /* Sidebar */
-
-    #content-related {    .module th, .module caption {
-
-        background: var(--bg-surface) !important;        background: rgba(20, 184, 166, 0.08) !important;
-
-        border-left: 1px solid var(--border) !important;        color: var(--primary-light) !important;
-
-    }        font-weight: 700 !important;
-
-        padding: 14px 20px !important;
-
-    /* Remove search help text */        border-bottom: 2px solid var(--primary-dark) !important;
-
-    .search-form .help {        text-transform: uppercase !important;
-
-        display: none !important;        font-size: 11px !important;
-
-    }        letter-spacing: 0.5px !important;
-
-    }
-
-    /* Clean pagination */
-
-    .paginator {    .module td {
-
-        color: var(--text-muted) !important;        background: transparent !important;
-
-    }        border-bottom: 1px solid var(--border-color) !important;
-
-        padding: 14px 20px !important;
-
-    .paginator a {        transition: background-color 0.2s ease !important;
-
-        background: var(--bg-surface) !important;    }
-
-        color: var(--primary) !important;
-
-        border: 1px solid var(--border) !important;    .module tr:hover td {
-
-        border-radius: 4px !important;        background: rgba(20, 184, 166, 0.05) !important;
-
-        padding: 4px 8px !important;    }
-
-        text-decoration: none !important;
-
-    }    .module a {
-
-        color: var(--text-primary) !important;
-
-    .paginator a:hover {        text-decoration: none !important;
-
-        background: var(--primary) !important;        font-weight: 500 !important;
-
-        color: white !important;        display: inline-flex !important;
-
-    }        align-items: center !important;
-
-</style>        gap: 10px !important;
-
-{% endblock %}        transition: all 0.2s ease !important;
-
-        padding: 10px 12px !important;
-        border-radius: 8px !important;
-        margin: 2px 0 !important;
-    }
-
-    .module a:hover {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%) !important;
-        color: var(--primary-light) !important;
-        padding-left: 16px !important;
-    }
-
-    .module a:before {
-        content: "▸" !important;
-        font-size: 16px !important;
-        font-weight: bold !important;
-        color: var(--primary-color) !important;
-        transition: all 0.2s ease !important;
-    }
-
-    .module a:hover:before {
-        transform: translateX(3px) !important;
-        color: var(--accent-color) !important;
-    }
-
-    /* Botões de ação com ícones modernos */
-    .addlink {
-        color: var(--success-color) !important;
+{% block nav-global %}{% endblock %}
+
+{% block extrahead %}{{ block.super }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+:root {
+    --primary-color: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary-color: #7c3aed;
+    --accent-color: #06b6d4;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --text-color: #1f2937;
+    --text-muted: #6b7280;
+    --bg-color: #f8fafc;
+    --bg-white: #ffffff;
+    --border-color: #e5e7eb;
+    --border-light: #f3f4f6;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+}
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Header Principal */
+#header {
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+#branding {
+    padding: 1rem 2rem;
+}
+
+.site-header {
+    margin: 0;
+}
+
+.site-header a {
+    color: white !important;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.site-header a:hover {
+    transform: translateY(-1px);
+    transition: all 0.3s ease;
+}
+
+/* Container Principal */
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+#content {
+    background: var(--bg-white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    background: transparent;
+    border: none;
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.breadcrumbs a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.breadcrumbs a:hover {
+    color: var(--primary-dark);
+}
+
+/* Títulos */
+h1, h2, h3, h4 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Cards de Módulos */
+.app-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.module {
+    background: var(--bg-white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.module:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.module h2 {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.module h2:before {
+    content: "📊";
+    font-size: 1.2rem;
+}
+
+/* Links dos Modelos */
+.model-list li {
+    list-style: none;
+    margin-bottom: 0.5rem;
+}
+
+.model-list a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--bg-color);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.model-list a:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateX(4px);
+}
+
+.model-list a:before {
+    content: "▶";
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.model-list a:hover:before {
+    color: white;
+}
+
+/* Botões */
+.button, input[type="submit"], button {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.button:hover, input[type="submit"]:hover, button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.button.default {
+    background: var(--gradient-accent);
+}
+
+/* Tabelas */
+.results {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+}
+
+.results table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.results th {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.results td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.results tbody tr:hover {
+    background: var(--bg-color);
+}
+
+/* Formulários */
+.form-row {
+    margin-bottom: 1.5rem;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+input[type="text"], input[type="email"], input[type="password"], 
+input[type="number"], input[type="date"], select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
+input[type="number"]:focus, input[type="date"]:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+/* Mensagens */
+.messagelist {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.messagelist li {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+}
+
+.messagelist .success {
+    background: rgba(16, 185, 129, 0.1);
+    border-left: 4px solid var(--success-color);
+    color: #065f46;
+}
+
+.messagelist .warning {
+    background: rgba(245, 158, 11, 0.1);
+    border-left: 4px solid var(--warning-color);
+    color: #92400e;
+}
+
+.messagelist .error {
+    background: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid var(--error-color);
+    color: #991b1b;
+}
+
+.messagelist .success:before { content: "✓"; }
+.messagelist .warning:before { content: "⚠"; }
+.messagelist .error:before { content: "✗"; }
+
+/* Footer */
+#footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-light);
+    margin-top: 3rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .main {
+        padding: 1rem;
     }
     
-    .addlink:before {
-        content: "+" !important;
-        background: var(--success-color) !important;
-        color: white !important;
-        width: 20px !important;
-        height: 20px !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        border-radius: 6px !important;
-        font-weight: bold !important;
-        font-size: 16px !important;
+    #content {
+        padding: 1rem;
     }
+    
+    .app-list {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    #branding {
+        padding: 0.75rem 1rem;
+    }
+    
+    .site-header a {
+        font-size: 1.2rem;
+    }
+}
 
-    .changelink:before {
-        content: "✎" !important;
-        color: var(--accent-color) !important;
-        font-size: 16px !important;
-    }
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-    /* Formulários */
-    .form-row {
-        background: var(--bg-darker) !important;
-        border: 1px solid var(--border-color) !important;
-        border-radius: 8px !important;
-        padding: 12px !important;
-        margin-bottom: 12px !important;
-    }
+.module, .messagelist li {
+    animation: fadeIn 0.5s ease-out;
+}
 
-    label {
-        color: var(--text-light) !important;
-        font-weight: 600 !important;
-    }
+/* Estados de Loading */
+.loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 
-    input[type="text"], input[type="password"], input[type="email"], 
-    input[type="number"], input[type="date"], input[type="datetime-local"],
-    select, textarea {
-        background: var(--bg-dark) !important;
-        color: var(--text-light) !important;
-        border: 2px solid var(--border-color) !important;
-        border-radius: 6px !important;
-        padding: 8px 12px !important;
-        transition: border-color 0.2s ease !important;
-    }
+.loading:after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
 
-    input[type="text"]:focus, input[type="password"]:focus, 
-    input[type="email"]:focus, input[type="number"]:focus,
-    input[type="date"]:focus, input[type="datetime-local"]:focus,
-    select:focus, textarea:focus {
-        border-color: var(--primary-color) !important;
-        outline: none !important;
-        box-shadow: 0 0 0 3px rgba(71, 215, 172, 0.2) !important;
-    }
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
 
-    /* Tabelas modernas */
-    #result_list {
-        background: var(--bg-surface) !important;
-        border: 1px solid var(--border-color) !important;
-        border-radius: 16px !important;
-        overflow: hidden !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-    }
+/* Melhorias de Acessibilidade */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
 
-    #result_list th {
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%) !important;
-        color: white !important;
-        font-weight: 700 !important;
-        padding: 16px !important;
-        border-bottom: none !important;
-        text-transform: uppercase !important;
-        font-size: 11px !important;
-        letter-spacing: 0.8px !important;
-        position: sticky !important;
-        top: 60px !important;
-        z-index: 10 !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
-    }
+/* Focus visível para navegação por teclado */
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
 
-    #result_list td {
-        background: var(--bg-surface) !important;
-        color: var(--text-primary) !important;
-        border-bottom: 1px solid var(--border-color) !important;
-        padding: 16px !important;
-        transition: all 0.2s ease !important;
+/* Tema escuro (opcional) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1f2937;
+        --bg-white: #374151;
+        --text-color: #f9fafb;
+        --text-muted: #d1d5db;
+        --border-color: #4b5563;
+        --border-light: #6b7280;
     }
-
-    #result_list tr:nth-child(even) td {
-        background: rgba(59, 130, 246, 0.03) !important;
-    }
-
-    #result_list tr:hover td {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%) !important;
-        transform: scale(1.001) !important;
-        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15) !important;
-    }
-
-    #result_list a {
-        color: var(--primary-light) !important;
-        text-decoration: none !important;
-        font-weight: 500 !important;
-        transition: color 0.2s ease !important;
-    }
-
-    #result_list a:hover {
-        color: var(--accent-light) !important;
-        text-decoration: underline !important;
-    }
-
-    /* Botões modernos */
-    .button, input[type="submit"], input[type="button"], .submit-row input {
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 11px 22px !important;
-        font-weight: 700 !important;
-        font-size: 13px !important;
-        letter-spacing: 0.5px !important;
-        cursor: pointer !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        text-decoration: none !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        gap: 8px !important;
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
-        text-transform: uppercase !important;
-    }
-
-    .button:hover, input[type="submit"]:hover, 
-    input[type="button"]:hover, .submit-row input:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
-        background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%) !important;
-        color: white !important;
-    }
-
-    .button:active, input[type="submit"]:active, 
-    input[type="button"]:active, .submit-row input:active {
-        transform: translateY(0px) !important;
-    }
-
-    .button.default, input[type="submit"].default {
-        background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%) !important;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25) !important;
-    }
-
-    .button.default:hover, input[type="submit"].default:hover {
-        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4) !important;
-    }
-
-    /* Botões de cancelar/deletar */
-    .deletelink, .button.cancel {
-        background: linear-gradient(135deg, var(--error-color) 0%, #dc2626 100%) !important;
-        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25) !important;
-    }
-
-    .deletelink:hover, .button.cancel:hover {
-        box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4) !important;
-    }
-
-    /* Mensagens modernas com ícones */
-    .messagelist {
-        margin: 0 0 24px 0 !important;
-    }
-
-    .messagelist li {
-        border-radius: 12px !important;
-        padding: 16px 20px !important;
-        margin-bottom: 12px !important;
-        font-weight: 500 !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 12px !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
-        animation: slideIn 0.3s ease !important;
-    }
-
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .messagelist .success {
-        background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%) !important;
-        color: white !important;
-        border-left: 4px solid #047857 !important;
-    }
-
-    .messagelist .success:before {
-        content: "✓" !important;
-        font-weight: bold !important;
-        font-size: 20px !important;
-        background: rgba(255, 255, 255, 0.2) !important;
-        width: 32px !important;
-        height: 32px !important;
-        border-radius: 50% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    .messagelist .error {
-        background: linear-gradient(135deg, var(--error-color) 0%, #dc2626 100%) !important;
-        color: white !important;
-        border-left: 4px solid #b91c1c !important;
-    }
-
-    .messagelist .error:before {
-        content: "✕" !important;
-        font-weight: bold !important;
-        font-size: 20px !important;
-        background: rgba(255, 255, 255, 0.2) !important;
-        width: 32px !important;
-        height: 32px !important;
-        border-radius: 50% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    .messagelist .warning {
-        background: linear-gradient(135deg, var(--warning-color) 0%, #d97706 100%) !important;
-        color: white !important;
-        border-left: 4px solid #b45309 !important;
-    }
-
-    .messagelist .warning:before {
-        content: "⚠" !important;
-        font-size: 20px !important;
-        background: rgba(255, 255, 255, 0.2) !important;
-        width: 32px !important;
-        height: 32px !important;
-        border-radius: 50% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    .messagelist .info {
-        background: linear-gradient(135deg, var(--info-color) 0%, #2563eb 100%) !important;
-        color: white !important;
-        border-left: 4px solid #1d4ed8 !important;
-    }
-
-    .messagelist .info:before {
-        content: "ℹ" !important;
-        font-size: 20px !important;
-        background: rgba(255, 255, 255, 0.2) !important;
-        width: 32px !important;
-        height: 32px !important;
-        border-radius: 50% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    /* Sidebar */
-    #changelist-filter {
-        background: var(--bg-darker) !important;
-        border: 1px solid var(--border-color) !important;
-        border-radius: 12px !important;
-        padding: 20px !important;
-    }
-
-    #changelist-filter h2 {
-        color: var(--primary-color) !important;
-        font-weight: 600 !important;
-    }
-
-    #changelist-filter h3 {
-        color: var(--text-light) !important;
-        font-weight: 600 !important;
-        margin-top: 16px !important;
-    }
-
-    #changelist-filter a {
-        color: var(--text-muted) !important;
-        text-decoration: none !important;
-        padding: 4px 0 !important;
-        display: block !important;
-        transition: color 0.2s ease !important;
-    }
-
-    #changelist-filter a:hover {
-        color: var(--primary-color) !important;
-    }
-
-    #changelist-filter a.selected {
-        color: var(--primary-color) !important;
-        font-weight: 600 !important;
-    }
-
-    /* Paginação */
-    .paginator {
-        background: var(--bg-darker) !important;
-        border: 1px solid var(--border-color) !important;
-        border-radius: 8px !important;
-        padding: 12px !important;
-        margin: 20px 0 !important;
-        text-align: center !important;
-    }
-
-    .paginator a {
-        color: var(--primary-color) !important;
-        text-decoration: none !important;
-        padding: 6px 12px !important;
-        margin: 0 2px !important;
-        border-radius: 4px !important;
-        transition: background-color 0.2s ease !important;
-    }
-
-    .paginator a:hover {
-        background: rgba(71, 215, 172, 0.1) !important;
-    }
-
-    .paginator .this-page {
-        background: var(--primary-color) !important;
-        color: white !important;
-        padding: 6px 12px !important;
-        border-radius: 4px !important;
-        font-weight: 600 !important;
-    }
-
-    /* Footer moderno */
-    #footer {
-        background: var(--bg-surface) !important;
-        border-top: 3px solid var(--primary-color) !important;
-        color: var(--text-muted) !important;
-        text-align: center !important;
-        padding: 32px 24px !important;
-        margin-top: 48px !important;
-        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2) !important;
-    }
-
-    #footer p {
-        margin: 8px 0 !important;
-    }
-
-    #footer a {
-        color: var(--primary-light) !important;
-        text-decoration: none !important;
-        transition: color 0.2s ease !important;
-    }
-
-    #footer a:hover {
-        color: var(--accent-light) !important;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        #header #branding h1 {
-            font-size: 18px !important;
-        }
-        
-        .module {
-            margin: 0 0 16px 0 !important;
-        }
-        
-        #content {
-            padding: 12px !important;
-        }
-    }
-
-    /* Dark scrollbar */
-    ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: var(--bg-darker);
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: var(--primary-color);
-        border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: #5ae4c1;
-    }
+}
 </style>
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block footer %}
 <div id="footer">
-    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
-        <div style="width: 40px; height: 2px; background: linear-gradient(90deg, transparent, var(--primary-color));"></div>
-        <span style="font-size: 24px;">🚐</span>
-        <div style="width: 40px; height: 2px; background: linear-gradient(90deg, var(--primary-color), transparent);"></div>
-    </div>
-    <p style="margin: 0; font-weight: 600; font-size: 14px; color: var(--text-secondary);">
-        Sistema de Fretamento Intertouring
-    </p>
-    <p style="margin: 8px 0; font-weight: 500; font-size: 13px;">
-        <span style="color: var(--text-muted);">Desenvolvido com</span>
-        <span style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">Django</span>
-    </p>
-    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color); font-size: 12px; color: var(--text-muted);">
-        <p style="margin: 4px 0;">
-            👤 {{ request.user.get_full_name|default:request.user.username }}
-        </p>
-        <p style="margin: 4px 0;">
-            🕐 {% now "d/m/Y H:i" %}
-        </p>
-    </div>
+    <p>© {{ current_year|default:"2025" }} Sistema de Fretamento Intertouring. Desenvolvido com ❤️ e Django.</p>
+    <p><small>Versão 1.0.0 | Ambiente: {% if debug %}Desenvolvimento{% else %}Produção{% endif %}</small></p>
 </div>
 {% endblock %}
