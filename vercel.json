@@ -1,38 +1,10 @@
 {
   "version": 2,
-  "builds": [
+  "redirects": [
     {
-      "src": "fretamento_project/wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb"
-      }
-    },
-    {
-      "src": "static/**",
-      "use": "@vercel/static"
+      "source": "/(.*)",
+      "destination": "https://fretamento-intertouring-d423e478ec7f.herokuapp.com/$1",
+      "permanent": false
     }
-  ],
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/media/(.*)",
-      "dest": "/media/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "fretamento_project/wsgi.py"
-    }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "fretamento_project.settings_vercel"
-  },
-  "functions": {
-    "fretamento_project/wsgi.py": {
-      "runtime": "python3.9"
-    }
-  }
+  ]
 }
