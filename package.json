@@ -1,13 +1,8 @@
 {
-  "name": "fretamento-vercel-proxy",
+  "name": "fretamento-vercel-redirect",
   "version": "1.0.0",
-  "description": "Proxy transparente da Vercel para Heroku",
-  "main": "api/proxy.js",
+  "description": "Redirecionamento simples da Vercel para Heroku",
   "scripts": {
-    "build": "echo 'Build concluído - proxy configurado'",
-    "vercel-build": "echo 'Vercel build - proxy pronto'"
-  },
-  "engines": {
-    "node": "22.x"
+    "build": "echo 'Build concluído - redirecionamento configurado'"
   }
 }

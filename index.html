@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚌 Fretamento Intertouring - Carregando...</title>
+    <title>🚌 Fretamento Intertouring</title>
+    <meta http-equiv="refresh" content="0; url=https://fretamento-intertouring-d423e478ec7f.herokuapp.com/">
     <style>
         * {
             margin: 0;
@@ -28,21 +29,22 @@
         }
         
         .logo {
-            font-size: 64px;
+            font-size: 80px;
             margin-bottom: 20px;
-            animation: pulse 2s ease-in-out infinite;
+            animation: bounce 2s ease-in-out infinite;
         }
         
         h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            font-weight: 600;
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
         
         p {
             font-size: 18px;
-            opacity: 0.9;
+            opacity: 0.95;
             margin-bottom: 30px;
+            line-height: 1.6;
         }
         
         .spinner {
@@ -55,43 +57,46 @@
             animation: spin 1s linear infinite;
         }
         
-        .info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 20px;
             backdrop-filter: blur(10px);
             margin-top: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
-        .info small {
-            display: block;
-            opacity: 0.8;
-            margin-top: 10px;
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
         
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
         
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: transform 0.2s;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
+        small {
+            opacity: 0.8;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -99,24 +104,18 @@
     <div class="container">
         <div class="logo">🚌</div>
         <h1>Fretamento Intertouring</h1>
-        <p>Carregando sistema via proxy...</p>
+        <p>Sistema de Gestão de Fretamento</p>
         
         <div class="spinner"></div>
         
-        <div class="info">
-            <strong>Sistema de Gestão de Fretamento</strong>
-            <small>Mantendo URL limpa: fretamentointertouring.vercel.app</small>
-            <small>Aguarde enquanto conectamos ao servidor...</small>
+        <div class="card">
+            <p><strong>Redirecionando para o sistema...</strong></p>
+            <small>Se não for redirecionado automaticamente, clique no botão abaixo:</small>
+            <br>
+            <a href="https://fretamento-intertouring-d423e478ec7f.herokuapp.com/" class="btn">
+                Acessar Sistema
+            </a>
         </div>
-        
-        <a href="/core/" class="btn">Ir para Dashboard</a>
     </div>
-    
-    <script>
-        // Redirecionar automaticamente após 2 segundos
-        setTimeout(() => {
-            window.location.href = '/auth/login/';
-        }, 2000);
-    </script>
 </body>
 </html>

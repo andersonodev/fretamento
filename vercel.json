@@ -1,15 +1,9 @@
 {
-  "version": 2,
-  "functions": {
-    "api/proxy.js": {
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  },
-  "rewrites": [
+  "redirects": [
     {
       "source": "/(.*)",
-      "destination": "/api/proxy"
+      "destination": "https://fretamento-intertouring-d423e478ec7f.herokuapp.com/$1",
+      "permanent": false
     }
   ]
 }
