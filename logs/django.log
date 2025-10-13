@@ -6,3 +6,5 @@ INFO 2025-10-13 13:10:28,777 basehttp 85362 6198013952 "GET /auth/login/?next=/e
 INFO 2025-10-13 13:10:32,776 basehttp 85362 6198013952 "POST /auth/login/?next=/escalas/ HTTP/1.1" 200 12954
 INFO 2025-10-13 13:10:51,193 basehttp 85362 6198013952 "POST /auth/login/?next=/escalas/ HTTP/1.1" 200 12954
 INFO 2025-10-13 13:10:54,337 basehttp 85362 6198013952 "POST /auth/login/?next=/escalas/ HTTP/1.1" 200 12954
+INFO 2025-10-13 17:53:31,817 autoreload 22358 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-13 17:53:43,724 basehttp 22358 6159822848 "GET /admin/ HTTP/1.1" 302 0

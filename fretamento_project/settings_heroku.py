@@ -162,12 +162,16 @@ LOGGING = {
 # CONFIGURAÇÕES DE PERFORMANCE
 # ============================================
 
-# DESABILITAR CACHE DE TEMPLATES - FORÇAR RELOAD
+# Templates otimizados para produção
 TEMPLATES[0]['APP_DIRS'] = True
-TEMPLATES[0]['OPTIONS']['loaders'] = None
-# Remover loaders para forçar uso direto sem cache
-if 'loaders' in TEMPLATES[0]['OPTIONS']:
-    del TEMPLATES[0]['OPTIONS']['loaders']
+# Usar cache de templates apenas se não houver problemas
+if not DEBUG:
+    TEMPLATES[0]['OPTIONS']['loaders'] = [
+        ('django.template.loaders.cached.Loader', [
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        ]),
+    ]
 
 # Limites de upload
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
