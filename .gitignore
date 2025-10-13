@@ -232,6 +232,17 @@ tramp
 out/
 build/
 
+# Azure (BLOQUEADO)
+.azure/
+*azure*
+*Azure*
+*AZURE*
+*.azure.*
+azure-pipelines.yml
+.vscode/settings.json
+.deployment
+deploy.cmd
+
 # Docker
 *.dockerignore
 docker-compose.override.yml
