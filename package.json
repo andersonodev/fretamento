@@ -1,0 +1,13 @@
+{
+  "name": "fretamento-vercel-proxy",
+  "version": "1.0.0",
+  "description": "Proxy transparente da Vercel para Heroku",
+  "main": "api/proxy.js",
+  "scripts": {
+    "build": "echo 'Build concluído - proxy configurado'",
+    "vercel-build": "echo 'Vercel build - proxy pronto'"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
