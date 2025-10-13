@@ -20,7 +20,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.shortcuts import redirect
-from health_check import health_check
+from core.health_views import health_check
 
 # Configurações customizadas do admin
 admin.site.site_header = getattr(settings, 'ADMIN_SITE_HEADER', 'Administração Django')
