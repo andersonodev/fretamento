@@ -1,56 +1,109 @@
-{% extends "admin/base.html" %}{% extends "admin/base.html" %}
-
-{% load static %}{% load i18n static %}
+{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}
 
 
 
-{% block title %}Login | Fretamento Admin{% endblock %}{% block title %}Admin Login{% endblock %}
+{% block title %}Login | Fretamento Admin{% endblock %}{% load static %}{% load i18n static %}
 
 
 
-{% block branding %}{% block extrahead %}{{ block.super }}
+{% block extrastyle %}
 
-<h1 id="site-name"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+{{ block.super }}
+
+<style>{% block title %}Login | Fretamento Admin{% endblock %}{% block title %}Admin Login{% endblock %}
+
+body {
+
+    background: #0f172a !important;
+
+    display: flex;
+
+    align-items: center;{% block branding %}{% block extrahead %}{{ block.super }}
+
+    justify-content: center;
+
+    min-height: 100vh;<h1 id="site-name"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+}
 
     <a href="{% url 'admin:index' %}">Fretamento Intertouring</a>
 
-</h1><style>
+#header { display: none; }
 
-{% endblock %}    * {
+#footer { display: none; }</h1><style>
 
-        margin: 0;
 
-{% block extrastyle %}        padding: 0;
 
-{{ block.super }}        box-sizing: border-box;
+.login {{% endblock %}    * {
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">    }
+    background: #1e293b;
 
-<style>
+    border: 1px solid #334155;        margin: 0;
 
-    :root {    body {
+    border-radius: 12px;
 
-        --primary: #3b82f6;        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    padding: 40px;{% block extrastyle %}        padding: 0;
 
-        --bg: #0f172a;        background: #0f172a !important;
+    max-width: 400px;
 
-        --surface: #1e293b;        min-height: 100vh !important;
+}{{ block.super }}        box-sizing: border-box;
 
-        --text: #f1f5f9;        display: flex !important;
 
-        --border: #334155;        align-items: center !important;
 
-    }        justify-content: center !important;
+.login h1 {<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">    }
 
-        padding: 20px !important;
+    color: #f1f5f9;
 
-    body {    }
+    text-align: center;<style>
 
-        background: var(--bg) !important;
+    margin-bottom: 30px;
 
-        font-family: 'Inter', -apple-system, sans-serif !important;    /* Hide default admin elements */
+}    :root {    body {
 
-        display: flex;    #header, #footer, .breadcrumbs, #user-tools {
+
+
+.login input[type="text"],        --primary: #3b82f6;        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+
+.login input[type="password"] {
+
+    background: #0f172a;        --bg: #0f172a;        background: #0f172a !important;
+
+    color: #f1f5f9;
+
+    border: 1px solid #334155;        --surface: #1e293b;        min-height: 100vh !important;
+
+    border-radius: 6px;
+
+    padding: 12px;        --text: #f1f5f9;        display: flex !important;
+
+    width: 100%;
+
+}        --border: #334155;        align-items: center !important;
+
+
+
+.login input[type="submit"] {    }        justify-content: center !important;
+
+    background: #3b82f6;
+
+    color: white;        padding: 20px !important;
+
+    border: none;
+
+    border-radius: 6px;    body {    }
+
+    padding: 12px;
+
+    width: 100%;        background: var(--bg) !important;
+
+    margin-top: 20px;
+
+}        font-family: 'Inter', -apple-system, sans-serif !important;    /* Hide default admin elements */
+
+</style>
+
+{% endblock %}        display: flex;    #header, #footer, .breadcrumbs, #user-tools {
+
 
         align-items: center;        display: none !important;
 

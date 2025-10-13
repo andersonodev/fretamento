@@ -1,60 +1,117 @@
-{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}
-
-{% load static %}
+{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}
 
 
 
-{% block title %}{{ title }} | Fretamento Admin{% endblock %}
+{% block title %}{{ title }} | Fretamento Admin{% endblock %}{% load static %}
 
-{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Admin{% endblock %}
+
 
 {% block branding %}
 
 <h1 id="site-name">
 
-    <a href="{% url 'admin:index' %}">Fretamento Intertouring</a>
+    <a href="{% url 'admin:index' %}">Fretamento Admin</a>{% block title %}{{ title }} | Fretamento Admin{% endblock %}
 
-</h1>{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}
+</h1>
 
-{% endblock %}
+{% endblock %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Admin{% endblock %}
+
+
+
+{% block extrastyle %}{% block branding %}
+
+{{ block.super }}
+
+<style><h1 id="site-name">
+
+:root {
+
+    --primary: #3b82f6;    <a href="{% url 'admin:index' %}">Fretamento Intertouring</a>
+
+    --bg: #0f172a;
+
+    --surface: #1e293b;</h1>{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}
+
+    --text: #f1f5f9;
+
+    --border: #334155;{% endblock %}
+
+}
 
 <div style="padding: 8px 0;">
 
-{% block extrastyle %}
+body {
 
-{{ block.super }}    <h1 id="site-name" style="margin: 0;">
+    background: var(--bg) !important;{% block extrastyle %}
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    color: var(--text) !important;
 
-<style>        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
+}{{ block.super }}    <h1 id="site-name" style="margin: 0;">
+
+
+
+#header {<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    background: var(--surface) !important;
+
+    border-bottom: 1px solid var(--border) !important;<style>        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
+
+}
 
     /* ===== VARIÁVEIS ===== */
 
-    :root {            Fretamento Admin{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Intertouring{% endblock %}
+#branding h1 a {
+
+    color: var(--text) !important;    :root {            Fretamento Admin{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Intertouring{% endblock %}
+
+}
 
         --primary: #3b82f6;
 
-        --primary-dark: #2563eb;        </a>
+.module {
 
-        --bg: #0f172a;
+    background: var(--surface) !important;        --primary-dark: #2563eb;        </a>
+
+    border: 1px solid var(--border) !important;
+
+    border-radius: 8px !important;        --bg: #0f172a;
+
+}
 
         --surface: #1e293b;    </h1><div style="padding: 8px 0;">
 
-        --text: #f1f5f9;
+table {
+
+    background: var(--surface) !important;        --text: #f1f5f9;
+
+}
 
         --text-muted: #94a3b8;</div>
 
-        --border: #334155;
+input, select, textarea {
 
-        --success: #10b981;{% endblock %}    <h1 id="site-name" style="margin: 0;">
+    background: var(--surface) !important;        --border: #334155;
+
+    color: var(--text) !important;
+
+    border: 1px solid var(--border) !important;        --success: #10b981;{% endblock %}    <h1 id="site-name" style="margin: 0;">
+
+}
 
         --error: #ef4444;
 
-    }
+.button, input[type="submit"] {
 
+    background: var(--primary) !important;    }
 
+    color: white !important;
 
-    /* ===== BASE ===== */{% block extrahead %}        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
+}
+
+</style>
+
+{% endblock %}    /* ===== BASE ===== */{% block extrahead %}        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
+
 
     * {
 
