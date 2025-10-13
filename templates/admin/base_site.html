@@ -1,0 +1,420 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Sistema de Fretamento{% endblock %}
+
+{% block branding %}
+<h1 id="site-name" style="display: flex; align-items: center; gap: 12px;">
+    <span style="font-size: 24px;">🚐</span>
+    <a href="{% url 'admin:index' %}" style="color: #47d7ac; text-decoration: none; font-weight: 600;">
+        Sistema de Fretamento
+    </a>
+</h1>
+<p style="color: #8e9aaf; font-size: 12px; margin: 4px 0 0 36px; font-weight: 500;">
+    Intertouring Receptivo - Gestão Inteligente
+</p>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    :root {
+        --primary-color: #47d7ac;
+        --secondary-color: #2c5282;
+        --accent-color: #4299e1;
+        --bg-dark: #1a202c;
+        --bg-darker: #2d3748;
+        --text-light: #e2e8f0;
+        --text-muted: #8e9aaf;
+        --border-color: #4a5568;
+        --success-color: #48bb78;
+        --warning-color: #ed8936;
+        --error-color: #f56565;
+    }
+
+    /* Tema escuro global */
+    body {
+        background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%) !important;
+        color: var(--text-light) !important;
+        font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    }
+
+    /* Header */
+    #header {
+        background: linear-gradient(135deg, var(--bg-darker) 0%, #4a5568 100%) !important;
+        border-bottom: 2px solid var(--primary-color) !important;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    #branding h1 {
+        color: var(--primary-color) !important;
+        font-weight: 700 !important;
+    }
+
+    /* User info */
+    #user-tools {
+        color: var(--text-light) !important;
+        font-weight: 500 !important;
+    }
+
+    #user-tools a {
+        color: var(--primary-color) !important;
+        text-decoration: none !important;
+        transition: color 0.2s ease !important;
+    }
+
+    #user-tools a:hover {
+        color: #5ae4c1 !important;
+    }
+
+    /* Navegação breadcrumb */
+    .breadcrumbs {
+        background: var(--bg-darker) !important;
+        color: var(--text-muted) !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        padding: 12px 20px !important;
+    }
+
+    .breadcrumbs a {
+        color: var(--primary-color) !important;
+        text-decoration: none !important;
+    }
+
+    /* Container principal */
+    .colM, .colMS, .colSM {
+        background: transparent !important;
+    }
+
+    #content {
+        background: var(--bg-dark) !important;
+        margin: 0 !important;
+        padding: 20px !important;
+    }
+
+    /* Módulos do dashboard */
+    .module {
+        background: var(--bg-darker) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
+        margin-bottom: 20px !important;
+        overflow: hidden !important;
+    }
+
+    .module h2 {
+        background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%) !important;
+        color: white !important;
+        font-weight: 600 !important;
+        padding: 12px 16px !important;
+        margin: 0 !important;
+        font-size: 14px !important;
+    }
+
+    .module h3 {
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+    }
+
+    /* Links dos modelos */
+    .module table {
+        width: 100% !important;
+    }
+
+    .module th, .module caption {
+        background: var(--bg-dark) !important;
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+        padding: 12px 16px !important;
+        border-bottom: 2px solid var(--border-color) !important;
+    }
+
+    .module td {
+        background: transparent !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        padding: 12px 16px !important;
+    }
+
+    .module a {
+        color: var(--text-light) !important;
+        text-decoration: none !important;
+        font-weight: 500 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        transition: all 0.2s ease !important;
+        padding: 8px 0 !important;
+    }
+
+    .module a:hover {
+        color: var(--primary-color) !important;
+        transform: translateX(4px) !important;
+    }
+
+    .module a:before {
+        content: "▶" !important;
+        font-size: 10px !important;
+        color: var(--primary-color) !important;
+        transition: transform 0.2s ease !important;
+    }
+
+    .module a:hover:before {
+        transform: translateX(2px) !important;
+    }
+
+    /* Botões de ação */
+    .addlink:before {
+        content: "➕ " !important;
+    }
+
+    .changelink:before {
+        content: "✏️ " !important;
+    }
+
+    /* Formulários */
+    .form-row {
+        background: var(--bg-darker) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        margin-bottom: 12px !important;
+    }
+
+    label {
+        color: var(--text-light) !important;
+        font-weight: 600 !important;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"], 
+    input[type="number"], input[type="date"], input[type="datetime-local"],
+    select, textarea {
+        background: var(--bg-dark) !important;
+        color: var(--text-light) !important;
+        border: 2px solid var(--border-color) !important;
+        border-radius: 6px !important;
+        padding: 8px 12px !important;
+        transition: border-color 0.2s ease !important;
+    }
+
+    input[type="text"]:focus, input[type="password"]:focus, 
+    input[type="email"]:focus, input[type="number"]:focus,
+    input[type="date"]:focus, input[type="datetime-local"]:focus,
+    select:focus, textarea:focus {
+        border-color: var(--primary-color) !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(71, 215, 172, 0.2) !important;
+    }
+
+    /* Tabelas */
+    #result_list {
+        background: var(--bg-darker) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+    }
+
+    #result_list th {
+        background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%) !important;
+        color: white !important;
+        font-weight: 600 !important;
+        padding: 12px !important;
+        border-bottom: none !important;
+    }
+
+    #result_list td {
+        background: var(--bg-darker) !important;
+        color: var(--text-light) !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        padding: 12px !important;
+    }
+
+    #result_list tr:nth-child(even) td {
+        background: rgba(255, 255, 255, 0.02) !important;
+    }
+
+    #result_list tr:hover td {
+        background: rgba(71, 215, 172, 0.1) !important;
+    }
+
+    /* Botões */
+    .button, input[type="submit"], input[type="button"], .submit-row input {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 10px 20px !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        text-decoration: none !important;
+        display: inline-block !important;
+    }
+
+    .button:hover, input[type="submit"]:hover, 
+    input[type="button"]:hover, .submit-row input:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(71, 215, 172, 0.4) !important;
+        color: white !important;
+    }
+
+    .button.default, input[type="submit"].default {
+        background: linear-gradient(135deg, var(--success-color) 0%, var(--primary-color) 100%) !important;
+    }
+
+    /* Mensagens */
+    .messagelist {
+        margin: 0 0 20px 0 !important;
+    }
+
+    .messagelist .success {
+        background: var(--success-color) !important;
+        color: white !important;
+        border-radius: 8px !important;
+        padding: 12px 16px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .messagelist .error {
+        background: var(--error-color) !important;
+        color: white !important;
+        border-radius: 8px !important;
+        padding: 12px 16px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .messagelist .warning {
+        background: var(--warning-color) !important;
+        color: white !important;
+        border-radius: 8px !important;
+        padding: 12px 16px !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Sidebar */
+    #changelist-filter {
+        background: var(--bg-darker) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 12px !important;
+        padding: 20px !important;
+    }
+
+    #changelist-filter h2 {
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+    }
+
+    #changelist-filter h3 {
+        color: var(--text-light) !important;
+        font-weight: 600 !important;
+        margin-top: 16px !important;
+    }
+
+    #changelist-filter a {
+        color: var(--text-muted) !important;
+        text-decoration: none !important;
+        padding: 4px 0 !important;
+        display: block !important;
+        transition: color 0.2s ease !important;
+    }
+
+    #changelist-filter a:hover {
+        color: var(--primary-color) !important;
+    }
+
+    #changelist-filter a.selected {
+        color: var(--primary-color) !important;
+        font-weight: 600 !important;
+    }
+
+    /* Paginação */
+    .paginator {
+        background: var(--bg-darker) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        margin: 20px 0 !important;
+        text-align: center !important;
+    }
+
+    .paginator a {
+        color: var(--primary-color) !important;
+        text-decoration: none !important;
+        padding: 6px 12px !important;
+        margin: 0 2px !important;
+        border-radius: 4px !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .paginator a:hover {
+        background: rgba(71, 215, 172, 0.1) !important;
+    }
+
+    .paginator .this-page {
+        background: var(--primary-color) !important;
+        color: white !important;
+        padding: 6px 12px !important;
+        border-radius: 4px !important;
+        font-weight: 600 !important;
+    }
+
+    /* Footer */
+    #footer {
+        background: var(--bg-darker) !important;
+        border-top: 2px solid var(--primary-color) !important;
+        color: var(--text-muted) !important;
+        text-align: center !important;
+        padding: 20px !important;
+        margin-top: 40px !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        #header #branding h1 {
+            font-size: 18px !important;
+        }
+        
+        .module {
+            margin: 0 0 16px 0 !important;
+        }
+        
+        #content {
+            padding: 12px !important;
+        }
+    }
+
+    /* Dark scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--bg-darker);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #5ae4c1;
+    }
+</style>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block footer %}
+<div id="footer">
+    <p style="margin: 0; font-weight: 500;">
+        🚐 Sistema de Fretamento Intertouring | 
+        <span style="color: var(--primary-color);">Desenvolvido com Django</span> | 
+        {{ request.user.get_full_name|default:request.user.username }}
+    </p>
+    <p style="margin: 4px 0 0 0; font-size: 11px; opacity: 0.7;">
+        Última atualização: {% now "d/m/Y H:i" %}
+    </p>
+</div>
+{% endblock %}

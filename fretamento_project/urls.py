@@ -22,6 +22,11 @@ from django.conf.urls.static import static
 from django.shortcuts import redirect
 from health_check import health_check
 
+# Configurações customizadas do admin
+admin.site.site_header = getattr(settings, 'ADMIN_SITE_HEADER', 'Administração Django')
+admin.site.site_title = getattr(settings, 'ADMIN_SITE_TITLE', 'Admin')
+admin.site.index_title = getattr(settings, 'ADMIN_INDEX_TITLE', 'Administração do site')
+
 def root_redirect(request):
     """Redireciona a raiz - dashboard para autenticados, login para não autenticados"""
     if request.user.is_authenticated:

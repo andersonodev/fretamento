@@ -319,3 +319,12 @@ if not DEBUG:
             'django.template.loaders.app_directories.Loader',
         ]),
     ]
+
+# =============================================================================
+# DJANGO ADMIN CUSTOMIZATION
+# =============================================================================
+
+# Admin site customization
+ADMIN_SITE_HEADER = "🚐 Sistema de Fretamento Intertouring"
+ADMIN_SITE_TITLE = "Administração - Fretamento"
+ADMIN_INDEX_TITLE = "Painel de Controle"
