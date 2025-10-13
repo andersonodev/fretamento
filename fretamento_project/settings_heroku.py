@@ -1,5 +1,6 @@
 """
-Configurações específicas para deploy no Heroku (versão gratuita)
+Configurações específicas para deploy no Heroku com PostgreSQL Essential 0
+PostgreSQL Essential 0: $5/mês - 1GB storage, 20 conexões
 """
 import os
 from .settings import *
@@ -22,21 +23,34 @@ ALLOWED_HOSTS = [
 ]
 
 # ============================================
-# BANCO DE DADOS - SQLITE PARA PLANO GRATUITO
+# BANCO DE DADOS - HEROKU POSTGRESQL
 # ============================================
 
-# Para manter o projeto 100% gratuito, usamos SQLite
-# Em produção real, recomenda-se PostgreSQL
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'OPTIONS': {
-            'timeout': 20,
-        },
-        'CONN_MAX_AGE': 600,
+# PostgreSQL configurado automaticamente via DATABASE_URL
+import dj_database_url
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    # Heroku PostgreSQL (Essential 0 - $5/mês)
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
-}
+else:
+    # Fallback para SQLite (desenvolvimento local)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+            'OPTIONS': {
+                'timeout': 20,
+            },
+            'CONN_MAX_AGE': 600,
+        }
+    }
 
 # ============================================
 # MIDDLEWARE PARA HEROKU
