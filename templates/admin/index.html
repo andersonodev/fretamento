@@ -19,23 +19,29 @@
         <div class="dashboard-stats">
             <div class="stat-card">
                 <div class="stat-icon">
-                    <i class="fas fa-bus"></i>
+                    <i class="fas fa-database"></i>
                 </div>
                 <div class="stat-content">
-                    <h3>Veículos</h3>
-                    <p class="stat-number">{{ vehicles_count|default:0 }}</p>
-                    <small>Frota ativa</small>
+                    <h3>Aplicações</h3>
+                    <p class="stat-number">{{ app_list|length }}</p>
+                    <small>Módulos ativos</small>
                 </div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon">
-                    <i class="fas fa-calendar-check"></i>
+                    <i class="fas fa-cogs"></i>
                 </div>
                 <div class="stat-content">
-                    <h3>Escalas</h3>
-                    <p class="stat-number">{{ schedules_count|default:0 }}</p>
-                    <small>Este mês</small>
+                    <h3>Modelos</h3>
+                    <p class="stat-number">
+                        {% if app_list %}
+                            {% for app in app_list %}{{ app.models|length }}{% if not forloop.last %}+{% endif %}{% endfor %}
+                        {% else %}
+                            0
+                        {% endif %}
+                    </p>
+                    <small>Registrados</small>
                 </div>
             </div>
             
@@ -44,20 +50,20 @@
                     <i class="fas fa-users"></i>
                 </div>
                 <div class="stat-content">
-                    <h3>Clientes</h3>
-                    <p class="stat-number">{{ clients_count|default:0 }}</p>
-                    <small>Cadastrados</small>
+                    <h3>Sistema</h3>
+                    <p class="stat-number">{{ user.username|default:"Admin" }}</p>
+                    <small>Usuário ativo</small>
                 </div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon">
-                    <i class="fas fa-dollar-sign"></i>
+                    <i class="fas fa-clock"></i>
                 </div>
                 <div class="stat-content">
-                    <h3>Receita</h3>
-                    <p class="stat-number">R$ {{ revenue|default:"0,00" }}</p>
-                    <small>Este mês</small>
+                    <h3>Status</h3>
+                    <p class="stat-number">Online</p>
+                    <small>Sistema funcionando</small>
                 </div>
             </div>
         </div>
@@ -112,18 +118,28 @@
                 Ações Rápidas
             </h2>
             <div class="actions-grid">
-                <a href="{% url 'admin:core_servico_add' %}" class="quick-action">
-                    <i class="fas fa-plus-circle"></i>
-                    <span>Novo Serviço</span>
-                </a>
-                <a href="{% url 'admin:escalas_escala_add' %}" class="quick-action">
-                    <i class="fas fa-calendar-plus"></i>
-                    <span>Nova Escala</span>
-                </a>
-                <a href="{% url 'admin:core_veiculo_changelist' %}" class="quick-action">
-                    <i class="fas fa-bus"></i>
-                    <span>Gerenciar Veículos</span>
-                </a>
+                {% for app in app_list %}
+                    {% for model in app.models %}
+                        {% if model.add_url %}
+                        <a href="{{ model.add_url }}" class="quick-action">
+                            {% if "user" in model.name|lower %}
+                                <i class="fas fa-user-plus"></i>
+                            {% elif "servi" in model.name|lower %}
+                                <i class="fas fa-plus-circle"></i>
+                            {% elif "escala" in model.name|lower %}
+                                <i class="fas fa-calendar-plus"></i>
+                            {% elif "veiculo" in model.name|lower or "veículo" in model.name|lower %}
+                                <i class="fas fa-bus"></i>
+                            {% else %}
+                                <i class="fas fa-plus"></i>
+                            {% endif %}
+                            <span>Novo {{ model.name }}</span>
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                
+                {% comment %}Links estáticos seguros{% endcomment %}
                 <a href="{% url 'admin:auth_user_changelist' %}" class="quick-action">
                     <i class="fas fa-users"></i>
                     <span>Usuários</span>
