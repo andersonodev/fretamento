@@ -702,3 +702,247 @@ class ExportadorEscalas:
         buffer.seek(0)
         
         return buffer.getvalue()
+        
+    def exportar_van_especifica_para_excel(self, escala: Escala, van: str) -> bytes:
+        """Exporta apenas uma van específica para formato Excel"""
+        import io
+        from openpyxl import Workbook
+        from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
+        from openpyxl.utils import get_column_letter
+        from django.db.models import Q
+
+        wb = Workbook()
+        ws = wb.active
+        van_nome = "Van 1" if van == 'VAN1' else "Van 2"
+        nomeMes = escala.data.strftime('%B')
+        ws.title = f"{van_nome} - {nomeMes}"
+
+        # Cabeçalhos
+        headers = [
+            "DATA", "CLIENTE", "Local Pick-UP", "NÚMERO DA VENDA", "PAX",
+            "HORÁRIO", "DATA DO SERVIÇO", "INÍCIO", "TÉRMINO", "SERVIÇOS", 
+            "VALOR CUSTO TARIFÁRIO", "VAN", "OBS", f"Acumulado {van_nome}", f"Rent {van_nome}"
+        ]
+
+        # ===== ESTILOS E FORMATAÇÃO =====
+        header_font = Font(bold=True, size=10)
+        header_fill = PatternFill(start_color="D9EAD3", end_color="D9EAD3", fill_type="solid")
+        header_alignment = Alignment(horizontal="center", vertical="center")
+        thin_border = Border(
+            left=Side(style='thin'), right=Side(style='thin'),
+            top=Side(style='thin'), bottom=Side(style='thin')
+        )
+
+        # DATA e VAN: fundo cinza, negrito, centralizado
+        data_van_font = Font(bold=True, size=10)
+        data_van_fill = PatternFill(start_color="EFEFEF", end_color="EFEFEF", fill_type="solid")
+        center_alignment = Alignment(horizontal="center", vertical="center")
+
+        # Resumo: fundo cinza, negrito, centralizado
+        resumo_font = Font(bold=True, size=10)
+        resumo_fill = PatternFill(start_color="EFEFEF", end_color="EFEFEF", fill_type="solid")
+
+        # Formatação condicional para Rent
+        rent_positive_font = Font(color="34A853", bold=True)  # Verde para positivo
+        rent_negative_font = Font(color="FF0000", bold=True)  # Vermelho para negativo
+
+        left_alignment = Alignment(horizontal="left", vertical="center")
+        right_alignment = Alignment(horizontal="right", vertical="center")
+
+        # Escreve cabeçalhos
+        for col, header in enumerate(headers, 1):
+            cell = ws.cell(row=1, column=col, value=header)
+            cell.font = header_font
+            cell.fill = header_fill
+            cell.alignment = header_alignment
+            cell.border = thin_border
+
+        # Configurar larguras de coluna
+        column_widths = [80, 110, 120, 110, 65, 65, 80, 65, 65, 300, 120, 70, 150, 120, 120]
+        for i, width in enumerate(column_widths, 1):
+            ws.column_dimensions[get_column_letter(i)].width = width / 7
+
+        # Congelar primeira linha
+        ws.freeze_panes = "A2"
+
+        # Processar apenas a van específica
+        def processar_van(alocacoes, van_name):
+            """Processa alocações de uma van, agrupando quando necessário"""
+            grupos_processados = set()
+            resultados = []
+            
+            for alocacao in alocacoes:
+                # Verificar se esta alocação está em um grupo
+                try:
+                    grupo_info = alocacao.grupo_info
+                    grupo = grupo_info.grupo
+                    
+                    if grupo.id not in grupos_processados:
+                        # Processar grupo completo
+                        grupos_processados.add(grupo.id)
+                        
+                        # Buscar todos os serviços do grupo na mesma van
+                        servicos_do_grupo = []
+                        alocacoes_do_grupo = alocacao.escala.alocacoes.filter(
+                            van=alocacao.van,
+                            grupo_info__grupo=grupo
+                        ).order_by('ordem')
+                        
+                        numeros_venda = []
+                        total_pax = 0
+                        primeiro_servico = None
+                        preco_total_grupo = 0
+                        
+                        for aloc_grupo in alocacoes_do_grupo:
+                            if primeiro_servico is None:
+                                primeiro_servico = aloc_grupo.servico
+                            
+                            if aloc_grupo.servico.numero_venda:
+                                numeros_venda.append(str(aloc_grupo.servico.numero_venda))
+                            
+                            total_pax += aloc_grupo.servico.pax or 0
+                        
+                        # Usar o valor total do grupo
+                        preco_total_grupo = grupo.total_valor or 0
+                        
+                        # Criar linha agrupada
+                        linha_grupo = {
+                            'cliente': primeiro_servico.cliente,
+                            'local_pickup': primeiro_servico.local_pickup or "",
+                            'numero_venda': " / ".join(numeros_venda),
+                            'pax': total_pax,
+                            'horario': primeiro_servico.horario if primeiro_servico.horario else "SEM HORARIO",
+                            'data_servico': primeiro_servico.data_do_servico,
+                            'servico': primeiro_servico.servico,
+                            'preco': float(preco_total_grupo),
+                            'van': van_name,
+                            'obs': f"GRUPO: {len(alocacoes_do_grupo)} serviços"
+                        }
+                        
+                        resultados.append(linha_grupo)
+                        
+                except AttributeError:
+                    # Serviço individual (sem grupo)
+                    resultados.append({
+                        'cliente': alocacao.servico.cliente,
+                        'local_pickup': alocacao.servico.local_pickup or "",
+                        'numero_venda': alocacao.servico.numero_venda or "",
+                        'pax': alocacao.servico.pax,
+                        'horario': alocacao.servico.horario if alocacao.servico.horario else "SEM HORARIO",
+                        'data_servico': alocacao.servico.data_do_servico,
+                        'servico': alocacao.servico.servico,
+                        'preco': float(alocacao.preco_calculado or 0),
+                        'obs': ""
+                    })
+            
+            return resultados
+
+        # Obter alocações da van específica - APENAS ALOCADOS
+        alocacoes_van = escala.alocacoes.filter(van=van, status_alocacao='ALOCADO').order_by('ordem')
+        
+        # Processar van
+        dados_van = processar_van(alocacoes_van, van_nome)
+        
+        # Constantes
+        CUSTO_DIARIO = 635.17
+        MIN_ROWS_VAN = 20
+        
+        row = 2
+        
+        # ===== CALCULAR DIMENSÕES DO BLOCO =====
+        altura_van = max(len(dados_van), MIN_ROWS_VAN)
+        
+        van_start_row = row
+        van_end_row = row + altura_van - 1
+        
+        # ===== MESCLAR E PREENCHER DATA (A) =====
+        ws.merge_cells(f"A{van_start_row}:A{van_end_row}")
+        data_cell = ws.cell(row=van_start_row, column=1)
+        data_cell.value = escala.data
+        data_cell.font = data_van_font
+        data_cell.fill = data_van_fill
+        data_cell.alignment = center_alignment
+        data_cell.number_format = 'dd/mm/yy'
+
+        # ===== MESCLAR E PREENCHER VAN (L) =====
+        ws.merge_cells(f"L{van_start_row}:L{van_end_row}")
+        van_cell = ws.cell(row=van_start_row, column=12)
+        van_cell.value = van_nome
+        van_cell.font = data_van_font
+        van_cell.fill = data_van_fill
+        van_cell.alignment = center_alignment
+
+        # ===== PREENCHER DADOS DA VAN =====
+        current_row = van_start_row
+        for dados in dados_van:
+            ws.cell(row=current_row, column=2, value=dados['cliente'])
+            ws.cell(row=current_row, column=3, value=dados['local_pickup'])
+            ws.cell(row=current_row, column=4, value=dados['numero_venda'])
+            ws.cell(row=current_row, column=5, value=dados['pax'])
+            ws.cell(row=current_row, column=6, value=dados['horario'])
+            ws.cell(row=current_row, column=7, value=dados['data_servico'])
+            ws.cell(row=current_row, column=8, value="")  # INÍCIO
+            ws.cell(row=current_row, column=9, value="")  # TÉRMINO
+            ws.cell(row=current_row, column=10, value=dados['servico'])
+            ws.cell(row=current_row, column=11, value=dados['preco'])
+            ws.cell(row=current_row, column=13, value=dados['obs'])
+            
+            current_row += 1
+
+        # ===== MESCLAR E PREENCHER ACUMULADO/RENT (N/O) =====
+        total_van = sum(dados['preco'] for dados in dados_van)
+        rent_van = total_van - CUSTO_DIARIO
+
+        ws.merge_cells(f"N{van_start_row}:N{van_end_row}")
+        acumulado_cell = ws.cell(row=van_start_row, column=14)
+        acumulado_cell.value = f"=SUM(K{van_start_row}:K{van_end_row})"
+        acumulado_cell.font = resumo_font
+        acumulado_cell.fill = resumo_fill
+        acumulado_cell.alignment = center_alignment
+        acumulado_cell.number_format = 'R$ #,##0.00'
+
+        ws.merge_cells(f"O{van_start_row}:O{van_end_row}")
+        rent_cell = ws.cell(row=van_start_row, column=15)
+        rent_cell.value = f"=SUM(K{van_start_row}:K{van_end_row})-{CUSTO_DIARIO}"
+        rent_cell.font = resumo_font  # Fonte padrão sem cor
+        rent_cell.fill = resumo_fill
+        rent_cell.alignment = center_alignment
+        rent_cell.number_format = 'R$ #,##0.00'
+
+        # ===== APLICAR FORMATAÇÃO DE NÚMERO/DATA =====
+        # Formato de moeda (coluna K - VALOR CUSTO TARIFÁRIO)
+        for r in range(van_start_row, van_end_row + 1):
+            ws.cell(row=r, column=11).number_format = 'R$ #,##0.00'
+
+        # Formato de hora
+        for r in range(van_start_row, van_end_row + 1):
+            ws.cell(row=r, column=6).number_format = 'hh:mm'  # HORÁRIO
+            ws.cell(row=r, column=8).number_format = 'hh:mm'  # INÍCIO
+            ws.cell(row=r, column=9).number_format = 'hh:mm'  # TÉRMINO
+
+        # Formato de data
+        for r in range(van_start_row, van_end_row + 1):
+            ws.cell(row=r, column=7).number_format = 'dd/mm/yyyy'  # DATA DO SERVIÇO
+
+        # ===== FORMATAÇÃO CONDICIONAL PARA COLUNA RENT =====
+        from openpyxl.formatting.rule import CellIsRule
+
+        # Regra para valores negativos (vermelho)
+        red_font = Font(color="FF0000", bold=True)
+        negative_rule = CellIsRule(operator='lessThan', formula=['0'], font=red_font)
+
+        # Regra para valores positivos (verde)
+        green_font = Font(color="34A853", bold=True)
+        positive_rule = CellIsRule(operator='greaterThanOrEqual', formula=['0'], font=green_font)
+
+        # Aplicar formatação condicional
+        rent_range = f"O{van_start_row}:O{van_end_row}"
+        ws.conditional_formatting.add(rent_range, negative_rule)
+        ws.conditional_formatting.add(rent_range, positive_rule)
+
+        # Salva em buffer
+        buffer = io.BytesIO()
+        wb.save(buffer)
+        buffer.seek(0)
+
+        return buffer.getvalue()

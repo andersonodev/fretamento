@@ -1570,11 +1570,11 @@ class PuxarDadosView(LoginRequiredMixin, View):
                     servico=servico,
                     van=van,
                     ordem=ordem,
-                    automatica=True
+                    automatica=True,
+                    preco_calculado=0.0  # Definir preço como R$ 0,00 quando puxar dados
                 )
                 
-                # NÃO calcular preço automaticamente - será feito sob demanda
-                # O preço ficará como R$ 0 até ser precificado manualmente
+                # Preço definido como R$ 0,00 até ser precificado manualmente
             
             # Atualizar escala
             escala.data_origem = data_origem
@@ -2016,6 +2016,34 @@ class ExportarEscalaView(LoginRequiredMixin, View):
             content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         )
         response['Content-Disposition'] = f'attachment; filename="escala_{data}.xlsx"'
+        
+        return response
+
+
+class ExportarVanEspecificaView(LoginRequiredMixin, View):
+    """View para exportar uma van específica em Excel"""
+    
+    def get(self, request, data, van):
+        data_obj = parse_data_brasileira(data)
+        escala = get_object_or_404(Escala, data=data_obj)
+        
+        # Validar parâmetro van
+        if van not in ['VAN1', 'VAN2']:
+            return HttpResponse('Van inválida', status=400)
+        
+        # Exporta apenas a van específica para Excel
+        exportador = ExportadorEscalas()
+        excel_data = exportador.exportar_van_especifica_para_excel(escala, van)
+        
+        # Nome da van para o arquivo
+        van_nome = "Van1" if van == 'VAN1' else "Van2"
+        
+        # Resposta HTTP
+        response = HttpResponse(
+            excel_data,
+            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
+        response['Content-Disposition'] = f'attachment; filename="escala_{data}_{van_nome}.xlsx"'
         
         return response
 

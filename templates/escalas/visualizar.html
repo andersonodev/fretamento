@@ -332,11 +332,23 @@
             <div class="col-lg-6 mb-4">
                 <div class="card h-100">
                     <div class="card-header bg-primary text-white">
-                        <h5 class="card-title mb-0">
-                            <i class="fas fa-van-shuttle"></i> Van 1
-                            <span class="badge bg-light text-dark ms-2" id="van1-pax">{{ van1.total_pax }} PAX</span>
-                            <span class="badge bg-light text-dark ms-1" id="van1-valor">{{ van1.total_valor|currency }}</span>
-                            <span class="badge bg-light text-dark ms-1" id="van1-servicos">{{ van1.count }} serviços</span>
+                        <h5 class="card-title mb-0 d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-van-shuttle"></i> Van 1
+                                <span class="badge bg-light text-dark ms-2" id="van1-pax">{{ van1.total_pax }} PAX</span>
+                                <span class="badge bg-light text-dark ms-1" id="van1-valor">{{ van1.total_valor|currency }}</span>
+                                <span class="badge bg-light text-dark ms-1" id="van1-servicos">{{ van1.count }} serviços</span>
+                            </div>
+                            <div>
+                                {% if escala.tem_dados %}
+                                    <button type="button" 
+                                            class="btn btn-success btn-sm" 
+                                            onclick="exportarVanParaExcel('VAN1')" 
+                                            title="Exportar Van 1 para Excel">
+                                        <i class="fas fa-file-excel"></i>
+                                    </button>
+                                {% endif %}
+                            </div>
                         </h5>
                     </div>
                     <div class="card-body p-2" id="van1-container" data-van="VAN1">
@@ -393,7 +405,7 @@
                                                        title="Editar preço"></i>
                                                 {% else %}
                                                     <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
-                                                    {% if alocacao.preco_calculado %}
+                                                    {% if alocacao.preco_calculado is not None %}
                                                         <br><span class="badge bg-success">{{ alocacao.preco_calculado|currency }}</span>
                                                         <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
                                                            onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'individual')"
@@ -511,11 +523,23 @@
             <div class="col-lg-6 mb-4">
                 <div class="card h-100">
                     <div class="card-header bg-info text-white">
-                        <h5 class="card-title mb-0">
-                            <i class="fas fa-van-shuttle"></i> Van 2
-                            <span class="badge bg-light text-dark ms-2" id="van2-pax">{{ van2.total_pax }} PAX</span>
-                            <span class="badge bg-light text-dark ms-1" id="van2-valor">{{ van2.total_valor|currency }}</span>
-                            <span class="badge bg-light text-dark ms-1" id="van2-servicos">{{ van2.count }} serviços</span>
+                        <h5 class="card-title mb-0 d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fas fa-van-shuttle"></i> Van 2
+                                <span class="badge bg-light text-dark ms-2" id="van2-pax">{{ van2.total_pax }} PAX</span>
+                                <span class="badge bg-light text-dark ms-1" id="van2-valor">{{ van2.total_valor|currency }}</span>
+                                <span class="badge bg-light text-dark ms-1" id="van2-servicos">{{ van2.count }} serviços</span>
+                            </div>
+                            <div>
+                                {% if escala.tem_dados %}
+                                    <button type="button" 
+                                            class="btn btn-success btn-sm" 
+                                            onclick="exportarVanParaExcel('VAN2')" 
+                                            title="Exportar Van 2 para Excel">
+                                        <i class="fas fa-file-excel"></i>
+                                    </button>
+                                {% endif %}
+                            </div>
                         </h5>
                     </div>
                     <div class="card-body p-2" id="van2-container" data-van="VAN2">
@@ -572,7 +596,7 @@
                                                        title="Editar preço"></i>
                                                 {% else %}
                                                     <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
-                                                    {% if alocacao.preco_calculado %}
+                                                    {% if alocacao.preco_calculado is not None %}
                                                         <br><span class="badge bg-success">{{ alocacao.preco_calculado|currency }}</span>
                                                         <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
                                                            onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'individual')"
@@ -4128,6 +4152,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Função para exportar uma van específica para Excel
+function exportarVanParaExcel(van) {
+    const dataEscala = '{{ data }}';
+    
+    if (!dataEscala) {
+        showMessage('Erro: Data da escala não encontrada', 'error');
+        return;
+    }
+    
+    // Construir URL para download do Excel específico da van
+    const url = `/escalas/exportar-van/${dataEscala}/${van}/`;
+    
+    // Criar um link temporário e forçar o download
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `escala_${dataEscala}_${van}.xlsx`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Mostrar mensagem de sucesso
+    const vanNome = van === 'VAN1' ? 'Van 1' : 'Van 2';
+    showMessage(`Excel da ${vanNome} baixado com sucesso!`, 'success');
+}
 </script>
 
 {% endblock %}
