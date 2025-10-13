@@ -39,13 +39,13 @@ EOF
     
     echo "✅ Configurado para SQLite"
     echo "🔧 Executando migrações..."
-    python manage.py migrate
+    python3 manage.py migrate
     
     echo "📊 Coletando arquivos estáticos..."
-    python manage.py collectstatic --noinput
+    python3 manage.py collectstatic --noinput
     
     echo "🌐 Iniciando servidor..."
-    python manage.py runserver
+    python3 manage.py runserver
 }
 
 # Função para iniciar com Docker (PostgreSQL)
@@ -74,13 +74,13 @@ EOF
     sleep 10
     
     echo "🔧 Executando migrações..."
-    python manage.py migrate
+    python3 manage.py migrate
     
     echo "📊 Coletando arquivos estáticos..."
-    python manage.py collectstatic --noinput
+    python3 manage.py collectstatic --noinput
     
     echo "🌐 Iniciando servidor Django..."
-    python manage.py runserver
+    python3 manage.py runserver
 }
 
 # Função para iniciar tudo com Docker
@@ -123,9 +123,9 @@ clean_containers() {
 run_migrations() {
     echo "🔧 Executando migrações..."
     if [ -f .env ] && grep -q "USE_DOCKER=True" .env; then
-        docker-compose exec web python manage.py migrate
+        docker-compose exec web python3 manage.py migrate
     else
-        python manage.py migrate
+        python3 manage.py migrate
     fi
 }
 
@@ -133,9 +133,9 @@ run_migrations() {
 create_superuser() {
     echo "👤 Criando superusuário..."
     if [ -f .env ] && grep -q "USE_DOCKER=True" .env; then
-        docker-compose exec web python manage.py createsuperuser
+        docker-compose exec web python3 manage.py createsuperuser
     else
-        python manage.py createsuperuser
+        python3 manage.py createsuperuser
     fi
 }
 

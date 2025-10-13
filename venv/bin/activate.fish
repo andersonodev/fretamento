@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/anderson/my_folders/repositoriolocal/fretamento/venv"
+set -gx VIRTUAL_ENV "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
