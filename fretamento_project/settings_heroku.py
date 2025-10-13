@@ -163,15 +163,19 @@ LOGGING = {
 # ============================================
 
 # Templates otimizados para produção
-TEMPLATES[0]['APP_DIRS'] = True
-# Usar cache de templates apenas se não houver problemas
+# IMPORTANTE: Não podemos ter APP_DIRS = True quando loaders está definido
 if not DEBUG:
+    # Desabilitar APP_DIRS quando usar loaders personalizados
+    TEMPLATES[0]['APP_DIRS'] = False
     TEMPLATES[0]['OPTIONS']['loaders'] = [
         ('django.template.loaders.cached.Loader', [
             'django.template.loaders.filesystem.Loader',
             'django.template.loaders.app_directories.Loader',
         ]),
     ]
+else:
+    # No desenvolvimento, usar APP_DIRS padrão
+    TEMPLATES[0]['APP_DIRS'] = True
 
 # Limites de upload
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
