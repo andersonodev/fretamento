@@ -1,330 +1,658 @@
-{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}
+{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}{% extends "admin/base.html" %}
+
+{% load static %}
 
 
+
+{% block title %}{{ title }} | Fretamento Admin{% endblock %}
 
 {% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Admin{% endblock %}
 
+{% block branding %}
 
+<h1 id="site-name">
 
-{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}
+    <a href="{% url 'admin:index' %}">Fretamento Intertouring</a>
+
+</h1>{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}
+
+{% endblock %}
 
 <div style="padding: 8px 0;">
 
-    <h1 id="site-name" style="margin: 0;">
+{% block extrastyle %}
 
-        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
+{{ block.super }}    <h1 id="site-name" style="margin: 0;">
 
-            Fretamento Admin{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Intertouring{% endblock %}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        </a>
+<style>        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
 
-    </h1><div style="padding: 8px 0;">
+    /* ===== VARIÁVEIS ===== */
 
-</div>
+    :root {            Fretamento Admin{% block branding %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Admin{% endblock %}{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Fretamento Intertouring{% endblock %}
 
-{% endblock %}    <h1 id="site-name" style="margin: 0;">
+        --primary: #3b82f6;
 
+        --primary-dark: #2563eb;        </a>
 
+        --bg: #0f172a;
 
-{% block extrahead %}        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
-
-{{ block.super }}
-
-<style>            Fretamento Admin{% block branding %}{% block branding %}
-
-    :root {
-
-        --primary: #3b82f6;        </a>
-
-        --bg-dark: #0f172a;
-
-        --bg-surface: #1e293b;    </h1><div style="padding: 8px 0;"><div style="display: flex; align-items: center; gap: 14px; padding: 4px 0;">
+        --surface: #1e293b;    </h1><div style="padding: 8px 0;">
 
         --text: #f1f5f9;
 
         --text-muted: #94a3b8;</div>
 
-        --border: rgba(148, 163, 184, 0.1);
+        --border: #334155;
 
-    }{% endblock %}    <h1 id="site-name" style="margin: 0;">    <div style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); padding: 10px; border-radius: 10px; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);">
+        --success: #10b981;{% endblock %}    <h1 id="site-name" style="margin: 0;">
+
+        --error: #ef4444;
+
+    }
 
 
+
+    /* ===== BASE ===== */{% block extrahead %}        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">
+
+    * {
+
+        margin: 0;{{ block.super }}
+
+        padding: 0;
+
+        box-sizing: border-box;<style>            Fretamento Admin{% block branding %}{% block branding %}
+
+    }
+
+    :root {
 
     body {
 
-        background: var(--bg-dark) !important;
+        background: var(--bg) !important;        --primary: #3b82f6;        </a>
 
-        color: var(--text) !important;{% block extrahead %}        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">        <span style="font-size: 24px; filter: brightness(1.2);">🚐</span>
+        color: var(--text) !important;
 
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;        --bg-dark: #0f172a;
 
-    }{{ block.super }}
+        line-height: 1.6;
+
+    }        --bg-surface: #1e293b;    </h1><div style="padding: 8px 0;"><div style="display: flex; align-items: center; gap: 14px; padding: 4px 0;">
 
 
 
-    #header {<style>            Fretamento Admin    </div>
+    /* ===== HEADER ===== */        --text: #f1f5f9;
 
-        background: var(--bg-surface) !important;
+    #header {
 
-        border-bottom: 1px solid var(--border) !important;    :root {
+        background: var(--surface) !important;        --text-muted: #94a3b8;</div>
+
+        border-bottom: 1px solid var(--border) !important;
+
+        padding: 16px 24px !important;        --border: rgba(148, 163, 184, 0.1);
 
     }
 
-        --primary: #3b82f6;        </a>    <div>
+    }{% endblock %}    <h1 id="site-name" style="margin: 0;">    <div style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); padding: 10px; border-radius: 10px; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);">
+
+    #branding h1,
 
     #branding h1 a {
 
-        color: var(--text) !important;        --bg-dark: #0f172a;
+        color: var(--text) !important;
+
+        font-size: 20px !important;    body {
+
+        font-weight: 700 !important;
+
+        text-decoration: none !important;        background: var(--bg-dark) !important;
+
+        margin: 0 !important;
+
+    }        color: var(--text) !important;{% block extrahead %}        <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 600; font-size: 18px; color: #f1f5f9;">        <span style="font-size: 24px; filter: brightness(1.2);">🚐</span>
+
+
+
+    #user-tools {        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+
+        color: var(--text-muted) !important;
+
+        font-size: 14px !important;    }{{ block.super }}
 
     }
 
-        --bg-surface: #1e293b;    </h1>        <h1 id="site-name" style="margin: 0; padding: 0;">
 
-    #user-tools {
-
-        color: var(--text-muted) !important;        --text: #f1f5f9;
-
-    }
-
-        --text-muted: #94a3b8;</div>            <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 700; font-size: 19px; color: #f1f5f9;">
 
     #user-tools a {
 
-        color: var(--primary) !important;        --border: rgba(148, 163, 184, 0.1);
+        color: var(--primary) !important;    #header {<style>            Fretamento Admin    </div>
 
         text-decoration: none !important;
 
-    }    }{% endblock %}                Fretamento Intertouring
+    }        background: var(--bg-surface) !important;
 
 
 
-    .breadcrumbs {
-
-        background: transparent !important;
-
-        color: var(--text-muted) !important;    body {            </a>
-
-        border-bottom: 1px solid var(--border) !important;
-
-    }        background: var(--bg-dark) !important;
-
-
-
-    .breadcrumbs a {        color: var(--text) !important;{% block extrahead %}        </h1>
-
-        color: var(--primary) !important;
-
-    }        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-
-
-
-    #content {    }{{ block.super }}        <p style="color: #94a3b8; font-size: 11px; margin: 2px 0 0 0; font-weight: 500; letter-spacing: 0.5px;">
-
-        background: var(--bg-dark) !important;
+    #user-tools a:hover {        border-bottom: 1px solid var(--border) !important;    :root {
 
         color: var(--text) !important;
-
-    }
-
-    #header {<style>            Sistema de Gestão · Admin Dashboard
-
-    #content h1, #content h2, #content h3 {
-
-        color: var(--text) !important;        background: var(--bg-surface) !important;
-
-    }
-
-        border-bottom: 1px solid var(--border) !important;    :root {        </p>
-
-    .module {
-
-        background: var(--bg-surface) !important;    }
-
-        border: 1px solid var(--border) !important;
-
-        border-radius: 8px !important;        --primary: #3b82f6;    </div>
-
-    }
-
-    #branding h1 a {
-
-    .module h2 {
-
-        background: transparent !important;        color: var(--text) !important;        --bg-dark: #0f172a;</div>
-
-        color: var(--text) !important;
-
-        border-bottom: 1px solid var(--border) !important;    }
-
-    }
-
-        --bg-surface: #1e293b;{% endblock %}
-
-    table {
-
-        background: var(--bg-surface) !important;    #user-tools {
-
-        border: 1px solid var(--border) !important;
-
-    }        color: var(--text-muted) !important;        --text: #f1f5f9;
-
-
-
-    thead th {    }
-
-        background: var(--bg-dark) !important;
-
-        color: var(--text) !important;        --text-muted: #94a3b8;{% block nav-global %}{% endblock %}
-
-        border-bottom: 1px solid var(--border) !important;
-
-    }    #user-tools a {
-
-
-
-    tbody tr {        color: var(--primary) !important;        --border: rgba(148, 163, 184, 0.1);
-
-        background: var(--bg-surface) !important;
-
-    }        text-decoration: none !important;
-
-
-
-    tbody tr:hover {    }    }{% block extrahead %}
-
-        background: rgba(59, 130, 246, 0.1) !important;
-
-    }
-
-
-
-    tbody td {    .breadcrumbs {{{ block.super }}
-
-        color: var(--text) !important;
-
-        border-bottom: 1px solid var(--border) !important;        background: transparent !important;
-
-    }
-
-        color: var(--text-muted) !important;    /* Base */<style>
-
-    a {
-
-        color: var(--primary) !important;        border-bottom: 1px solid var(--border) !important;
-
-    }
-
-    }    body {    :root {
-
-    input[type="text"],
-
-    input[type="password"],
-
-    input[type="email"],
-
-    input[type="number"],    .breadcrumbs a {        background: var(--bg-dark) !important;        /* Paleta profissional - Azul + Roxo com acentos vibrantes */
-
-    input[type="date"],
-
-    textarea,        color: var(--primary) !important;
-
-    select {
-
-        background: var(--bg-dark) !important;    }        color: var(--text) !important;        --primary-color: #3b82f6;        /* Azul profissional */
-
-        color: var(--text) !important;
-
-        border: 1px solid rgba(148, 163, 184, 0.2) !important;
-
-        border-radius: 6px !important;
-
-        padding: 8px !important;    #content {        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;        --primary-light: #60a5fa;        /* Azul claro */
-
-    }
-
-        background: var(--bg-dark) !important;
-
-    input:focus, textarea:focus, select:focus {
-
-        border-color: var(--primary) !important;        color: var(--text) !important;    }        --primary-dark: #2563eb;         /* Azul escuro */
-
-        outline: none !important;
 
     }    }
 
 
 
-    input[type="submit"],        
+    /* ===== BREADCRUMBS ===== */        --primary: #3b82f6;        </a>    <div>
 
-    button,
+    .breadcrumbs {
 
-    .button {    #content h1, #content h2, #content h3 {
+        background: transparent !important;    #branding h1 a {
 
-        background: var(--primary) !important;
+        color: var(--text-muted) !important;
 
-        color: white !important;        color: var(--text) !important;    /* Header */        --secondary-color: #1e293b;      /* Cinza azulado escuro */
+        padding: 12px 24px !important;        color: var(--text) !important;        --bg-dark: #0f172a;
 
-        border: none !important;
+        border-bottom: 1px solid var(--border) !important;
 
-        border-radius: 6px !important;    }
+    }    }
 
-        padding: 8px 16px !important;
 
-        cursor: pointer !important;    #header {        --secondary-light: #334155;      /* Cinza médio */
+
+    .breadcrumbs a {        --bg-surface: #1e293b;    </h1>        <h1 id="site-name" style="margin: 0; padding: 0;">
+
+        color: var(--primary) !important;
+
+        text-decoration: none !important;    #user-tools {
 
     }
+
+        color: var(--text-muted) !important;        --text: #f1f5f9;
+
+    /* ===== CONTENT ===== */
+
+    #content {    }
+
+        background: var(--bg) !important;
+
+        padding: 24px !important;        --text-muted: #94a3b8;</div>            <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 700; font-size: 19px; color: #f1f5f9;">
+
+    }
+
+    #user-tools a {
+
+    #content h1,
+
+    #content h2,        color: var(--primary) !important;        --border: rgba(148, 163, 184, 0.1);
+
+    #content h3 {
+
+        color: var(--text) !important;        text-decoration: none !important;
+
+        margin-bottom: 16px !important;
+
+    }    }    }{% endblock %}                Fretamento Intertouring
+
+
+
+    /* ===== MODULES ===== */
 
     .module {
 
-    input[type="submit"]:hover,
+        background: var(--surface) !important;    .breadcrumbs {
 
-    button:hover,        background: var(--bg-surface) !important;        background: var(--bg-surface) !important;        
+        border: 1px solid var(--border) !important;
 
-    .button:hover {
+        border-radius: 8px !important;        background: transparent !important;
 
-        opacity: 0.9 !important;        border: 1px solid var(--border) !important;
+        margin-bottom: 24px !important;
+
+    }        color: var(--text-muted) !important;    body {            </a>
+
+
+
+    .module h2 {        border-bottom: 1px solid var(--border) !important;
+
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
+
+        color: white !important;    }        background: var(--bg-dark) !important;
+
+        padding: 12px 16px !important;
+
+        font-size: 14px !important;
+
+        font-weight: 600 !important;
+
+        margin: 0 !important;    .breadcrumbs a {        color: var(--text) !important;{% block extrahead %}        </h1>
+
+        border-radius: 7px 7px 0 0 !important;
+
+    }        color: var(--primary) !important;
+
+
+
+    .module table {    }        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+
+        background: transparent !important;
+
+        width: 100% !important;
 
     }
 
-        border-radius: 8px !important;        border-bottom: 1px solid var(--border) !important;        --accent-color: #8b5cf6;         /* Roxo accent */
+    #content {    }{{ block.super }}        <p style="color: #94a3b8; font-size: 11px; margin: 2px 0 0 0; font-weight: 500; letter-spacing: 0.5px;">
 
-    .success, .messagelist .success {
+    .module th,
 
-        background: rgba(16, 185, 129, 0.1) !important;    }
+    .module td {        background: var(--bg-dark) !important;
 
-        color: #10b981 !important;
+        padding: 12px 16px !important;
 
-        border: 1px solid rgba(16, 185, 129, 0.3) !important;    }        --accent-light: #a78bfa;         /* Roxo claro */
+        text-align: left !important;        color: var(--text) !important;
+
+    }
+
+    }
+
+    .module a {
+
+        color: var(--text) !important;    #header {<style>            Sistema de Gestão · Admin Dashboard
+
+        text-decoration: none !important;
+
+        display: block !important;    #content h1, #content h2, #content h3 {
+
+        padding: 8px 16px !important;
+
+        transition: all 0.2s !important;        color: var(--text) !important;        background: var(--bg-surface) !important;
+
+    }
+
+    }
+
+    .module a:hover {
+
+        background: rgba(59, 130, 246, 0.1) !important;        border-bottom: 1px solid var(--border) !important;    :root {        </p>
+
+        color: var(--primary) !important;
+
+    }    .module {
+
+
+
+    /* ===== TABLES ===== */        background: var(--bg-surface) !important;    }
+
+    table {
+
+        background: var(--surface) !important;        border: 1px solid var(--border) !important;
+
+        border: 1px solid var(--border) !important;
+
+        border-radius: 8px !important;        border-radius: 8px !important;        --primary: #3b82f6;    </div>
+
+        width: 100% !important;
+
+        border-collapse: separate !important;    }
+
+        border-spacing: 0 !important;
+
+        overflow: hidden !important;    #branding h1 a {
 
     }
 
     .module h2 {
 
-    .error, .messagelist .error {
+    thead th {
 
-        background: rgba(239, 68, 68, 0.1) !important;        background: transparent !important;        
+        background: var(--primary) !important;        background: transparent !important;        color: var(--text) !important;        --bg-dark: #0f172a;</div>
 
-        color: #ef4444 !important;
+        color: white !important;
 
-        border: 1px solid rgba(239, 68, 68, 0.3) !important;        color: var(--text) !important;
+        padding: 12px 16px !important;        color: var(--text) !important;
+
+        font-weight: 600 !important;
+
+        text-align: left !important;        border-bottom: 1px solid var(--border) !important;    }
+
+        border-bottom: none !important;
+
+    }    }
+
+
+
+    tbody tr {        --bg-surface: #1e293b;{% endblock %}
+
+        border-bottom: 1px solid var(--border) !important;
+
+    }    table {
+
+
+
+    tbody tr:hover {        background: var(--bg-surface) !important;    #user-tools {
+
+        background: rgba(59, 130, 246, 0.05) !important;
+
+    }        border: 1px solid var(--border) !important;
+
+
+
+    tbody td {    }        color: var(--text-muted) !important;        --text: #f1f5f9;
+
+        color: var(--text) !important;
+
+        padding: 12px 16px !important;
 
     }
 
-        border-bottom: 1px solid var(--border) !important;    #branding h1 a {        --bg-base: #0f172a;              /* Fundo principal */
+    thead th {    }
 
-    #content-related {
+    tbody a {
 
-        background: var(--bg-surface) !important;    }
+        color: var(--primary) !important;        background: var(--bg-dark) !important;
 
-        border-left: 1px solid var(--border) !important;
+        text-decoration: none !important;
 
-    }        color: var(--text) !important;        --bg-surface: #1e293b;           /* Cards e superfícies */
+    }        color: var(--text) !important;        --text-muted: #94a3b8;{% block nav-global %}{% endblock %}
 
 
 
-    .paginator {    table {
+    tbody a:hover {        border-bottom: 1px solid var(--border) !important;
 
-        color: var(--text-muted) !important;
+        text-decoration: underline !important;
+
+    }    }    #user-tools a {
+
+
+
+    /* ===== FORMS ===== */
+
+    .form-row {
+
+        margin-bottom: 16px !important;    tbody tr {        color: var(--primary) !important;        --border: rgba(148, 163, 184, 0.1);
+
+    }
+
+        background: var(--bg-surface) !important;
+
+    label {
+
+        color: var(--text) !important;    }        text-decoration: none !important;
+
+        font-weight: 500 !important;
+
+        display: block !important;
+
+        margin-bottom: 6px !important;
+
+    }    tbody tr:hover {    }    }{% block extrahead %}
+
+
+
+    input[type="text"],        background: rgba(59, 130, 246, 0.1) !important;
+
+    input[type="password"],
+
+    input[type="email"],    }
+
+    input[type="number"],
+
+    input[type="date"],
+
+    input[type="datetime-local"],
+
+    textarea,    tbody td {    .breadcrumbs {{{ block.super }}
+
+    select {
+
+        background: var(--surface) !important;        color: var(--text) !important;
+
+        color: var(--text) !important;
+
+        border: 1px solid var(--border) !important;        border-bottom: 1px solid var(--border) !important;        background: transparent !important;
+
+        border-radius: 6px !important;
+
+        padding: 8px 12px !important;    }
+
+        width: 100% !important;
+
+        font-family: inherit !important;        color: var(--text-muted) !important;    /* Base */<style>
+
+    }
+
+    a {
+
+    input:focus,
+
+    textarea:focus,        color: var(--primary) !important;        border-bottom: 1px solid var(--border) !important;
+
+    select:focus {
+
+        border-color: var(--primary) !important;    }
+
+        outline: none !important;
+
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;    }    body {    :root {
+
+    }
+
+    input[type="text"],
+
+    /* ===== BUTTONS ===== */
+
+    .button,    input[type="password"],
+
+    input[type="submit"],
+
+    button {    input[type="email"],
+
+        background: var(--primary) !important;
+
+        color: white !important;    input[type="number"],    .breadcrumbs a {        background: var(--bg-dark) !important;        /* Paleta profissional - Azul + Roxo com acentos vibrantes */
+
+        border: none !important;
+
+        border-radius: 6px !important;    input[type="date"],
+
+        padding: 10px 20px !important;
+
+        font-weight: 600 !important;    textarea,        color: var(--primary) !important;
+
+        cursor: pointer !important;
+
+        text-decoration: none !important;    select {
+
+        display: inline-block !important;
+
+        transition: all 0.2s !important;        background: var(--bg-dark) !important;    }        color: var(--text) !important;        --primary-color: #3b82f6;        /* Azul profissional */
+
+    }
+
+        color: var(--text) !important;
+
+    .button:hover,
+
+    input[type="submit"]:hover,        border: 1px solid rgba(148, 163, 184, 0.2) !important;
+
+    button:hover {
+
+        background: var(--primary-dark) !important;        border-radius: 6px !important;
+
+        transform: translateY(-1px) !important;
+
+    }        padding: 8px !important;    #content {        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;        --primary-light: #60a5fa;        /* Azul claro */
+
+
+
+    .button.default,    }
+
+    input[type="submit"].default {
+
+        background: var(--success) !important;        background: var(--bg-dark) !important;
+
+    }
+
+    input:focus, textarea:focus, select:focus {
+
+    .deletelink {
+
+        background: var(--error) !important;        border-color: var(--primary) !important;        color: var(--text) !important;    }        --primary-dark: #2563eb;         /* Azul escuro */
+
+    }
+
+        outline: none !important;
+
+    /* ===== MESSAGES ===== */
+
+    .messagelist {    }    }
+
+        list-style: none !important;
+
+        margin: 0 0 24px 0 !important;
+
+    }
+
+    input[type="submit"],        
+
+    .messagelist li {
+
+        padding: 12px 16px !important;    button,
+
+        border-radius: 6px !important;
+
+        margin-bottom: 8px !important;    .button {    #content h1, #content h2, #content h3 {
+
+        font-weight: 500 !important;
+
+    }        background: var(--primary) !important;
+
+
+
+    .messagelist .success {        color: white !important;        color: var(--text) !important;    /* Header */        --secondary-color: #1e293b;      /* Cinza azulado escuro */
+
+        background: rgba(16, 185, 129, 0.1) !important;
+
+        color: var(--success) !important;        border: none !important;
+
+        border-left: 4px solid var(--success) !important;
+
+    }        border-radius: 6px !important;    }
+
+
+
+    .messagelist .error {        padding: 8px 16px !important;
+
+        background: rgba(239, 68, 68, 0.1) !important;
+
+        color: var(--error) !important;        cursor: pointer !important;    #header {        --secondary-light: #334155;      /* Cinza médio */
+
+        border-left: 4px solid var(--error) !important;
+
+    }    }
+
+
+
+    /* ===== PAGINATION ===== */    .module {
+
+    .paginator {
+
+        color: var(--text-muted) !important;    input[type="submit"]:hover,
+
+        padding: 16px 0 !important;
+
+    }    button:hover,        background: var(--bg-surface) !important;        background: var(--bg-surface) !important;        
+
+
+
+    .paginator a {    .button:hover {
+
+        background: var(--surface) !important;
+
+        color: var(--primary) !important;        opacity: 0.9 !important;        border: 1px solid var(--border) !important;
+
+        padding: 6px 12px !important;
+
+        border-radius: 4px !important;    }
+
+        text-decoration: none !important;
+
+        margin: 0 4px !important;        border-radius: 8px !important;        border-bottom: 1px solid var(--border) !important;        --accent-color: #8b5cf6;         /* Roxo accent */
+
+        display: inline-block !important;
+
+    }    .success, .messagelist .success {
+
+
+
+    .paginator a:hover {        background: rgba(16, 185, 129, 0.1) !important;    }
+
+        background: var(--primary) !important;
+
+        color: white !important;        color: #10b981 !important;
+
+    }
+
+        border: 1px solid rgba(16, 185, 129, 0.3) !important;    }        --accent-light: #a78bfa;         /* Roxo claro */
+
+    /* ===== SIDEBAR ===== */
+
+    #content-related {    }
+
+        background: var(--surface) !important;
+
+        border-left: 1px solid var(--border) !important;    .module h2 {
+
+    }
+
+    .error, .messagelist .error {
+
+    /* ===== CLEAN UP ===== */
+
+    .help {        background: rgba(239, 68, 68, 0.1) !important;        background: transparent !important;        
+
+        display: none !important;
+
+    }        color: #ef4444 !important;
+
+
+
+    /* ===== SCROLLBAR ===== */        border: 1px solid rgba(239, 68, 68, 0.3) !important;        color: var(--text) !important;
+
+    ::-webkit-scrollbar {
+
+        width: 8px;    }
+
+        height: 8px;
+
+    }        border-bottom: 1px solid var(--border) !important;    #branding h1 a {        --bg-base: #0f172a;              /* Fundo principal */
+
+
+
+    ::-webkit-scrollbar-track {    #content-related {
+
+        background: var(--bg);
+
+    }        background: var(--bg-surface) !important;    }
+
+
+
+    ::-webkit-scrollbar-thumb {        border-left: 1px solid var(--border) !important;
+
+        background: var(--border);
+
+        border-radius: 4px;    }        color: var(--text) !important;        --bg-surface: #1e293b;           /* Cards e superfícies */
+
+    }
+
+
+
+    ::-webkit-scrollbar-thumb:hover {
+
+        background: var(--primary);    .paginator {    table {
+
+    }
+
+</style>        color: var(--text-muted) !important;
+
+{% endblock %}
 
     }        background: var(--bg-surface) !important;    }        --bg-elevated: #334155;          /* Elementos elevados */
 

@@ -1,165 +1,327 @@
-{% extends "admin/base.html" %}
-{% load i18n static %}
+{% extends "admin/base.html" %}{% extends "admin/base.html" %}
 
-{% block title %}Admin Login{% endblock %}
+{% load static %}{% load i18n static %}
 
-{% block extrahead %}{{ block.super }}
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+{% block title %}Login | Fretamento Admin{% endblock %}{% block title %}Admin Login{% endblock %}
+
+
+
+{% block branding %}{% block extrahead %}{{ block.super }}
+
+<h1 id="site-name"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <a href="{% url 'admin:index' %}">Fretamento Intertouring</a>
+
+</h1><style>
+
+{% endblock %}    * {
+
+        margin: 0;
+
+{% block extrastyle %}        padding: 0;
+
+{{ block.super }}        box-sizing: border-box;
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">    }
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
-    body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-        background: #0f172a !important;
-        min-height: 100vh !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+    :root {    body {
+
+        --primary: #3b82f6;        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+
+        --bg: #0f172a;        background: #0f172a !important;
+
+        --surface: #1e293b;        min-height: 100vh !important;
+
+        --text: #f1f5f9;        display: flex !important;
+
+        --border: #334155;        align-items: center !important;
+
+    }        justify-content: center !important;
+
         padding: 20px !important;
-    }
 
-    /* Hide default admin elements */
-    #header, #footer, .breadcrumbs, #user-tools {
-        display: none !important;
-    }
+    body {    }
 
-    #container {
+        background: var(--bg) !important;
+
+        font-family: 'Inter', -apple-system, sans-serif !important;    /* Hide default admin elements */
+
+        display: flex;    #header, #footer, .breadcrumbs, #user-tools {
+
+        align-items: center;        display: none !important;
+
+        justify-content: center;    }
+
+        min-height: 100vh;
+
+    }    #container {
+
         width: 100% !important;
-        max-width: 400px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: transparent !important;
-    }
 
-    #content {
-        background: transparent !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
+    #header {        max-width: 400px !important;
 
-    .login {
-        background: #1e293b !important;
+        display: none;        margin: 0 !important;
+
+    }        padding: 0 !important;
+
+        background: transparent !important;
+
+    #content {    }
+
+        background: transparent !important;
+
+        padding: 0 !important;    #content {
+
+    }        background: transparent !important;
+
+        padding: 0 !important;
+
+    #content-main {        margin: 0 !important;
+
+        width: 100%;    }
+
+        max-width: 400px;
+
+        margin: 0 auto;    .login {
+
+    }        background: #1e293b !important;
+
         border-radius: 12px !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
-        border: 1px solid rgba(59, 130, 246, 0.1) !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        width: 100% !important;
+
+    .login {        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+
+        background: var(--surface);        border: 1px solid rgba(59, 130, 246, 0.1) !important;
+
+        border: 1px solid var(--border);        padding: 0 !important;
+
+        border-radius: 12px;        margin: 0 !important;
+
+        padding: 40px;        width: 100% !important;
+
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);    }
+
     }
 
     /* Header minimalista */
-    .login-header {
-        padding: 2.5rem 2rem 2rem !important;
-        text-align: center !important;
-        background: transparent !important;
-        border-bottom: 1px solid rgba(59, 130, 246, 0.1) !important;
+
+    .login h1 {    .login-header {
+
+        color: var(--text);        padding: 2.5rem 2rem 2rem !important;
+
+        font-size: 24px;        text-align: center !important;
+
+        font-weight: 700;        background: transparent !important;
+
+        text-align: center;        border-bottom: 1px solid rgba(59, 130, 246, 0.1) !important;
+
+        margin-bottom: 32px;    }
+
     }
 
     .login-title {
-        font-size: 24px !important;
-        font-weight: 600 !important;
-        color: #f1f5f9 !important;
+
+    .login form {        font-size: 24px !important;
+
+        width: 100%;        font-weight: 600 !important;
+
+    }        color: #f1f5f9 !important;
+
         margin-bottom: 0.5rem !important;
-    }
 
-    .login-subtitle {
+    .form-row {    }
+
+        margin-bottom: 20px;
+
+    }    .login-subtitle {
+
         font-size: 14px !important;
-        color: #94a3b8 !important;
-        font-weight: 400 !important;
-    }
 
-    /* Form minimalista */
-    .login form {
+    .form-row label {        color: #94a3b8 !important;
+
+        color: var(--text);        font-weight: 400 !important;
+
+        font-weight: 500;    }
+
+        display: block;
+
+        margin-bottom: 8px;    /* Form minimalista */
+
+    }    .login form {
+
         padding: 2rem !important;
-        background: transparent !important;
-    }
 
-    .form-row {
-        margin-bottom: 1.25rem !important;
-    }
+    .form-row input[type="text"],        background: transparent !important;
 
-    .form-row label {
-        display: block !important;
-        color: #f1f5f9 !important;
+    .form-row input[type="password"] {    }
+
+        background: var(--bg);
+
+        color: var(--text);    .form-row {
+
+        border: 1px solid var(--border);        margin-bottom: 1.25rem !important;
+
+        border-radius: 6px;    }
+
+        padding: 12px;
+
+        width: 100%;    .form-row label {
+
+        font-size: 14px;        display: block !important;
+
+    }        color: #f1f5f9 !important;
+
         font-weight: 500 !important;
-        margin-bottom: 0.5rem !important;
-        font-size: 13px !important;
-    }
 
-    input[type="text"], input[type="password"] {
+    .form-row input:focus {        margin-bottom: 0.5rem !important;
+
+        border-color: var(--primary);        font-size: 13px !important;
+
+        outline: none;    }
+
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+
+    }    input[type="text"], input[type="password"] {
+
         width: 100% !important;
-        padding: 0.75rem !important;
-        border: 1px solid rgba(148, 163, 184, 0.2) !important;
-        border-radius: 6px !important;
+
+    .submit-row {        padding: 0.75rem !important;
+
+        margin-top: 24px;        border: 1px solid rgba(148, 163, 184, 0.2) !important;
+
+    }        border-radius: 6px !important;
+
         font-size: 14px !important;
-        background: #0f172a !important;
-        color: #f1f5f9 !important;
-        transition: border-color 0.2s !important;
-        font-family: 'Inter', sans-serif !important;
-    }
 
-    input[type="text"]:focus, input[type="password"]:focus {
-        border-color: #3b82f6 !important;
-        outline: none !important;
-    }
+    .submit-row input[type="submit"] {        background: #0f172a !important;
 
-    input[type="text"]::placeholder, input[type="password"]::placeholder {
+        background: var(--primary);        color: #f1f5f9 !important;
+
+        color: white;        transition: border-color 0.2s !important;
+
+        border: none;        font-family: 'Inter', sans-serif !important;
+
+        border-radius: 6px;    }
+
+        padding: 12px;
+
+        width: 100%;    input[type="text"]:focus, input[type="password"]:focus {
+
+        font-weight: 600;        border-color: #3b82f6 !important;
+
+        font-size: 14px;        outline: none !important;
+
+        cursor: pointer;    }
+
+        transition: all 0.2s;
+
+    }    input[type="text"]::placeholder, input[type="password"]::placeholder {
+
         color: #64748b !important;
+
+    .submit-row input[type="submit"]:hover {    }
+
+        background: #2563eb;
+
+        transform: translateY(-1px);    .submit-row {
+
+    }        margin-top: 1.5rem !important;
+
     }
 
-    .submit-row {
-        margin-top: 1.5rem !important;
-    }
+    .errornote {
 
-    input[type="submit"] {
-        background: #3b82f6 !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 6px !important;
-        padding: 0.75rem !important;
-        font-size: 14px !important;
-        font-weight: 500 !important;
+        background: rgba(239, 68, 68, 0.1);    input[type="submit"] {
+
+        color: #ef4444;        background: #3b82f6 !important;
+
+        border: 1px solid rgba(239, 68, 68, 0.3);        color: white !important;
+
+        border-radius: 6px;        border: none !important;
+
+        padding: 12px;        border-radius: 6px !important;
+
+        margin-bottom: 20px;        padding: 0.75rem !important;
+
+        font-size: 14px;        font-size: 14px !important;
+
+    }        font-weight: 500 !important;
+
         cursor: pointer !important;
-        transition: background 0.2s !important;
-        width: 100% !important;
-        font-family: 'Inter', sans-serif !important;
-    }
+
+    #footer {        transition: background 0.2s !important;
+
+        display: none;        width: 100% !important;
+
+    }        font-family: 'Inter', sans-serif !important;
+
+</style>    }
+
+{% endblock %}
 
     input[type="submit"]:hover {
-        background: #2563eb !important;
-    }
 
-    /* Mensagens de erro */
-    .errornote {
-        background: rgba(239, 68, 68, 0.1) !important;
-        color: #fca5a5 !important;
+{% block content %}        background: #2563eb !important;
+
+<div class="login">    }
+
+    <h1>Admin Login</h1>
+
+        /* Mensagens de erro */
+
+    {% if form.errors %}    .errornote {
+
+    <p class="errornote">Usuário ou senha incorretos. Tente novamente.</p>        background: rgba(239, 68, 68, 0.1) !important;
+
+    {% endif %}        color: #fca5a5 !important;
+
         border: 1px solid rgba(239, 68, 68, 0.3) !important;
-        padding: 0.75rem !important;
-        border-radius: 6px !important;
-        margin-bottom: 1.25rem !important;
-        font-size: 13px !important;
-    }
 
-    /* Footer */
+    <form method="post" action="{{ app_path }}">        padding: 0.75rem !important;
+
+        {% csrf_token %}        border-radius: 6px !important;
+
+                margin-bottom: 1.25rem !important;
+
+        <div class="form-row">        font-size: 13px !important;
+
+            <label for="id_username">Usuário:</label>    }
+
+            {{ form.username }}
+
+        </div>    /* Footer */
+
     .login-footer {
-        padding: 1.5rem 2rem !important;
-        text-align: center !important;
-        border-top: 1px solid rgba(59, 130, 246, 0.1) !important;
-    }
 
-    .login-footer p {
+        <div class="form-row">        padding: 1.5rem 2rem !important;
+
+            <label for="id_password">Senha:</label>        text-align: center !important;
+
+            {{ form.password }}        border-top: 1px solid rgba(59, 130, 246, 0.1) !important;
+
+        </div>    }
+
+
+
+        <input type="hidden" name="next" value="{{ next }}">    .login-footer p {
+
         margin: 0 !important;
-        color: #64748b !important;
-        font-size: 12px !important;
-    }
 
-    .login-footer a {
-        color: #3b82f6 !important;
+        <div class="submit-row">        color: #64748b !important;
+
+            <input type="submit" value="Entrar">        font-size: 12px !important;
+
+        </div>    }
+
+    </form>
+
+</div>    .login-footer a {
+
+{% endblock %}        color: #3b82f6 !important;
+
         text-decoration: none !important;
     }
 
