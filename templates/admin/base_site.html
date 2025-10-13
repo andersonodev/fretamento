@@ -3,15 +3,21 @@
 {% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | Sistema de Fretamento{% endblock %}
 
 {% block branding %}
-<h1 id="site-name" style="display: flex; align-items: center; gap: 12px;">
-    <span style="font-size: 24px;">🚐</span>
-    <a href="{% url 'admin:index' %}" style="color: #47d7ac; text-decoration: none; font-weight: 600;">
-        Sistema de Fretamento
-    </a>
-</h1>
-<p style="color: #8e9aaf; font-size: 12px; margin: 4px 0 0 36px; font-weight: 500;">
-    Intertouring Receptivo - Gestão Inteligente
-</p>
+<div style="display: flex; align-items: center; gap: 16px;">
+    <div style="background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%); padding: 12px; border-radius: 12px; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);">
+        <span style="font-size: 28px; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));">🚐</span>
+    </div>
+    <div>
+        <h1 id="site-name" style="margin: 0; padding: 0;">
+            <a href="{% url 'admin:index' %}" style="text-decoration: none; font-weight: 700; font-size: 20px;">
+                Sistema de Fretamento
+            </a>
+        </h1>
+        <p style="color: #94a3b8; font-size: 12px; margin: 4px 0 0 0; font-weight: 500; letter-spacing: 0.3px;">
+            Intertouring Receptivo · Gestão Inteligente
+        </p>
+    </div>
+</div>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
@@ -20,65 +26,104 @@
 {{ block.super }}
 <style>
     :root {
-        --primary-color: #47d7ac;
-        --secondary-color: #2c5282;
-        --accent-color: #4299e1;
-        --bg-dark: #1a202c;
-        --bg-darker: #2d3748;
-        --text-light: #e2e8f0;
-        --text-muted: #8e9aaf;
-        --border-color: #4a5568;
-        --success-color: #48bb78;
-        --warning-color: #ed8936;
-        --error-color: #f56565;
+        /* Paleta moderna e coerente - Verde Turquesa + Cinza Azulado */
+        --primary-color: #14b8a6;        /* Turquesa vibrante */
+        --primary-light: #2dd4bf;        /* Turquesa claro */
+        --primary-dark: #0f766e;         /* Turquesa escuro */
+        
+        --secondary-color: #1e293b;      /* Azul escuro slate */
+        --secondary-light: #334155;      /* Slate médio */
+        
+        --accent-color: #06b6d4;         /* Cyan accent */
+        --accent-light: #22d3ee;         /* Cyan claro */
+        
+        --bg-base: #0f172a;              /* Fundo principal escuro */
+        --bg-surface: #1e293b;           /* Superfícies (cards) */
+        --bg-elevated: #334155;          /* Elementos elevados */
+        
+        --text-primary: #f1f5f9;         /* Texto principal */
+        --text-secondary: #cbd5e1;       /* Texto secundário */
+        --text-muted: #94a3b8;           /* Texto discreto */
+        
+        --border-color: #334155;         /* Bordas */
+        --border-light: #475569;         /* Bordas claras */
+        
+        --success-color: #10b981;        /* Verde sucesso */
+        --warning-color: #f59e0b;        /* Amarelo/laranja aviso */
+        --error-color: #ef4444;          /* Vermelho erro */
+        --info-color: #3b82f6;           /* Azul info */
     }
 
     /* Tema escuro global */
     body {
-        background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%) !important;
-        color: var(--text-light) !important;
-        font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        background: var(--bg-base) !important;
+        color: var(--text-primary) !important;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+        line-height: 1.6 !important;
     }
 
     /* Header */
     #header {
-        background: linear-gradient(135deg, var(--bg-darker) 0%, #4a5568 100%) !important;
-        border-bottom: 2px solid var(--primary-color) !important;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+        background: linear-gradient(135deg, var(--secondary-color) 0%, var(--bg-elevated) 100%) !important;
+        border-bottom: 3px solid var(--primary-color) !important;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4) !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000 !important;
     }
 
     #branding h1 {
-        color: var(--primary-color) !important;
+        color: var(--text-primary) !important;
         font-weight: 700 !important;
+        letter-spacing: -0.5px !important;
+    }
+
+    #branding h1 a {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
     }
 
     /* User info */
     #user-tools {
-        color: var(--text-light) !important;
+        color: var(--text-secondary) !important;
         font-weight: 500 !important;
+        font-size: 13px !important;
     }
 
     #user-tools a {
-        color: var(--primary-color) !important;
+        color: var(--primary-light) !important;
         text-decoration: none !important;
-        transition: color 0.2s ease !important;
+        padding: 6px 12px !important;
+        border-radius: 6px !important;
+        transition: all 0.2s ease !important;
+        display: inline-block !important;
     }
 
     #user-tools a:hover {
-        color: #5ae4c1 !important;
+        background: rgba(20, 184, 166, 0.15) !important;
+        color: var(--primary-light) !important;
+        transform: translateY(-1px) !important;
     }
 
     /* Navegação breadcrumb */
     .breadcrumbs {
-        background: var(--bg-darker) !important;
+        background: var(--bg-surface) !important;
         color: var(--text-muted) !important;
         border-bottom: 1px solid var(--border-color) !important;
-        padding: 12px 20px !important;
+        padding: 14px 24px !important;
+        font-size: 13px !important;
     }
 
     .breadcrumbs a {
-        color: var(--primary-color) !important;
+        color: var(--primary-light) !important;
         text-decoration: none !important;
+        transition: color 0.2s ease !important;
+    }
+
+    .breadcrumbs a:hover {
+        color: var(--accent-light) !important;
     }
 
     /* Container principal */
@@ -87,88 +132,129 @@
     }
 
     #content {
-        background: var(--bg-dark) !important;
+        background: var(--bg-base) !important;
         margin: 0 !important;
-        padding: 20px !important;
+        padding: 24px !important;
+        min-height: calc(100vh - 200px) !important;
     }
 
     /* Módulos do dashboard */
     .module {
-        background: var(--bg-darker) !important;
+        background: var(--bg-surface) !important;
         border: 1px solid var(--border-color) !important;
-        border-radius: 12px !important;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
-        margin-bottom: 20px !important;
+        border-radius: 16px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+        margin-bottom: 24px !important;
         overflow: hidden !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .module:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 24px rgba(20, 184, 166, 0.15) !important;
+        border-color: var(--primary-color) !important;
     }
 
     .module h2 {
-        background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%) !important;
+        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%) !important;
         color: white !important;
-        font-weight: 600 !important;
-        padding: 12px 16px !important;
+        font-weight: 700 !important;
+        padding: 16px 20px !important;
         margin: 0 !important;
-        font-size: 14px !important;
+        font-size: 15px !important;
+        letter-spacing: 0.3px !important;
+        text-transform: uppercase !important;
+        font-size: 12px !important;
     }
 
     .module h3 {
-        color: var(--primary-color) !important;
+        color: var(--primary-light) !important;
         font-weight: 600 !important;
+        font-size: 13px !important;
     }
 
     /* Links dos modelos */
     .module table {
         width: 100% !important;
+        border-spacing: 0 !important;
     }
 
     .module th, .module caption {
-        background: var(--bg-dark) !important;
-        color: var(--primary-color) !important;
-        font-weight: 600 !important;
-        padding: 12px 16px !important;
-        border-bottom: 2px solid var(--border-color) !important;
+        background: rgba(20, 184, 166, 0.08) !important;
+        color: var(--primary-light) !important;
+        font-weight: 700 !important;
+        padding: 14px 20px !important;
+        border-bottom: 2px solid var(--primary-dark) !important;
+        text-transform: uppercase !important;
+        font-size: 11px !important;
+        letter-spacing: 0.5px !important;
     }
 
     .module td {
         background: transparent !important;
         border-bottom: 1px solid var(--border-color) !important;
-        padding: 12px 16px !important;
+        padding: 14px 20px !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .module tr:hover td {
+        background: rgba(20, 184, 166, 0.05) !important;
     }
 
     .module a {
-        color: var(--text-light) !important;
+        color: var(--text-primary) !important;
         text-decoration: none !important;
         font-weight: 500 !important;
-        display: flex !important;
+        display: inline-flex !important;
         align-items: center !important;
-        gap: 8px !important;
+        gap: 10px !important;
         transition: all 0.2s ease !important;
-        padding: 8px 0 !important;
+        padding: 10px 12px !important;
+        border-radius: 8px !important;
+        margin: 2px 0 !important;
     }
 
     .module a:hover {
-        color: var(--primary-color) !important;
-        transform: translateX(4px) !important;
+        background: rgba(20, 184, 166, 0.12) !important;
+        color: var(--primary-light) !important;
+        padding-left: 16px !important;
     }
 
     .module a:before {
-        content: "▶" !important;
-        font-size: 10px !important;
+        content: "→" !important;
+        font-size: 14px !important;
+        font-weight: bold !important;
         color: var(--primary-color) !important;
         transition: transform 0.2s ease !important;
     }
 
     .module a:hover:before {
-        transform: translateX(2px) !important;
+        transform: translateX(4px) !important;
     }
 
-    /* Botões de ação */
+    /* Botões de ação com ícones modernos */
+    .addlink {
+        color: var(--success-color) !important;
+    }
+    
     .addlink:before {
-        content: "➕ " !important;
+        content: "+" !important;
+        background: var(--success-color) !important;
+        color: white !important;
+        width: 20px !important;
+        height: 20px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 6px !important;
+        font-weight: bold !important;
+        font-size: 16px !important;
     }
 
     .changelink:before {
-        content: "✏️ " !important;
+        content: "✎" !important;
+        color: var(--accent-color) !important;
+        font-size: 16px !important;
     }
 
     /* Formulários */
@@ -205,89 +291,211 @@
         box-shadow: 0 0 0 3px rgba(71, 215, 172, 0.2) !important;
     }
 
-    /* Tabelas */
+    /* Tabelas modernas */
     #result_list {
-        background: var(--bg-darker) !important;
+        background: var(--bg-surface) !important;
         border: 1px solid var(--border-color) !important;
-        border-radius: 12px !important;
+        border-radius: 16px !important;
         overflow: hidden !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
     }
 
     #result_list th {
-        background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%) !important;
+        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%) !important;
         color: white !important;
-        font-weight: 600 !important;
-        padding: 12px !important;
+        font-weight: 700 !important;
+        padding: 16px !important;
         border-bottom: none !important;
+        text-transform: uppercase !important;
+        font-size: 11px !important;
+        letter-spacing: 0.5px !important;
+        position: sticky !important;
+        top: 60px !important;
+        z-index: 10 !important;
     }
 
     #result_list td {
-        background: var(--bg-darker) !important;
-        color: var(--text-light) !important;
+        background: var(--bg-surface) !important;
+        color: var(--text-primary) !important;
         border-bottom: 1px solid var(--border-color) !important;
-        padding: 12px !important;
+        padding: 16px !important;
+        transition: all 0.2s ease !important;
     }
 
     #result_list tr:nth-child(even) td {
-        background: rgba(255, 255, 255, 0.02) !important;
+        background: rgba(20, 184, 166, 0.02) !important;
     }
 
     #result_list tr:hover td {
-        background: rgba(71, 215, 172, 0.1) !important;
+        background: rgba(20, 184, 166, 0.08) !important;
+        transform: scale(1.001) !important;
     }
 
-    /* Botões */
+    #result_list a {
+        color: var(--primary-light) !important;
+        text-decoration: none !important;
+        font-weight: 500 !important;
+        transition: color 0.2s ease !important;
+    }
+
+    #result_list a:hover {
+        color: var(--accent-light) !important;
+        text-decoration: underline !important;
+    }
+
+    /* Botões modernos */
     .button, input[type="submit"], input[type="button"], .submit-row input {
         background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 8px !important;
-        padding: 10px 20px !important;
-        font-weight: 600 !important;
+        border-radius: 10px !important;
+        padding: 12px 24px !important;
+        font-weight: 700 !important;
+        font-size: 14px !important;
+        letter-spacing: 0.3px !important;
         cursor: pointer !important;
-        transition: all 0.2s ease !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         text-decoration: none !important;
-        display: inline-block !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25) !important;
+        text-transform: uppercase !important;
+        font-size: 12px !important;
     }
 
     .button:hover, input[type="submit"]:hover, 
     input[type="button"]:hover, .submit-row input:hover {
         transform: translateY(-2px) !important;
-        box-shadow: 0 4px 12px rgba(71, 215, 172, 0.4) !important;
+        box-shadow: 0 8px 20px rgba(20, 184, 166, 0.4) !important;
+        background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%) !important;
         color: white !important;
+    }
+
+    .button:active, input[type="submit"]:active, 
+    input[type="button"]:active, .submit-row input:active {
+        transform: translateY(0px) !important;
     }
 
     .button.default, input[type="submit"].default {
-        background: linear-gradient(135deg, var(--success-color) 0%, var(--primary-color) 100%) !important;
+        background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%) !important;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25) !important;
     }
 
-    /* Mensagens */
+    .button.default:hover, input[type="submit"].default:hover {
+        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4) !important;
+    }
+
+    /* Botões de cancelar/deletar */
+    .deletelink, .button.cancel {
+        background: linear-gradient(135deg, var(--error-color) 0%, #dc2626 100%) !important;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25) !important;
+    }
+
+    .deletelink:hover, .button.cancel:hover {
+        box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4) !important;
+    }
+
+    /* Mensagens modernas com ícones */
     .messagelist {
-        margin: 0 0 20px 0 !important;
+        margin: 0 0 24px 0 !important;
+    }
+
+    .messagelist li {
+        border-radius: 12px !important;
+        padding: 16px 20px !important;
+        margin-bottom: 12px !important;
+        font-weight: 500 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+        animation: slideIn 0.3s ease !important;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .messagelist .success {
-        background: var(--success-color) !important;
+        background: linear-gradient(135deg, var(--success-color) 0%, #059669 100%) !important;
         color: white !important;
-        border-radius: 8px !important;
-        padding: 12px 16px !important;
-        margin-bottom: 8px !important;
+        border-left: 4px solid #047857 !important;
+    }
+
+    .messagelist .success:before {
+        content: "✓" !important;
+        font-weight: bold !important;
+        font-size: 20px !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
     .messagelist .error {
-        background: var(--error-color) !important;
+        background: linear-gradient(135deg, var(--error-color) 0%, #dc2626 100%) !important;
         color: white !important;
-        border-radius: 8px !important;
-        padding: 12px 16px !important;
-        margin-bottom: 8px !important;
+        border-left: 4px solid #b91c1c !important;
+    }
+
+    .messagelist .error:before {
+        content: "✕" !important;
+        font-weight: bold !important;
+        font-size: 20px !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
     .messagelist .warning {
-        background: var(--warning-color) !important;
+        background: linear-gradient(135deg, var(--warning-color) 0%, #d97706 100%) !important;
         color: white !important;
-        border-radius: 8px !important;
-        padding: 12px 16px !important;
-        margin-bottom: 8px !important;
+        border-left: 4px solid #b45309 !important;
+    }
+
+    .messagelist .warning:before {
+        content: "⚠" !important;
+        font-size: 20px !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .messagelist .info {
+        background: linear-gradient(135deg, var(--info-color) 0%, #2563eb 100%) !important;
+        color: white !important;
+        border-left: 4px solid #1d4ed8 !important;
+    }
+
+    .messagelist .info:before {
+        content: "ℹ" !important;
+        font-size: 20px !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
     /* Sidebar */
@@ -357,14 +565,29 @@
         font-weight: 600 !important;
     }
 
-    /* Footer */
+    /* Footer moderno */
     #footer {
-        background: var(--bg-darker) !important;
-        border-top: 2px solid var(--primary-color) !important;
+        background: var(--bg-surface) !important;
+        border-top: 3px solid var(--primary-color) !important;
         color: var(--text-muted) !important;
         text-align: center !important;
-        padding: 20px !important;
-        margin-top: 40px !important;
+        padding: 32px 24px !important;
+        margin-top: 48px !important;
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    #footer p {
+        margin: 8px 0 !important;
+    }
+
+    #footer a {
+        color: var(--primary-light) !important;
+        text-decoration: none !important;
+        transition: color 0.2s ease !important;
+    }
+
+    #footer a:hover {
+        color: var(--accent-light) !important;
     }
 
     /* Responsive */
@@ -408,13 +631,25 @@
 
 {% block footer %}
 <div id="footer">
-    <p style="margin: 0; font-weight: 500;">
-        🚐 Sistema de Fretamento Intertouring | 
-        <span style="color: var(--primary-color);">Desenvolvido com Django</span> | 
-        {{ request.user.get_full_name|default:request.user.username }}
+    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
+        <div style="width: 40px; height: 2px; background: linear-gradient(90deg, transparent, var(--primary-color));"></div>
+        <span style="font-size: 24px;">🚐</span>
+        <div style="width: 40px; height: 2px; background: linear-gradient(90deg, var(--primary-color), transparent);"></div>
+    </div>
+    <p style="margin: 0; font-weight: 600; font-size: 14px; color: var(--text-secondary);">
+        Sistema de Fretamento Intertouring
     </p>
-    <p style="margin: 4px 0 0 0; font-size: 11px; opacity: 0.7;">
-        Última atualização: {% now "d/m/Y H:i" %}
+    <p style="margin: 8px 0; font-weight: 500; font-size: 13px;">
+        <span style="color: var(--text-muted);">Desenvolvido com</span>
+        <span style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">Django</span>
     </p>
+    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color); font-size: 12px; color: var(--text-muted);">
+        <p style="margin: 4px 0;">
+            👤 {{ request.user.get_full_name|default:request.user.username }}
+        </p>
+        <p style="margin: 4px 0;">
+            🕐 {% now "d/m/Y H:i" %}
+        </p>
+    </div>
 </div>
 {% endblock %}
