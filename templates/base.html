@@ -24,6 +24,7 @@
     
     <!-- CSS Personalizado -->
     {% load static %}
+    <link href="{% static 'css/global-theme.css' %}" rel="stylesheet">
     <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
     <link href="{% static 'css/whatsapp-dark.css' %}" rel="stylesheet">
     
@@ -75,17 +76,115 @@
             }
         }
 
-        /* Navbar moderna com glass effect */
-        .navbar-modern {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            padding: 1rem 0;
-            position: sticky;
+        /* Sidebar - Design limpo e funcional */
+        .sidebar {
+            position: fixed;
             top: 0;
-            z-index: 1050;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #e0e0e0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        /* Estado collapsed - versão simples */
+        .sidebar.collapsed {
+            width: 60px;
+            overflow: hidden;
+        }
+
+        .sidebar.collapsed .sidebar-brand span,
+        .sidebar.collapsed .sidebar-nav-link span,
+        .sidebar.collapsed .sidebar-user-name,
+        .sidebar.collapsed .text-muted {
+            display: none;
+        }
+
+        .sidebar.collapsed .sidebar-nav-link {
+            justify-content: center;
+            padding: 0.75rem 0;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            background: #ffffff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sidebar-header-user {
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-header-user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+        }
+
+        .sidebar-header-user-avatar {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header-user-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .sidebar-header-user-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar.collapsed .sidebar-header-user-details {
+            display: none;
+        }
+
+        .sidebar-brand {
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-brand:hover {
+            color: var(--primary-color);
+        }
+
+        .sidebar-brand i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
         }
 
         .navbar-brand {
