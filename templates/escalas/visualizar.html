@@ -359,6 +359,7 @@
                     <div class="card-body p-2" id="van1-container" data-van="VAN1">
                         {% for alocacao in van1.servicos %}
                             <div class="servico-card" 
+                                 draggable="true"
                                  data-alocacao-id="{{ alocacao.id }}" 
                                  data-servico-id="{{ alocacao.servico.id }}"
                                  data-pax="{{ alocacao.servico.pax }}"
@@ -545,6 +546,7 @@
                     <div class="card-body p-2" id="van2-container" data-van="VAN2">
                         {% for alocacao in van2.servicos %}
                             <div class="servico-card" 
+                                 draggable="true"
                                  data-alocacao-id="{{ alocacao.id }}" 
                                  data-servico-id="{{ alocacao.servico.id }}"
                                  data-pax="{{ alocacao.servico.pax }}"
@@ -729,13 +731,18 @@
 <!-- CSS para drag and drop -->
 <style>
 .servico-card {
-    cursor: default;
+    cursor: move;
     transition: all 0.3s ease;
 }
 
 .servico-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: grab;
+}
+
+.servico-card:active {
+    cursor: grabbing;
 }
 
 .servico-card.dragging {
@@ -1101,18 +1108,34 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('Botão Precificar NÃO encontrado');
     }
     
-    // Configuração do sistema Kanban
+    // Configuração do sistema Kanban - COM DEBUG MELHORADO
+    console.log('=== INICIALIZANDO SISTEMA KANBAN ===');
+    
     const servicoCards = document.querySelectorAll('.servico-card');
     const containers = document.querySelectorAll('[data-van]');
     
     console.log(`Sistema Kanban: ${servicoCards.length} cards encontrados, ${containers.length} containers encontrados`);
+    
+    // Verificar se cards têm draggable
+    servicoCards.forEach((card, index) => {
+        const isDraggable = card.getAttribute('draggable');
+        console.log(`Card ${index}: draggable=${isDraggable}, alocacao-id=${card.dataset.alocacaoId}`);
+        
+        if (isDraggable !== 'true') {
+            console.warn(`Card ${index} NÃO tem draggable="true"!`);
+            card.setAttribute('draggable', 'true');
+        }
+    });
     
     // Configurar drag and drop para cada cartão de serviço
     servicoCards.forEach((card, index) => {
         // Verificar se o card tem os atributos necessários
         if (!card.dataset.alocacaoId) {
             console.warn(`Card ${index} não tem alocacao-id:`, card);
+            return; // Skip este card
         }
+        
+        console.log(`Configurando eventos para card ${index}`);
         
         card.addEventListener('dragstart', handleDragStart);
         card.addEventListener('dragend', handleDragEnd);
@@ -1141,13 +1164,17 @@ document.addEventListener('DOMContentLoaded', function() {
     let draggedElement = null;
     
     function handleDragStart(e) {
-        console.log('Drag started:', this.dataset.alocacaoId);
+        console.log('=== DRAG START ===');
+        console.log('Element:', this);
+        console.log('Alocacao ID:', this.dataset.alocacaoId);
+        console.log('Draggable attribute:', this.getAttribute('draggable'));
+        
         this.classList.add('dragging');
         draggedElement = this;
         
         // Verificar se tem o ID necessário
         if (!this.dataset.alocacaoId) {
-            console.error('Card não tem alocacao-id:', this);
+            console.error('❌ Card não tem alocacao-id:', this);
             e.preventDefault();
             return false;
         }
@@ -1155,6 +1182,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.dataTransfer.setData('text/plain', this.dataset.alocacaoId);
         e.dataTransfer.effectAllowed = 'move';
         
+        console.log('✅ Drag iniciado com sucesso');
         return true;
     }
     
