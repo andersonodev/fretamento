@@ -450,6 +450,7 @@ class LogEscala(models.Model):
         ('REJEITAR', 'Escala Rejeitada'),
         ('EXPORTAR', 'Escala Exportada'),
         ('EXCLUIR', 'Escala Excluída'),
+        ('ADICIONAR_MANUAL', 'Serviço Adicionado Manualmente'),
     ]
     
     escala = models.ForeignKey(Escala, on_delete=models.CASCADE, related_name='logs')

@@ -39,4 +39,5 @@ urlpatterns = [
     path('api/detalhes-precificacao/<int:alocacao_id>/', views.ApiDetalhesPrecificacaoView.as_view(), name='api_detalhes_precificacao'),
     path('desfazer-agrupamentos-automaticos/', views.DesfazerAgrupamentosAutomaticosView.as_view(), name='desfazer_agrupamentos_automaticos'),
     path('toggle-status-alocacao/', views.ToggleStatusAlocacaoView.as_view(), name='toggle_status_alocacao'),
+    path('adicionar-servico-manual/', views.AdicionarServicoManualView.as_view(), name='adicionar_servico_manual'),
 ]

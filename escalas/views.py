@@ -7,7 +7,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView
 from django.utils.dateparse import parse_date
 from django.utils import timezone
-from django.db.models import Count, Q, Sum, F
+from django.db.models import Count, Q, Sum, F, Max
 from django.db import transaction
 from datetime import datetime, date, timedelta
 from decimal import Decimal, InvalidOperation
@@ -2998,4 +2998,178 @@ class ToggleStatusAlocacaoView(LoginRequiredMixin, View):
             return JsonResponse({
                 "success": False,
                 "message": f"Erro interno: {str(e)}"
+            })
+
+
+class AdicionarServicoManualView(LoginRequiredMixin, View):
+    """View para adicionar um serviço manualmente à escala"""
+    
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            
+            # Dados obrigatórios
+            data_escala = data.get('data_escala')
+            servico = data.get('servico', '').strip()
+            van = data.get('van')
+            numero_venda = data.get('numero_venda', '').strip()
+            valor = data.get('valor')
+            
+            # Validações básicas - apenas campos obrigatórios
+            if not all([data_escala, servico, van, numero_venda]):
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Campos obrigatórios: Serviço/Destino, Van e Número da Venda'
+                })
+            
+            # Validar valor obrigatório
+            try:
+                valor = float(valor) if valor else None
+                if valor is None or valor <= 0:
+                    return JsonResponse({
+                        'success': False,
+                        'error': 'Valor deve ser um número positivo'
+                    })
+            except (ValueError, TypeError):
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Valor deve ser um número válido'
+                })
+            
+            # PAX agora é opcional (padrão 1)
+            try:
+                pax = int(data.get('pax')) if data.get('pax') else 1
+                if pax <= 0:
+                    pax = 1  # Garantir que seja pelo menos 1
+            except (ValueError, TypeError):
+                pax = 1  # Valor padrão se inválido
+            
+            if van not in ['VAN1', 'VAN2']:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Van deve ser VAN1 ou VAN2'
+                })
+            
+            # Converter data da escala para objeto date
+            try:
+                from datetime import datetime
+                data_obj = datetime.strptime(data_escala, '%d-%m-%Y').date()
+            except ValueError:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Formato de data inválido. Use DD-MM-AAAA'
+                })
+            
+            # Buscar a escala
+            try:
+                escala = Escala.objects.get(data=data_obj)
+            except Escala.DoesNotExist:
+                return JsonResponse({
+                    'success': False,
+                    'error': f'Escala para {data_escala} não encontrada'
+                })
+            
+            # Verificar se a escala permite adição manual
+            if escala.etapa == 'ESTRUTURA':
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Escala não tem dados puxados. Puxe dados primeiro.'
+                })
+            
+            with transaction.atomic():
+                # Dados opcionais
+                cliente = data.get('cliente', '').strip() or 'Cliente não informado'
+                local_pickup = data.get('local_pickup', '').strip()
+                horario_str = data.get('horario', '').strip()
+                observacoes = data.get('observacoes', '').strip()
+                
+                # Processar horário
+                horario = None
+                if horario_str:
+                    try:
+                        from datetime import datetime
+                        horario = datetime.strptime(horario_str, '%H:%M').time()
+                    except ValueError:
+                        return JsonResponse({
+                            'success': False,
+                            'error': 'Formato de horário inválido. Use HH:MM (ex: 14:30)'
+                        })
+                
+                # Criar o serviço
+                novo_servico = Servico.objects.create(
+                    numero_venda=numero_venda,
+                    cliente=cliente,
+                    local_pickup=local_pickup,
+                    pax=pax,
+                    horario=horario,
+                    data_do_servico=data_obj,
+                    servico=servico,
+                    linha_original=None,  # Indica que é manual
+                    arquivo_origem='MANUAL',
+                )
+                
+                # Determinar a próxima ordem na van selecionada
+                ultima_ordem = AlocacaoVan.objects.filter(
+                    escala=escala,
+                    van=van
+                ).aggregate(
+                    max_ordem=Max('ordem')
+                )['max_ordem'] or 0
+                
+                # Criar a alocação
+                nova_alocacao = AlocacaoVan.objects.create(
+                    escala=escala,
+                    servico=novo_servico,
+                    van=van,
+                    ordem=ultima_ordem + 1,
+                    automatica=False,  # Marca como manual
+                    status_alocacao='ALOCADO'
+                )
+                
+                # Definir preço manual e calcular veículo
+                nova_alocacao.preco_calculado = valor
+                veiculo, _ = nova_alocacao.calcular_preco_e_veiculo()
+                # Sobrescrever com o preço manual
+                nova_alocacao.preco_calculado = valor
+                nova_alocacao.save()
+                
+                # Log da criação
+                logger.info(f"🆕 Serviço manual criado: {cliente} ({pax} PAX) - {servico[:50]}... na {van} (usuário: {request.user.username})")
+                
+                # Criar log da escala
+                LogEscala.objects.create(
+                    escala=escala,
+                    acao='ADICIONAR_MANUAL',
+                    usuario=request.user,
+                    ip_address=request.META.get('REMOTE_ADDR'),
+                    descricao=f'Serviço adicionado manualmente: {cliente} ({pax} PAX) na {van}',
+                    dados_depois={
+                        'servico_id': novo_servico.id,
+                        'alocacao_id': nova_alocacao.id,
+                        'cliente': cliente,
+                        'pax': pax,
+                        'van': van,
+                        'servico': servico[:100]
+                    }
+                )
+            
+            return JsonResponse({
+                'success': True,
+                'message': f'Serviço "{cliente}" adicionado com sucesso na {van}!',
+                'servico': {
+                    'id': nova_alocacao.id,
+                    'cliente': cliente,
+                    'pax': pax,
+                    'servico': servico,
+                    'van': van,
+                    'preco': float(nova_alocacao.preco_calculado or 0),
+                    'veiculo': nova_alocacao.veiculo_recomendado
+                }
+            })
+            
+        except Exception as e:
+            logger.error(f"❌ Erro ao adicionar serviço manual: {e}")
+            return JsonResponse({
+                'success': False,
+                'error': f'Erro interno: {str(e)}'
             })

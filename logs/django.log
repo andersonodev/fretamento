@@ -102,3 +102,450 @@ INFO 2025-10-13 18:28:56,227 basehttp 26456 6171865088 "POST /escalas/api/atuali
 INFO 2025-10-13 18:28:57,808 basehttp 26456 6171865088 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 564978
 WARNING 2025-10-13 18:29:57,958 log 26456 6171865088 Not Found: /api/dashboard/updates/
 WARNING 2025-10-13 18:29:57,959 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:30:57,967 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:30:57,968 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:31:57,959 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:31:57,960 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:32:57,958 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:32:57,959 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:33:58,007 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:33:58,011 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:34:57,952 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:34:57,953 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:35:57,966 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:35:57,968 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:36:57,955 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:36:57,958 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:37:58,956 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:37:58,963 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:38:57,973 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:38:57,975 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:39:58,963 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:39:58,966 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:40:59,955 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:40:59,958 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:42:01,324 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:42:01,325 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:43:01,963 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:43:01,966 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:44:02,981 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:44:02,984 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:45:03,966 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:45:03,968 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:46:04,978 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:46:04,980 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:47:05,966 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:47:05,968 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:48:06,975 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:48:06,976 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:49:07,963 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:49:07,964 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:50:08,967 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:50:08,969 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 18:58:26,053 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 18:58:26,055 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 19:46:07,235 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 19:46:07,237 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 19:47:06,803 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 19:47:06,805 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 19:47:51,788 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 19:47:51,790 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 19:48:52,795 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 19:48:52,796 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 19:49:53,789 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 19:49:53,790 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 19:50:54,796 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 19:50:54,797 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-13 19:51:55,794 log 26456 6171865088 Not Found: /api/dashboard/updates/
+WARNING 2025-10-13 19:51:55,796 basehttp 26456 6171865088 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 12:31:24,503 autoreload 49984 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 12:31:31,361 basehttp 49984 6166605824 "GET / HTTP/1.1" 302 0
+INFO 2025-10-14 12:31:31,407 basehttp 49984 6166605824 "GET /auth/login/ HTTP/1.1" 200 12927
+INFO 2025-10-14 12:31:31,470 basehttp 49984 6166605824 "GET /static/images/logointertouring.png HTTP/1.1" 304 0
+INFO 2025-10-14 12:31:37,725 basehttp 49984 6166605824 "POST /auth/login/ HTTP/1.1" 200 13552
+INFO 2025-10-14 12:31:40,864 basehttp 49984 6166605824 "POST /auth/login/ HTTP/1.1" 200 13552
+INFO 2025-10-14 12:31:46,142 basehttp 49984 6166605824 "POST /auth/login/ HTTP/1.1" 200 13555
+INFO 2025-10-14 12:31:48,428 basehttp 49984 6166605824 "POST /auth/login/ HTTP/1.1" 200 13555
+INFO 2025-10-14 12:31:51,470 basehttp 49984 6166605824 "POST /auth/login/ HTTP/1.1" 200 13555
+INFO 2025-10-14 12:31:53,571 basehttp 49984 6166605824 "POST /auth/login/ HTTP/1.1" 200 13555
+INFO 2025-10-14 12:32:39,529 autoreload 49984 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-14 12:32:39,974 autoreload 50192 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 12:32:50,678 autoreload 50192 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-14 12:32:50,916 autoreload 50232 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 12:32:58,494 autoreload 50232 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-14 12:32:58,766 autoreload 50255 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 12:33:07,865 basehttp 50255 6171095040 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-14 12:33:07,870 views 50255 6171095040 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 12:33:07,924 basehttp 50255 6171095040 "GET /core/ HTTP/1.1" 200 52028
+INFO 2025-10-14 12:33:08,068 basehttp 50255 6171095040 "GET /static/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-10-14 12:33:08,087 basehttp 50255 6171095040 "GET /static/css/whatsapp-dark.css HTTP/1.1" 304 0
+INFO 2025-10-14 12:33:08,087 basehttp 50255 6187921408 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+WARNING 2025-10-14 12:34:08,344 log 50255 6171095040 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:34:08,345 basehttp 50255 6171095040 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 12:34:09,920 autoreload 50255 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/urls.py changed, reloading.
+INFO 2025-10-14 12:34:10,263 autoreload 50357 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 12:35:08,396 log 50357 6195392512 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:35:08,398 basehttp 50357 6195392512 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 12:36:08,374 log 50357 6195392512 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:36:08,376 basehttp 50357 6195392512 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 12:37:07,793 autoreload 50357 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-14 12:37:08,152 autoreload 50583 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 12:38:08,395 log 50583 6203404288 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:38:08,396 basehttp 50583 6203404288 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 12:39:08,380 log 50583 6203404288 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:39:08,382 basehttp 50583 6203404288 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 12:40:08,386 log 50583 6203404288 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:40:08,389 basehttp 50583 6203404288 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 12:41:11,422 log 50583 6203404288 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:41:11,424 basehttp 50583 6203404288 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 12:41:48,173 views 50583 6203404288 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 12:41:48,207 basehttp 50583 6203404288 "GET /core/ HTTP/1.1" 200 51477
+INFO 2025-10-14 12:41:49,213 basehttp 50583 6203404288 "GET /escalas/ HTTP/1.1" 200 32483
+INFO 2025-10-14 12:41:51,623 basehttp 50583 6203404288 "GET /escalas/ano/2025/ HTTP/1.1" 200 44558
+INFO 2025-10-14 12:41:53,707 basehttp 50583 6203404288 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 54975
+INFO 2025-10-14 12:41:56,009 basehttp 50583 6203404288 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 579237
+WARNING 2025-10-14 12:42:56,380 log 50583 6203404288 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:42:56,382 basehttp 50583 6203404288 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 12:43:56,374 log 50583 6203404288 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:43:56,376 basehttp 50583 6203404288 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 12:44:42,133 autoreload 50583 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-14 12:44:42,725 autoreload 51248 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 12:44:56,399 log 51248 6202503168 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:44:56,400 basehttp 51248 6202503168 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 12:45:16,069 autoreload 51248 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-14 12:45:16,640 autoreload 51306 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 12:45:33,735 autoreload 51306 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-14 12:45:34,225 autoreload 51339 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 12:45:56,075 log 51339 6175584256 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:45:56,076 basehttp 51339 6175584256 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 12:46:09,332 basehttp 51339 6175584256 "GET /core/diagnostico/ HTTP/1.1" 200 37052
+INFO 2025-10-14 12:46:14,714 views 51339 6175584256 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 12:46:14,735 basehttp 51339 6175584256 "GET /core/ HTTP/1.1" 200 51477
+INFO 2025-10-14 12:46:25,968 basehttp 51339 6175584256 "GET /escalas/ HTTP/1.1" 200 32483
+INFO 2025-10-14 12:46:27,340 basehttp 51339 6175584256 "GET /escalas/ano/2025/ HTTP/1.1" 200 44558
+INFO 2025-10-14 12:46:29,127 basehttp 51339 6175584256 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 54975
+WARNING 2025-10-14 12:47:29,372 log 51339 6175584256 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:47:29,373 basehttp 51339 6175584256 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 12:48:29,390 log 51339 6175584256 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:48:29,392 basehttp 51339 6175584256 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 12:49:29,382 log 51339 6175584256 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:49:29,384 basehttp 51339 6175584256 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 12:50:29,384 log 51339 6175584256 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:50:29,386 basehttp 51339 6175584256 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 12:50:42,944 basehttp 51339 6175584256 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 54975
+INFO 2025-10-14 12:50:45,110 basehttp 51339 6175584256 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 580395
+INFO 2025-10-14 12:51:23,543 models 51339 6175584256 Precificação - Serviço: sdfsdfsd... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-14 12:51:23,544 views 51339 6175584256 🆕 Serviço manual criado: Cliente não informado (1 PAX) - sdfsdfsd... na VAN1 (usuário: admin)
+INFO 2025-10-14 12:51:23,546 basehttp 51339 6175584256 "POST /escalas/adicionar-servico-manual/ HTTP/1.1" 200 263
+INFO 2025-10-14 12:51:25,139 basehttp 51339 6175584256 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 586844
+INFO 2025-10-14 12:51:35,224 basehttp 51339 6175584256 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 479
+INFO 2025-10-14 12:51:46,608 basehttp 51339 6175584256 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 479
+WARNING 2025-10-14 12:52:25,366 log 51339 6175584256 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:52:25,368 basehttp 51339 6175584256 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 12:52:28,259 autoreload 51339 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/models.py changed, reloading.
+INFO 2025-10-14 12:52:28,875 autoreload 51914 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 12:52:40,587 views 51914 6140866560 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 12:52:40,630 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 200 51477
+WARNING 2025-10-14 12:53:40,792 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:53:40,794 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 12:54:40,801 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:54:40,803 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 12:54:57,373 basehttp 51914 6140866560 "GET /escalas/ HTTP/1.1" 200 32487
+INFO 2025-10-14 12:54:59,257 basehttp 51914 6140866560 "GET /escalas/ano/2025/ HTTP/1.1" 200 44562
+INFO 2025-10-14 12:55:01,073 basehttp 51914 6140866560 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 54979
+INFO 2025-10-14 12:55:03,529 basehttp 51914 6140866560 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 580649
+INFO 2025-10-14 12:55:08,086 basehttp 51914 6140866560 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 580649
+INFO 2025-10-14 12:55:10,977 basehttp 51914 6140866560 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 570
+INFO 2025-10-14 12:55:15,751 views 51914 6140866560 🚀 INICIANDO PRECIFICAÇÃO INTELIGENTE - Escala 2025-10-02
+INFO 2025-10-14 12:55:15,754 views 51914 6140866560 📋 Total de alocações a precificar: 59
+INFO 2025-10-14 12:55:15,853 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 12:55:15,925 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 12:55:16,046 models 51914 6140866560 Precificação - Serviço: NOVO: TRANSFER REGULAR IN AEROPORTO INTER. GALEÃO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 12:55:16,169 views 51914 6140866560 🔄 Atualização - NOVO: TRANSFER REGULAR IN AERO... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-14 12:55:16,248 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 34 | Veículo: Ônibus | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 12:55:16,327 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Ônibus | R$ 229.00 → R$ 44.00
+INFO 2025-10-14 12:55:16,407 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 12:55:16,488 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:16,567 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 12:55:16,663 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:16,749 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 12:55:16,829 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:16,925 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 12:55:17,015 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:17,154 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 12:55:17,241 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 12:55:17,317 models 51914 6140866560 Precificação - Serviço: TRANSFER IN PRIVATIVO AEROPORTO SANTOS DUMONT (SDU... | PAX: 1 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 12:55:17,396 views 51914 6140866560 🔄 Atualização - TRANSFER IN PRIVATIVO AEROPORT... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-14 12:55:17,517 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 12:55:17,591 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:17,628 models 51914 6140866560 Precificação - Serviço: INGRESSO TREM DO CORCOVADO... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 600.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-14 12:55:17,665 views 51914 6140866560 🔄 Atualização - INGRESSO TREM DO CORCOVADO... | N/A → Van 15 lugares | R$ 0.00 → R$ 600.00
+INFO 2025-10-14 12:55:17,766 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 12:55:17,853 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:17,940 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-14 12:55:18,022 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-14 12:55:18,091 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 12:55:18,161 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:18,243 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 12:55:18,324 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:18,432 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 2 | Veículo: Executivo | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 12:55:18,539 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 103.00
+INFO 2025-10-14 12:55:18,610 models 51914 6140866560 Precificação - Serviço: TOUR PRIVATIVO PÃO DE AÇÚCAR C/ VISITA CENTRO RIO ... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 400.00 | Fonte: Motoristas (sim: 0.43)
+INFO 2025-10-14 12:55:18,681 views 51914 6140866560 🔄 Atualização - TOUR PRIVATIVO PÃO DE AÇÚCAR C... | N/A → Van 15 lugares | R$ 0.00 → R$ 400.00
+INFO 2025-10-14 12:55:18,749 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 12:55:18,816 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:18,896 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 12:55:18,975 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 12:55:18,996 models 51914 6140866560 Precificação - Serviço: Disposição 04h... | PAX: 2 | Veículo: Executivo | Preço: R$ 170.00 | Fonte: Motoristas (sim: 1.00)
+INFO 2025-10-14 12:55:19,017 views 51914 6140866560 🔄 Atualização - Disposição 04h... | N/A → Executivo | R$ 0.00 → R$ 170.00
+INFO 2025-10-14 12:55:19,017 models 51914 6140866560 Precificação - Serviço: ... | PAX: 0 | Veículo: Executivo | Preço: R$ 0.00 | Fonte: não encontrado
+INFO 2025-10-14 12:55:19,018 views 51914 6140866560 🔄 Atualização - ... | N/A → Executivo | R$ 0.00 → R$ 0.00
+INFO 2025-10-14 12:55:19,058 models 51914 6140866560 Precificação - Serviço: TRANSFER ENTRE BAIRROS (POR VEÍCULO E POR TRECHO)... | PAX: 1 | Veículo: Executivo | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 12:55:19,099 views 51914 6140866560 🔄 Atualização - TRANSFER ENTRE BAIRROS (POR VE... | N/A → Executivo | R$ 0.00 → R$ 326.00
+INFO 2025-10-14 12:55:19,179 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BARRA DA TIJUCA PAR... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-14 12:55:19,260 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-14 12:55:19,331 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 12:55:19,399 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 12:55:19,467 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 12:55:19,535 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:19,603 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 12:55:19,671 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 12:55:19,752 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 12:55:19,833 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:19,914 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BARRA DA TIJUCA PAR... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-14 12:55:19,994 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-14 12:55:20,075 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 12:55:20,155 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:20,169 models 51914 6140866560 Precificação - Serviço: sdfsdfsd... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+ERROR 2025-10-14 12:55:20,182 views 51914 6140866560 ❌ Erro ao precificar alocação 117: unsupported operand type(s) for -: 'float' and 'decimal.Decimal'
+INFO 2025-10-14 12:55:20,255 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BÚZIOS PARA AEROPOR... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-14 12:55:20,329 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-14 12:55:20,409 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 12:55:20,490 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:20,559 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 12:55:20,628 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:20,696 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 12:55:20,764 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:20,844 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 12:55:20,924 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 12:55:20,994 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR CENTRO RJ PARA AEROPORTO INTE... | PAX: 3 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 12:55:21,063 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR CENTRO RJ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-14 12:55:21,127 models 51914 6140866560 Precificação - Serviço: TOUR REGULAR HERANÇAS EUROPEIAS PELO CENTRO DO RIO... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.45)
+INFO 2025-10-14 12:55:21,192 views 51914 6140866560 🔄 Atualização - TOUR REGULAR HERANÇAS EUROPEIA... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-14 12:55:21,273 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 12:55:21,353 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:21,433 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 12:55:21,513 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 12:55:21,619 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 12:55:21,725 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 103.00
+INFO 2025-10-14 12:55:21,798 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-14 12:55:21,871 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-14 12:55:21,961 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-14 12:55:22,052 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-14 12:55:22,142 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-14 12:55:22,233 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-14 12:55:22,301 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 12:55:22,368 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:22,436 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 12:55:22,504 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:22,528 models 51914 6140866560 Precificação - Serviço: Disposição 06h... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 209.00 | Fonte: Motoristas (sim: 1.00)
+INFO 2025-10-14 12:55:22,550 views 51914 6140866560 🔄 Atualização - Disposição 06h... | N/A → Van 15 lugares | R$ 0.00 → R$ 209.00
+INFO 2025-10-14 12:55:22,635 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-14 12:55:22,720 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-14 12:55:22,789 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 12:55:22,858 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 12:55:22,921 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 12:55:22,984 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:23,055 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR CENTRO RJ PARA AEROPORTO INTE... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 12:55:23,125 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR CENTRO RJ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-14 12:55:23,204 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 12:55:23,283 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:23,352 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 12:55:23,422 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 12:55:23,503 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 12:55:23,583 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:23,657 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-14 12:55:23,731 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-14 12:55:23,799 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 12:55:23,867 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:23,948 models 51914 6140866560 Precificação - Serviço: UM DIA NO RIO REGULAR: PÃO DE AÇÚCAR, CORCOVADO EM... | PAX: 10 | Veículo: Van 15 lugares | Preço: R$ 570.00 | Fonte: padrão (PAX: 10)
+INFO 2025-10-14 12:55:24,029 views 51914 6140866560 🔄 Atualização - UM DIA NO RIO REGULAR: PÃO DE ... | N/A → Van 15 lugares | R$ 0.00 → R$ 570.00
+INFO 2025-10-14 12:55:24,109 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 12:55:24,189 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:24,301 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 3 | Veículo: Executivo | Preço: R$ 400.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 12:55:24,413 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 400.00
+INFO 2025-10-14 12:55:24,494 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 12:55:24,574 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 12:55:24,576 views 51914 6140866560 📊 ESTATÍSTICAS DA PRECIFICAÇÃO:
+INFO 2025-10-14 12:55:24,576 views 51914 6140866560    • Tarifário JW: 0 serviços
+INFO 2025-10-14 12:55:24,576 views 51914 6140866560    • Tarifário Motoristas: 49 serviços
+INFO 2025-10-14 12:55:24,576 views 51914 6140866560    • Preços padrão: 9 serviços
+INFO 2025-10-14 12:55:24,576 views 51914 6140866560    • Valor total: R$ 7,318.00
+INFO 2025-10-14 12:55:24,577 views 51914 6140866560    • Valor médio por serviço: R$ 124.03
+INFO 2025-10-14 12:55:24,577 basehttp 51914 6140866560 "POST /escalas/precificar/02-10-2025/ HTTP/1.1" 200 341
+INFO 2025-10-14 12:55:27,480 basehttp 51914 6140866560 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 599910
+WARNING 2025-10-14 12:56:28,374 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:56:28,376 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 12:57:28,366 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:57:28,369 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 12:58:27,549 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:58:27,551 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 12:58:34,404 views 51914 6140866560 📝 Status de alocação alterado: sdfsdfsd... -> NAO_ALOCADO (usuário: admin)
+INFO 2025-10-14 12:58:34,408 basehttp 51914 6140866560 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 86
+INFO 2025-10-14 12:58:35,544 basehttp 51914 6140866560 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 599920
+INFO 2025-10-14 12:58:48,828 views 51914 6140866560 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 12:58:48,851 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 200 51477
+WARNING 2025-10-14 12:59:49,398 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 12:59:49,400 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:00:49,376 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:00:49,379 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:01:31,639 basehttp 51914 6140866560 "GET /escalas/ HTTP/1.1" 200 32485
+INFO 2025-10-14 13:01:33,295 basehttp 51914 6140866560 "GET /escalas/ano/2025/ HTTP/1.1" 200 44560
+INFO 2025-10-14 13:01:35,011 basehttp 51914 6140866560 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 54977
+INFO 2025-10-14 13:01:37,338 basehttp 51914 6140866560 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 596970
+INFO 2025-10-14 13:01:40,244 basehttp 51914 6140866560 "GET /escalas/visualizar/02-10-2025/ HTTP/1.1" 200 596970
+INFO 2025-10-14 13:01:42,138 basehttp 51914 6140866560 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 542
+INFO 2025-10-14 13:01:48,134 basehttp 51914 6140866560 "GET /escalas/ HTTP/1.1" 200 32485
+INFO 2025-10-14 13:01:49,802 basehttp 51914 6140866560 "GET /escalas/ano/2025/ HTTP/1.1" 200 44560
+INFO 2025-10-14 13:01:51,609 basehttp 51914 6140866560 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 54977
+INFO 2025-10-14 13:01:53,639 basehttp 51914 6140866560 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 571346
+INFO 2025-10-14 13:01:58,807 basehttp 51914 6140866560 "GET /escalas/exportar/01-10-2025/ HTTP/1.1" 200 10898
+INFO 2025-10-14 13:01:59,533 views 51914 6140866560 🚀 INICIANDO PRECIFICAÇÃO INTELIGENTE - Escala 2025-10-01
+INFO 2025-10-14 13:01:59,534 views 51914 6140866560 📋 Total de alocações a precificar: 58
+INFO 2025-10-14 13:01:59,664 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 13:01:59,750 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 13:01:59,834 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BARRA DA TIJUCA PAR... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-14 13:01:59,917 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-14 13:01:59,939 models 51914 6140866560 Precificação - Serviço: Disposição 06h... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 209.00 | Fonte: Motoristas (sim: 1.00)
+INFO 2025-10-14 13:01:59,960 views 51914 6140866560 🔄 Atualização - Disposição 06h... | N/A → Van 15 lugares | R$ 0.00 → R$ 209.00
+INFO 2025-10-14 13:02:00,075 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 13:02:00,185 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Van 15 lugares | R$ 0.00 → R$ 103.00
+INFO 2025-10-14 13:02:00,272 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 13:02:00,357 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:00,430 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 13:02:00,500 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:00,569 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR CENTRO RJ PARA AEROPORTO INTE... | PAX: 2 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 13:02:00,637 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR CENTRO RJ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-14 13:02:00,704 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 13:02:00,773 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:00,855 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 13:02:00,937 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:01,006 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 13:02:01,074 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:01,148 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BÚZIOS PARA AEROPOR... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-14 13:02:01,221 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-14 13:02:01,290 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 13:02:01,358 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 13:02:01,428 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 13:02:01,496 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 13:02:01,565 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 13:02:01,633 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 13:02:01,714 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 13:02:01,795 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:01,875 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 13:02:01,957 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 13:02:02,038 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 13:02:02,118 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:02,198 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 13:02:02,279 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:02,362 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 13:02:02,445 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 13:02:02,516 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 13:02:02,588 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:02,709 models 51914 6140866560 Precificação - Serviço: NOVO: TRANSFER REGULAR IN AEROPORTO INTER. GALEÃO ... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 13:02:02,826 views 51914 6140866560 🔄 Atualização - NOVO: TRANSFER REGULAR IN AERO... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-14 13:02:02,906 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 13:02:02,985 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:03,067 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-14 13:02:03,148 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-14 13:02:03,231 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 1 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 13:02:03,313 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:03,382 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 13:02:03,450 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:03,530 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 13:02:03,609 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 13:02:03,688 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 13:02:03,767 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:03,842 models 51914 6140866560 Precificação - Serviço: TRANSFER IN PRIVATIVO AEROPORTO SANTOS DUMONT (SDU... | PAX: 1 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 13:02:03,917 views 51914 6140866560 🔄 Atualização - TRANSFER IN PRIVATIVO AEROPORT... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-14 13:02:03,993 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-14 13:02:04,072 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-14 13:02:04,156 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 13:02:04,244 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:04,244 models 51914 6140866560 Precificação - Serviço: ... | PAX: 0 | Veículo: Executivo | Preço: R$ 0.00 | Fonte: não encontrado
+INFO 2025-10-14 13:02:04,245 views 51914 6140866560 🔄 Atualização - ... | N/A → Executivo | R$ 0.00 → R$ 0.00
+INFO 2025-10-14 13:02:04,334 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-14 13:02:04,428 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-14 13:02:04,514 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 13:02:04,606 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:04,674 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 13:02:04,745 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:04,830 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO BARRA DA TIJUCA PAR... | PAX: 2 | Veículo: Executivo | Preço: R$ 220.00 | Fonte: padrão (PAX: 2)
+INFO 2025-10-14 13:02:04,915 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 220.00
+INFO 2025-10-14 13:02:05,021 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 2 | Veículo: Executivo | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 13:02:05,127 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 103.00
+INFO 2025-10-14 13:02:05,195 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 13:02:05,262 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:05,325 models 51914 6140866560 Precificação - Serviço: TOUR REGULAR HERANÇAS EUROPEIAS PELO CENTRO DO RIO... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.45)
+INFO 2025-10-14 13:02:05,389 views 51914 6140866560 🔄 Atualização - TOUR REGULAR HERANÇAS EUROPEIA... | N/A → Executivo | R$ 0.00 → R$ 40.00
+INFO 2025-10-14 13:02:05,456 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 13:02:05,524 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Van 15 lugares | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:05,592 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 13:02:05,659 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 13:02:05,773 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO RJ (GI... | PAX: 3 | Veículo: Executivo | Preço: R$ 400.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 13:02:05,884 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 400.00
+INFO 2025-10-14 13:02:05,964 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO SANTOS DUM... | PAX: 34 | Veículo: Ônibus | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.26)
+INFO 2025-10-14 13:02:06,043 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Ônibus | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 13:02:06,124 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 13:02:06,207 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:06,287 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 13:02:06,368 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:06,438 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR CENTRO RJ PARA AEROPORTO INTE... | PAX: 3 | Veículo: Executivo | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 13:02:06,508 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR CENTRO RJ... | N/A → Executivo | R$ 0.00 → R$ 63.00
+INFO 2025-10-14 13:02:06,598 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 2 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-14 13:02:06,688 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-14 13:02:06,768 models 51914 6140866560 Precificação - Serviço: UM DIA NO RIO REGULAR: PÃO DE AÇÚCAR, CORCOVADO EM... | PAX: 10 | Veículo: Van 15 lugares | Preço: R$ 570.00 | Fonte: padrão (PAX: 10)
+INFO 2025-10-14 13:02:06,848 views 51914 6140866560 🔄 Atualização - UM DIA NO RIO REGULAR: PÃO DE ... | N/A → Van 15 lugares | R$ 0.00 → R$ 570.00
+INFO 2025-10-14 13:02:06,888 models 51914 6140866560 Precificação - Serviço: TRANSFER ENTRE BAIRROS (POR VEÍCULO E POR TRECHO)... | PAX: 1 | Veículo: Executivo | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 13:02:06,928 views 51914 6140866560 🔄 Atualização - TRANSFER ENTRE BAIRROS (POR VE... | N/A → Executivo | R$ 0.00 → R$ 326.00
+INFO 2025-10-14 13:02:06,995 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO INTER... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 13:02:07,063 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:07,097 models 51914 6140866560 Precificação - Serviço: INGRESSO TREM DO CORCOVADO... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 600.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-14 13:02:07,131 views 51914 6140866560 🔄 Atualização - INGRESSO TREM DO CORCOVADO... | N/A → Van 15 lugares | R$ 0.00 → R$ 600.00
+INFO 2025-10-14 13:02:07,212 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 13:02:07,293 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:07,357 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO INTER. GALEÃO (GIG) ... | PAX: 3 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 13:02:07,421 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:07,441 models 51914 6140866560 Precificação - Serviço: Disposição 04h... | PAX: 2 | Veículo: Executivo | Preço: R$ 170.00 | Fonte: Motoristas (sim: 1.00)
+INFO 2025-10-14 13:02:07,462 views 51914 6140866560 🔄 Atualização - Disposição 04h... | N/A → Executivo | R$ 0.00 → R$ 170.00
+INFO 2025-10-14 13:02:07,533 models 51914 6140866560 Precificação - Serviço: TOUR PRIVATIVO PÃO DE AÇÚCAR C/ VISITA CENTRO RIO ... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 400.00 | Fonte: Motoristas (sim: 0.43)
+INFO 2025-10-14 13:02:07,603 views 51914 6140866560 🔄 Atualização - TOUR PRIVATIVO PÃO DE AÇÚCAR C... | N/A → Van 15 lugares | R$ 0.00 → R$ 400.00
+INFO 2025-10-14 13:02:07,686 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT VEÍCULO PRIVATIVO ZONA SUL PARA AEROP... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 13:02:07,767 views 51914 6140866560 🔄 Atualização - TRANSFER OUT VEÍCULO PRIVATIVO... | N/A → Executivo | R$ 0.00 → R$ 77.00
+INFO 2025-10-14 13:02:07,837 models 51914 6140866560 Precificação - Serviço: TRANSFER OUT REGULAR ZONA SUL PARA AEROPORTO SANTO... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 13:02:07,905 views 51914 6140866560 🔄 Atualização - TRANSFER OUT REGULAR ZONA SUL ... | N/A → Executivo | R$ 0.00 → R$ 44.00
+INFO 2025-10-14 13:02:07,997 models 51914 6140866560 Precificação - Serviço: TRANSFER IN REGULAR AEROPORTO SANTOS DUMONT (SDU) ... | PAX: 1 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.27)
+INFO 2025-10-14 13:02:08,088 views 51914 6140866560 🔄 Atualização - TRANSFER IN REGULAR AEROPORTO ... | N/A → Executivo | R$ 0.00 → R$ 81.00
+INFO 2025-10-14 13:02:08,162 models 51914 6140866560 Precificação - Serviço: TRANSFER IN VEÍCULO PRIVATIVO AEROPORTO INTER. GAL... | PAX: 1 | Veículo: Executivo | Preço: R$ 200.00 | Fonte: padrão (PAX: 1)
+INFO 2025-10-14 13:02:08,235 views 51914 6140866560 🔄 Atualização - TRANSFER IN VEÍCULO PRIVATIVO ... | N/A → Executivo | R$ 0.00 → R$ 200.00
+INFO 2025-10-14 13:02:08,237 views 51914 6140866560 📊 ESTATÍSTICAS DA PRECIFICAÇÃO:
+INFO 2025-10-14 13:02:08,237 views 51914 6140866560    • Tarifário JW: 0 serviços
+INFO 2025-10-14 13:02:08,237 views 51914 6140866560    • Tarifário Motoristas: 49 serviços
+INFO 2025-10-14 13:02:08,237 views 51914 6140866560    • Preços padrão: 8 serviços
+INFO 2025-10-14 13:02:08,237 views 51914 6140866560    • Valor total: R$ 7,118.00
+INFO 2025-10-14 13:02:08,237 views 51914 6140866560    • Valor médio por serviço: R$ 122.72
+INFO 2025-10-14 13:02:08,238 basehttp 51914 6140866560 "POST /escalas/precificar/01-10-2025/ HTTP/1.1" 200 364
+INFO 2025-10-14 13:02:08,379 basehttp 51914 6140866560 "GET /escalas/exportar/01-10-2025/ HTTP/1.1" 200 11020
+INFO 2025-10-14 13:02:10,360 basehttp 51914 6140866560 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 590633
+INFO 2025-10-14 13:02:18,008 basehttp 51914 6140866560 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 573
+WARNING 2025-10-14 13:03:10,441 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:03:10,443 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:04:10,454 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:04:10,456 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:05:10,626 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:05:10,627 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:06:11,602 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:06:11,604 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:07:04,196 basehttp 51914 6140866560 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 577861
+INFO 2025-10-14 13:07:17,435 views 51914 6140866560 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 13:07:17,461 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 200 51477

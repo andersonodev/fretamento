@@ -61,6 +61,11 @@
                                 Limpar/Formatar
                             {% endif %}
                         </button>
+                        
+                        <!-- Botão para adicionar serviço manual -->
+                        <button type="button" class="btn btn-success" onclick="abrirModalAdicionarServico()" title="Adicionar serviço manualmente">
+                            <i class="fas fa-plus-circle"></i> Adicionar Serviço
+                        </button>
                     {% endif %}
                 </div>
             </div>
@@ -362,8 +367,7 @@
                                  data-pickup="{{ alocacao.servico.local_pickup|lower|default:'' }}"
                                  data-cliente="{{ alocacao.servico.cliente|lower }}"
                                  data-van="VAN1"
-                                 data-status="{{ alocacao.status_alocacao }}"
-                                 draggable="true">
+                                 data-status="{{ alocacao.status_alocacao }}">
                                 <div class="card mb-2 border {% if alocacao.grupo_info %}border-success{% endif %}" {% if alocacao.grupo_info %}title="Duplo clique para desagrupar | Clique direito para mais opções"{% endif %}>
                                     {% if alocacao.grupo_info %}
                                         <div class="card-header p-1 bg-light">
@@ -385,7 +389,6 @@
                                         <div class="d-flex justify-content-between align-items-start mb-2">
                                             <div class="flex-grow-1">
                                                 <h6 class="card-title mb-1">
-                                                    <i class="fas fa-grip-vertical text-muted me-1"></i>
                                                     {% if alocacao.grupo_info %}
                                                         {{ alocacao.grupo_info.grupo.get_clientes_concatenados }}
                                                     {% else %}
@@ -478,9 +481,6 @@
                                                 <div class="d-flex flex-wrap align-items-center gap-1">
                                                     {% if alocacao.veiculo_recomendado %}
                                                         <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
-                                                    {% endif %}
-                                                    {% if alocacao.lucratividade %}
-                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
                                                     {% endif %}
                                                     {% if alocacao.automatica %}
                                                         <span class="badge bg-info">Auto</span>
@@ -553,8 +553,7 @@
                                  data-pickup="{{ alocacao.servico.local_pickup|lower|default:'' }}"
                                  data-cliente="{{ alocacao.servico.cliente|lower }}"
                                  data-van="VAN2"
-                                 data-status="{{ alocacao.status_alocacao }}"
-                                 draggable="true">
+                                 data-status="{{ alocacao.status_alocacao }}">
                                 <div class="card mb-2 border {% if alocacao.grupo_info %}border-success{% endif %}" {% if alocacao.grupo_info %}title="Duplo clique para desagrupar | Clique direito para mais opções"{% endif %}>
                                     {% if alocacao.grupo_info %}
                                         <div class="card-header p-1 bg-light">
@@ -576,7 +575,6 @@
                                         <div class="d-flex justify-content-between align-items-start mb-2">
                                             <div class="flex-grow-1">
                                                 <h6 class="card-title mb-1">
-                                                    <i class="fas fa-grip-vertical text-muted me-1"></i>
                                                     {% if alocacao.grupo_info %}
                                                         {{ alocacao.grupo_info.grupo.get_clientes_concatenados }}
                                                     {% else %}
@@ -670,9 +668,6 @@
                                                     {% if alocacao.veiculo_recomendado %}
                                                         <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
                                                     {% endif %}
-                                                    {% if alocacao.lucratividade %}
-                                                        <span class="badge bg-warning text-dark">Lucr.: {{ alocacao.lucratividade|profit_score }}</span>
-                                                    {% endif %}
                                                     {% if alocacao.automatica %}
                                                         <span class="badge bg-info">Auto</span>
                                                     {% else %}
@@ -734,7 +729,7 @@
 <!-- CSS para drag and drop -->
 <style>
 .servico-card {
-    cursor: move;
+    cursor: default;
     transition: all 0.3s ease;
 }
 
@@ -3788,6 +3783,157 @@ function showToast(message, type = 'info') {
 }
 </script>
 
+<!-- Modal para Adicionar Serviço Manual -->
+<div class="modal fade" id="modal-adicionar-servico" tabindex="-1" aria-labelledby="modalAdicionarServicoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="modalAdicionarServicoLabel">
+                    <i class="fas fa-plus-circle"></i> Adicionar Serviço Manual - {{ escala.data|date:"d/m/Y" }}
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <form id="form-adicionar-servico">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Atenção:</strong> Este serviço será adicionado diretamente à escala sem passar pela planilha. 
+                        Campos obrigatórios: <strong>Serviço/Destino</strong>, <strong>Van</strong>, <strong>Número da Venda</strong> e <strong>Valor</strong>.
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Cliente (opcional) -->
+                        <div class="col-md-8 mb-3">
+                            <label for="novo-cliente" class="form-label">
+                                <i class="fas fa-user text-primary"></i>
+                                Cliente
+                            </label>
+                            <input type="text" class="form-control" id="novo-cliente" name="cliente" 
+                                   placeholder="Nome do cliente (opcional)">
+                            <div class="form-text">Nome da empresa ou pessoa que contratou o serviço</div>
+                        </div>
+                        
+                        <!-- PAX (opcional) -->
+                        <div class="col-md-4 mb-3">
+                            <label for="novo-pax" class="form-label">
+                                <i class="fas fa-users text-info"></i>
+                                PAX
+                            </label>
+                            <input type="number" class="form-control" id="novo-pax" name="pax" 
+                                   min="1" max="50" value="1" placeholder="1">
+                            <div class="form-text">Número de passageiros (padrão: 1)</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Serviço (obrigatório) -->
+                    <div class="mb-3">
+                        <label for="novo-servico" class="form-label">
+                            <i class="fas fa-map-marker-alt text-danger"></i>
+                            <strong>Serviço/Destino *</strong>
+                        </label>
+                        <textarea class="form-control" id="novo-servico" name="servico" required rows="3" 
+                                  placeholder="Descrição do serviço ou destino (ex: Transfer IN GIG x Hotel Copacabana Palace)"></textarea>
+                        <div class="form-text">Descrição detalhada do serviço a ser realizado</div>
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Local Pickup -->
+                        <div class="col-md-8 mb-3">
+                            <label for="novo-pickup" class="form-label">
+                                <i class="fas fa-location-dot text-warning"></i>
+                                Local de Pickup
+                            </label>
+                            <input type="text" class="form-control" id="novo-pickup" name="local_pickup" 
+                                   placeholder="Endereço ou local de coleta">
+                            <div class="form-text">Endereço onde os passageiros serão coletados</div>
+                        </div>
+                        
+                        <!-- Horário -->
+                        <div class="col-md-4 mb-3">
+                            <label for="novo-horario" class="form-label">
+                                <i class="fas fa-clock text-info"></i>
+                                Horário
+                            </label>
+                            <input type="time" class="form-control" id="novo-horario" name="horario">
+                            <div class="form-text">Horário do serviço (opcional)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Número da Venda (obrigatório) -->
+                        <div class="col-md-6 mb-3">
+                            <label for="novo-numero-venda" class="form-label">
+                                <i class="fas fa-ticket-alt text-success"></i>
+                                <strong>Número da Venda *</strong>
+                            </label>
+                            <input type="text" class="form-control" id="novo-numero-venda" name="numero_venda" required
+                                   placeholder="Número ou código da venda">
+                            <div class="form-text">Referência interna da venda</div>
+                        </div>
+                        
+                        <!-- Van (obrigatório) -->
+                        <div class="col-md-6 mb-3">
+                            <label for="novo-van" class="form-label">
+                                <i class="fas fa-van-shuttle text-primary"></i>
+                                <strong>Van *</strong>
+                            </label>
+                            <select class="form-select" id="novo-van" name="van" required>
+                                <option value="">Selecione a van...</option>
+                                <option value="VAN1">Van 1</option>
+                                <option value="VAN2">Van 2</option>
+                            </select>
+                            <div class="form-text">Escolha a van onde o serviço será alocado</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Valor (obrigatório) -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="novo-valor" class="form-label">
+                                <i class="fas fa-dollar-sign text-success"></i>
+                                <strong>Valor (R$) *</strong>
+                            </label>
+                            <input type="number" class="form-control" id="novo-valor" name="valor" required
+                                   min="0" step="0.01" placeholder="0.00">
+                            <div class="form-text">Valor do serviço em reais</div>
+                        </div>
+                        
+                        <!-- Espaço para manter alinhamento -->
+                        <div class="col-md-6 mb-3">
+                            <!-- Vazio para manter layout -->
+                        </div>
+                    </div>
+                    
+                    <!-- Observações -->
+                    <div class="mb-3">
+                        <label for="novo-observacoes" class="form-label">
+                            <i class="fas fa-sticky-note text-secondary"></i>
+                            Observações
+                        </label>
+                        <textarea class="form-control" id="novo-observacoes" name="observacoes" rows="2" 
+                                  placeholder="Observações adicionais sobre o serviço"></textarea>
+                        <div class="form-text">Informações extras que podem ser úteis</div>
+                    </div>
+                    
+                    <!-- Campo oculto com a data da escala -->
+                    <input type="hidden" id="data-escala" name="data_escala" value="{{ escala.data|date:'d-m-Y' }}">
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success" id="btn-salvar-servico">
+                        <span class="spinner-border spinner-border-sm me-2 d-none" id="spinner-adicionar"></span>
+                        <i class="fas fa-plus-circle"></i> Adicionar Serviço
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Modal de Formatação -->
 <div class="modal fade" id="modal-formatar" tabindex="-1" aria-labelledby="modalFormatarLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -4176,6 +4322,158 @@ function exportarVanParaExcel(van) {
     // Mostrar mensagem de sucesso
     const vanNome = van === 'VAN1' ? 'Van 1' : 'Van 2';
     showMessage(`Excel da ${vanNome} baixado com sucesso!`, 'success');
+}
+
+// JavaScript para modal de adicionar serviço manual
+document.addEventListener('DOMContentLoaded', function() {
+    const formAdicionarServico = document.getElementById('form-adicionar-servico');
+    const btnSalvarServico = document.getElementById('btn-salvar-servico');
+    const spinnerAdicionar = document.getElementById('spinner-adicionar');
+    const modalAdicionarServico = document.getElementById('modal-adicionar-servico');
+    
+    // Event listener para o formulário de adicionar serviço
+    if (formAdicionarServico) {
+        formAdicionarServico.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Coletar dados do formulário
+            const formData = new FormData(formAdicionarServico);
+            const data = Object.fromEntries(formData);
+            
+            // Validações básicas - apenas campos obrigatórios
+            if (!data.servico.trim()) {
+                showMessage('Por favor, descreva o serviço/destino', 'error');
+                document.getElementById('novo-servico').focus();
+                return;
+            }
+            
+            if (!data.van) {
+                showMessage('Por favor, selecione uma van', 'error');
+                document.getElementById('novo-van').focus();
+                return;
+            }
+            
+            if (!data.numero_venda.trim()) {
+                showMessage('Por favor, informe o número da venda', 'error');
+                document.getElementById('novo-numero-venda').focus();
+                return;
+            }
+            
+            // Validar valor obrigatório
+            const valor = parseFloat(data.valor);
+            if (!data.valor || valor <= 0) {
+                showMessage('Por favor, informe um valor positivo', 'error');
+                document.getElementById('novo-valor').focus();
+                return;
+            }
+            
+            // Validar horário se preenchido
+            if (data.horario && !/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(data.horario)) {
+                showMessage('Formato de horário inválido. Use HH:MM (ex: 14:30)', 'error');
+                document.getElementById('novo-horario').focus();
+                return;
+            }
+            
+            // Mostrar loading
+            btnSalvarServico.disabled = true;
+            spinnerAdicionar.classList.remove('d-none');
+            btnSalvarServico.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span><i class="fas fa-plus-circle"></i> Adicionando...';
+            
+            // Enviar dados via AJAX
+            fetch('{% url "escalas:adicionar_servico_manual" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    // Sucesso
+                    showMessage(result.message, 'success');
+                    
+                    // Fechar modal
+                    const modal = bootstrap.Modal.getInstance(modalAdicionarServico);
+                    if (modal) {
+                        modal.hide();
+                    }
+                    
+                    // Limpar formulário
+                    formAdicionarServico.reset();
+                    
+                    // Recarregar página após um tempo para mostrar o novo serviço
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                    
+                } else {
+                    // Erro
+                    showMessage('Erro ao adicionar serviço: ' + result.error, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                showMessage('Erro de conexão ao adicionar serviço', 'error');
+            })
+            .finally(() => {
+                // Restaurar botão
+                btnSalvarServico.disabled = false;
+                spinnerAdicionar.classList.add('d-none');
+                btnSalvarServico.innerHTML = '<i class="fas fa-plus-circle"></i> Adicionar Serviço';
+            });
+        });
+    }
+    
+    // Limpar formulário quando modal for aberto
+    if (modalAdicionarServico) {
+        modalAdicionarServico.addEventListener('shown.bs.modal', function () {
+            // Focar no primeiro campo
+            document.getElementById('novo-cliente').focus();
+            
+            // Limpar mensagens de erro anteriores
+            const alerts = document.querySelectorAll('.alert-message');
+            alerts.forEach(alert => alert.remove());
+        });
+        
+        // Limpar formulário quando modal for fechado
+        modalAdicionarServico.addEventListener('hidden.bs.modal', function () {
+            if (formAdicionarServico) {
+                formAdicionarServico.reset();
+            }
+        });
+    }
+    
+    // Auto-complete para campos comuns
+    const clienteInput = document.getElementById('novo-cliente');
+    const servicoInput = document.getElementById('novo-servico');
+    
+    // Adicionar algumas sugestões comuns
+    if (clienteInput) {
+        clienteInput.addEventListener('input', function() {
+            const valor = this.value.toLowerCase();
+            // Você pode adicionar auto-complete aqui no futuro
+        });
+    }
+    
+    if (servicoInput) {
+        servicoInput.addEventListener('input', function() {
+            const valor = this.value.toLowerCase();
+            // Sugerir direção automaticamente
+            if (valor.includes('aeroporto') || valor.includes('gig') || valor.includes('sdu')) {
+                if (!valor.includes(' in ') && !valor.includes(' out ')) {
+                    // Sugerir adicionar direção
+                }
+            }
+        });
+    }
+});
+
+// Função para abrir o modal de adicionar serviço
+function abrirModalAdicionarServico() {
+    const modal = new bootstrap.Modal(document.getElementById('modal-adicionar-servico'));
+    modal.show();
 }
 </script>
 
