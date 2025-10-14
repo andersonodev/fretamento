@@ -3,745 +3,264 @@
 
 {% block title %}Visualizar Escala - {{ escala.data|date:"d/m/Y" }}{% endblock %}
 
-{% block extra_css %}
-<style>
-/* Reset e variáveis */
-:root {
-    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
-    --border-radius: 12px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --header-height: 80px;
-}
-
-/* Layout principal */
-.escalas-container {
-    background: var(--bg-gradient);
-    min-height: calc(100vh - var(--header-height));
-    padding: 2rem 0;
-}
-
-/* Cabeçalho refinado */
-.page-header {
-    background: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    border: 1px solid rgba(226, 232, 240, 0.5);
-}
-
-.page-title {
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 0.5rem;
-}
-
-.page-subtitle {
-    color: #64748b;
-    font-size: 0.95rem;
-    margin-bottom: 0;
-}
-
-/* Status badge refinado */
-.status-badge {
-    padding: 0.375rem 0.875rem;
-    border-radius: 6px;
-    font-weight: 500;
-    font-size: 0.8rem;
-    letter-spacing: 0.025em;
-}
-
-/* Botões modernos */
-.btn-group .btn {
-    border-radius: 8px;
-    padding: 0.625rem 1.25rem;
-    font-weight: 500;
-    transition: var(--transition);
-    border: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.btn-group .btn:not(:last-child) {
-    margin-right: 0.5rem;
-}
-
-.btn-group .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Cards de resumo */
-.summary-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.summary-card {
-    background: white;
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    box-shadow: var(--card-shadow);
-    border: 1px solid rgba(226, 232, 240, 0.5);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-.summary-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--card-color);
-}
-
-.summary-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--card-shadow-hover);
-}
-
-.summary-card.primary { --card-color: #1d4ed8; }
-.summary-card.success { --card-color: #059669; }
-.summary-card.info { --card-color: #0284c7; }
-.summary-card.warning { --card-color: #d97706; }
-
-.summary-card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    color: white;
-    font-size: 1.25rem;
-}
-
-.summary-card.primary .summary-card-icon { background: #1d4ed8; }
-.summary-card.success .summary-card-icon { background: #059669; }
-.summary-card.info .summary-card-icon { background: #0284c7; }
-.summary-card.warning .summary-card-icon { background: #d97706; }
-
-.summary-card-title {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
-}
-
-.summary-card-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1e293b;
-    line-height: 1;
-}
-
-/* Filtros refinados */
-.filters-card {
-    background: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow);
-    border: 1px solid rgba(226, 232, 240, 0.5);
-    margin-bottom: 2rem;
-}
-
-.filters-header {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-    padding: 1rem 2rem;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-
-.filters-body {
-    padding: 2rem;
-}
-
-.form-label {
-    font-weight: 600;
-    color: #374151;
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-}
-
-.form-control, .form-select {
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    padding: 0.625rem 0.875rem;
-    transition: var(--transition);
-    font-size: 0.9rem;
-}
-
-.form-control:focus, .form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
-}
-
-/* Grupos de serviços */
-.groups-card {
-    background: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow);
-    border: 1px solid rgba(226, 232, 240, 0.5);
-    margin-bottom: 2rem;
-}
-
-.groups-header {
-    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
-    border-bottom: 1px solid rgba(34, 197, 94, 0.2);
-    padding: 1rem 2rem;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-
-.group-item {
-    background: white;
-    border: 2px solid #dcfce7;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-bottom: 0.75rem;
-    transition: var(--transition);
-}
-
-.group-item:hover {
-    border-color: #22c55e;
-    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
-}
-
-/* Van containers */
-.van-container {
-    background: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow);
-    border: 1px solid rgba(226, 232, 240, 0.5);
-    height: fit-content;
-    min-height: 600px;
-    margin-bottom: 2rem;
-}
-
-.van-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #1e40af 100%);
-    color: white;
-    padding: 1.5rem 2rem;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-    border-bottom: none;
-}
-
-.van-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0;
-}
-
-.van-badges {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.van-badge {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    backdrop-filter: blur(10px);
-}
-
-.van-body {
-    padding: 1.5rem;
-    background: #fafbfc;
-    min-height: 500px;
-}
-
-/* Zona de drop */
-.drop-zone {
-    border: 2px dashed #d1d5db;
-    border-radius: 10px;
-    padding: 2rem;
-    text-align: center;
-    color: #6b7280;
-    background: rgba(249, 250, 251, 0.5);
-    transition: var(--transition);
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.drop-zone.drag-over {
-    border-color: var(--primary-color);
-    background: rgba(29, 78, 216, 0.05);
-    color: var(--primary-color);
-}
-
-.drop-zone-icon {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    opacity: 0.5;
-}
-
-.drop-zone-text {
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-/* Cards de serviço refinados */
-.service-card {
-    background: white;
-    border: 1px solid rgba(226, 232, 240, 0.8);
-    border-radius: 10px;
-    padding: 1.25rem;
-    margin-bottom: 1rem;
-    transition: var(--transition);
-    cursor: grab;
-    position: relative;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.service-card:hover {
-    border-color: var(--primary-color);
-    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.1);
-    transform: translateY(-1px);
-}
-
-.service-card:active {
-    cursor: grabbing;
-}
-
-.service-card.dragging {
-    opacity: 0.7;
-    transform: rotate(2deg) scale(0.98);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.service-header {
-    display: flex;
-    justify-content: between;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-}
-
-.service-client {
-    font-weight: 600;
-    color: #1e293b;
-    font-size: 0.95rem;
-    margin-bottom: 0.25rem;
-}
-
-.service-code {
-    color: #64748b;
-    font-size: 0.8rem;
-    font-family: 'SF Mono', Monaco, monospace;
-}
-
-.service-badges {
-    display: flex;
-    gap: 0.375rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
-}
-
-.service-badge {
-    padding: 0.25rem 0.625rem;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    line-height: 1;
-}
-
-.service-badge.pax {
-    background: #dbeafe;
-    color: #1d4ed8;
-}
-
-.service-badge.price {
-    background: #d1fae5;
-    color: #059669;
-}
-
-.service-details {
-    space-y: 0.5rem;
-}
-
-.service-detail {
-    display: flex;
-    align-items: center;
-    font-size: 0.875rem;
-    color: #374151;
-    margin-bottom: 0.5rem;
-}
-
-.service-detail-icon {
-    width: 16px;
-    text-align: center;
-    margin-right: 0.5rem;
-    color: #6b7280;
-}
-
-.service-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.25rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid #f1f5f9;
-}
-
-.service-action {
-    width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    transition: var(--transition);
-    cursor: pointer;
-}
-
-.service-action:hover {
-    transform: scale(1.1);
-}
-
-/* Alert refinado */
-.alert.modern {
-    border: none;
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    border-left: 4px solid;
-}
-
-.alert.modern.alert-success {
-    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
-    border-left-color: #22c55e;
-    color: #15803d;
-}
-
-.alert.modern.alert-info {
-    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-    border-left-color: #3b82f6;
-    color: #1d4ed8;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .summary-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    .van-container {
-        margin-bottom: 1rem;
-    }
-    
-    .page-header {
-        padding: 1.5rem;
-    }
-    
-    .filters-body {
-        padding: 1.5rem;
-    }
-}
-
-/* Animações suaves */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-/* Loading states */
-.loading {
-    position: relative;
-    overflow: hidden;
-}
-
-.loading::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-    100% {
-        left: 100%;
-    }
-}
-</style>
-{% endblock %}
-
 {% block content %}
-<div class="escalas-container">
-    <div class="container-fluid">
-        <!-- Cabeçalho refinado -->
-        <div class="page-header fade-in-up">
-            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center">
-                <div class="mb-3 mb-lg-0">
-                    <h1 class="page-title">
-                        <i class="fas fa-calendar-check text-primary me-2"></i>
-                        Escala {{ escala.data|date:"d/m/Y" }}
+<div class="container-fluid">
+    <!-- Cabeçalho -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="mb-0">
+                        <i class="fas fa-calendar-check text-primary"></i>
+                        Escala - {{ escala.data|date:"l, d/m/Y" }}
                     </h1>
-                    <p class="page-subtitle">
-                        Status: 
-                        <span class="status-badge bg-{% if escala.etapa == 'ESTRUTURA' %}secondary{% elif escala.etapa == 'DADOS_PUXADOS' %}primary{% else %}success{% endif %}">
-                            {{ escala.get_etapa_display }}
-                        </span>
+                    <p class="text-muted">
+                        Status: <span class="badge bg-{% if escala.etapa == 'ESTRUTURA' %}secondary{% elif escala.etapa == 'DADOS_PUXADOS' %}primary{% else %}success{% endif %}">{{ escala.get_etapa_display }}</span>
                         {% if escala.data_origem %}
-                            • Dados de: {{ escala.data_origem|date:"d/m/Y" }}
+                            | Dados de: {{ escala.data_origem|date:"d/m/Y" }}
                         {% endif %}
                     </p>
                 </div>
-                <div class="btn-group flex-wrap" role="group">
-                    <a href="{% url 'escalas:gerenciar_escalas_mes' mes=mes ano=ano %}" class="btn btn-outline-secondary">
-                        <i class="fas fa-arrow-left me-1"></i> Voltar
+                <div class="btn-group" role="group">
+                    <a href="{% url 'escalas:gerenciar_escalas_mes' mes=mes ano=ano %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar
                     </a>
                     {% if escala.tem_dados %}
                         <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" class="btn btn-success">
-                            <i class="fas fa-file-excel me-1"></i> Excel
+                            <i class="fas fa-file-excel"></i> Excel
                         </a>
+                    {% endif %}
+                    {% if escala.tem_dados %}
                         <button type="button" class="btn btn-primary" id="btn-precificar" onclick="precificarEscala()">
                             <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
-                            <i class="fas fa-calculator button-icon me-1"></i>
-                            <span class="button-text">Precificar</span>
+                            <i class="fas fa-calculator button-icon"></i>
+                            <span class="button-text ms-1">Precificar</span>
                         </button>
                         <form method="post" class="d-inline" id="form-agrupar">
                             {% csrf_token %}
                             <button type="submit" name="acao" value="agrupar" class="btn btn-info" id="btn-agrupar">
                                 <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
-                                <i class="fas fa-layer-group button-icon me-1"></i>
-                                <span class="button-text">Agrupar</span>
+                                <i class="fas fa-layer-group button-icon"></i>
+                                <span class="button-text ms-1">Agrupar</span>
                             </button>
                         </form>
                         <form method="post" class="d-inline" id="form-escalar">
                             {% csrf_token %}
                             <button type="submit" name="acao" value="otimizar" class="btn btn-warning" id="btn-escalar">
                                 <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
-                                <i class="fas fa-magic button-icon me-1"></i>
-                                <span class="button-text">Escalar</span>
+                                <i class="fas fa-magic button-icon"></i>
+                                <span class="button-text ms-1">Escalar</span>
                             </button>
                         </form>
-                        <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modal-formatar">
-                            <i class="fas fa-paint-brush me-1"></i> 
+                        <!-- Permitir formatação sempre que a escala tiver dados -->
+                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal-formatar">
+                            <i class="fas fa-paint-brush"></i> 
                             {% if escala.etapa == 'OTIMIZADA' %}
                                 Formatar
                             {% else %}
                                 Limpar/Formatar
                             {% endif %}
                         </button>
-                        <button type="button" class="btn btn-outline-success" onclick="abrirModalAdicionarServico()" title="Adicionar serviço manualmente">
-                            <i class="fas fa-plus-circle me-1"></i> Adicionar Serviço
+                        
+                        <!-- Botão para adicionar serviço manual -->
+                        <button type="button" class="btn btn-success" onclick="abrirModalAdicionarServico()" title="Adicionar serviço manualmente">
+                            <i class="fas fa-plus-circle"></i> Adicionar Serviço
                         </button>
                     {% endif %}
                 </div>
             </div>
         </div>
+    </div>
 
     {% if not escala.tem_dados %}
         <!-- Estrutura Criada - Instruções -->
         <div class="row">
             <div class="col-12">
-                <div class="alert alert-info modern fade-in-up">
-                    <h5><i class="fas fa-info-circle me-2"></i>Estrutura Criada com Sucesso!</h5>
-                    <p class="mb-3">A estrutura básica da escala foi criada. Agora você pode:</p>
+                <div class="alert alert-info">
+                    <h5><i class="fas fa-info-circle"></i> Estrutura Criada com Sucesso!</h5>
+                    <p class="mb-2">A estrutura básica da escala foi criada. Agora você pode:</p>
                     <a href="{% url 'escalas:puxar_dados' data=escala.data|date_br %}" class="btn btn-primary">
-                        <i class="fas fa-download me-1"></i> Puxar Dados de uma Data
+                        <i class="fas fa-download"></i> Puxar Dados de uma Data
                     </a>
                 </div>
             </div>
         </div>
     {% else %}
         <!-- Instruções Kanban -->
-        <div class="alert alert-success modern fade-in-up" role="alert">
-            <h6><i class="fas fa-info-circle me-2"></i>Sistema Kanban Avançado</h6>
-            <div class="row">
-                <div class="col-md-6">
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <h6><i class="fas fa-info-circle"></i> Sistema Kanban Avançado</h6>
                     <ul class="mb-0 small">
                         <li><strong>Mover entre vans:</strong> Arraste um serviço para o espaço vazio da outra van</li>
                         <li><strong>Agrupar serviços:</strong> Arraste um serviço e solte BEM NO CENTRO de outro cartão</li>
                         <li><strong>Indicadores visuais:</strong> Verde = Agrupar | Azul = Mover para van</li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul class="mb-0 small">
                         <li><strong>Desagrupar individual:</strong> Duplo clique no cartão OU clique no botão <i class="fas fa-unlink text-danger"></i></li>
                         <li><strong>Desagrupar completo:</strong> Clique direito no cartão → "Desagrupar grupo completo"</li>
                         <li><strong>Menu de contexto:</strong> Clique direito em qualquer cartão para mais opções</li>
+                        <li><strong>Filtrar:</strong> Use os filtros acima para encontrar serviços específicos</li>
                     </ul>
-                </div>
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-
-        <!-- Cards de Resumo Moderno -->
-        <div class="summary-cards fade-in-up">
-            <div class="summary-card primary">
-                <div class="summary-card-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="summary-card-title">Total PAX</div>
-                <div class="summary-card-value">{{ van1.total_pax|add:van2.total_pax }}</div>
-            </div>
-
-            <div class="summary-card success">
-                <div class="summary-card-icon">
-                    <i class="fas fa-dollar-sign"></i>
-                </div>
-                <div class="summary-card-title">Valor Total</div>
-                <div class="summary-card-value">{{ van1.total_valor|add:van2.total_valor|currency }}</div>
-            </div>
-
-            <div class="summary-card info">
-                <div class="summary-card-icon">
-                    <i class="fas fa-layer-group"></i>
-                </div>
-                <div class="summary-card-title">Total Serviços</div>
-                <div class="summary-card-value">{{ total_servicos }}</div>
-            </div>
-
-            <div class="summary-card {% if escala.esta_otimizada %}success{% else %}warning{% endif %}">
-                <div class="summary-card-icon">
-                    <i class="fas fa-magic"></i>
-                </div>
-                <div class="summary-card-title">Status</div>
-                <div class="summary-card-value" style="font-size: 1.25rem;">
-                    {% if escala.esta_otimizada %}Otimizada{% else %}Distribuição Básica{% endif %}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             </div>
         </div>
 
-        <!-- Filtros Modernos -->
-        <div class="filters-card fade-in-up">
-            <div class="filters-header">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h6 class="mb-0 fw-600">
-                        <i class="fas fa-filter text-info me-2"></i>Filtros de Busca
-                    </h6>
-                    <button class="btn btn-outline-secondary btn-sm" id="clearFilters">
-                        <i class="fas fa-times me-1"></i> Limpar
-                    </button>
+        <!-- Resumo Geral -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card text-white bg-primary">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">
+                            <i class="fas fa-users"></i> Total PAX
+                        </h5>
+                        <h3>{{ van1.total_pax|add:van2.total_pax }}</h3>
+                    </div>
                 </div>
             </div>
-            <div class="filters-body">
-                <div class="row g-3">
-                    <!-- Filtro por PAX -->
-                    <div class="col-md-3">
-                        <label for="filtro-pax" class="form-label">
-                            <i class="fas fa-users text-primary me-1"></i> PAX
-                        </label>
-                        <div class="input-group">
-                            <input type="number" class="form-control" id="filtro-pax-min" placeholder="Min" min="1">
-                            <span class="input-group-text">até</span>
-                            <input type="number" class="form-control" id="filtro-pax-max" placeholder="Max" min="1">
+            <div class="col-md-3">
+                <div class="card text-white bg-success">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">
+                            <i class="fas fa-dollar-sign"></i> Valor Total
+                        </h5>
+                        <h3>{{ van1.total_valor|add:van2.total_valor|currency }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-info">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">
+                            <i class="fas fa-layer-group"></i> Total Serviços
+                        </h5>
+                        <h3>{{ total_servicos }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white {% if escala.esta_otimizada %}bg-success{% else %}bg-warning{% endif %}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">
+                            <i class="fas fa-magic"></i> Status
+                        </h5>
+                        <h6>{% if escala.esta_otimizada %}Otimizada{% else %}Distribuição Básica{% endif %}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card border-info">
+                    <div class="card-header bg-light">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-filter text-info"></i> Filtros de Busca
+                            <button class="btn btn-sm btn-outline-secondary ms-2" id="clearFilters">
+                                <i class="fas fa-times"></i> Limpar
+                            </button>
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <!-- Filtro por PAX -->
+                            <div class="col-md-3">
+                                <label for="filtro-pax" class="form-label small">
+                                    <i class="fas fa-users text-primary"></i> PAX
+                                </label>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control" id="filtro-pax-min" placeholder="Min" min="1">
+                                    <span class="input-group-text">até</span>
+                                    <input type="number" class="form-control" id="filtro-pax-max" placeholder="Max" min="1">
+                                </div>
+                            </div>
+                            
+                            <!-- Filtro por Serviço -->
+                            <div class="col-md-4">
+                                <label for="filtro-servico" class="form-label small">
+                                    <i class="fas fa-map-marker-alt text-danger"></i> Serviço/Destino
+                                </label>
+                                <input type="text" class="form-control form-control-sm" id="filtro-servico" 
+                                       placeholder="Digite para filtrar por serviço...">
+                            </div>
+                            
+                            <!-- Filtro por Local Pickup -->
+                            <div class="col-md-3">
+                                <label for="filtro-pickup" class="form-label small">
+                                    <i class="fas fa-location-dot text-warning"></i> Local Pickup
+                                </label>
+                                <input type="text" class="form-control form-control-sm" id="filtro-pickup" 
+                                       placeholder="Digite para filtrar pickup...">
+                            </div>
+                            
+                            <!-- Filtro por Van -->
+                            <div class="col-md-2">
+                                <label for="filtro-van" class="form-label small">
+                                    <i class="fas fa-van-shuttle text-info"></i> Van
+                                </label>
+                                <select class="form-select form-select-sm" id="filtro-van">
+                                    <option value="">Todas</option>
+                                    <option value="VAN1">Van 1</option>
+                                    <option value="VAN2">Van 2</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Filtro por Status -->
+                            {% if escala.esta_otimizada %}
+                            <div class="col-md-2">
+                                <label for="filtro-status" class="form-label small">
+                                    <i class="fas fa-check-circle text-success"></i> Status
+                                </label>
+                                <select class="form-select form-select-sm" id="filtro-status">
+                                    <option value="">Todos</option>
+                                    <option value="ALOCADO">Alocados</option>
+                                    <option value="NAO_ALOCADO">Não alocados</option>
+                                </select>
+                            </div>
+                            {% endif %}
                         </div>
-                    </div>
-                    
-                    <!-- Filtro por Serviço -->
-                    <div class="col-md-4">
-                        <label for="filtro-servico" class="form-label">
-                            <i class="fas fa-map-marker-alt text-danger me-1"></i> Serviço/Destino
-                        </label>
-                        <input type="text" class="form-control" id="filtro-servico" 
-                               placeholder="Digite para filtrar por serviço...">
-                    </div>
-                    
-                    <!-- Filtro por Local Pickup -->
-                    <div class="col-md-3">
-                        <label for="filtro-pickup" class="form-label">
-                            <i class="fas fa-location-dot text-warning me-1"></i> Local Pickup
-                        </label>
-                        <input type="text" class="form-control" id="filtro-pickup" 
-                               placeholder="Digite para filtrar pickup...">
-                    </div>
-                    
-                    <!-- Filtro por Van -->
-                    <div class="col-md-2">
-                        <label for="filtro-van" class="form-label">
-                            <i class="fas fa-van-shuttle text-info me-1"></i> Van
-                        </label>
-                        <select class="form-select" id="filtro-van">
-                            <option value="">Todas</option>
-                            <option value="VAN1">Van 1</option>
-                            <option value="VAN2">Van 2</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Filtro por Status -->
-                    {% if escala.esta_otimizada %}
-                    <div class="col-md-2">
-                        <label for="filtro-status" class="form-label">
-                            <i class="fas fa-check-circle text-success me-1"></i> Status
-                        </label>
-                        <select class="form-select" id="filtro-status">
-                            <option value="">Todos</option>
-                            <option value="ALOCADO">Alocados</option>
-                            <option value="NAO_ALOCADO">Não alocados</option>
-                        </select>
-                    </div>
-                    {% endif %}
-                </div>
-                
-                <!-- Filtros rápidos -->
-                <div class="mt-4">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted" id="filtro-stats">
-                            Mostrando todos os serviços
-                        </small>
-                        <div class="btn-group btn-group-sm flex-wrap" role="group">
-                            <button type="button" class="btn btn-outline-primary" id="filtro-pax-alto" title="PAX Acima de 4">
-                                <i class="fas fa-users"></i> PAX 4+
-                            </button>
-                            <button type="button" class="btn btn-outline-secondary" id="filtro-pax-baixo" title="PAX de 1 a 3">
-                                <i class="fas fa-user"></i> PAX 1-3
-                            </button>
-                            <button type="button" class="btn btn-outline-info" id="filtro-hotelbeds" title="HOTELBEDS">
-                                <i class="fas fa-hotel"></i> HOTELBEDS
-                            </button>
-                            <button type="button" class="btn btn-outline-success" id="filtro-holiday" title="Holiday">
-                                <i class="fas fa-plane"></i> Holiday
-                            </button>
-                            <button type="button" class="btn btn-outline-warning" id="filtro-transfer-in" title="Transfer IN">
-                                <i class="fas fa-arrow-right"></i> IN
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" id="filtro-transfer-out" title="Transfer OUT">
-                                <i class="fas fa-arrow-left"></i> OUT
-                            </button>
-                            <button type="button" class="btn btn-outline-dark" id="filtro-barra" title="Barra da Tijuca">
-                                <i class="fas fa-map-marker-alt"></i> Barra
-                            </button>
-                            <button type="button" class="btn btn-outline-warning" id="filtro-prioritarios" title="Serviços Prioritários">
-                                <i class="fas fa-star"></i> Prioritários
-                            </button>
-                            <button type="button" class="btn btn-outline-success" id="filtro-alocados" title="Serviços Alocados">
-                                <i class="fas fa-check"></i> Alocados
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" id="filtro-nao-alocados" title="Serviços Não Alocados">
-                                <i class="fas fa-times"></i> Não Alocados
-                            </button>
+                        
+                        <!-- Estatísticas de Filtro -->
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted" id="filtro-stats">
+                                        Mostrando todos os serviços
+                                    </small>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <button type="button" class="btn btn-outline-primary" id="filtro-pax-alto" title="PAX Acima de 4 (Clique novamente para remover filtro)">
+                                            <i class="fas fa-users"></i> PAX 4+
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary" id="filtro-pax-baixo" title="PAX de 1 a 3 (Clique novamente para remover filtro)">
+                                            <i class="fas fa-user"></i> PAX 1-3
+                                        </button>
+                                        <button type="button" class="btn btn-outline-info" id="filtro-hotelbeds" title="HOTELBEDS (Clique novamente para remover filtro)">
+                                            <i class="fas fa-hotel"></i> HOTELBEDS
+                                        </button>
+                                        <button type="button" class="btn btn-outline-success" id="filtro-holiday" title="Holiday (Clique novamente para remover filtro)">
+                                            <i class="fas fa-plane"></i> Holiday
+                                        </button>
+                                        <button type="button" class="btn btn-outline-warning" id="filtro-transfer-in" title="Transfer IN (Clique novamente para remover filtro)">
+                                            <i class="fas fa-arrow-right"></i> IN
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger" id="filtro-transfer-out" title="Transfer OUT (Clique novamente para remover filtro)">
+                                            <i class="fas fa-arrow-left"></i> OUT
+                                        </button>
+                                        <button type="button" class="btn btn-outline-dark" id="filtro-barra" title="Barra da Tijuca (Clique novamente para remover filtro)">
+                                            <i class="fas fa-map-marker-alt"></i> Barra
+                                        </button>
+                                        <button type="button" class="btn btn-outline-warning" id="filtro-prioritarios" title="Serviços Prioritários (4-10 PAX + Hotelbeds/Holiday/Barra) (Clique novamente para remover filtro)">
+                                            <i class="fas fa-star"></i> Prioritários
+                                        </button>
+                                        <button type="button" class="btn btn-outline-success" id="filtro-alocados" title="Serviços Alocados (Clique novamente para remover filtro)">
+                                            <i class="fas fa-check"></i> Alocados
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger" id="filtro-nao-alocados" title="Serviços Não Alocados (Clique novamente para remover filtro)">
+                                            <i class="fas fa-times"></i> Não Alocados
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -750,92 +269,96 @@
 
         <!-- Informações sobre Grupos (se existirem) -->
         {% if grupos_van1 or grupos_van2 %}
-        <div class="groups-card fade-in-up">
-            <div class="groups-header">
-                <h6 class="mb-0 fw-600">
-                    <i class="fas fa-layer-group text-success me-2"></i> 
-                    Grupos de Serviços
-                    <span class="badge bg-success ms-2">{{ grupos_van1.count|add:grupos_van2.count }} grupos ativos</span>
-                </h6>
-            </div>
-            <div class="card-body p-3">
-                <div class="row">
-                    {% if grupos_van1 %}
-                        <div class="col-lg-6">
-                            <h6 class="text-primary mb-3 fw-600">Van 1</h6>
-                            {% for grupo in grupos_van1 %}
-                                <div class="group-item">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <div class="fw-600 text-dark">Grupo #{{ grupo|grupo_sequencial:grupos_van1 }}</div>
-                                            <small class="text-muted">{{ grupo.cliente_principal }}</small>
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-layer-group text-success"></i> 
+                            Grupos de Serviços
+                            <small class="text-muted">({{ grupos_van1.count|add:grupos_van2.count }} grupos ativos)</small>
+                        </h6>
+                    </div>
+                    <div class="card-body p-2">
+                        <div class="row">
+                            {% if grupos_van1 %}
+                                <div class="col-md-6">
+                                    <h6 class="text-primary mb-2">Van 1</h6>
+                                    {% for grupo in grupos_van1 %}
+                                        <div class="card mb-2 border-success">
+                                            <div class="card-body p-2">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <strong>Grupo #{{ grupo|grupo_sequencial:grupos_van1 }}</strong>
+                                                        <small class="d-block text-muted">{{ grupo.cliente_principal }}</small>
+                                                    </div>
+                                                    <div class="text-end">
+                                                        <span class="badge bg-success">{{ grupo.servicos.count }} serviços</span>
+                                                        <small class="d-block text-muted">{{ grupo.total_pax }} PAX</small>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="text-end">
-                                            <span class="badge bg-success">{{ grupo.servicos.count }} serviços</span>
-                                            <div class="small text-muted mt-1">{{ grupo.total_pax }} PAX</div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                    
-                    {% if grupos_van2 %}
-                        <div class="col-lg-6">
-                            <h6 class="text-primary mb-3 fw-600">Van 2</h6>
-                            {% for grupo in grupos_van2 %}
-                                <div class="group-item">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <div class="fw-600 text-dark">Grupo #{{ grupo|grupo_sequencial:grupos_van2 }}</div>
-                                            <small class="text-muted">{{ grupo.cliente_principal }}</small>
+                            {% endif %}
+                            
+                            {% if grupos_van2 %}
+                                <div class="col-md-6">
+                                    <h6 class="text-primary mb-2">Van 2</h6>
+                                    {% for grupo in grupos_van2 %}
+                                        <div class="card mb-2 border-success">
+                                            <div class="card-body p-2">
+                                                <div class="d-flex justify-content-between">
+                                                    <div>
+                                                        <strong>Grupo #{{ grupo|grupo_sequencial:grupos_van2 }}</strong>
+                                                        <small class="d-block text-muted">{{ grupo.cliente_principal }}</small>
+                                                    </div>
+                                                    <div class="text-end">
+                                                        <span class="badge bg-success">{{ grupo.servicos.count }} serviços</span>
+                                                        <small class="d-block text-muted">{{ grupo.total_pax }} PAX</small>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="text-end">
-                                            <span class="badge bg-success">{{ grupo.servicos.count }} serviços</span>
-                                            <div class="small text-muted mt-1">{{ grupo.total_pax }} PAX</div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
-                            {% endfor %}
+                            {% endif %}
                         </div>
-                    {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
         {% endif %}
 
         <!-- Interface Kanban - Van 1 e Van 2 -->
-        <div class="row g-4" id="kanban-container">
+        <div class="row" id="kanban-container">
             <!-- Van 1 -->
-            <div class="col-lg-6">
-                <div class="van-container fade-in-up">
-                    <div class="van-header">
-                        <div class="d-flex justify-content-between align-items-center">
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0 d-flex justify-content-between align-items-center">
                             <div>
-                                <h5 class="van-title">
-                                    <i class="fas fa-van-shuttle me-2"></i>Van 1
-                                </h5>
+                                <i class="fas fa-van-shuttle"></i> Van 1
+                                <span class="badge bg-light text-dark ms-2" id="van1-pax">{{ van1.total_pax }} PAX</span>
+                                <span class="badge bg-light text-dark ms-1" id="van1-valor">{{ van1.total_valor|currency }}</span>
+                                <span class="badge bg-light text-dark ms-1" id="van1-servicos">{{ van1.count }} serviços</span>
                             </div>
-                            <div class="van-badges">
-                                <span class="van-badge" id="van1-pax">{{ van1.total_pax }} PAX</span>
-                                <span class="van-badge" id="van1-valor">{{ van1.total_valor|currency }}</span>
-                                <span class="van-badge" id="van1-servicos">{{ van1.count }} serviços</span>
+                            <div>
+                                {% if escala.tem_dados %}
+                                    <button type="button" 
+                                            class="btn btn-success btn-sm" 
+                                            onclick="exportarVanParaExcel('VAN1')" 
+                                            title="Exportar Van 1 para Excel">
+                                        <i class="fas fa-file-excel"></i>
+                                    </button>
+                                {% endif %}
                             </div>
-                        </div>
-                        {% if escala.tem_dados %}
-                            <div class="mt-2">
-                                <button type="button" 
-                                        class="btn btn-success btn-sm me-2" 
-                                        onclick="exportarVanParaExcel('VAN1')" 
-                                        title="Exportar Van 1 para Excel">
-                                    <i class="fas fa-file-excel"></i>
-                                </button>
-                            </div>
-                        {% endif %}
+                        </h5>
                     </div>
-                    <div class="van-body" id="van1-container" data-van="VAN1">
+                    <div class="card-body p-2" id="van1-container" data-van="VAN1">
                         {% for alocacao in van1.servicos %}
-                            <div class="service-card" 
+                            <div class="servico-card" 
                                  draggable="true"
                                  data-alocacao-id="{{ alocacao.id }}" 
                                  data-servico-id="{{ alocacao.servico.id }}"
@@ -846,133 +369,151 @@
                                  data-cliente="{{ alocacao.servico.cliente|lower }}"
                                  data-van="VAN1"
                                  data-status="{{ alocacao.status_alocacao }}">
-                                
-                                {% if alocacao.grupo_info %}
-                                    <div class="service-group-header">
-                                        <i class="fas fa-layer-group text-success me-1"></i> 
-                                        <span class="fw-600">Grupo #{{ alocacao.grupo_info.grupo|grupo_sequencial:grupos_van1 }}</span>
-                                        <span class="badge bg-success ms-2">{{ alocacao.grupo_info.grupo.servicos.count }} serviços</span>
-                                        {% if alocacao.grupo_info.grupo.get_vendas_unicas %}
-                                            <span class="text-muted ms-2">• {{ alocacao.grupo_info.grupo.get_vendas_unicas }}</span>
-                                        {% endif %}
-                                        <button type="button" 
-                                                class="service-action bg-danger text-white ms-auto"
-                                                onclick="desagruparServico({{ alocacao.id }})"
-                                                title="Remover do grupo">
-                                            <i class="fas fa-unlink"></i>
-                                        </button>
-                                    </div>
-                                {% endif %}
-                                
-                                <div class="service-header">
-                                    <div>
-                                        <div class="service-client">
-                                            {% if alocacao.grupo_info %}
-                                                {{ alocacao.grupo_info.grupo.get_clientes_concatenados }}
-                                            {% else %}
-                                                {{ alocacao.servico.cliente }}
-                                            {% endif %}
-                                        </div>
-                                        <div class="service-code">
-                                            #{{ alocacao.servico.numero_da_compra|default:"-" }}
-                                        </div>
-                                    </div>
-                                    <div class="service-badges">
-                                        {% if alocacao.grupo_info %}
-                                            <span class="service-badge pax">{{ alocacao.grupo_info.grupo.total_pax }} PAX</span>
-                                            <span class="service-badge price">{{ alocacao.grupo_info.grupo.total_valor|currency }}</span>
-                                        {% else %}
-                                            <span class="service-badge pax">{{ alocacao.servico.pax }} PAX</span>
-                                            {% if alocacao.preco_calculado is not None %}
-                                                <span class="service-badge price">{{ alocacao.preco_calculado|currency }}</span>
-                                            {% endif %}
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                
-                                <div class="service-details">
-                                    <div class="service-detail">
-                                        <i class="fas fa-map-marker-alt service-detail-icon text-danger"></i>
-                                        {{ alocacao.servico.servico }}
-                                    </div>
-                                    
+                                <div class="card mb-2 border {% if alocacao.grupo_info %}border-success{% endif %}" {% if alocacao.grupo_info %}title="Duplo clique para desagrupar | Clique direito para mais opções"{% endif %}>
                                     {% if alocacao.grupo_info %}
-                                        {% if alocacao.grupo_info.grupo.get_pickups_concatenados %}
-                                            <div class="service-detail">
-                                                <i class="fas fa-location-dot service-detail-icon text-warning"></i>
-                                                {{ alocacao.grupo_info.grupo.get_pickups_concatenados }}
-                                            </div>
-                                        {% endif %}
-                                        {% if alocacao.grupo_info.grupo.get_horarios_concatenados %}
-                                            <div class="service-detail">
-                                                <i class="fas fa-clock service-detail-icon text-info"></i>
-                                                {{ alocacao.grupo_info.grupo.get_horarios_concatenados }}
-                                            </div>
-                                        {% endif %}
-                                    {% else %}
-                                        {% if alocacao.servico.local_pickup %}
-                                            <div class="service-detail">
-                                                <i class="fas fa-location-dot service-detail-icon text-warning"></i>
-                                                {{ alocacao.servico.local_pickup }}
-                                            </div>
-                                        {% endif %}
-                                        <div class="service-detail">
-                                            <i class="fas fa-clock service-detail-icon text-info"></i>
-                                            {% if alocacao.servico.horario %}
-                                                {{ alocacao.servico.horario|time:"H:i" }}
-                                            {% else %}
-                                                <span class="text-warning">SEM HORÁRIO</span>
-                                            {% endif %}
+                                        <div class="card-header p-1 bg-light">
+                                            <small class="text-success">
+                                                <i class="fas fa-layer-group"></i> 
+                                                Grupo #{{ alocacao.grupo_info.grupo|grupo_sequencial:grupos_van1 }} 
+                                                ({{ alocacao.grupo_info.grupo.servicos.count }} serviços){% if alocacao.grupo_info.grupo.get_vendas_unicas %}<br><i class="fas fa-hashtag"></i> {{ alocacao.grupo_info.grupo.get_vendas_unicas }}{% endif %}
+                                                <button type="button" 
+                                                        class="btn btn-outline-danger btn-sm float-end py-0 px-1"
+                                                        onclick="desagruparServico({{ alocacao.id }})"
+                                                        title="Remover do grupo">
+                                                    <i class="fas fa-unlink"></i>
+                                                </button>
+                                            </small>
                                         </div>
                                     {% endif %}
-                                </div>
-
-                                <div class="service-actions">
-                                    {% if alocacao.veiculo_recomendado %}
-                                        <span class="badge bg-secondary me-2">{{ alocacao.veiculo_recomendado }}</span>
-                                    {% endif %}
-                                    
-                                    {% if alocacao.automatica %}
-                                        <span class="badge bg-info me-2">Auto</span>
-                                    {% else %}
-                                        <span class="badge bg-dark me-2">Manual</span>
-                                    {% endif %}
-
-                                    <button type="button" 
-                                            class="service-action bg-warning text-white"
-                                            onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', '{% if alocacao.grupo_info %}grupo', '{{ alocacao.grupo_info.grupo.id }}{% else %}individual{% endif %}')"
-                                            title="Editar preço">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-
-                                    {% if alocacao.status_alocacao == 'ALOCADO' %}
-                                        <button type="button" 
-                                                class="service-action bg-success text-white clickable-status"
-                                                data-alocacao-id="{{ alocacao.id }}" 
-                                                data-status-atual="ALOCADO"
-                                                title="Clique para mudar para NÃO ALOCADO">
-                                            <i class="fas fa-check"></i>
-                                        </button>
-                                    {% else %}
-                                        <button type="button" 
-                                                class="service-action bg-danger text-white clickable-status"
-                                                data-alocacao-id="{{ alocacao.id }}" 
-                                                data-status-atual="NAO_ALOCADO"
-                                                title="Clique para mudar para ALOCADO">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    {% endif %}
+                                    <div class="card-body p-3">
+                                        <!-- Cabeçalho do Serviço -->
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <div class="flex-grow-1">
+                                                <h6 class="card-title mb-1">
+                                                    {% if alocacao.grupo_info %}
+                                                        {{ alocacao.grupo_info.grupo.get_clientes_concatenados }}
+                                                    {% else %}
+                                                        {{ alocacao.servico.cliente }}
+                                                    {% endif %}
+                                                </h6>
+                                                <small class="text-muted">
+                                                    <i class="fas fa-hashtag"></i> {{ alocacao.servico.numero_da_compra|default:"-" }}
+                                                </small>
+                                            </div>
+                                            <div class="text-end">
+                                                {% if alocacao.grupo_info %}
+                                                    <span class="badge bg-primary">{{ alocacao.grupo_info.grupo.total_pax }} PAX</span>
+                                                    <br><span class="badge bg-success">{{ alocacao.grupo_info.grupo.total_valor|currency }}</span>
+                                                    <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
+                                                       onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'grupo', '{{ alocacao.grupo_info.grupo.id }}')"
+                                                       title="Editar preço"></i>
+                                                {% else %}
+                                                    <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
+                                                    {% if alocacao.preco_calculado is not None %}
+                                                        <br><span class="badge bg-success">{{ alocacao.preco_calculado|currency }}</span>
+                                                        <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
+                                                           onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'individual')"
+                                                           title="Editar preço"></i>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Detalhes do Serviço -->
+                                        <div class="small">
+                                            <div class="mb-1">
+                                                <i class="fas fa-map-marker-alt text-danger"></i>
+                                                <strong>Serviço:</strong> {{ alocacao.servico.servico }}
+                                            </div>
+                                            
+                                            {% if alocacao.grupo_info %}
+                                                <!-- Mostrar informações consolidadas do grupo -->
+                                                {% if alocacao.grupo_info.grupo.get_pickups_concatenados %}
+                                                    <div class="mb-1">
+                                                        <i class="fas fa-location-dot text-warning"></i>
+                                                        <strong>Pickup:</strong> {{ alocacao.grupo_info.grupo.get_pickups_concatenados }}
+                                                    </div>
+                                                {% endif %}
+                                                
+                                                <div class="row g-1">
+                                                    {% if alocacao.grupo_info.grupo.get_horarios_concatenados %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-clock text-info"></i>
+                                                            {{ alocacao.grupo_info.grupo.get_horarios_concatenados }}
+                                                        </div>
+                                                    {% endif %}
+                                                    
+                                                    {% if alocacao.grupo_info.grupo.get_vendas_unicas %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-shopping-cart text-success"></i>
+                                                            Vendas: {{ alocacao.grupo_info.grupo.get_vendas_unicas }}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% else %}
+                                                <!-- Mostrar informações individuais -->
+                                                {% if alocacao.servico.local_pickup %}
+                                                    <div class="mb-1">
+                                                        <i class="fas fa-location-dot text-warning"></i>
+                                                        <strong>Pickup:</strong> {{ alocacao.servico.local_pickup }}
+                                                    </div>
+                                                {% endif %}
+                                                
+                                                <div class="row g-1">
+                                                    <div class="col-6">
+                                                        <i class="fas fa-clock text-info"></i>
+                                                        {% if alocacao.servico.horario %}
+                                                            {{ alocacao.servico.horario|time:"H:i" }}
+                                                        {% else %}
+                                                            <span class="text-warning">SEM HORARIO</span>
+                                                        {% endif %}
+                                                    </div>
+                                                    
+                                                    {% if alocacao.servico.numero_venda %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-shopping-cart text-success"></i>
+                                                            Vendas: {{ alocacao.servico.numero_venda }}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                            
+                                            <div class="mt-1 d-flex justify-content-between align-items-center flex-wrap gap-1">
+                                                <div class="d-flex flex-wrap align-items-center gap-1">
+                                                    {% if alocacao.veiculo_recomendado %}
+                                                        <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
+                                                    {% endif %}
+                                                    {% if alocacao.automatica %}
+                                                        <span class="badge bg-info">Auto</span>
+                                                    {% else %}
+                                                        <span class="badge bg-dark">Manual</span>
+                                                    {% endif %}
+                                                </div>
+                                                <div>
+                                                    {% if alocacao.status_alocacao == 'ALOCADO' %}
+                                                        <span class="badge bg-success px-3 py-2 text-uppercase fw-semibold status-badge clickable-status" 
+                                                              data-alocacao-id="{{ alocacao.id }}" 
+                                                              data-status-atual="ALOCADO" 
+                                                              style="cursor: pointer;" 
+                                                              title="Clique para mudar para NÃO ALOCADO">Alocado</span>
+                                                    {% else %}
+                                                        <span class="badge bg-danger px-3 py-2 text-uppercase fw-semibold status-badge clickable-status" 
+                                                              data-alocacao-id="{{ alocacao.id }}" 
+                                                              data-status-atual="NAO_ALOCADO" 
+                                                              style="cursor: pointer;" 
+                                                              title="Clique para mudar para ALOCADO">Não alocado</span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         {% empty %}
-                            <div class="drop-zone" data-van="VAN1">
-                                <div class="drop-zone-icon">
-                                    <i class="fas fa-inbox"></i>
-                                </div>
-                                <div class="drop-zone-text">
-                                    Van vazia<br>
-                                    <small>Arraste serviços aqui</small>
-                                </div>
+                            <div class="text-center py-4 dropzone" data-van="VAN1">
+                                <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                <h6 class="text-muted">Van vazia</h6>
+                                <p class="text-muted small">Arraste serviços aqui</p>
                             </div>
                         {% endfor %}
                     </div>
@@ -980,35 +521,31 @@
             </div>
 
             <!-- Van 2 -->
-            <div class="col-lg-6">
-                <div class="van-container fade-in-up">
-                    <div class="van-header">
-                        <div class="d-flex justify-content-between align-items-center">
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="card-title mb-0 d-flex justify-content-between align-items-center">
                             <div>
-                                <h5 class="van-title">
-                                    <i class="fas fa-van-shuttle me-2"></i>Van 2
-                                </h5>
+                                <i class="fas fa-van-shuttle"></i> Van 2
+                                <span class="badge bg-light text-dark ms-2" id="van2-pax">{{ van2.total_pax }} PAX</span>
+                                <span class="badge bg-light text-dark ms-1" id="van2-valor">{{ van2.total_valor|currency }}</span>
+                                <span class="badge bg-light text-dark ms-1" id="van2-servicos">{{ van2.count }} serviços</span>
                             </div>
-                            <div class="van-badges">
-                                <span class="van-badge" id="van2-pax">{{ van2.total_pax }} PAX</span>
-                                <span class="van-badge" id="van2-valor">{{ van2.total_valor|currency }}</span>
-                                <span class="van-badge" id="van2-servicos">{{ van2.count }} serviços</span>
+                            <div>
+                                {% if escala.tem_dados %}
+                                    <button type="button" 
+                                            class="btn btn-success btn-sm" 
+                                            onclick="exportarVanParaExcel('VAN2')" 
+                                            title="Exportar Van 2 para Excel">
+                                        <i class="fas fa-file-excel"></i>
+                                    </button>
+                                {% endif %}
                             </div>
-                        </div>
-                        {% if escala.tem_dados %}
-                            <div class="mt-2">
-                                <button type="button" 
-                                        class="btn btn-success btn-sm me-2" 
-                                        onclick="exportarVanParaExcel('VAN2')" 
-                                        title="Exportar Van 2 para Excel">
-                                    <i class="fas fa-file-excel"></i>
-                                </button>
-                            </div>
-                        {% endif %}
+                        </h5>
                     </div>
-                    <div class="van-body" id="van2-container" data-van="VAN2">
+                    <div class="card-body p-2" id="van2-container" data-van="VAN2">
                         {% for alocacao in van2.servicos %}
-                            <div class="service-card" 
+                            <div class="servico-card" 
                                  draggable="true"
                                  data-alocacao-id="{{ alocacao.id }}" 
                                  data-servico-id="{{ alocacao.servico.id }}"
@@ -1019,133 +556,151 @@
                                  data-cliente="{{ alocacao.servico.cliente|lower }}"
                                  data-van="VAN2"
                                  data-status="{{ alocacao.status_alocacao }}">
-                                
-                                {% if alocacao.grupo_info %}
-                                    <div class="service-group-header">
-                                        <i class="fas fa-layer-group text-success me-1"></i> 
-                                        <span class="fw-600">Grupo #{{ alocacao.grupo_info.grupo|grupo_sequencial:grupos_van2 }}</span>
-                                        <span class="badge bg-success ms-2">{{ alocacao.grupo_info.grupo.servicos.count }} serviços</span>
-                                        {% if alocacao.grupo_info.grupo.get_vendas_unicas %}
-                                            <span class="text-muted ms-2">• {{ alocacao.grupo_info.grupo.get_vendas_unicas }}</span>
-                                        {% endif %}
-                                        <button type="button" 
-                                                class="service-action bg-danger text-white ms-auto"
-                                                onclick="desagruparServico({{ alocacao.id }})"
-                                                title="Remover do grupo">
-                                            <i class="fas fa-unlink"></i>
-                                        </button>
-                                    </div>
-                                {% endif %}
-                                
-                                <div class="service-header">
-                                    <div>
-                                        <div class="service-client">
-                                            {% if alocacao.grupo_info %}
-                                                {{ alocacao.grupo_info.grupo.get_clientes_concatenados }}
-                                            {% else %}
-                                                {{ alocacao.servico.cliente }}
-                                            {% endif %}
-                                        </div>
-                                        <div class="service-code">
-                                            #{{ alocacao.servico.numero_da_compra|default:"-" }}
-                                        </div>
-                                    </div>
-                                    <div class="service-badges">
-                                        {% if alocacao.grupo_info %}
-                                            <span class="service-badge pax">{{ alocacao.grupo_info.grupo.total_pax }} PAX</span>
-                                            <span class="service-badge price">{{ alocacao.grupo_info.grupo.total_valor|currency }}</span>
-                                        {% else %}
-                                            <span class="service-badge pax">{{ alocacao.servico.pax }} PAX</span>
-                                            {% if alocacao.preco_calculado is not None %}
-                                                <span class="service-badge price">{{ alocacao.preco_calculado|currency }}</span>
-                                            {% endif %}
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                
-                                <div class="service-details">
-                                    <div class="service-detail">
-                                        <i class="fas fa-map-marker-alt service-detail-icon text-danger"></i>
-                                        {{ alocacao.servico.servico }}
-                                    </div>
-                                    
+                                <div class="card mb-2 border {% if alocacao.grupo_info %}border-success{% endif %}" {% if alocacao.grupo_info %}title="Duplo clique para desagrupar | Clique direito para mais opções"{% endif %}>
                                     {% if alocacao.grupo_info %}
-                                        {% if alocacao.grupo_info.grupo.get_pickups_concatenados %}
-                                            <div class="service-detail">
-                                                <i class="fas fa-location-dot service-detail-icon text-warning"></i>
-                                                {{ alocacao.grupo_info.grupo.get_pickups_concatenados }}
-                                            </div>
-                                        {% endif %}
-                                        {% if alocacao.grupo_info.grupo.get_horarios_concatenados %}
-                                            <div class="service-detail">
-                                                <i class="fas fa-clock service-detail-icon text-info"></i>
-                                                {{ alocacao.grupo_info.grupo.get_horarios_concatenados }}
-                                            </div>
-                                        {% endif %}
-                                    {% else %}
-                                        {% if alocacao.servico.local_pickup %}
-                                            <div class="service-detail">
-                                                <i class="fas fa-location-dot service-detail-icon text-warning"></i>
-                                                {{ alocacao.servico.local_pickup }}
-                                            </div>
-                                        {% endif %}
-                                        <div class="service-detail">
-                                            <i class="fas fa-clock service-detail-icon text-info"></i>
-                                            {% if alocacao.servico.horario %}
-                                                {{ alocacao.servico.horario|time:"H:i" }}
-                                            {% else %}
-                                                <span class="text-warning">SEM HORÁRIO</span>
-                                            {% endif %}
+                                        <div class="card-header p-1 bg-light">
+                                            <small class="text-success">
+                                                <i class="fas fa-layer-group"></i> 
+                                                Grupo #{{ alocacao.grupo_info.grupo|grupo_sequencial:grupos_van2 }} 
+                                                ({{ alocacao.grupo_info.grupo.servicos.count }} serviços){% if alocacao.grupo_info.grupo.get_vendas_unicas %}<br><i class="fas fa-hashtag"></i> {{ alocacao.grupo_info.grupo.get_vendas_unicas }}{% endif %}
+                                                <button type="button" 
+                                                        class="btn btn-outline-danger btn-sm float-end py-0 px-1"
+                                                        onclick="desagruparServico({{ alocacao.id }})"
+                                                        title="Remover do grupo">
+                                                    <i class="fas fa-unlink"></i>
+                                                </button>
+                                            </small>
                                         </div>
                                     {% endif %}
-                                </div>
-
-                                <div class="service-actions">
-                                    {% if alocacao.veiculo_recomendado %}
-                                        <span class="badge bg-secondary me-2">{{ alocacao.veiculo_recomendado }}</span>
-                                    {% endif %}
-                                    
-                                    {% if alocacao.automatica %}
-                                        <span class="badge bg-info me-2">Auto</span>
-                                    {% else %}
-                                        <span class="badge bg-dark me-2">Manual</span>
-                                    {% endif %}
-
-                                    <button type="button" 
-                                            class="service-action bg-warning text-white"
-                                            onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', '{% if alocacao.grupo_info %}grupo', '{{ alocacao.grupo_info.grupo.id }}{% else %}individual{% endif %}')"
-                                            title="Editar preço">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-
-                                    {% if alocacao.status_alocacao == 'ALOCADO' %}
-                                        <button type="button" 
-                                                class="service-action bg-success text-white clickable-status"
-                                                data-alocacao-id="{{ alocacao.id }}" 
-                                                data-status-atual="ALOCADO"
-                                                title="Clique para mudar para NÃO ALOCADO">
-                                            <i class="fas fa-check"></i>
-                                        </button>
-                                    {% else %}
-                                        <button type="button" 
-                                                class="service-action bg-danger text-white clickable-status"
-                                                data-alocacao-id="{{ alocacao.id }}" 
-                                                data-status-atual="NAO_ALOCADO"
-                                                title="Clique para mudar para ALOCADO">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    {% endif %}
+                                    <div class="card-body p-3">
+                                        <!-- Cabeçalho do Serviço -->
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <div class="flex-grow-1">
+                                                <h6 class="card-title mb-1">
+                                                    {% if alocacao.grupo_info %}
+                                                        {{ alocacao.grupo_info.grupo.get_clientes_concatenados }}
+                                                    {% else %}
+                                                        {{ alocacao.servico.cliente }}
+                                                    {% endif %}
+                                                </h6>
+                                                <small class="text-muted">
+                                                    <i class="fas fa-hashtag"></i> {{ alocacao.servico.numero_da_compra|default:"-" }}
+                                                </small>
+                                            </div>
+                                            <div class="text-end">
+                                                {% if alocacao.grupo_info %}
+                                                    <span class="badge bg-primary">{{ alocacao.grupo_info.grupo.total_pax }} PAX</span>
+                                                    <br><span class="badge bg-success">{{ alocacao.grupo_info.grupo.total_valor|currency }}</span>
+                                                    <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
+                                                       onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'grupo', '{{ alocacao.grupo_info.grupo.id }}')"
+                                                       title="Editar preço"></i>
+                                                {% else %}
+                                                    <span class="badge bg-primary">{{ alocacao.servico.pax }} PAX</span>
+                                                    {% if alocacao.preco_calculado is not None %}
+                                                        <br><span class="badge bg-success">{{ alocacao.preco_calculado|currency }}</span>
+                                                        <i class="fas fa-edit text-warning ms-1" style="cursor: pointer;" 
+                                                           onclick="event.stopPropagation(); abrirModalTarifarios('{{ alocacao.servico.id }}', 'individual')"
+                                                           title="Editar preço"></i>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Detalhes do Serviço -->
+                                        <div class="small">
+                                            <div class="mb-1">
+                                                <i class="fas fa-map-marker-alt text-danger"></i>
+                                                <strong>Serviço:</strong> {{ alocacao.servico.servico }}
+                                            </div>
+                                            
+                                            {% if alocacao.grupo_info %}
+                                                <!-- Mostrar informações consolidadas do grupo -->
+                                                {% if alocacao.grupo_info.grupo.get_pickups_concatenados %}
+                                                    <div class="mb-1">
+                                                        <i class="fas fa-location-dot text-warning"></i>
+                                                        <strong>Pickup:</strong> {{ alocacao.grupo_info.grupo.get_pickups_concatenados }}
+                                                    </div>
+                                                {% endif %}
+                                                
+                                                <div class="row g-1">
+                                                    {% if alocacao.grupo_info.grupo.get_horarios_concatenados %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-clock text-info"></i>
+                                                            {{ alocacao.grupo_info.grupo.get_horarios_concatenados }}
+                                                        </div>
+                                                    {% endif %}
+                                                    
+                                                    {% if alocacao.grupo_info.grupo.get_vendas_unicas %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-shopping-cart text-success"></i>
+                                                            Vendas: {{ alocacao.grupo_info.grupo.get_vendas_unicas }}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% else %}
+                                                <!-- Mostrar informações individuais -->
+                                                {% if alocacao.servico.local_pickup %}
+                                                    <div class="mb-1">
+                                                        <i class="fas fa-location-dot text-warning"></i>
+                                                        <strong>Pickup:</strong> {{ alocacao.servico.local_pickup }}
+                                                    </div>
+                                                {% endif %}
+                                                
+                                                <div class="row g-1">
+                                                    <div class="col-6">
+                                                        <i class="fas fa-clock text-info"></i>
+                                                        {% if alocacao.servico.horario %}
+                                                            {{ alocacao.servico.horario|time:"H:i" }}
+                                                        {% else %}
+                                                            <span class="text-warning">SEM HORARIO</span>
+                                                        {% endif %}
+                                                    </div>
+                                                    
+                                                    {% if alocacao.servico.numero_venda %}
+                                                        <div class="col-6">
+                                                            <i class="fas fa-shopping-cart text-success"></i>
+                                                            Vendas: {{ alocacao.servico.numero_venda }}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                            
+                                            <div class="mt-1 d-flex justify-content-between align-items-center flex-wrap gap-1">
+                                                <div class="d-flex flex-wrap align-items-center gap-1">
+                                                    {% if alocacao.veiculo_recomendado %}
+                                                        <span class="badge bg-secondary">{{ alocacao.veiculo_recomendado }}</span>
+                                                    {% endif %}
+                                                    {% if alocacao.automatica %}
+                                                        <span class="badge bg-info">Auto</span>
+                                                    {% else %}
+                                                        <span class="badge bg-dark">Manual</span>
+                                                    {% endif %}
+                                                </div>
+                                                <div>
+                                                    {% if alocacao.status_alocacao == 'ALOCADO' %}
+                                                        <span class="badge bg-success px-3 py-2 text-uppercase fw-semibold status-badge clickable-status" 
+                                                              data-alocacao-id="{{ alocacao.id }}" 
+                                                              data-status-atual="ALOCADO" 
+                                                              style="cursor: pointer;" 
+                                                              title="Clique para mudar para NÃO ALOCADO">Alocado</span>
+                                                    {% else %}
+                                                        <span class="badge bg-danger px-3 py-2 text-uppercase fw-semibold status-badge clickable-status" 
+                                                              data-alocacao-id="{{ alocacao.id }}" 
+                                                              data-status-atual="NAO_ALOCADO" 
+                                                              style="cursor: pointer;" 
+                                                              title="Clique para mudar para ALOCADO">Não alocado</span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         {% empty %}
-                            <div class="drop-zone" data-van="VAN2">
-                                <div class="drop-zone-icon">
-                                    <i class="fas fa-inbox"></i>
-                                </div>
-                                <div class="drop-zone-text">
-                                    Van vazia<br>
-                                    <small>Arraste serviços aqui</small>
-                                </div>
+                            <div class="text-center py-4 dropzone" data-van="VAN2">
+                                <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                <h6 class="text-muted">Van vazia</h6>
+                                <p class="text-muted small">Arraste serviços aqui</p>
                             </div>
                         {% endfor %}
                     </div>
@@ -1155,144 +710,40 @@
 
         <!-- Ações -->
         <div class="row mt-4">
-            <div class="col-12 text-center">
-                <div class="d-flex gap-3 justify-content-center flex-wrap">
-                    <a href="{% url 'escalas:gerenciar_escalas' %}" class="btn btn-outline-secondary">
-                        <i class="fas fa-arrow-left me-1"></i> Voltar ao Gerenciamento
+            <div class="col-12">
+                <div class="d-flex gap-2 justify-content-center flex-wrap">
+                    <a href="{% url 'escalas:gerenciar_escalas' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Voltar ao Gerenciamento
                     </a>
+
                     
                     {% if escala.tem_dados %}
                         <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" class="btn btn-success">
-                            <i class="fas fa-file-excel me-1"></i> Exportar para Excel
+                            <i class="fas fa-file-excel"></i> Exportar para Excel
                         </a>
                     {% endif %}
                 </div>
             </div>
         </div>
     {% endif %}
-    </div>
 </div>
 
-<!-- CSS adicional para compatibilidade -->
+<!-- CSS para drag and drop -->
 <style>
-/* Atualizar referências antigas */
 .servico-card {
-    /* Manter para compatibilidade com JavaScript */
-    cursor: grab;
-    transition: var(--transition);
+    cursor: move;
+    transition: all 0.3s ease;
 }
 
 .servico-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     cursor: grab;
 }
 
 .servico-card:active {
     cursor: grabbing;
 }
-
-.servico-card.dragging {
-    opacity: 0.7;
-    transform: rotate(2deg) scale(0.98);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Dropzone moderno */
-.dropzone {
-    border: 2px dashed #d1d5db;
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    color: #6b7280;
-    background: rgba(249, 250, 251, 0.5);
-    transition: var(--transition);
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.dropzone.drag-over {
-    border-color: var(--primary-color);
-    background: rgba(29, 78, 216, 0.05);
-    color: var(--primary-color);
-}
-
-/* Header de grupo de serviços */
-.service-group-header {
-    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
-    border: 1px solid #bbf7d0;
-    border-radius: 8px 8px 0 0;
-    padding: 0.75rem 1rem;
-    margin: -1.25rem -1.25rem 1rem -1.25rem;
-    display: flex;
-    align-items: center;
-    font-size: 0.875rem;
-}
-
-/* Utilitário de peso de fonte */
-.fw-600 {
-    font-weight: 600;
-}
-
-/* Melhorar os botões de ação */
-.btn-group .btn {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.btn-group .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Estados de loading para botões */
-.button-spinner {
-    width: 1rem;
-    height: 1rem;
-}
-
-/* Responsividade extra */
-@media (max-width: 992px) {
-    .van-badges {
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 0.25rem;
-    }
-    
-    .btn-group {
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .btn-group .btn {
-        margin-right: 0;
-        margin-bottom: 0.5rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .escalas-container {
-        padding: 1rem 0;
-    }
-    
-    .page-header {
-        padding: 1rem;
-        margin-bottom: 1rem;
-    }
-    
-    .filters-body {
-        padding: 1rem;
-    }
-    
-    .van-body {
-        padding: 1rem;
-    }
-    
-    .service-card {
-        padding: 1rem;
-    }
-}
-</style>
 
 .servico-card.dragging {
     opacity: 0.5;

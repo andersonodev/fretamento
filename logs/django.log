@@ -2131,3 +2131,378 @@ INFO 2025-10-14 17:18:23,614 basehttp 79961 6133837824 "GET /escalas/gerenciar/1
 INFO 2025-10-14 17:18:25,985 basehttp 79961 6133837824 "GET /escalas/visualizar/12-10-2025/ HTTP/1.1" 200 250290
 INFO 2025-10-14 17:18:44,075 basehttp 79961 6133837824 "GET /auth/perfil/ HTTP/1.1" 200 42188
 INFO 2025-10-14 17:18:46,467 basehttp 79961 6133837824 "GET /auth/alterar-senha/ HTTP/1.1" 200 39307
+INFO 2025-10-14 17:18:51,058 views 79961 6133837824 Dashboard carregado do cache
+INFO 2025-10-14 17:18:51,066 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 52961
+INFO 2025-10-14 17:19:01,810 basehttp 79961 6133837824 "GET /core/atividades/ HTTP/1.1" 200 71252
+INFO 2025-10-14 17:19:11,238 views 79961 6133837824 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 17:19:11,263 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 52964
+INFO 2025-10-14 17:19:11,299 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 200 4340
+INFO 2025-10-14 17:19:19,619 basehttp 79961 6133837824 "GET /core/upload/ HTTP/1.1" 200 31858
+INFO 2025-10-14 17:19:21,176 views 79961 6133837824 Lista Arquivos - Total arquivos: 1, Total serviços: 58
+INFO 2025-10-14 17:19:21,177 views 79961 6133837824 Hora formatada: 14/10/2025 às 20:19
+INFO 2025-10-14 17:19:21,183 basehttp 79961 6133837824 "GET /core/arquivos/ HTTP/1.1" 200 57184
+INFO 2025-10-14 17:19:23,113 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 17:19:25,018 basehttp 79961 6133837824 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 17:19:26,584 basehttp 79961 6133837824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 120481
+INFO 2025-10-14 17:19:29,441 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 256070
+INFO 2025-10-14 17:19:37,547 views 79961 6133837824 📝 Status de alocação alterado: Tour 08hrs Regular... -> NAO_ALOCADO (usuário: admin)
+INFO 2025-10-14 17:19:37,548 basehttp 79961 6133837824 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 86
+INFO 2025-10-14 17:19:38,604 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 256077
+INFO 2025-10-14 17:19:38,628 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:19:42,703 views 79961 6133837824 🚀 INICIANDO PRECIFICAÇÃO INTELIGENTE - Escala 2025-10-10
+INFO 2025-10-14 17:19:42,705 views 79961 6133837824 📋 Total de alocações a precificar: 9
+INFO 2025-10-14 17:19:42,762 models 79961 6133837824 Precificação - Serviço: Tour 08hrs Regular... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.41)
+INFO 2025-10-14 17:19:42,796 views 79961 6133837824 🔄 Atualização - Tour 08hrs Regular... | N/A → Van 15 lugares | R$ 793.00 → R$ 542.00
+INFO 2025-10-14 17:19:42,828 models 79961 6133837824 Precificação - Serviço: Tour 08hrs Regular... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.41)
+INFO 2025-10-14 17:19:42,858 views 79961 6133837824 🔄 Atualização - Tour 08hrs Regular... | N/A → Van 15 lugares | R$ 793.00 → R$ 542.00
+INFO 2025-10-14 17:19:42,888 models 79961 6133837824 Precificação - Serviço: Tour 08hrs Regular... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.41)
+INFO 2025-10-14 17:19:42,918 views 79961 6133837824 🔄 Atualização - Tour 08hrs Regular... | N/A → Van 15 lugares | R$ 793.00 → R$ 542.00
+INFO 2025-10-14 17:19:42,946 models 79961 6133837824 Precificação - Serviço: Cortesia Tur Ct2... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 46.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 17:19:42,973 views 79961 6133837824 🔄 Atualização - Cortesia Tur Ct2... | N/A → Van 15 lugares | R$ 0.00 → R$ 46.00
+INFO 2025-10-14 17:19:43,007 models 79961 6133837824 Precificação - Serviço: Out Privativo ZSul x Gig... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 17:19:43,039 views 79961 6133837824 🔄 Atualização - Out Privativo ZSul x Gig... | N/A → Van 15 lugares | R$ 310.00 → R$ 500.00
+INFO 2025-10-14 17:19:43,071 models 79961 6133837824 Precificação - Serviço: In Privativo GIG x Barra... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 17:19:43,103 views 79961 6133837824 🔄 Atualização - In Privativo GIG x Barra... | N/A → Van 15 lugares | R$ 399.00 → R$ 103.00
+INFO 2025-10-14 17:19:43,133 models 79961 6133837824 Precificação - Serviço: Out Regular Barra x SDY... | PAX: 1 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.39)
+INFO 2025-10-14 17:19:43,163 views 79961 6133837824 🔄 Atualização - Out Regular Barra x SDY... | N/A → Executivo | R$ 81.00 → R$ 81.00
+INFO 2025-10-14 17:19:43,191 models 79961 6133837824 Precificação - Serviço: In Regular Gig x ZSul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 17:19:43,219 views 79961 6133837824 🔄 Atualização - In Regular Gig x ZSul... | N/A → Van 15 lugares | R$ 154.00 → R$ 77.00
+INFO 2025-10-14 17:19:43,246 models 79961 6133837824 Precificação - Serviço: Tour 08hrs Regular... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.41)
+INFO 2025-10-14 17:19:43,273 views 79961 6133837824 🔄 Atualização - Tour 08hrs Regular... | N/A → Van 15 lugares | R$ 793.00 → R$ 542.00
+INFO 2025-10-14 17:19:43,275 views 79961 6133837824 📊 ESTATÍSTICAS DA PRECIFICAÇÃO:
+INFO 2025-10-14 17:19:43,275 views 79961 6133837824    • Tarifário JW: 0 serviços
+INFO 2025-10-14 17:19:43,275 views 79961 6133837824    • Tarifário Motoristas: 9 serviços
+INFO 2025-10-14 17:19:43,275 views 79961 6133837824    • Preços padrão: 0 serviços
+INFO 2025-10-14 17:19:43,275 views 79961 6133837824    • Valor total: R$ 2,975.00
+INFO 2025-10-14 17:19:43,275 views 79961 6133837824    • Valor médio por serviço: R$ 330.56
+INFO 2025-10-14 17:19:43,276 basehttp 79961 6133837824 "POST /escalas/precificar/10-10-2025/ HTTP/1.1" 200 361
+INFO 2025-10-14 17:19:45,321 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 257551
+WARNING 2025-10-14 17:20:45,933 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:20:45,938 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:21:10,252 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 257551
+INFO 2025-10-14 17:21:10,282 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:21:13,416 basehttp 79961 6133837824 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 480
+INFO 2025-10-14 17:21:30,869 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 258064
+INFO 2025-10-14 17:21:35,782 basehttp 79961 6150664192 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-14 17:21:35,793 basehttp 79961 6133837824 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-14 17:21:36,841 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 257684
+INFO 2025-10-14 17:21:40,409 basehttp 79961 6133837824 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-14 17:21:41,464 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 257689
+INFO 2025-10-14 17:21:43,969 basehttp 79961 6150664192 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-14 17:21:43,981 basehttp 79961 6133837824 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 103
+INFO 2025-10-14 17:21:45,038 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 254720
+INFO 2025-10-14 17:21:45,056 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:21:47,969 basehttp 79961 6133837824 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 103
+INFO 2025-10-14 17:21:49,079 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 250994
+INFO 2025-10-14 17:22:01,780 basehttp 79961 6133837824 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 545
+INFO 2025-10-14 17:22:05,909 views 79961 6133837824 📊 Buscando detalhes para alocação 777
+INFO 2025-10-14 17:22:05,909 views 79961 6133837824 📊 Detalhes encontrados: {'metodo': 'busca_inteligente', 'servico_original': 'Tour 08hrs Regular', 'pax': 8, 'numero_venda': '53288', 'veiculo_calculado': 'Van 15 lugares', 'preco_encontrado': 542.0, 'fonte_tarifario': 'Motoristas (sim: 0.41)', 'data_calculo': '2025-10-14T20:19:42.762497+00:00', 'algoritmo_usado': 'fuzzy_search_v2', 'tarifario': 'Motoristas', 'chave_encontrada': 'Tour em Angra dos Reis', 'similaridade': 0.4111743322269638, 'preco_tabela': 542.0, 'multiplicador': 1, 'observacoes': 'Preço base do tarifário de motoristas'}
+INFO 2025-10-14 17:22:05,910 views 79961 6133837824 📊 Retornando dados expandidos: 1182 caracteres
+INFO 2025-10-14 17:22:05,911 basehttp 79961 6133837824 "GET /escalas/api/detalhes-precificacao/777/ HTTP/1.1" 200 1202
+INFO 2025-10-14 17:22:11,788 basehttp 79961 6133837824 "GET /escalas/api/tarifarios/ HTTP/1.1" 200 6005
+INFO 2025-10-14 17:22:21,193 basehttp 79961 6133837824 "POST /escalas/api/atualizar-preco/ HTTP/1.1" 200 111
+INFO 2025-10-14 17:22:22,777 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 251852
+INFO 2025-10-14 17:22:22,799 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+WARNING 2025-10-14 17:23:22,923 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:23:22,925 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:23:33,983 views 79961 6133837824 📝 Status de alocação alterado: Tour 08hrs Regular... -> ALOCADO (usuário: admin)
+INFO 2025-10-14 17:23:33,985 basehttp 79961 6133837824 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 82
+INFO 2025-10-14 17:23:35,065 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 251845
+INFO 2025-10-14 17:23:35,097 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+WARNING 2025-10-14 17:24:35,937 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:24:35,940 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:25:35,925 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:25:35,926 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:26:35,933 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:26:35,934 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:27:35,934 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:27:35,935 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:28:16,670 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 249465
+INFO 2025-10-14 17:28:16,728 basehttp 79961 6150664192 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 17:28:16,730 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+WARNING 2025-10-14 17:29:16,947 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:29:16,948 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:29:54,985 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 245868
+INFO 2025-10-14 17:29:55,014 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:30:13,986 basehttp 79961 6133837824 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 553
+INFO 2025-10-14 17:30:20,511 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 236986
+INFO 2025-10-14 17:30:36,933 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 236986
+WARNING 2025-10-14 17:31:37,930 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:31:37,932 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:32:37,938 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:32:37,939 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:33:10,049 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 239578
+INFO 2025-10-14 17:33:10,068 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:33:42,146 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 239578
+INFO 2025-10-14 17:34:07,295 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 251845
+INFO 2025-10-14 17:34:14,838 basehttp 79961 6150664192 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-14 17:34:14,851 basehttp 79961 6133837824 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 103
+INFO 2025-10-14 17:34:15,927 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 247882
+WARNING 2025-10-14 17:35:16,934 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:35:16,935 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:36:16,919 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:36:16,919 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:37:02,655 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 247924
+INFO 2025-10-14 17:37:02,706 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:37:27,194 basehttp 79961 6133837824 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-14 17:37:28,272 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 249210
+INFO 2025-10-14 17:37:45,113 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 249210
+INFO 2025-10-14 17:37:50,790 basehttp 79961 6133837824 "GET /escalas/visualizar/10-10-2025/ HTTP/1.1" 200 249210
+INFO 2025-10-14 17:38:01,517 basehttp 79961 6133837824 "GET /core/upload/ HTTP/1.1" 200 31858
+INFO 2025-10-14 17:38:13,503 processors 79961 6133837824 Planilha lida com 46 linhas e 15 colunas
+INFO 2025-10-14 17:38:13,516 processors 79961 6133837824 Linhas removidas durante a limpeza: 0
+INFO 2025-10-14 17:38:13,538 processors 79961 6133837824 Inseridos 46 serviços usando bulk_create
+INFO 2025-10-14 17:38:13,546 basehttp 79961 6133837824 "POST /core/upload/ HTTP/1.1" 302 0
+INFO 2025-10-14 17:38:13,582 views 79961 6133837824 Lista Arquivos - Total arquivos: 2, Total serviços: 104
+INFO 2025-10-14 17:38:13,582 views 79961 6133837824 Hora formatada: 14/10/2025 às 20:38
+INFO 2025-10-14 17:38:13,587 basehttp 79961 6133837824 "GET /core/arquivos/ HTTP/1.1" 200 61231
+INFO 2025-10-14 17:38:17,602 basehttp 79961 6133837824 "GET /core/arquivos/2/servicos/ HTTP/1.1" 200 84228
+INFO 2025-10-14 17:38:22,053 views 79961 6133837824 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 17:38:22,082 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 52928
+INFO 2025-10-14 17:38:25,157 basehttp 79961 6133837824 "GET /core/diagnostico/ HTTP/1.1" 200 71914
+INFO 2025-10-14 17:38:27,520 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 17:38:29,099 basehttp 79961 6133837824 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 17:38:30,662 basehttp 79961 6133837824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 17:38:30,672 basehttp 79961 6133837824 "GET /auth/login/?next=/escalas/gerenciar/10/2025/ HTTP/1.1" 200 12927
+INFO 2025-10-14 17:38:35,224 basehttp 79961 6133837824 "POST /auth/login/?next=/escalas/gerenciar/10/2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 17:38:35,228 views 79961 6133837824 Dashboard carregado do cache
+INFO 2025-10-14 17:38:35,231 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 53298
+INFO 2025-10-14 17:38:53,355 basehttp 79961 6133837824 "GET /core/diagnostico/ HTTP/1.1" 200 71914
+INFO 2025-10-14 17:38:55,637 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 17:38:57,315 basehttp 79961 6133837824 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 17:38:59,465 basehttp 79961 6133837824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 120481
+INFO 2025-10-14 17:39:01,503 basehttp 79961 6133837824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 272086
+INFO 2025-10-14 17:39:49,876 basehttp 79961 6133837824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 272086
+INFO 2025-10-14 17:39:49,895 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:39:53,891 basehttp 79961 6133837824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 272086
+INFO 2025-10-14 17:40:03,628 basehttp 79961 6133837824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 271669
+INFO 2025-10-14 17:40:28,987 basehttp 79961 6133837824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 271669
+INFO 2025-10-14 17:40:36,199 basehttp 79961 6133837824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 271669
+INFO 2025-10-14 17:40:59,679 basehttp 79961 6133837824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 269368
+INFO 2025-10-14 17:41:03,220 basehttp 79961 6150664192 "POST /escalas/mover-servico/ HTTP/1.1" 200 49
+INFO 2025-10-14 17:41:03,230 basehttp 79961 6133837824 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-14 17:41:04,279 basehttp 79961 6133837824 "GET /escalas/visualizar/11-10-2025/ HTTP/1.1" 200 268988
+INFO 2025-10-14 17:42:03,918 views 79961 6133837824 Dashboard carregado do cache
+INFO 2025-10-14 17:42:03,927 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 52938
+INFO 2025-10-14 17:42:13,682 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 17:42:15,008 basehttp 79961 6133837824 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 17:42:15,019 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:42:16,650 basehttp 79961 6133837824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 120481
+INFO 2025-10-14 17:42:39,502 basehttp 79961 6133837824 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 200 245668
+INFO 2025-10-14 17:43:16,026 basehttp 79961 6133837824 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 200 245492
+WARNING 2025-10-14 17:44:16,936 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:44:16,938 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+ERROR 2025-10-14 17:44:22,621 log 79961 6133837824 Internal Server Error: /escalas/visualizar/15-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1289, in get
+    return render(request, self.template_name, context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 226, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' appears more than once
+ERROR 2025-10-14 17:44:22,623 basehttp 79961 6133837824 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 500 232081
+ERROR 2025-10-14 17:44:23,694 log 79961 6133837824 Internal Server Error: /escalas/visualizar/15-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1289, in get
+    return render(request, self.template_name, context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 226, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' appears more than once
+ERROR 2025-10-14 17:44:23,695 basehttp 79961 6133837824 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 500 232081
+ERROR 2025-10-14 17:44:38,844 log 79961 6133837824 Internal Server Error: /escalas/visualizar/15-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1289, in get
+    return render(request, self.template_name, context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 226, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' appears more than once
+ERROR 2025-10-14 17:44:38,846 basehttp 79961 6133837824 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 500 232081
+ERROR 2025-10-14 17:44:56,422 log 79961 6133837824 Internal Server Error: /escalas/visualizar/15-10-2025/
+Traceback (most recent call last):
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py", line 1289, in get
+    return render(request, self.template_name, context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 226, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' appears more than once
+ERROR 2025-10-14 17:44:56,423 basehttp 79961 6133837824 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 500 232081
+INFO 2025-10-14 17:45:29,343 autoreload 83675 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 17:45:38,999 basehttp 79961 6133837824 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 200 245530
+INFO 2025-10-14 17:45:39,033 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:45:39,035 basehttp 79961 6150664192 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 17:45:42,043 basehttp 79961 6133837824 "GET /escalas/visualizar/15-10-2025/?id=3102737a-c780-4805-bc0d-a5bb0df8f6d6&vscodeBrowserReqId=1760474742035 HTTP/1.1" 302 0
+INFO 2025-10-14 17:45:42,049 basehttp 79961 6133837824 "GET /auth/login/?next=/escalas/visualizar/15-10-2025/%3Fid%3D3102737a-c780-4805-bc0d-a5bb0df8f6d6%26vscodeBrowserReqId%3D1760474742035 HTTP/1.1" 200 12927
+INFO 2025-10-14 17:46:05,073 basehttp 79961 6133837824 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 200 245668
+WARNING 2025-10-14 17:47:05,176 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:47:05,177 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:47:14,352 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 17:47:22,596 views 79961 6133837824 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 17:47:22,618 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 52916
+INFO 2025-10-14 17:47:29,334 basehttp 79961 6133837824 "GET /auth/logout/ HTTP/1.1" 302 0
+INFO 2025-10-14 17:47:29,340 basehttp 79961 6133837824 "GET /auth/login/ HTTP/1.1" 200 13213
+INFO 2025-10-14 17:47:32,200 basehttp 79961 6133837824 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-14 17:47:32,206 views 79961 6133837824 Dashboard carregado do cache
+INFO 2025-10-14 17:47:32,208 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 53290
+INFO 2025-10-14 17:47:45,672 basehttp 79961 6133837824 "GET /auth/logout/ HTTP/1.1" 302 0
+INFO 2025-10-14 17:47:45,676 basehttp 79961 6133837824 "GET /auth/login/ HTTP/1.1" 200 13213
+INFO 2025-10-14 17:47:49,888 basehttp 79961 6133837824 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-14 17:47:49,893 views 79961 6133837824 Dashboard carregado do cache
+INFO 2025-10-14 17:47:49,895 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 53290
