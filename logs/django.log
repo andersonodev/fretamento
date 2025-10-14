@@ -1690,3 +1690,444 @@ WARNING 2025-10-14 16:24:53,367 log 72580 6127644672 Not Found: /api/dashboard/u
 WARNING 2025-10-14 16:24:53,369 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
 WARNING 2025-10-14 16:25:53,372 log 72580 6127644672 Not Found: /api/dashboard/updates/
 WARNING 2025-10-14 16:25:53,374 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:33:10,537 models 74727 8798652416 Precificação - Serviço: Out Privativo Barra x Gig... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:10,581 models 74727 8798652416 Precificação - Serviço: In Privativo Gig x ZSul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.33)
+INFO 2025-10-14 16:33:10,624 models 74727 8798652416 Precificação - Serviço: Out Privativo Zona Sul x Gig... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.44)
+INFO 2025-10-14 16:33:10,658 models 74727 8798652416 Precificação - Serviço: Out Regular ZSul x Gih... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 16:33:10,690 models 74727 8798652416 Precificação - Serviço: Out Regular ZSul x Gih... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 16:33:10,722 models 74727 8798652416 Precificação - Serviço: Out Regular ZSul x Gig... | PAX: 2 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.30)
+INFO 2025-10-14 16:33:10,740 models 74727 8798652416 Precificação - Serviço: Transporte de Ida e volta Centro... | PAX: 1 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.49)
+INFO 2025-10-14 16:33:10,777 models 74727 8798652416 Precificação - Serviço: Out Privativo ZSul x Gig... | PAX: 7 | Veículo: Van 15 lugares | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:33:10,814 models 74727 8798652416 Precificação - Serviço: Out Privativo ZSul x Gig... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:33:10,845 models 74727 8798652416 Precificação - Serviço: In Regular Gig x Zsul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:33:10,884 models 74727 8798652416 Precificação - Serviço: Out Privativo ZSul x Gig... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:33:10,919 models 74727 8798652416 Precificação - Serviço: In Privativo Gig x ZSul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.33)
+INFO 2025-10-14 16:33:10,963 models 74727 8798652416 Precificação - Serviço: Out Zsul x SDU - priv e reg juntos... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.41)
+INFO 2025-10-14 16:33:10,995 models 74727 8798652416 Precificação - Serviço: In Regular SDU x Zsul... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:33:11,026 models 74727 8798652416 Precificação - Serviço: In Regular SDU x Zsul... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:33:11,057 models 74727 8798652416 Precificação - Serviço: In Regular SDU x Zsul... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:33:11,089 models 74727 8798652416 Precificação - Serviço: In Regular SDU x Zsul... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:33:11,122 models 74727 8798652416 Precificação - Serviço: In Privativo SDU x ZSul... | PAX: 3 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.33)
+INFO 2025-10-14 16:33:11,157 models 74727 8798652416 Precificação - Serviço: In Regular SDU x CENTRO... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.74)
+INFO 2025-10-14 16:33:11,198 models 74727 8798652416 Precificação - Serviço: Tour Regular Intertouring... | PAX: 11 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.36)
+INFO 2025-10-14 16:33:11,239 models 74727 8798652416 Precificação - Serviço: Tour Regular Intertouring... | PAX: 11 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.36)
+INFO 2025-10-14 16:33:11,280 models 74727 8798652416 Precificação - Serviço: Tour Regular Intertouring... | PAX: 11 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.36)
+INFO 2025-10-14 16:33:11,322 models 74727 8798652416 Precificação - Serviço: Tour Regular Intertouring... | PAX: 11 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.36)
+INFO 2025-10-14 16:33:11,356 models 74727 8798652416 Precificação - Serviço: Out Privativo Zsul x Gig... | PAX: 3 | Veículo: Executivo | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:33:11,396 models 74727 8798652416 Precificação - Serviço: Out Privativo Zsul x Gig... | PAX: 3 | Veículo: Executivo | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:33:11,417 models 74727 8798652416 Precificação - Serviço: Tour de 04hrs... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:33:11,449 models 74727 8798652416 Precificação - Serviço: In Regular Gig x zsul... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:33:11,488 models 74727 8798652416 Precificação - Serviço: Tour Regular Intertouring... | PAX: 10 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.36)
+INFO 2025-10-14 16:33:11,528 models 74727 8798652416 Precificação - Serviço: Tour Regular Intertouring... | PAX: 10 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.36)
+INFO 2025-10-14 16:33:11,568 models 74727 8798652416 Precificação - Serviço: Tour Regular Intertouring... | PAX: 10 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.36)
+INFO 2025-10-14 16:33:11,604 models 74727 8798652416 Precificação - Serviço: Out Privativo ZSul x Gig... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:33:11,645 models 74727 8798652416 Precificação - Serviço: Tour Reg Intertouing - 04hrs... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.35)
+INFO 2025-10-14 16:33:11,686 models 74727 8798652416 Precificação - Serviço: Tour Reg Intertouing - 04hrs... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.35)
+INFO 2025-10-14 16:33:11,727 models 74727 8798652416 Precificação - Serviço: Tour Reg Intertouing - 04hrs... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.35)
+INFO 2025-10-14 16:33:11,769 models 74727 8798652416 Precificação - Serviço: Tour Reg Intertouing - 04hrs... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.35)
+INFO 2025-10-14 16:33:11,809 models 74727 8798652416 Precificação - Serviço: Tour Reg Intertouing - 04hrs... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 326.00 | Fonte: Motoristas (sim: 0.35)
+INFO 2025-10-14 16:33:11,845 models 74727 8798652416 Precificação - Serviço: In Privativo GIG x Zsul... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.33)
+INFO 2025-10-14 16:33:11,884 models 74727 8798652416 Precificação - Serviço: Tour Regular 04hrs - 05pxas... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 16:33:11,924 models 74727 8798652416 Precificação - Serviço: Tour Regular 04hrs - 05pxas... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 16:33:11,962 models 74727 8798652416 Precificação - Serviço: Tour Regular 04hrs - 05pxas... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.32)
+INFO 2025-10-14 16:33:11,994 models 74727 8798652416 Precificação - Serviço: Out Regular ZSul x Gig... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.30)
+INFO 2025-10-14 16:33:12,028 models 74727 8798652416 Precificação - Serviço: In Privativo GIG x Zsul... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.33)
+INFO 2025-10-14 16:33:12,064 models 74727 8798652416 Precificação - Serviço: Out Privativo ZSul x Goh... | PAX: 7 | Veículo: Van 15 lugares | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:33:12,100 models 74727 8798652416 Precificação - Serviço: Out Regular Centro x SDU... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.65)
+INFO 2025-10-14 16:33:12,134 models 74727 8798652416 Precificação - Serviço: In Privativo GIG x Zsul... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.33)
+INFO 2025-10-14 16:33:12,166 models 74727 8798652416 Precificação - Serviço: Out Regular ZSul x Gig... | PAX: 2 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.30)
+INFO 2025-10-14 16:33:12,200 models 74727 8798652416 Precificação - Serviço: In Privativo SDU x ZSul... | PAX: 10 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.33)
+INFO 2025-10-14 16:33:12,219 models 74727 8798652416 Precificação - Serviço: Tour de 08hrs... | PAX: 13 | Veículo: Van 18 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:33:12,239 models 74727 8798652416 Precificação - Serviço: Tour de 08hrs... | PAX: 13 | Veículo: Van 18 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:33:12,275 models 74727 8798652416 Precificação - Serviço: In Privativo Gig x Barra... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:12,310 models 74727 8798652416 Precificação - Serviço: Out Privativo ZSul x Gig... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:33:12,340 models 74727 8798652416 Precificação - Serviço: In regular SDU x ZSUl... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:33:12,364 models 74727 8798652416 Precificação - Serviço: Out Centro x SDU... | PAX: 2 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.67)
+INFO 2025-10-14 16:33:12,389 models 74727 8798652416 Precificação - Serviço: Tour de 08hrs Reg... | PAX: 10 | Veículo: Van 15 lugares | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.43)
+INFO 2025-10-14 16:33:12,409 models 74727 8798652416 Precificação - Serviço: Tour de 06hrs... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:33:12,428 models 74727 8798652416 Precificação - Serviço: Tour de 04HRS... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:33:12,463 models 74727 8798652416 Precificação - Serviço: Ou Privativo Zsul x Gig... | PAX: 2 | Veículo: Executivo | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.30)
+INFO 2025-10-14 16:33:12,510 models 74727 8798652416 Precificação - Serviço: In Privativo Barra x Gig Cortesia... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.47)
+INFO 2025-10-14 16:33:12,544 models 74727 8798652416 Precificação - Serviço: In Privativo Gig x Zsul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.33)
+INFO 2025-10-14 16:33:12,578 models 74727 8798652416 Precificação - Serviço: In Privativo Gig x Zsul... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.33)
+INFO 2025-10-14 16:33:12,609 models 74727 8798652416 Precificação - Serviço: In Regular SDU x zSul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:33:12,636 models 74727 8798652416 Precificação - Serviço: Transfer OUT Reg Zsul x SDU... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.33)
+INFO 2025-10-14 16:33:12,645 models 74727 8798652416 Precificação - Serviço: SDU x Barra... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 367.00 | Fonte: JW (sim: 0.63)
+INFO 2025-10-14 16:33:12,679 models 74727 8798652416 Precificação - Serviço: In Privativo Barra x Gig... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.45)
+INFO 2025-10-14 16:33:12,709 models 74727 8798652416 Precificação - Serviço: Tour Regular 08hrs... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.38)
+INFO 2025-10-14 16:33:12,739 models 74727 8798652416 Precificação - Serviço: Tour Regular 08hrs... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.38)
+INFO 2025-10-14 16:33:12,778 models 74727 8798652416 Precificação - Serviço: Tour Corccovrdao Cortesia... | PAX: 2 | Veículo: Executivo | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.35)
+INFO 2025-10-14 16:33:12,819 models 74727 8798652416 Precificação - Serviço: In Regular Gig Centro e ZSul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.66)
+INFO 2025-10-14 16:33:12,859 models 74727 8798652416 Precificação - Serviço: In Regular Gig Centro e ZSul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.66)
+INFO 2025-10-14 16:33:12,890 models 74727 8798652416 Precificação - Serviço: Out Regular ZSul x Gig... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.30)
+INFO 2025-10-14 16:33:12,922 models 74727 8798652416 Precificação - Serviço: Out Regular ZSul x Gig... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.30)
+INFO 2025-10-14 16:33:12,960 models 74727 8798652416 Precificação - Serviço: Out Privativo Zona Sul x SU... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-14 16:33:12,992 models 74727 8798652416 Precificação - Serviço: Out Regular ZSul x Gig... | PAX: 2 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.30)
+INFO 2025-10-14 16:33:13,031 models 74727 8798652416 Precificação - Serviço: Out Privativo Zona Sul x Gig... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.44)
+INFO 2025-10-14 16:33:13,061 models 74727 8798652416 Precificação - Serviço: Tour 08hrs Regular... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.41)
+INFO 2025-10-14 16:33:13,090 models 74727 8798652416 Precificação - Serviço: Tour 08hrs Regular... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.41)
+INFO 2025-10-14 16:33:13,119 models 74727 8798652416 Precificação - Serviço: Tour 08hrs Regular... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.41)
+INFO 2025-10-14 16:33:13,149 models 74727 8798652416 Precificação - Serviço: Tour 08hrs Regular... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 542.00 | Fonte: Motoristas (sim: 0.41)
+INFO 2025-10-14 16:33:13,176 models 74727 8798652416 Precificação - Serviço: Cortesia Tur Ct2... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 46.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 16:33:13,210 models 74727 8798652416 Precificação - Serviço: Out Privativo ZSul x Gig... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:33:13,245 models 74727 8798652416 Precificação - Serviço: In Privativo GIG x Barra... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:13,278 models 74727 8798652416 Precificação - Serviço: Out Regular Barra x SDY... | PAX: 1 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.39)
+INFO 2025-10-14 16:33:13,308 models 74727 8798652416 Precificação - Serviço: In Regular Gig x ZSul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:33:13,346 models 74727 8798652416 Precificação - Serviço: In Privativo GIG x Centro... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.71)
+INFO 2025-10-14 16:33:13,385 models 74727 8798652416 Precificação - Serviço: In privativo Porto x Centro... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.47)
+INFO 2025-10-14 16:33:13,418 models 74727 8798652416 Precificação - Serviço: OutPrivativo ZSul x Gig... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.25)
+INFO 2025-10-14 16:33:13,454 models 74727 8798652416 Precificação - Serviço: Out Privativo Zsul x gig ... | PAX: 2 | Veículo: Executivo | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:33:13,491 models 74727 8798652416 Precificação - Serviço: In privativo SDU x Zoa sul... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-14 16:33:13,522 models 74727 8798652416 Precificação - Serviço: In Regular SDU x ZSul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:33:13,558 models 74727 8798652416 Precificação - Serviço: Out privativo Barra x Gig... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:13,593 models 74727 8798652416 Precificação - Serviço: In privativo Gig x Barra... | PAX: 1 | Veículo: Executivo | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:13,629 models 74727 8798652416 Precificação - Serviço: Out privativo Barra x Gig... | PAX: 3 | Veículo: Executivo | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:13,658 models 74727 8798652416 Precificação - Serviço: In regular sdu x Sul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.36)
+INFO 2025-10-14 16:33:13,694 models 74727 8798652416 Precificação - Serviço: Out privativo Barra x Gig... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:13,729 models 74727 8798652416 Precificação - Serviço: Van por 08hrs Apoio de Malas... | PAX: 22 | Veículo: Micro | Preço: R$ 444.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 16:33:13,764 models 74727 8798652416 Precificação - Serviço: Out privativo Bara x Gig... | PAX: 1 | Veículo: Executivo | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.39)
+INFO 2025-10-14 16:33:13,801 models 74727 8798652416 Precificação - Serviço: out regular zona sul x gog... | PAX: 2 | Veículo: Executivo | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.42)
+INFO 2025-10-14 16:33:13,840 models 74727 8798652416 Precificação - Serviço: In privativo gig x zona sul... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:33:13,874 models 74727 8798652416 Precificação - Serviço: out regular barra x sdu... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.44)
+INFO 2025-10-14 16:33:13,908 models 74727 8798652416 Precificação - Serviço: out regular barra x sdu... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.44)
+INFO 2025-10-14 16:33:13,944 models 74727 8798652416 Precificação - Serviço: Out reguar zona sul x sdu... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.49)
+INFO 2025-10-14 16:33:13,987 models 74727 8798652416 Precificação - Serviço: out privativo zona sul x gig... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.44)
+INFO 2025-10-14 16:33:14,026 models 74727 8798652416 Precificação - Serviço: in privativo gig x zona sul... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:33:14,065 models 74727 8798652416 Precificação - Serviço: in privativo gig x zona sul... | PAX: 9 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:33:14,106 models 74727 8798652416 Precificação - Serviço: out privativo zona sul x gig... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.44)
+INFO 2025-10-14 16:33:14,146 models 74727 8798652416 Precificação - Serviço: out privativo zona sul x gig... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.44)
+INFO 2025-10-14 16:33:14,183 models 74727 8798652416 Precificação - Serviço: out privativo barra x gig... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:14,221 models 74727 8798652416 Precificação - Serviço: out regular zona sul x sdu... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 44.00 | Fonte: Motoristas (sim: 0.49)
+INFO 2025-10-14 16:33:14,258 models 74727 8798652416 Precificação - Serviço: out regular zona sul x gig... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.45)
+INFO 2025-10-14 16:33:14,294 models 74727 8798652416 Precificação - Serviço: in privatibo gig x barra... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:14,314 models 74727 8798652416 Precificação - Serviço: Tour de 08hrs... | PAX: 11 | Veículo: Van 15 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:33:14,334 models 74727 8798652416 Precificação - Serviço: Tour de 08hrs... | PAX: 11 | Veículo: Van 15 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:33:14,371 models 74727 8798652416 Precificação - Serviço: Out regular zona sul x gig... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.45)
+INFO 2025-10-14 16:33:14,418 models 74727 8798652416 Precificação - Serviço: in privativio gig x centro... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 63.00 | Fonte: Motoristas (sim: 0.70)
+INFO 2025-10-14 16:33:14,435 models 74727 8798652416 Precificação - Serviço: in regular sdu x zona sul ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 300.00 | Fonte: JW (sim: 0.60)
+INFO 2025-10-14 16:33:14,452 models 74727 8798652416 Precificação - Serviço: in regular sdu x zona sul ... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 300.00 | Fonte: JW (sim: 0.60)
+INFO 2025-10-14 16:33:14,472 models 74727 8798652416 Precificação - Serviço: in regular sdu x zona sul ... | PAX: 2 | Veículo: Executivo | Preço: R$ 229.00 | Fonte: JW (sim: 0.60)
+INFO 2025-10-14 16:33:14,527 models 74727 8798652416 Precificação - Serviço: out privativo zona sul x gig - 02sedans... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:14,582 models 74727 8798652416 Precificação - Serviço: out privativo zona sul x gig - 02sedans... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:14,624 models 74727 8798652416 Precificação - Serviço: in privativo gig x barra... | PAX: 2 | Veículo: Executivo | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:14,646 models 74727 8798652416 Precificação - Serviço: Tour de 04hrs... | PAX: 10 | Veículo: Van 15 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:33:14,686 models 74727 8798652416 Precificação - Serviço: Out regular Zona sul x Gig... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.45)
+INFO 2025-10-14 16:33:14,724 models 74727 8798652416 Precificação - Serviço: In privativo Gig x Barra... | PAX: 7 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:14,759 models 74727 8798652416 Precificação - Serviço: In privativo Gig x Barra... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:14,798 models 74727 8798652416 Precificação - Serviço: Out Regular Zona Sul x Gig... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.45)
+INFO 2025-10-14 16:33:14,840 models 74727 8798652416 Precificação - Serviço: Out Privativo Zona sul x Gig... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.44)
+INFO 2025-10-14 16:33:14,876 models 74727 8798652416 Precificação - Serviço: In privativo Gig x Barra... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:33:46,341 autoreload 74843 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 16:33:50,766 views 74843 6207516672 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 16:33:50,805 basehttp 74843 6207516672 "GET /core/ HTTP/1.1" 200 52896
+INFO 2025-10-14 16:33:50,851 basehttp 74843 6207516672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 16:33:50,851 basehttp 74843 6224343040 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 16:33:53,339 basehttp 74843 6224343040 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 16:33:55,807 basehttp 74843 6224343040 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 16:33:57,563 basehttp 74843 6224343040 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 120454
+INFO 2025-10-14 16:34:18,776 views 74843 6224343040 🔍 Verificação de senha iniciada para usuário: admin
+INFO 2025-10-14 16:34:18,776 views 74843 6224343040 📊 Dados recebidos - Usuário: admin, Data escala: 02-10-2025
+INFO 2025-10-14 16:34:18,877 views 74843 6224343040 🔐 Resultado verificação senha: ❌ Incorreta
+INFO 2025-10-14 16:34:18,878 basehttp 74843 6224343040 "POST /escalas/verificar-senha-exclusao/ HTTP/1.1" 200 88
+INFO 2025-10-14 16:34:22,889 views 74843 6207516672 🔍 Verificação de senha iniciada para usuário: admin
+INFO 2025-10-14 16:34:22,889 views 74843 6207516672 📊 Dados recebidos - Usuário: admin, Data escala: 02-10-2025
+INFO 2025-10-14 16:34:22,985 views 74843 6207516672 🔐 Resultado verificação senha: ✅ Correta
+INFO 2025-10-14 16:34:22,986 basehttp 74843 6207516672 "POST /escalas/verificar-senha-exclusao/ HTTP/1.1" 200 89
+WARNING 2025-10-14 16:34:23,011 views 74843 6207516672 🗑️ EXCLUSÃO DE ESCALA INICIADA | Data: 02/10/2025 | Etapa: DADOS_PUXADOS | Serviços: 74 | Usuário: admin | IP: 127.0.0.1
+ERROR 2025-10-14 16:34:23,018 views 74843 6207516672 ❌ ESCALA EXCLUÍDA COM SUCESSO | Data: 02/10/2025 | Total serviços excluídos: 74 | Era otimizada: Não | Usuário responsável: admin | IP: 127.0.0.1
+INFO 2025-10-14 16:34:23,018 basehttp 74843 6207516672 "POST /escalas/excluir/02-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 16:34:23,091 basehttp 74843 6207516672 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 116188
+INFO 2025-10-14 16:34:26,852 basehttp 74843 6207516672 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 200 247250
+INFO 2025-10-14 16:34:39,527 basehttp 74843 6207516672 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 16:34:41,862 basehttp 74843 6207516672 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 16:34:43,543 basehttp 74843 6207516672 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 115711
+INFO 2025-10-14 16:34:46,306 basehttp 74843 6207516672 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 200 247250
+INFO 2025-10-14 16:35:07,324 basehttp 74843 6207516672 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 496
+INFO 2025-10-14 16:35:16,420 views 74843 6207516672 Grupo criado (NOME): Cliente Importado com 2 serviços e 6 PAX
+INFO 2025-10-14 16:35:16,422 views 74843 6207516672 Grupo criado (NOME): Cliente Importado com 2 serviços e 15 PAX
+INFO 2025-10-14 16:35:16,424 basehttp 74843 6207516672 "POST /escalas/visualizar/15-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 16:35:16,453 basehttp 74843 6207516672 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 200 240792
+INFO 2025-10-14 16:35:19,358 basehttp 74843 6207516672 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 562
+INFO 2025-10-14 16:35:23,428 basehttp 74843 6207516672 "POST /escalas/desagrupar-grupo-completo/ HTTP/1.1" 200 87
+INFO 2025-10-14 16:35:24,497 basehttp 74843 6207516672 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 200 244320
+INFO 2025-10-14 16:35:31,761 basehttp 74843 6207516672 "GET /core/diagnostico/ HTTP/1.1" 200 71914
+INFO 2025-10-14 16:35:34,685 basehttp 74843 6207516672 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 16:35:36,409 basehttp 74843 6207516672 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 16:35:38,515 basehttp 74843 6207516672 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 115711
+INFO 2025-10-14 16:35:41,639 basehttp 74843 6207516672 "GET /escalas/visualizar/13-10-2025/ HTTP/1.1" 200 253323
+INFO 2025-10-14 16:36:28,455 basehttp 74843 6207516672 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 491
+INFO 2025-10-14 16:36:39,414 basehttp 74843 6207516672 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 498
+WARNING 2025-10-14 16:36:41,684 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:36:41,685 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:36:43,514 basehttp 74843 6207516672 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 498
+INFO 2025-10-14 16:36:46,880 basehttp 74843 6207516672 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 498
+INFO 2025-10-14 16:37:07,905 basehttp 74843 6207516672 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 491
+WARNING 2025-10-14 16:37:42,375 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:37:42,376 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:38:17,550 basehttp 74843 6207516672 "GET /core/diagnostico/ HTTP/1.1" 200 70193
+INFO 2025-10-14 16:38:17,612 basehttp 74843 6207516672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 16:38:21,120 basehttp 74843 6207516672 "GET /escalas/ HTTP/1.1" 302 0
+INFO 2025-10-14 16:38:21,136 basehttp 74843 6207516672 "GET /auth/login/?next=/escalas/ HTTP/1.1" 200 12927
+INFO 2025-10-14 16:38:29,234 basehttp 74843 6207516672 "POST /auth/login/?next=/escalas/ HTTP/1.1" 302 0
+INFO 2025-10-14 16:38:29,239 views 74843 6207516672 Dashboard carregado do cache
+INFO 2025-10-14 16:38:29,242 basehttp 74843 6207516672 "GET /core/ HTTP/1.1" 200 53270
+INFO 2025-10-14 16:38:34,784 views 74843 6207516672 Dashboard carregado do cache
+INFO 2025-10-14 16:38:34,790 basehttp 74843 6207516672 "GET /core/ HTTP/1.1" 200 52896
+INFO 2025-10-14 16:38:37,903 basehttp 74843 6207516672 "GET /core/diagnostico/ HTTP/1.1" 200 71914
+INFO 2025-10-14 16:38:39,889 basehttp 74843 6207516672 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 16:38:41,081 basehttp 74843 6207516672 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 16:38:45,195 basehttp 74843 6207516672 "POST /escalas/ano/2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 16:38:45,216 basehttp 74843 6207516672 "GET /escalas/visualizar/30-10-2025/ HTTP/1.1" 200 190347
+INFO 2025-10-14 16:38:47,125 basehttp 74843 6207516672 "GET /escalas/puxar-dados/30-10-2025/ HTTP/1.1" 200 50837
+INFO 2025-10-14 16:38:51,015 basehttp 74843 6207516672 "POST /escalas/puxar-dados/30-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 16:38:51,046 basehttp 74843 6207516672 "GET /escalas/visualizar/30-10-2025/ HTTP/1.1" 200 263842
+INFO 2025-10-14 16:38:58,003 basehttp 74843 6207516672 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 485
+INFO 2025-10-14 16:39:02,609 basehttp 74843 6207516672 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 488
+INFO 2025-10-14 16:39:10,234 basehttp 74843 6207516672 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 480
+INFO 2025-10-14 16:39:17,082 basehttp 74843 6207516672 "GET /escalas/api/tarifarios/ HTTP/1.1" 200 6005
+INFO 2025-10-14 16:39:24,159 views 74843 6207516672 📊 Buscando detalhes para alocação 246
+INFO 2025-10-14 16:39:24,160 views 74843 6207516672 📊 Detalhes encontrados: {}
+INFO 2025-10-14 16:39:24,162 views 74843 6207516672 📊 Retornando dados expandidos: 578 caracteres
+INFO 2025-10-14 16:39:24,163 basehttp 74843 6207516672 "GET /escalas/api/detalhes-precificacao/246/ HTTP/1.1" 200 608
+INFO 2025-10-14 16:39:28,322 views 74843 6207516672 📝 Status de alocação alterado: In Regular Gig Centro e ZSul... -> NAO_ALOCADO (usuário: admin)
+INFO 2025-10-14 16:39:28,323 basehttp 74843 6207516672 "POST /escalas/toggle-status-alocacao/ HTTP/1.1" 200 86
+INFO 2025-10-14 16:39:29,372 basehttp 74843 6207516672 "GET /escalas/visualizar/30-10-2025/ HTTP/1.1" 200 263397
+INFO 2025-10-14 16:39:38,092 basehttp 74843 6207516672 "GET /escalas/exportar/30-10-2025/ HTTP/1.1" 200 8000
+WARNING 2025-10-14 16:40:30,312 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:40:30,880 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:41:30,301 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:41:30,301 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:42:30,313 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:42:30,314 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:42:46,521 log 74843 6207516672 Not Found: /escalas/visualizar/30-10-2025/
+WARNING 2025-10-14 16:42:46,522 basehttp 74843 6207516672 "GET /escalas/visualizar/30-10-2025/ HTTP/1.1" 404 4013
+WARNING 2025-10-14 16:42:49,716 log 74843 6207516672 Not Found: /escalas/puxar-dados/30-10-2025/
+WARNING 2025-10-14 16:42:49,716 basehttp 74843 6207516672 "GET /escalas/puxar-dados/30-10-2025/ HTTP/1.1" 404 3801
+INFO 2025-10-14 16:42:51,361 basehttp 74843 6207516672 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 16:42:54,076 basehttp 74843 6207516672 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 16:42:54,092 basehttp 74843 6207516672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 16:42:56,538 basehttp 74843 6207516672 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 120473
+INFO 2025-10-14 16:43:09,184 basehttp 74843 6207516672 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 200 240257
+INFO 2025-10-14 16:43:49,638 basehttp 74843 6207516672 "GET /escalas/visualizar/14-10-2025/ HTTP/1.1" 200 252073
+WARNING 2025-10-14 16:44:49,770 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:44:49,790 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:45:50,299 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:45:50,300 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:46:21,817 views 74843 6207516672 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 16:46:21,839 basehttp 74843 6207516672 "GET /core/ HTTP/1.1" 200 52879
+INFO 2025-10-14 16:46:21,888 basehttp 74843 6207516672 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 16:46:25,179 basehttp 74843 6207516672 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 16:46:27,974 views 74843 6207516672 Dashboard carregado do cache
+INFO 2025-10-14 16:46:27,978 basehttp 74843 6207516672 "GET /core/ HTTP/1.1" 200 52879
+INFO 2025-10-14 16:46:29,384 basehttp 74843 6207516672 "GET /core/diagnostico/ HTTP/1.1" 200 71910
+INFO 2025-10-14 16:46:30,359 basehttp 74843 6207516672 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 16:46:32,124 basehttp 74843 6207516672 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 16:46:33,742 basehttp 74843 6207516672 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 120473
+WARNING 2025-10-14 16:47:34,304 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:47:34,305 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:48:25,160 basehttp 74843 6207516672 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 120481
+INFO 2025-10-14 16:48:25,233 basehttp 74843 6207516672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 16:48:27,441 basehttp 74843 6207516672 "GET /escalas/visualizar/14-10-2025/ HTTP/1.1" 200 263764
+INFO 2025-10-14 16:48:38,247 basehttp 74843 6207516672 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 479
+WARNING 2025-10-14 16:49:27,921 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:49:27,922 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:50:16,562 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 303445
+INFO 2025-10-14 16:50:55,736 autoreload 77174 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 16:51:07,481 basehttp 74843 6207516672 "GET /escalas/visualizar/14-10-2025/?id=3102737a-c780-4805-bc0d-a5bb0df8f6d6&vscodeBrowserReqId=1760471467471 HTTP/1.1" 302 0
+INFO 2025-10-14 16:51:07,484 basehttp 74843 6207516672 "GET /auth/login/?next=/escalas/visualizar/14-10-2025/%3Fid%3D3102737a-c780-4805-bc0d-a5bb0df8f6d6%26vscodeBrowserReqId%3D1760471467471 HTTP/1.1" 200 12927
+WARNING 2025-10-14 16:51:16,914 log 74843 6224343040 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:51:16,914 basehttp 74843 6224343040 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:52:16,917 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:52:16,920 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:53:16,913 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:53:16,915 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:54:16,937 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:54:16,939 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:54:21,104 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 305230
+INFO 2025-10-14 16:54:21,227 basehttp 74843 6207516672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 16:54:26,100 basehttp 74843 6224343040 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-14 16:54:26,110 basehttp 74843 6207516672 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 103
+INFO 2025-10-14 16:54:27,180 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 302369
+INFO 2025-10-14 16:54:29,096 basehttp 74843 6207516672 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 554
+INFO 2025-10-14 16:55:09,168 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 302369
+WARNING 2025-10-14 16:56:09,913 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:56:09,915 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:57:09,691 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:57:09,692 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:57:30,949 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 302369
+INFO 2025-10-14 16:58:26,868 basehttp 74843 6224343040 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-14 16:58:26,885 basehttp 74843 6207516672 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 103
+INFO 2025-10-14 16:58:27,936 basehttp 74843 6207516672 - Broken pipe from ('127.0.0.1', 51551)
+INFO 2025-10-14 16:58:27,954 basehttp 74843 6224343040 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 299217
+INFO 2025-10-14 16:58:27,977 basehttp 74843 6224343040 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 16:58:55,370 basehttp 74843 6207516672 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-14 16:58:55,386 basehttp 74843 6224343040 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 103
+INFO 2025-10-14 16:58:56,459 basehttp 74843 6224343040 - Broken pipe from ('127.0.0.1', 51552)
+INFO 2025-10-14 16:58:56,469 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 295369
+INFO 2025-10-14 16:59:00,372 views 74843 6207516672 🚀 INICIANDO PRECIFICAÇÃO INTELIGENTE - Escala 2025-10-01
+INFO 2025-10-14 16:59:00,373 views 74843 6207516672 📋 Total de alocações a precificar: 17
+INFO 2025-10-14 16:59:00,405 models 74843 6207516672 Precificação - Serviço: Serviços... | PAX: 0 | Veículo: Executivo | Preço: R$ 180.00 | Fonte: padrão (PAX: 0)
+INFO 2025-10-14 16:59:00,424 views 74843 6207516672 🔄 Atualização - Serviços... | N/A → Executivo | R$ 0.00 → R$ 180.00
+INFO 2025-10-14 16:59:00,457 models 74843 6207516672 Precificação - Serviço: In Regular Gig x ZSul... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:59:00,487 views 74843 6207516672 🔄 Atualização - In Regular Gig x ZSul... | N/A → Van 15 lugares | R$ 308.00 → R$ 77.00
+INFO 2025-10-14 16:59:00,515 models 74843 6207516672 Precificação - Serviço: In Regular Gig x ZSul... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:59:00,544 views 74843 6207516672 🔄 Atualização - In Regular Gig x ZSul... | N/A → Van 15 lugares | R$ 308.00 → R$ 77.00
+INFO 2025-10-14 16:59:00,572 models 74843 6207516672 Precificação - Serviço: In Regular Gig x ZSul... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:59:00,600 views 74843 6207516672 🔄 Atualização - In Regular Gig x ZSul... | N/A → Van 15 lugares | R$ 308.00 → R$ 77.00
+INFO 2025-10-14 16:59:00,615 models 74843 6207516672 Precificação - Serviço: Tour de 06hrs... | PAX: 6 | Veículo: Van 15 lugares | Preço: R$ 700.00 | Fonte: Motoristas (sim: 0.48)
+INFO 2025-10-14 16:59:00,631 views 74843 6207516672 🔄 Atualização - Tour de 06hrs... | N/A → Van 15 lugares | R$ 707.00 → R$ 700.00
+INFO 2025-10-14 16:59:00,668 models 74843 6207516672 Precificação - Serviço: Out Privativo Zona sul x Gig... | PAX: 2 | Veículo: Executivo | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.44)
+INFO 2025-10-14 16:59:00,704 views 74843 6207516672 🔄 Atualização - Out Privativo Zona sul x Gig... | N/A → Executivo | R$ 77.00 → R$ 77.00
+INFO 2025-10-14 16:59:00,731 models 74843 6207516672 Precificação - Serviço: In Regular Gig x Zsul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.34)
+INFO 2025-10-14 16:59:00,760 views 74843 6207516672 🔄 Atualização - In Regular Gig x Zsul... | N/A → Van 15 lugares | R$ 154.00 → R$ 77.00
+INFO 2025-10-14 16:59:00,792 models 74843 6207516672 Precificação - Serviço: Out Privativo Barra x Gig... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 103.00 | Fonte: Motoristas (sim: 0.46)
+INFO 2025-10-14 16:59:00,825 views 74843 6207516672 🔄 Atualização - Out Privativo Barra x Gig... | N/A → Van 15 lugares | R$ 362.00 → R$ 103.00
+INFO 2025-10-14 16:59:00,855 models 74843 6207516672 Precificação - Serviço: In Privativo Gig x ZSul... | PAX: 4 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.33)
+INFO 2025-10-14 16:59:00,885 views 74843 6207516672 🔄 Atualização - In Privativo Gig x ZSul... | N/A → Van 15 lugares | R$ 310.00 → R$ 77.00
+INFO 2025-10-14 16:59:00,924 models 74843 6207516672 Precificação - Serviço: Out Privativo Zona Sul x Gig... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 77.00 | Fonte: Motoristas (sim: 0.44)
+INFO 2025-10-14 16:59:00,961 views 74843 6207516672 🔄 Atualização - Out Privativo Zona Sul x Gig... | N/A → Van 15 lugares | R$ 310.00 → R$ 77.00
+INFO 2025-10-14 16:59:00,990 models 74843 6207516672 Precificação - Serviço: Out Regular ZSul x Gig... | PAX: 2 | Veículo: Executivo | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.30)
+INFO 2025-10-14 16:59:01,018 views 74843 6207516672 🔄 Atualização - Out Regular ZSul x Gig... | N/A → Executivo | R$ 77.00 → R$ 81.00
+INFO 2025-10-14 16:59:01,048 models 74843 6207516672 Precificação - Serviço: Out Regular ZSul x Gih... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 16:59:01,077 views 74843 6207516672 🔄 Atualização - Out Regular ZSul x Gih... | N/A → Van 15 lugares | R$ 231.00 → R$ 81.00
+INFO 2025-10-14 16:59:01,091 models 74843 6207516672 Precificação - Serviço: Serviços... | PAX: 0 | Veículo: Executivo | Preço: R$ 180.00 | Fonte: padrão (PAX: 0)
+INFO 2025-10-14 16:59:01,104 views 74843 6207516672 🔄 Atualização - Serviços... | N/A → Executivo | R$ 0.00 → R$ 180.00
+INFO 2025-10-14 16:59:01,133 models 74843 6207516672 Precificação - Serviço: Out Regular ZSul x Gih... | PAX: 8 | Veículo: Van 15 lugares | Preço: R$ 81.00 | Fonte: Motoristas (sim: 0.28)
+INFO 2025-10-14 16:59:01,163 views 74843 6207516672 🔄 Atualização - Out Regular ZSul x Gih... | N/A → Van 15 lugares | R$ 231.00 → R$ 81.00
+INFO 2025-10-14 16:59:01,174 models 74843 6207516672 Precificação - Serviço: Transporte de Ida e volta Centro... | PAX: 1 | Veículo: Executivo | Preço: R$ 40.00 | Fonte: Motoristas (sim: 0.49)
+INFO 2025-10-14 16:59:01,185 views 74843 6207516672 🔄 Atualização - Transporte de Ida e volta Cent... | N/A → Executivo | R$ 88.00 → R$ 40.00
+INFO 2025-10-14 16:59:01,216 models 74843 6207516672 Precificação - Serviço: Out Privativo ZSul x Gig... | PAX: 7 | Veículo: Van 15 lugares | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:59:01,248 views 74843 6207516672 🔄 Atualização - Out Privativo ZSul x Gig... | N/A → Van 15 lugares | R$ 310.00 → R$ 500.00
+INFO 2025-10-14 16:59:01,280 models 74843 6207516672 Precificação - Serviço: Out Privativo ZSul x Gig... | PAX: 5 | Veículo: Van 15 lugares | Preço: R$ 500.00 | Fonte: Motoristas (sim: 0.31)
+INFO 2025-10-14 16:59:01,312 views 74843 6207516672 🔄 Atualização - Out Privativo ZSul x Gig... | N/A → Van 15 lugares | R$ 310.00 → R$ 500.00
+INFO 2025-10-14 16:59:01,313 views 74843 6207516672 🔄 Recalculando totais de 3 grupos...
+INFO 2025-10-14 16:59:01,320 views 74843 6207516672 📊 ESTATÍSTICAS DA PRECIFICAÇÃO:
+INFO 2025-10-14 16:59:01,320 views 74843 6207516672    • Tarifário JW: 0 serviços
+INFO 2025-10-14 16:59:01,320 views 74843 6207516672    • Tarifário Motoristas: 15 serviços
+INFO 2025-10-14 16:59:01,320 views 74843 6207516672    • Preços padrão: 2 serviços
+INFO 2025-10-14 16:59:01,320 views 74843 6207516672    • Valor total: R$ 2,985.00
+INFO 2025-10-14 16:59:01,320 views 74843 6207516672    • Valor médio por serviço: R$ 175.59
+INFO 2025-10-14 16:59:01,321 basehttp 74843 6207516672 "POST /escalas/precificar/01-10-2025/ HTTP/1.1" 200 364
+INFO 2025-10-14 16:59:03,390 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 298146
+INFO 2025-10-14 16:59:13,407 views 74843 6207516672 📊 Buscando detalhes para alocação 698
+INFO 2025-10-14 16:59:13,407 views 74843 6207516672 📊 Detalhes encontrados: {'metodo': 'busca_inteligente', 'servico_original': 'In Regular Gig x ZSul', 'pax': 8, 'numero_venda': '47640', 'veiculo_calculado': 'Van 15 lugares', 'preco_encontrado': 77.0, 'fonte_tarifario': 'Motoristas (sim: 0.34)', 'data_calculo': '2025-10-14T19:59:00.515933+00:00', 'algoritmo_usado': 'fuzzy_search_v2', 'tarifario': 'Motoristas', 'chave_encontrada': 'Transfer In ou Out Gig / Zona Sul ou São Conrado', 'similaridade': 0.33854568854568856, 'preco_tabela': 77.0, 'multiplicador': 1, 'observacoes': 'Preço base do tarifário de motoristas'}
+INFO 2025-10-14 16:59:13,410 views 74843 6207516672 📊 Retornando dados expandidos: 1238 caracteres
+INFO 2025-10-14 16:59:13,410 basehttp 74843 6207516672 "GET /escalas/api/detalhes-precificacao/698/ HTTP/1.1" 200 1268
+INFO 2025-10-14 16:59:25,208 views 74843 6207516672 Grupo criado (NOME): Cliente Importado com 2 serviços e 16 PAX
+INFO 2025-10-14 16:59:25,213 basehttp 74843 6207516672 "POST /escalas/visualizar/01-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 16:59:25,248 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 294525
+INFO 2025-10-14 16:59:25,278 basehttp 74843 6207516672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+WARNING 2025-10-14 17:00:25,945 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:00:25,946 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:01:25,876 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:01:25,878 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:02:13,320 basehttp 74843 6224343040 "POST /escalas/mover-servico/ HTTP/1.1" 200 63
+INFO 2025-10-14 17:02:13,330 basehttp 74843 6207516672 "POST /escalas/agrupar-servicos/ HTTP/1.1" 200 103
+INFO 2025-10-14 17:02:14,428 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 288001
+INFO 2025-10-14 17:03:03,530 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 288065
+INFO 2025-10-14 17:03:03,580 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 200 5126
+INFO 2025-10-14 17:03:22,975 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 288574
+INFO 2025-10-14 17:03:23,014 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:03:29,282 basehttp 74843 6224343040 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+WARNING 2025-10-14 17:03:29,285 log 74843 6207516672 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-14 17:03:29,286 basehttp 74843 6207516672 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 2918
+INFO 2025-10-14 17:04:22,858 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 288629
+INFO 2025-10-14 17:04:22,915 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:04:22,916 basehttp 74843 6224343040 "GET /static/js/layout-fixes.js HTTP/1.1" 200 13587
+INFO 2025-10-14 17:05:11,552 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 288865
+INFO 2025-10-14 17:05:11,584 basehttp 74843 6241169408 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:05:11,584 basehttp 74843 6224343040 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:05:11,585 basehttp 74843 6207516672 "GET /static/css/mobile-fixes.css HTTP/1.1" 200 8316
+INFO 2025-10-14 17:05:11,589 basehttp 74843 6207516672 "GET /static/js/layout-fixes.js HTTP/1.1" 304 0
+INFO 2025-10-14 17:05:22,136 basehttp 74843 6224343040 "GET /static/css/mobile-fixes.css HTTP/1.1" 304 0
+WARNING 2025-10-14 17:05:22,149 log 74843 6207516672 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-14 17:05:22,149 basehttp 74843 6207516672 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 2918
+INFO 2025-10-14 17:05:59,914 autoreload 78983 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 17:06:11,043 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 289683
+INFO 2025-10-14 17:06:11,084 basehttp 74843 6224343040 "GET /static/css/mobile-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:06:11,085 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:06:11,090 basehttp 74843 6207516672 "GET /static/js/layout-fixes.js HTTP/1.1" 304 0
+INFO 2025-10-14 17:06:13,785 autoreload 79055 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 17:07:11,913 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:07:11,914 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:07:40,191 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 289683
+INFO 2025-10-14 17:07:40,232 basehttp 74843 6241169408 "GET /static/js/layout-fixes.js HTTP/1.1" 304 0
+INFO 2025-10-14 17:07:40,233 basehttp 74843 6224343040 "GET /static/css/mobile-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:07:40,234 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 200 6314
+INFO 2025-10-14 17:08:08,401 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 289683
+INFO 2025-10-14 17:08:08,452 basehttp 74843 6224343040 "GET /static/css/mobile-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:08:08,452 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 200 7397
+INFO 2025-10-14 17:08:08,455 basehttp 74843 6207516672 "GET /static/js/layout-fixes.js HTTP/1.1" 304 0
+INFO 2025-10-14 17:08:14,913 basehttp 74843 6207516672 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 729
+INFO 2025-10-14 17:08:18,231 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 289683
+INFO 2025-10-14 17:08:18,248 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:08:35,343 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 289716
+INFO 2025-10-14 17:08:35,376 basehttp 74843 6224343040 "GET /static/css/mobile-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:08:35,377 basehttp 74843 6241169408 "GET /static/js/layout-fixes.js HTTP/1.1" 304 0
+INFO 2025-10-14 17:08:35,377 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 200 8409
+INFO 2025-10-14 17:08:56,920 basehttp 74843 6207516672 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 291037
+INFO 2025-10-14 17:08:56,963 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:09:09,708 basehttp 74843 6207516672 "GET /auth/perfil/ HTTP/1.1" 200 45224
+INFO 2025-10-14 17:09:09,735 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:09:09,735 basehttp 74843 6224343040 "GET /static/css/mobile-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:09:09,735 basehttp 74843 6241169408 "GET /static/js/layout-fixes.js HTTP/1.1" 304 0
+INFO 2025-10-14 17:09:10,960 basehttp 74843 6241169408 "GET /escalas/ HTTP/1.1" 200 39088
+INFO 2025-10-14 17:09:14,677 basehttp 74843 6207516672 "GET /escalas/ano/2025/ HTTP/1.1" 200 51163
+INFO 2025-10-14 17:09:14,695 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:09:16,547 basehttp 74843 6207516672 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 123517
+INFO 2025-10-14 17:09:19,283 basehttp 74843 6207516672 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 279830
+INFO 2025-10-14 17:09:39,717 basehttp 74843 6207516672 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 279904
+INFO 2025-10-14 17:09:39,748 basehttp 74843 6241169408 "GET /static/css/mobile-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:09:39,749 basehttp 74843 6224343040 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:09:39,749 basehttp 74843 6207516672 "GET /static/css/desktop-priority-fixes.css HTTP/1.1" 200 4688
+INFO 2025-10-14 17:09:39,749 basehttp 74843 6257995776 "GET /static/js/layout-fixes.js HTTP/1.1" 304 0
+INFO 2025-10-14 17:10:15,373 basehttp 74843 6207516672 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 282054
+INFO 2025-10-14 17:10:15,406 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:10:15,409 basehttp 74843 6224343040 "GET /static/css/mobile-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:10:15,409 basehttp 74843 6207516672 "GET /static/js/layout-fixes.js HTTP/1.1" 304 0
+INFO 2025-10-14 17:10:15,410 basehttp 74843 6241169408 "GET /static/css/desktop-priority-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:10:36,782 basehttp 74843 6207516672 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 282054
+INFO 2025-10-14 17:10:36,822 basehttp 74843 6224343040 "GET /static/css/desktop-priority-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:10:36,823 basehttp 74843 6207516672 "GET /static/css/layout-fixes.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:10:47,230 basehttp 74843 6207516672 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 276794
+INFO 2025-10-14 17:10:51,514 basehttp 74843 6207516672 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 489
+WARNING 2025-10-14 17:11:47,922 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:11:47,923 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:12:20,232 basehttp 74843 6207516672 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 276794
+INFO 2025-10-14 17:12:20,283 basehttp 74843 6207516672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:12:20,287 basehttp 74843 6207516672 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+WARNING 2025-10-14 17:13:20,919 log 74843 6207516672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:13:20,920 basehttp 74843 6207516672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:13:49,205 autoreload 74843 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-14 17:13:49,710 autoreload 79961 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 17:14:04,533 basehttp 79961 6133837824 "GET /escalas/visualizar/04-10-2025/ HTTP/1.1" 200 270259
+INFO 2025-10-14 17:14:09,152 views 79961 6133837824 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 17:14:09,176 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 49396
+INFO 2025-10-14 17:14:10,993 views 79961 6133837824 Dashboard carregado do cache
+INFO 2025-10-14 17:14:11,003 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 49396
+INFO 2025-10-14 17:14:19,163 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 32488
+INFO 2025-10-14 17:14:20,779 basehttp 79961 6133837824 "GET /escalas/ano/2025/ HTTP/1.1" 200 44563
+INFO 2025-10-14 17:14:22,980 basehttp 79961 6133837824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 116917
+INFO 2025-10-14 17:14:24,517 basehttp 79961 6133837824 "GET /escalas/visualizar/15-10-2025/ HTTP/1.1" 200 240830
+INFO 2025-10-14 17:14:28,286 basehttp 79961 6133837824 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 479
+INFO 2025-10-14 17:14:40,761 basehttp 79961 6133837824 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 496
+INFO 2025-10-14 17:14:57,787 views 79961 6133837824 Dashboard carregado do cache
+INFO 2025-10-14 17:14:57,792 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 49397
+INFO 2025-10-14 17:15:43,399 views 79961 6133837824 Dashboard carregado do cache
+INFO 2025-10-14 17:15:43,406 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 49397
+INFO 2025-10-14 17:15:48,169 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 32488
+INFO 2025-10-14 17:15:59,009 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 32552
+INFO 2025-10-14 17:16:36,015 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 32552
+INFO 2025-10-14 17:16:48,153 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 34967
+INFO 2025-10-14 17:17:10,488 views 79961 6133837824 Dashboard carregado do cache
+INFO 2025-10-14 17:17:10,498 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 51876
+WARNING 2025-10-14 17:18:10,920 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:18:10,921 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:18:14,154 views 79961 6133837824 Dashboard carregado do cache
+INFO 2025-10-14 17:18:14,165 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 52961
+INFO 2025-10-14 17:18:18,901 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 17:18:21,522 basehttp 79961 6133837824 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 17:18:23,614 basehttp 79961 6133837824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 120481
+INFO 2025-10-14 17:18:25,985 basehttp 79961 6133837824 "GET /escalas/visualizar/12-10-2025/ HTTP/1.1" 200 250290
+INFO 2025-10-14 17:18:44,075 basehttp 79961 6133837824 "GET /auth/perfil/ HTTP/1.1" 200 42188
+INFO 2025-10-14 17:18:46,467 basehttp 79961 6133837824 "GET /auth/alterar-senha/ HTTP/1.1" 200 39307
