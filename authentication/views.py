@@ -24,7 +24,6 @@ class CustomLoginView(LoginView):
         return reverse_lazy('core:home')
     
     def form_valid(self, form):
-        messages.success(self.request, f'Bem-vindo(a), {form.get_user().get_full_name() or form.get_user().username}!')
         return super().form_valid(form)
 
 
