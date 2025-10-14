@@ -4,144 +4,160 @@
 {% block title %}Visualizar Escala - {{ escala.data|date:"d/m/Y" }}{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <!-- Cabeçalho -->
+<div class="container-fluid px-4">
+    <!-- Breadcrumb Profissional -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb bg-white rounded-3 shadow-sm p-3 mb-0">
+            <li class="breadcrumb-item">
+                <a href="{% url 'core:home' %}" class="text-decoration-none text-muted">
+                    <i class="fas fa-home me-1"></i>Dashboard
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'escalas:selecionar_ano' %}" class="text-decoration-none text-muted">Escalas</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{ escala.data|date:"d/m/Y" }}</li>
+        </ol>
+    </nav>
+    <!-- Cabeçalho Profissional -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h1 class="mb-0">
-                        <i class="fas fa-calendar-check text-primary"></i>
-                        Escala - {{ escala.data|date:"l, d/m/Y" }}
-                    </h1>
-                    <p class="text-muted">
-                        Status: <span class="badge bg-{% if escala.etapa == 'ESTRUTURA' %}secondary{% elif escala.etapa == 'DADOS_PUXADOS' %}primary{% else %}success{% endif %}">{{ escala.get_etapa_display }}</span>
-                        {% if escala.data_origem %}
-                            | Dados de: {{ escala.data_origem|date:"d/m/Y" }}
-                        {% endif %}
-                    </p>
-                </div>
-                <div class="btn-group" role="group">
-                    <a href="{% url 'escalas:gerenciar_escalas_mes' mes=mes ano=ano %}" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Voltar
-                    </a>
-                    {% if escala.tem_dados %}
-                        <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" class="btn btn-success">
-                            <i class="fas fa-file-excel"></i> Excel
-                        </a>
-                    {% endif %}
-                    {% if escala.tem_dados %}
-                        <button type="button" class="btn btn-primary" id="btn-precificar" onclick="precificarEscala()">
-                            <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
-                            <i class="fas fa-calculator button-icon"></i>
-                            <span class="button-text ms-1">Precificar</span>
-                        </button>
-                        <form method="post" class="d-inline" id="form-agrupar">
-                            {% csrf_token %}
-                            <button type="submit" name="acao" value="agrupar" class="btn btn-info" id="btn-agrupar">
-                                <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
-                                <i class="fas fa-layer-group button-icon"></i>
-                                <span class="button-text ms-1">Agrupar</span>
-                            </button>
-                        </form>
-                        <form method="post" class="d-inline" id="form-escalar">
-                            {% csrf_token %}
-                            <button type="submit" name="acao" value="otimizar" class="btn btn-warning" id="btn-escalar">
-                                <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
-                                <i class="fas fa-magic button-icon"></i>
-                                <span class="button-text ms-1">Escalar</span>
-                            </button>
-                        </form>
-                        <!-- Permitir formatação sempre que a escala tiver dados -->
-                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal-formatar">
-                            <i class="fas fa-paint-brush"></i> 
-                            {% if escala.etapa == 'OTIMIZADA' %}
-                                Formatar
-                            {% else %}
-                                Limpar/Formatar
+            <div class="bg-white rounded-3 shadow-sm border-0 p-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h1 class="mb-2 fw-bold text-dark fs-3">
+                            Escala - {{ escala.data|date:"d/m/Y" }}
+                        </h1>
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="badge rounded-pill px-3 py-2 {% if escala.etapa == 'ESTRUTURA' %}bg-light text-dark{% elif escala.etapa == 'DADOS_PUXADOS' %}bg-primary{% else %}bg-success{% endif %}">
+                                {{ escala.get_etapa_display }}
+                            </span>
+                            {% if escala.data_origem %}
+                                <span class="text-muted small">Dados de: {{ escala.data_origem|date:"d/m/Y" }}</span>
                             {% endif %}
-                        </button>
-                        
-                        <!-- Botão para adicionar serviço manual -->
-                        <button type="button" class="btn btn-success" onclick="abrirModalAdicionarServico()" title="Adicionar serviço manualmente">
-                            <i class="fas fa-plus-circle"></i> Adicionar Serviço
-                        </button>
-                    {% endif %}
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'escalas:gerenciar_escalas_mes' mes=mes ano=ano %}" class="btn btn-outline-secondary rounded-pill px-4">
+                            ← Voltar
+                        </a>
+                        {% if escala.tem_dados %}
+                            <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" class="btn btn-outline-success rounded-pill px-4">
+                                Excel
+                            </a>
+                        {% endif %}
+                        {% if escala.tem_dados %}
+                            <button type="button" class="btn btn-primary rounded-pill px-4" id="btn-precificar" onclick="precificarEscala()">
+                                <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
+                                <span class="button-text">Precificar</span>
+                            </button>
+                            <form method="post" class="d-inline" id="form-agrupar">
+                                {% csrf_token %}
+                                <button type="submit" name="acao" value="agrupar" class="btn btn-outline-info rounded-pill px-4" id="btn-agrupar">
+                                    <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
+                                    <span class="button-text">Agrupar</span>
+                                </button>
+                            </form>
+                            <form method="post" class="d-inline" id="form-escalar">
+                                {% csrf_token %}
+                                <button type="submit" name="acao" value="otimizar" class="btn btn-outline-warning rounded-pill px-4" id="btn-escalar">
+                                    <span class="spinner-border spinner-border-sm me-2 d-none button-spinner" role="status" aria-hidden="true"></span>
+                                    <span class="button-text">Escalar</span>
+                                </button>
+                            </form>
+                            <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modal-formatar">
+                                {% if escala.etapa == 'OTIMIZADA' %}
+                                    Formatar
+                                {% else %}
+                                    Limpar
+                                {% endif %}
+                            </button>
+                            <button type="button" class="btn btn-success rounded-pill px-4" onclick="abrirModalAdicionarServico()" title="Adicionar serviço manualmente">
+                                + Serviço
+                            </button>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     {% if not escala.tem_dados %}
-        <!-- Estrutura Criada - Instruções -->
+        <!-- Estado Inicial -->
         <div class="row">
             <div class="col-12">
-                <div class="alert alert-info">
-                    <h5><i class="fas fa-info-circle"></i> Estrutura Criada com Sucesso!</h5>
-                    <p class="mb-2">A estrutura básica da escala foi criada. Agora você pode:</p>
-                    <a href="{% url 'escalas:puxar_dados' data=escala.data|date_br %}" class="btn btn-primary">
-                        <i class="fas fa-download"></i> Puxar Dados de uma Data
+                <div class="bg-light rounded-3 p-5 text-center">
+                    <div class="mb-4">
+                        <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-calendar-plus text-primary fs-1"></i>
+                        </div>
+                    </div>
+                    <h4 class="fw-bold text-dark mb-3">Estrutura Criada</h4>
+                    <p class="text-muted mb-4">A estrutura básica da escala foi criada. Agora você pode importar dados.</p>
+                    <a href="{% url 'escalas:puxar_dados' data=escala.data|date_br %}" class="btn btn-primary rounded-pill px-5 py-3">
+                        Importar Dados
                     </a>
                 </div>
             </div>
         </div>
     {% else %}
-        <!-- Instruções Kanban -->
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <h6><i class="fas fa-info-circle"></i> Sistema Kanban Avançado</h6>
-                    <ul class="mb-0 small">
-                        <li><strong>Mover entre vans:</strong> Arraste um serviço para o espaço vazio da outra van</li>
-                        <li><strong>Agrupar serviços:</strong> Arraste um serviço e solte BEM NO CENTRO de outro cartão</li>
-                        <li><strong>Indicadores visuais:</strong> Verde = Agrupar | Azul = Mover para van</li>
-                        <li><strong>Desagrupar individual:</strong> Duplo clique no cartão OU clique no botão <i class="fas fa-unlink text-danger"></i></li>
-                        <li><strong>Desagrupar completo:</strong> Clique direito no cartão → "Desagrupar grupo completo"</li>
-                        <li><strong>Menu de contexto:</strong> Clique direito em qualquer cartão para mais opções</li>
-                        <li><strong>Filtrar:</strong> Use os filtros acima para encontrar serviços específicos</li>
-                    </ul>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <!-- Métricas Principais -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="bg-white rounded-3 shadow-sm border-0 p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-users text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted small fw-normal mb-1">Total PAX</h6>
+                            <h3 class="fw-bold text-dark mb-0">{{ van1.total_pax|add:van2.total_pax }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="bg-white rounded-3 shadow-sm border-0 p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-success bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-dollar-sign text-success fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted small fw-normal mb-1">Valor Total</h6>
+                            <h3 class="fw-bold text-dark mb-0">{{ van1.total_valor|add:van2.total_valor|currency }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="bg-white rounded-3 shadow-sm border-0 p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-info bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-list text-info fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted small fw-normal mb-1">Serviços</h6>
+                            <h3 class="fw-bold text-dark mb-0">{{ total_servicos }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="bg-white rounded-3 shadow-sm border-0 p-4 h-100">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-{% if escala.esta_otimizada %}success{% else %}warning{% endif %} bg-opacity-10 rounded-3 p-3 me-3">
+                            <i class="fas fa-chart-line text-{% if escala.esta_otimizada %}success{% else %}warning{% endif %} fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted small fw-normal mb-1">Status</h6>
+                            <span class="badge rounded-pill px-3 py-2 {% if escala.esta_otimizada %}bg-success{% else %}bg-warning text-dark{% endif %}">
+                                {% if escala.esta_otimizada %}Otimizada{% else %}Básica{% endif %}
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Resumo Geral -->
-        <div class="row mb-4">
-            <div class="col-md-3">
-                <div class="card text-white bg-primary">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <i class="fas fa-users"></i> Total PAX
-                        </h5>
-                        <h3>{{ van1.total_pax|add:van2.total_pax }}</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-white bg-success">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <i class="fas fa-dollar-sign"></i> Valor Total
-                        </h5>
-                        <h3>{{ van1.total_valor|add:van2.total_valor|currency }}</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-white bg-info">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <i class="fas fa-layer-group"></i> Total Serviços
-                        </h5>
-                        <h3>{{ total_servicos }}</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-white {% if escala.esta_otimizada %}bg-success{% else %}bg-warning{% endif %}">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <i class="fas fa-magic"></i> Status
                         </h5>
                         <h6>{% if escala.esta_otimizada %}Otimizada{% else %}Distribuição Básica{% endif %}</h6>
                     </div>
@@ -149,108 +165,91 @@
             </div>
         </div>
 
-        <!-- Filtros -->
+        <!-- Filtros Modernos -->
         <div class="row mb-4">
             <div class="col-12">
-                <div class="card border-info">
-                    <div class="card-header bg-light">
-                        <h6 class="card-title mb-0">
-                            <i class="fas fa-filter text-info"></i> Filtros de Busca
-                            <button class="btn btn-sm btn-outline-secondary ms-2" id="clearFilters">
-                                <i class="fas fa-times"></i> Limpar
-                            </button>
-                        </h6>
+                <div class="bg-white rounded-3 shadow-sm border-0 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="mb-0 fw-semibold">Filtros</h6>
+                        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" id="clearFilters">
+                            Limpar
+                        </button>
                     </div>
-                    <div class="card-body">
-                        <div class="row g-3">
-                            <!-- Filtro por PAX -->
-                            <div class="col-md-3">
-                                <label for="filtro-pax" class="form-label small">
-                                    <i class="fas fa-users text-primary"></i> PAX
-                                </label>
-                                <div class="input-group input-group-sm">
-                                    <input type="number" class="form-control" id="filtro-pax-min" placeholder="Min" min="1">
-                                    <span class="input-group-text">até</span>
-                                    <input type="number" class="form-control" id="filtro-pax-max" placeholder="Max" min="1">
-                                </div>
+                    <div class="row g-3">
+                        <!-- Filtro por PAX -->
+                        <div class="col-md-3">
+                            <label for="filtro-pax" class="form-label small text-muted mb-1">PAX</label>
+                            <div class="input-group input-group-sm">
+                                <input type="number" class="form-control border-0 bg-light" id="filtro-pax-min" placeholder="Min" min="1">
+                                <span class="input-group-text border-0 bg-light text-muted">até</span>
+                                <input type="number" class="form-control border-0 bg-light" id="filtro-pax-max" placeholder="Max" min="1">
                             </div>
-                            
-                            <!-- Filtro por Serviço -->
-                            <div class="col-md-4">
-                                <label for="filtro-servico" class="form-label small">
-                                    <i class="fas fa-map-marker-alt text-danger"></i> Serviço/Destino
-                                </label>
-                                <input type="text" class="form-control form-control-sm" id="filtro-servico" 
-                                       placeholder="Digite para filtrar por serviço...">
-                            </div>
-                            
-                            <!-- Filtro por Local Pickup -->
-                            <div class="col-md-3">
-                                <label for="filtro-pickup" class="form-label small">
-                                    <i class="fas fa-location-dot text-warning"></i> Local Pickup
-                                </label>
-                                <input type="text" class="form-control form-control-sm" id="filtro-pickup" 
-                                       placeholder="Digite para filtrar pickup...">
-                            </div>
-                            
-                            <!-- Filtro por Van -->
-                            <div class="col-md-2">
-                                <label for="filtro-van" class="form-label small">
-                                    <i class="fas fa-van-shuttle text-info"></i> Van
-                                </label>
-                                <select class="form-select form-select-sm" id="filtro-van">
-                                    <option value="">Todas</option>
-                                    <option value="VAN1">Van 1</option>
-                                    <option value="VAN2">Van 2</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Filtro por Status -->
-                            {% if escala.esta_otimizada %}
-                            <div class="col-md-2">
-                                <label for="filtro-status" class="form-label small">
-                                    <i class="fas fa-check-circle text-success"></i> Status
-                                </label>
-                                <select class="form-select form-select-sm" id="filtro-status">
-                                    <option value="">Todos</option>
-                                    <option value="ALOCADO">Alocados</option>
-                                    <option value="NAO_ALOCADO">Não alocados</option>
-                                </select>
-                            </div>
-                            {% endif %}
                         </div>
                         
-                        <!-- Estatísticas de Filtro -->
-                        <div class="row mt-3">
-                            <div class="col-12">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted" id="filtro-stats">
-                                        Mostrando todos os serviços
-                                    </small>
-                                    <div class="btn-group btn-group-sm" role="group">
-                                        <button type="button" class="btn btn-outline-primary" id="filtro-pax-alto" title="PAX Acima de 4 (Clique novamente para remover filtro)">
-                                            <i class="fas fa-users"></i> PAX 4+
-                                        </button>
-                                        <button type="button" class="btn btn-outline-secondary" id="filtro-pax-baixo" title="PAX de 1 a 3 (Clique novamente para remover filtro)">
-                                            <i class="fas fa-user"></i> PAX 1-3
-                                        </button>
-                                        <button type="button" class="btn btn-outline-info" id="filtro-hotelbeds" title="HOTELBEDS (Clique novamente para remover filtro)">
-                                            <i class="fas fa-hotel"></i> HOTELBEDS
-                                        </button>
-                                        <button type="button" class="btn btn-outline-success" id="filtro-holiday" title="Holiday (Clique novamente para remover filtro)">
-                                            <i class="fas fa-plane"></i> Holiday
-                                        </button>
-                                        <button type="button" class="btn btn-outline-warning" id="filtro-transfer-in" title="Transfer IN (Clique novamente para remover filtro)">
-                                            <i class="fas fa-arrow-right"></i> IN
-                                        </button>
-                                        <button type="button" class="btn btn-outline-danger" id="filtro-transfer-out" title="Transfer OUT (Clique novamente para remover filtro)">
-                                            <i class="fas fa-arrow-left"></i> OUT
-                                        </button>
-                                        <button type="button" class="btn btn-outline-dark" id="filtro-barra" title="Barra da Tijuca (Clique novamente para remover filtro)">
-                                            <i class="fas fa-map-marker-alt"></i> Barra
-                                        </button>
-                                        <button type="button" class="btn btn-outline-warning" id="filtro-prioritarios" title="Serviços Prioritários (4-10 PAX + Hotelbeds/Holiday/Barra) (Clique novamente para remover filtro)">
-                                            <i class="fas fa-star"></i> Prioritários
+                        <!-- Filtro por Serviço -->
+                        <div class="col-md-4">
+                            <label for="filtro-servico" class="form-label small text-muted mb-1">Serviço/Destino</label>
+                            <input type="text" class="form-control form-control-sm border-0 bg-light" id="filtro-servico" 
+                                   placeholder="Digite para filtrar...">
+                        </div>
+                        
+                        <!-- Filtro por Local Pickup -->
+                        <div class="col-md-3">
+                            <label for="filtro-pickup" class="form-label small text-muted mb-1">Local Pickup</label>
+                            <input type="text" class="form-control form-control-sm border-0 bg-light" id="filtro-pickup" 
+                                   placeholder="Digite local...">
+                        </div>
+                        
+                        <!-- Filtro por Van -->
+                        <div class="col-md-2">
+                            <label for="filtro-van" class="form-label small text-muted mb-1">Van</label>
+                            <select class="form-select form-select-sm border-0 bg-light" id="filtro-van">
+                                <option value="">Todas</option>
+                                <option value="VAN1">Van 1</option>
+                                <option value="VAN2">Van 2</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Filtro por Status -->
+                        {% if escala.esta_otimizada %}
+                        <div class="col-md-2">
+                            <label for="filtro-status" class="form-label small text-muted mb-1">Status</label>
+                            <select class="form-select form-select-sm border-0 bg-light" id="filtro-status">
+                                <option value="">Todos</option>
+                                <option value="ALOCADO">Alocados</option>
+                                <option value="NAO_ALOCADO">Não alocados</option>
+                            </select>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Filtros Rápidos -->
+                    <div class="mt-4">
+                        <p class="small text-muted mb-2">Filtros Rápidos:</p>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" id="filtro-pax-alto" title="PAX 4+">
+                                PAX 4+
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" id="filtro-pax-baixo" title="PAX 1-3">
+                                PAX 1-3
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-info rounded-pill px-3" id="filtro-hotelbeds" title="HOTELBEDS">
+                                HOTELBEDS
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3" id="filtro-holiday" title="Holiday">
+                                Holiday
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-warning rounded-pill px-3" id="filtro-transfer-in" title="Transfer IN">
+                                IN
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3" id="filtro-transfer-out" title="Transfer OUT">
+                                OUT
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-dark rounded-pill px-3" id="filtro-barra" title="Barra da Tijuca">
+                                Barra
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-warning rounded-pill px-3" id="filtro-prioritarios" title="Serviços Prioritários">
+                                Prioritários
                                         </button>
                                         <button type="button" class="btn btn-outline-success" id="filtro-alocados" title="Serviços Alocados (Clique novamente para remover filtro)">
                                             <i class="fas fa-check"></i> Alocados
@@ -331,32 +330,32 @@
         </div>
         {% endif %}
 
-        <!-- Interface Kanban - Van 1 e Van 2 -->
+        <!-- Interface Kanban Moderna -->
         <div class="row" id="kanban-container">
             <!-- Van 1 -->
             <div class="col-lg-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="card-title mb-0 d-flex justify-content-between align-items-center">
+                <div class="bg-white rounded-3 shadow-sm border-0 h-100">
+                    <div class="p-4 border-bottom">
+                        <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <i class="fas fa-van-shuttle"></i> Van 1
-                                <span class="badge bg-light text-dark ms-2" id="van1-pax">{{ van1.total_pax }} PAX</span>
-                                <span class="badge bg-light text-dark ms-1" id="van1-valor">{{ van1.total_valor|currency }}</span>
-                                <span class="badge bg-light text-dark ms-1" id="van1-servicos">{{ van1.count }} serviços</span>
+                                <h6 class="fw-bold text-dark mb-2">Van 1</h6>
+                                <div class="d-flex gap-2">
+                                    <span class="badge bg-light text-dark rounded-pill px-3" id="van1-pax">{{ van1.total_pax }} PAX</span>
+                                    <span class="badge bg-light text-dark rounded-pill px-3" id="van1-valor">{{ van1.total_valor|currency }}</span>
+                                    <span class="badge bg-light text-dark rounded-pill px-3" id="van1-servicos">{{ van1.count }} serviços</span>
+                                </div>
                             </div>
-                            <div>
-                                {% if escala.tem_dados %}
-                                    <button type="button" 
-                                            class="btn btn-success btn-sm" 
-                                            onclick="exportarVanParaExcel('VAN1')" 
-                                            title="Exportar Van 1 para Excel">
-                                        <i class="fas fa-file-excel"></i>
-                                    </button>
-                                {% endif %}
-                            </div>
-                        </h5>
+                            {% if escala.tem_dados %}
+                                <button type="button" 
+                                        class="btn btn-sm btn-outline-success rounded-pill px-3" 
+                                        onclick="exportarVanParaExcel('VAN1')" 
+                                        title="Exportar Van 1 para Excel">
+                                    Excel
+                                </button>
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="card-body p-2" id="van1-container" data-van="VAN1">
+                    <div class="p-3" id="van1-container" data-van="VAN1" style="min-height: 400px; background-color: #fafafa;">
                         {% for alocacao in van1.servicos %}
                             <div class="servico-card" 
                                  data-alocacao-id="{{ alocacao.id }}" 
@@ -521,28 +520,28 @@
 
             <!-- Van 2 -->
             <div class="col-lg-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-header bg-info text-white">
-                        <h5 class="card-title mb-0 d-flex justify-content-between align-items-center">
+                <div class="bg-white rounded-3 shadow-sm border-0 h-100">
+                    <div class="p-4 border-bottom">
+                        <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <i class="fas fa-van-shuttle"></i> Van 2
-                                <span class="badge bg-light text-dark ms-2" id="van2-pax">{{ van2.total_pax }} PAX</span>
-                                <span class="badge bg-light text-dark ms-1" id="van2-valor">{{ van2.total_valor|currency }}</span>
-                                <span class="badge bg-light text-dark ms-1" id="van2-servicos">{{ van2.count }} serviços</span>
+                                <h6 class="fw-bold text-dark mb-2">Van 2</h6>
+                                <div class="d-flex gap-2">
+                                    <span class="badge bg-light text-dark rounded-pill px-3" id="van2-pax">{{ van2.total_pax }} PAX</span>
+                                    <span class="badge bg-light text-dark rounded-pill px-3" id="van2-valor">{{ van2.total_valor|currency }}</span>
+                                    <span class="badge bg-light text-dark rounded-pill px-3" id="van2-servicos">{{ van2.count }} serviços</span>
+                                </div>
                             </div>
-                            <div>
-                                {% if escala.tem_dados %}
-                                    <button type="button" 
-                                            class="btn btn-success btn-sm" 
-                                            onclick="exportarVanParaExcel('VAN2')" 
-                                            title="Exportar Van 2 para Excel">
-                                        <i class="fas fa-file-excel"></i>
-                                    </button>
-                                {% endif %}
-                            </div>
-                        </h5>
+                            {% if escala.tem_dados %}
+                                <button type="button" 
+                                        class="btn btn-sm btn-outline-success rounded-pill px-3" 
+                                        onclick="exportarVanParaExcel('VAN2')" 
+                                        title="Exportar Van 2 para Excel">
+                                    Excel
+                                </button>
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="card-body p-2" id="van2-container" data-van="VAN2">
+                    <div class="p-3" id="van2-container" data-van="VAN2" style="min-height: 400px; background-color: #fafafa;">
                         {% for alocacao in van2.servicos %}
                             <div class="servico-card" 
                                  data-alocacao-id="{{ alocacao.id }}" 
@@ -726,53 +725,166 @@
     {% endif %}
 </div>
 
-<!-- CSS para drag and drop -->
+<!-- CSS Profissional -->
 <style>
+/* Variáveis de design */
+:root {
+    --bg-gray-50: #f9fafb;
+    --bg-gray-100: #f3f4f6;
+    --text-gray-600: #6b7280;
+    --text-gray-900: #111827;
+    --border-gray-200: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos gerais profissionais */
+body {
+    background-color: var(--bg-gray-50);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 .servico-card {
     cursor: default;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px !important;
+    border: 1px solid var(--border-gray-200) !important;
+    background: white;
+    box-shadow: var(--shadow-sm);
 }
 
 .servico-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    border-color: #d1d5db !important;
 }
 
+.servico-card .card-body {
+    border-radius: 11px;
+    background: white;
+}
+
+/* Badges modernos */
+.badge {
+    font-weight: 500;
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+}
+
+.badge.rounded-pill {
+    border-radius: 50px !important;
+}
+
+/* Cards com grupos */
+.servico-card.grupo {
+    border-left: 4px solid #10b981 !important;
+    background: linear-gradient(to right, #ecfdf5, white);
+}
+
+/* Botões modernos */
+.btn {
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-secondary {
+    border-color: var(--border-gray-200);
+    color: var(--text-gray-600);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--bg-gray-100);
+    border-color: var(--border-gray-200);
+    color: var(--text-gray-900);
+}
+
+/* Estados de drag and drop mais sutis */
 .servico-card.dragging {
-    opacity: 0.5;
-    transform: rotate(5deg);
+    opacity: 0.7;
+    transform: rotate(2deg) scale(0.98);
+    box-shadow: var(--shadow-lg);
 }
 
 .servico-card.drop-target {
-    border: 3px solid #28a745;
-    background-color: rgba(40, 167, 69, 0.1);
-    transform: scale(1.02);
+    border: 2px solid #10b981 !important;
+    background: linear-gradient(to right, #ecfdf5, #f0fdf4);
+    transform: scale(1.01);
+    box-shadow: var(--shadow-lg);
 }
 
 .servico-card.drop-target::before {
-    content: "🔗 AGRUPAR";
+    content: "Agrupar Serviços";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #28a745;
+    background: #10b981;
     color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
     z-index: 10;
     pointer-events: none;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .van-container.drag-over {
-    border: 3px solid #007bff;
-    background-color: rgba(0, 123, 255, 0.1);
+    border: 2px solid #3b82f6 !important;
+    background: linear-gradient(to bottom, #eff6ff, #f0f9ff);
+    border-radius: 12px;
 }
 
 .van-container.drag-over::before {
-    content: "📦 MOVER PARA ESTA VAN";
+    content: "Mover para esta Van";
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #3b82f6;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 10;
+    pointer-events: none;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.dropzone {
+    min-height: 120px;
+    border: 2px dashed var(--border-gray-200);
+    border-radius: 12px;
+    background: var(--bg-gray-50);
+    transition: all 0.3s ease;
+}
+
+.dropzone:hover {
+    border-color: #d1d5db;
+    background: white;
+}
+
+/* Melhoria nos filtros */
+.form-control, .form-select {
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Status badges */
+.status-badge {
+    border-radius: 6px !important;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

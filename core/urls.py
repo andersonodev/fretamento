@@ -10,6 +10,7 @@ urlpatterns = [
     # Views principais
     path('', views.HomeView.as_view(), name='home'),
     path('upload/', views.UploadPlanilhaView.as_view(), name='upload_planilha'),
+    path('atividades/', views.ListaAtividadesView.as_view(), name='lista_atividades'),
     
     # Arquivos e serviços
     path('arquivos/', views.ListaArquivosView.as_view(), name='lista_arquivos'),

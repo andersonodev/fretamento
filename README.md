@@ -94,6 +94,7 @@ O **Fretamento Intertouring** é um sistema completo de gestão de escalas de fr
 ## 🏗️ Arquitetura
 
 ### 🎨 Frontend
+
 ```
 Bootstrap 5 + JavaScript
 ├── Interface Kanban interativa
@@ -104,6 +105,7 @@ Bootstrap 5 + JavaScript
 ```
 
 ### 🖥️ Backend
+
 ```
 Django 4.2.7 + Python 3.10+
 ├── Models otimizados com índices
@@ -114,6 +116,7 @@ Django 4.2.7 + Python 3.10+
 ```
 
 ### 🗄️ Banco de Dados
+
 ```
 SQLite (Dev) / PostgreSQL (Prod)
 ├── Escalas e Serviços
@@ -124,6 +127,7 @@ SQLite (Dev) / PostgreSQL (Prod)
 ```
 
 ### 🧮 Algoritmos Especializados
+
 ```
 Otimização e Precificação
 ├── Busca Fuzzy para preços
@@ -139,7 +143,7 @@ Otimização e Precificação
 
 ### 📋 Pré-requisitos
 
-- **Python 3.10+** 
+- **Python 3.10+**
 - **Git**
 - **Virtualenv** (recomendado)
 
@@ -281,58 +285,62 @@ chmod +x deploy.sh
 
 ### 🖥️ Backend
 
-| Tecnologia | Versão | Uso |
-|------------|--------|-----|
-| **Django** | 4.2.7 | Framework web principal |
-| **Python** | 3.10+ | Linguagem de programação |
-| **SQLite** | 3.x | Banco de dados (desenvolvimento) |
-| **PostgreSQL** | 15+ | Banco de dados (produção) |
-| **Crispy Forms** | 2.0+ | Formulários estilizados |
+| Tecnologia             | Versão | Uso                              |
+| ---------------------- | ------- | -------------------------------- |
+| **Django**       | 4.2.7   | Framework web principal          |
+| **Python**       | 3.10+   | Linguagem de programação       |
+| **SQLite**       | 3.x     | Banco de dados (desenvolvimento) |
+| **PostgreSQL**   | 15+     | Banco de dados (produção)      |
+| **Crispy Forms** | 2.0+    | Formulários estilizados         |
 
 ### 🎨 Frontend
 
-| Tecnologia | Versão | Uso |
-|------------|--------|-----|
-| **Bootstrap** | 5.3 | Framework CSS |
-| **JavaScript** | ES6+ | Interatividade |
-| **Font Awesome** | 6.0+ | Ícones |
-| **Chart.js** | 4.0+ | Gráficos (futuro) |
+| Tecnologia             | Versão | Uso                |
+| ---------------------- | ------- | ------------------ |
+| **Bootstrap**    | 5.3     | Framework CSS      |
+| **JavaScript**   | ES6+    | Interatividade     |
+| **Font Awesome** | 6.0+    | Ícones            |
+| **Chart.js**     | 4.0+    | Gráficos (futuro) |
 
 ### 🧮 Algoritmos Especializados
 
-| Componente | Descrição |
-|------------|-----------|
-| **Busca Fuzzy** | Algoritmo de similaridade de strings para preços |
-| **Otimização PAX** | Distribuição inteligente de passageiros |
-| **Agrupamento** | Clustering de serviços similares |
-| **Precificação** | Cálculo automático baseado em tarifários |
+| Componente                 | Descrição                                       |
+| -------------------------- | ------------------------------------------------- |
+| **Busca Fuzzy**      | Algoritmo de similaridade de strings para preços |
+| **Otimização PAX** | Distribuição inteligente de passageiros         |
+| **Agrupamento**      | Clustering de serviços similares                 |
+| **Precificação**   | Cálculo automático baseado em tarifários       |
 
 ### 🛠️ Ferramentas de Desenvolvimento
 
-| Ferramenta | Uso |
-|------------|-----|
-| **MkDocs** | Documentação técnica |
-| **Docker** | Containerização |
-| **GitHub Actions** | CI/CD |
-| **Vercel** | Deploy serverless |
+| Ferramenta               | Uso                     |
+| ------------------------ | ----------------------- |
+| **MkDocs**         | Documentação técnica |
+| **Docker**         | Containerização       |
+| **GitHub Actions** | CI/CD                   |
+| **Vercel**         | Deploy serverless       |
 
 ---
 
 ## 📊 Screenshots
 
 ### 🗓️ Dashboard Principal
+
 ![Dashboard](docs/images/dashboard.png)
 *Visão geral das escalas com KPIs de performance*
 
 ### 🎯 Interface Kanban
+
 ![Kanban](docs/images/kanban.png)
 *Sistema de arrastar e soltar para organização de serviços*
 
 ### 📈 Análise de Lucratividade
+
 ![Analytics](docs/images/analytics.png)
 *Relatórios detalhados de performance e lucratividade*
 
 ### 📤 Exportação Excel
+
 ![Excel](docs/images/excel-export.png)
 *Planilhas profissionais com formatação brasileira*
 
@@ -357,7 +365,7 @@ Contribuições são muito bem-vindas! Por favor, siga estas diretrizes:
 class MinhaView(TemplateView):
     """Docstring obrigatória para todas as classes"""
     template_name = 'app/template.html'
-    
+  
     def get_context_data(self, **kwargs):
         """Método bem documentado"""
         context = super().get_context_data(**kwargs)
@@ -415,7 +423,7 @@ A documentação é automaticamente deployada no GitHub Pages através do GitHub
 #### Contribuindo com a Documentação
 
 - **Sempre** documente novas funcionalidades
-- **Atualize** README.md se necessário  
+- **Atualize** README.md se necessário
 - **Inclua** exemplos de uso
 - **Mantenha** docs/ atualizada
 
@@ -494,6 +502,7 @@ LogEscala.objects.create(
 ### ❗ Problemas Comuns
 
 #### 1. Erro de Migração
+
 ```bash
 # Resetar migrações
 python manage.py migrate --fake escalas zero
@@ -501,12 +510,14 @@ python manage.py migrate escalas
 ```
 
 #### 2. Problemas de Static Files
+
 ```bash
 # Recolher arquivos estáticos
 python manage.py collectstatic --noinput
 ```
 
 #### 3. Erro de Dependências
+
 ```bash
 # Reinstalar dependências
 pip uninstall -r requirements.txt -y
@@ -514,6 +525,7 @@ pip install -r requirements.txt
 ```
 
 #### 4. Problemas no Kanban
+
 ```javascript
 // Verificar console do browser
 // Recarregar página com Ctrl+F5
@@ -598,36 +610,41 @@ SOFTWARE.
 </div>
 
 ### Sistema de Tarifários
+
 - **Tarifário JW**: Preços específicos por tipo de veículo (Executivo, Van 15, Van 18, Micro, Ônibus)
 - **Tarifário Motoristas**: Preços base multiplicados por número de venda
 - **Simulador de Preços**: Interface para teste e simulação de preços
 - **Histórico de Cálculos**: Registro completo de todos os cálculos realizados
 - **Busca Inteligente**: Localização rápida de preços específicos nos tarifários
-![Sistema de Fretamento](https://img.shields.io/badge/Django-4.2-green) ![Python](https://img.shields.io/badge/Python-3.8+-blue) ![Status](https://img.shields.io/badge/Status-Pronto-success)
+  ![Sistema de Fretamento](https://img.shields.io/badge/Django-4.2-green) ![Python](https://img.shields.io/badge/Python-3.8+-blue) ![Status](https://img.shields.io/badge/Status-Pronto-success)
 
 Sistema completo para gerenciamento de escalas de fretamento, baseado na lógica original do Google Apps Script, agora implementado em Django para melhor performance e escalabilidade.
 
 ## 🚀 Funcionalidades
 
 ### ✅ Upload e Processamento de Planilhas
+
 - **Formatos suportados**: `.xlsx`, `.xls`, `.csv`
 - **Limpeza automática** de dados desnecessários
 - **Normalização** de serviços e cabeçalhos
 - **Validação** e tratamento de erros
 
 ### 🧠 Agrupamento Inteligente
+
 - **Janela de agrupamento**: 35 minutos para serviços similares
 - **Soma automática** de PAX
 - **Concatenação** de números de venda
 - **Detecção de prioridades** (Hotelbeds, Holiday, Barra)
 
 ### 🚐 Gestão de Escalas
+
 - **Criação automática** de estruturas diárias
 - **Distribuição inteligente** entre Van 1 e Van 2
 - **Otimização** com regras de negócio
 - **Visualização completa** das escalas
 
 ### 📊 Exportação e Relatórios
+
 - **Export para Excel** com formatação
 - **Cálculos automáticos** de custos e receitas
 - **Diagnósticos detalhados** do sistema
@@ -636,16 +653,19 @@ Sistema completo para gerenciamento de escalas de fretamento, baseado na lógica
 ## 🛠️ Instalação Rápida
 
 ### Pré-requisitos
+
 - Python 3.8 ou superior
 - pip (gerenciador de pacotes Python)
 
 ### Setup Automático (Linux/Mac)
+
 ```bash
 # Execute o script de setup
 ./setup.sh
 ```
 
 ### Setup Manual
+
 ```bash
 # 1. Crie um ambiente virtual
 python -m venv venv
@@ -673,6 +693,7 @@ python manage.py runserver
 ## 📋 Uso Básico
 
 ### 1. Processamento de Planilhas
+
 ```bash
 # Acesse a URL de upload
 http://localhost:8000/upload/
@@ -687,6 +708,7 @@ http://localhost:8000/upload/
 ```
 
 ### 2. Gerenciamento de Tarifários
+
 ```bash
 # Visualizar tarifários
 http://localhost:8000/tarifarios/
@@ -702,6 +724,7 @@ http://localhost:8000/historico-calculos/
 ```
 
 ### 3. Gestão de Escalas
+
 ```bash
 # Criar escala para data específica
 http://localhost:8000/escalas/criar/
@@ -718,18 +741,21 @@ http://localhost:8000/escalas/relatorio/
 ### Lógica de Agrupamento (Baseada no Script Original)
 
 #### Etapa 1: Agrupamento por Nome
+
 - Serviços com **mesmo nome**
 - Diferença de até **35 minutos**
 - PAX somados automaticamente
 - Números de venda concatenados
 
 #### Etapa 2: Seleção e Priorização
+
 - Grupos entre **4 e 10 PAX**
 - **Prioridade 1**: Clientes Hotelbeds/Holiday
 - **Prioridade 2**: Destino Barra da Tijuca
 - Transfers OUT regulares com ≥4 PAX
 
 #### Etapa 3: Distribuição nas Vans
+
 - **Van 1**: Prioritários primeiro
 - **Van 2**: Complementares
 - **Intervalo mínimo**: 2 horas entre serviços
@@ -756,7 +782,9 @@ fretamento/
 ## 🎯 Principais Recursos
 
 ### 🔄 Processamento da Planilha OS
+
 Implementa a função `limparOS()` original:
+
 - Remove colunas desnecessárias (File Operadora, Fone Contato, etc.)
 - Limpa linhas com "folga" ou dados inválidos
 - Separa Cliente/Titular
@@ -764,12 +792,15 @@ Implementa a função `limparOS()` original:
 - Normaliza cabeçalhos
 
 ### 🧩 Sistema de Escalas
+
 Implementa as funções originais:
+
 - `_processarCriacao()`: Cria estrutura do dia
 - `_processarPuxada()`: Importa dados da OS
 - `_processarOtimizacao()`: Aplica agrupamento inteligente
 
 ### 📊 Interface Web Moderna
+
 - Dashboard com estatísticas
 - Upload com feedback visual
 - Visualização completa das escalas
@@ -787,10 +818,4 @@ Implementa as funções originais:
 
 **🚌 Sistema completo de fretamento desenvolvido com Django**
 
-*Automatize suas escalas com a mesma lógica confiável do Google Apps Script, agora com interface web moderna e recursos avançados.*
-
-## 🌐 URLs do Sistema
-
-- **🎯 Domínio Principal**: https://fretamentointertouring.vercel.app
-- **⚙️ Backend Heroku**: https://fretamento-intertouring-d423e478ec7f.herokuapp.com
-- **🔧 Django Admin**: https://fretamentointertouring.vercel.app/admin/
+*Automatize suas escalas com a mesma lógica confiável do Google Apps Script, agora com interface web moderna e recursos avançados.*# Azure Web App URL: https://fretamento-d9gefzhga7e9dsag.brazilsouth-01.azurewebsites.net

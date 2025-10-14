@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="locale" content="pt-BR">
+    <title>{% block title %}Sistema de Fretamento{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚐</text></svg>">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    
+    <!-- Bootstrap 5.3 - CDN otimizado -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Font Awesome - versão otimizada -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js - apenas quando necessário -->
+    {% block extra_head %}{% endblock %}
+    
+    <!-- CSS Personalizado -->
+    {% load static %}
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    <link href="{% static 'css/whatsapp-dark.css' %}" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #1F8CCB 0%, #1a7bb8 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --dark-gradient: linear-gradient(135deg, #434343 0%, #000000 100%);
+            
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            
+            --primary-color: #1F8CCB;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Animações de entrada */
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sidebar - Design limpo e funcional */
+                <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        /* Navbar */
+        .navbar-with-sidebar {
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .sidebar-toggle {
+            border: none;
+            background: none;
+            color: #666;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Layout principal */
+        .main-content {
+            min-height: 100vh;
+            background: #ffffff;
+            margin-left: 260px;
+            padding: 20px;
+        }
+
+        .main-content.collapsed {
+            margin-left: 60px;
+        }
+
+        /* Responsivo */
+        @media (min-width: 992px) {
+            .sidebar {
+                transform: translateX(0);
+            }
+            
+            .sidebar-overlay {
+                display: none;
+            }
+            
+            .sidebar-toggle {
+                display: none;
+            }
+        }
+
+        /* User profile no sidebar */
+        .sidebar-user {
+            padding: 1rem;
+            border-top: 1px solid #e0e0e0;
+            background: #ffffff;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .sidebar-user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #333;
+        }
+
+        .sidebar-user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #007bff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            font-size: 0.875rem;
+        }
+
+        .sidebar-user-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .sidebar.collapsed .sidebar-user-info {
+            justify-content: center;
+        }
+
+        .sidebar.collapsed .sidebar-user-info > div {
+            display: none;
+        }
+
+        .sidebar-brand {
+            color: #495057;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-brand:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .sidebar-brand i {
+            color: #007bff;
+            font-size: 1.5rem;
+        }
+
+        .sidebar-collapse-btn {
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
+            background: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #6c757d;
+        }
+
+        .sidebar-collapse-btn:hover {
+            background: #f8f9fa;
+            color: #495057;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-nav {
+            padding: 1rem 0;
+            list-style: none;
+            margin: 0;
+        }
+
+                /* User profile no sidebar já definido anteriormente */
+
+    </style>
+</head>
+<body class="fade-in-up">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="{% url 'core:home' %}" class="sidebar-brand">
+                <i class="fas fa-bus"></i>
+                <span></span>
+            </a>
+            border-radius: 12px;
+        }
+
+        .nav-link:hover::before {
+            left: 0;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-link i {
+            margin-right: 0.5rem;
+        }
+
+        /* Dropdown menu moderno */
+        .dropdown-menu {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown-item {
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }        .dropdown-item:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Perfil do usuário */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .user-profile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .user-role {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            line-height: 1;
+        }
+
+        /* Container principal */
+        .main-container {
+            padding: 2rem 0;
+            min-height: calc(100vh - 120px);
+        }
+
+        /* Alerts modernos */
+        .alert {
+            border: none;
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(139, 195, 74, 0.15) 100%);
+            color: #2e7d32;
+        }
+
+        .alert-danger {
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.15) 0%, rgba(233, 30, 99, 0.15) 100%);
+            color: #c62828;
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%);
+            color: #f57c00;
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.15) 0%, rgba(3, 169, 244, 0.15) 100%);
+            color: #1976d2;
+        }
+
+        /* Footer moderno */
+        .footer-modern {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .user-info {
+                display: none;
+            }
+            
+            .nav-link {
+                padding: 0.5rem 0.75rem !important;
+            }
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scrollbar customizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #1F8CCB 0%, #1a7bb8 100%);
+        }
+
+        /* Dropdown items especiais */
+        .theme-toggle-item {
+            cursor: pointer;
+        }
+
+        .theme-toggle-item:hover {
+            background: var(--primary-gradient) !important;
+            color: white !important;
+        }
+
+        /* Dark theme - WhatsApp colors */
+        .dark-theme {
+            background: linear-gradient(135deg, #0b141a 0%, #1f2c34 100%) !important;
+            color: #e9edef !important;
+        }
+
+        .dark-theme .navbar {
+            background: rgba(11, 20, 26, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #3b4a54;
+        }
+
+        .dark-theme .navbar-brand {
+            color: #00a884 !important;
+        }
+
+        .dark-theme .nav-link {
+            color: #e9edef !important;
+        }
+
+        .dark-theme .nav-link:hover {
+            color: #00a884 !important;
+            background: rgba(0, 168, 132, 0.1) !important;
+        }
+
+        .dark-theme .dropdown-menu {
+            background: #2a3942 !important;
+            border: 1px solid #3b4a54 !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .dark-theme .dropdown-item {
+            background: transparent !important;
+            color: #e9edef !important;
+            border: none !important;
+        }
+
+        .dark-theme .dropdown-item:hover {
+            background: rgba(0, 168, 132, 0.1) !important;
+            color: #00a884 !important;
+        }
+
+        .dark-theme .card {
+            background: #2a3942 !important;
+            border: 1px solid #3b4a54 !important;
+            color: #e9edef !important;
+        }
+
+        .dark-theme .card-header {
+            background: #1f2c34 !important;
+            border-bottom: 1px solid #3b4a54 !important;
+            color: #e9edef !important;
+        }
+
+        .dark-theme .btn-primary {
+            background: linear-gradient(135deg, #00a884 0%, #008f6f 100%) !important;
+            border-color: #00a884 !important;
+        }
+
+        .dark-theme .btn-primary:hover {
+            background: linear-gradient(135deg, #008f6f 0%, #007a5e 100%) !important;
+            border-color: #008f6f !important;
+        }
+
+        .dark-theme .alert {
+            background: #2a3942 !important;
+            border: 1px solid #3b4a54 !important;
+            color: #e9edef !important;
+        }
+
+        .dark-theme .form-control, .dark-theme .form-select {
+            background: #1f2c34 !important;
+            border: 1px solid #3b4a54 !important;
+            color: #e9edef !important;
+        }
+
+        .dark-theme .form-control:focus, .dark-theme .form-select:focus {
+            background: #2a3942 !important;
+            border-color: #00a884 !important;
+            box-shadow: 0 0 0 0.25rem rgba(0, 168, 132, 0.25) !important;
+        }
+
+        .dark-theme .table {
+            color: #e9edef !important;
+        }
+
+        .dark-theme .table thead th {
+            background: #1f2c34 !important;
+            border-color: #3b4a54 !important;
+            color: #e9edef !important;
+        }
+
+        .dark-theme .table tbody tr {
+            border-color: #3b4a54 !important;
+        }
+
+        .dark-theme .table tbody tr:hover {
+            background: rgba(0, 168, 132, 0.1) !important;
+        }
+
+        .dark-theme .badge {
+            background: #00a884 !important;
+            color: white !important;
+        }
+
+        .dark-theme .text-muted {
+            color: #8696a0 !important;
+        }
+
+        .dark-theme .footer-modern {
+            background: rgba(11, 20, 26, 0.95) !important;
+            border-top: 1px solid #3b4a54 !important;
+    </style>
+</head>
+<body class="fade-in-up">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="{% url 'core:home' %}" class="sidebar-brand">
+                <i class="fas fa-bus"></i>
+                <span></span>
+            </a>
+            <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Fechar/Abrir menu">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        
+        <nav>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="{% url 'core:home' %}" class="sidebar-nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="{% url 'core:upload_planilha' %}" class="sidebar-nav-link">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Upload OS</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="{% url 'core:lista_arquivos' %}" class="sidebar-nav-link">
+                        <i class="fas fa-file-excel"></i>
+                        <span>Serviços</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="{% url 'escalas:selecionar_ano' %}" class="sidebar-nav-link">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Escalas</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="{% url 'core:diagnostico' %}" class="sidebar-nav-link">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="{% url 'authentication:perfil' %}" class="sidebar-nav-link">
+                        <i class="fas fa-user-cog"></i>
+                        <span>Meu Perfil</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                        <span>Tema Escuro</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- User Profile no Sidebar -->
+        {% if user.is_authenticated %}
+        <div class="sidebar-user">
+            <div class="sidebar-user-info">
+                <div class="sidebar-user-avatar">
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.get_avatar_url }}" alt="Avatar" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+                    {% else %}
+                        {{ user.get_full_name|default:user.username|first|upper }}
+                    {% endif %}
+                </div>
+                <div>
+                    <div class="sidebar-user-name">{{ user.get_full_name|default:user.username }}</div>
+                    <small class="text-muted">
+                        {% if user.profile.is_admin %}
+                            Administrador
+                        {% else %}
+                            Operador
+                        {% endif %}
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </aside>
+
+    <!-- Overlay para mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Navbar superior -->
+    <nav class="navbar navbar-with-sidebar">
+        <div class="container-fluid">
+        </div>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="main-content">
+        <!-- Mensagens do Django -->
+        {% if messages %}
+            <div class="container-fluid pt-3">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Conteúdo da página -->
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer moderno -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="{% url 'core:home' %}" class="footer-link">Dashboard</a>
+                    <a href="{% url 'core:lista_arquivos' %}" class="footer-link">Serviços</a>
+                    <a href="{% url 'escalas:selecionar_ano' %}" class="footer-link">Escalas</a>
+                    <a href="{% url 'core:diagnostico' %}" class="footer-link">Analytics</a>
+                </div>
+                <div class="text-muted">
+                    <p class="mb-1">&copy; 2025 Sistema de Fretamento. Todos os direitos reservados.</p>
+                    <p class="mb-0"><small>Versão 2.0 | Powered by Django & Bootstrap</small></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript Personalizado -->
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    
+    <script>
+        // Animações suaves ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-hide alerts após 5 segundos
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                }, 5000);
+            });
+
+            // Smooth scroll para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Loading states para botões
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', function() {
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        const originalText = submitBtn.innerHTML;
+                        submitBtn.innerHTML = '<span class="loading-spinner me-2"></span>Processando...';
+                        submitBtn.disabled = true;
+                        
+                        // Restaurar após 3 segundos (fallback)
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    }
+                });
+            });
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const icon = themeToggle.querySelector('i');
+            
+            // Carregar tema salvo
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+                icon.className = 'fas fa-sun me-2';
+                // Atualizar texto do menu
+                const menuText = themeToggle.childNodes[themeToggle.childNodes.length - 1];
+                if (menuText && menuText.nodeType === Node.TEXT_NODE) {
+                    menuText.textContent = 'Modo Claro';
+                }
+            }
+            
+            themeToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                body.classList.toggle('dark-theme');
+                
+                if (body.classList.contains('dark-theme')) {
+                    icon.className = 'fas fa-sun me-2';
+                    localStorage.setItem('theme', 'dark');
+                    // Atualizar texto do menu
+                    const menuText = themeToggle.childNodes[themeToggle.childNodes.length - 1];
+                    if (menuText && menuText.nodeType === Node.TEXT_NODE) {
+                        menuText.textContent = 'Modo Claro';
+                    }
+                } else {
+                    icon.className = 'fas fa-moon me-2';
+                    localStorage.setItem('theme', 'light');
+                    // Atualizar texto do menu
+                    const menuText = themeToggle.childNodes[themeToggle.childNodes.length - 1];
+                    if (menuText && menuText.nodeType === Node.TEXT_NODE) {
+                        menuText.textContent = 'Modo Noturno';
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- JavaScript do Sidebar -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+            const mainContent = document.querySelector('.main-content');
+            
+            // Toggle sidebar para mobile
+            function toggleSidebar() {
+                sidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+                document.body.classList.toggle('sidebar-open');
+            }
+            
+            // Toggle collapse para desktop - SIMPLES
+            function toggleCollapse() {
+                const isCollapsed = sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('collapsed', isCollapsed);
+                
+                const icon = sidebarToggleBtn.querySelector('i');
+                if (isCollapsed) {
+                    icon.className = 'fas fa-chevron-right';
+                    sidebarToggleBtn.title = 'Abrir menu';
+                } else {
+                    icon.className = 'fas fa-chevron-left';
+                    sidebarToggleBtn.title = 'Fechar menu';
+                }
+            }
+            
+            // Event listeners
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', toggleSidebar);
+            }
+            
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', toggleSidebar);
+            }
+            
+            if (sidebarToggleBtn) {
+                sidebarToggleBtn.addEventListener('click', toggleCollapse);
+            }
+            
+            // Marcar link ativo
+            const currentPath = window.location.pathname;
+            const sidebarLinks = document.querySelectorAll('.sidebar-nav-link');
+            
+            sidebarLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPath || 
+                    (currentPath.includes('/escalas/') && href && href.includes('/escalas/')) ||
+                    (currentPath.includes('/core/') && href && href.includes('/core/')) ||
+                    (currentPath.includes('/auth/') && href && href.includes('/auth/'))) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Fechar sidebar ao clicar em link (mobile)
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 992) {
+                        setTimeout(toggleSidebar, 150);
+                    }
+                });
+            });
+            
+            // Ajustar no resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 992) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.classList.remove('sidebar-open');
+                }
+            });
+        });
+    </script>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

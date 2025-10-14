@@ -25,6 +25,10 @@ class HomeView(View):
     """View principal do sistema com dashboard completo otimizado"""
     
     def get(self, request):
+        # Verificar se o usuário está autenticado
+        if not request.user.is_authenticated:
+            return redirect('authentication:login')
+            
         # Tenta buscar do cache primeiro
         cache_key = f"dashboard_stats_{request.user.id}"
         cached_data = cache.get(cache_key)
@@ -48,20 +52,12 @@ class HomeView(View):
         dados_recentes = self._get_dados_recentes()
         
         # Informações do usuário
-        if request.user.is_authenticated:
-            user_info = {
-                'nome': request.user.get_full_name() or request.user.username,
-                'username': request.user.username,
-                'ultimo_login': request.user.last_login,
-                'permissoes_especiais': request.user.username in ['cristiane.aguiar', 'lucy.leite']
-            }
-        else:
-            user_info = {
-                'nome': 'Visitante',
-                'username': 'anonymous',
-                'ultimo_login': None,
-                'permissoes_especiais': False
-            }
+        user_info = {
+            'nome': request.user.get_full_name() or request.user.username,
+            'username': request.user.username,
+            'ultimo_login': request.user.last_login,
+            'permissoes_especiais': request.user.is_superuser or request.user.is_staff
+        }
         
         context = {
             **stats_basicas,
@@ -171,6 +167,12 @@ class HomeView(View):
     
     def _get_dados_recentes(self):
         """Dados recentes com prefetch otimizado"""
+        # Importar ActivityLog do models principal
+        from core.models import ActivityLog
+        
+        # Atividades recentes do sistema (últimas 10)
+        atividades_recentes = ActivityLog.objects.select_related('user').order_by('-created_at')[:10]
+        
         # Processamentos recentes (apenas 5)
         processamentos_recentes = ProcessamentoPlanilha.objects.select_related().order_by('-created_at')[:5]
         
@@ -178,6 +180,7 @@ class HomeView(View):
         escalas_recentes = Escala.objects.select_related('aprovada_por').order_by('-data')[:5]
         
         return {
+            'atividades_recentes': atividades_recentes,
             'processamentos_recentes': processamentos_recentes,
             'escalas_recentes': escalas_recentes,
         }
@@ -187,6 +190,14 @@ class UploadPlanilhaView(View):
     """View para upload e processamento da planilha OS"""
     
     def get(self, request):
+        # Log de acesso à página de upload
+        from core.activity_utils import log_activity
+        log_activity(
+            request=request,
+            activity_type='VIEW',
+            description='Página de upload acessada',
+            details='Usuário acessou a interface de upload de planilhas'
+        )
         return render(request, 'core/upload_planilha.html')
     
     def post(self, request):
@@ -225,6 +236,22 @@ class UploadPlanilhaView(View):
                 f"dashboard_stats_{request.user.id}",
                 "lista_servicos_stats_*"
             ])
+            
+            # Log da atividade de upload bem-sucedido
+            from core.activity_utils import log_activity
+            log_activity(
+                request=request,
+                activity_type='UPLOAD',
+                description=f'Upload de planilha realizado: {arquivo.name}',
+                details=f'Arquivo {arquivo.name} processado com {len(servicos)} serviços importados',
+                object_type='Arquivo',
+                object_id=str(processamento.id) if processamento else '',
+                extra_data={
+                    'arquivo_nome': arquivo.name,
+                    'arquivo_tamanho': arquivo.size,
+                    'servicos_importados': len(servicos)
+                }
+            )
             
             messages.success(
                 request, 
@@ -683,3 +710,52 @@ class StatusProcessamentoView(View):
             })
         except ProcessamentoPlanilha.DoesNotExist:
             return JsonResponse({'error': 'Processamento não encontrado'}, status=404)
+
+
+class ListaAtividadesView(ListView):
+    """View para listar todas as atividades do sistema"""
+    template_name = 'core/lista_atividades.html'
+    context_object_name = 'atividades'
+    paginate_by = 50
+    
+    def get_queryset(self):
+        from core.models import ActivityLog
+        self.model = ActivityLog
+        queryset = ActivityLog.objects.select_related('user').order_by('-created_at')
+        
+        # Filtros opcionais
+        activity_type = self.request.GET.get('tipo')
+        if activity_type:
+            queryset = queryset.filter(activity_type=activity_type)
+        
+        user_id = self.request.GET.get('usuario')
+        if user_id:
+            queryset = queryset.filter(user_id=user_id)
+            
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        from core.models import ActivityLog
+        from django.contrib.auth.models import User
+        
+        # Log de acesso à página
+        from core.activity_utils import log_activity
+        log_activity(
+            request=self.request,
+            activity_type='VIEW',
+            description='Lista de atividades acessada',
+            details='Usuário visualizou o histórico completo de atividades'
+        )
+        
+        # Adicionar opções de filtro
+        context['tipos_atividade'] = ActivityLog.ACTIVITY_TYPES
+        context['usuarios'] = User.objects.filter(
+            activity_logs__isnull=False
+        ).distinct().order_by('username')
+        
+        # Filtros aplicados
+        context['filtro_tipo'] = self.request.GET.get('tipo', '')
+        context['filtro_usuario'] = self.request.GET.get('usuario', '')
+        
+        return context

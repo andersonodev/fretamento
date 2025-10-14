@@ -7,18 +7,16 @@
 <style>
     /* Dashboard Moderno e Profissional */
     :root {
-        --primary-color: #1F8CCB;
-        --primary-gradient: linear-gradient(135deg, #1F8CCB 0%, #146BA3 100%);
-        --secondary-color: #2E9FDB;
-        --secondary-gradient: linear-gradient(135deg, #2E9FDB 0%, #1F8CCB 100%);
-        --success-color: #28a745;
-        --success-gradient: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-        --warning-color: #ffc107;
-        --warning-gradient: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
-        --info-color: #17a2b8;
-        --info-gradient: linear-gradient(135deg, #17a2b8 0%, #1F8CCB 100%);
-        --card-shadow: 0 10px 30px rgba(31, 140, 203, 0.1);
-        --card-shadow-hover: 0 20px 40px rgba(31, 140, 203, 0.15);
+        --primary-color: #667eea;
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-color: #f093fb;
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --success-color: #4facfe;
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --warning-color: #f093fb;
+        --warning-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        --card-shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
     }
 
     .dashboard-container {
@@ -31,12 +29,9 @@
         background: var(--primary-gradient);
         color: white;
         padding: 3rem 2rem;
-        margin: -2rem -2rem 2rem -2rem;
+        margin: -30px -30px 2rem -30px;
         position: relative;
-        box-shadow: 0 8px 32px rgba(31, 140, 203, 0.2);
-        width: 100vw;
-        margin-left: calc(-50vw + 50%);
-        border-radius: 0 0 50px 50px;
+        overflow: hidden;
     }
 
     .hero-section::before {
@@ -48,15 +43,11 @@
         bottom: 0;
         background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
         opacity: 0.3;
-        border-radius: 0 0 50px 50px;
     }
 
     .hero-content {
         position: relative;
         z-index: 2;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
     }
 
     .hero-title {
@@ -72,6 +63,27 @@
         font-weight: 300;
     }
 
+    .hero-stats {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .hero-stat {
+        text-align: center;
+    }
+
+    .hero-stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        display: block;
+    }
+
+    .hero-stat-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
     /* Cards Modernos */
     .modern-card {
         background: white;
@@ -81,8 +93,6 @@
         overflow: hidden;
         transition: all 0.3s ease;
         height: 100%;
-        display: flex;
-        flex-direction: column;
     }
 
     .modern-card:hover {
@@ -99,8 +109,6 @@
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        flex-shrink: 0;
-        border-radius: 16px 16px 0 0;
     }
 
     .card-header-modern i {
@@ -110,10 +118,6 @@
 
     .card-body-modern {
         padding: 1.5rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        border-radius: 0 0 16px 16px;
     }
 
     /* Metric Cards */
@@ -159,7 +163,6 @@
     .metric-icon.success { background: var(--success-gradient); }
     .metric-icon.warning { background: var(--warning-gradient); }
     .metric-icon.secondary { background: var(--secondary-gradient); }
-    .metric-icon.info { background: var(--info-gradient); }
 
     .metric-value {
         font-size: 2rem;
@@ -208,8 +211,6 @@
         gap: 0.75rem;
         transition: all 0.3s ease;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        width: 100%;
-        white-space: nowrap;
     }
 
     .action-btn-modern:hover {
@@ -246,7 +247,7 @@
     /* Recent Activity */
     .activity-item-modern {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         gap: 1rem;
         padding: 1rem 0;
         border-bottom: 1px solid #f1f5f9;
@@ -260,7 +261,7 @@
     .activity-avatar {
         width: 40px;
         height: 40px;
-        border-radius: 12px;
+        border-radius: 50%;
         background: var(--primary-gradient);
         display: flex;
         align-items: center;
@@ -268,12 +269,6 @@
         color: white;
         font-weight: 600;
         font-size: 0.9rem;
-        flex-shrink: 0;
-    }
-
-    .activity-content {
-        flex: 1;
-        min-width: 0;
     }
 
     .activity-content h6 {
@@ -281,36 +276,17 @@
         font-weight: 600;
         color: #2d3748;
         margin-bottom: 0.25rem;
-        line-height: 1.3;
     }
 
     .activity-content small {
         color: #718096;
         font-size: 0.8rem;
-        display: block;
-        margin-bottom: 0.5rem;
-        line-height: 1.4;
-    }
-
-    .activity-meta {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
-
-    .activity-meta .badge {
-        font-size: 0.7rem;
-        padding: 0.25rem 0.5rem;
     }
 
     .activity-time {
         color: #a0aec0;
         font-size: 0.75rem;
         margin-left: auto;
-        flex-shrink: 0;
-        text-align: right;
-        min-width: 80px;
     }
 
     /* Chart Container */
@@ -328,30 +304,21 @@
     /* Responsive */
     @media (max-width: 768px) {
         .hero-section {
-            padding: 2rem 0;
-            margin: -2rem -2rem 2rem -2rem;
-            border-radius: 0 0 40px 40px;
-        }
-
-        .hero-content {
-            padding: 0 1rem;
+            padding: 2rem 1rem;
+            margin: -30px -15px 2rem -15px;
         }
 
         .hero-title {
             font-size: 2rem;
         }
 
+        .hero-stats {
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
         .metric-value {
             font-size: 1.5rem;
-        }
-
-        .metric-card {
-            margin-bottom: 1rem;
-        }
-
-        .action-btn-modern {
-            padding: 0.75rem;
-            font-size: 0.9rem;
         }
     }
 </style>
@@ -362,6 +329,21 @@
         <div class="hero-content">
             <h1 class="hero-title">Bem-vindo, {{ user_info.nome }}!</h1>
             <p class="hero-subtitle">Gerencie suas operações de fretamento com inteligência e eficiência</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">{{ total_servicos|default:"0" }}</span>
+                    <span class="hero-stat-label">Serviços Ativos</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">{{ escalas_ativas|default:"0" }}</span>
+                    <span class="hero-stat-label">Escalas em Andamento</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">{{ receita_total|floatformat:0|default:"0" }}</span>
+                    <span class="hero-stat-label">Receita (R$)</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -411,7 +393,7 @@
         
         <div class="col-lg-3 col-md-6 mb-4">
             <div class="metric-card">
-                <div class="metric-icon info">
+                <div class="metric-icon secondary">
                     <i class="fas fa-bus"></i>
                 </div>
                 <div class="metric-value">{{ total_vans|default:"0" }}</div>
@@ -434,7 +416,7 @@
                     Ações Rápidas
                 </div>
                 <div class="card-body-modern">
-                    <div class="d-grid gap-3" style="flex: 1;">
+                    <div class="d-grid gap-3">
                         <a href="{% url 'core:upload_planilha' %}" class="action-btn-modern">
                             <i class="fas fa-cloud-upload-alt"></i>
                             <span>Upload de Planilha OS</span>
@@ -479,7 +461,7 @@
     <!-- Secondary Row -->
     <div class="row">
         <!-- Recent Activity -->
-        <div class="col-12 mb-4">
+        <div class="col-lg-6 mb-4">
             <div class="modern-card">
                 <div class="card-header-modern">
                     <i class="fas fa-history"></i>
@@ -490,37 +472,17 @@
                         {% for atividade in atividades_recentes %}
                         <div class="activity-item-modern">
                             <div class="activity-avatar">
-                                <i class="{{ atividade.get_icon }}"></i>
+                                {{ atividade.usuario|first|upper }}
                             </div>
                             <div class="activity-content">
-                                <h6>{{ atividade.description }}</h6>
-                                <small>
-                                    {% if atividade.details %}
-                                        {{ atividade.details }}
-                                    {% else %}
-                                        {{ atividade.get_activity_type_display }}
-                                        {% if atividade.object_type %}
-                                            - {{ atividade.object_type }}
-                                        {% endif %}
-                                    {% endif %}
-                                </small>
-                                <div class="activity-meta">
-                                    <span class="badge bg-{{ atividade.get_color_class }} me-2">{{ atividade.get_activity_type_display }}</span>
-                                    <small class="text-muted">por {{ atividade.user.get_full_name|default:atividade.user.username }}</small>
-                                </div>
+                                <h6>{{ atividade.descricao }}</h6>
+                                <small>{{ atividade.detalhes }}</small>
                             </div>
                             <div class="activity-time">
-                                {{ atividade.created_at|timesince }} atrás
+                                {{ atividade.data_hora|timesince }} atrás
                             </div>
                         </div>
                         {% endfor %}
-                        
-                        <div class="text-center mt-3">
-                            <a href="{% url 'core:lista_atividades' %}" class="btn btn-outline-primary btn-sm">
-                                <i class="fas fa-eye me-1"></i>
-                                Ver todas as atividades
-                            </a>
-                        </div>
                     {% else %}
                         <div class="text-center py-4">
                             <i class="fas fa-inbox fa-2x text-muted mb-3"></i>
@@ -528,6 +490,68 @@
                             <p class="text-muted small">Suas atividades aparecerão aqui</p>
                         </div>
                     {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        <div class="col-lg-6 mb-4">
+            <div class="modern-card">
+                <div class="card-header-modern">
+                    <i class="fas fa-server"></i>
+                    Status do Sistema
+                </div>
+                <div class="card-body-modern">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-medium">Performance do Sistema</span>
+                            <span class="text-success fw-bold">98%</span>
+                        </div>
+                        <div class="progress-modern">
+                            <div class="progress-bar-modern" style="width: 98%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-medium">Uso de Armazenamento</span>
+                            <span class="text-warning fw-bold">67%</span>
+                        </div>
+                        <div class="progress-modern">
+                            <div class="progress-bar-modern" style="width: 67%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-medium">Backup Automatizado</span>
+                            <span class="text-success fw-bold">100%</span>
+                        </div>
+                        <div class="progress-modern">
+                            <div class="progress-bar-modern" style="width: 100%"></div>
+                        </div>
+                    </div>
+
+                    <div class="row text-center mt-4">
+                        <div class="col-4">
+                            <div class="text-success">
+                                <i class="fas fa-check-circle fa-2x"></i>
+                                <div class="small mt-1 fw-medium">Online</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-success">
+                                <i class="fas fa-shield-alt fa-2x"></i>
+                                <div class="small mt-1 fw-medium">Seguro</div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-success">
+                                <i class="fas fa-sync fa-2x"></i>
+                                <div class="small mt-1 fw-medium">Atualizado</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+
+{% block title %}Histórico de Atividades - Sistema de Fretamento{% endblock %}
+
+{% block content %}
+<style>
+    .activity-filters {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .activity-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .activity-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .activity-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .activity-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: white;
+        flex-shrink: 0;
+    }
+    
+    .activity-icon.primary { background: linear-gradient(135deg, #1F8CCB 0%, #146BA3 100%); }
+    .activity-icon.success { background: linear-gradient(135deg, #28a745 0%, #20c997 100%); }
+    .activity-icon.danger { background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); }
+    .activity-icon.warning { background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%); }
+    .activity-icon.info { background: linear-gradient(135deg, #17a2b8 0%, #1F8CCB 100%); }
+    .activity-icon.secondary { background: linear-gradient(135deg, #6c757d 0%, #495057 100%); }
+    
+    .activity-content h5 {
+        margin: 0 0 0.5rem 0;
+        color: #2d3748;
+        font-weight: 600;
+    }
+    
+    .activity-content .description {
+        color: #718096;
+        margin-bottom: 0.75rem;
+    }
+    
+    .activity-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .activity-meta .badge {
+        font-size: 0.75rem;
+    }
+    
+    .activity-time {
+        color: #a0aec0;
+        font-size: 0.875rem;
+        margin-left: auto;
+    }
+    
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+    
+    .filter-form {
+        display: flex;
+        gap: 1rem;
+        align-items: end;
+        flex-wrap: wrap;
+    }
+    
+    .filter-group {
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    @media (max-width: 768px) {
+        .filter-form {
+            flex-direction: column;
+        }
+        
+        .filter-group {
+            width: 100%;
+        }
+        
+        .activity-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        
+        .activity-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .activity-time {
+            margin-left: 0;
+        }
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="mb-1">📋 Histórico de Atividades</h2>
+                    <p class="text-muted">Visualize todas as ações realizadas no sistema</p>
+                </div>
+                <a href="{% url 'core:home' %}" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    Voltar ao Dashboard
+                </a>
+            </div>
+
+            <!-- Filtros -->
+            <div class="activity-filters">
+                <h5 class="mb-3">🔍 Filtros</h5>
+                <form method="get" class="filter-form">
+                    <div class="filter-group">
+                        <label for="tipo" class="form-label">Tipo de Atividade</label>
+                        <select name="tipo" id="tipo" class="form-select">
+                            <option value="">Todos os tipos</option>
+                            {% for code, name in tipos_atividade %}
+                                <option value="{{ code }}" {% if filtro_tipo == code %}selected{% endif %}>
+                                    {{ name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="usuario" class="form-label">Usuário</label>
+                        <select name="usuario" id="usuario" class="form-select">
+                            <option value="">Todos os usuários</option>
+                            {% for usuario in usuarios %}
+                                <option value="{{ usuario.id }}" {% if filtro_usuario == usuario.id|stringformat:"s" %}selected{% endif %}>
+                                    {{ usuario.get_full_name|default:usuario.username }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group" style="flex: 0 0 auto;">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search me-2"></i>
+                            Filtrar
+                        </button>
+                        <a href="{% url 'core:lista_atividades' %}" class="btn btn-outline-secondary ms-2">
+                            <i class="fas fa-times me-2"></i>
+                            Limpar
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Lista de Atividades -->
+            {% if atividades %}
+                {% for atividade in atividades %}
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <div class="activity-icon {{ atividade.get_color_class }}">
+                            <i class="{{ atividade.get_icon }}"></i>
+                        </div>
+                        
+                        <div class="activity-content flex-grow-1">
+                            <h5>{{ atividade.description }}</h5>
+                            
+                            {% if atividade.details %}
+                                <div class="description">{{ atividade.details }}</div>
+                            {% endif %}
+                            
+                            <div class="activity-meta">
+                                <span class="badge bg-{{ atividade.get_color_class }}">
+                                    {{ atividade.get_activity_type_display }}
+                                </span>
+                                
+                                <span class="text-muted">
+                                    <i class="fas fa-user me-1"></i>
+                                    {{ atividade.user.get_full_name|default:atividade.user.username }}
+                                </span>
+                                
+                                {% if atividade.object_type %}
+                                    <span class="text-muted">
+                                        <i class="fas fa-tag me-1"></i>
+                                        {{ atividade.object_type }}
+                                    </span>
+                                {% endif %}
+                                
+                                {% if atividade.ip_address %}
+                                    <span class="text-muted">
+                                        <i class="fas fa-globe me-1"></i>
+                                        {{ atividade.ip_address }}
+                                    </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="activity-time">
+                            <i class="fas fa-clock me-1"></i>
+                            {{ atividade.created_at|date:"d/m/Y H:i:s" }}
+                            <br>
+                            <small class="text-muted">{{ atividade.created_at|timesince }} atrás</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <!-- Paginação -->
+                {% if is_paginated %}
+                <div class="pagination-container">
+                    <nav aria-label="Navegação das atividades">
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1{% if filtro_tipo %}&tipo={{ filtro_tipo }}{% endif %}{% if filtro_usuario %}&usuario={{ filtro_usuario }}{% endif %}">
+                                        &laquo; Primeira
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if filtro_tipo %}&tipo={{ filtro_tipo }}{% endif %}{% if filtro_usuario %}&usuario={{ filtro_usuario }}{% endif %}">
+                                        &lsaquo; Anterior
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            <li class="page-item active">
+                                <span class="page-link">
+                                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                                </span>
+                            </li>
+
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if filtro_tipo %}&tipo={{ filtro_tipo }}{% endif %}{% if filtro_usuario %}&usuario={{ filtro_usuario }}{% endif %}">
+                                        Próxima &rsaquo;
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if filtro_tipo %}&tipo={{ filtro_tipo }}{% endif %}{% if filtro_usuario %}&usuario={{ filtro_usuario }}{% endif %}">
+                                        Última &raquo;
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                {% endif %}
+
+            {% else %}
+                <div class="activity-card text-center py-5">
+                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                    <h4 class="text-muted">Nenhuma atividade encontrada</h4>
+                    <p class="text-muted">
+                        {% if filtro_tipo or filtro_usuario %}
+                            Tente ajustar os filtros para encontrar mais atividades.
+                        {% else %}
+                            As atividades do sistema aparecerão aqui conforme forem sendo executadas.
+                        {% endif %}
+                    </p>
+                    {% if filtro_tipo or filtro_usuario %}
+                        <a href="{% url 'core:lista_atividades' %}" class="btn btn-primary">
+                            <i class="fas fa-times me-2"></i>
+                            Limpar Filtros
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -549,3 +549,1144 @@ WARNING 2025-10-14 13:06:11,604 basehttp 51914 6140866560 "GET /api/dashboard/up
 INFO 2025-10-14 13:07:04,196 basehttp 51914 6140866560 "GET /escalas/visualizar/01-10-2025/ HTTP/1.1" 200 577861
 INFO 2025-10-14 13:07:17,435 views 51914 6140866560 Gerando dashboard com consultas otimizadas
 INFO 2025-10-14 13:07:17,461 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 200 51477
+WARNING 2025-10-14 13:08:17,564 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:08:17,565 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:09:17,556 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:09:17,561 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:10:14,827 views 51914 6140866560 Dashboard carregado do cache
+INFO 2025-10-14 13:10:14,837 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 200 51477
+INFO 2025-10-14 13:10:16,965 views 51914 6140866560 Dashboard carregado do cache
+INFO 2025-10-14 13:10:16,971 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 200 51477
+WARNING 2025-10-14 13:11:17,573 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:11:17,575 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:12:17,568 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:12:17,569 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:13:17,554 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:13:17,556 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:13:30,706 views 51914 6140866560 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 13:13:30,726 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 200 51477
+INFO 2025-10-14 13:13:33,513 views 51914 6140866560 Dashboard carregado do cache
+INFO 2025-10-14 13:13:33,524 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 200 51477
+INFO 2025-10-14 13:14:09,156 views 51914 6140866560 Dashboard carregado do cache
+INFO 2025-10-14 13:14:09,163 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 200 51477
+INFO 2025-10-14 13:14:10,287 basehttp 51914 6140866560 "GET /core/upload/ HTTP/1.1" 200 28294
+INFO 2025-10-14 13:14:12,710 views 51914 6140866560 Lista Arquivos - Total arquivos: 1, Total serviços: 58
+INFO 2025-10-14 13:14:12,710 views 51914 6140866560 Hora formatada: 14/10/2025 às 16:14
+INFO 2025-10-14 13:14:12,721 basehttp 51914 6140866560 "GET /core/arquivos/ HTTP/1.1" 200 53621
+INFO 2025-10-14 13:14:22,815 basehttp 51914 6140866560 "GET /core/diagnostico/ HTTP/1.1" 200 39277
+INFO 2025-10-14 13:14:29,718 views 51914 6140866560 Dashboard carregado do cache
+INFO 2025-10-14 13:14:29,723 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 200 51477
+WARNING 2025-10-14 13:15:30,567 log 51914 6140866560 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:15:30,569 basehttp 51914 6140866560 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:15:41,245 views 51914 6140866560 Dashboard carregado do cache
+ERROR 2025-10-14 13:15:41,287 log 51914 6140866560 Internal Server Error: /core/
+Traceback (most recent call last):
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 34, in get
+    return render(request, 'core/home.html', cached_data)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 822: 'endif'. Did you forget to register or load this tag?
+ERROR 2025-10-14 13:15:41,290 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 500 218646
+WARNING 2025-10-14 13:15:41,480 log 51914 6140866560 Not Found: /favicon.ico
+WARNING 2025-10-14 13:15:41,480 basehttp 51914 6140866560 "GET /favicon.ico HTTP/1.1" 404 2807
+INFO 2025-10-14 13:15:42,554 views 51914 6140866560 Dashboard carregado do cache
+ERROR 2025-10-14 13:15:42,604 log 51914 6140866560 Internal Server Error: /core/
+Traceback (most recent call last):
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 34, in get
+    return render(request, 'core/home.html', cached_data)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 822: 'endif'. Did you forget to register or load this tag?
+ERROR 2025-10-14 13:15:42,605 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 500 218646
+INFO 2025-10-14 13:17:16,558 views 51914 6140866560 Dashboard carregado do cache
+ERROR 2025-10-14 13:17:16,606 log 51914 6140866560 Internal Server Error: /core/
+Traceback (most recent call last):
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 34, in get
+    return render(request, 'core/home.html', cached_data)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 226, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' appears more than once
+ERROR 2025-10-14 13:17:16,607 basehttp 51914 6140866560 "GET /core/ HTTP/1.1" 500 211036
+INFO 2025-10-14 13:19:17,126 autoreload 51914 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/views.py changed, reloading.
+INFO 2025-10-14 13:19:17,857 autoreload 54644 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 13:21:59,304 autoreload 54644 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/models.py changed, reloading.
+INFO 2025-10-14 13:21:59,636 autoreload 54883 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 13:24:48,693 autoreload 55542 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 13:24:54,231 views 55542 6200782848 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 13:24:54,746 basehttp 55542 6200782848 "GET /core/ HTTP/1.1" 200 57985
+WARNING 2025-10-14 13:25:55,634 log 55542 6200782848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:25:55,643 basehttp 55542 6200782848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:26:07,481 basehttp 55542 6200782848 "GET /auth/perfil/ HTTP/1.1" 200 51952
+INFO 2025-10-14 13:26:26,793 basehttp 55542 6200782848 "GET /core/diagnostico/ HTTP/1.1" 200 45785
+INFO 2025-10-14 13:26:30,992 views 55542 6200782848 Dashboard carregado do cache
+INFO 2025-10-14 13:26:31,004 basehttp 55542 6200782848 "GET /core/ HTTP/1.1" 200 57985
+WARNING 2025-10-14 13:27:31,574 log 55542 6200782848 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:27:31,576 basehttp 55542 6200782848 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:28:38,533 autoreload 56064 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 13:28:46,663 basehttp 56064 6127169536 "GET / HTTP/1.1" 302 0
+INFO 2025-10-14 13:28:47,501 views 56064 6127169536 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 13:28:47,593 basehttp 56064 6127169536 "GET /core/ HTTP/1.1" 200 65032
+INFO 2025-10-14 13:28:50,830 basehttp 56064 6143995904 "GET / HTTP/1.1" 302 0
+INFO 2025-10-14 13:28:50,868 basehttp 56064 6143995904 "GET /auth/login/ HTTP/1.1" 200 12927
+INFO 2025-10-14 13:28:50,939 basehttp 56064 6143995904 "GET /static/images/logointertouring.png HTTP/1.1" 200 148745
+WARNING 2025-10-14 13:28:51,787 log 56064 6127169536 Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-10-14 13:28:51,788 basehttp 56064 6127169536 "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 2870
+WARNING 2025-10-14 13:28:52,672 log 56064 6127169536 Not Found: /apple-touch-icon.png
+WARNING 2025-10-14 13:28:52,823 basehttp 56064 6127169536 "GET /apple-touch-icon.png HTTP/1.1" 404 2834
+WARNING 2025-10-14 13:30:30,767 log 56064 6127169536 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:30:30,775 basehttp 56064 6127169536 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:30:40,974 basehttp 56064 6127169536 "GET /escalas/ HTTP/1.1" 200 46041
+INFO 2025-10-14 13:31:32,510 basehttp 56064 6127169536 "GET /escalas/ HTTP/1.1" 200 49381
+INFO 2025-10-14 13:31:37,709 basehttp 56064 6127169536 "GET /core/diagnostico/ HTTP/1.1" 200 56172
+INFO 2025-10-14 13:32:07,833 basehttp 56064 6127169536 "GET /core/diagnostico/ HTTP/1.1" 200 53300
+INFO 2025-10-14 13:32:12,265 basehttp 56064 6127169536 "GET /core/diagnostico/ HTTP/1.1" 200 53300
+INFO 2025-10-14 13:34:58,837 autoreload 57308 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 13:35:02,009 basehttp 57308 6135869440 "GET /core/diagnostico/ HTTP/1.1" 200 54094
+INFO 2025-10-14 13:35:06,691 basehttp 57308 6135296000 "GET /escalas/ HTTP/1.1" 302 0
+INFO 2025-10-14 13:35:06,699 basehttp 57308 6135296000 "GET /auth/login/?next=/escalas/ HTTP/1.1" 200 12927
+INFO 2025-10-14 13:35:06,733 basehttp 57308 6135296000 "GET /static/images/logointertouring.png HTTP/1.1" 200 148745
+INFO 2025-10-14 13:35:11,472 basehttp 57308 6135296000 "POST /auth/login/?next=/escalas/ HTTP/1.1" 302 0
+INFO 2025-10-14 13:35:11,477 views 57308 6135296000 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 13:35:11,486 basehttp 57308 6135296000 "GET /core/ HTTP/1.1" 200 68207
+WARNING 2025-10-14 13:36:12,582 log 57308 6135296000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:36:12,583 basehttp 57308 6135296000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:37:12,572 log 57308 6135296000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:37:12,573 basehttp 57308 6135296000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:37:33,843 views 57308 6135296000 Dashboard carregado do cache
+INFO 2025-10-14 13:37:33,855 basehttp 57308 6135296000 "GET /core/ HTTP/1.1" 200 67698
+INFO 2025-10-14 13:37:40,972 basehttp 57308 6135296000 "GET /escalas/ HTTP/1.1" 200 48707
+INFO 2025-10-14 13:38:40,318 views 57308 6135296000 Dashboard carregado do cache
+INFO 2025-10-14 13:38:40,323 basehttp 57308 6135296000 "GET /core/ HTTP/1.1" 200 67698
+INFO 2025-10-14 13:38:42,637 basehttp 57308 6135296000 "GET /escalas/ HTTP/1.1" 200 48707
+INFO 2025-10-14 13:38:44,489 views 57308 6135296000 Dashboard carregado do cache
+INFO 2025-10-14 13:38:44,492 basehttp 57308 6135296000 "GET /core/ HTTP/1.1" 200 67698
+INFO 2025-10-14 13:39:29,163 views 57308 6135296000 Dashboard carregado do cache
+INFO 2025-10-14 13:39:29,182 basehttp 57308 6135296000 "GET /core/ HTTP/1.1" 200 67830
+INFO 2025-10-14 13:40:04,906 views 57308 6135296000 Dashboard carregado do cache
+INFO 2025-10-14 13:40:04,911 basehttp 57308 6135296000 "GET /core/ HTTP/1.1" 200 67830
+WARNING 2025-10-14 13:41:05,583 log 57308 6135296000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:41:05,585 basehttp 57308 6135296000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:42:05,580 log 57308 6135296000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:42:05,582 basehttp 57308 6135296000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:42:15,939 views 57308 6135296000 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 13:42:15,966 basehttp 57308 6135296000 "GET /core/ HTTP/1.1" 200 61357
+WARNING 2025-10-14 13:43:16,587 log 57308 6135296000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:43:16,590 basehttp 57308 6135296000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:44:16,580 log 57308 6135296000 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:44:16,582 basehttp 57308 6135296000 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:44:52,306 views 57308 6135296000 Dashboard carregado do cache
+INFO 2025-10-14 13:44:52,314 basehttp 57308 6135296000 "GET /core/ HTTP/1.1" 200 61380
+INFO 2025-10-14 13:45:17,088 autoreload 57308 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/views.py changed, reloading.
+INFO 2025-10-14 13:45:17,616 autoreload 58246 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 13:45:52,417 log 58246 6132772864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:45:52,418 basehttp 58246 6132772864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:46:52,585 log 58246 6132772864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:46:52,587 basehttp 58246 6132772864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:47:52,600 log 58246 6132772864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:47:52,603 basehttp 58246 6132772864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:48:52,587 log 58246 6132772864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:48:52,588 basehttp 58246 6132772864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 13:49:52,598 log 58246 6132772864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:49:52,601 basehttp 58246 6132772864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:49:59,294 views 58246 6132772864 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 13:49:59,519 basehttp 58246 6132772864 "GET /core/ HTTP/1.1" 200 57331
+WARNING 2025-10-14 13:51:00,595 log 58246 6132772864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:51:00,596 basehttp 58246 6132772864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:51:25,226 views 58246 6132772864 Dashboard carregado do cache
+INFO 2025-10-14 13:51:25,260 basehttp 58246 6132772864 "GET /core/ HTTP/1.1" 200 56804
+INFO 2025-10-14 13:52:22,485 autoreload 59020 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 13:53:07,812 autoreload 59020 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/models.py changed, reloading.
+INFO 2025-10-14 13:53:08,228 autoreload 59135 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 13:53:25,607 log 59135 6164738048 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:53:25,608 basehttp 59135 6164738048 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:53:28,663 autoreload 59135 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-14 13:53:28,988 autoreload 59192 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 13:53:39,660 autoreload 59192 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/escalas/views.py changed, reloading.
+INFO 2025-10-14 13:53:39,969 autoreload 59218 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 13:54:06,997 autoreload 59357 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 13:54:22,531 autoreload 59437 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 13:54:25,625 log 59437 6131691520 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:54:25,626 basehttp 59437 6131691520 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:54:30,934 views 59437 6131691520 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 13:54:30,981 basehttp 59437 6131691520 "GET /core/ HTTP/1.1" 200 61550
+INFO 2025-10-14 13:54:58,761 basehttp 59437 6131691520 "GET /escalas/ HTTP/1.1" 200 42389
+INFO 2025-10-14 13:55:01,900 basehttp 59437 6131691520 "GET /escalas/ano/2025/ HTTP/1.1" 200 54464
+INFO 2025-10-14 13:55:12,324 basehttp 59437 6131691520 "GET /escalas/ano/2025/ HTTP/1.1" 200 54464
+INFO 2025-10-14 13:55:35,818 views 59437 6131691520 Dashboard carregado do cache
+INFO 2025-10-14 13:55:35,823 basehttp 59437 6131691520 "GET /core/ HTTP/1.1" 200 61550
+WARNING 2025-10-14 13:56:36,601 log 59437 6131691520 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:56:36,603 basehttp 59437 6131691520 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:56:59,861 views 59437 6131691520 Dashboard carregado do cache
+INFO 2025-10-14 13:56:59,898 basehttp 59437 6131691520 "GET /core/ HTTP/1.1" 200 50467
+WARNING 2025-10-14 13:58:00,626 log 60076 6148698112 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:58:00,628 basehttp 60076 6148698112 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:58:14,868 views 60076 6148698112 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 13:58:14,900 basehttp 60076 6148698112 "GET /core/ HTTP/1.1" 200 50467
+WARNING 2025-10-14 13:59:15,584 log 60076 6148698112 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 13:59:15,586 basehttp 60076 6148698112 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 13:59:31,825 views 60076 6148698112 Dashboard carregado do cache
+INFO 2025-10-14 13:59:31,829 basehttp 60076 6148698112 "GET /core/ HTTP/1.1" 200 50467
+INFO 2025-10-14 13:59:42,362 views 60076 6148698112 Dashboard carregado do cache
+INFO 2025-10-14 13:59:42,367 basehttp 60076 6148698112 "GET /core/ HTTP/1.1" 200 50467
+INFO 2025-10-14 14:00:14,244 views 60076 6148698112 Dashboard carregado do cache
+INFO 2025-10-14 14:00:14,251 basehttp 60076 6148698112 "GET /core/ HTTP/1.1" 200 50467
+INFO 2025-10-14 14:00:27,424 views 60076 6148698112 Dashboard carregado do cache
+INFO 2025-10-14 14:00:27,430 basehttp 60076 6148698112 "GET /core/ HTTP/1.1" 200 50467
+INFO 2025-10-14 14:00:48,508 views 60446 6155595776 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 14:00:48,561 basehttp 60446 6155595776 "GET /core/ HTTP/1.1" 200 47191
+INFO 2025-10-14 14:01:16,203 views 60446 6155595776 Dashboard carregado do cache
+INFO 2025-10-14 14:01:16,233 basehttp 60446 6155595776 "GET /core/ HTTP/1.1" 200 47191
+WARNING 2025-10-14 14:02:16,582 log 60446 6155595776 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:02:16,583 basehttp 60446 6155595776 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 14:02:46,889 views 60446 6155595776 Dashboard carregado do cache
+INFO 2025-10-14 14:02:46,945 basehttp 60446 6155595776 "GET /core/ HTTP/1.1" 200 47191
+INFO 2025-10-14 14:02:50,128 basehttp 60446 6155595776 "GET /escalas/ HTTP/1.1" 200 28030
+INFO 2025-10-14 14:02:52,999 views 60446 6155595776 Dashboard carregado do cache
+INFO 2025-10-14 14:02:53,003 basehttp 60446 6155595776 "GET /core/ HTTP/1.1" 200 47191
+INFO 2025-10-14 14:03:02,320 views 60446 6155595776 Dashboard carregado do cache
+INFO 2025-10-14 14:03:02,327 basehttp 60446 6155595776 "GET /core/ HTTP/1.1" 200 47191
+INFO 2025-10-14 14:03:29,270 views 60446 6155595776 Dashboard carregado do cache
+INFO 2025-10-14 14:03:29,277 basehttp 60446 6155595776 "GET /core/ HTTP/1.1" 200 47191
+INFO 2025-10-14 14:05:17,961 autoreload 61095 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 14:05:20,348 views 61095 6198882304 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 14:05:20,381 basehttp 61095 6198882304 "GET /core/ HTTP/1.1" 200 44629
+WARNING 2025-10-14 14:05:20,511 log 61095 6198882304 Not Found: /favicon.ico
+WARNING 2025-10-14 14:05:20,511 basehttp 61095 6198882304 "GET /favicon.ico HTTP/1.1" 404 2807
+INFO 2025-10-14 14:05:21,869 views 61095 6198882304 Dashboard carregado do cache
+INFO 2025-10-14 14:05:21,875 basehttp 61095 6198882304 "GET /core/ HTTP/1.1" 200 44629
+WARNING 2025-10-14 14:05:33,797 log 61095 6198882304 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-14 14:05:33,798 basehttp 61095 6198882304 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 2918
+WARNING 2025-10-14 14:06:21,903 log 61095 6198882304 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:06:21,904 basehttp 61095 6198882304 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 14:06:39,443 views 61095 6198882304 Dashboard carregado do cache
+INFO 2025-10-14 14:06:39,456 basehttp 61095 6198882304 "GET /core/ HTTP/1.1" 200 44762
+INFO 2025-10-14 14:07:19,458 basehttp 61095 6198882304 "GET /escalas/ HTTP/1.1" 200 25601
+INFO 2025-10-14 14:07:22,468 views 61095 6198882304 Dashboard carregado do cache
+INFO 2025-10-14 14:07:22,478 basehttp 61095 6198882304 "GET /core/ HTTP/1.1" 200 44762
+INFO 2025-10-14 14:07:58,591 views 61095 6198882304 Dashboard carregado do cache
+INFO 2025-10-14 14:07:58,602 basehttp 61095 6198882304 "GET /core/ HTTP/1.1" 200 44917
+INFO 2025-10-14 14:08:14,344 views 61095 6198882304 Dashboard carregado do cache
+INFO 2025-10-14 14:08:14,351 basehttp 61095 6198882304 "GET /core/ HTTP/1.1" 200 45159
+INFO 2025-10-14 14:08:36,933 views 61095 6198882304 Dashboard carregado do cache
+INFO 2025-10-14 14:08:36,945 basehttp 61095 6198882304 "GET /core/ HTTP/1.1" 200 45159
+WARNING 2025-10-14 14:09:37,645 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:09:37,646 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:25:35,817 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:25:35,820 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:26:35,212 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:26:35,214 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 14:27:24,639 views 61095 6198308864 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 14:27:24,658 basehttp 61095 6198308864 "GET /core/ HTTP/1.1" 200 45324
+INFO 2025-10-14 14:27:59,727 views 61095 6198308864 Dashboard carregado do cache
+INFO 2025-10-14 14:27:59,739 basehttp 61095 6198308864 "GET /core/ HTTP/1.1" 200 45400
+INFO 2025-10-14 14:28:33,209 views 61095 6198308864 Lista Arquivos - Total arquivos: 1, Total serviços: 58
+INFO 2025-10-14 14:28:33,211 views 61095 6198308864 Hora formatada: 14/10/2025 às 17:28
+INFO 2025-10-14 14:28:33,224 basehttp 61095 6198308864 "GET /core/arquivos/ HTTP/1.1" 200 47374
+INFO 2025-10-14 14:28:42,547 views 61095 6198308864 Lista Arquivos - Total arquivos: 1, Total serviços: 58
+INFO 2025-10-14 14:28:42,547 views 61095 6198308864 Hora formatada: 14/10/2025 às 17:28
+INFO 2025-10-14 14:28:42,552 basehttp 61095 6198308864 "GET /core/arquivos/ HTTP/1.1" 200 47374
+INFO 2025-10-14 14:29:04,607 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 200 33030
+INFO 2025-10-14 14:29:19,104 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 200 33030
+INFO 2025-10-14 14:29:41,993 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 200 33032
+INFO 2025-10-14 14:30:12,047 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 200 33032
+INFO 2025-10-14 14:31:08,508 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 200 33030
+WARNING 2025-10-14 14:32:08,816 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:32:08,825 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+ERROR 2025-10-14 14:32:37,722 log 61095 6198308864 Internal Server Error: /core/diagnostico/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 550, in get
+    return render(request, 'core/diagnostico.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 422: 'endif'. Did you forget to register or load this tag?
+ERROR 2025-10-14 14:32:37,724 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 500 201215
+ERROR 2025-10-14 14:32:38,803 log 61095 6198308864 Internal Server Error: /core/diagnostico/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 550, in get
+    return render(request, 'core/diagnostico.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 422: 'endif'. Did you forget to register or load this tag?
+ERROR 2025-10-14 14:32:38,804 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 500 201215
+ERROR 2025-10-14 14:32:49,364 log 61095 6198308864 Internal Server Error: /core/diagnostico/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 550, in get
+    return render(request, 'core/diagnostico.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 469: 'endif'. Did you forget to register or load this tag?
+ERROR 2025-10-14 14:32:49,365 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 500 201215
+ERROR 2025-10-14 14:32:50,423 log 61095 6198308864 Internal Server Error: /core/diagnostico/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 550, in get
+    return render(request, 'core/diagnostico.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 469: 'endif'. Did you forget to register or load this tag?
+ERROR 2025-10-14 14:32:50,424 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 500 201215
+ERROR 2025-10-14 14:34:24,268 log 61095 6198308864 Internal Server Error: /core/diagnostico/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 550, in get
+    return render(request, 'core/diagnostico.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 469: 'endif'. Did you forget to register or load this tag?
+ERROR 2025-10-14 14:34:24,270 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 500 201215
+ERROR 2025-10-14 14:34:24,522 log 61095 6198308864 Internal Server Error: /core/diagnostico/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 550, in get
+    return render(request, 'core/diagnostico.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 469: 'endif'. Did you forget to register or load this tag?
+ERROR 2025-10-14 14:34:24,523 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 500 201215
+INFO 2025-10-14 14:35:53,200 basehttp 61095 6198308864 "GET /core/diagnostico/ HTTP/1.1" 200 36165
+INFO 2025-10-14 14:35:58,042 basehttp 61095 6198308864 "GET /escalas/ HTTP/1.1" 302 0
+INFO 2025-10-14 14:35:58,051 basehttp 61095 6198308864 "GET /auth/login/?next=/escalas/ HTTP/1.1" 200 12927
+INFO 2025-10-14 14:36:02,927 basehttp 61095 6198308864 "POST /auth/login/?next=/escalas/ HTTP/1.1" 302 0
+INFO 2025-10-14 14:36:02,932 views 61095 6198308864 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 14:36:02,942 basehttp 61095 6198308864 "GET /core/ HTTP/1.1" 200 50549
+INFO 2025-10-14 14:36:51,872 views 61095 6198308864 Dashboard carregado do cache
+INFO 2025-10-14 14:36:51,885 basehttp 61095 6198308864 "GET /core/ HTTP/1.1" 200 51801
+WARNING 2025-10-14 14:37:51,928 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:37:51,930 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 14:38:14,658 views 61095 6198308864 Dashboard carregado do cache
+INFO 2025-10-14 14:38:14,671 basehttp 61095 6198308864 "GET /core/ HTTP/1.1" 200 51978
+INFO 2025-10-14 14:38:35,746 basehttp 61095 6198308864 "GET /auth/perfil/ HTTP/1.1" 200 46299
+INFO 2025-10-14 14:38:41,563 basehttp 61095 6198308864 "GET /auth/perfil/ HTTP/1.1" 200 46299
+WARNING 2025-10-14 14:39:41,800 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:39:41,802 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:40:41,588 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:40:41,591 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 14:40:44,858 basehttp 61095 6198308864 "GET /auth/perfil/ HTTP/1.1" 200 46633
+INFO 2025-10-14 14:40:54,927 views 61095 6198308864 Dashboard carregado do cache
+INFO 2025-10-14 14:40:54,932 basehttp 61095 6198308864 "GET /core/ HTTP/1.1" 200 52836
+WARNING 2025-10-14 14:41:54,977 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:41:54,979 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 14:42:33,233 views 61095 6198308864 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 14:42:33,254 basehttp 61095 6198308864 "GET /core/ HTTP/1.1" 200 53113
+INFO 2025-10-14 14:43:28,191 basehttp 61095 6198308864 "GET /auth/perfil/ HTTP/1.1" 200 46910
+INFO 2025-10-14 14:43:32,304 basehttp 61095 6198308864 "POST /auth/ajax/atualizar-preferencias/ HTTP/1.1" 200 74
+INFO 2025-10-14 14:43:34,710 basehttp 61095 6198308864 "POST /auth/ajax/atualizar-preferencias/ HTTP/1.1" 200 74
+INFO 2025-10-14 14:43:46,773 basehttp 61095 6198308864 "POST /auth/ajax/atualizar-preferencias/ HTTP/1.1" 200 74
+INFO 2025-10-14 14:43:48,671 basehttp 61095 6198308864 "POST /auth/ajax/atualizar-preferencias/ HTTP/1.1" 200 74
+WARNING 2025-10-14 14:44:28,792 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:44:28,794 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:45:28,800 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:45:28,803 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 14:46:00,549 basehttp 61095 6198308864 "GET /auth/perfil/ HTTP/1.1" 200 46966
+WARNING 2025-10-14 14:47:00,808 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:47:00,811 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:48:00,631 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:48:00,634 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 14:48:17,889 basehttp 61095 6198308864 "POST /auth/ajax/upload-avatar/ HTTP/1.1" 200 187
+INFO 2025-10-14 14:48:17,896 basehttp 61095 6198308864 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 200 41462
+INFO 2025-10-14 14:48:18,930 basehttp 61095 6198308864 "GET /auth/perfil/ HTTP/1.1" 200 47461
+INFO 2025-10-14 14:48:18,978 basehttp 61095 6198308864 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 14:48:46,342 views 61095 6198308864 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 14:48:46,366 basehttp 61095 6198308864 "GET /core/ HTTP/1.1" 200 53374
+INFO 2025-10-14 14:48:46,386 basehttp 61095 6198308864 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+WARNING 2025-10-14 14:49:46,876 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:49:46,877 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:50:46,793 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:50:46,795 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:51:46,800 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:51:46,802 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:52:46,800 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:52:46,802 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:53:46,796 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:53:46,798 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:54:46,799 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:54:46,801 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 14:55:34,078 basehttp 61095 6198308864 "GET /auth/perfil/ HTTP/1.1" 200 47461
+INFO 2025-10-14 14:55:34,132 basehttp 61095 6198308864 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+WARNING 2025-10-14 14:56:34,796 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:56:34,798 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:57:34,796 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:57:34,797 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:58:34,803 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:58:34,805 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 14:59:34,162 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 14:59:34,163 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 14:59:41,897 basehttp 61095 6198308864 "GET /auth/perfil/ HTTP/1.1" 200 45686
+INFO 2025-10-14 14:59:41,977 basehttp 61095 6198308864 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+WARNING 2025-10-14 15:00:42,119 log 61095 6198308864 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:00:42,121 basehttp 61095 6198308864 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:00:42,880 basehttp 61095 6198308864 "GET /auth/perfil/ HTTP/1.1" 200 40910
+INFO 2025-10-14 15:00:55,009 autoreload 61095 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/forms.py changed, reloading.
+INFO 2025-10-14 15:00:55,658 autoreload 64963 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:01:04,683 autoreload 64963 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/forms.py changed, reloading.
+INFO 2025-10-14 15:01:05,007 autoreload 64980 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:01:12,691 autoreload 64980 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/forms.py changed, reloading.
+INFO 2025-10-14 15:01:13,013 autoreload 65001 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:01:19,641 autoreload 65001 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/forms.py changed, reloading.
+INFO 2025-10-14 15:01:19,966 autoreload 65016 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:01:20,550 views 65016 6141046784 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:01:20,575 basehttp 65016 6141046784 "GET /core/ HTTP/1.1" 200 53374
+INFO 2025-10-14 15:01:20,610 basehttp 65016 6141046784 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 15:01:39,881 autoreload 65016 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/models.py changed, reloading.
+INFO 2025-10-14 15:01:40,198 autoreload 65052 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:01:54,945 autoreload 65052 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/admin.py changed, reloading.
+INFO 2025-10-14 15:01:55,265 autoreload 65080 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:02:02,921 autoreload 65080 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/admin.py changed, reloading.
+INFO 2025-10-14 15:02:03,290 autoreload 65097 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:02:14,504 basehttp 65097 6134919168 "GET /auth/perfil/ HTTP/1.1" 200 40910
+INFO 2025-10-14 15:02:59,614 views 65097 6134919168 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:02:59,650 basehttp 65097 6134919168 "GET /core/ HTTP/1.1" 200 53374
+INFO 2025-10-14 15:02:59,704 basehttp 65097 6134919168 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 15:03:01,735 basehttp 65097 6134919168 "GET /core/upload/ HTTP/1.1" 200 30021
+INFO 2025-10-14 15:03:14,549 autoreload 65097 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/forms.py changed, reloading.
+INFO 2025-10-14 15:03:14,902 autoreload 65275 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:03:17,834 views 65275 6197391360 Lista Arquivos - Total arquivos: 1, Total serviços: 58
+INFO 2025-10-14 15:03:17,835 views 65275 6197391360 Hora formatada: 14/10/2025 às 18:03
+INFO 2025-10-14 15:03:17,859 basehttp 65275 6197391360 "GET /core/arquivos/ HTTP/1.1" 200 55348
+INFO 2025-10-14 15:03:23,682 autoreload 65275 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/forms.py changed, reloading.
+INFO 2025-10-14 15:03:24,016 autoreload 65289 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:03:27,446 basehttp 65289 6199455744 "GET /core/diagnostico/ HTTP/1.1" 200 41004
+INFO 2025-10-14 15:03:32,791 autoreload 65289 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/forms.py changed, reloading.
+INFO 2025-10-14 15:03:33,127 autoreload 65307 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:03:41,792 autoreload 65307 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/forms.py changed, reloading.
+INFO 2025-10-14 15:03:42,012 autoreload 65318 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:03:57,549 basehttp 65318 6200160256 "GET /core/diagnostico/ HTTP/1.1" 200 41004
+INFO 2025-10-14 15:03:58,898 autoreload 65318 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/models.py changed, reloading.
+INFO 2025-10-14 15:03:59,255 autoreload 65345 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:04:06,894 autoreload 65345 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/models.py changed, reloading.
+INFO 2025-10-14 15:04:07,243 autoreload 65364 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:04:21,001 autoreload 65364 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/admin.py changed, reloading.
+INFO 2025-10-14 15:04:21,323 autoreload 65393 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:04:28,885 autoreload 65393 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/admin.py changed, reloading.
+INFO 2025-10-14 15:04:29,099 autoreload 65410 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:04:34,681 autoreload 65410 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/admin.py changed, reloading.
+INFO 2025-10-14 15:04:34,908 autoreload 65427 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:04:44,597 autoreload 65427 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/admin.py changed, reloading.
+INFO 2025-10-14 15:04:44,825 autoreload 65442 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:04:49,104 views 65442 6132232192 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:04:49,139 basehttp 65442 6132232192 "GET /core/ HTTP/1.1" 200 53374
+INFO 2025-10-14 15:04:49,293 basehttp 65442 6132232192 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+WARNING 2025-10-14 15:05:49,794 log 65442 6131658752 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:05:49,795 basehttp 65442 6131658752 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:06:38,019 views 65442 6131658752 Dashboard carregado do cache
+INFO 2025-10-14 15:06:38,035 basehttp 65442 6131658752 "GET /core/ HTTP/1.1" 200 53374
+INFO 2025-10-14 15:06:38,075 basehttp 65442 6131658752 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 15:06:39,455 basehttp 65442 6131658752 "GET /auth/perfil/ HTTP/1.1" 200 40351
+WARNING 2025-10-14 15:07:39,788 log 65442 6131658752 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:07:39,790 basehttp 65442 6131658752 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 15:08:39,787 log 65442 6131658752 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:08:39,789 basehttp 65442 6131658752 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 15:09:39,624 log 65442 6131658752 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:09:39,626 basehttp 65442 6131658752 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:10:04,293 basehttp 65442 6131658752 "GET /auth/perfil/ HTTP/1.1" 200 40351
+INFO 2025-10-14 15:10:04,336 basehttp 65442 6131658752 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 15:10:06,223 views 65442 6131658752 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:10:06,241 basehttp 65442 6131658752 "GET /core/ HTTP/1.1" 200 53374
+INFO 2025-10-14 15:10:08,596 basehttp 65442 6131658752 "GET /auth/perfil/ HTTP/1.1" 200 40351
+INFO 2025-10-14 15:10:13,485 basehttp 65442 6131658752 "GET /auth/alterar-senha/ HTTP/1.1" 200 37470
+INFO 2025-10-14 15:10:24,442 basehttp 65442 6131658752 "GET /auth/perfil/ HTTP/1.1" 200 40351
+INFO 2025-10-14 15:10:28,949 views 65442 6131658752 Dashboard carregado do cache
+INFO 2025-10-14 15:10:28,962 basehttp 65442 6131658752 "GET /core/ HTTP/1.1" 200 53374
+INFO 2025-10-14 15:10:56,246 basehttp 65442 6131658752 "GET /auth/perfil/ HTTP/1.1" 200 40351
+INFO 2025-10-14 15:11:02,300 basehttp 65442 6131658752 "GET /auth/alterar-senha/ HTTP/1.1" 200 37470
+INFO 2025-10-14 15:11:12,392 views 65442 6131658752 Dashboard carregado do cache
+INFO 2025-10-14 15:11:12,402 basehttp 65442 6131658752 "GET /core/ HTTP/1.1" 200 53374
+INFO 2025-10-14 15:12:03,203 views 65442 6131658752 Dashboard carregado do cache
+INFO 2025-10-14 15:12:03,212 basehttp 65442 6131658752 "GET /core/ HTTP/1.1" 200 51305
+INFO 2025-10-14 15:12:43,512 autoreload 65442 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/models.py changed, reloading.
+INFO 2025-10-14 15:12:43,938 autoreload 66175 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 15:13:03,365 log 66175 6159839232 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:13:03,366 basehttp 66175 6159839232 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 15:14:03,606 log 66175 6159839232 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:14:03,608 basehttp 66175 6159839232 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:14:53,838 views 66175 6159839232 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:14:53,870 basehttp 66175 6159839232 "GET /core/ HTTP/1.1" 200 43122
+INFO 2025-10-14 15:14:53,915 basehttp 66175 6159839232 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+WARNING 2025-10-14 15:15:54,010 log 66175 6159839232 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:15:54,015 basehttp 66175 6159839232 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:16:12,909 views 66175 6159839232 Dashboard carregado do cache
+INFO 2025-10-14 15:16:12,924 basehttp 66175 6159839232 "GET /core/ HTTP/1.1" 200 41842
+WARNING 2025-10-14 15:17:13,595 log 66175 6159839232 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:17:13,597 basehttp 66175 6159839232 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 15:18:12,997 log 66175 6159839232 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:18:12,999 basehttp 66175 6159839232 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 15:19:12,989 log 66175 6159839232 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:19:12,990 basehttp 66175 6159839232 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:19:38,629 autoreload 66831 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:19:55,073 autoreload 66916 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 15:20:13,604 log 66916 6198931456 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:20:13,605 basehttp 66916 6198931456 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:21:08,904 views 66916 6198931456 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:21:08,946 basehttp 66916 6198931456 "GET /core/ HTTP/1.1" 200 41173
+INFO 2025-10-14 15:21:08,995 basehttp 66916 6198931456 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 15:21:22,609 basehttp 66916 6198931456 "GET /core/diagnostico/ HTTP/1.1" 200 41015
+INFO 2025-10-14 15:21:25,054 views 66916 6198931456 Dashboard carregado do cache
+INFO 2025-10-14 15:21:25,060 basehttp 66916 6198931456 "GET /core/ HTTP/1.1" 200 41173
+WARNING 2025-10-14 15:22:25,107 log 66916 6198931456 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:22:25,109 basehttp 66916 6198931456 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:22:49,863 basehttp 66916 6198931456 "GET /auth/perfil/ HTTP/1.1" 200 40202
+INFO 2025-10-14 15:22:53,310 basehttp 66916 6198931456 "GET /escalas/ HTTP/1.1" 200 34190
+INFO 2025-10-14 15:22:58,442 basehttp 66916 6198931456 "GET /core/upload/ HTTP/1.1" 200 29998
+INFO 2025-10-14 15:23:04,664 views 66916 6198931456 Dashboard carregado do cache
+INFO 2025-10-14 15:23:04,669 basehttp 66916 6198931456 "GET /core/ HTTP/1.1" 200 41139
+INFO 2025-10-14 15:23:30,979 basehttp 66916 6198931456 "GET /core/upload/ HTTP/1.1" 200 29998
+INFO 2025-10-14 15:23:32,453 views 66916 6198931456 Dashboard carregado do cache
+INFO 2025-10-14 15:23:32,462 basehttp 66916 6198931456 "GET /core/ HTTP/1.1" 200 41139
+WARNING 2025-10-14 15:24:32,561 log 66916 6198931456 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:24:32,563 basehttp 66916 6198931456 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:25:21,548 views 66916 6198931456 Dashboard carregado do cache
+INFO 2025-10-14 15:25:21,555 basehttp 66916 6198931456 "GET /core/ HTTP/1.1" 200 41779
+INFO 2025-10-14 15:25:21,601 basehttp 66916 6198931456 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 15:25:23,383 basehttp 66916 6198931456 "GET /core/upload/ HTTP/1.1" 200 30638
+INFO 2025-10-14 15:25:24,799 views 66916 6198931456 Lista Arquivos - Total arquivos: 1, Total serviços: 58
+INFO 2025-10-14 15:25:24,799 views 66916 6198931456 Hora formatada: 14/10/2025 às 18:25
+INFO 2025-10-14 15:25:24,804 basehttp 66916 6198931456 "GET /core/arquivos/ HTTP/1.1" 200 55965
+INFO 2025-10-14 15:25:26,134 basehttp 66916 6198931456 "GET /escalas/ HTTP/1.1" 200 34830
+INFO 2025-10-14 15:25:27,666 basehttp 66916 6198931456 "GET /core/diagnostico/ HTTP/1.1" 200 41621
+INFO 2025-10-14 15:25:30,029 basehttp 66916 6198931456 "GET /auth/perfil/ HTTP/1.1" 200 40968
+INFO 2025-10-14 15:25:33,019 views 66916 6198931456 Dashboard carregado do cache
+INFO 2025-10-14 15:25:33,025 basehttp 66916 6198931456 "GET /core/ HTTP/1.1" 200 41779
+WARNING 2025-10-14 15:26:33,078 log 66916 6198931456 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:26:33,080 basehttp 66916 6198931456 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 15:27:33,561 log 66916 6198931456 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:27:33,563 basehttp 66916 6198931456 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 15:28:33,550 log 66916 6198931456 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:28:33,550 basehttp 66916 6198931456 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 15:29:33,546 log 66916 6198931456 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:29:33,547 basehttp 66916 6198931456 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:30:03,926 views 66916 6198931456 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:30:03,944 basehttp 66916 6198931456 "GET /core/ HTTP/1.1" 200 42437
+INFO 2025-10-14 15:30:04,001 basehttp 66916 6198931456 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 15:30:11,939 views 66916 6198931456 Dashboard carregado do cache
+INFO 2025-10-14 15:30:11,953 basehttp 66916 6198931456 "GET /core/ HTTP/1.1" 200 42437
+INFO 2025-10-14 15:30:53,803 basehttp 66916 6198931456 "GET /core/upload/ HTTP/1.1" 200 31296
+INFO 2025-10-14 15:31:39,816 basehttp 66916 6198931456 "GET /core/upload/ HTTP/1.1" 200 31310
+INFO 2025-10-14 15:32:11,104 basehttp 66916 6198931456 "GET /core/upload/ HTTP/1.1" 200 31312
+INFO 2025-10-14 15:32:19,739 basehttp 66916 6198931456 "GET /core/upload/ HTTP/1.1" 200 31312
+INFO 2025-10-14 15:32:25,016 views 66916 6198931456 Dashboard carregado do cache
+INFO 2025-10-14 15:32:25,026 basehttp 66916 6198931456 "GET /core/ HTTP/1.1" 200 42453
+WARNING 2025-10-14 15:33:25,528 log 66916 6198931456 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:33:25,529 basehttp 66916 6198931456 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:34:12,881 views 66916 6198931456 Dashboard carregado do cache
+INFO 2025-10-14 15:34:12,903 basehttp 66916 6198931456 "GET /core/ HTTP/1.1" 200 42738
+WARNING 2025-10-14 15:35:12,968 log 66916 6198931456 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:35:12,970 basehttp 66916 6198931456 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:36:08,702 views 66916 6198931456 Gerando dashboard com consultas otimizadas
+ERROR 2025-10-14 15:36:08,737 log 66916 6198931456 Internal Server Error: /core/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 52, in get
+    'nome': request.user.get_full_name() or request.user.username,
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'AnonymousUser' object has no attribute 'get_full_name'
+ERROR 2025-10-14 15:36:08,737 basehttp 66916 6198931456 "GET /core/ HTTP/1.1" 500 86202
+INFO 2025-10-14 15:36:40,489 autoreload 66916 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-14 15:36:40,960 autoreload 68400 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:36:52,403 basehttp 68400 6207877120 "GET /core/ HTTP/1.1" 302 0
+INFO 2025-10-14 15:36:52,416 basehttp 68400 6207877120 "GET /auth/login/ HTTP/1.1" 200 12927
+INFO 2025-10-14 15:36:57,455 basehttp 68400 6207877120 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-14 15:36:57,459 views 68400 6207877120 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:36:57,472 basehttp 68400 6207877120 "GET /core/ HTTP/1.1" 200 43144
+INFO 2025-10-14 15:36:57,501 basehttp 68400 6207877120 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 15:37:15,514 autoreload 68400 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-14 15:37:15,885 autoreload 68477 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 15:37:57,537 log 68477 6127300608 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:37:57,539 basehttp 68477 6127300608 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:38:09,252 basehttp 68477 6127300608 "GET /auth/perfil/ HTTP/1.1" 200 41959
+INFO 2025-10-14 15:38:13,579 basehttp 68477 6127300608 "GET /auth/alterar-senha/ HTTP/1.1" 200 39078
+INFO 2025-10-14 15:38:27,118 views 68477 6127300608 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:38:27,144 basehttp 68477 6127300608 "GET /core/ HTTP/1.1" 200 42770
+WARNING 2025-10-14 15:39:27,519 log 68477 6127300608 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:39:27,520 basehttp 68477 6127300608 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 15:40:27,511 log 68477 6127300608 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:40:27,514 basehttp 68477 6127300608 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:40:36,186 views 68477 6127300608 Dashboard carregado do cache
+INFO 2025-10-14 15:40:36,199 basehttp 68477 6127300608 "GET /core/ HTTP/1.1" 200 58542
+INFO 2025-10-14 15:42:22,033 autoreload 68923 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 15:42:36,244 log 68923 6172192768 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:42:36,245 basehttp 68923 6172192768 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 15:43:36,507 log 68923 6172192768 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:43:36,508 basehttp 68923 6172192768 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 15:44:36,507 log 68923 6172192768 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:44:36,508 basehttp 68923 6172192768 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:44:49,438 views 68923 6172192768 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:44:49,543 basehttp 68923 6172192768 "GET /core/ HTTP/1.1" 200 44447
+INFO 2025-10-14 15:44:49,579 basehttp 68923 6172192768 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+WARNING 2025-10-14 15:45:49,697 log 68923 6172192768 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:45:49,699 basehttp 68923 6172192768 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:45:59,481 basehttp 68923 6172192768 "GET /core/diagnostico/ HTTP/1.1" 200 42677
+INFO 2025-10-14 15:46:04,045 basehttp 68923 6172192768 "GET /escalas/ HTTP/1.1" 200 35886
+INFO 2025-10-14 15:46:05,626 basehttp 68923 6172192768 "GET /auth/perfil/ HTTP/1.1" 200 42024
+INFO 2025-10-14 15:46:06,711 views 68923 6172192768 Dashboard carregado do cache
+INFO 2025-10-14 15:46:06,718 basehttp 68923 6172192768 "GET /core/ HTTP/1.1" 200 45007
+INFO 2025-10-14 15:47:17,832 autoreload 69654 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:47:20,106 views 69654 6167539712 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:47:20,202 basehttp 69654 6167539712 "GET /core/ HTTP/1.1" 200 45071
+INFO 2025-10-14 15:47:20,335 basehttp 69654 6167539712 "GET /static/css/global-theme.css HTTP/1.1" 200 4340
+INFO 2025-10-14 15:47:37,843 basehttp 69654 6166966272 "GET /escalas/ HTTP/1.1" 200 35950
+INFO 2025-10-14 15:47:37,870 basehttp 69654 6166966272 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 15:47:39,728 basehttp 69654 6166966272 "GET /escalas/ano/2025/ HTTP/1.1" 200 48025
+INFO 2025-10-14 15:47:41,804 basehttp 69654 6166966272 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 58445
+INFO 2025-10-14 15:47:48,912 views 69654 6166966272 🔍 Verificação de senha iniciada para usuário: admin
+INFO 2025-10-14 15:47:48,915 views 69654 6166966272 📊 Dados recebidos - Usuário: admin, Data escala: 01-10-2025
+INFO 2025-10-14 15:47:49,020 views 69654 6166966272 🔐 Resultado verificação senha: ✅ Correta
+INFO 2025-10-14 15:47:49,021 basehttp 69654 6166966272 "POST /escalas/verificar-senha-exclusao/ HTTP/1.1" 200 89
+WARNING 2025-10-14 15:47:49,053 views 69654 6166966272 🗑️ EXCLUSÃO DE ESCALA INICIADA | Data: 01/10/2025 | Etapa: DADOS_PUXADOS | Serviços: 58 | Usuário: admin | IP: 127.0.0.1
+ERROR 2025-10-14 15:47:49,078 views 69654 6166966272 ❌ ESCALA EXCLUÍDA COM SUCESSO | Data: 01/10/2025 | Total serviços excluídos: 58 | Era otimizada: Não | Usuário responsável: admin | IP: 127.0.0.1
+INFO 2025-10-14 15:47:49,080 basehttp 69654 6166966272 "POST /escalas/excluir/01-10-2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 15:47:49,116 basehttp 69654 6166966272 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 54180
+INFO 2025-10-14 15:47:49,158 basehttp 69654 6166966272 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 15:47:52,492 views 69654 6166966272 Dashboard carregado do cache
+INFO 2025-10-14 15:47:52,501 basehttp 69654 6166966272 "GET /core/ HTTP/1.1" 200 45109
+WARNING 2025-10-14 15:48:53,489 log 69654 6166966272 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:48:53,489 basehttp 69654 6166966272 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:49:01,165 views 69654 6166966272 Dashboard carregado do cache
+INFO 2025-10-14 15:49:01,171 basehttp 69654 6166966272 "GET /core/ HTTP/1.1" 200 40961
+INFO 2025-10-14 15:49:01,202 basehttp 69654 6166966272 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 15:49:10,126 views 69654 6166966272 Dashboard carregado do cache
+INFO 2025-10-14 15:49:10,233 basehttp 69654 6166966272 "GET /core/ HTTP/1.1" 200 40959
+INFO 2025-10-14 15:49:14,799 autoreload 69928 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:49:32,835 autoreload 70022 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 15:50:10,307 log 70022 6209990656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:50:10,308 basehttp 70022 6209990656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:50:44,710 autoreload 70022 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/models.py changed, reloading.
+INFO 2025-10-14 15:50:45,065 autoreload 70128 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 15:51:10,479 log 70128 6205042688 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:51:10,479 basehttp 70128 6205042688 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:51:37,732 autoreload 70128 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/fretamento_project/settings.py changed, reloading.
+INFO 2025-10-14 15:51:38,096 autoreload 70207 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:52:07,190 autoreload 70207 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-14 15:52:07,501 autoreload 70254 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:57:56,151 autoreload 71257 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 15:57:59,457 views 71257 6170112000 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 15:57:59,524 basehttp 71257 6170112000 "GET /core/ HTTP/1.1" 200 52524
+INFO 2025-10-14 15:57:59,589 basehttp 71257 6170112000 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 15:57:59,599 basehttp 71257 6186938368 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 15:58:53,105 autoreload 71257 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-14 15:58:53,552 autoreload 71366 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 15:58:59,712 log 71366 6174011392 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 15:58:59,713 basehttp 71366 6174011392 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 15:59:13,755 autoreload 71366 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-14 15:59:14,103 autoreload 71398 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 16:04:02,854 autoreload 71840 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 16:04:24,400 views 71840 6207320064 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 16:04:24,442 basehttp 71840 6207320064 "GET /core/ HTTP/1.1" 200 52597
+INFO 2025-10-14 16:04:24,575 basehttp 71840 6207320064 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 16:04:33,124 basehttp 71840 6207320064 "GET /core/atividades/ HTTP/1.1" 200 67194
+INFO 2025-10-14 16:04:46,226 views 71840 6207320064 Dashboard carregado do cache
+INFO 2025-10-14 16:04:46,233 basehttp 71840 6207320064 "GET /core/ HTTP/1.1" 200 52597
+WARNING 2025-10-14 16:04:54,624 log 71840 6207320064 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-14 16:04:54,625 basehttp 71840 6207320064 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 2918
+INFO 2025-10-14 16:05:20,310 autoreload 71840 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/admin.py changed, reloading.
+INFO 2025-10-14 16:05:20,805 autoreload 71980 8798652416 Watching for file changes with StatReloader
+WARNING 2025-10-14 16:05:46,424 log 71980 6169473024 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:05:46,424 basehttp 71980 6169473024 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:06:46,453 log 71980 6169473024 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:06:46,456 basehttp 71980 6169473024 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:07:46,428 log 71980 6169473024 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:07:46,430 basehttp 71980 6169473024 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:08:46,421 log 71980 6169473024 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:08:46,424 basehttp 71980 6169473024 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:08:52,761 views 71980 6169473024 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 16:08:52,844 basehttp 71980 6169473024 "GET /core/ HTTP/1.1" 200 52603
+INFO 2025-10-14 16:08:53,001 basehttp 71980 6186299392 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 16:08:53,006 basehttp 71980 6169473024 "GET /static/css/global-theme.css HTTP/1.1" 200 4340
+INFO 2025-10-14 16:10:44,436 autoreload 72580 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 16:10:45,859 views 72580 6127644672 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 16:10:45,914 basehttp 72580 6127644672 "GET /core/ HTTP/1.1" 200 52603
+INFO 2025-10-14 16:10:45,984 basehttp 72580 6127644672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 16:10:47,666 basehttp 72580 6127644672 "GET /auth/perfil/ HTTP/1.1" 200 42529
+INFO 2025-10-14 16:11:00,714 views 72580 6127644672 Dashboard carregado do cache
+INFO 2025-10-14 16:11:00,719 basehttp 72580 6127644672 "GET /core/ HTTP/1.1" 200 52603
+INFO 2025-10-14 16:11:09,358 basehttp 72580 6127644672 "GET /auth/perfil/ HTTP/1.1" 200 42529
+INFO 2025-10-14 16:11:30,285 basehttp 72580 6127644672 "GET /auth/perfil/ HTTP/1.1" 200 42088
+INFO 2025-10-14 16:11:30,322 basehttp 72580 6127644672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 16:11:34,261 views 72580 6127644672 Dashboard carregado do cache
+INFO 2025-10-14 16:11:34,271 basehttp 72580 6127644672 "GET /core/ HTTP/1.1" 200 52712
+INFO 2025-10-14 16:11:38,526 views 72580 6127644672 Dashboard carregado do cache
+INFO 2025-10-14 16:11:38,531 basehttp 72580 6127644672 "GET /core/ HTTP/1.1" 200 52712
+WARNING 2025-10-14 16:12:38,593 log 72580 6127644672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:12:38,596 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:12:38,752 views 72580 6127644672 Dashboard carregado do cache
+INFO 2025-10-14 16:12:38,763 basehttp 72580 6127644672 "GET /core/ HTTP/1.1" 200 52731
+INFO 2025-10-14 16:12:38,797 basehttp 72580 6127644672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+WARNING 2025-10-14 16:13:39,406 log 72580 6127644672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:13:39,408 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:14:39,397 log 72580 6127644672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:14:39,399 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:15:39,400 log 72580 6127644672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:15:39,403 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:16:26,868 views 72580 6127644672 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 16:16:26,900 basehttp 72580 6127644672 "GET /core/ HTTP/1.1" 200 52812
+INFO 2025-10-14 16:16:26,973 basehttp 72580 6127644672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 16:17:13,074 views 72580 6127644672 Dashboard carregado do cache
+INFO 2025-10-14 16:17:13,087 basehttp 72580 6127644672 "GET /core/ HTTP/1.1" 200 52824
+INFO 2025-10-14 16:17:13,142 basehttp 72580 6127644672 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+WARNING 2025-10-14 16:18:13,399 log 72580 6127644672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:18:13,400 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:18:47,701 views 72580 6127644672 Dashboard carregado do cache
+INFO 2025-10-14 16:18:47,713 basehttp 72580 6127644672 "GET /core/ HTTP/1.1" 200 52796
+INFO 2025-10-14 16:18:47,741 basehttp 72580 6127644672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 16:18:58,525 basehttp 72580 6127644672 "GET /auth/perfil/ HTTP/1.1" 200 42088
+INFO 2025-10-14 16:19:06,931 views 72580 6127644672 Dashboard carregado do cache
+INFO 2025-10-14 16:19:06,940 basehttp 72580 6127644672 "GET /core/ HTTP/1.1" 200 52796
+INFO 2025-10-14 16:19:08,968 basehttp 72580 6127644672 "GET /core/diagnostico/ HTTP/1.1" 200 42741
+INFO 2025-10-14 16:19:12,970 basehttp 72580 6127644672 "GET /escalas/ HTTP/1.1" 200 35950
+INFO 2025-10-14 16:19:16,173 views 72580 6127644672 Dashboard carregado do cache
+INFO 2025-10-14 16:19:16,179 basehttp 72580 6127644672 "GET /core/ HTTP/1.1" 200 52798
+WARNING 2025-10-14 16:20:16,388 log 72580 6127644672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:20:16,389 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 16:20:53,084 views 72580 6127644672 Dashboard carregado do cache
+INFO 2025-10-14 16:20:53,094 basehttp 72580 6127644672 "GET /core/ HTTP/1.1" 200 52896
+INFO 2025-10-14 16:20:53,151 basehttp 72580 6127644672 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+WARNING 2025-10-14 16:21:53,376 log 72580 6127644672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:21:53,378 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:22:53,382 log 72580 6127644672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:22:53,384 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:23:53,372 log 72580 6127644672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:23:53,374 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:24:53,367 log 72580 6127644672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:24:53,369 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 16:25:53,372 log 72580 6127644672 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 16:25:53,374 basehttp 72580 6127644672 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840

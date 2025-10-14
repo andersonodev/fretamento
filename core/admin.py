@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from .models import Servico, GrupoServico, ServicoGrupo, ProcessamentoPlanilha, CalculoPreco
+from .models import Servico, GrupoServico, ServicoGrupo, ProcessamentoPlanilha, CalculoPreco, ActivityLog
 
 
 @admin.register(Servico)
@@ -242,3 +242,99 @@ class CalculoPrecoAdmin(admin.ModelAdmin):
     def margem_percentual(self, obj):
         return f"{obj.margem_percentual:.2f}%"
     margem_percentual.short_description = "Margem %"
+
+
+@admin.register(ActivityLog)
+class ActivityLogAdmin(admin.ModelAdmin):
+    list_display = ['activity_icon', 'description_formatted', 'user_info', 'activity_type_badge', 'created_at_formatted']
+    list_filter = ['activity_type', 'created_at', 'object_type']
+    search_fields = ['description', 'details', 'user__username', 'user__first_name', 'user__last_name']
+    readonly_fields = ['created_at', 'ip_address', 'user_agent']
+    ordering = ['-created_at']
+    date_hierarchy = 'created_at'
+    list_per_page = 30
+    
+    fieldsets = (
+        ('📋 Informações da Atividade', {
+            'fields': ('user', 'activity_type', 'description', 'details'),
+            'classes': ('wide',)
+        }),
+        ('🎯 Objeto da Ação', {
+            'fields': ('object_type', 'object_id'),
+            'classes': ('wide',)
+        }),
+        ('🌐 Informações Técnicas', {
+            'fields': ('ip_address', 'user_agent', 'extra_data'),
+            'classes': ('collapse',)
+        }),
+        ('📅 Timestamps', {
+            'fields': ('created_at',),
+            'classes': ('collapse',)
+        }),
+    )
+    
+    def activity_icon(self, obj):
+        return format_html(
+            '<i class="{}" style="color: {}; font-size: 16px;"></i>',
+            obj.get_icon(),
+            self.get_icon_color(obj.activity_type)
+        )
+    activity_icon.short_description = "🎯"
+    
+    def get_icon_color(self, activity_type):
+        colors = {
+            'CREATE': '#48bb78',
+            'UPDATE': '#4299e1', 
+            'DELETE': '#f56565',
+            'UPLOAD': '#17a2b8',
+            'LOGIN': '#48bb78',
+            'LOGOUT': '#ed8936',
+            'VIEW': '#8e9aaf',
+            'PROCESS': '#ed8936',
+            'ERROR': '#f56565',
+            'SUCCESS': '#48bb78',
+        }
+        return colors.get(activity_type, '#8e9aaf')
+    
+    def description_formatted(self, obj):
+        return format_html(
+            '<strong style="color: #2d3748;">{}</strong>{}',
+            obj.description[:60] + '...' if len(obj.description) > 60 else obj.description,
+            f'<br><small style="color: #8e9aaf;">{obj.details[:80]}...</small>' if obj.details else ''
+        )
+    description_formatted.short_description = "📝 Descrição"
+    
+    def user_info(self, obj):
+        full_name = obj.user.get_full_name() or obj.user.username
+        return format_html(
+            '<span style="background: #2d3748; color: #e2e8f0; padding: 4px 8px; border-radius: 6px; font-size: 12px;">👤 {}</span>',
+            full_name[:25] + '...' if len(full_name) > 25 else full_name
+        )
+    user_info.short_description = "👤 Usuário"
+    
+    def activity_type_badge(self, obj):
+        color_class = obj.get_color_class()
+        colors = {
+            'success': '#48bb78',
+            'primary': '#4299e1',
+            'danger': '#f56565',
+            'info': '#17a2b8',
+            'warning': '#ed8936',
+            'secondary': '#8e9aaf',
+            'light': '#e2e8f0'
+        }
+        bg_color = colors.get(color_class, '#8e9aaf')
+        
+        return format_html(
+            '<span style="background: {}; color: white; padding: 4px 8px; border-radius: 8px; font-weight: 600; font-size: 10px;">{}</span>',
+            bg_color,
+            obj.get_activity_type_display()
+        )
+    activity_type_badge.short_description = "🏷️ Tipo"
+    
+    def created_at_formatted(self, obj):
+        return format_html(
+            '<span style="color: #4299e1; font-weight: 500; font-family: monospace;">{}</span>',
+            obj.created_at.strftime("%d/%m/%Y %H:%M:%S")
+        )
+    created_at_formatted.short_description = "📅 Data/Hora"

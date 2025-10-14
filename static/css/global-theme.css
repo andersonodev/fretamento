@@ -1,0 +1,182 @@
+/* Tema Global - Cor Principal #1F8CCB */
+:root {
+    --primary-color: #1F8CCB;
+    --primary-light: #4FA9D8;
+    --primary-dark: #146BA3;
+    --primary-gradient: linear-gradient(135deg, #1F8CCB 0%, #146BA3 100%);
+    --primary-gradient-reverse: linear-gradient(135deg, #146BA3 0%, #1F8CCB 100%);
+    
+    /* Cores complementares */
+    --secondary-color: #2E9FDB;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+    
+    /* Gradientes */
+    --secondary-gradient: linear-gradient(135deg, #2E9FDB 0%, #1F8CCB 100%);
+    --success-gradient: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    --warning-gradient: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+    --danger-gradient: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    --info-gradient: linear-gradient(135deg, #17a2b8 0%, #1F8CCB 100%);
+    
+    /* Sombras com a cor principal */
+    --primary-shadow: 0 4px 15px rgba(31, 140, 203, 0.2);
+    --primary-shadow-hover: 0 8px 25px rgba(31, 140, 203, 0.3);
+    
+    /* Estados */
+    --primary-hover: #4FA9D8;
+    --primary-active: #146BA3;
+    --primary-focus: rgba(31, 140, 203, 0.25);
+}
+
+/* Aplicar cor principal aos elementos Bootstrap */
+.btn-primary {
+    background: var(--primary-gradient);
+    border-color: var(--primary-color);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--primary-gradient-reverse);
+    border-color: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--primary-shadow-hover);
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem var(--primary-focus);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active {
+    background-color: var(--primary-active);
+    border-color: var(--primary-active);
+}
+
+/* Links com cor principal */
+a {
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-hover);
+    text-decoration: none;
+}
+
+/* Elementos de formulário */
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem var(--primary-focus);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Badges */
+.badge-primary {
+    background: var(--primary-gradient);
+    color: white;
+}
+
+/* Alertas */
+.alert-primary {
+    background: linear-gradient(135deg, rgba(31, 140, 203, 0.1) 0%, rgba(20, 107, 163, 0.1) 100%);
+    border-color: var(--primary-color);
+    color: var(--primary-dark);
+}
+
+/* Progress bars */
+.progress-bar {
+    background: var(--primary-gradient);
+}
+
+/* Navegação */
+.nav-pills .nav-link.active {
+    background: var(--primary-gradient);
+}
+
+.nav-pills .nav-link:hover {
+    background: rgba(31, 140, 203, 0.1);
+}
+
+/* Paginação */
+.page-link {
+    color: var(--primary-color);
+}
+
+.page-link:hover {
+    color: var(--primary-hover);
+    background-color: rgba(31, 140, 203, 0.1);
+    border-color: var(--primary-color);
+}
+
+.page-item.active .page-link {
+    background: var(--primary-gradient);
+    border-color: var(--primary-color);
+}
+
+/* Modais */
+.modal-header {
+    border-bottom-color: rgba(31, 140, 203, 0.2);
+}
+
+/* Tabelas */
+.table-primary {
+    background: rgba(31, 140, 203, 0.1);
+}
+
+/* Spinners */
+.spinner-border-primary {
+    color: var(--primary-color);
+}
+
+/* Cards customizados */
+.card-primary {
+    border-color: var(--primary-color);
+}
+
+.card-primary .card-header {
+    background: var(--primary-gradient);
+    color: white;
+    border-bottom-color: var(--primary-color);
+}
+
+/* Elementos customizados específicos */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.bg-primary {
+    background: var(--primary-gradient) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+/* Efeitos de hover globais */
+.hover-primary:hover {
+    color: var(--primary-color) !important;
+    transition: color 0.3s ease;
+}
+
+.hover-bg-primary:hover {
+    background: rgba(31, 140, 203, 0.1) !important;
+    transition: background 0.3s ease;
+}
+
+/* Utilitários de sombra */
+.shadow-primary {
+    box-shadow: var(--primary-shadow) !important;
+}
+
+.shadow-primary-hover:hover {
+    box-shadow: var(--primary-shadow-hover) !important;
+    transition: box-shadow 0.3s ease;
+}

@@ -2624,8 +2624,8 @@ class AprovarEscalaView(LoginRequiredMixin, View):
                     "error": "Esta escala não pode ser aprovada no momento"
                 })
             
-            # Verificar se o usuário tem permissão (cristiane.aguiar ou lucy.leite)
-            if request.user.username not in ["cristiane.aguiar", "lucy.leite"]:
+            # Verificar se o usuário tem permissão de administrador
+            if not (request.user.is_superuser or request.user.is_staff):
                 return JsonResponse({
                     "success": False,
                     "error": "Você não tem permissão para aprovar escalas"
