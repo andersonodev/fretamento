@@ -2539,3 +2539,59 @@ WARNING 2025-10-14 17:56:27,928 log 84620 6195654656 Not Found: /api/dashboard/u
 WARNING 2025-10-14 17:56:27,929 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
 WARNING 2025-10-14 17:57:27,944 log 84620 6195654656 Not Found: /api/dashboard/updates/
 WARNING 2025-10-14 17:57:27,946 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:58:27,940 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:58:27,942 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:59:27,927 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:59:27,928 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 18:00:27,926 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 18:00:27,929 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 18:01:27,927 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 18:01:27,930 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 18:02:28,935 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 18:02:28,938 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 18:03:29,928 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 18:03:29,931 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 18:04:27,794 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 18:04:27,797 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 18:05:27,937 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 18:05:27,939 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 18:06:28,936 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 18:06:28,938 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 18:07:29,928 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 18:07:29,929 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 18:08:30,937 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 18:08:30,939 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 18:09:04,100 basehttp 84620 6195654656 "GET /core/diagnostico/ HTTP/1.1" 200 71914
+INFO 2025-10-14 18:09:04,126 basehttp 84620 6195654656 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 304 0
+INFO 2025-10-14 18:09:04,127 basehttp 84620 6212481024 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 18:09:05,559 basehttp 84620 6212481024 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 18:09:09,180 basehttp 84620 6195654656 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 18:09:13,594 basehttp 84620 6195654656 "POST /escalas/ano/2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 18:09:13,621 basehttp 84620 6195654656 "GET /escalas/visualizar/06-11-2025/ HTTP/1.1" 200 187432
+INFO 2025-10-14 18:09:15,458 basehttp 84620 6195654656 "GET /escalas/puxar-dados/06-11-2025/ HTTP/1.1" 200 50840
+INFO 2025-10-14 18:09:19,136 basehttp 84620 6195654656 "POST /escalas/puxar-dados/06-11-2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 18:09:19,163 basehttp 84620 6195654656 "GET /escalas/visualizar/06-11-2025/ HTTP/1.1" 200 269440
+INFO 2025-10-14 18:09:29,537 basehttp 84620 6195654656 "POST /escalas/detalhes-servico/ HTTP/1.1" 200 489
+INFO 2025-10-14 18:09:41,598 basehttp 84620 6195654656 "POST /escalas/puxar-dados/06-11-2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 18:09:41,646 basehttp 84620 6195654656 "GET /escalas/visualizar/06-11-2025/ HTTP/1.1" 200 593919
+INFO 2025-10-14 18:09:51,763 views 84620 6195654656 Grupo criado (NOME): HOTELBEDS com 2 serviços e 5 PAX
+INFO 2025-10-14 18:09:51,775 views 84620 6195654656 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-14 18:09:51,780 views 84620 6195654656 Grupo criado (NOME): Cliente Importado com 2 serviços e 6 PAX
+INFO 2025-10-14 18:09:51,784 views 84620 6195654656 Grupo criado (NOME): ORINTER com 2 serviços e 4 PAX
+INFO 2025-10-14 18:09:51,790 views 84620 6195654656 Grupo criado (TOUR): Cliente Importado com 4 serviços e 44 PAX
+INFO 2025-10-14 18:09:51,830 views 84620 6195654656 Grupo criado (NOME): HOTELBEDS com 3 serviços e 11 PAX
+INFO 2025-10-14 18:09:51,833 views 84620 6195654656 Grupo criado (NOME): Cliente Importado com 4 serviços e 20 PAX
+INFO 2025-10-14 18:09:51,836 views 84620 6195654656 Grupo criado (NOME): AZUL VIAGENS com 2 serviços e 4 PAX
+INFO 2025-10-14 18:09:51,864 views 84620 6195654656 Grupo criado (NOME): HOTELBEDS com 2 serviços e 4 PAX
+INFO 2025-10-14 18:09:51,875 views 84620 6195654656 Grupo criado (TRANSFER_OUT_REGULAR): E-HTL com 2 serviços e 5 PAX
+INFO 2025-10-14 18:09:51,877 basehttp 84620 6195654656 "POST /escalas/visualizar/06-11-2025/ HTTP/1.1" 302 0
+INFO 2025-10-14 18:09:51,925 basehttp 84620 6195654656 "GET /escalas/visualizar/06-11-2025/ HTTP/1.1" 200 567542
+INFO 2025-10-14 18:10:01,560 basehttp 84620 6195654656 "POST /escalas/detalhes-grupo/ HTTP/1.1" 200 880
+INFO 2025-10-14 18:10:10,975 basehttp 84620 6195654656 "GET /auth/logout/ HTTP/1.1" 302 0
+INFO 2025-10-14 18:10:10,980 basehttp 84620 6195654656 "GET /auth/login/ HTTP/1.1" 200 13213
+INFO 2025-10-14 18:10:32,561 basehttp 84620 6195654656 "POST /auth/login/ HTTP/1.1" 200 13563
+INFO 2025-10-14 18:10:38,962 basehttp 84620 6195654656 "POST /auth/login/ HTTP/1.1" 200 13563
+INFO 2025-10-14 18:12:20,992 autoreload 84620 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/views.py changed, reloading.
+INFO 2025-10-14 18:12:21,750 autoreload 86282 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 18:21:04,767 autoreload 86282 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/fretamento_project/settings.py changed, reloading.
+INFO 2025-10-14 18:21:05,178 autoreload 86976 8798652416 Watching for file changes with StatReloader

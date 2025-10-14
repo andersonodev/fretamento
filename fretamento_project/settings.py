@@ -71,6 +71,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     
     # Custom middleware
+    "core.mobile_block_middleware.MobileBlockMiddleware",
     "core.activity_middleware.ActivityLogMiddleware",
 ]
 
