@@ -2506,3 +2506,36 @@ INFO 2025-10-14 17:47:45,676 basehttp 79961 6133837824 "GET /auth/login/ HTTP/1.
 INFO 2025-10-14 17:47:49,888 basehttp 79961 6133837824 "POST /auth/login/ HTTP/1.1" 302 0
 INFO 2025-10-14 17:47:49,893 views 79961 6133837824 Dashboard carregado do cache
 INFO 2025-10-14 17:47:49,895 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 53290
+INFO 2025-10-14 17:48:35,028 views 79961 6133837824 Dashboard carregado do cache
+INFO 2025-10-14 17:48:35,034 basehttp 79961 6133837824 "GET /core/ HTTP/1.1" 200 52919
+INFO 2025-10-14 17:48:36,979 basehttp 79961 6133837824 "GET /escalas/ HTTP/1.1" 200 36052
+INFO 2025-10-14 17:48:38,682 basehttp 79961 6133837824 "GET /escalas/ano/2025/ HTTP/1.1" 200 48127
+INFO 2025-10-14 17:48:40,314 basehttp 79961 6133837824 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 120481
+INFO 2025-10-14 17:48:40,353 basehttp 79961 6133837824 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+INFO 2025-10-14 17:48:42,296 basehttp 79961 6133837824 "GET /escalas/visualizar/14-10-2025/ HTTP/1.1" 200 263482
+WARNING 2025-10-14 17:49:42,964 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:49:42,966 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:50:42,405 log 79961 6133837824 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:50:42,409 basehttp 79961 6133837824 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:50:42,638 autoreload 79961 8798652416 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/authentication/views.py changed, reloading.
+INFO 2025-10-14 17:50:44,785 autoreload 84620 8798652416 Watching for file changes with StatReloader
+INFO 2025-10-14 17:50:46,882 basehttp 84620 6195654656 "GET /auth/logout/ HTTP/1.1" 302 0
+INFO 2025-10-14 17:50:46,909 basehttp 84620 6195654656 "GET /auth/login/ HTTP/1.1" 200 13213
+INFO 2025-10-14 17:51:01,540 basehttp 84620 6195654656 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-14 17:51:01,544 views 84620 6195654656 Gerando dashboard com consultas otimizadas
+INFO 2025-10-14 17:51:01,558 basehttp 84620 6195654656 "GET /core/ HTTP/1.1" 200 52829
+WARNING 2025-10-14 17:52:01,944 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:52:01,945 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:53:01,931 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:53:01,932 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:54:01,926 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:54:01,927 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-14 17:54:27,677 views 84620 6195654656 Dashboard carregado do cache
+INFO 2025-10-14 17:54:27,684 basehttp 84620 6195654656 "GET /core/ HTTP/1.1" 200 52831
+INFO 2025-10-14 17:54:27,719 basehttp 84620 6195654656 "GET /static/css/global-theme.css HTTP/1.1" 304 0
+WARNING 2025-10-14 17:55:27,945 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:55:27,947 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:56:27,928 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:56:27,929 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+WARNING 2025-10-14 17:57:27,944 log 84620 6195654656 Not Found: /api/dashboard/updates/
+WARNING 2025-10-14 17:57:27,946 basehttp 84620 6195654656 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
