@@ -62,12 +62,14 @@ else:
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.gzip.GZipMiddleware',  # Compressão de responses
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # REMOVIDO: 'core.activity_middleware.ActivityLogMiddleware',  # Causa gargalo em produção
 ]
 
 # ============================================
@@ -84,20 +86,43 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # ============================================
-# CACHE - LOCAL PARA PLANO GRATUITO
+# CACHE - REDIS PARA PRODUÇÃO
 # ============================================
 
-# Cache local para manter o projeto gratuito
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'fretamento-cache',
-        'TIMEOUT': 300,
-        'OPTIONS': {
-            'MAX_ENTRIES': 1000,
-        },
+REDIS_URL = os.environ.get('REDIS_URL')
+
+if REDIS_URL:
+    # Usar Redis em produção (melhor performance)
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': REDIS_URL,
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+                'CONNECTION_POOL_KWARGS': {
+                    'max_connections': 50,
+                    'retry_on_timeout': True,
+                },
+                'SOCKET_CONNECT_TIMEOUT': 5,
+                'SOCKET_TIMEOUT': 5,
+                'COMPRESSOR': 'django_redis.compressors.zlib.ZlibCompressor',
+                'IGNORE_EXCEPTIONS': True,  # Falhar graciously se Redis cair
+            },
+            'TIMEOUT': 300,  # 5 minutos
+        }
     }
-}
+else:
+    # Fallback para LocMemCache se Redis não disponível
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'fretamento-cache',
+            'TIMEOUT': 300,
+            'OPTIONS': {
+                'MAX_ENTRIES': 1000,
+            },
+        }
+    }
 
 # ============================================
 # CONFIGURAÇÕES DE SEGURANÇA
@@ -162,6 +187,10 @@ LOGGING = {
 # CONFIGURAÇÕES DE PERFORMANCE
 # ============================================
 
+# Compressão de responses
+GZIP_LEVEL = 6
+GZIP_MIN_LENGTH = 1000  # Apenas comprimir responses > 1KB
+
 # Templates otimizados para produção
 # IMPORTANTE: Não podemos ter APP_DIRS = True quando loaders está definido
 if not DEBUG:
@@ -183,3 +212,17 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
 
 # Timezone
 USE_TZ = True
+
+# Optimizações de WhiteNoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_COMPRESS_OFFLINE = True
+WHITENOISE_AUTOREFRESH = False
+WHITENOISE_INDEX_FILE = True
+
+# Database pooling para melhor performance
+if DATABASES['default']['ENGINE'] == 'django.db.backends.postgresql':
+    DATABASES['default']['CONN_MAX_AGE'] = 600
+    DATABASES['default']['OPTIONS'] = {
+        'connect_timeout': 10,
+        'options': '-c statement_timeout=30000'  # 30 segundos timeout
+    }

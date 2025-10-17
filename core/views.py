@@ -759,3 +759,13 @@ class ListaAtividadesView(ListView):
         context['filtro_usuario'] = self.request.GET.get('usuario', '')
         
         return context
+
+
+class TesteLoadingView(View):
+    """View temporária para demonstrar o sistema de loading"""
+    
+    def get(self, request):
+        if not request.user.is_authenticated:
+            return redirect('authentication:login')
+            
+        return render(request, 'core/teste_loading.html')

@@ -1,7 +1,7 @@
 
 === RELATÓRIO DE LIMPEZA DO SISTEMA ===
 
-Data/Hora: 07/10/2025 17:35:12
+Data/Hora: 17/10/2025 17:21:28
 
 OPERAÇÕES REALIZADAS:
 ✅ Remoção de todos os serviços importados
@@ -24,47 +24,41 @@ PRÓXIMOS PASSOS:
 - Todos os arquivos de configuração originais foram preservados
 
 LOG DETALHADO:
-[2025-10-07 17:35:12] === INICIANDO LIMPEZA COMPLETA DO SISTEMA ===
-[2025-10-07 17:35:12] === ESTATÍSTICAS ANTES DA LIMPEZA ===
-[2025-10-07 17:35:12] servicos: 1871
-[2025-10-07 17:35:12] escalas: 144
-[2025-10-07 17:35:12] alocacoes: 1302
-[2025-10-07 17:35:12] grupos_escala: 39
-[2025-10-07 17:35:12] servicos_grupo: 91
-[2025-10-07 17:35:12] grupos_core: 0
-[2025-10-07 17:35:12] processamentos: 5
-[2025-10-07 17:35:12] calculos_preco: 0
-[2025-10-07 17:35:12] logs_escala: 1
-[2025-10-07 17:35:12] Limpando dados de escalas...
-[2025-10-07 17:35:12] Removidos 91 serviços de grupos
-[2025-10-07 17:35:12] Removidos 39 grupos de escalas
-[2025-10-07 17:35:12] Removidas 1302 alocações
-[2025-10-07 17:35:12] Removidos 1 logs de escalas
-[2025-10-07 17:35:12] Removidas 144 escalas
-[2025-10-07 17:35:12] Limpando dados de serviços...
-[2025-10-07 17:35:12] Removidos 0 grupos de serviços (core)
-[2025-10-07 17:35:12] Removidos 1871 serviços
-[2025-10-07 17:35:12] Limpando dados de processamento...
-[2025-10-07 17:35:12] Removidos 0 cálculos de preço
-[2025-10-07 17:35:12] Removidos 5 registros de processamento
-[2025-10-07 17:35:12] Limpando arquivos temporários...
-[2025-10-07 17:35:12] Arquivo removido: tarifario_otimizado.json
-[2025-10-07 17:35:12] Arquivo removido: busca_inteligente_precos.py.backup
-[2025-10-07 17:35:12] Arquivo removido: relatorio_importacao.txt
-[2025-10-07 17:35:12] Arquivo removido: relatorio_otimizacao.txt
-[2025-10-07 17:35:12] Arquivo removido: relatorio_melhorias_busca.txt
-[2025-10-07 17:35:12] Arquivo removido: relatorio_final_otimizacao.txt
-[2025-10-07 17:35:12] Total de arquivos removidos: 6
-[2025-10-07 17:35:12] Nenhum backup encontrado para restaurar
-[2025-10-07 17:35:12] === VERIFICAÇÃO PÓS-LIMPEZA ===
-[2025-10-07 17:35:12] ✅ servicos: 0
-[2025-10-07 17:35:12] ✅ escalas: 0
-[2025-10-07 17:35:12] ✅ alocacoes: 0
-[2025-10-07 17:35:12] ✅ grupos_escala: 0
-[2025-10-07 17:35:12] ✅ servicos_grupo: 0
-[2025-10-07 17:35:12] ✅ grupos_core: 0
-[2025-10-07 17:35:12] ✅ processamentos: 0
-[2025-10-07 17:35:12] ✅ calculos_preco: 0
-[2025-10-07 17:35:12] ✅ logs_escala: 0
-[2025-10-07 17:35:12] ✅ LIMPEZA COMPLETA: Todos os dados foram removidos
-[2025-10-07 17:35:12] === LIMPEZA CONCLUÍDA ===
+[2025-10-17 17:21:28] === INICIANDO LIMPEZA COMPLETA DO SISTEMA ===
+[2025-10-17 17:21:28] === ESTATÍSTICAS ANTES DA LIMPEZA ===
+[2025-10-17 17:21:28] servicos: 2332
+[2025-10-17 17:21:28] escalas: 3
+[2025-10-17 17:21:28] alocacoes: 128
+[2025-10-17 17:21:28] grupos_escala: 1
+[2025-10-17 17:21:28] servicos_grupo: 7
+[2025-10-17 17:21:28] grupos_core: 0
+[2025-10-17 17:21:28] processamentos: 2
+[2025-10-17 17:21:28] calculos_preco: 0
+[2025-10-17 17:21:28] logs_escala: 0
+[2025-10-17 17:21:28] Limpando dados de escalas...
+[2025-10-17 17:21:28] Removidos 7 serviços de grupos
+[2025-10-17 17:21:28] Removidos 1 grupos de escalas
+[2025-10-17 17:21:28] Removidas 128 alocações
+[2025-10-17 17:21:28] Removidos 0 logs de escalas
+[2025-10-17 17:21:28] Removidas 3 escalas
+[2025-10-17 17:21:28] Limpando dados de serviços...
+[2025-10-17 17:21:28] Removidos 0 grupos de serviços (core)
+[2025-10-17 17:21:28] Removidos 2332 serviços
+[2025-10-17 17:21:28] Limpando dados de processamento...
+[2025-10-17 17:21:28] Removidos 0 cálculos de preço
+[2025-10-17 17:21:28] Removidos 2 registros de processamento
+[2025-10-17 17:21:28] Limpando arquivos temporários...
+[2025-10-17 17:21:28] Total de arquivos removidos: 0
+[2025-10-17 17:21:28] Nenhum backup encontrado para restaurar
+[2025-10-17 17:21:28] === VERIFICAÇÃO PÓS-LIMPEZA ===
+[2025-10-17 17:21:28] ✅ servicos: 0
+[2025-10-17 17:21:28] ✅ escalas: 0
+[2025-10-17 17:21:28] ✅ alocacoes: 0
+[2025-10-17 17:21:28] ✅ grupos_escala: 0
+[2025-10-17 17:21:28] ✅ servicos_grupo: 0
+[2025-10-17 17:21:28] ✅ grupos_core: 0
+[2025-10-17 17:21:28] ✅ processamentos: 0
+[2025-10-17 17:21:28] ✅ calculos_preco: 0
+[2025-10-17 17:21:28] ✅ logs_escala: 0
+[2025-10-17 17:21:28] ✅ LIMPEZA COMPLETA: Todos os dados foram removidos
+[2025-10-17 17:21:28] === LIMPEZA CONCLUÍDA ===

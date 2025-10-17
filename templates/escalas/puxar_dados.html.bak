@@ -1,0 +1,325 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load custom_filters %}
+
+{% block title %}Puxar Dados - {{ escala.data|date:"d/m/Y" }}{% endblock %}
+
+{% block extra_css %}
+<style>
+.cards-container {
+    margin-bottom: 100px;
+}
+
+.data-card {
+    transition: all 0.3s ease;
+    cursor: pointer !important;
+    border: 3px solid #dee2e6;
+    position: relative;
+    user-select: none;
+    background-color: white;
+}
+
+.data-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    border-color: #0d6efd;
+}
+
+.data-card.selected {
+    border-color: #0d6efd !important;
+    background-color: #e7f1ff !important;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.25) !important;
+    transform: scale(1.02);
+}
+
+.check-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #0d6efd;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+.data-card.selected .check-icon {
+    display: flex;
+}
+
+.badge-stats {
+    font-size: 0.85rem;
+}
+
+.data-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-puxar-dados {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1050;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-puxar-dados:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-puxar-dados:not(:disabled):hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* Debug - remover depois */
+.data-card::after {
+    content: 'CLIQUE AQUI';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: #999;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.data-card:hover::after {
+    opacity: 1;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'escalas:selecionar_ano' %}">
+                    <i class="fas fa-calendar-alt"></i> Anos
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'escalas:gerenciar_escalas_mes' mes=escala.data.month ano=escala.data.year %}">
+                    <i class="fas fa-calendar-check"></i> {{ escala.data|date:"F Y" }}
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <i class="fas fa-download"></i> Puxar Dados - {{ escala.data|date:"d/m/Y" }}
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Cabeçalho -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h4 class="alert-heading">
+                    <i class="fas fa-info-circle"></i> Puxar Dados para {{ escala.data|date:"d/m/Y" }}
+                </h4>
+                <p class="mb-0">
+                    Selecione uma data abaixo para copiar todos os serviços dessa data para a escala de <strong>{{ escala.data|date:"d/m/Y" }}</strong>.
+                    Os serviços serão automaticamente distribuídos entre as vans disponíveis.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulário -->
+    <form method="post" id="formPuxarDados">
+        {% csrf_token %}
+        <input type="hidden" name="data_origem" id="dataOrigemInput">
+
+        <div class="row cards-container" id="cardsContainer">
+            {% if datas_disponiveis %}
+                {% for data_info in datas_disponiveis %}
+                    {% if data_info.data != escala.data %}
+                    <div class="col-md-4 col-lg-3 mb-3">
+                        <div class="card data-card h-100" 
+                             data-data="{{ data_info.data|date:'d-m-Y' }}" 
+                             role="button" 
+                             tabindex="0">
+                            <span class="check-icon">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="fas fa-calendar-day text-primary"></i>
+                                    {{ data_info.data|date:"d/m/Y" }}
+                                </h5>
+                                <p class="card-text text-muted mb-2">
+                                    {{ data_info.data|date:"l" }}
+                                </p>
+                                
+                                <div class="data-info">
+                                    <div>
+                                        <span class="badge bg-primary badge-stats">
+                                            <i class="fas fa-route"></i> {{ data_info.total_servicos }} serviço{{ data_info.total_servicos|pluralize }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="badge bg-success badge-stats">
+                                            <i class="fas fa-users"></i> {{ data_info.total_pax }} PAX
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                {% if data_info.com_horario %}
+                                <div class="mt-2">
+                                    <small class="text-muted">
+                                        <i class="fas fa-clock"></i> {{ data_info.com_horario }} com horário
+                                    </small>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="col-12">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Nenhuma data com serviços disponível para puxar dados.
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Botão fixo para puxar dados -->
+        <button type="submit" class="btn btn-primary btn-puxar-dados" id="btnPuxarDados" disabled>
+            <i class="fas fa-download"></i> Puxar Dados da Data Selecionada
+        </button>
+    </form>
+
+    <!-- Botão voltar -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <a href="{% url 'escalas:gerenciar_escalas_mes' mes=escala.data.month ano=escala.data.year %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+console.log('🚀 Script iniciando...');
+
+// Função global para onclick inline
+window.selecionarCardInline = function(card) {
+    console.log('💥 FUNÇÃO INLINE CHAMADA!', card.dataset.data);
+    
+    const cards = document.querySelectorAll('.data-card');
+    cards.forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    
+    document.getElementById('dataOrigemInput').value = card.dataset.data;
+    document.getElementById('btnPuxarDados').disabled = false;
+    
+    console.log('✅ Card selecionado inline!');
+};
+
+// Esperar o DOM carregar completamente
+window.addEventListener('load', function() {
+    console.log('✅ Página carregada!');
+    
+    let dataSelecionada = null;
+    const inputHidden = document.getElementById('dataOrigemInput');
+    const btnPuxar = document.getElementById('btnPuxarDados');
+    const form = document.getElementById('formPuxarDados');
+    
+    console.log('Input hidden:', inputHidden);
+    console.log('Botão:', btnPuxar);
+    console.log('Form:', form);
+    
+    // Pegar todos os cards
+    const cards = document.querySelectorAll('.data-card');
+    console.log(`� Total de cards encontrados: ${cards.length}`);
+    
+    // Função para selecionar card
+    function selecionarCard(card) {
+        const data = card.dataset.data;
+        console.log('📅 Selecionando:', data);
+        
+        // Remove selected de todos
+        cards.forEach(c => c.classList.remove('selected'));
+        
+        // Adiciona ao clicado
+        card.classList.add('selected');
+        
+        // Atualiza dados
+        dataSelecionada = data;
+        inputHidden.value = data;
+        btnPuxar.disabled = false;
+        
+        console.log('✅ Card selecionado! Valor:', inputHidden.value);
+    }
+    
+    // Adicionar click em cada card
+    cards.forEach((card, i) => {
+        console.log(`🔧 Configurando card ${i + 1}:`, card.dataset.data);
+        
+        card.onclick = function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            console.log(`🖱️ CLIQUE no card ${i + 1}`);
+            selecionarCard(this);
+            return false;
+        };
+        
+        // Teste - adicionar um estilo ao passar mouse
+        card.onmouseenter = function() {
+            console.log(`🐭 Mouse sobre card ${i + 1}`);
+        };
+    });
+    
+    // Submit do form
+    if (form) {
+        form.onsubmit = function(e) {
+            console.log('📤 Tentando enviar form...');
+            
+            if (!dataSelecionada) {
+                e.preventDefault();
+                alert('Por favor, selecione uma data de origem.');
+                return false;
+            }
+            
+            const dataFormatada = dataSelecionada.replace(/-/g, '/');
+            const msg = `Tem certeza que deseja puxar os dados da data ${dataFormatada}?`;
+            
+            if (!confirm(msg)) {
+                e.preventDefault();
+                return false;
+            }
+            
+            btnPuxar.disabled = true;
+            btnPuxar.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Puxando dados...';
+            
+            console.log('✅ Form enviado!');
+            return true;
+        };
+    }
+    
+    console.log('🎉 Tudo configurado!');
+});
+</script>
+{% endblock %}

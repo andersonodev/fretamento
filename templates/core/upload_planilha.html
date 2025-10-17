@@ -4,99 +4,926 @@
 {% block title %}Upload Planilha OS{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title mb-0">
-                    <i class="fas fa-upload text-primary"></i>
-                    Upload da Planilha OS
-                </h4>
+<style>
+    .upload-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .upload-hero {
+        background: linear-gradient(135deg, #1F8CCB 0%, #146BA3 100%);
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        color: white;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 40px rgba(31, 140, 203, 0.3);
+        animation: fadeInDown 0.6s ease-out;
+    }
+
+    .upload-hero h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .upload-hero p {
+        font-size: 1.1rem;
+        opacity: 0.95;
+        margin-bottom: 0;
+    }
+
+    .upload-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        border: none;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    .upload-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-header-custom {
+        background: linear-gradient(135deg, #2E9FDB 0%, #1F8CCB 100%);
+        color: white;
+        padding: 1.5rem;
+        border: none;
+    }
+
+    .card-header-custom h4 {
+        margin: 0;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .info-banner {
+        background: linear-gradient(135deg, #4FA9D8 0%, #1F8CCB 100%);
+        border: none;
+        border-radius: 12px;
+        padding: 1.25rem;
+        color: white;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 15px rgba(31, 140, 203, 0.3);
+    }
+
+    .info-banner strong {
+        font-weight: 600;
+    }
+
+    .upload-zone {
+        border: 3px dashed #ddd;
+        border-radius: 16px;
+        padding: 3rem 2rem;
+        text-align: center;
+        background: #f8f9fa;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .upload-zone:hover {
+        border-color: #1F8CCB;
+        background: #e6f4fa;
+        transform: scale(1.02);
+    }
+
+    .upload-zone.dragover {
+        border-color: #1F8CCB;
+        background: linear-gradient(135deg, #e6f4fa 0%, #d4ecf7 100%);
+        transform: scale(1.02);
+    }
+
+    .upload-icon {
+        font-size: 4rem;
+        color: #1F8CCB;
+        margin-bottom: 1rem;
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .upload-text {
+        font-size: 1.2rem;
+        color: #495057;
+        margin-bottom: 0.5rem;
+    }
+
+    .upload-hint {
+        color: #6c757d;
+        font-size: 0.95rem;
+    }
+
+    .file-input-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .selected-file {
+        background: #e8f5e9;
+        border: 2px solid #4caf50;
+        border-radius: 12px;
+        padding: 1rem;
+        margin-top: 1rem;
+        display: none;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    .selected-file.show {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .file-icon {
+        font-size: 2rem;
+        color: #4caf50;
+    }
+
+    .file-info {
+        flex: 1;
+    }
+
+    .file-name {
+        font-weight: 600;
+        color: #2e7d32;
+        margin-bottom: 0.25rem;
+    }
+
+    .file-size {
+        color: #558b2f;
+        font-size: 0.9rem;
+    }
+
+    .btn-upload {
+        background: linear-gradient(135deg, #1F8CCB 0%, #146BA3 100%);
+        border: none;
+        border-radius: 12px;
+        padding: 1rem 3rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(31, 140, 203, 0.4);
+        margin-top: 1.5rem;
+    }
+
+    .btn-upload:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(31, 140, 203, 0.5);
+        background: linear-gradient(135deg, #146BA3 0%, #1F8CCB 100%);
+    }
+
+    .btn-upload:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .progress-container {
+        display: none;
+        margin-top: 2rem;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    .progress-container.show {
+        display: block;
+    }
+
+    .progress-bar-custom {
+        height: 30px;
+        border-radius: 15px;
+        background: #e9ecef;
+        overflow: hidden;
+        position: relative;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #1F8CCB, #146BA3, #2E9FDB);
+        background-size: 200% 100%;
+        animation: progressGradient 2s ease infinite;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: width 0.3s ease;
+    }
+
+    @keyframes progressGradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .progress-status {
+        text-align: center;
+        margin-top: 1rem;
+        color: #1F8CCB;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .process-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .process-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #e9ecef;
+        transition: all 0.3s ease;
+    }
+
+    .process-item:last-child {
+        border-bottom: none;
+    }
+
+    .process-item:hover {
+        background: #f8f9fa;
+        padding-left: 1rem;
+        border-radius: 8px;
+    }
+
+    .process-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+    }
+
+    .example-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        margin-top: 2rem;
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .example-header {
+        background: linear-gradient(135deg, #1F8CCB 0%, #146BA3 100%);
+        color: white;
+        padding: 1.5rem;
+    }
+
+    .comparison-table {
+        margin: 0;
+    }
+
+    .comparison-table th {
+        background: #f8f9fa;
+        font-weight: 600;
+        padding: 1rem;
+        border: none;
+    }
+
+    .comparison-table td {
+        padding: 1rem;
+        vertical-align: middle;
+    }
+
+    .comparison-table code {
+        background: #f8f9fa;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        display: block;
+        font-size: 0.9rem;
+    }
+
+    .comparison-table tr:nth-child(even) {
+        background: #f8f9fa;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Dark Mode Support */
+    [data-theme="dark"] .upload-card,
+    [data-theme="dark"] .example-card {
+        background: #2d2d2d;
+        color: #e0e0e0;
+    }
+
+    [data-theme="dark"] .upload-zone {
+        background: #1a1a1a;
+        border-color: #404040;
+    }
+
+    [data-theme="dark"] .upload-zone:hover {
+        background: #252525;
+        border-color: #1F8CCB;
+    }
+
+    /* Modal de Sucesso */
+    .success-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    .success-modal.show {
+        display: flex;
+    }
+
+    .success-modal-content {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: scaleIn 0.3s ease-out;
+        position: relative;
+    }
+
+    [data-theme="dark"] .success-modal-content {
+        background: #2d2d2d;
+        color: #e0e0e0;
+    }
+
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.7);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .success-icon {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        animation: successPulse 0.6s ease-out;
+    }
+
+    @keyframes successPulse {
+        0% {
+            transform: scale(0);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .success-icon i {
+        font-size: 3rem;
+        color: white;
+    }
+
+    .success-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #28a745;
+        margin-bottom: 1rem;
+    }
+
+    [data-theme="dark"] .success-title {
+        color: #20c997;
+    }
+
+    .success-message {
+        font-size: 1.1rem;
+        color: #6c757d;
+        margin-bottom: 2rem;
+    }
+
+    [data-theme="dark"] .success-message {
+        color: #b0b0b0;
+    }
+
+    .success-stats {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    [data-theme="dark"] .success-stats {
+        background: #1a1a1a;
+    }
+
+    .success-stat-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    [data-theme="dark"] .success-stat-item {
+        border-bottom-color: #404040;
+    }
+
+    .success-stat-item:last-child {
+        border-bottom: none;
+    }
+
+    .success-stat-label {
+        color: #6c757d;
+        font-weight: 500;
+    }
+
+    [data-theme="dark"] .success-stat-label {
+        color: #b0b0b0;
+    }
+
+    .success-stat-value {
+        color: #1F8CCB;
+        font-weight: 700;
+        font-size: 1.1rem;
+    }
+
+    .btn-success-modal {
+        background: linear-gradient(135deg, #1F8CCB 0%, #146BA3 100%);
+        border: none;
+        border-radius: 12px;
+        padding: 0.875rem 2.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(31, 140, 203, 0.4);
+    }
+
+    .btn-success-modal:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(31, 140, 203, 0.5);
+        background: linear-gradient(135deg, #146BA3 0%, #1F8CCB 100%);
+    }
+
+    [data-theme="dark"] .upload-text,
+    [data-theme="dark"] .upload-hint {
+        color: #b0b0b0;
+    }
+
+    [data-theme="dark"] .selected-file {
+        background: #1e3a1e;
+        border-color: #4caf50;
+    }
+
+    [data-theme="dark"] .process-item {
+        border-bottom-color: #404040;
+    }
+
+    [data-theme="dark"] .process-item:hover {
+        background: #383838;
+    }
+
+    [data-theme="dark"] .comparison-table th {
+        background: #1a1a1a;
+    }
+
+    [data-theme="dark"] .comparison-table tr:nth-child(even) {
+        background: #252525;
+    }
+
+    [data-theme="dark"] .comparison-table code {
+        background: #1a1a1a;
+    }
+
+    [data-theme="dark"] .progress-bar-custom {
+        background: #383838;
+    }
+</style>
+
+<div class="upload-page">
+    <!-- Hero Section -->
+    <div class="upload-hero">
+        <h1><i class="fas fa-cloud-upload-alt"></i> Upload da Planilha OS</h1>
+        <p>Importe e processe suas planilhas de serviços automaticamente com limpeza inteligente de dados</p>
+    </div>
+
+    <!-- Upload Form -->
+    <div class="upload-card">
+        <div class="card-header-custom">
+            <h4>
+                <i class="fas fa-file-upload"></i>
+                Selecione o Arquivo
+            </h4>
+        </div>
+        <div class="card-body p-4">
+            <div class="info-banner">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>Formatos aceitos:</strong> .xlsx, .xls, .csv
+                <br>
+                <strong>Processamento automático:</strong> O sistema irá limpar e normalizar os dados automaticamente.
             </div>
-            <div class="card-body">
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle"></i>
-                    <strong>Formatos aceitos:</strong> .xlsx, .xls, .csv<br>
-                    <strong>Processamento automático:</strong> O sistema irá limpar e normalizar os dados automaticamente.
+            
+            <form method="post" enctype="multipart/form-data" id="uploadForm">
+                {% csrf_token %}
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p class="upload-text">Arraste seu arquivo aqui ou clique para selecionar</p>
+                    <p class="upload-hint">Tamanho máximo: 10MB</p>
+                    <input type="file" class="file-input-hidden" id="arquivo" name="arquivo" 
+                           accept=".xlsx,.xls,.csv" required>
                 </div>
                 
-                <form method="post" enctype="multipart/form-data" class="mb-4">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="arquivo" class="form-label">Selecione a planilha OS:</label>
-                        <input type="file" class="form-control" id="arquivo" name="arquivo" 
-                               accept=".xlsx,.xls,.csv" required>
+                <div class="selected-file" id="selectedFile">
+                    <div class="file-icon">
+                        <i class="fas fa-file-excel"></i>
                     </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg">
-                            <i class="fas fa-upload"></i> Processar Planilha
-                        </button>
+                    <div class="file-info">
+                        <div class="file-name" id="fileName"></div>
+                        <div class="file-size" id="fileSize"></div>
                     </div>
-                </form>
-                
-                <div class="border-top pt-3">
-                    <h6>Processo de Limpeza Automática:</h6>
-                    <ul class="text-muted">
-                        <li>Remove colunas desnecessárias (File Operadora, Obs, etc.)</li>
-                        <li>Limpa linhas com "folga" ou dados inválidos</li>
-                        <li>Separa Cliente/Titular, mantendo apenas Cliente</li>
-                        <li>Separa coluna Voo em Nº Voo e Hora Voo</li>
-                        <li>Padroniza nomes de serviços (Disposição, transfers, etc.)</li>
-                        <li>Normaliza cabeçalhos para padrão do sistema</li>
-                    </ul>
+                    <button type="button" class="btn btn-sm btn-outline-danger" id="removeFile">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
+                
+                <div class="d-grid">
+                    <button type="submit" class="btn-upload" id="submitBtn" disabled>
+                        <i class="fas fa-upload me-2"></i> Processar Planilha
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Progress Bar -->
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar-custom">
+                    <div class="progress-fill" id="progressFill" style="width: 0%">
+                        <span id="progressText">0%</span>
+                    </div>
+                </div>
+                <div class="progress-status" id="progressStatus">
+                    <i class="fas fa-spinner fa-spin me-2"></i>Processando arquivo...
+                </div>
+            </div>
+            
+            <div class="border-top pt-4 mt-4">
+                <h6 class="mb-3"><i class="fas fa-magic text-primary me-2"></i>Processo de Limpeza Automática:</h6>
+                <ul class="process-list">
+                    <li class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span>Remove colunas desnecessárias (File Operadora, Obs, etc.)</span>
+                    </li>
+                    <li class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span>Limpa linhas com "folga" ou dados inválidos</span>
+                    </li>
+                    <li class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span>Separa Cliente/Titular, mantendo apenas Cliente</span>
+                    </li>
+                    <li class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span>Separa coluna Voo em Nº Voo e Hora Voo</span>
+                    </li>
+                    <li class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span>Padroniza nomes de serviços (Disposição, transfers, etc.)</span>
+                    </li>
+                    <li class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <span>Normaliza cabeçalhos para padrão do sistema</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Examples Card -->
+    <div class="example-card">
+        <div class="example-header">
+            <h5 class="mb-0">
+                <i class="fas fa-chart-bar me-2"></i>
+                Exemplo de Limpeza de Serviços
+            </h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="comparison-table table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%">Antes (Original)</th>
+                            <th style="width: 50%">Depois (Limpo)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>001 - TRANSFER IN GIG PARA Z.SUL S/GUIA</code></td>
+                            <td><code>TRANSFER IN GIG PARA ZONA SUL Sem Guia</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>Disposição 8 horas</code></td>
+                            <td><code>Disposição 8h</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>TOUR P/ BÚZIOS C/GUIA -</code></td>
+                            <td><code>TOUR PARA BÚZIOS Com Guia</code></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row mt-4">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title mb-0">
-                    <i class="fas fa-chart-bar text-success"></i>
-                    Exemplo de Limpeza de Serviços
-                </h5>
+<!-- Modal de Sucesso -->
+<div class="success-modal" id="successModal">
+    <div class="success-modal-content">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <h2 class="success-title">Upload Concluído!</h2>
+        <p class="success-message">Sua planilha foi importada e processada com sucesso.</p>
+        
+        <div class="success-stats" id="successStats">
+            <div class="success-stat-item">
+                <span class="success-stat-label">Arquivo:</span>
+                <span class="success-stat-value" id="successFileName">-</span>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead>
-                            <tr>
-                                <th>Antes (Original)</th>
-                                <th>Depois (Limpo)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>001 - TRANSFER IN GIG PARA Z.SUL S/GUIA</code></td>
-                                <td><code>TRANSFER IN GIG PARA ZONA SUL</code></td>
-                            </tr>
-                            <tr>
-                                <td><code>Disposição 8 horas</code></td>
-                                <td><code>Disposição 8h</code></td>
-                            </tr>
-                            <tr>
-                                <td><code>TOUR P/ BÚZIOS C/GUIA -</code></td>
-                                <td><code>TOUR PARA BÚZIOS</code></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="success-stat-item">
+                <span class="success-stat-label">Registros Importados:</span>
+                <span class="success-stat-value" id="successRecords">-</span>
+            </div>
+            <div class="success-stat-item">
+                <span class="success-stat-label">Tempo de Processamento:</span>
+                <span class="success-stat-value" id="successTime">-</span>
             </div>
         </div>
+        
+        <button class="btn-success-modal" onclick="closeSuccessModal()">
+            <i class="fas fa-check-circle me-2"></i>Ver Serviços Importados
+        </button>
     </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
 <script>
-// Adiciona feedback visual durante upload
-document.querySelector('form').addEventListener('submit', function(e) {
-    const button = this.querySelector('button[type="submit"]');
-    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
-    button.disabled = true;
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('arquivo');
+    const selectedFile = document.getElementById('selectedFile');
+    const fileName = document.getElementById('fileName');
+    const fileSize = document.getElementById('fileSize');
+    const removeFileBtn = document.getElementById('removeFile');
+    const submitBtn = document.getElementById('submitBtn');
+    const uploadForm = document.getElementById('uploadForm');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const progressStatus = document.getElementById('progressStatus');
+    const successModal = document.getElementById('successModal');
+
+    let uploadStartTime = null;
+
+    // Click no upload zone abre seletor de arquivo
+    uploadZone.addEventListener('click', () => fileInput.click());
+
+    // Drag and Drop
+    uploadZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadZone.classList.add('dragover');
+    });
+
+    uploadZone.addEventListener('dragleave', () => {
+        uploadZone.classList.remove('dragover');
+    });
+
+    uploadZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadZone.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            fileInput.files = files;
+            handleFileSelect();
+        }
+    });
+
+    // Quando arquivo é selecionado
+    fileInput.addEventListener('change', handleFileSelect);
+
+    function handleFileSelect() {
+        const file = fileInput.files[0];
+        if (file) {
+            fileName.textContent = file.name;
+            fileSize.textContent = formatFileSize(file.size);
+            selectedFile.classList.add('show');
+            submitBtn.disabled = false;
+            uploadZone.style.display = 'none';
+        }
+    }
+
+    // Remover arquivo selecionado
+    removeFileBtn.addEventListener('click', () => {
+        fileInput.value = '';
+        selectedFile.classList.remove('show');
+        submitBtn.disabled = true;
+        uploadZone.style.display = 'block';
+    });
+
+    // Submit do formulário com progress bar
+    uploadForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Registrar tempo de início
+        uploadStartTime = Date.now();
+        
+        // Mostrar barra de progresso
+        submitBtn.disabled = true;
+        progressContainer.classList.add('show');
+        
+        // Simular progresso animado
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress > 90) progress = 90;
+            
+            progressFill.style.width = progress + '%';
+            progressText.textContent = Math.round(progress) + '%';
+        }, 200);
+
+        // Atualizar status
+        const statusMessages = [
+            'Carregando arquivo...',
+            'Validando formato...',
+            'Limpando dados...',
+            'Normalizando informações...',
+            'Processando serviços...',
+            'Finalizando importação...'
+        ];
+        
+        let messageIndex = 0;
+        const statusInterval = setInterval(() => {
+            if (messageIndex < statusMessages.length) {
+                progressStatus.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>' + statusMessages[messageIndex];
+                messageIndex++;
+            }
+        }, 1000);
+
+        // Enviar formulário
+        const formData = new FormData(this);
+        fetch(this.action || window.location.href, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => {
+            clearInterval(progressInterval);
+            clearInterval(statusInterval);
+            
+            // Completar progresso
+            progressFill.style.width = '100%';
+            progressText.textContent = '100%';
+            
+            if (response.ok) {
+                progressStatus.innerHTML = '<i class="fas fa-check-circle me-2"></i>Upload concluído com sucesso!';
+                progressStatus.style.color = '#28a745';
+                
+                // Calcular tempo de processamento
+                const uploadTime = ((Date.now() - uploadStartTime) / 1000).toFixed(1);
+                
+                // Obter dados da resposta (se disponível)
+                return response.json().then(data => {
+                    // Mostrar modal de sucesso após 1 segundo
+                    setTimeout(() => {
+                        showSuccessModal({
+                            fileName: fileInput.files[0].name,
+                            records: data.registros || 'N/A',
+                            time: uploadTime + 's'
+                        });
+                    }, 1000);
+                }).catch(() => {
+                    // Se não houver JSON, mostrar modal básico
+                    setTimeout(() => {
+                        showSuccessModal({
+                            fileName: fileInput.files[0].name,
+                            records: 'Ver lista',
+                            time: uploadTime + 's'
+                        });
+                    }, 1000);
+                });
+            } else {
+                throw new Error('Erro no upload');
+            }
+        })
+        .catch(error => {
+            clearInterval(progressInterval);
+            clearInterval(statusInterval);
+            
+            progressStatus.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>Erro ao processar arquivo';
+            progressStatus.style.color = '#dc3545';
+            submitBtn.disabled = false;
+            
+            console.error('Erro:', error);
+            
+            // Mostrar mensagem de erro
+            setTimeout(() => {
+                alert('Ocorreu um erro ao processar o arquivo. Por favor, tente novamente.');
+                window.location.reload();
+            }, 2000);
+        });
+    });
+
+    function showSuccessModal(data) {
+        document.getElementById('successFileName').textContent = data.fileName;
+        document.getElementById('successRecords').textContent = data.records;
+        document.getElementById('successTime').textContent = data.time;
+        successModal.classList.add('show');
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+    }
 });
+
+function closeSuccessModal() {
+    window.location.href = "{% url 'core:lista_arquivos' %}";
+}
 </script>
 {% endblock %}

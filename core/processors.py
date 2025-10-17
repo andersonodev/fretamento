@@ -204,8 +204,14 @@ class ProcessadorPlanilhaOS:
         
         # 1. Limpeza e substituições gerais
         servico = re.sub(r'^\d+\s*[-–]?\s*', '', servico)  # Remove prefixo numérico
-        servico = re.sub(r'S\s*\/\s*GUIA', '', servico, flags=re.IGNORECASE)  # Remove "S / GUIA"
-        servico = re.sub(r'C\s*\/\s*GUIA', '', servico, flags=re.IGNORECASE)  # Remove "C / GUIA"
+        
+        # 2. Substituições específicas para GUIA - apenas se o serviço contém esses termos
+        if re.search(r'S\s*\/\s*GUIA', servico, flags=re.IGNORECASE):
+            servico = re.sub(r'S\s*\/\s*GUIA', 'Sem Guia', servico, flags=re.IGNORECASE)
+        
+        if re.search(r'C\s*\/\s*GUIA', servico, flags=re.IGNORECASE):
+            servico = re.sub(r'C\s*\/\s*GUIA', 'Com Guia', servico, flags=re.IGNORECASE)
+        
         servico = re.sub(r'P\/\s*', 'PARA ', servico, flags=re.IGNORECASE)  # Substitui "P/" por "PARA "
         servico = re.sub(r'\bZ\.SUL\b', 'ZONA SUL', servico, flags=re.IGNORECASE)  # Substitui "Z.SUL"
         

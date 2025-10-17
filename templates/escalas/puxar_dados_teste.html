@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste de Clique</title>
+    <style>
+        .test-card {
+            width: 200px;
+            height: 100px;
+            border: 2px solid #ccc;
+            margin: 10px;
+            padding: 20px;
+            cursor: pointer;
+            background: white;
+        }
+        .test-card.selected {
+            background: lightblue;
+            border-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste de Clique</h1>
+    
+    <div class="test-card" data-value="1">Card 1</div>
+    <div class="test-card" data-value="2">Card 2</div>
+    <div class="test-card" data-value="3">Card 3</div>
+    
+    <p>Valor selecionado: <span id="resultado">Nenhum</span></p>
+    
+    <script>
+        console.log('Script iniciado');
+        
+        const cards = document.querySelectorAll('.test-card');
+        console.log('Cards encontrados:', cards.length);
+        
+        cards.forEach(card => {
+            card.onclick = function() {
+                console.log('CLIQUE!', this.dataset.value);
+                
+                cards.forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                document.getElementById('resultado').textContent = this.dataset.value;
+            };
+        });
+    </script>
+</body>
+</html>

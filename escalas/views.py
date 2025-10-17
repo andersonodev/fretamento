@@ -9,6 +9,8 @@ from django.utils.dateparse import parse_date
 from django.utils import timezone
 from django.db.models import Count, Q, Sum, F, Max
 from django.db import transaction
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 from datetime import datetime, date, timedelta
 from decimal import Decimal, InvalidOperation
 from calendar import monthrange
@@ -187,9 +189,6 @@ class SelecionarAnoView(LoginRequiredMixin, View):
                         )
                         messages.success(request, f'Estrutura da escala criada para {data.strftime("%d/%m/%Y")}!')
                         
-                        # Redirecionar para visualizar a escala criada
-                        return redirect('escalas:visualizar_escala', data=data.strftime('%d-%m-%Y'))
-                        
                 except Exception as e:
                     logger.error(f"Erro ao criar escala: {e}")
                     messages.error(request, f'Erro ao criar escala: {e}')
@@ -282,9 +281,6 @@ class SelecionarMesView(LoginRequiredMixin, View):
                         )
                         messages.success(request, f'Estrutura da escala criada para {data.strftime("%d/%m/%Y")}!')
                         
-                        # Redirecionar para visualizar a escala criada
-                        return redirect('escalas:visualizar_escala', data=data.strftime('%d-%m-%Y'))
-                        
                 except Exception as e:
                     logger.error(f"Erro ao criar escala: {e}")
                     messages.error(request, f'Erro ao criar escala: {e}')
@@ -363,11 +359,14 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
                 )
                 
                 if created:
-                    messages.success(request, f'Estrutura criada para {data_alvo.strftime("%d/%m/%Y")}! Agora você pode puxar os dados.')
+                    messages.success(request, f'Estrutura criada para {data_alvo.strftime("%d/%m/%Y")}!')
                 else:
                     messages.info(request, f'Estrutura para {data_alvo.strftime("%d/%m/%Y")} já existe.')
                 
-                return redirect('escalas:visualizar_escala', data=data_str)
+                # Redirecionar de volta para a página de gerenciamento
+                if mes and ano:
+                    return redirect('escalas:gerenciar_escalas_mes', mes=mes, ano=ano)
+                return redirect('escalas:selecionar_ano')
                 
             elif acao == 'agrupar':
                 logger.debug(f"Processando ação agrupar para data: {data_alvo}")
@@ -652,30 +651,58 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
         return servicos_compativeis, regra_agrupamento
 
     def _servicos_sao_compativeis(self, servico1, servico2, considerar_total_pax=True):
-        """Verifica se dois serviços podem ser agrupados"""
-        # 1. Mesmo nome de serviço e diferença de até 40 minutos
+        """
+        Verifica se dois serviços podem ser agrupados
+        
+        NOVAS REGRAS:
+        - PRIVADO: NÃO compartilha transporte (retorna sempre False)
+        - REGULAR OUT: Pode agrupar com local pickup diferente
+        - REGULAR IN: Só agrupa no mesmo local pickup
+        """
+        
+        # REGRA 1: SERVIÇOS PRIVATIVOS NÃO COMPARTILHAM TRANSPORTE
+        if self._eh_servico_privativo(servico1.servico) or self._eh_servico_privativo(servico2.servico):
+            print(f"    ❌ Serviço privativo detectado - não agrupa")
+            return False
+        
+        # REGRA 2: REGULAR OUT - Pode agrupar locais DIFERENTES
+        if self._eh_transfer_out_regular(servico1.servico) and self._eh_transfer_out_regular(servico2.servico):
+            # Transfer OUT Regular pode agrupar mesmo com pickups diferentes
+            if self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40:
+                total_pax = (servico1.pax or 0) + (servico2.pax or 0)
+                if considerar_total_pax and total_pax < 4:
+                    print(f"    ❌ Transfer OUT Regular: PAX insuficiente ({total_pax} < 4)")
+                    return False
+                print(f"    ✅ Transfer OUT Regular: pode agrupar (locais podem ser diferentes)")
+                return True
+        
+        # REGRA 3: REGULAR IN - Só agrupa MESMO local pickup
+        if self._eh_transfer_in_regular(servico1.servico) and self._eh_transfer_in_regular(servico2.servico):
+            # Transfer IN Regular SÓ agrupa se for no mesmo local de pickup
+            if self._mesmo_local_pickup(servico1, servico2):
+                if self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40:
+                    print(f"    ✅ Transfer IN Regular: mesmo local pickup")
+                    return True
+                else:
+                    print(f"    ❌ Transfer IN Regular: horários muito distantes")
+                    return False
+            else:
+                print(f"    ❌ Transfer IN Regular: locais de pickup diferentes")
+                return False
+        
+        # REGRA 4: Mesmo nome de serviço e diferença de até 40 minutos (outros casos)
         if self._nomes_equivalentes(servico1.servico, servico2.servico):
             if self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40:
+                print(f"    ✅ Mesmo nome de serviço dentro do intervalo de tempo")
                 return True
 
-        # 2. Transfers OUT regulares com mesmo local de pickup
-        if (
-            self._eh_transfer_out_regular(servico1.servico)
-            and self._eh_transfer_out_regular(servico2.servico)
-            and self._mesmo_local_pickup(servico1, servico2)
-            and self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40
-        ):
-            total_pax = (servico1.pax or 0) + (servico2.pax or 0)
-            if considerar_total_pax and total_pax < 4:
-                return False
-            return True
-
-        # 3. Serviços de TOUR / GUIA À DISPOSIÇÃO (qualquer variação)
+        # REGRA 5: Serviços de TOUR / GUIA À DISPOSIÇÃO (qualquer variação)
         if (
             self._eh_servico_tour_equivalente(servico1.servico)
             and self._eh_servico_tour_equivalente(servico2.servico)
             and self._diferenca_horario_minutos(servico1.horario, servico2.horario) <= 40
         ):
+            print(f"    ✅ Serviços de TOUR compatíveis")
             return True
 
         return False
@@ -763,6 +790,17 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
         nome_upper = self._remover_acentos(nome_servico).upper()
         return 'TRANSFER' in nome_upper and 'OUT' in nome_upper
 
+    def _eh_servico_privativo(self, nome_servico):
+        """Verifica se é um serviço privativo/privado"""
+        nome_upper = self._remover_acentos(nome_servico).upper()
+        termos_privativo = ['PRIVATIVO', 'PRIVADO', 'EXCLUSIVO', 'VEICULO PRIVATIVO', 'VEÍCULO PRIVATIVO']
+        return any(termo in nome_upper for termo in termos_privativo)
+    
+    def _eh_transfer_in_regular(self, nome_servico):
+        """Identifica transfers IN regulares"""
+        nome_upper = self._remover_acentos(nome_servico).upper()
+        return 'TRANSFER' in nome_upper and 'IN' in nome_upper and 'REGULAR' in nome_upper
+    
     def _eh_transfer_out_regular(self, nome_servico):
         """Identifica transfers OUT regulares"""
         nome_upper = self._remover_acentos(nome_servico).upper()
@@ -1169,7 +1207,7 @@ class FormatarEscalaView(LoginRequiredMixin, View):
             for alocacao in escala.alocacoes.all():
                 if alocacao.preco_calculado is not None or alocacao.veiculo_recomendado:
                     logger.info(f"Desprecificando alocação {alocacao.id}: preço={alocacao.preco_calculado}, veículo={alocacao.veiculo_recomendado}")
-                    alocacao.preco_calculado = None
+                    alocacao.preco_calculado = 0  # Resetar para 0 (não None) para manter o ícone de edição visível
                     alocacao.veiculo_recomendado = None
                     alocacao.lucratividade = None
                     alocacao.detalhes_precificacao = None
@@ -1178,7 +1216,18 @@ class FormatarEscalaView(LoginRequiredMixin, View):
             
             logger.info(f"Total de alocações desprecificadas: {alocacoes_desprecificadas}")
             
-            # 3. Resetar etapa da escala para DADOS_PUXADOS (desfazer otimização)
+            # 3. Resetar status de alocação para NAO_ALOCADO (desfazer alocações)
+            alocacoes_nao_alocadas = 0
+            for alocacao in escala.alocacoes.all():
+                if alocacao.status_alocacao == 'ALOCADO':
+                    logger.info(f"Resetando status de alocação {alocacao.id}: ALOCADO → NAO_ALOCADO")
+                    alocacao.status_alocacao = 'NAO_ALOCADO'
+                    alocacao.save()
+                    alocacoes_nao_alocadas += 1
+            
+            logger.info(f"Total de alocações resetadas para NAO_ALOCADO: {alocacoes_nao_alocadas}")
+            
+            # 4. Resetar etapa da escala para DADOS_PUXADOS (desfazer otimização)
             escala.etapa = 'DADOS_PUXADOS'
             escala.save()
             
@@ -1196,6 +1245,7 @@ class FormatarEscalaView(LoginRequiredMixin, View):
                 'status': escala.status,
                 'grupos_removidos': grupos_removidos,
                 'alocacoes_desprecificadas': alocacoes_desprecificadas,
+                'alocacoes_nao_alocadas': alocacoes_nao_alocadas,
             }
             
             # Registrar no log
@@ -1204,7 +1254,7 @@ class FormatarEscalaView(LoginRequiredMixin, View):
                 acao='FORMATAR',
                 usuario=request.user,
                 ip_address=ip_address,
-                descricao=f'Escala formatada - {grupos_removidos} grupos removidos, {alocacoes_desprecificadas} alocações desprecificadas (dados mantidos)',
+                descricao=f'Escala formatada - {grupos_removidos} grupos removidos, {alocacoes_desprecificadas} alocações desprecificadas, {alocacoes_nao_alocadas} alocações resetadas para NAO_ALOCADO (dados mantidos)',
                 dados_antes=dados_antes,
                 dados_depois=dados_depois
             )
@@ -1218,6 +1268,7 @@ class FormatarEscalaView(LoginRequiredMixin, View):
                 f'Timestamp: {timezone.now().strftime("%d/%m/%Y %H:%M:%S")} | '
                 f'Grupos removidos: {grupos_removidos} | '
                 f'Alocações desprecificadas: {alocacoes_desprecificadas} | '
+                f'Alocações resetadas: {alocacoes_nao_alocadas} | '
                 f'Total alocações: {escala.alocacoes.count()} | '
                 f'Etapa anterior: {dados_antes.get("etapa")} → Nova etapa: {escala.etapa} | '
                 f'Status: {escala.status}'
@@ -1230,7 +1281,8 @@ class FormatarEscalaView(LoginRequiredMixin, View):
             messages.success(
                 request, 
                 f'Escala de {data_alvo.strftime("%d/%m/%Y")} formatada com sucesso! '
-                f'{grupos_removidos} grupos removidos, {alocacoes_desprecificadas} alocações desprecificadas. '
+                f'{grupos_removidos} grupos removidos, {alocacoes_desprecificadas} alocações desprecificadas, '
+                f'{alocacoes_nao_alocadas} alocações resetadas para NAO_ALOCADO. '
                 f'Os dados dos serviços foram mantidos. A escala pode agora ser reagrupada e reotimizada.'
             )
             
@@ -1285,6 +1337,13 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
         print(f"🟢 GET CHAMADO! VisualizarEscalaView - Data: {data}", file=sys.stderr)
         
         escala = self.get_object()
+        
+        # Se a escala ainda está na etapa ESTRUTURA (sem dados puxados),
+        # redirecionar automaticamente para a página de puxar dados
+        if escala.etapa == 'ESTRUTURA':
+            logger.info(f"Redirecionando para puxar dados - Escala {escala.id} está em ESTRUTURA")
+            return redirect('escalas:puxar_dados', data=data)
+        
         context = self.get_context_data(escala=escala)
         return render(request, self.template_name, context)
     
@@ -1554,13 +1613,14 @@ class PuxarDadosView(LoginRequiredMixin, View):
             # Limpar alocações existentes
             escala.alocacoes.all().delete()
             
-            # Converter para lista para poder embaralhar
-            lista_servicos = list(servicos)
+            # ORDENAR SERVIÇOS POR HORÁRIO ANTES DE DISTRIBUIR
+            # Colocar serviços sem horário no final
+            lista_servicos = sorted(
+                servicos,
+                key=lambda s: (s.horario is None, s.horario if s.horario else '23:59:59')
+            )
             
-            # Embaralhar para distribuição mais equilibrada
-            random.shuffle(lista_servicos)
-            
-            # Distribuir entre as vans
+            # Distribuir entre as vans mantendo ordem de horário
             for i, servico in enumerate(lista_servicos):
                 van = 'VAN1' if i % 2 == 0 else 'VAN2'
                 ordem = (i // 2) + 1
@@ -1571,6 +1631,7 @@ class PuxarDadosView(LoginRequiredMixin, View):
                     van=van,
                     ordem=ordem,
                     automatica=True,
+                    status_alocacao='NAO_ALOCADO',  # STATUS PADRÃO: NÃO ALOCADO
                     preco_calculado=0.0  # Definir preço como R$ 0,00 quando puxar dados
                 )
                 
@@ -1758,27 +1819,52 @@ class AgruparServicosView(LoginRequiredMixin, View):
             })
 
 
+@method_decorator(csrf_protect, name='dispatch')
 class PrecificarEscalaView(LoginRequiredMixin, View):
     """
     View para precificar todos os serviços de uma escala usando sistema inteligente
     que consulta tarifários JW e Motoristas com busca fuzzy avançada
     """
     
+    def get(self, request, data):
+        """Método GET para debug - retorna informações sobre a escala"""
+        try:
+            data_obj = parse_data_brasileira(data)
+            escala = get_object_or_404(Escala, data=data_obj)
+            
+            return JsonResponse({
+                'status': 'info',
+                'message': f'Escala encontrada. Use POST para precificar.',
+                'escala_id': escala.id,
+                'etapa': escala.etapa,
+                'total_alocacoes': escala.alocacoes.count()
+            })
+        except Exception as e:
+            return JsonResponse({
+                'status': 'error',
+                'message': str(e)
+            }, status=404)
+    
     def post(self, request, data):
         """Precifica todos os serviços da escala usando busca inteligente"""
         try:
+            logger.info(f"🎯 Iniciando precificação para data: {data}")
+            
             # Buscar a escala
             data_obj = parse_data_brasileira(data)
             escala = get_object_or_404(Escala, data=data_obj)
             
+            logger.info(f"📋 Escala encontrada: {escala.id}, etapa: {escala.etapa}")
+            
             # Verificar se a escala tem dados puxados
             if escala.etapa == 'ESTRUTURA':
+                logger.warning(f"⚠️ Tentativa de precificar escala sem dados: {escala.id}")
                 return JsonResponse({
                     'status': 'error',
                     'success': False,
                     'message': 'Esta escala não tem dados puxados ainda.',
                     'error': 'Esta escala não tem dados puxados ainda.'
-                })
+                }, status=400)
             
             # Inicializar contadores e estatísticas detalhadas
             servicos_precificados = 0
@@ -1865,6 +1951,8 @@ class PrecificarEscalaView(LoginRequiredMixin, View):
             logger.info(f"   • Valor total: R$ {total_valor:,.2f}")
             logger.info(f"   • Valor médio por serviço: R$ {valor_medio:.2f}")
             
+            logger.info(f"✅ Precificação concluída com sucesso para escala {escala.id}")
+            
             return JsonResponse({
                 'status': 'success',
                 'success': True,
@@ -1874,7 +1962,16 @@ class PrecificarEscalaView(LoginRequiredMixin, View):
                 'valor_total': round(total_valor, 2),
                 'valor_medio': round(valor_medio, 2),
                 'estatisticas_fonte': estatisticas_fonte
-            })
+            }, status=200)
+            
+        except Escala.DoesNotExist:
+            logger.error(f"❌ Escala não encontrada para data: {data}")
+            return JsonResponse({
+                'status': 'error',
+                'success': False,
+                'message': 'Escala não encontrada',
+                'error': 'Escala não encontrada'
+            }, status=404)
             
         except Exception as e:
             logger.error(f"❌ ERRO CRÍTICO na precificação da escala {data}: {e}")
@@ -1886,7 +1983,7 @@ class PrecificarEscalaView(LoginRequiredMixin, View):
                 'success': False,
                 'message': f'Erro na precificação: {str(e)}',
                 'error': f'Erro na precificação: {str(e)}'
-            })
+            }, status=500)
 
 
 class DesagruparServicoView(View):
@@ -3123,7 +3220,7 @@ class AdicionarServicoManualView(LoginRequiredMixin, View):
                     van=van,
                     ordem=ultima_ordem + 1,
                     automatica=False,  # Marca como manual
-                    status_alocacao='ALOCADO'
+                    status_alocacao='NAO_ALOCADO'  # STATUS PADRÃO: NÃO ALOCADO
                 )
                 
                 # Definir preço manual e calcular veículo

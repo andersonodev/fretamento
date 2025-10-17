@@ -253,6 +253,7 @@ class ImportadorCompletoOutubro:
                 van=self.van_atual,
                 ordem=self.servicos_criados + 1,
                 automatica=True,
+                status_alocacao='NAO_ALOCADO',  # STATUS PADRÃO: NÃO ALOCADO
                 preco_calculado=valor_custo,
                 lucratividade=lucratividade,
                 detalhes_precificacao={

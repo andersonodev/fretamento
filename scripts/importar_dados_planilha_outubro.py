@@ -198,6 +198,7 @@ class ImportadorPlanilhaOutubro:
                     van=van,
                     ordem=self.servicos_criados + 1,
                     automatica=False,  # Importação manual
+                    status_alocacao='NAO_ALOCADO',  # STATUS PADRÃO: NÃO ALOCADO
                     preco_calculado=valor_original  # Usar valor original da planilha
                 )
                 

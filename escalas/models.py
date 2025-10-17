@@ -270,7 +270,7 @@ class AlocacaoVan(models.Model):
     status_alocacao = models.CharField(
         max_length=20, 
         choices=STATUS_ALOCACAO_CHOICES, 
-        default='ALOCADO',
+        default='NAO_ALOCADO',  # PADRÃO ALTERADO PARA NÃO ALOCADO
         help_text="Status da alocação após otimização"
     )
     

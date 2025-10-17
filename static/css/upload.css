@@ -1,0 +1,436 @@
+/* Upload Page Styles */
+.upload-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.upload-hero {
+    background: linear-gradient(135deg, #1F8CCB 0%, #146BA3 100%);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    color: white;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 40px rgba(31, 140, 203, 0.3);
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.upload-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.upload-hero p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    margin-bottom: 0;
+}
+
+.upload-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    border: none;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.upload-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+.card-header-custom {
+    background: linear-gradient(135deg, #2E9FDB 0%, #1F8CCB 100%);
+    color: white;
+    padding: 1.5rem;
+    border: none;
+}
+
+.card-header-custom h4 {
+    margin: 0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.info-banner {
+    background: linear-gradient(135deg, #4FA9D8 0%, #1F8CCB 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 1.25rem;
+    color: white;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(31, 140, 203, 0.3);
+}
+
+.info-banner strong {
+    font-weight: 600;
+}
+
+.upload-zone {
+    border: 3px dashed #ddd;
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-zone:hover {
+    border-color: #1F8CCB;
+    background: #e6f4fa;
+    transform: scale(1.02);
+}
+
+.upload-zone.dragover {
+    border-color: #1F8CCB;
+    background: linear-gradient(135deg, #e6f4fa 0%, #d4ecf7 100%);
+    transform: scale(1.02);
+}
+
+.upload-icon {
+    font-size: 4rem;
+    color: #1F8CCB;
+    margin-bottom: 1rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.upload-text {
+    font-size: 1.2rem;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+.upload-hint {
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+.file-input-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.selected-file {
+    background: #e8f5e9;
+    border: 2px solid #4caf50;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1rem;
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.selected-file.show {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.file-icon {
+    font-size: 2rem;
+    color: #4caf50;
+}
+
+.file-info {
+    flex: 1;
+}
+
+.file-name {
+    font-weight: 600;
+    color: #2e7d32;
+    margin-bottom: 0.25rem;
+}
+
+.file-size {
+    color: #558b2f;
+    font-size: 0.9rem;
+}
+
+.btn-upload {
+    background: linear-gradient(135deg, #1F8CCB 0%, #146BA3 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(31, 140, 203, 0.4);
+    margin-top: 1.5rem;
+}
+
+.btn-upload:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(31, 140, 203, 0.5);
+    background: linear-gradient(135deg, #146BA3 0%, #1F8CCB 100%);
+}
+
+.btn-upload:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.progress-container {
+    display: none;
+    margin-top: 2rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.progress-container.show {
+    display: block;
+}
+
+.progress-bar-custom {
+    height: 30px;
+    border-radius: 15px;
+    background: #e9ecef;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1F8CCB, #146BA3, #2E9FDB);
+    background-size: 200% 100%;
+    animation: progressGradient 2s ease infinite;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: width 0.3s ease;
+}
+
+@keyframes progressGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.progress-status {
+    text-align: center;
+    margin-top: 1rem;
+    color: #1F8CCB;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.process-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.process-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.process-item:last-child {
+    border-bottom: none;
+}
+
+.process-item:hover {
+    background: #f8f9fa;
+    padding-left: 1rem;
+    border-radius: 8px;
+}
+
+.process-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+.example-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-top: 2rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.example-header {
+    background: linear-gradient(135deg, #1F8CCB 0%, #146BA3 100%);
+    color: white;
+    padding: 1.5rem;
+}
+
+.comparison-table {
+    margin: 0;
+}
+
+.comparison-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+    padding: 1rem;
+    border: none;
+}
+
+.comparison-table td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.comparison-table code {
+    background: #f8f9fa;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    display: block;
+    font-size: 0.9rem;
+}
+
+.comparison-table tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .upload-card,
+[data-theme="dark"] .example-card {
+    background: #2d2d2d;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .upload-zone {
+    background: #1a1a1a;
+    border-color: #404040;
+}
+
+[data-theme="dark"] .upload-zone:hover {
+    background: #252525;
+    border-color: #667eea;
+}
+
+[data-theme="dark"] .upload-text,
+[data-theme="dark"] .upload-hint {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .selected-file {
+    background: #1e3a1e;
+    border-color: #4caf50;
+}
+
+[data-theme="dark"] .process-item {
+    border-bottom-color: #404040;
+}
+
+[data-theme="dark"] .process-item:hover {
+    background: #383838;
+}
+
+[data-theme="dark"] .comparison-table th {
+    background: #1a1a1a;
+}
+
+[data-theme="dark"] .comparison-table tr:nth-child(even) {
+    background: #252525;
+}
+
+[data-theme="dark"] .comparison-table code {
+    background: #1a1a1a;
+}
+
+[data-theme="dark"] .progress-bar-custom {
+    background: #383838;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .upload-hero {
+        padding: 2rem 1.5rem;
+    }
+
+    .upload-hero h1 {
+        font-size: 1.75rem;
+    }
+
+    .upload-hero p {
+        font-size: 1rem;
+    }
+
+    .upload-zone {
+        padding: 2rem 1rem;
+    }
+
+    .upload-icon {
+        font-size: 3rem;
+    }
+
+    .upload-text {
+        font-size: 1rem;
+    }
+
+    .btn-upload {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+    }
+
+    .comparison-table {
+        font-size: 0.875rem;
+    }
+
+    .comparison-table code {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+    }
+}

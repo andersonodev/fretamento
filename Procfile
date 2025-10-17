@@ -1,1 +1,12 @@
-web: gunicorn fretamento_project.wsgi:application --bind 0.0.0.0:$PORT
+web: gunicorn fretamento_project.wsgi:application \
+     --bind 0.0.0.0:$PORT \
+     --workers 3 \
+     --worker-class sync \
+     --worker-tmp-dir /dev/shm \
+     --max-requests 1000 \
+     --max-requests-jitter 100 \
+     --timeout 30 \
+     --keep-alive 5 \
+     --access-logfile - \
+     --error-logfile - \
+     --log-level info
