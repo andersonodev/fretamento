@@ -805,12 +805,16 @@ document.addEventListener('DOMContentLoaded', function() {
     uploadForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        console.log('🚀 Iniciando upload de planilha...');
+        
         // Registrar tempo de início
         uploadStartTime = Date.now();
         
         // Mostrar barra de progresso
         submitBtn.disabled = true;
         progressContainer.classList.add('show');
+        
+        console.log('✅ Barra de progresso exibida');
         
         // Simular progresso animado
         let progress = 0;
@@ -846,6 +850,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Obter CSRF token
         const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
         
+        console.log('📤 Enviando requisição para:', this.action || window.location.href);
+        console.log('🔐 CSRF Token:', csrfToken ? 'Presente' : 'AUSENTE');
+        console.log('📁 Arquivo:', fileInput.files[0] ? fileInput.files[0].name : 'NENHUM');
+        
         fetch(this.action || window.location.href, {
             method: 'POST',
             body: formData,
@@ -855,6 +863,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .then(response => {
+            console.log('📥 Resposta recebida:', response.status, response.statusText);
+            
             clearInterval(progressInterval);
             clearInterval(statusInterval);
             
@@ -863,6 +873,7 @@ document.addEventListener('DOMContentLoaded', function() {
             progressText.textContent = '100%';
             
             if (response.ok) {
+                console.log('✅ Resposta OK, processando JSON...');
                 progressStatus.innerHTML = '<i class="fas fa-check-circle me-2"></i>Upload concluído com sucesso!';
                 progressStatus.style.color = '#28a745';
                 
@@ -871,6 +882,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Obter dados da resposta (se disponível)
                 return response.json().then(data => {
+                    console.log('📊 Dados recebidos:', data);
+                    
                     // Mostrar modal de sucesso após 1 segundo
                     setTimeout(() => {
                         showSuccessModal({
@@ -879,7 +892,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             time: uploadTime + 's'
                         });
                     }, 1000);
-                }).catch(() => {
+                }).catch(err => {
+                    console.warn('⚠️ Erro ao parsear JSON, mas upload OK:', err);
                     // Se não houver JSON, mostrar modal básico
                     setTimeout(() => {
                         showSuccessModal({
@@ -890,10 +904,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, 1000);
                 });
             } else {
+                console.error('❌ Erro na resposta:', response.status);
                 throw new Error('Erro no upload');
             }
         })
         .catch(error => {
+            console.error('💥 Erro capturado:', error);
+            
             clearInterval(progressInterval);
             clearInterval(statusInterval);
             
@@ -905,7 +922,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Mostrar mensagem de erro
             setTimeout(() => {
-                alert('Ocorreu um erro ao processar o arquivo. Por favor, tente novamente.');
+                alert('Ocorreu um erro ao processar o arquivo. Por favor, tente novamente.\n\nDetalhes: ' + error.message);
                 window.location.reload();
             }, 2000);
         });

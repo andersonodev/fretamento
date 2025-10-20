@@ -4830,3 +4830,58 @@ INFO 2025-10-20 14:10:24,745 basehttp 54148 6201339904 "GET /static/js/dashboard
 INFO 2025-10-20 14:10:24,745 basehttp 54148 6268645376 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 200 41462
 INFO 2025-10-20 14:10:26,774 basehttp 54148 6268645376 "GET /escalas/ HTTP/1.1" 200 35421
 INFO 2025-10-20 14:10:26,786 basehttp 54148 6268645376 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-20 14:26:56,615 autoreload 56328 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 14:27:01,491 basehttp 56328 6171078656 "GET / HTTP/1.1" 302 0
+INFO 2025-10-20 14:27:01,614 views 56328 6171078656 Gerando dashboard com consultas otimizadas
+INFO 2025-10-20 14:27:01,654 basehttp 56328 6171078656 "GET /core/ HTTP/1.1" 200 46888
+INFO 2025-10-20 14:27:01,696 basehttp 56328 6171078656 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-20 14:27:04,379 basehttp 56328 6171078656 "GET /escalas/ HTTP/1.1" 200 35421
+INFO 2025-10-20 14:27:06,509 basehttp 56328 6170505216 "GET /core/upload/ HTTP/1.1" 200 54479
+WARNING 2025-10-20 14:27:21,013 log 56328 6170505216 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-20 14:27:21,014 basehttp 56328 6170505216 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3274
+INFO 2025-10-20 14:29:56,479 autoreload 56728 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 14:30:00,756 basehttp 56728 6210367488 "GET /core/upload/ HTTP/1.1" 200 2997
+WARNING 2025-10-20 14:30:00,852 log 56728 6210367488 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-20 14:30:00,852 basehttp 56728 6210367488 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3274
+INFO 2025-10-20 14:30:01,835 basehttp 56728 6210367488 "GET /core/upload/ HTTP/1.1" 200 2997
+WARNING 2025-10-20 14:30:01,861 log 56728 6210367488 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-20 14:30:01,862 basehttp 56728 6210367488 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3274
+INFO 2025-10-20 14:30:04,417 basehttp 56728 6210367488 "GET /core/upload/ HTTP/1.1" 200 54653
+INFO 2025-10-20 14:30:04,434 basehttp 56728 6210367488 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-20 14:30:59,106 autoreload 56939 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 14:31:00,585 basehttp 56939 6127333376 "GET /core/arquivos/ HTTP/1.1" 200 2997
+WARNING 2025-10-20 14:31:00,665 log 56939 6127333376 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-20 14:31:00,665 basehttp 56939 6127333376 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3274
+INFO 2025-10-20 14:31:04,800 views 56939 6127333376 Lista Arquivos - Total arquivos: 1, Total serviços: 1166
+INFO 2025-10-20 14:31:04,800 views 56939 6127333376 Hora formatada: 20/10/2025 às 17:31
+INFO 2025-10-20 14:31:04,818 basehttp 56939 6127333376 "GET /core/arquivos/ HTTP/1.1" 200 56903
+INFO 2025-10-20 14:31:07,077 basehttp 56939 6126759936 "GET /core/arquivos/6/servicos/ HTTP/1.1" 200 90968
+INFO 2025-10-20 14:31:10,814 views 56939 6126759936 Iniciando deleção do arquivo Servicos_13-10-2025-183057.xlsx pelo usuário admin
+INFO 2025-10-20 14:31:11,015 views 56939 6126759936 Arquivo Servicos_13-10-2025-183057.xlsx: 896 serviços deletáveis, 270 protegidos
+INFO 2025-10-20 14:31:11,767 views 56939 6126759936 Deletados 896 serviços do arquivo Servicos_13-10-2025-183057.xlsx
+INFO 2025-10-20 14:31:11,768 views 56939 6126759936 Arquivo Servicos_13-10-2025-183057.xlsx mantido com 270 serviços escalados
+INFO 2025-10-20 14:31:11,769 basehttp 56939 6126759936 "POST /core/arquivos/6/deletar/ HTTP/1.1" 200 438
+INFO 2025-10-20 14:31:12,679 views 56939 6126759936 Lista Arquivos - Total arquivos: 1, Total serviços: 1166
+INFO 2025-10-20 14:31:12,679 views 56939 6126759936 Hora formatada: 20/10/2025 às 17:31
+INFO 2025-10-20 14:31:12,682 basehttp 56939 6126759936 "GET /core/arquivos/ HTTP/1.1" 200 56902
+INFO 2025-10-20 14:31:16,603 views 56939 6126759936 Iniciando deleção do arquivo Servicos_13-10-2025-183057.xlsx pelo usuário admin
+INFO 2025-10-20 14:31:16,718 views 56939 6126759936 Arquivo Servicos_13-10-2025-183057.xlsx: 0 serviços deletáveis, 270 protegidos
+INFO 2025-10-20 14:31:16,718 views 56939 6126759936 Arquivo Servicos_13-10-2025-183057.xlsx mantido com 270 serviços escalados
+INFO 2025-10-20 14:31:16,719 basehttp 56939 6126759936 "POST /core/arquivos/6/deletar/ HTTP/1.1" 200 356
+INFO 2025-10-20 14:31:17,619 views 56939 6126759936 Lista Arquivos - Total arquivos: 1, Total serviços: 1166
+INFO 2025-10-20 14:31:17,619 views 56939 6126759936 Hora formatada: 20/10/2025 às 17:31
+INFO 2025-10-20 14:31:17,625 basehttp 56939 6126759936 "GET /core/arquivos/ HTTP/1.1" 200 56902
+INFO 2025-10-20 14:31:19,115 basehttp 56939 6126759936 "GET /core/upload/ HTTP/1.1" 200 55062
+INFO 2025-10-20 14:31:20,406 views 56939 6126759936 Lista Arquivos - Total arquivos: 1, Total serviços: 1166
+INFO 2025-10-20 14:31:20,406 views 56939 6126759936 Hora formatada: 20/10/2025 às 17:31
+INFO 2025-10-20 14:31:20,408 basehttp 56939 6126759936 "GET /core/arquivos/ HTTP/1.1" 200 56902
+INFO 2025-10-20 14:31:21,763 basehttp 56939 6126759936 "GET /escalas/ HTTP/1.1" 200 35421
+INFO 2025-10-20 14:31:29,177 basehttp 56939 6126759936 "GET /core/upload/ HTTP/1.1" 200 55062
+INFO 2025-10-20 14:31:30,989 basehttp 56939 6126759936 "GET /escalas/ HTTP/1.1" 200 35421
+INFO 2025-10-20 14:31:32,497 views 56939 6126759936 Lista Arquivos - Total arquivos: 1, Total serviços: 1166
+INFO 2025-10-20 14:31:32,497 views 56939 6126759936 Hora formatada: 20/10/2025 às 17:31
+INFO 2025-10-20 14:31:32,499 basehttp 56939 6126759936 "GET /core/arquivos/ HTTP/1.1" 200 56902
+INFO 2025-10-20 14:31:53,481 basehttp 56939 6126759936 "GET /escalas/ HTTP/1.1" 200 35421
+INFO 2025-10-20 14:31:55,620 basehttp 56939 6126759936 "GET /core/upload/ HTTP/1.1" 200 55580
+WARNING 2025-10-20 14:32:16,086 log 56939 6126759936 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-20 14:32:16,089 basehttp 56939 6126759936 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3274

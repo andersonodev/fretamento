@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Upload Debug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .log {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .log div {
+            margin: 5px 0;
+            padding: 5px;
+            border-left: 3px solid #007bff;
+            background: white;
+        }
+        .error {
+            border-left-color: #dc3545 !important;
+            background: #ffe6e6 !important;
+        }
+        .success {
+            border-left-color: #28a745 !important;
+            background: #e6ffe6 !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Teste de Upload - Debug</h1>
+    
+    <form id="testForm">
+        <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
+        <button type="submit">Testar Upload</button>
+    </form>
+    
+    <div class="log" id="logContainer"></div>
+    
+    <script>
+        const logContainer = document.getElementById('logContainer');
+        
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.textContent = new Date().toLocaleTimeString() + ' - ' + message;
+            if (type === 'error') div.classList.add('error');
+            if (type === 'success') div.classList.add('success');
+            logContainer.appendChild(div);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                log('❌ Nenhum arquivo selecionado', 'error');
+                return;
+            }
+            
+            log('📁 Arquivo selecionado: ' + file.name);
+            log('📊 Tamanho: ' + (file.size / 1024).toFixed(2) + ' KB');
+            
+            const formData = new FormData();
+            formData.append('arquivo', file);
+            
+            // Obter CSRF token (assumindo que você está logado)
+            const csrfToken = getCookie('csrftoken');
+            log('🔐 CSRF Token: ' + (csrfToken ? 'Presente' : 'AUSENTE'), csrfToken ? 'success' : 'error');
+            
+            const url = '/core/upload/';
+            log('🌐 URL de destino: ' + url);
+            
+            try {
+                log('📤 Enviando requisição...');
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': csrfToken
+                    },
+                    credentials: 'same-origin'
+                });
+                
+                log('📥 Resposta recebida: ' + response.status + ' ' + response.statusText, 
+                    response.ok ? 'success' : 'error');
+                
+                const contentType = response.headers.get('content-type');
+                log('📋 Content-Type: ' + contentType);
+                
+                if (contentType && contentType.includes('application/json')) {
+                    const data = await response.json();
+                    log('✅ JSON recebido: ' + JSON.stringify(data), 'success');
+                } else {
+                    const text = await response.text();
+                    log('📄 Resposta HTML recebida (primeiros 200 chars): ' + text.substring(0, 200));
+                    if (!response.ok) {
+                        log('❌ Erro: Esperava JSON mas recebeu HTML', 'error');
+                    }
+                }
+                
+            } catch (error) {
+                log('💥 Erro na requisição: ' + error.message, 'error');
+                console.error(error);
+            }
+        });
+        
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+</body>
+</html>
