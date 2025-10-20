@@ -738,23 +738,8 @@
                 });
             });
 
-            // Loading states para botões
-            document.querySelectorAll('form').forEach(form => {
-                form.addEventListener('submit', function() {
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    if (submitBtn) {
-                        const originalText = submitBtn.innerHTML;
-                        submitBtn.innerHTML = '<span class="loading-spinner me-2"></span>Processando...';
-                        submitBtn.disabled = true;
-                        
-                        // Restaurar após 3 segundos (fallback)
-                        setTimeout(() => {
-                            submitBtn.innerHTML = originalText;
-                            submitBtn.disabled = false;
-                        }, 3000);
-                    }
-                });
-            });
+            // REMOVIDO: Loading automático (causava duplicação com loading-system.js)
+            // O sistema de loading-system.js já gerencia isso automaticamente
         });
     </script>
 
