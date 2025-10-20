@@ -842,11 +842,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Enviar formulário
         const formData = new FormData(this);
+        
+        // Obter CSRF token
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        
         fetch(this.action || window.location.href, {
             method: 'POST',
             body: formData,
             headers: {
-                'X-Requested-With': 'XMLHttpRequest'
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': csrfToken
             }
         })
         .then(response => {

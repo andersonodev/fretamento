@@ -201,15 +201,24 @@ class UploadPlanilhaView(View):
         return render(request, 'core/upload_planilha.html')
     
     def post(self, request):
+        # Verifica se é uma requisição AJAX
+        is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+        
         if 'arquivo' not in request.FILES:
-            messages.error(request, 'Nenhum arquivo foi enviado.')
+            error_msg = 'Nenhum arquivo foi enviado.'
+            if is_ajax:
+                return JsonResponse({'success': False, 'error': error_msg}, status=400)
+            messages.error(request, error_msg)
             return redirect('core:upload_planilha')
         
         arquivo = request.FILES['arquivo']
         
         # Valida tipo de arquivo
         if not arquivo.name.endswith(('.xlsx', '.xls', '.csv')):
-            messages.error(request, 'Formato de arquivo não suportado. Use .xlsx, .xls ou .csv')
+            error_msg = 'Formato de arquivo não suportado. Use .xlsx, .xls ou .csv'
+            if is_ajax:
+                return JsonResponse({'success': False, 'error': error_msg}, status=400)
+            messages.error(request, error_msg)
             return redirect('core:upload_planilha')
         
         try:
@@ -253,16 +262,28 @@ class UploadPlanilhaView(View):
                 }
             )
             
-            messages.success(
-                request, 
-                f'Planilha processada com sucesso! {len(servicos)} serviços foram importados.'
-            )
+            success_msg = f'Planilha processada com sucesso! {len(servicos)} serviços foram importados.'
             
+            # Se for AJAX, retorna JSON
+            if is_ajax:
+                return JsonResponse({
+                    'success': True,
+                    'message': success_msg,
+                    'registros': len(servicos),
+                    'arquivo': arquivo.name
+                })
+            
+            messages.success(request, success_msg)
             return redirect('core:lista_arquivos')
             
         except Exception as e:
             logger.error(f"Erro no upload: {e}")
-            messages.error(request, f'Erro ao processar planilha: {str(e)}')
+            error_msg = f'Erro ao processar planilha: {str(e)}'
+            
+            if is_ajax:
+                return JsonResponse({'success': False, 'error': error_msg}, status=500)
+            
+            messages.error(request, error_msg)
             return redirect('core:upload_planilha')
 
 
