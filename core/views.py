@@ -626,64 +626,32 @@ class DeletarArquivoView(View):
                 servicos_relacionados = Servico.objects.filter(created_at__date=data_upload)
                 logger.info(f"Usando fallback por data para arquivo {nome_arquivo}: {servicos_relacionados.count()} serviços encontrados")
             
-            # Verifica se há serviços escalados (protegidos)
-            from escalas.models import AlocacaoVan
-            servicos_escalados = []
-            servicos_deletaveis = []
-            
-            for servico in servicos_relacionados:
-                # Verifica se o serviço tem alguma alocação de van (está escalado)
-                tem_escala = AlocacaoVan.objects.filter(
-                    servico_id=servico.id
-                ).exists()
-                
-                if tem_escala:
-                    servicos_escalados.append(servico)
-                else:
-                    servicos_deletaveis.append(servico)
-            
-            logger.info(f"Arquivo {nome_arquivo}: {len(servicos_deletaveis)} serviços deletáveis, {len(servicos_escalados)} protegidos")
+            total_servicos = servicos_relacionados.count()
+            logger.info(f"Arquivo {nome_arquivo}: {total_servicos} serviços serão deletados")
             
             # Preparar mensagens de resposta
             mensagens = []
             
-            # Informa sobre serviços escalados que não podem ser deletados
-            if servicos_escalados:
-                mensagem_protegidos = f'{len(servicos_escalados)} serviços não foram deletados pois já estão escalados e são protegidos.'
-                mensagens.append({'tipo': 'warning', 'texto': mensagem_protegidos})
+            # Deleta TODOS os serviços relacionados ao arquivo
+            # As escalas são independentes e não são afetadas pela exclusão dos serviços originais
+            if servicos_relacionados.exists():
+                servicos_relacionados.delete()
                 
-                if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                    messages.warning(request, mensagem_protegidos)
-            
-            # Deleta serviços que não estão escalados
-            if servicos_deletaveis:
-                for servico in servicos_deletaveis:
-                    servico.delete()
-                
-                logger.info(f"Deletados {len(servicos_deletaveis)} serviços do arquivo {nome_arquivo}")
-                mensagem_deletados = f'{len(servicos_deletaveis)} serviços foram deletados com sucesso.'
+                logger.info(f"Deletados {total_servicos} serviços do arquivo {nome_arquivo}")
+                mensagem_deletados = f'{total_servicos} serviços foram deletados com sucesso.'
                 mensagens.append({'tipo': 'success', 'texto': mensagem_deletados})
                 
                 if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                     messages.success(request, mensagem_deletados)
             
-            # Se não há mais serviços relacionados, deleta o arquivo
-            servicos_restantes = Servico.objects.filter(arquivo_origem=arquivo.nome_arquivo)
-            if not servicos_restantes.exists():
-                arquivo.delete()  # Deleta o arquivo físico e o registro
-                logger.info(f"Arquivo {nome_arquivo} deletado completamente")
-                mensagem_arquivo = f'Arquivo "{nome_arquivo}" foi deletado completamente.'
-                mensagens.append({'tipo': 'success', 'texto': mensagem_arquivo})
-                
-                if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                    messages.success(request, mensagem_arquivo)
-            else:
-                logger.info(f"Arquivo {nome_arquivo} mantido com {servicos_restantes.count()} serviços escalados")
-                mensagem_mantido = f'Arquivo mantido pois ainda há {servicos_restantes.count()} serviços escalados relacionados.'
-                mensagens.append({'tipo': 'info', 'texto': mensagem_mantido})
-                
-                if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                    messages.info(request, mensagem_mantido)
+            # Deleta o arquivo sempre
+            arquivo.delete()  # Deleta o arquivo físico e o registro
+            logger.info(f"Arquivo {nome_arquivo} deletado completamente")
+            mensagem_arquivo = f'Arquivo "{nome_arquivo}" foi deletado completamente.'
+            mensagens.append({'tipo': 'success', 'texto': mensagem_arquivo})
+            
+            if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                messages.success(request, mensagem_arquivo)
             
             # Limpa cache relacionado
             cache.delete_many([
