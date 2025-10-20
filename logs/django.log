@@ -4754,3 +4754,79 @@ WARNING 2025-10-18 11:00:02,662 log 14578 6135066624 Not Found: /api/dashboard/u
 WARNING 2025-10-18 11:00:02,665 basehttp 14578 6135066624 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
 WARNING 2025-10-18 11:01:02,708 log 14578 6135066624 Not Found: /api/dashboard/updates/
 WARNING 2025-10-18 11:01:02,717 basehttp 14578 6135066624 "GET /api/dashboard/updates/ HTTP/1.1" 404 2840
+INFO 2025-10-20 14:09:19,904 autoreload 54016 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 14:09:27,315 basehttp 54016 6207090688 "GET / HTTP/1.1" 302 0
+INFO 2025-10-20 14:09:27,341 basehttp 54016 6207090688 "GET /auth/login/ HTTP/1.1" 200 19118
+INFO 2025-10-20 14:09:27,380 basehttp 54016 6207090688 "GET /static/images/logointertouring.png HTTP/1.1" 200 148745
+INFO 2025-10-20 14:09:31,117 basehttp 54016 6207090688 "POST /auth/login/ HTTP/1.1" 200 19746
+INFO 2025-10-20 14:09:35,106 basehttp 54016 6207090688 "POST /auth/login/ HTTP/1.1" 302 0
+INFO 2025-10-20 14:09:35,112 views 54016 6207090688 Gerando dashboard com consultas otimizadas
+ERROR 2025-10-20 14:09:35,165 log 54016 6207090688 Internal Server Error: /core/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 74, in get
+    return render(request, 'core/home.html', context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'diagnostico' not found. 'diagnostico' is not a valid view function or pattern name.
+ERROR 2025-10-20 14:09:35,167 basehttp 54016 6207090688 "GET /core/ HTTP/1.1" 500 228753
+WARNING 2025-10-20 14:09:35,245 log 54016 6207090688 Not Found: /favicon.ico
+WARNING 2025-10-20 14:09:35,245 basehttp 54016 6207090688 "GET /favicon.ico HTTP/1.1" 404 3163
+INFO 2025-10-20 14:10:20,648 autoreload 54016 8788363264 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/urls.py changed, reloading.
+INFO 2025-10-20 14:10:21,513 autoreload 54148 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 14:10:24,695 views 54148 6201339904 Gerando dashboard com consultas otimizadas
+INFO 2025-10-20 14:10:24,719 basehttp 54148 6201339904 "GET /core/ HTTP/1.1" 200 52355
+INFO 2025-10-20 14:10:24,743 basehttp 54148 6251819008 "GET /static/css/loading-system.css HTTP/1.1" 200 7478
+INFO 2025-10-20 14:10:24,743 basehttp 54148 6201339904 "GET /static/css/global-theme.css HTTP/1.1" 200 4340
+INFO 2025-10-20 14:10:24,743 basehttp 54148 6218166272 "GET /static/css/dashboard.css HTTP/1.1" 200 15603
+INFO 2025-10-20 14:10:24,744 basehttp 54148 6285471744 "GET /static/js/loading-system.js HTTP/1.1" 200 22362
+INFO 2025-10-20 14:10:24,745 basehttp 54148 6234992640 "GET /static/css/whatsapp-dark.css HTTP/1.1" 200 22967
+INFO 2025-10-20 14:10:24,745 basehttp 54148 6201339904 "GET /static/js/dashboard.js HTTP/1.1" 200 23347
+INFO 2025-10-20 14:10:24,745 basehttp 54148 6268645376 "GET /media/profiles/avatars/RLJ1Yjim4BthAmPVzfIscsGJM9Qm8Mn3e52JfT3hn9eu0aVoIdAxRUdNz53sNFe5-R6EP2j_GBtwRkw.png HTTP/1.1" 200 41462
+INFO 2025-10-20 14:10:26,774 basehttp 54148 6268645376 "GET /escalas/ HTTP/1.1" 200 35421
+INFO 2025-10-20 14:10:26,786 basehttp 54148 6268645376 "GET /static/js/dashboard.js HTTP/1.1" 304 0
