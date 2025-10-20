@@ -612,6 +612,10 @@ class DeletarArquivoView(View):
     
     def post(self, request, arquivo_id):
         try:
+            # Log inicial
+            logger.info(f"Tentando deletar arquivo ID: {arquivo_id}")
+            
+            # Busca o arquivo - pode lançar Http404 se não encontrado
             arquivo = get_object_or_404(ProcessamentoPlanilha, id=arquivo_id)
             nome_arquivo = arquivo.nome_arquivo
             
@@ -664,13 +668,27 @@ class DeletarArquivoView(View):
                 return JsonResponse({
                     'status': 'success',
                     'mensagens': mensagens,
-                    'arquivo_deletado': not servicos_restantes.exists(),
-                    'servicos_deletados': len(servicos_deletaveis),
-                    'servicos_protegidos': len(servicos_escalados)
+                    'arquivo_deletado': True,
+                    'servicos_deletados': total_servicos,
+                    'servicos_protegidos': 0
                 })
             
+        except ProcessamentoPlanilha.DoesNotExist:
+            logger.error(f"Arquivo {arquivo_id} não encontrado no banco de dados")
+            erro_msg = f'Arquivo não encontrado.'
+            
+            # Se for requisição AJAX, retorna erro JSON
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({
+                    'status': 'error',
+                    'mensagem': erro_msg
+                }, status=404)
+            
+            messages.error(request, erro_msg)
+            return redirect('core:lista_arquivos')
+            
         except Exception as e:
-            logger.error(f"Erro ao deletar arquivo {arquivo_id}: {e}")
+            logger.error(f"Erro ao deletar arquivo {arquivo_id}: {e}", exc_info=True)
             erro_msg = f'Erro ao deletar arquivo: {str(e)}'
             
             # Se for requisição AJAX, retorna erro JSON
