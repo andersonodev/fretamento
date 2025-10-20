@@ -11,7 +11,6 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('upload/', views.UploadPlanilhaView.as_view(), name='upload_planilha'),
     path('atividades/', views.ListaAtividadesView.as_view(), name='lista_atividades'),
-    path('teste-loading/', views.TesteLoadingView.as_view(), name='teste_loading'),
     
     # API endpoints
     path('api/dashboard/updates/', views.DashboardUpdatesView.as_view(), name='dashboard_updates'),

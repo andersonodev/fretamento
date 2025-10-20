@@ -1,8 +1,0 @@
-{
-  "name": "fretamento-vercel-redirect",
-  "version": "1.0.0",
-  "description": "Redirecionamento simples da Vercel para Heroku",
-  "scripts": {
-    "build": "echo 'Build concluído - redirecionamento configurado'"
-  }
-}

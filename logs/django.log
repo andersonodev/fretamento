@@ -4976,3 +4976,119 @@ INFO 2025-10-20 14:41:56,941 views 58712 6207598592 Hora formatada: 20/10/2025 �
 INFO 2025-10-20 14:41:56,944 basehttp 58712 6207598592 "GET /core/arquivos/ HTTP/1.1" 200 56902
 INFO 2025-10-20 14:42:04,109 autoreload 58712 8788363264 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
 INFO 2025-10-20 14:42:04,911 autoreload 58869 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 17:12:09,345 autoreload 76522 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 17:12:17,198 autoreload 76522 8788363264 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-20 17:12:17,517 autoreload 76542 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 17:12:21,412 basehttp 76542 6194491392 "GET /core/upload/ HTTP/1.1" 200 55580
+INFO 2025-10-20 17:12:21,471 basehttp 76542 6194491392 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-20 17:13:21,719 basehttp 76542 6193917952 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+ERROR 2025-10-20 17:13:40,186 log 76542 6193917952 Internal Server Error: /core/upload/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 201, in get
+    return render(request, 'core/upload_planilha.html')
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: core/upload_planilha.html
+ERROR 2025-10-20 17:13:40,187 basehttp 76542 6193917952 "GET /core/upload/ HTTP/1.1" 500 96112
+ERROR 2025-10-20 17:13:42,158 log 76542 6193917952 Internal Server Error: /core/upload/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 201, in get
+    return render(request, 'core/upload_planilha.html')
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: core/upload_planilha.html
+ERROR 2025-10-20 17:13:42,159 basehttp 76542 6193917952 "GET /core/upload/ HTTP/1.1" 500 96112
+INFO 2025-10-20 17:13:44,111 basehttp 76542 6193917952 "GET /escalas/ HTTP/1.1" 200 34784
+INFO 2025-10-20 17:13:45,609 views 76542 6193917952 Lista Arquivos - Total arquivos: 1, Total serviços: 1166
+INFO 2025-10-20 17:13:45,609 views 76542 6193917952 Hora formatada: 20/10/2025 às 20:13
+INFO 2025-10-20 17:13:45,613 basehttp 76542 6193917952 "GET /core/arquivos/ HTTP/1.1" 200 56265
+ERROR 2025-10-20 17:13:47,228 log 76542 6193917952 Internal Server Error: /core/upload/
+Traceback (most recent call last):
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py", line 201, in get
+    return render(request, 'core/upload_planilha.html')
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/anderson/.pyenv/versions/3.10.12/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: core/upload_planilha.html
+ERROR 2025-10-20 17:13:47,229 basehttp 76542 6193917952 "GET /core/upload/ HTTP/1.1" 500 95975
+INFO 2025-10-20 17:14:16,608 autoreload 76542 8788363264 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-20 17:14:17,117 autoreload 76889 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 17:14:21,790 autoreload 76889 8788363264 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/urls.py changed, reloading.
+INFO 2025-10-20 17:14:22,000 autoreload 76904 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 17:15:44,304 autoreload 76904 8788363264 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-20 17:15:44,667 autoreload 77109 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 17:15:51,320 autoreload 77109 8788363264 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/urls.py changed, reloading.
+INFO 2025-10-20 17:15:51,653 autoreload 77126 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 17:16:30,434 basehttp 77126 6209007616 "GET /core/upload/ HTTP/1.1" 200 30882
+INFO 2025-10-20 17:16:30,468 basehttp 77126 6209007616 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-20 17:16:39,772 processors 77126 6209007616 Planilha lida com 1593 linhas e 35 colunas
+INFO 2025-10-20 17:16:39,784 processors 77126 6209007616 Linhas removidas durante a limpeza: 342
+INFO 2025-10-20 17:16:39,993 processors 77126 6209007616 Inseridos 1251 serviços usando bulk_create
+INFO 2025-10-20 17:16:39,997 basehttp 77126 6209007616 "POST /core/upload/ HTTP/1.1" 302 0
+INFO 2025-10-20 17:16:40,210 views 77126 6209007616 Lista Arquivos - Total arquivos: 2, Total serviços: 2417
+INFO 2025-10-20 17:16:40,210 views 77126 6209007616 Hora formatada: 20/10/2025 às 20:16
+INFO 2025-10-20 17:16:40,218 basehttp 77126 6209007616 "GET /core/arquivos/ HTTP/1.1" 200 60355
+INFO 2025-10-20 17:16:44,903 basehttp 77126 6209007616 "GET /core/arquivos/7/servicos/ HTTP/1.1" 200 90310
+INFO 2025-10-20 17:16:52,390 views 77126 6209007616 Lista Arquivos - Total arquivos: 2, Total serviços: 2417
+INFO 2025-10-20 17:16:52,391 views 77126 6209007616 Hora formatada: 20/10/2025 às 20:16
+INFO 2025-10-20 17:16:52,395 basehttp 77126 6209007616 "GET /core/arquivos/ HTTP/1.1" 200 59936
+INFO 2025-10-20 17:16:54,882 basehttp 77126 6209007616 "GET /core/upload/ HTTP/1.1" 200 30882
+INFO 2025-10-20 17:16:57,419 views 77126 6209007616 Gerando dashboard com consultas otimizadas
+INFO 2025-10-20 17:16:57,444 basehttp 77126 6209007616 "GET /core/ HTTP/1.1" 200 46218
+INFO 2025-10-20 17:17:27,408 autoreload 77126 8788363264 /Users/anderson/my_folders/repositoriolocal/fretamento-intertouring/core/views.py changed, reloading.
+INFO 2025-10-20 17:17:27,808 autoreload 77374 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 17:17:31,473 basehttp 77374 6137589760 "GET /escalas/ HTTP/1.1" 200 34784
+INFO 2025-10-20 17:17:32,826 basehttp 77374 6137589760 "GET /escalas/ano/2025/ HTTP/1.1" 200 46866
+INFO 2025-10-20 17:17:34,919 basehttp 77374 6137589760 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 71771
+INFO 2025-10-20 17:17:39,831 basehttp 77374 6137016320 "GET /escalas/visualizar/18-10-2025/ HTTP/1.1" 200 526964
+INFO 2025-10-20 17:17:50,156 views 77374 6137016320 Gerando dashboard com consultas otimizadas
+INFO 2025-10-20 17:17:50,178 basehttp 77374 6137016320 "GET /core/ HTTP/1.1" 200 46218
+INFO 2025-10-20 17:18:34,779 views 77374 6137016320 Dashboard carregado do cache
+INFO 2025-10-20 17:18:34,786 basehttp 77374 6137016320 "GET /core/ HTTP/1.1" 200 46219
+INFO 2025-10-20 17:18:36,034 basehttp 77374 6137016320 "GET /core/upload/ HTTP/1.1" 200 55002
+INFO 2025-10-20 17:18:36,056 basehttp 77374 6137016320 "GET /static/css/upload.css HTTP/1.1" 200 8047
+INFO 2025-10-20 17:18:45,810 processors 77374 6137016320 Planilha lida com 1593 linhas e 35 colunas
+INFO 2025-10-20 17:18:45,818 processors 77374 6137016320 Linhas removidas durante a limpeza: 342
+INFO 2025-10-20 17:18:46,026 processors 77374 6137016320 Inseridos 1251 serviços usando bulk_create
+INFO 2025-10-20 17:18:46,031 basehttp 77374 6137016320 "POST /core/upload/ HTTP/1.1" 302 0
+INFO 2025-10-20 17:18:46,882 views 77374 6137016320 Lista Arquivos - Total arquivos: 3, Total serviços: 3668
+INFO 2025-10-20 17:18:46,882 views 77374 6137016320 Hora formatada: 20/10/2025 às 20:18
+INFO 2025-10-20 17:18:46,886 basehttp 77374 6137016320 "GET /core/arquivos/ HTTP/1.1" 200 64026
+INFO 2025-10-20 17:18:50,001 views 77374 6137016320 Lista Arquivos - Total arquivos: 3, Total serviços: 3668
+INFO 2025-10-20 17:18:50,001 views 77374 6137016320 Hora formatada: 20/10/2025 às 20:18
+INFO 2025-10-20 17:18:50,003 basehttp 77374 6137016320 "GET /core/arquivos/ HTTP/1.1" 200 63607
