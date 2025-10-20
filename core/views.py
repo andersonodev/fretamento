@@ -68,8 +68,8 @@ class HomeView(View):
             'data_atual': timezone.now(),
         }
         
-        # Cache por 5 minutos
-        cache.set(cache_key, context, 300)
+        # Cache por 15 minutos (otimização de performance)
+        cache.set(cache_key, context, 900)
         
         return render(request, 'core/home.html', context)
     
@@ -170,14 +170,14 @@ class HomeView(View):
         # Importar ActivityLog do models principal
         from core.models import ActivityLog
         
-        # Atividades recentes do sistema (últimas 10)
-        atividades_recentes = ActivityLog.objects.select_related('user').order_by('-created_at')[:10]
+        # Atividades recentes do sistema (últimas 5 apenas com select_related)
+        atividades_recentes = ActivityLog.objects.select_related('user').order_by('-created_at')[:5]
         
-        # Processamentos recentes (apenas 5)
-        processamentos_recentes = ProcessamentoPlanilha.objects.select_related().order_by('-created_at')[:5]
+        # Processamentos recentes (apenas 3 para performance)
+        processamentos_recentes = ProcessamentoPlanilha.objects.order_by('-created_at')[:3]
         
-        # Escalas recentes (apenas 5)
-        escalas_recentes = Escala.objects.select_related('aprovada_por').order_by('-data')[:5]
+        # Escalas recentes (apenas 3 para performance)
+        escalas_recentes = Escala.objects.select_related('aprovada_por').order_by('-data')[:3]
         
         return {
             'atividades_recentes': atividades_recentes,

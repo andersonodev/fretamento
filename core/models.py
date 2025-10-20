@@ -67,6 +67,14 @@ class Servico(models.Model):
         ordering = ['data_do_servico', 'horario']
         verbose_name = 'Serviço'
         verbose_name_plural = 'Serviços'
+        indexes = [
+            models.Index(fields=['data_do_servico'], name='idx_servico_data'),
+            models.Index(fields=['tipo'], name='idx_servico_tipo'),
+            models.Index(fields=['aeroporto'], name='idx_servico_aeroporto'),
+            models.Index(fields=['eh_prioritario'], name='idx_servico_prior'),
+            models.Index(fields=['-data_do_servico'], name='idx_servico_data_desc'),
+            models.Index(fields=['data_do_servico', 'horario'], name='idx_servico_data_hora'),
+        ]
     
     def __str__(self):
         return f"{self.servico} - {self.cliente} ({self.data_do_servico})"
@@ -231,6 +239,10 @@ class ProcessamentoPlanilha(models.Model):
         ordering = ['-created_at']
         verbose_name = 'Processamento de Planilha'
         verbose_name_plural = 'Processamentos de Planilhas'
+        indexes = [
+            models.Index(fields=['-created_at'], name='idx_proc_created'),
+            models.Index(fields=['status'], name='idx_proc_status'),
+        ]
     
     def __str__(self):
         return f"{self.nome_arquivo} - {self.status}"
@@ -348,6 +360,11 @@ class ActivityLog(models.Model):
         db_table = 'core_activity_log'
         verbose_name = 'Log de Atividade'
         verbose_name_plural = 'Logs de Atividades'
+        indexes = [
+            models.Index(fields=['-created_at'], name='idx_act_created'),
+            models.Index(fields=['user', '-created_at'], name='idx_act_user_created'),
+            models.Index(fields=['activity_type'], name='idx_act_type'),
+        ]
 
     def __str__(self):
         return f"{self.user.username} - {self.get_activity_type_display()} - {self.description}"
