@@ -297,8 +297,8 @@ class DashboardManager {
     checkForUpdates() {
         setInterval(async () => {
             try {
-                // Simular verificação de atualizações
-                const response = await fetch('/api/dashboard/updates/');
+                // Verificação de atualizações do dashboard
+                const response = await fetch('/core/api/dashboard/updates/');
                 if (response.ok) {
                     const data = await response.json();
                     if (data.hasUpdates) {
