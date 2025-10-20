@@ -13,6 +13,9 @@ urlpatterns = [
     path('atividades/', views.ListaAtividadesView.as_view(), name='lista_atividades'),
     path('teste-loading/', views.TesteLoadingView.as_view(), name='teste_loading'),
     
+    # API endpoints
+    path('api/dashboard/updates/', views.DashboardUpdatesView.as_view(), name='dashboard_updates'),
+    
     # Arquivos e serviços
     path('arquivos/', views.ListaArquivosView.as_view(), name='lista_arquivos'),
     path('arquivos/<int:arquivo_id>/servicos/', views.ServicosArquivoView.as_view(), name='servicos_arquivo'),

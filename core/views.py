@@ -769,3 +769,48 @@ class TesteLoadingView(View):
             return redirect('authentication:login')
             
         return render(request, 'core/teste_loading.html')
+
+
+class DashboardUpdatesView(View):
+    """API endpoint para verificar atualizações do dashboard em tempo real"""
+    
+    def get(self, request):
+        """Retorna informações sobre atualizações disponíveis"""
+        if not request.user.is_authenticated:
+            return JsonResponse({'error': 'Não autenticado'}, status=401)
+        
+        # Verificar se há novos dados desde a última verificação
+        try:
+            # Pega timestamp da última verificação (pode vir do cache ou sessão)
+            last_check = request.session.get('last_dashboard_check')
+            
+            # Inicializa resposta
+            response_data = {
+                'hasUpdates': False,
+                'message': '',
+                'timestamp': timezone.now().isoformat()
+            }
+            
+            # Verifica se há novos serviços criados
+            if last_check:
+                last_check_date = datetime.fromisoformat(last_check)
+                new_services = Servico.objects.filter(
+                    created_at__gt=last_check_date
+                ).count()
+                
+                if new_services > 0:
+                    response_data['hasUpdates'] = True
+                    response_data['message'] = f'{new_services} novo(s) serviço(s) adicionado(s)'
+            
+            # Atualiza timestamp da última verificação
+            request.session['last_dashboard_check'] = timezone.now().isoformat()
+            
+            return JsonResponse(response_data)
+            
+        except Exception as e:
+            logger.error(f"Erro ao verificar atualizações: {str(e)}")
+            return JsonResponse({
+                'hasUpdates': False,
+                'message': '',
+                'timestamp': timezone.now().isoformat()
+            })
