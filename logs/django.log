@@ -4885,3 +4885,41 @@ INFO 2025-10-20 14:31:53,481 basehttp 56939 6126759936 "GET /escalas/ HTTP/1.1" 
 INFO 2025-10-20 14:31:55,620 basehttp 56939 6126759936 "GET /core/upload/ HTTP/1.1" 200 55580
 WARNING 2025-10-20 14:32:16,086 log 56939 6126759936 Not Found: /.well-known/appspecific/com.chrome.devtools.json
 WARNING 2025-10-20 14:32:16,089 basehttp 56939 6126759936 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3274
+INFO 2025-10-20 14:32:32,519 autoreload 57180 8788363264 Watching for file changes with StatReloader
+INFO 2025-10-20 14:32:34,465 views 57180 6132805632 Lista Arquivos - Total arquivos: 1, Total serviços: 1166
+INFO 2025-10-20 14:32:34,466 views 57180 6132805632 Hora formatada: 20/10/2025 às 17:32
+INFO 2025-10-20 14:32:34,487 basehttp 57180 6132805632 "GET /core/arquivos/ HTTP/1.1" 200 56902
+INFO 2025-10-20 14:32:34,505 basehttp 57180 6132805632 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-20 14:32:37,608 basehttp 57180 6132805632 "GET /escalas/ HTTP/1.1" 200 35421
+INFO 2025-10-20 14:32:39,062 basehttp 57180 6132805632 "GET /core/upload/ HTTP/1.1" 200 55580
+WARNING 2025-10-20 14:32:50,709 log 57180 6132232192 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-10-20 14:32:50,711 basehttp 57180 6132232192 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3274
+INFO 2025-10-20 14:33:07,830 views 57180 6132232192 Lista Arquivos - Total arquivos: 1, Total serviços: 1166
+INFO 2025-10-20 14:33:07,831 views 57180 6132232192 Hora formatada: 20/10/2025 às 17:33
+INFO 2025-10-20 14:33:07,845 basehttp 57180 6132232192 "GET /core/arquivos/ HTTP/1.1" 200 56902
+INFO 2025-10-20 14:33:11,531 views 57180 6132232192 Iniciando deleção do arquivo Servicos_13-10-2025-183057.xlsx pelo usuário admin
+INFO 2025-10-20 14:33:11,603 views 57180 6132232192 Arquivo Servicos_13-10-2025-183057.xlsx: 0 serviços deletáveis, 270 protegidos
+INFO 2025-10-20 14:33:11,604 views 57180 6132232192 Arquivo Servicos_13-10-2025-183057.xlsx mantido com 270 serviços escalados
+INFO 2025-10-20 14:33:11,605 basehttp 57180 6132232192 "POST /core/arquivos/6/deletar/ HTTP/1.1" 200 356
+INFO 2025-10-20 14:33:12,489 views 57180 6132232192 Lista Arquivos - Total arquivos: 1, Total serviços: 1166
+INFO 2025-10-20 14:33:12,490 views 57180 6132232192 Hora formatada: 20/10/2025 às 17:33
+INFO 2025-10-20 14:33:12,492 basehttp 57180 6132232192 "GET /core/arquivos/ HTTP/1.1" 200 56902
+INFO 2025-10-20 14:33:29,327 basehttp 57180 6132232192 "GET /core/arquivos/6/servicos/ HTTP/1.1" 200 90188
+INFO 2025-10-20 14:33:39,542 views 57180 6132232192 Iniciando deleção do arquivo Servicos_13-10-2025-183057.xlsx pelo usuário admin
+INFO 2025-10-20 14:33:39,668 views 57180 6132232192 Arquivo Servicos_13-10-2025-183057.xlsx: 0 serviços deletáveis, 270 protegidos
+INFO 2025-10-20 14:33:39,669 views 57180 6132232192 Arquivo Servicos_13-10-2025-183057.xlsx mantido com 270 serviços escalados
+INFO 2025-10-20 14:33:39,670 basehttp 57180 6132232192 "POST /core/arquivos/6/deletar/ HTTP/1.1" 200 356
+INFO 2025-10-20 14:33:40,583 views 57180 6132232192 Lista Arquivos - Total arquivos: 1, Total serviços: 1166
+INFO 2025-10-20 14:33:40,584 views 57180 6132232192 Hora formatada: 20/10/2025 às 17:33
+INFO 2025-10-20 14:33:40,587 basehttp 57180 6132232192 "GET /core/arquivos/ HTTP/1.1" 200 56902
+INFO 2025-10-20 14:34:40,649 basehttp 57180 6132232192 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+INFO 2025-10-20 14:34:44,718 views 57180 6132232192 Iniciando deleção do arquivo Servicos_13-10-2025-183057.xlsx pelo usuário admin
+INFO 2025-10-20 14:34:44,820 views 57180 6132232192 Arquivo Servicos_13-10-2025-183057.xlsx: 0 serviços deletáveis, 270 protegidos
+INFO 2025-10-20 14:34:44,821 views 57180 6132232192 Arquivo Servicos_13-10-2025-183057.xlsx mantido com 270 serviços escalados
+INFO 2025-10-20 14:34:44,822 basehttp 57180 6132232192 "POST /core/arquivos/6/deletar/ HTTP/1.1" 200 356
+INFO 2025-10-20 14:34:45,709 views 57180 6132232192 Lista Arquivos - Total arquivos: 1, Total serviços: 1166
+INFO 2025-10-20 14:34:45,709 views 57180 6132232192 Hora formatada: 20/10/2025 às 17:34
+INFO 2025-10-20 14:34:45,712 basehttp 57180 6132232192 "GET /core/arquivos/ HTTP/1.1" 200 56902
+INFO 2025-10-20 14:34:48,480 basehttp 57180 6132232192 "GET /escalas/ HTTP/1.1" 200 35421
+INFO 2025-10-20 14:34:48,492 basehttp 57180 6132232192 "GET /static/js/dashboard.js HTTP/1.1" 304 0
+INFO 2025-10-20 14:34:50,849 basehttp 57180 6132232192 "GET /core/upload/ HTTP/1.1" 200 55580

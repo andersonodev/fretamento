@@ -475,37 +475,15 @@ class LoadingManager {
 
     /**
      * Configura handlers para requisições AJAX
+     * NOTA: Removido interceptação automática de fetch para evitar conflitos
      */
     setupAjaxHandlers() {
-        // Interceptar fetch
-        const originalFetch = window.fetch;
-        window.fetch = (...args) => {
-            this.show({ type: 'load' });
-            
-            return originalFetch(...args)
-                .then(response => {
-                    this.hide();
-                    return response;
-                })
-                .catch(error => {
-                    this.hide();
-                    throw error;
-                });
-        };
-
-        // Interceptar XMLHttpRequest
-        const originalOpen = XMLHttpRequest.prototype.open;
-        XMLHttpRequest.prototype.open = function(...args) {
-            this.addEventListener('loadstart', () => {
-                window.LoadingManager?.show({ type: 'load' });
-            });
-            
-            this.addEventListener('loadend', () => {
-                window.LoadingManager?.hide();
-            });
-            
-            return originalOpen.apply(this, args);
-        };
+        // Interceptação de fetch removida - cada página gerencia seu próprio loading
+        // Para usar loading em requisições específicas, use:
+        // showLoading({ type: 'load' }); antes do fetch
+        // hideLoading(); depois de processar a resposta
+        
+        console.log('ℹ️ Interceptação automática de AJAX desabilitada');
     }
 
     /**
