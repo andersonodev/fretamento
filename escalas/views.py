@@ -1380,27 +1380,39 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
         )
         
         # Filtrar para mostrar apenas um representante por grupo
-        def get_unique_alocacoes(alocacoes):
-            """Retorna apenas um representante por grupo + alocações não agrupadas"""
+        def get_unique_alocacoes(alocacoes, van_filtro):
+            """
+            Retorna apenas um representante por grupo + alocações não agrupadas
+            Agora também valida se o grupo pertence à van correta
+            """
             grupos_vistos = set()
             alocacoes_unicas = []
             
             for alocacao in alocacoes:
                 try:
-                    # Se tem grupo_info, verificar se já mostramos este grupo
-                    grupo_id = alocacao.grupo_info.grupo.id
+                    # Se tem grupo_info, verificar se já mostramos este grupo E se o grupo pertence à van correta
+                    grupo = alocacao.grupo_info.grupo
+                    grupo_id = grupo.id
+                    
+                    # VALIDAÇÃO: Só mostrar se o grupo pertence à van correta
+                    if grupo.van != van_filtro:
+                        # Grupo não pertence a esta van, pular
+                        continue
+                    
                     if grupo_id not in grupos_vistos:
                         grupos_vistos.add(grupo_id)
                         alocacoes_unicas.append(alocacao)
                 except:
                     # Se não tem grupo_info, é uma alocação individual
-                    alocacoes_unicas.append(alocacao)
+                    # Verificar se a alocação pertence à van correta
+                    if alocacao.van == van_filtro:
+                        alocacoes_unicas.append(alocacao)
             
             return alocacoes_unicas
         
-        # Obter alocações únicas (representantes de grupos)
-        van1_alocacoes_unicas = get_unique_alocacoes(all_van1_alocacoes)
-        van2_alocacoes_unicas = get_unique_alocacoes(all_van2_alocacoes)
+        # Obter alocações únicas (representantes de grupos) FILTRANDO POR VAN
+        van1_alocacoes_unicas = get_unique_alocacoes(all_van1_alocacoes, 'VAN1')
+        van2_alocacoes_unicas = get_unique_alocacoes(all_van2_alocacoes, 'VAN2')
         
         # Dados da Van 1
         van1_data = {
