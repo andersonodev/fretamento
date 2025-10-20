@@ -1356,21 +1356,28 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
         context['ano'] = escala.data.year
         context['mes'] = escala.data.month
         
-        # Obter todas as alocações com otimização de queries - ordenar por status de alocação primeiro
-        # ALOCADO vem antes de NAO_ALOCADO (ordenação ascendente alfabética)
+        # Obter todas as alocações com otimização de queries
+        # ORDENAÇÃO: Primeiro por horário (mais cedo primeiro), depois por ordem
+        # Serviços sem horário ficam no final
         all_van1_alocacoes = escala.alocacoes.filter(van='VAN1').select_related(
             'servico', 
             'escala__aprovada_por'
         ).prefetch_related(
             'grupo_info__grupo__servicos__alocacao__servico'
-        ).order_by('status_alocacao', 'ordem')
+        ).order_by(
+            F('servico__horario').asc(nulls_last=True),  # Horário crescente, nulls no final
+            'ordem'  # Depois pela ordem de inserção
+        )
         
         all_van2_alocacoes = escala.alocacoes.filter(van='VAN2').select_related(
             'servico', 
             'escala__aprovada_por'
         ).prefetch_related(
             'grupo_info__grupo__servicos__alocacao__servico'
-        ).order_by('status_alocacao', 'ordem')
+        ).order_by(
+            F('servico__horario').asc(nulls_last=True),  # Horário crescente, nulls no final
+            'ordem'  # Depois pela ordem de inserção
+        )
         
         # Filtrar para mostrar apenas um representante por grupo
         def get_unique_alocacoes(alocacoes):

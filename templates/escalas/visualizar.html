@@ -628,7 +628,8 @@
                                  data-pickup="{{ alocacao.servico.local_pickup|lower|default:'' }}"
                                  data-cliente="{{ alocacao.servico.cliente|lower }}"
                                  data-van="VAN1"
-                                 data-status="{{ alocacao.status_alocacao }}">
+                                 data-status="{{ alocacao.status_alocacao }}"
+                                 data-horario="{{ alocacao.servico.horario|default:'' }}">
                                 <div class="card mb-2 border {% if alocacao.grupo_info %}border-success{% endif %}" {% if alocacao.grupo_info %}title="Duplo clique para desagrupar | Clique direito para mais opções"{% endif %}>
                                     {% if alocacao.grupo_info %}
                                         <div class="card-header p-1 bg-light">
@@ -815,7 +816,8 @@
                                  data-pickup="{{ alocacao.servico.local_pickup|lower|default:'' }}"
                                  data-cliente="{{ alocacao.servico.cliente|lower }}"
                                  data-van="VAN2"
-                                 data-status="{{ alocacao.status_alocacao }}">
+                                 data-status="{{ alocacao.status_alocacao }}"
+                                 data-horario="{{ alocacao.servico.horario|default:'' }}">
                                 <div class="card mb-2 border {% if alocacao.grupo_info %}border-success{% endif %}" {% if alocacao.grupo_info %}title="Duplo clique para desagrupar | Clique direito para mais opções"{% endif %}>
                                     {% if alocacao.grupo_info %}
                                         <div class="card-header p-1 bg-light">
@@ -2416,12 +2418,16 @@ document.addEventListener('DOMContentLoaded', function() {
         let van1Visiveis = 0;
         let van2Visiveis = 0;
         
+        // Array para armazenar cards visíveis e seus horários
+        const cardsVisiveis = [];
+        
         servicoCards.forEach(card => {
             const pax = parseInt(card.dataset.pax) || 0;
             const servico = (card.dataset.servico || '').toLowerCase();
             const pickup = (card.dataset.pickup || '').toLowerCase();
             const van = card.dataset.van || '';
             const status = card.dataset.status || '';
+            const horario = card.dataset.horario || '';
             
             // Verificar filtros
             const passaPax = pax >= paxMin && pax <= paxMax;
@@ -2437,13 +2443,53 @@ document.addEventListener('DOMContentLoaded', function() {
                 paxVisivel += pax;
                 if (van === 'VAN1') van1Visiveis++;
                 else van2Visiveis++;
+                
+                // Adicionar ao array para ordenação
+                cardsVisiveis.push({ card, horario, van });
             } else {
                 card.style.display = 'none';
             }
         });
         
+        // ORDENAR CARDS VISÍVEIS POR HORÁRIO (mais cedo primeiro)
+        ordenarCardsPorHorario(cardsVisiveis);
+        
         // Atualizar estatísticas
         atualizarEstatisticas(servicosVisiveis, paxVisivel, van1Visiveis, van2Visiveis);
+    }
+    
+    // Função para ordenar cards por horário
+    function ordenarCardsPorHorario(cardsVisiveis) {
+        // Separar por Van
+        const van1Cards = cardsVisiveis.filter(item => item.van === 'VAN1');
+        const van2Cards = cardsVisiveis.filter(item => item.van === 'VAN2');
+        
+        // Função de ordenação: horários mais cedo primeiro, sem horário no final
+        const sortByHorario = (a, b) => {
+            const horarioA = a.horario || '99:99';
+            const horarioB = b.horario || '99:99';
+            return horarioA.localeCompare(horarioB);
+        };
+        
+        // Ordenar cada van
+        van1Cards.sort(sortByHorario);
+        van2Cards.sort(sortByHorario);
+        
+        // Reordenar DOM - Van 1
+        const van1Container = document.getElementById('van1-container');
+        if (van1Container) {
+            van1Cards.forEach(item => {
+                van1Container.appendChild(item.card);
+            });
+        }
+        
+        // Reordenar DOM - Van 2
+        const van2Container = document.getElementById('van2-container');
+        if (van2Container) {
+            van2Cards.forEach(item => {
+                van2Container.appendChild(item.card);
+            });
+        }
     }
     
     // Função para atualizar estatísticas
@@ -2527,21 +2573,28 @@ document.addEventListener('DOMContentLoaded', function() {
         let paxVisivel = 0;
         let van1Visiveis = 0;
         let van2Visiveis = 0;
+        const cardsVisiveis = [];
         
         servicoCards.forEach(card => {
             const pax = parseInt(card.dataset.pax);
             const cliente = card.dataset.cliente ? card.dataset.cliente.toLowerCase() : '';
+            const horario = card.dataset.horario || '';
+            const van = card.dataset.van || '';
             
             if (cliente.includes(clienteBusca.toLowerCase())) {
                 card.style.display = 'block';
                 servicosVisiveis++;
                 paxVisivel += pax;
-                if (card.dataset.van === 'VAN1') van1Visiveis++;
+                if (van === 'VAN1') van1Visiveis++;
                 else van2Visiveis++;
+                cardsVisiveis.push({ card, horario, van });
             } else {
                 card.style.display = 'none';
             }
         });
+        
+        // Ordenar por horário
+        ordenarCardsPorHorario(cardsVisiveis);
         
         // Atualizar estatísticas
         atualizarEstatisticas(servicosVisiveis, paxVisivel, van1Visiveis, van2Visiveis);
@@ -2553,21 +2606,28 @@ document.addEventListener('DOMContentLoaded', function() {
         let paxVisivel = 0;
         let van1Visiveis = 0;
         let van2Visiveis = 0;
+        const cardsVisiveis = [];
         
         servicoCards.forEach(card => {
             const pax = parseInt(card.dataset.pax);
             const servico = card.dataset.servico ? card.dataset.servico.toLowerCase() : '';
+            const horario = card.dataset.horario || '';
+            const van = card.dataset.van || '';
             
             if (servico.includes(servicoBusca.toLowerCase())) {
                 card.style.display = 'block';
                 servicosVisiveis++;
                 paxVisivel += pax;
-                if (card.dataset.van === 'VAN1') van1Visiveis++;
+                if (van === 'VAN1') van1Visiveis++;
                 else van2Visiveis++;
+                cardsVisiveis.push({ card, horario, van });
             } else {
                 card.style.display = 'none';
             }
         });
+        
+        // Ordenar por horário
+        ordenarCardsPorHorario(cardsVisiveis);
         
         // Atualizar estatísticas
         atualizarEstatisticas(servicosVisiveis, paxVisivel, van1Visiveis, van2Visiveis);
@@ -2579,11 +2639,14 @@ document.addEventListener('DOMContentLoaded', function() {
         let paxVisivel = 0;
         let van1Visiveis = 0;
         let van2Visiveis = 0;
+        const cardsVisiveis = [];
         
         servicoCards.forEach(card => {
             const pax = parseInt(card.dataset.pax);
             const servico = card.dataset.servico ? card.dataset.servico.toLowerCase() : '';
             const cliente = card.dataset.cliente ? card.dataset.cliente.toLowerCase() : '';
+            const horario = card.dataset.horario || '';
+            const van = card.dataset.van || '';
             
             // Critérios para prioritários:
             // 1. PAX entre 4-10
@@ -2603,8 +2666,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     card.style.display = 'block';
                     servicosVisiveis++;
                     paxVisivel += pax;
-                    if (card.dataset.van === 'VAN1') van1Visiveis++;
+                    if (van === 'VAN1') van1Visiveis++;
                     else van2Visiveis++;
+                    cardsVisiveis.push({ card, horario, van });
                 } else {
                     card.style.display = 'none';
                 }
@@ -2612,6 +2676,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.style.display = 'none';
             }
         });
+        
+        // Ordenar por horário
+        ordenarCardsPorHorario(cardsVisiveis);
         
         // Atualizar estatísticas
         atualizarEstatisticas(servicosVisiveis, paxVisivel, van1Visiveis, van2Visiveis);
@@ -2623,21 +2690,28 @@ document.addEventListener('DOMContentLoaded', function() {
         let paxVisivel = 0;
         let van1Visiveis = 0;
         let van2Visiveis = 0;
+        const cardsVisiveis = [];
         
         servicoCards.forEach(card => {
             const pax = parseInt(card.dataset.pax);
             const status = card.dataset.status;
+            const horario = card.dataset.horario || '';
+            const van = card.dataset.van || '';
             
             if (status === statusBusca) {
                 card.style.display = 'block';
                 servicosVisiveis++;
                 paxVisivel += pax;
-                if (card.dataset.van === 'VAN1') van1Visiveis++;
+                if (van === 'VAN1') van1Visiveis++;
                 else van2Visiveis++;
+                cardsVisiveis.push({ card, horario, van });
             } else {
                 card.style.display = 'none';
             }
         });
+        
+        // Ordenar por horário
+        ordenarCardsPorHorario(cardsVisiveis);
         
         // Atualizar estatísticas
         atualizarEstatisticas(servicosVisiveis, paxVisivel, van1Visiveis, van2Visiveis);
