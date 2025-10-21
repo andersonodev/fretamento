@@ -57,6 +57,44 @@
 </style>
 {% endblock %}
 
+{% block extra_head %}
+<style>
+/* Dark mode adjustments */
+[data-theme="dark"] .card {
+    background: rgba(15, 23, 42, 0.92);
+    border-color: rgba(148, 163, 184, 0.25);
+    color: var(--text-primary-dark);
+    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.55);
+}
+[data-theme="dark"] .card-header {
+    background: rgba(30, 41, 59, 0.9);
+    border-bottom-color: rgba(148, 163, 184, 0.25);
+    color: var(--text-primary-dark);
+}
+[data-theme="dark"] .card-mes {
+    border-color: rgba(148, 163, 184, 0.2);
+}
+[data-theme="dark"] .card-mes:hover {
+    border-color: rgba(96, 165, 250, 0.45);
+    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.65);
+}
+[data-theme="dark"] .card-mes.mes-atual {
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.4) 0%, rgba(14, 116, 144, 0.45) 100%);
+    border-color: rgba(34, 197, 94, 0.45);
+}
+[data-theme="dark"] .card-mes .card-title,
+[data-theme="dark"] .stat-item span,
+[data-theme="dark"] .stat-item strong,
+[data-theme="dark"] .text-muted {
+    color: var(--text-primary-dark) !important;
+}
+[data-theme="dark"] .mes-stats {
+    background: rgba(30, 41, 59, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
     <!-- Breadcrumb -->
@@ -249,4 +287,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-{% endblock %}
+{% endblock %}<style>
+/* Dark mode adjustments */
+[data-theme="dark"] .card {
+    background: rgba(15, 23, 42, 0.92);
+    border-color: rgba(148, 163, 184, 0.25);
+    color: var(--text-primary-dark);
+    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.55);
+}
+[data-theme="dark"] .card-header {
+    background: rgba(30, 41, 59, 0.9);
+    border-bottom-color: rgba(148, 163, 184, 0.25);
+    color: var(--text-primary-dark);
+}
+[data-theme="dark"] .card-mes {
+    border-color: rgba(148, 163, 184, 0.2);
+}
+[data-theme="dark"] .card-mes:hover {
+    border-color: rgba(96, 165, 250, 0.45);
+    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.65);
+}
+[data-theme="dark"] .card-mes.mes-atual {
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.4) 0%, rgba(14, 116, 144, 0.45) 100%);
+    border-color: rgba(34, 197, 94, 0.45);
+}
+[data-theme="dark"] .card-mes .card-title,
+[data-theme="dark"] .stat-item span,
+[data-theme="dark"] .stat-item strong,
+[data-theme="dark"] .text-muted {
+    color: var(--text-primary-dark) !important;
+}
+[data-theme="dark"] .mes-stats {
+    background: rgba(30, 41, 59, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+</style>

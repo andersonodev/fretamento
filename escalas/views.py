@@ -7,7 +7,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView
 from django.utils.dateparse import parse_date
 from django.utils import timezone
-from django.db.models import Count, Q, Sum, F, Max
+from django.db.models import Count, Q, Sum, F, Max, Case, When, IntegerField
 from django.db import transaction
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
@@ -1356,6 +1356,18 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
         context['ano'] = escala.data.year
         context['mes'] = escala.data.month
         
+        # Preparar ordenação: alocados primeiro, depois não alocados, mantendo horários crescentes
+        status_ordering = Case(
+            When(status_alocacao='ALOCADO', then=0),
+            default=1,
+            output_field=IntegerField()
+        )
+        horario_null_flag = Case(
+            When(servico__horario__isnull=True, then=1),
+            default=0,
+            output_field=IntegerField()
+        )
+
         # Obter todas as alocações com otimização de queries
         # ORDENAÇÃO: Primeiro por horário (mais cedo primeiro), depois por ordem
         # Serviços sem horário ficam no final
@@ -1364,9 +1376,14 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
             'escala__aprovada_por'
         ).prefetch_related(
             'grupo_info__grupo__servicos__alocacao__servico'
+        ).annotate(
+            status_prioridade=status_ordering,
+            horario_vazio=horario_null_flag
         ).order_by(
-            F('servico__horario').asc(nulls_last=True),  # Horário crescente, nulls no final
-            'ordem'  # Depois pela ordem de inserção
+            'status_prioridade',
+            'horario_vazio',
+            'servico__horario',
+            'ordem'
         )
         
         all_van2_alocacoes = escala.alocacoes.filter(van='VAN2').select_related(
@@ -1374,9 +1391,14 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
             'escala__aprovada_por'
         ).prefetch_related(
             'grupo_info__grupo__servicos__alocacao__servico'
+        ).annotate(
+            status_prioridade=status_ordering,
+            horario_vazio=horario_null_flag
         ).order_by(
-            F('servico__horario').asc(nulls_last=True),  # Horário crescente, nulls no final
-            'ordem'  # Depois pela ordem de inserção
+            'status_prioridade',
+            'horario_vazio',
+            'servico__horario',
+            'ordem'
         )
         
         # Filtrar para mostrar apenas um representante por grupo
@@ -1414,11 +1436,34 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
         van1_alocacoes_unicas = get_unique_alocacoes(all_van1_alocacoes, 'VAN1')
         van2_alocacoes_unicas = get_unique_alocacoes(all_van2_alocacoes, 'VAN2')
         
+        def calcular_total_valor_alocado(alocacoes):
+            total = Decimal('0')
+            grupos_processados = set()
+            for alocacao in alocacoes:
+                if alocacao.status_alocacao != 'ALOCADO':
+                    continue
+
+                if alocacao.preco_calculado is not None:
+                    total += alocacao.preco_calculado
+                    continue
+
+                try:
+                    grupo_info = alocacao.grupo_info
+                except ServicoGrupo.DoesNotExist:
+                    grupo_info = None
+                if grupo_info:
+                    grupo = getattr(grupo_info, 'grupo', None)
+                    if grupo and grupo.id not in grupos_processados:
+                        if grupo.total_valor is not None:
+                            total += Decimal(grupo.total_valor)
+                        grupos_processados.add(grupo.id)
+            return total
+
         # Dados da Van 1
         van1_data = {
             'servicos': van1_alocacoes_unicas,  # Usar alocações únicas
             'total_pax': sum(a.servico.pax for a in all_van1_alocacoes),  # Totais baseados em todas
-            'total_valor': sum(a.preco_calculado or 0 for a in all_van1_alocacoes),
+            'total_valor': calcular_total_valor_alocado(all_van1_alocacoes),
             'count': all_van1_alocacoes.count()
         }
         
@@ -1426,7 +1471,7 @@ class VisualizarEscalaView(LoginRequiredMixin, View):
         van2_data = {
             'servicos': van2_alocacoes_unicas,  # Usar alocações únicas
             'total_pax': sum(a.servico.pax for a in all_van2_alocacoes),  # Totais baseados em todas
-            'total_valor': sum(a.preco_calculado or 0 for a in all_van2_alocacoes),
+            'total_valor': calcular_total_valor_alocado(all_van2_alocacoes),
             'count': all_van2_alocacoes.count()
         }
         

@@ -186,6 +186,76 @@
         font-weight: 600;
     }
 
+    /* ===== Ajustes modo escuro ===== */
+    [data-theme="dark"] .profile-container {
+        color: var(--text-primary-dark);
+    }
+
+    [data-theme="dark"] .profile-header {
+        background: linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(14, 116, 144, 0.92) 100%);
+        box-shadow: 0 20px 45px rgba(2, 6, 23, 0.6);
+    }
+
+    [data-theme="dark"] .profile-avatar {
+        border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    [data-theme="dark"] .profile-info h1 {
+        color: var(--text-primary-dark);
+    }
+
+    [data-theme="dark"] .profile-info p {
+        color: var(--text-secondary-dark);
+    }
+
+    [data-theme="dark"] .profile-card {
+        background: rgba(15, 23, 42, 0.92);
+        border-color: rgba(148, 163, 184, 0.2);
+        box-shadow: 0 20px 45px rgba(2, 6, 23, 0.55);
+    }
+
+    [data-theme="dark"] .profile-card h3 {
+        color: var(--text-primary-dark);
+    }
+
+    [data-theme="dark"] .profile-card p,
+    [data-theme="dark"] .profile-card span,
+    [data-theme="dark"] .form-text,
+    [data-theme="dark"] .form-label {
+        color: var(--text-secondary-dark);
+    }
+
+    [data-theme="dark"] .form-control,
+    [data-theme="dark"] .form-select {
+        background: rgba(15, 23, 42, 0.85);
+        border-color: rgba(148, 163, 184, 0.3);
+        color: var(--text-primary-dark);
+    }
+    [data-theme="dark"] .form-control::placeholder,
+    [data-theme="dark"] .form-select::placeholder,
+    [data-theme="dark"] textarea::placeholder {
+        color: rgba(226, 232, 240, 0.75);
+    }
+
+    [data-theme="dark"] .btn-outline-secondary {
+        border-color: rgba(148, 163, 184, 0.35);
+        color: var(--text-primary-dark);
+    }
+
+    [data-theme="dark"] .btn-outline-secondary:hover {
+        background: rgba(59, 130, 246, 0.22);
+        border-color: rgba(96, 165, 250, 0.5);
+        color: #f8fafc;
+    }
+
+    [data-theme="dark"] .breadcrumb-item a {
+        color: var(--text-secondary-dark);
+    }
+
+    [data-theme="dark"] .breadcrumb-item.active {
+        color: var(--text-primary-dark);
+    }
+
     @media (max-width: 768px) {
         .profile-content {
             grid-template-columns: 1fr;

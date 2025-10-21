@@ -5,101 +5,464 @@
 
 {% block extra_css %}
 <style>
-    /* ========== BARRA DE CARREGAMENTO ========== */
-    .loading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        display: none !important;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;
-        backdrop-filter: blur(5px);
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+    /* ========== PALETA DE CORES PROFISSIONAL ========== */
+    :root {
+        --primary-blue: #1878B3;
+        --primary-blue-dark: #135F8F;
+        --primary-blue-light: #3A92C7;
+        --primary-blue-pastel: rgba(24, 120, 179, 0.08);
+        --primary-blue-pastel-hover: rgba(24, 120, 179, 0.12);
+        --bg-light: #F8F9FA;
+        --bg-white: #FFFFFF;
+        --text-dark: #2C3E50;
+        --text-muted: #6C757D;
+        --border-light: #E9ECEF;
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+        --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
     }
 
-    .loading-overlay.active {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+    [data-theme="dark"] body {
+        --primary-blue: #3b82f6;
+        --primary-blue-dark: #60a5fa;
+        --primary-blue-light: #93c5fd;
+        --primary-blue-pastel: rgba(59, 130, 246, 0.18);
+        --primary-blue-pastel-hover: rgba(96, 165, 250, 0.24);
+        --bg-light: #1f2937;
+        --bg-white: #111827;
+        --text-dark: #e2e8f0;
+        --text-muted: #94a3b8;
+        --border-light: rgba(148, 163, 184, 0.25);
+        --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.6);
+        --shadow-md: 0 12px 24px rgba(15, 23, 42, 0.7);
+        color: var(--text-dark);
+        background-color: #0f172a;
     }
 
-    .loading-content {
-        background: white;
-        padding: 40px;
-        border-radius: 20px;
-        text-align: center;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        max-width: 400px;
-        animation: slideIn 0.3s ease-out;
+    [data-theme="dark"] .text-muted,
+    [data-theme="dark"] .small {
+        color: var(--text-muted) !important;
     }
 
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateY(-50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    [data-theme="dark"] .card,
+    [data-theme="dark"] .card-body,
+    [data-theme="dark"] .card-header,
+    [data-theme="dark"] .modal-content {
+        background: var(--bg-white) !important;
+        color: var(--text-dark) !important;
+        border-color: var(--border-light) !important;
+        box-shadow: var(--shadow-sm);
     }
 
-    .loading-spinner {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 20px;
-        border: 6px solid #f3f3f3;
-        border-top: 6px solid #0d6efd;
-        border-right: 6px solid #0dcaf0;
-        border-bottom: 6px solid #198754;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
+    [data-theme="dark"] .card.border-info {
+        border-color: var(--border-light) !important;
+        background: rgba(30, 41, 59, 0.9);
     }
 
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+    [data-theme="dark"] .card.border-info .card-header {
+        background: rgba(30, 41, 59, 0.85);
+        border-bottom-color: var(--border-light);
     }
 
-    .loading-text {
-        font-size: 18px;
+    [data-theme="dark"] .resumo-card {
+        background: rgba(17, 24, 39, 0.9);
+        border-color: rgba(148, 163, 184, 0.35) !important;
+        box-shadow: 0 10px 24px rgba(2, 6, 23, 0.5);
+    }
+
+    [data-theme="dark"] .resumo-card .text-muted {
+        color: var(--text-muted) !important;
+    }
+
+    [data-theme="dark"] .servico-card .card {
+        background: var(--bg-white);
+        border-color: rgba(148, 163, 184, 0.35);
+        box-shadow: 0 12px 28px rgba(2, 6, 23, 0.45);
+    }
+
+    [data-theme="dark"] .servico-card:hover .card {
+        border-left-color: #3b82f6;
+        box-shadow: 0 16px 36px rgba(3, 7, 18, 0.55), 0 0 0 1px rgba(59, 130, 246, 0.35);
+    }
+
+    [data-theme="dark"] .van-card {
+        box-shadow: 0 18px 40px rgba(2, 6, 23, 0.6);
+        background: rgba(15, 23, 42, 0.85);
+    }
+
+    [data-theme="dark"] .van-header {
+        background: linear-gradient(135deg, rgba(30, 64, 175, 0.85) 0%, rgba(29, 78, 216, 0.9) 100%) !important;
+    }
+
+    [data-theme="dark"] .van-icon {
+        background: rgba(148, 163, 184, 0.22);
+    }
+    [data-theme="dark"] .van-icon i {
+        color: var(--text-dark);
+    }
+
+    [data-theme="dark"] .van-badge {
+        background: rgba(59, 130, 246, 0.15);
+        color: var(--text-dark);
+        border-color: rgba(96, 165, 250, 0.25);
+    }
+
+    [data-theme="dark"] .van-badge i {
+        color: var(--primary-blue-light);
+    }
+
+    [data-theme="dark"] .van-export-btn {
+        background: rgba(17, 24, 39, 0.9) !important;
+        color: #38bdf8 !important;
+        border: 1px solid rgba(56, 189, 248, 0.35) !important;
+    }
+
+    [data-theme="dark"] .form-control,
+    [data-theme="dark"] .form-select,
+    [data-theme="dark"] .input-group-text {
+        background-color: rgba(15, 23, 42, 0.8) !important;
+        border-color: var(--border-light) !important;
+        color: var(--text-dark) !important;
+    }
+
+    [data-theme="dark"] .form-control::placeholder,
+    [data-theme="dark"] .form-select::placeholder {
+        color: var(--text-muted) !important;
+    }
+
+    [data-theme="dark"] .badge.bg-dark {
+        background-color: rgba(30, 41, 59, 0.9) !important;
+        color: var(--text-dark) !important;
+    }
+
+    [data-theme="dark"] .modal-header,
+    [data-theme="dark"] .modal-footer {
+        background: rgba(15, 23, 42, 0.9);
+        border-color: var(--border-light);
+        color: var(--text-dark);
+    }
+
+    [data-theme="dark"] .badge.bg-warning.text-dark {
+        color: #0f172a !important;
+    }
+
+    [data-theme="dark"] .btn-outline-secondary,
+    [data-theme="dark"] .btn-outline-primary,
+    [data-theme="dark"] .btn-outline-info,
+    [data-theme="dark"] .btn-outline-success,
+    [data-theme="dark"] .btn-outline-warning,
+    [data-theme="dark"] .btn-outline-danger,
+    [data-theme="dark"] .btn-outline-dark {
+        color: var(--text-dark) !important;
+        border-color: rgba(148, 163, 184, 0.35) !important;
+    }
+
+    [data-theme="dark"] .btn-outline-secondary:hover,
+    [data-theme="dark"] .btn-outline-primary:hover,
+    [data-theme="dark"] .btn-outline-info:hover,
+    [data-theme="dark"] .btn-outline-success:hover,
+    [data-theme="dark"] .btn-outline-warning:hover,
+    [data-theme="dark"] .btn-outline-danger:hover,
+    [data-theme="dark"] .btn-outline-dark:hover {
+        background: rgba(59, 130, 246, 0.15) !important;
+        color: #f8fafc !important;
+        border-color: rgba(96, 165, 250, 0.5) !important;
+    }
+
+    [data-theme="dark"] .btn-group .btn {
+        background: rgba(17, 24, 39, 0.8);
+        color: var(--text-dark);
+        border-color: rgba(148, 163, 184, 0.3);
+    }
+
+    [data-theme="dark"] .btn-group .btn.active {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(14, 165, 233, 0.35) 100%);
+        border-color: rgba(96, 165, 250, 0.5);
+        color: #f8fafc;
+        box-shadow: 0 12px 24px rgba(14, 116, 144, 0.4);
+    }
+
+    [data-theme="dark"] .dropzone {
+        background: rgba(30, 41, 59, 0.85);
+        border-color: rgba(148, 163, 184, 0.3);
+    }
+
+    [data-theme="dark"] .dropzone.drag-over {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(14, 165, 233, 0.22) 100%);
+        border-color: rgba(96, 165, 250, 0.6);
+    }
+
+    [data-theme="dark"] .context-menu {
+        background: rgba(17, 24, 39, 0.96) !important;
+        border: 1px solid rgba(148, 163, 184, 0.25) !important;
+        box-shadow: 0 20px 32px rgba(2, 6, 23, 0.6) !important;
+    }
+
+    [data-theme="dark"] .menu-item {
+        color: var(--text-dark);
+        border-bottom-color: rgba(148, 163, 184, 0.15);
+        background: transparent;
+    }
+
+    [data-theme="dark"] .menu-item:hover {
+        background: rgba(59, 130, 246, 0.2);
+        padding-left: 25px;
+    }
+
+    [data-theme="dark"] .menu-item.disabled {
+        color: var(--text-muted);
+    }
+
+    [data-theme="dark"] .menu-item-hint {
+        background: rgba(15, 23, 42, 0.85);
+        color: var(--text-muted);
+    }
+
+    /* ========== FILTROS PROFISSIONAIS E MINIMALISTAS ========== */
+    .card.border-info {
+        border: 1px solid var(--border-light) !important;
+        border-left: 3px solid var(--primary-blue) !important;
+        border-radius: 8px;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .card.border-info .card-header {
+        background: var(--bg-white);
+        border-bottom: 1px solid var(--border-light);
+        padding: 0.875rem 1.25rem;
+    }
+
+    .card.border-info .card-header h6 {
+        font-size: 0.9375rem;
         font-weight: 600;
-        color: #333;
-        margin-bottom: 10px;
+        color: var(--text-dark);
+        margin: 0;
     }
 
-    .loading-subtext {
-        font-size: 14px;
-        color: #666;
+    .card.border-info .card-header .text-info {
+        color: var(--primary-blue) !important;
     }
 
-    .progress-bar-custom {
-        width: 100%;
-        height: 8px;
-        background: #e9ecef;
-        border-radius: 10px;
-        overflow: hidden;
-        margin-top: 15px;
+    /* Labels dos filtros */
+    .form-label.small {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--text-dark);
+        margin-bottom: 0.375rem;
+        letter-spacing: 0.01em;
     }
 
-    .progress-bar-fill {
-        height: 100%;
-        background: linear-gradient(90deg, #0d6efd, #0dcaf0, #198754);
-        background-size: 200% 100%;
-        animation: progressAnimation 2s ease-in-out infinite;
-        border-radius: 10px;
+    .form-label.small i {
+        font-size: 0.875rem;
+        margin-right: 0.25rem;
+        opacity: 0.8;
     }
 
-    @keyframes progressAnimation {
-        0% { background-position: 100% 0; width: 0%; }
-        50% { background-position: 0% 0; width: 70%; }
-        100% { background-position: -100% 0; width: 100%; }
+    /* Inputs e selects minimalistas */
+    .form-control-sm,
+    .form-select-sm {
+        border: 1px solid var(--border-light);
+        border-radius: 6px;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8125rem;
+        transition: all 0.2s ease;
+        background: var(--bg-white);
+        color: var(--text-dark);
+    }
+
+    .form-control-sm:focus,
+    .form-select-sm:focus {
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        outline: none;
+    }
+
+    .form-control-sm::placeholder {
+        color: var(--text-muted);
+        opacity: 0.6;
+    }
+
+    /* Botão limpar filtros */
+    .btn-outline-secondary {
+        border: 1px solid var(--border-light);
+        color: var(--text-muted);
+        background: var(--bg-white);
+        border-radius: 6px;
+        font-size: 0.8125rem;
+        padding: 0.375rem 0.75rem;
+        transition: all 0.2s ease;
+    }
+
+    .btn-outline-secondary:hover {
+        background: var(--bg-light);
+        border-color: var(--text-muted);
+        color: var(--text-dark);
+        transform: translateY(-1px);
+    }
+
+    /* Estatísticas de filtro */
+    #filtro-stats {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    #filtro-stats strong {
+        color: var(--primary-blue);
+        font-weight: 600;
+    }
+
+    /* Botões de filtro rápido - design clean */
+    .btn-group .btn {
+        border: 1px solid var(--border-light);
+        background: var(--bg-white);
+        color: var(--text-dark);
+        border-radius: 6px;
+        font-size: 0.8125rem;
+        padding: 0.5rem 0.875rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        margin: 0 0.25rem;
+        cursor: pointer;
+    }
+
+    /* Hover cinza claro nos botões de filtro */
+    .btn-group .btn:hover:not(.active) {
+        background: var(--bg-light) !important;
+        border-color: var(--border-light) !important;
+        color: var(--text-dark) !important;
+        transform: translateY(-1px);
+    }
+
+    .btn-group .btn:first-child {
+        margin-left: 0;
+    }
+
+    .btn-group .btn i {
+        font-size: 0.75rem;
+        margin-right: 0.375rem;
+    }
+
+    /* Hover cinza escuro - igual ao botão Limpar das imagens */
+    .btn-group .btn:hover:not(.active) {
+    background: var(--bg-light) !important;
+    border-color: var(--border-light) !important;
+    color: var(--text-dark) !important;
+    transform: translateY(-1px);
+    }
+
+    /* Estado ativo - azul pastel suave com transição suave */
+    .btn-group .btn.active {
+        background: var(--primary-blue-pastel);
+        border-color: var(--primary-blue);
+        color: var(--primary-blue);
+        box-shadow: 0 2px 6px rgba(24, 120, 179, 0.12);
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+    .btn-group .btn.active:hover {
+        background: var(--primary-blue-pastel-hover);
+        border-color: var(--primary-blue-dark);
+        color: var(--primary-blue-dark);
+        transform: translateY(-1px);
+    }
+
+    /* Remover cores específicas dos botões - todos usam azul quando ativos */
+    .btn-outline-primary,
+    .btn-outline-secondary,
+    .btn-outline-info,
+    .btn-outline-success,
+    .btn-outline-warning,
+    .btn-outline-danger,
+    .btn-outline-dark {
+        border: 1px solid var(--border-light) !important;
+        background: var(--bg-white) !important;
+        color: var(--text-dark) !important;
+    }
+
+    .btn-outline-primary:hover,
+    .btn-outline-secondary:hover,
+    .btn-outline-info:hover,
+    .btn-outline-success:hover,
+    .btn-outline-warning:hover,
+    .btn-outline-danger:hover,
+    .btn-outline-dark:hover {
+        background: var(--bg-light) !important;
+        border-color: var(--primary-blue) !important;
+        color: var(--primary-blue) !important;
+    }
+
+    .btn-outline-primary.active,
+    .btn-outline-secondary.active,
+    .btn-outline-info.active,
+    .btn-outline-success.active,
+    .btn-outline-warning.active,
+    .btn-outline-danger.active,
+    .btn-outline-dark.active {
+        background: rgba(74, 144, 226, 0.12) !important;
+        border-color: var(--primary-blue) !important;
+        color: var(--primary-blue) !important;
+        font-weight: 600 !important;
+    }
+
+    /* Responsividade para botões de filtro */
+    @media (max-width: 1400px) {
+        .btn-group-sm .btn {
+            padding: 0.4rem 0.65rem;
+            font-size: 0.75rem;
+        }
+
+        .btn-group-sm .btn i {
+            margin-right: 0.25rem;
+        }
+    }
+
+    /* Input group para PAX */
+    .input-group-text {
+        background: var(--bg-light);
+        border: 1px solid var(--border-light);
+        color: var(--text-muted);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .input-group .form-control:not(:last-child) {
+        border-right: none;
+    }
+
+    .input-group .form-control:not(:first-child) {
+        border-left: none;
+    }
+
+    .input-group:focus-within .input-group-text {
+        border-color: var(--primary-blue);
+        color: var(--primary-blue);
+    }
+
+    /* Animações suaves */
+    .servico-card[style*="display: none"] {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    /* Melhorias nos cards em geral */
+    .card {
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.2s ease;
+    }
+
+    .card:hover {
+        box-shadow: var(--shadow-md);
+    }
+
+    .card-header {
+        background: var(--bg-white);
+        border-bottom: 1px solid var(--border-light);
+        padding: 1rem 1.25rem;
     }
 
     /* ========== MELHORIAS VISUAIS GERAIS ========== */
@@ -262,26 +625,140 @@
 
 {% block content %}
 <!-- Overlay de Carregamento -->
-<div class="loading-overlay" id="loadingOverlay" style="display: none !important;">
-    <div class="loading-content">
-        <div class="loading-spinner"></div>
-        <div class="loading-text" id="loadingText">Processando...</div>
-        <div class="loading-subtext" id="loadingSubtext">Por favor, aguarde</div>
-        <div class="progress-bar-custom">
-            <div class="progress-bar-fill"></div>
+<style>
+/* Modal de carregamento customizado */
+.modal-calculo-precos {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(23, 117, 174, 0.13);
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+.modal-calculo-precos-content {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(23,117,174,0.12);
+    padding: 2.5rem 2.5rem 2rem 2.5rem;
+    text-align: center;
+    min-width: 320px;
+    max-width: 90vw;
+    animation: modalFadeIn 0.4s cubic-bezier(.4,0,.2,1);
+}
+.modal-calculo-precos-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #1775AE;
+    margin-top: 1.2rem;
+    letter-spacing: -0.01em;
+}
+.modal-calculo-precos-spinner {
+    width: 56px; height: 56px;
+    border: 6px solid #e3eaf2;
+    border-top: 6px solid #1775AE;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: modalSpin 1s linear infinite;
+}
+@keyframes modalSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+<!-- Modal de Carregamento Customizado -->
+<div id="modalCalculandoPrecos" class="modal-calculo-precos" style="display: none;">
+        <div class="modal-calculo-precos-content">
+            <div class="modal-calculo-precos-spinner"></div>
+            <div class="modal-calculo-precos-title" id="modalCalculoPrecosTexto">Calculando...</div>
         </div>
-    </div>
 </div>
 
 <script>
-// Script inline para garantir que loading começa escondido IMEDIATAMENTE
-(function() {
-    const overlay = document.getElementById('loadingOverlay');
-    if (overlay) {
-        overlay.style.display = 'none';
-        overlay.classList.remove('active');
+// Esconde o modal ao recarregar a página ou ao finalizar carregamento
+window.addEventListener('beforeunload', function() {
+    hideModalCalculandoPrecos();
+});
+
+// Modal de carregamento customizado
+let loadingModalTimeoutId = null;
+
+function showModalCalculandoPrecos(texto) {
+    const modal = document.getElementById('modalCalculandoPrecos');
+    const textoEl = document.getElementById('modalCalculoPrecosTexto');
+    if (modal && textoEl) {
+        textoEl.textContent = texto || 'Calculando...';
+        modal.style.display = 'flex';
+        modal.style.opacity = '1';
     }
-})();
+}
+function hideModalCalculandoPrecos() {
+    const modal = document.getElementById('modalCalculandoPrecos');
+    if (modal) {
+        modal.style.opacity = '0';
+        setTimeout(() => { modal.style.display = 'none'; }, 300);
+    }
+    if (loadingModalTimeoutId) {
+        clearTimeout(loadingModalTimeoutId);
+        loadingModalTimeoutId = null;
+    }
+}
+
+function showLoadingFromElement(element, fallbackText = 'Processando...') {
+    const source = element || null;
+    let texto = fallbackText;
+    if (source) {
+        texto = source.innerText || source.getAttribute('aria-label') || fallbackText;
+    }
+    texto = texto.replace(/\s+/g, ' ').trim();
+    if (texto && !texto.endsWith('...')) {
+        texto += '...';
+    }
+    showModalCalculandoPrecos(texto);
+    if (loadingModalTimeoutId) {
+        clearTimeout(loadingModalTimeoutId);
+    }
+    loadingModalTimeoutId = setTimeout(() => hideModalCalculandoPrecos(), 15000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const excelLink = document.getElementById('link-excel');
+    if (excelLink) {
+        excelLink.addEventListener('click', function() {
+            showLoadingFromElement(excelLink, 'Gerando Excel...');
+        }, true);
+    }
+
+    const formAgrupar = document.getElementById('form-agrupar');
+    if (formAgrupar) {
+        formAgrupar.addEventListener('submit', function() {
+            const submitButton = formAgrupar.querySelector('button[type="submit"]');
+            showLoadingFromElement(submitButton, 'Agrupando...');
+        });
+    }
+
+    const formEscalar = document.getElementById('form-escalar');
+    if (formEscalar) {
+        formEscalar.addEventListener('submit', function() {
+            const submitButton = formEscalar.querySelector('button[type="submit"]');
+            showLoadingFromElement(submitButton, 'Otimizando...');
+        });
+    }
+
+    const formFormatar = document.getElementById('form-formatar');
+    if (formFormatar) {
+        formFormatar.addEventListener('submit', function() {
+            const submitButton = formFormatar.querySelector('button[type="submit"]');
+            showLoadingFromElement(submitButton, 'Formatando...');
+        });
+    }
+});
 </script>
 
 <div class="container-fluid page-loading">
@@ -305,7 +782,7 @@
                         <i class="fas fa-arrow-left"></i> Voltar
                     </a>
                     {% if escala.tem_dados %}
-                        <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" class="btn btn-outline-success btn-sm">
+                        <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" class="btn btn-outline-success btn-sm" id="link-excel">
                             <i class="fas fa-file-excel"></i> Excel
                         </a>
                     {% endif %}
@@ -366,67 +843,92 @@
         </div>
     {% else %}
         <!-- Resumo Geral -->
-        <div class="row mb-4">
-            <div class="col-md-3">
-                <div class="card text-white bg-primary">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <i class="fas fa-users"></i> Total PAX
-                        </h5>
-                        <h3>{{ van1.total_pax|add:van2.total_pax }}</h3>
+        <div class="row mb-4 g-3">
+            <div class="col-6 col-md-4 col-lg">
+                <div class="card shadow-sm resumo-card">
+                    <div class="card-body text-center py-3">
+                        <div class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 500;">
+                            <i class="fas fa-users" style="color: var(--primary-blue);"></i> Total PAX
+                        </div>
+                        <h4 class="mb-0" style="color: var(--text-dark); font-weight: 600;">{{ van1.total_pax|add:van2.total_pax }}</h4>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card text-white bg-success">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <i class="fas fa-dollar-sign"></i> Valor Total
-                        </h5>
-                        <h3>{{ van1.total_valor|add:van2.total_valor|currency }}</h3>
+            <div class="col-6 col-md-4 col-lg">
+                <div class="card shadow-sm resumo-card">
+                    <div class="card-body text-center py-3">
+                        <div class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 500;">
+                            <i class="fas fa-dollar-sign" style="color: var(--primary-blue);"></i> Valor Total
+                        </div>
+                        <h4 class="mb-0" style="color: var(--text-dark); font-weight: 600;">{{ van1.total_valor|add:van2.total_valor|currency }}</h4>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card text-white bg-info">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <i class="fas fa-layer-group"></i> Total Serviços
-                        </h5>
-                        <h3>{{ total_servicos }}</h3>
+            <div class="col-6 col-md-4 col-lg">
+                <div class="card shadow-sm resumo-card">
+                    <div class="card-body text-center py-3">
+                        <div class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 500;">
+                            <i class="fas fa-layer-group" style="color: var(--primary-blue);"></i> Total Serviços
+                        </div>
+                        <h4 class="mb-0" style="color: var(--text-dark); font-weight: 600;">{{ total_servicos }}</h4>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card text-white {% if escala.esta_otimizada %}bg-success{% else %}bg-warning{% endif %}">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <i class="fas fa-magic"></i> Status
-                        </h5>
-                        <h6>{% if escala.esta_otimizada %}Otimizada{% else %}Distribuição Básica{% endif %}</h6>
+            <div class="col-6 col-md-6 col-lg">
+                <div class="card shadow-sm resumo-card">
+                    <div class="card-body text-center py-3">
+                        <div class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 500;">
+                            <i class="fas fa-check-circle" style="color: var(--primary-blue);"></i> Alocados
+                        </div>
+                        <h4 class="mb-0" style="color: var(--text-dark); font-weight: 600;" id="total-alocados">-</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-6 col-lg">
+                <div class="card shadow-sm resumo-card">
+                    <div class="card-body text-center py-3">
+                        <div class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 500;">
+                            <i class="fas fa-times-circle" style="color: var(--primary-blue);"></i> Não Alocados
+                        </div>
+                        <h4 class="mb-0" style="color: var(--text-dark); font-weight: 600;" id="total-nao-alocados">-</h4>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Filtros -->
+        <style>
+        .resumo-card {
+            border: 2px solid rgba(23, 117, 174, 0.13) !important;
+            border-radius: 14px !important;
+            box-shadow: 0 2px 8px rgba(23, 117, 174, 0.04);
+            background: #fff;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+        .resumo-card:hover {
+            border-color: #1775AE !important;
+            box-shadow: 0 4px 16px rgba(23, 117, 174, 0.10);
+        }
+        </style>
         <div class="row mb-4">
             <div class="col-12">
                 <div class="card border-info">
-                    <div class="card-header bg-light">
-                        <h6 class="card-title mb-0">
-                            <i class="fas fa-filter text-info"></i> Filtros de Busca
-                            <button class="btn btn-sm btn-outline-secondary ms-2" id="clearFilters">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">
+                                <i class="fas fa-filter text-info"></i> Filtros de Busca
+                            </h6>
+                            <button class="btn btn-outline-secondary btn-sm" id="clearFilters">
                                 <i class="fas fa-times"></i> Limpar
                             </button>
-                        </h6>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
                             <!-- Filtro por PAX -->
                             <div class="col-md-3">
                                 <label for="filtro-pax" class="form-label small">
-                                    <i class="fas fa-users text-primary"></i> PAX
+                                    <i class="fas fa-users"></i> PAX
                                 </label>
                                 <div class="input-group input-group-sm">
                                     <input type="number" class="form-control" id="filtro-pax-min" placeholder="Min" min="1">
@@ -438,7 +940,7 @@
                             <!-- Filtro por Serviço -->
                             <div class="col-md-4">
                                 <label for="filtro-servico" class="form-label small">
-                                    <i class="fas fa-map-marker-alt text-danger"></i> Serviço/Destino
+                                    <i class="fas fa-map-marker-alt"></i> Serviço/Destino
                                 </label>
                                 <input type="text" class="form-control form-control-sm" id="filtro-servico" 
                                        placeholder="Digite para filtrar por serviço...">
@@ -447,7 +949,7 @@
                             <!-- Filtro por Local Pickup -->
                             <div class="col-md-3">
                                 <label for="filtro-pickup" class="form-label small">
-                                    <i class="fas fa-location-dot text-warning"></i> Local Pickup
+                                    <i class="fas fa-location-dot"></i> Local Pickup
                                 </label>
                                 <input type="text" class="form-control form-control-sm" id="filtro-pickup" 
                                        placeholder="Digite para filtrar pickup...">
@@ -456,7 +958,7 @@
                             <!-- Filtro por Van -->
                             <div class="col-md-2">
                                 <label for="filtro-van" class="form-label small">
-                                    <i class="fas fa-van-shuttle text-info"></i> Van
+                                    <i class="fas fa-van-shuttle"></i> Van
                                 </label>
                                 <select class="form-select form-select-sm" id="filtro-van">
                                     <option value="">Todas</option>
@@ -469,7 +971,7 @@
                             {% if escala.esta_otimizada %}
                             <div class="col-md-2">
                                 <label for="filtro-status" class="form-label small">
-                                    <i class="fas fa-check-circle text-success"></i> Status
+                                    <i class="fas fa-check-circle"></i> Status
                                 </label>
                                 <select class="form-select form-select-sm" id="filtro-status">
                                     <option value="">Todos</option>
@@ -481,41 +983,41 @@
                         </div>
                         
                         <!-- Estatísticas de Filtro -->
-                        <div class="row mt-3">
+                        <div class="row mt-4">
                             <div class="col-12">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted" id="filtro-stats">
+                                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                                    <div id="filtro-stats" class="text-muted">
                                         Mostrando todos os serviços
-                                    </small>
+                                    </div>
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <button type="button" class="btn btn-outline-primary" id="filtro-pax-alto" title="PAX Acima de 4 (Clique novamente para remover filtro)">
+                                        <button type="button" class="btn" id="filtro-pax-alto" title="PAX Acima de 4">
                                             <i class="fas fa-users"></i> PAX 4+
                                         </button>
-                                        <button type="button" class="btn btn-outline-secondary" id="filtro-pax-baixo" title="PAX de 1 a 3 (Clique novamente para remover filtro)">
+                                        <button type="button" class="btn" id="filtro-pax-baixo" title="PAX de 1 a 3">
                                             <i class="fas fa-user"></i> PAX 1-3
                                         </button>
-                                        <button type="button" class="btn btn-outline-info" id="filtro-hotelbeds" title="HOTELBEDS (Clique novamente para remover filtro)">
+                                        <button type="button" class="btn" id="filtro-hotelbeds" title="HOTELBEDS">
                                             <i class="fas fa-hotel"></i> HOTELBEDS
                                         </button>
-                                        <button type="button" class="btn btn-outline-success" id="filtro-holiday" title="Holiday (Clique novamente para remover filtro)">
+                                        <button type="button" class="btn" id="filtro-holiday" title="Holiday">
                                             <i class="fas fa-plane"></i> Holiday
                                         </button>
-                                        <button type="button" class="btn btn-outline-warning" id="filtro-transfer-in" title="Transfer IN (Clique novamente para remover filtro)">
+                                        <button type="button" class="btn" id="filtro-transfer-in" title="Transfer IN">
                                             <i class="fas fa-arrow-right"></i> IN
                                         </button>
-                                        <button type="button" class="btn btn-outline-danger" id="filtro-transfer-out" title="Transfer OUT (Clique novamente para remover filtro)">
+                                        <button type="button" class="btn" id="filtro-transfer-out" title="Transfer OUT">
                                             <i class="fas fa-arrow-left"></i> OUT
                                         </button>
-                                        <button type="button" class="btn btn-outline-dark" id="filtro-barra" title="Barra da Tijuca (Clique novamente para remover filtro)">
+                                        <button type="button" class="btn" id="filtro-barra" title="Barra da Tijuca">
                                             <i class="fas fa-map-marker-alt"></i> Barra
                                         </button>
-                                        <button type="button" class="btn btn-outline-warning" id="filtro-prioritarios" title="Serviços Prioritários (4-10 PAX + Hotelbeds/Holiday/Barra) (Clique novamente para remover filtro)">
+                                        <button type="button" class="btn" id="filtro-prioritarios" title="Serviços Prioritários">
                                             <i class="fas fa-star"></i> Prioritários
                                         </button>
-                                        <button type="button" class="btn btn-outline-success" id="filtro-alocados" title="Serviços Alocados (Clique novamente para remover filtro)">
+                                        <button type="button" class="btn" id="filtro-alocados" title="Serviços Alocados">
                                             <i class="fas fa-check"></i> Alocados
                                         </button>
-                                        <button type="button" class="btn btn-outline-danger" id="filtro-nao-alocados" title="Serviços Não Alocados (Clique novamente para remover filtro)">
+                                        <button type="button" class="btn" id="filtro-nao-alocados" title="Serviços Não Alocados">
                                             <i class="fas fa-times"></i> Não Alocados
                                         </button>
                                     </div>
@@ -595,19 +1097,32 @@
         <div class="row" id="kanban-container">
             <!-- Van 1 -->
             <div class="col-lg-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="card-title mb-0 d-flex justify-content-between align-items-center">
-                            <div>
-                                <i class="fas fa-van-shuttle"></i> Van 1
-                                <span class="badge bg-light text-dark ms-2" id="van1-pax">{{ van1.total_pax }} PAX</span>
-                                <span class="badge bg-light text-dark ms-1" id="van1-valor">{{ van1.total_valor|currency }}</span>
-                                <span class="badge bg-light text-dark ms-1" id="van1-servicos">{{ van1.count }} serviços</span>
+                <div class="card h-100 van-card">
+                    <div class="card-header van-header" style="background: #1775AE; border: none;">
+                        <h5 class="card-title mb-0 d-flex justify-content-between align-items-center text-white">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="van-icon">
+                                    <i class="fas fa-van-shuttle"></i>
+                                </div>
+                                <div>
+                                    <div class="van-title">Van 1</div>
+                                    <div class="van-badges">
+                                        <span class="van-badge" id="van1-pax">
+                                            <i class="fas fa-users"></i> {{ van1.total_pax }} PAX
+                                        </span>
+                                        <span class="van-badge" id="van1-valor">
+                                            <i class="fas fa-dollar-sign"></i> {{ van1.total_valor|currency }}
+                                        </span>
+                                        <span class="van-badge" id="van1-servicos">
+                                            <i class="fas fa-list"></i> {{ van1.count }} serviços
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                             <div>
                                 {% if escala.tem_dados %}
                                     <button type="button" 
-                                            class="btn btn-success btn-sm" 
+                                            class="btn btn-light btn-sm van-export-btn" 
                                             onclick="exportarVanParaExcel('VAN1')" 
                                             title="Exportar Van 1 para Excel">
                                         <i class="fas fa-file-excel"></i>
@@ -783,19 +1298,32 @@
 
             <!-- Van 2 -->
             <div class="col-lg-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-header bg-info text-white">
-                        <h5 class="card-title mb-0 d-flex justify-content-between align-items-center">
-                            <div>
-                                <i class="fas fa-van-shuttle"></i> Van 2
-                                <span class="badge bg-light text-dark ms-2" id="van2-pax">{{ van2.total_pax }} PAX</span>
-                                <span class="badge bg-light text-dark ms-1" id="van2-valor">{{ van2.total_valor|currency }}</span>
-                                <span class="badge bg-light text-dark ms-1" id="van2-servicos">{{ van2.count }} serviços</span>
+                <div class="card h-100 van-card">
+                    <div class="card-header van-header" style="background: #1775AE; border: none;">
+                        <h5 class="card-title mb-0 d-flex justify-content-between align-items-center text-white">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="van-icon">
+                                    <i class="fas fa-van-shuttle"></i>
+                                </div>
+                                <div>
+                                    <div class="van-title">Van 2</div>
+                                    <div class="van-badges">
+                                        <span class="van-badge" id="van2-pax">
+                                            <i class="fas fa-users"></i> {{ van2.total_pax }} PAX
+                                        </span>
+                                        <span class="van-badge" id="van2-valor">
+                                            <i class="fas fa-dollar-sign"></i> {{ van2.total_valor|currency }}
+                                        </span>
+                                        <span class="van-badge" id="van2-servicos">
+                                            <i class="fas fa-list"></i> {{ van2.count }} serviços
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                             <div>
                                 {% if escala.tem_dados %}
                                     <button type="button" 
-                                            class="btn btn-success btn-sm" 
+                                            class="btn btn-light btn-sm van-export-btn" 
                                             onclick="exportarVanParaExcel('VAN2')" 
                                             title="Exportar Van 2 para Excel">
                                         <i class="fas fa-file-excel"></i>
@@ -992,29 +1520,124 @@
 
 <!-- CSS para drag and drop -->
 <style>
+/* ========== ESTILOS MODERNOS PARA HEADERS DAS VANS ========== */
+.van-card {
+    border: none !important;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(23, 117, 174, 0.08);
+    transition: all 0.3s ease;
+}
+
+.van-card:hover {
+    box-shadow: 0 4px 20px rgba(23, 117, 174, 0.15);
+    transform: translateY(-2px);
+}
+
+.van-header {
+    padding: 1.5rem 1.25rem !important;
+    border-bottom: none !important;
+}
+
+.van-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.van-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.van-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.van-badges {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.van-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.van-badge:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.van-badge i {
+    font-size: 0.75rem;
+    opacity: 0.9;
+}
+
+.van-export-btn {
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    background: white !important;
+    color: #1775AE !important;
+    border: none;
+}
+
+.van-export-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: #f8f9fa !important;
+}
+
+.van-export-btn i {
+    color: #28a745;
+}
+
+/* ========== ESTILOS DOS CARDS DE SERVIÇO ========== */
 .servico-card {
     cursor: move;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
 .servico-card .card {
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
+    border: 1px solid #e8ecef;
+    border-left: 3px solid #1775AE;
+    border-radius: 10px;
     overflow: hidden;
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
 }
 
 .servico-card:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    transform: translateY(-3px);
     cursor: grab;
     z-index: 100;
 }
 
 .servico-card:hover .card {
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+    border-left-color: #1775AE;
+    box-shadow: 0 6px 20px rgba(23, 117, 174, 0.12), 0 0 0 1px rgba(23, 117, 174, 0.08);
 }
 
 .servico-card:active {
@@ -1124,8 +1747,9 @@
 #van1-container, #van2-container {
     min-height: 200px;
     position: relative;
-    padding: 15px;
-    border-radius: 12px;
+    padding: 1rem;
+    border-radius: 0 0 12px 12px;
+    background: #f8f9fa;
 }
 
 .van-container {
@@ -1133,40 +1757,126 @@
     position: relative;
 }
 
-/* === MELHORIAS VISUAIS PARA BADGES === */
-.badge {
-    padding: 0.5em 0.9em;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+/* === MELHORIAS VISUAIS PARA CARDS DE SERVIÇO === */
+.servico-card .card-body {
+    padding: 1rem !important;
+    background: white;
 }
 
-.badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+.servico-card .card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+}
+
+.servico-card .small {
+    font-size: 0.85rem;
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+.servico-card .small strong {
+    color: #495057;
+    font-weight: 600;
+}
+
+.servico-card .small i {
+    width: 16px;
+    margin-right: 0.25rem;
+}
+
+/* === BADGES MODERNOS E MINIMALISTAS === */
+.badge {
+    padding: 0.4em 0.75em;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
 }
 
 .badge.bg-success {
-    background: linear-gradient(135deg, #198754 0%, #20c997 100%) !important;
+    background: #10b981 !important;
+    color: white !important;
+    border-color: rgba(16, 185, 129, 0.2);
 }
 
 .badge.bg-primary {
-    background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%) !important;
+    background: #1775AE !important;
+    color: white !important;
+    border-color: rgba(23, 117, 174, 0.2);
 }
 
 .badge.bg-danger {
-    background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%) !important;
+    background: #ef4444 !important;
+    color: white !important;
+    border-color: rgba(239, 68, 68, 0.2);
 }
 
 .badge.bg-warning {
-    background: linear-gradient(135deg, #ffc107 0%, #ffeb3b 100%) !important;
-    color: #333 !important;
+    background: #f59e0b !important;
+    color: white !important;
+    border-color: rgba(245, 158, 11, 0.2);
 }
 
 .badge.bg-info {
-    background: linear-gradient(135deg, #0dcaf0 0%, #00d4ff 100%) !important;
+    background: #06b6d4 !important;
+    color: white !important;
+    border-color: rgba(6, 182, 212, 0.2);
+}
+
+.badge.bg-secondary {
+    background: #6b7280 !important;
+    color: white !important;
+    border-color: rgba(107, 114, 128, 0.2);
+}
+
+.badge.bg-dark {
+    background: #374151 !important;
+    color: white !important;
+    border-color: rgba(55, 65, 81, 0.2);
+}
+
+/* Badge hover suave */
+.servico-card .badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* === ÍCONES COM CORES SUTIS === */
+.servico-card .text-danger {
+    color: #ef4444 !important;
+}
+
+.servico-card .text-warning {
+    color: #f59e0b !important;
+}
+
+.servico-card .text-info {
+    color: #1775AE !important;
+}
+
+.servico-card .text-success {
+    color: #10b981 !important;
+}
+
+.servico-card .text-muted {
+    color: #9ca3af !important;
+}
+
+/* === MELHORIAS NO CARD HEADER (GRUPOS) === */
+.servico-card .card-header.bg-light {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+    border-bottom: 1px solid #bbf7d0;
+    padding: 0.5rem 0.75rem !important;
+}
+
+.servico-card .card-header .text-success {
+    color: #16a34a !important;
+    font-weight: 500;
 }
 
 /* === ESTILOS MINIMALISTAS PARA BOTÕES DE AÇÃO === */
@@ -2445,7 +3155,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 else van2Visiveis++;
                 
                 // Adicionar ao array para ordenação
-                cardsVisiveis.push({ card, horario, van });
+                cardsVisiveis.push({ card, horario, van, status });
             } else {
                 card.style.display = 'none';
             }
@@ -2464,16 +3174,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const van1Cards = cardsVisiveis.filter(item => item.van === 'VAN1');
         const van2Cards = cardsVisiveis.filter(item => item.van === 'VAN2');
         
-        // Função de ordenação: horários mais cedo primeiro, sem horário no final
-        const sortByHorario = (a, b) => {
+        const statusPriority = status => {
+            if (status === 'ALOCADO') return 0;
+            if (status === 'NAO_ALOCADO') return 1;
+            return 2;
+        };
+        
+        const sortByStatusAndHorario = (a, b) => {
+            const statusDiff = statusPriority(a.status) - statusPriority(b.status);
+            if (statusDiff !== 0) return statusDiff;
             const horarioA = a.horario || '99:99';
             const horarioB = b.horario || '99:99';
             return horarioA.localeCompare(horarioB);
         };
         
         // Ordenar cada van
-        van1Cards.sort(sortByHorario);
-        van2Cards.sort(sortByHorario);
+        van1Cards.sort(sortByStatusAndHorario);
+        van2Cards.sort(sortByStatusAndHorario);
         
         // Reordenar DOM - Van 1
         const van1Container = document.getElementById('van1-container');
@@ -2494,14 +3211,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Função para atualizar estatísticas
     function atualizarEstatisticas(servicos, pax, van1, van2) {
-        const total = servicoCards.length;
-        if (servicos === total) {
-            filtroStats.textContent = `${servicos} serviços (${pax} PAX)`;
-        } else {
-            filtroStats.innerHTML = `
-                <strong>${servicos}</strong>/${total} serviços (${pax} PAX) | V1: ${van1} | V2: ${van2}
-            `;
-        }
+        // Estatísticas desabilitadas - área removida
+        filtroStats.textContent = '';
         
         // Atualizar totais das vans
         atualizarTotaisVans();
@@ -2551,6 +3262,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }).format(valor);
     }
     
+    // Função para atualizar contadores de alocados/não alocados
+    function atualizarContadoresAlocacao() {
+        const todosCards = document.querySelectorAll('.servico-card');
+        let alocados = 0;
+        let naoAlocados = 0;
+        
+        todosCards.forEach(card => {
+            const status = card.dataset.status;
+            if (status === 'ALOCADO') {
+                alocados++;
+            } else if (status === 'NAO_ALOCADO') {
+                naoAlocados++;
+            }
+        });
+        
+        // Atualizar os cards de totais
+        const totalAlocadosEl = document.getElementById('total-alocados');
+        const totalNaoAlocadosEl = document.getElementById('total-nao-alocados');
+        
+        if (totalAlocadosEl) totalAlocadosEl.textContent = alocados;
+        if (totalNaoAlocadosEl) totalNaoAlocadosEl.textContent = naoAlocados;
+    }
+    
     // Função para limpar filtros
     function limparFiltros() {
         if (filtroPaxMin) filtroPaxMin.value = '';
@@ -2560,9 +3294,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (filtroVan) filtroVan.value = '';
         if (filtroStatus) filtroStatus.value = '';
         
-        // Remover classes ativas dos botões - incluindo todas as variações
-        document.querySelectorAll('.btn-outline-primary.active, .btn-outline-secondary.active, .btn-outline-warning.active, .btn-outline-info.active, .btn-outline-success.active, .btn-outline-danger.active, .btn-outline-dark.active')
-                .forEach(btn => btn.classList.remove('active'));
+        // Remover classes ativas de TODOS os botões de filtro rápido
+        document.querySelectorAll('.btn-group .btn.active').forEach(btn => btn.classList.remove('active'));
         
         aplicarFiltros();
     }
@@ -2580,6 +3313,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const cliente = card.dataset.cliente ? card.dataset.cliente.toLowerCase() : '';
             const horario = card.dataset.horario || '';
             const van = card.dataset.van || '';
+            const status = card.dataset.status || '';
             
             if (cliente.includes(clienteBusca.toLowerCase())) {
                 card.style.display = 'block';
@@ -2587,7 +3321,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 paxVisivel += pax;
                 if (van === 'VAN1') van1Visiveis++;
                 else van2Visiveis++;
-                cardsVisiveis.push({ card, horario, van });
+                cardsVisiveis.push({ card, horario, van, status });
             } else {
                 card.style.display = 'none';
             }
@@ -2613,6 +3347,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const servico = card.dataset.servico ? card.dataset.servico.toLowerCase() : '';
             const horario = card.dataset.horario || '';
             const van = card.dataset.van || '';
+            const status = card.dataset.status || '';
             
             if (servico.includes(servicoBusca.toLowerCase())) {
                 card.style.display = 'block';
@@ -2620,7 +3355,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 paxVisivel += pax;
                 if (van === 'VAN1') van1Visiveis++;
                 else van2Visiveis++;
-                cardsVisiveis.push({ card, horario, van });
+                cardsVisiveis.push({ card, horario, van, status });
             } else {
                 card.style.display = 'none';
             }
@@ -2647,6 +3382,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const cliente = card.dataset.cliente ? card.dataset.cliente.toLowerCase() : '';
             const horario = card.dataset.horario || '';
             const van = card.dataset.van || '';
+            const status = card.dataset.status || '';
             
             // Critérios para prioritários:
             // 1. PAX entre 4-10
@@ -2668,7 +3404,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     paxVisivel += pax;
                     if (van === 'VAN1') van1Visiveis++;
                     else van2Visiveis++;
-                    cardsVisiveis.push({ card, horario, van });
+                    cardsVisiveis.push({ card, horario, van, status });
                 } else {
                     card.style.display = 'none';
                 }
@@ -2704,7 +3440,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 paxVisivel += pax;
                 if (van === 'VAN1') van1Visiveis++;
                 else van2Visiveis++;
-                cardsVisiveis.push({ card, horario, van });
+                cardsVisiveis.push({ card, horario, van, status });
             } else {
                 card.style.display = 'none';
             }
@@ -2726,16 +3462,19 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filtroStatus) filtroStatus.addEventListener('change', aplicarFiltros);
     if (clearFilters) clearFilters.addEventListener('click', limparFiltros);
     
-    // Filtros rápidos
-    // Event listeners para botões de filtro rápido
+    // Filtros rápidos - com toggle (clicar novamente remove o filtro)
     if (filtroPaxAlto) {
         filtroPaxAlto.addEventListener('click', function() {
             if (this.classList.contains('active')) {
-                // Duplo clique - remover filtro
-                limparFiltros();
+                // Remover filtro ativo
+                this.classList.remove('active');
+                filtroPaxMin.value = '';
+                filtroPaxMax.value = '';
+                aplicarFiltros();
             } else {
-                limparFiltros();
+                // Ativar filtro
                 filtroPaxMin.value = '4';
+                filtroPaxMax.value = '';
                 this.classList.add('active');
                 aplicarFiltros();
             }
@@ -2745,10 +3484,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filtroPaxBaixo) {
         filtroPaxBaixo.addEventListener('click', function() {
             if (this.classList.contains('active')) {
-                // Duplo clique - remover filtro
-                limparFiltros();
+                // Remover filtro ativo
+                this.classList.remove('active');
+                filtroPaxMin.value = '';
+                filtroPaxMax.value = '';
+                aplicarFiltros();
             } else {
-                limparFiltros();
+                // Ativar filtro
                 filtroPaxMin.value = '1';
                 filtroPaxMax.value = '3';
                 this.classList.add('active');
@@ -2760,10 +3502,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filtroHotelbeds) {
         filtroHotelbeds.addEventListener('click', function() {
             if (this.classList.contains('active')) {
-                // Duplo clique - remover filtro
-                limparFiltros();
+                // Remover filtro ativo
+                this.classList.remove('active');
+                aplicarFiltros();
             } else {
-                limparFiltros();
+                // Ativar filtro
                 aplicarFiltroCliente('hotelbeds');
                 this.classList.add('active');
             }
@@ -2773,10 +3516,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filtroHoliday) {
         filtroHoliday.addEventListener('click', function() {
             if (this.classList.contains('active')) {
-                // Duplo clique - remover filtro
-                limparFiltros();
+                // Remover filtro ativo
+                this.classList.remove('active');
+                aplicarFiltros();
             } else {
-                limparFiltros();
+                // Ativar filtro
                 aplicarFiltroCliente('holiday');
                 this.classList.add('active');
             }
@@ -2786,10 +3530,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filtroTransferIn) {
         filtroTransferIn.addEventListener('click', function() {
             if (this.classList.contains('active')) {
-                // Duplo clique - remover filtro
-                limparFiltros();
+                // Remover filtro ativo
+                this.classList.remove('active');
+                aplicarFiltros();
             } else {
-                limparFiltros();
+                // Ativar filtro
                 aplicarFiltroServico('transfer in');
                 this.classList.add('active');
             }
@@ -2799,10 +3544,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filtroTransferOut) {
         filtroTransferOut.addEventListener('click', function() {
             if (this.classList.contains('active')) {
-                // Duplo clique - remover filtro
-                limparFiltros();
+                // Remover filtro ativo
+                this.classList.remove('active');
+                aplicarFiltros();
             } else {
-                limparFiltros();
+                // Ativar filtro
                 aplicarFiltroServico('transfer out');
                 this.classList.add('active');
             }
@@ -2812,10 +3558,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filtroBarra) {
         filtroBarra.addEventListener('click', function() {
             if (this.classList.contains('active')) {
-                // Duplo clique - remover filtro
-                limparFiltros();
+                // Remover filtro ativo
+                this.classList.remove('active');
+                aplicarFiltros();
             } else {
-                limparFiltros();
+                // Ativar filtro
                 aplicarFiltroServico('barra');
                 this.classList.add('active');
             }
@@ -2825,10 +3572,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filtroPrioritarios) {
         filtroPrioritarios.addEventListener('click', function() {
             if (this.classList.contains('active')) {
-                // Duplo clique - remover filtro
-                limparFiltros();
+                // Remover filtro ativo
+                this.classList.remove('active');
+                aplicarFiltros();
             } else {
-                limparFiltros();
+                // Ativar filtro
                 aplicarFiltroPrioritarios();
                 this.classList.add('active');
             }
@@ -2838,10 +3586,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filtroAlocados) {
         filtroAlocados.addEventListener('click', function() {
             if (this.classList.contains('active')) {
-                // Duplo clique - remover filtro
-                limparFiltros();
+                // Remover filtro ativo
+                this.classList.remove('active');
+                aplicarFiltros();
             } else {
-                limparFiltros();
+                // Ativar filtro
                 aplicarFiltroStatus('ALOCADO');
                 this.classList.add('active');
             }
@@ -2851,10 +3600,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filtroNaoAlocados) {
         filtroNaoAlocados.addEventListener('click', function() {
             if (this.classList.contains('active')) {
-                // Duplo clique - remover filtro
-                limparFiltros();
+                // Remover filtro ativo
+                this.classList.remove('active');
+                aplicarFiltros();
             } else {
-                limparFiltros();
+                // Ativar filtro
                 aplicarFiltroStatus('NAO_ALOCADO');
                 this.classList.add('active');
             }
@@ -2867,6 +3617,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Atualizar totais das vans na inicialização
     setTimeout(() => {
         atualizarTotaisVans();
+        atualizarContadoresAlocacao();
     }, 100);
 });
 
@@ -3491,6 +4242,7 @@ function precificarEscala() {
 
     console.log('🎯 Iniciando precificação para data:', dataEscala);
 
+    showLoadingFromElement(precificarButton, 'Precificando...');
     // Mostrar mensagem de carregamento
     showMessage('Precificando escala...', 'success');
     setButtonLoading(precificarButton, true, 'Precificando...');
@@ -3550,6 +4302,7 @@ function precificarEscala() {
         showMessage(`Erro ao precificar escala: ${error.message}`, 'error');
     })
     .finally(() => {
+        hideModalCalculandoPrecos();
         setButtonLoading(precificarButton, false);
     });
 }
@@ -4996,139 +5749,12 @@ function abrirModalAdicionarServico() {
     modal.show();
 }
 
-// ========== SISTEMA DE LOADING ========== 
-const loadingOverlay = document.getElementById('loadingOverlay');
-const loadingText = document.getElementById('loadingText');
-const loadingSubtext = document.getElementById('loadingSubtext');
-
-// Garantir que loading começa escondido
-if (loadingOverlay) {
-    loadingOverlay.classList.remove('active');
-    loadingOverlay.style.display = 'none';
-}
-
-// Função para mostrar loading com mensagem customizada
-function showLoading(message = 'Processando...', subtext = 'Por favor, aguarde') {
-    if (loadingOverlay) {
-        loadingText.textContent = message;
-        loadingSubtext.textContent = subtext;
-        loadingOverlay.style.display = 'flex';
-        setTimeout(() => {
-            loadingOverlay.classList.add('active');
-        }, 10);
-        document.body.style.overflow = 'hidden'; // Prevenir scroll
-    }
-}
-
-// Função para esconder loading
-function hideLoading() {
-    if (loadingOverlay) {
-        loadingOverlay.classList.remove('active');
-        setTimeout(() => {
-            loadingOverlay.style.display = 'none';
-        }, 300);
-        document.body.style.overflow = ''; // Restaurar scroll
-    }
-}
-
-// Adicionar loading aos formulários principais
 document.addEventListener('DOMContentLoaded', function() {
-    // Garantir que loading está escondido
-    hideLoading();
-
-    // Loading para agrupar
-    const formAgrupar = document.getElementById('form-agrupar');
-    if (formAgrupar) {
-        formAgrupar.addEventListener('submit', function(e) {
-            showLoading('Agrupando Serviços...', 'Analisando compatibilidade e horários');
-        });
+    const pageWrapper = document.querySelector('.page-loading');
+    if (pageWrapper) {
+        pageWrapper.style.opacity = '1';
     }
-
-    // Loading para formatar escala
-    const formFormatar = document.getElementById('form-formatar');
-    if (formFormatar) {
-        formFormatar.addEventListener('submit', function(e) {
-            showLoading('Formatando Escala...', 'Removendo agrupamentos e preços');
-        });
-    }
-
-    // Loading para escalar/otimizar
-    const formEscalar = document.getElementById('form-escalar');
-    if (formEscalar) {
-        formEscalar.addEventListener('submit', function(e) {
-            showLoading('Otimizando Escala...', 'Distribuindo serviços entre as vans');
-        });
-    }
-
-    // Loading para precificar
-    const btnPrecificar = document.getElementById('btn-precificar');
-    if (btnPrecificar) {
-        btnPrecificar.addEventListener('click', function(e) {
-            showLoading('Calculando Preços...', 'Aplicando tarifários aos serviços');
-        });
-    }
-
-    // Loading para exportação Excel
-    const exportButtons = document.querySelectorAll('a[href*="exportar"]');
-    exportButtons.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            showLoading('Gerando Excel...', 'Formatando dados para exportação');
-            // Esconder após 3 segundos (tempo estimado de download)
-            setTimeout(() => hideLoading(), 3000);
-        });
-    });
-
-    // Loading para operações AJAX (mover serviço, agrupar, etc)
-    const originalFetch = window.fetch;
-    window.fetch = function(...args) {
-        const url = args[0];
-        
-        // Detectar operações específicas e mostrar loading apropriado
-        if (typeof url === 'string') {
-            if (url.includes('mover-servico')) {
-                showLoading('Movendo Serviço...', 'Atualizando distribuição');
-            } else if (url.includes('agrupar-servicos')) {
-                showLoading('Agrupando...', 'Criando grupo de serviços');
-            } else if (url.includes('desagrupar')) {
-                showLoading('Desagrupando...', 'Separando serviços');
-            } else if (url.includes('excluir-servico')) {
-                showLoading('Excluindo Serviço...', 'Removendo da escala');
-            } else if (url.includes('atualizar-preco')) {
-                showLoading('Atualizando Preço...', 'Salvando novo valor');
-            } else if (url.includes('salvar-edicao')) {
-                showLoading('Salvando Alterações...', 'Atualizando informações');
-            }
-        }
-        
-        return originalFetch.apply(this, args).finally(() => {
-            // Esconder loading após requisição completar
-            // Dar um pequeno delay para suavizar a transição
-            setTimeout(() => hideLoading(), 500);
-        });
-    };
-
-    // Animação de entrada suave para a página
-    document.querySelector('.page-loading').style.opacity = '1';
 });
-
-// Esconder loading quando a página for completamente carregada
-window.addEventListener('load', function() {
-    hideLoading();
-});
-
-// Prevenir que o loading fique travado se houver erro
-window.addEventListener('error', function() {
-    hideLoading();
-});
-
-// Esconder loading se usuário tentar interagir
-document.addEventListener('click', function(e) {
-    // Se clicar no overlay (fora do conteúdo), não fechar
-    // Mas se clicar em qualquer botão de cancelar, fechar
-    if (e.target.matches('[data-bs-dismiss="modal"], .btn-secondary')) {
-        hideLoading();
-    }
-}, true);
 </script>
 
 {% endblock %}

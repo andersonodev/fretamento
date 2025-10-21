@@ -180,3 +180,142 @@ a:hover {
     box-shadow: var(--primary-shadow-hover) !important;
     transition: box-shadow 0.3s ease;
 }
+
+/* =========================
+   MODO ESCURO GLOBAL
+   ========================= */
+[data-theme="dark"] {
+    --surface-950: #020617;
+    --surface-900: #0f172a;
+    --surface-800: #1e293b;
+    --surface-700: #334155;
+    --surface-600: #475569;
+    --surface-500: #64748b;
+    --text-primary-dark: #e2e8f0;
+    --text-secondary-dark: #cbd5f5;
+    --border-dark: rgba(148, 163, 184, 0.35);
+    --primary-shadow: 0 18px 40px rgba(15, 23, 42, 0.55);
+    --primary-shadow-hover: 0 24px 60px rgba(2, 6, 23, 0.65);
+}
+
+[data-theme="dark"] body {
+    background: var(--surface-900);
+    color: var(--text-primary-dark);
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .card-body,
+[data-theme="dark"] .card-header,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .list-group-item,
+[data-theme="dark"] .dropdown-menu,
+[data-theme="dark"] .accordion-item {
+    background: var(--surface-800) !important;
+    color: var(--text-primary-dark) !important;
+    border-color: var(--border-dark) !important;
+    box-shadow: var(--primary-shadow);
+}
+
+[data-theme="dark"] .table {
+    color: var(--text-primary-dark);
+    background: var(--surface-800);
+}
+
+[data-theme="dark"] .table thead {
+    background: rgba(51, 65, 85, 0.6);
+}
+
+[data-theme="dark"] .table-striped tbody tr:nth-of-type(odd) {
+    background: rgba(30, 41, 59, 0.6);
+}
+
+[data-theme="dark"] .table-striped tbody tr:nth-of-type(even) {
+    background: rgba(15, 23, 42, 0.6);
+}
+
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] textarea,
+[data-theme="dark"] input,
+[data-theme="dark"] .input-group-text {
+    background: rgba(15, 23, 42, 0.85) !important;
+    color: var(--text-primary-dark) !important;
+    border-color: var(--border-dark) !important;
+}
+
+[data-theme="dark"] .form-control::placeholder,
+[data-theme="dark"] .form-select::placeholder,
+[data-theme="dark"] .form-text,
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] .small {
+    color: var(--text-secondary-dark) !important;
+}
+
+[data-theme="dark"] .text-dark,
+[data-theme="dark"] .text-black,
+[data-theme="dark"] [style*="color: #000"],
+[data-theme="dark"] [style*="color: #333"],
+[data-theme="dark"] [style*="color: #495057"] {
+    color: var(--text-primary-dark) !important;
+}
+
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-light {
+    background: var(--surface-800) !important;
+}
+
+[data-theme="dark"] .btn-outline-primary,
+[data-theme="dark"] .btn-outline-secondary,
+[data-theme="dark"] .btn-outline-success,
+[data-theme="dark"] .btn-outline-warning,
+[data-theme="dark"] .btn-outline-danger,
+[data-theme="dark"] .btn-outline-info,
+[data-theme="dark"] .btn-outline-dark {
+    color: var(--text-primary-dark) !important;
+    border-color: var(--border-dark) !important;
+    background: transparent;
+}
+
+[data-theme="dark"] .btn-outline-primary:hover,
+[data-theme="dark"] .btn-outline-secondary:hover,
+[data-theme="dark"] .btn-outline-success:hover,
+[data-theme="dark"] .btn-outline-warning:hover,
+[data-theme="dark"] .btn-outline-danger:hover,
+[data-theme="dark"] .btn-outline-info:hover,
+[data-theme="dark"] .btn-outline-dark:hover {
+    background: rgba(59, 130, 246, 0.18) !important;
+    color: #f8fafc !important;
+    border-color: rgba(96, 165, 250, 0.5) !important;
+}
+
+[data-theme="dark"] .badge.bg-warning,
+[data-theme="dark"] .badge.bg-light,
+[data-theme="dark"] .badge.bg-secondary {
+    color: #0f172a !important;
+}
+
+[data-theme="dark"] .alert {
+    background: rgba(30, 41, 59, 0.85);
+    border-color: var(--border-dark);
+    color: var(--text-primary-dark);
+}
+
+[data-theme="dark"] .list-group-item-action:hover {
+    background: rgba(59, 130, 246, 0.14);
+}
+
+[data-theme="dark"] .nav-tabs .nav-link.active {
+    background: rgba(30, 41, 59, 0.9);
+    border-color: var(--border-dark);
+    color: var(--text-primary-dark);
+}
+
+[data-theme="dark"] .progress {
+    background: rgba(30, 41, 59, 0.8);
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer {
+    background: rgba(15, 23, 42, 0.95);
+    border-color: var(--border-dark);
+}

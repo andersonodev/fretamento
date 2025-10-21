@@ -10,6 +10,71 @@
 .btn-group .btn:hover {
     z-index: 1;
 }
+
+/* Ajustes de modo escuro */
+[data-theme="dark"] .card {
+    background: rgba(15, 23, 42, 0.92);
+    border-color: rgba(148, 163, 184, 0.25);
+    color: var(--text-primary-dark);
+    box-shadow: 0 18px 40px rgba(2, 6, 23, 0.55);
+}
+
+[data-theme="dark"] .card-header {
+    background: rgba(30, 41, 59, 0.9);
+    border-bottom-color: rgba(148, 163, 184, 0.25);
+    color: var(--text-primary-dark);
+}
+
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] small {
+    color: var(--text-secondary-dark) !important;
+}
+
+[data-theme="dark"] .table {
+    background: rgba(15, 23, 42, 0.92);
+    color: var(--text-primary-dark);
+}
+
+[data-theme="dark"] .table thead {
+    background: rgba(30, 41, 59, 0.9);
+    color: var(--text-primary-dark);
+}
+
+[data-theme="dark"] .table-responsive {
+    background: transparent;
+}
+
+[data-theme="dark"] .table-hover tbody tr:hover {
+    background: rgba(59, 130, 246, 0.18);
+}
+
+[data-theme="dark"] .table tbody tr {
+    background: rgba(15, 23, 42, 0.92);
+}
+
+[data-theme="dark"] .table tbody tr:nth-child(even) {
+    background: rgba(30, 41, 59, 0.9);
+}
+
+[data-theme="dark"] .badge.bg-warning,
+[data-theme="dark"] .badge.bg-secondary,
+[data-theme="dark"] .badge.bg-light {
+    color: #0f172a !important;
+}
+
+[data-theme="dark"] .btn-outline-secondary,
+[data-theme="dark"] .btn-outline-danger,
+[data-theme="dark"] .btn-outline-primary {
+    color: var(--text-primary-dark) !important;
+    border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+[data-theme="dark"] .btn-outline-secondary:hover,
+[data-theme="dark"] .btn-outline-danger:hover,
+[data-theme="dark"] .btn-outline-primary:hover {
+    background: rgba(59, 130, 246, 0.22) !important;
+    color: #f8fafc !important;
+}
 </style>
 {% endblock %}
 
@@ -625,3 +690,22 @@ function definirDataFormatar(data) {
 </div>
 
 {% endblock %}
+[data-theme="dark"] .table thead th {
+    border-bottom-color: rgba(148, 163, 184, 0.25);
+}
+
+[data-theme="dark"] .table tbody tr {
+    border-color: rgba(148, 163, 184, 0.2);
+}
+
+[data-theme="dark"] .table tbody tr td {
+    color: var(--text-primary-dark);
+}
+
+[data-theme="dark"] .table tbody tr td .badge {
+    filter: brightness(0.92);
+}
+
+[data-theme="dark"] .table .text-success {
+    color: #34d399 !important;
+}
