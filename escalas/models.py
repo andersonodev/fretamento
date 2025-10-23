@@ -58,20 +58,21 @@ class Escala(models.Model):
         """Retorna o total de PAX da Van 2"""
         return sum(alocacao.servico.pax for alocacao in self.alocacoes.filter(van='VAN2'))
     
+
     @property
     def total_van1_valor(self):
-        """Retorna o valor total da Van 1"""
+        """Retorna o valor total da Van 1 considerando apenas serviços alocados"""
         total = 0
-        for alocacao in self.alocacoes.filter(van='VAN1'):
+        for alocacao in self.alocacoes.filter(van='VAN1', status_alocacao='ALOCADO'):
             if alocacao.preco_calculado:
                 total += alocacao.preco_calculado
         return total
-    
+
     @property
     def total_van2_valor(self):
-        """Retorna o valor total da Van 2"""
+        """Retorna o valor total da Van 2 considerando apenas serviços alocados"""
         total = 0
-        for alocacao in self.alocacoes.filter(van='VAN2'):
+        for alocacao in self.alocacoes.filter(van='VAN2', status_alocacao='ALOCADO'):
             if alocacao.preco_calculado:
                 total += alocacao.preco_calculado
         return total
