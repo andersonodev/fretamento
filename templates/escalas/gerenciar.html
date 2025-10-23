@@ -6,120 +6,175 @@
 
 {% block extra_css %}
 <style>
-/* Efeito hover nos botões da ta                                                        onclick="confirmarExclusao('{{ escala.data|date_br }}', '{{ escala.data|date:'d/m/Y' }}', {{ escala.alocacoes.count }}, '{{ escala.get_etapa_display }}');">ela */
+/* Rótulos pequenos para clarificar valores nas células (etapa/status/pax/valor) */
+.cell-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #6c757d; /* text-muted */
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+.badge-compact {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.85rem;
+}
+
+/* Header refinado */
+.page-header {
+    gap: 1rem;
+}
+.page-header .h3 {
+    font-size: 1.25rem;
+    margin: 0;
+}
+.breadcrumb-custom .breadcrumb-item a {
+    color: #6b7280; /* muted */
+}
+.breadcrumb-custom .breadcrumb-item.active {
+    color: #374151; /* darker text */
+    font-weight: 600;
+}
+.steps {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.35rem;
+}
+.steps .step {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+.steps .step .step-badge {
+    width: 1.6rem;
+    height: 1.6rem;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 0.375rem;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 576px) {
+    .steps { display: none; }
+}
+
+/* Hover sutil nos botões de ação */
 .btn-group .btn:hover {
     z-index: 1;
+    opacity: 0.95;
 }
 
-/* Ajustes de modo escuro */
-[data-theme="dark"] .card {
-    background: rgba(15, 23, 42, 0.92);
-    border-color: rgba(148, 163, 184, 0.25);
-    color: var(--text-primary-dark);
-    box-shadow: 0 18px 40px rgba(2, 6, 23, 0.55);
-}
-
-[data-theme="dark"] .card-header {
-    background: rgba(30, 41, 59, 0.9);
-    border-bottom-color: rgba(148, 163, 184, 0.25);
-    color: var(--text-primary-dark);
-}
-
-[data-theme="dark"] .text-muted,
-[data-theme="dark"] small {
-    color: var(--text-secondary-dark) !important;
-}
-
-[data-theme="dark"] .table {
-    background: rgba(15, 23, 42, 0.92);
-    color: var(--text-primary-dark);
-}
-
-[data-theme="dark"] .table thead {
-    background: rgba(30, 41, 59, 0.9);
-    color: var(--text-primary-dark);
-}
-
-[data-theme="dark"] .table-responsive {
-    background: transparent;
-}
-
-[data-theme="dark"] .table-hover tbody tr:hover {
-    background: rgba(59, 130, 246, 0.18);
-}
-
+/* Estilo do modo escuro refinado */
+[data-theme="dark"] .card,
+[data-theme="dark"] .table,
 [data-theme="dark"] .table tbody tr {
-    background: rgba(15, 23, 42, 0.92);
+    background-color: #1e293b; /* slate-800 */
+    color: #e2e8f0; /* slate-200 */
+    border-color: #334155; /* slate-700 */
+    box-shadow: none;
+}
+
+[data-theme="dark"] .card-header,
+[data-theme="dark"] .table thead {
+    background-color: #0f172a; /* slate-900 */
+    border-bottom: 1px solid #334155;
+    color: #e2e8f0;
 }
 
 [data-theme="dark"] .table tbody tr:nth-child(even) {
-    background: rgba(30, 41, 59, 0.9);
+    background-color: #1c2a3a; /* zebra effect */
+}
+
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] small,
+[data-theme="dark"] .form-text {
+    color: #94a3b8 !important; /* slate-400 */
+}
+
+[data-theme="dark"] .table-hover tbody tr:hover {
+    background-color: #3b82f640; /* azul suave */
 }
 
 [data-theme="dark"] .badge.bg-warning,
 [data-theme="dark"] .badge.bg-secondary,
 [data-theme="dark"] .badge.bg-light {
-    color: #0f172a !important;
+    color: #0f172a;
+    background-color: #facc15; /* amarelo leve */
+    font-weight: 500;
 }
 
 [data-theme="dark"] .btn-outline-secondary,
 [data-theme="dark"] .btn-outline-danger,
 [data-theme="dark"] .btn-outline-primary {
-    color: var(--text-primary-dark) !important;
-    border-color: rgba(148, 163, 184, 0.35) !important;
+    color: #e2e8f0;
+    border-color: #475569; /* slate-600 */
 }
 
 [data-theme="dark"] .btn-outline-secondary:hover,
 [data-theme="dark"] .btn-outline-danger:hover,
 [data-theme="dark"] .btn-outline-primary:hover {
-    background: rgba(59, 130, 246, 0.22) !important;
-    color: #f8fafc !important;
+    background-color: #2563eb33; /* azul translúcido */
+    color: #f8fafc;
 }
+
+[data-theme="dark"] .table thead th {
+    border-bottom: 1px solid #334155;
+}
+
+[data-theme="dark"] .table tbody tr td {
+    border-color: #334155;
+}
+
+[data-theme="dark"] .table tbody tr td .badge {
+    filter: brightness(0.95);
+}
+
+[data-theme="dark"] .table .text-success {
+    color: #34d399 !important; /* verde suave */
+}
+
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb" class="mb-3">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="{% url 'escalas:selecionar_ano' %}">
-                    <i class="fas fa-calendar-alt"></i> Anos
-                </a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}">
-                    <i class="fas fa-calendar-check"></i> Meses de {{ ano }}
-                </a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-                <i class="fas fa-list-alt"></i> Escalas de 
-                {% if mes_atual %}
-                    {{ mes_atual.nome }} {{ ano }}
-                {% else %}
-                    {{ mes }}/{{ ano }}
-                {% endif %}
-            </li>
-        </ol>
-    </nav>
+    <!-- breadcrumb superior removido (substituído por versão compacta no header) -->
 
     <!-- Cabeçalho -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-start page-header">
                 <div>
-                    <h1 class="mb-0">
-                        <i class="fas fa-calendar-alt text-primary"></i>
-                        Escalas de
-                        {% if mes_atual %}
-                            {{ mes_atual.nome }} {{ ano }}
-                        {% else %}
-                            {{ mes }}/{{ ano }}
-                        {% endif %}
-                    </h1>
-                    <p class="text-muted">Criar estrutura → Puxar dados → Agrupar/Otimizar → Formatar quando necessário</p>
+                    <div class="mb-1 breadcrumb-custom">
+                        <small class="text-muted">
+                            <a href="{% url 'escalas:selecionar_ano' %}"><i class="fas fa-calendar-alt"></i> Anos</a>
+                            &nbsp;/&nbsp;
+                            <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}"><i class="fas fa-calendar-check"></i> Meses de {{ ano }}</a>
+                            &nbsp;/&nbsp;
+                            <span class="active">Escalas de {% if mes_atual %}{{ mes_atual.nome }} {{ ano }}{% else %}{{ mes }}/{{ ano }}{% endif %}</span>
+                        </small>
+                    </div>
+
+                    <h3 class="h3 mb-0" style="color:#1775AE;font-weight:700;">Escalas — {% if mes_atual %}{{ mes_atual.nome }} {{ ano }}{% else %}{{ mes }}/{{ ano }}{% endif %}</h3>
+                    <div class="steps text-muted">
+                        <span class="small">Criar estrutura</span>
+                        <span class="mx-2">•</span>
+                        <span class="small">Puxar dados</span>
+                        <span class="mx-2">•</span>
+                        <span class="small">Agrupar/Otimizar</span>
+                        <span class="mx-2">•</span>
+                        <span class="small">Formatar</span>
+                    </div>
                 </div>
+
                 <div class="d-flex gap-2">
                     <a href="{% url 'escalas:exportar_mes' ano=ano mes=mes %}" 
                        class="btn btn-success" 
@@ -183,11 +238,10 @@
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        <th>Status</th>
+                                        <th><span class="visually-hidden">Status</span></th>
                                         <th>Aprovação</th>
-                                        <th>Data Origem</th>
-                                        <th>Serviços</th>
-                                        <th>PAX Total</th>
+                                        <th><span class="visually-hidden">Data Origem</span></th>
+                                        <!-- Serviços e PAX removidos -->
                                         <th>Valor Total</th>
                                         <th>Ações</th>
                                     </tr>
@@ -199,16 +253,9 @@
                                             <strong>{{ escala.data|date:"d/m/Y" }}</strong><br>
                                             <small class="text-muted">{{ escala.data|date:"l" }}</small>
                                         </td>
+                                        <!-- Etapa removida -->
                                         <td>
-                                            {% if escala.etapa == 'ESTRUTURA' %}
-                                                <span class="badge bg-secondary">Estrutura Criada</span>
-                                            {% elif escala.etapa == 'DADOS_PUXADOS' %}
-                                                <span class="badge bg-primary">Dados Puxados</span>
-                                            {% elif escala.etapa == 'OTIMIZADA' %}
-                                                <span class="badge bg-success">Otimizada</span>
-                                            {% endif %}
-                                        </td>
-                                        <td>
+                                            <span class="cell-label">Aprovação</span>
                                             <span class="badge bg-{% if escala.status == 'PENDENTE' %}warning{% elif escala.status == 'APROVADA' %}success{% else %}danger{% endif %}">
                                                 {{ escala.get_status_display }}
                                             </span>
@@ -223,14 +270,10 @@
                                                 <span class="text-muted">-</span>
                                             {% endif %}
                                         </td>
+                                        <!-- Serviços e PAX removidos -->
                                         <td>
-                                            <span class="badge bg-info">{{ escala.alocacoes.count }}</span>
-                                        </td>
-                                        <td>
-                                            <span class="badge bg-warning text-dark">{{ escala.total_van1_pax|add:escala.total_van2_pax }}</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-success">{{ escala.total_van1_valor|add:escala.total_van2_valor|currency }}</span>
+                                            <span class="cell-label">Valor</span>
+                                            <span class="text-success" aria-label="Valor total">{{ escala.total_van1_valor|add:escala.total_van2_valor|currency }}</span>
                                         </td>
                                         <td>
                                             <div class="btn-group btn-group-sm" role="group">
@@ -305,41 +348,45 @@
                     </h6>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h6><i class="fas fa-plus text-primary"></i> Etapa 1: Criar Estrutura</h6>
-                            <p class="small">Crie apenas a estrutura básica da escala com a data desejada.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h6><i class="fas fa-download text-info"></i> Etapa 2: Puxar Dados</h6>
-                            <p class="small">Selecione uma data de origem e puxe os serviços, que serão distribuídos automaticamente entre as vans.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h6><i class="fas fa-paint-brush text-danger"></i> Formatação (Sempre Disponível)</h6>
-                            <p class="small">Desfaz agrupamentos, remove precificação e reseta otimização, mantendo os dados dos serviços. Disponível em qualquer momento após puxar dados.</p>
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between align-items-start page-header">
+                                <div>
+                                    <div class="mb-1 breadcrumb-custom">
+                                        <small class="text-muted">
+                                            <a href="{% url 'escalas:selecionar_ano' %}"><i class="fas fa-calendar-alt"></i> Anos</a>
+                                            &nbsp;/&nbsp;
+                                            <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}"><i class="fas fa-calendar-check"></i> Meses de {{ ano }}</a>
+                                            &nbsp;/&nbsp;
+                                            <span class="active">Escalas de {% if mes_atual %}{{ mes_atual.nome }} {{ ano }}{% else %}{{ mes }}/{{ ano }}{% endif %}</span>
+                                        </small>
+                                    </div>
+
+                                    <h3 class="h3 mb-0" style="color:#1775AE;font-weight:700;">Escalas — {% if mes_atual %}{{ mes_atual.nome }} {{ ano }}{% else %}{{ mes }}/{{ ano }}{% endif %}</h3>
+                                    <!-- Stepper removido conforme solicitado -->
+                                </div>
+
+                                <div class="d-flex gap-2">
+                                    <a href="{% url 'escalas:exportar_mes' ano=ano mes=mes %}" 
+                                       class="btn btn-success" 
+                                       title="Exportar todas as escalas do mês em Excel">
+                                        <i class="fas fa-file-excel"></i> Exportar Mês
+                                    </a>
+                                    <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}" class="btn btn-outline-secondary">
+                                        <i class="fas fa-arrow-left"></i> Voltar aos Meses
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-// Auto-definir data para hoje ou para o mês selecionado
-document.addEventListener('DOMContentLoaded', function() {
-    const dataInput = document.getElementById('data');
-    
-    if (dataInput && !dataInput.value) {
-        {% if mes_atual and primeiro_dia %}
-            // Se estamos em um mês específico, usar o primeiro dia do mês
-            const primeiroDia = '{{ primeiro_dia|date:"Y-m-d" }}';
-            dataInput.value = primeiroDia;
-        {% else %}
-            // Caso contrário, usar hoje
-            const hoje = new Date().toISOString().split('T')[0];
-            dataInput.value = hoje;
-        {% endif %}
+            {% if mes_atual and primeiro_dia %}
+                const primeiroDia = '{{ primeiro_dia|date:"Y-m-d" }}';
+                dataInput.value = primeiroDia;
+            {% else %}
+                // Caso contrário, usar hoje
+                const hoje = new Date().toISOString().split('T')[0];
+                dataInput.value = hoje;
+            {% endif %}
     }
 });
 
