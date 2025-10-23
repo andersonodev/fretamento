@@ -1,356 +1,205 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load custom_filters %}
 
 {% block title %}Selecionar Ano - Escalas{% endblock %}
 
-{% block extra_css %}
-<style>
-.card-ano {
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: 2px solid transparent;
-    min-height: 280px;
-}
-
-.card-ano:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-    border-color: #007bff;
-}
-
-.card-ano.ano-atual {
-    border-color: #28a745;
-    background: linear-gradient(135deg, #f8fff9 0%, #f0fff4 100%);
-}
-
-.card-ano.ano-atual:hover {
-    border-color: #20c997;
-}
-
-.ano-numero {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #2c3e50;
-    margin-bottom: 1rem;
-}
-
-.ano-stats {
-    background: #f8f9fa;
-    border-radius: 0.75rem;
-    padding: 1rem;
-    margin-top: 1rem;
-}
-
-.stat-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    padding: 0.25rem 0;
-}
-
-.stat-row:last-child {
-    margin-bottom: 0;
-}
-
-.stat-icon {
-    margin-right: 0.5rem;
-    width: 16px;
-}
-
-.badge-ano {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
-}
-
-.icon-ano {
-    font-size: 3.5rem;
-    opacity: 0.8;
-    margin-bottom: 1rem;
-}
-
-.resumo-meses {
-    background: linear-gradient(90deg, #e3f2fd 0%, #f3e5f5 100%);
-    border-radius: 0.5rem;
-    padding: 0.75rem;
-    margin-top: 0.5rem;
-    text-align: center;
-}
-</style>
-{% endblock %}
-
 {% block extra_head %}
-<style>
-/* Dark mode adjustments */
-[data-theme="dark"] .card {
-    background: rgba(15, 23, 42, 0.92);
-    border-color: rgba(148, 163, 184, 0.25);
-    color: var(--text-primary-dark);
-    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.55);
-}
-[data-theme="dark"] .card-header {
-    background: rgba(30, 41, 59, 0.9);
-    border-bottom-color: rgba(148, 163, 184, 0.25);
-    color: var(--text-primary-dark);
-}
-[data-theme="dark"] .card-ano {
-    border-color: rgba(148, 163, 184, 0.2);
-}
-[data-theme="dark"] .card-ano:hover {
-    border-color: rgba(96, 165, 250, 0.45);
-    box-shadow: 0 24px 50px rgba(2, 6, 23, 0.7);
-}
-[data-theme="dark"] .card-ano.ano-atual {
-    background: linear-gradient(135deg, rgba(30, 64, 175, 0.4) 0%, rgba(14, 116, 144, 0.45) 100%);
-    border-color: rgba(34, 197, 94, 0.45);
-}
-[data-theme="dark"] .card-ano .ano-numero,
-[data-theme="dark"] .card-ano .text-muted,
-[data-theme="dark"] .stat-row span,
-[data-theme="dark"] .stat-row strong {
-    color: var(--text-primary-dark) !important;
-}
-[data-theme="dark"] .resumo-meses {
-    background: linear-gradient(90deg, rgba(14, 165, 233, 0.2) 0%, rgba(147, 197, 253, 0.2) 100%);
-    color: var(--text-primary-dark);
-}
-[data-theme="dark"] .ano-stats {
-    background: rgba(30, 41, 59, 0.85);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-}
-</style>
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/escalas-gerenciar.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <!-- Cabeçalho -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <h1 class="mb-0">
-                <i class="fas fa-calendar-alt text-primary"></i>
+<div class="container-fluid scale-management py-4">
+    <div class="page-header mb-4">
+        <div class="page-context">
+            <h1 class="page-title mb-2">
+                <i class="fas fa-calendar-alt text-primary me-2"></i>
                 Gerenciar Escalas
             </h1>
-            <p class="text-muted">Selecione o ano para continuar</p>
+            <p class="page-subtitle mb-0">Selecione um ano para continuar.</p>
         </div>
     </div>
 
-    <!-- Criar Nova Escala -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">
-                        <i class="fas fa-plus-circle"></i> Criar Nova Escala
-                    </h5>
+    <div class="scale-card shadow-sm border-0 mb-4">
+        <div class="card-header border-0 d-flex flex-wrap align-items-center gap-3">
+            <h5 class="card-title mb-0">
+                <i class="fas fa-plus-circle me-2 text-primary"></i>Criar Nova Escala
+            </h5>
+            <button type="submit" form="formCriarEstruturaAno" class="btn btn-primary ms-auto">
+                <i class="fas fa-plus me-2"></i>Criar Estrutura
+            </button>
+        </div>
+        <div class="card-body">
+            <form method="post" id="formCriarEstruturaAno" class="row g-3 align-items-end" action="{% url 'escalas:selecionar_ano' %}">
+                {% csrf_token %}
+                <input type="hidden" name="acao" value="criar_estrutura">
+                <div class="col-md-5 col-lg-4">
+                    <label for="data" class="form-label">Data da Escala</label>
+                    <input type="date" class="form-control" name="data" id="data" required lang="pt-BR">
                 </div>
-                <div class="card-body">
-                    <form method="post" action="{% url 'escalas:selecionar_ano' %}" class="row g-3">
-                        {% csrf_token %}
-                        <input type="hidden" name="acao" value="criar_estrutura">
-                        <div class="col-md-4">
-                            <label for="data" class="form-label">Data da Escala</label>
-                            <input type="date" class="form-control" name="data" id="data" required
-                                   lang="pt-BR">
-                        </div>
-                        <div class="col-md-4 d-flex align-items-end">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> Criar Estrutura
-                            </button>
-                        </div>
-                        <div class="col-md-4">
-                            <small class="text-muted">
-                                <strong>Etapa 1:</strong> Cria apenas a estrutura básica da escala
-                            </small>
-                        </div>
-                    </form>
+                <div class="col-12 col-md">
+                    <div class="form-hint">
+                        Escolha a data desejada para iniciar uma nova escala. Após criar a estrutura, você poderá puxar dados e otimizar as alocações.
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
-    <!-- Grid de Anos -->
-    <div class="row g-4 justify-content-center">
-        {% for ano_info in anos %}
-        <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="card card-ano h-100 {% if ano_info.eh_atual %}ano-atual{% endif %}" 
-                 onclick="window.location.href='{% url 'escalas:selecionar_mes_ano' ano=ano_info.ano %}'">
-                <div class="card-body text-center d-flex flex-column">
-                    <!-- Ícone do Ano -->
-                    <div class="icon-ano">
-                        {% if ano_info.eh_atual %}
-                            <i class="fas fa-calendar-star text-success"></i>
-                        {% elif ano_info.total_escalas > 0 %}
-                            <i class="fas fa-calendar-alt text-primary"></i>
-                        {% else %}
-                            <i class="fas fa-calendar text-muted"></i>
-                        {% endif %}
-                    </div>
-                    
-                    <!-- Número do Ano -->
-                    <div class="ano-numero">{{ ano_info.ano }}</div>
-                    
-                    <!-- Badge Status -->
-                    {% if ano_info.eh_atual %}
-                        <span class="badge bg-success badge-ano">Ano Atual</span>
-                    {% elif ano_info.total_escalas > 0 %}
-                        <span class="badge bg-primary badge-ano">{{ ano_info.total_escalas }} Escala{{ ano_info.total_escalas|pluralize:"s" }}</span>
-                    {% else %}
-                        <span class="badge bg-secondary badge-ano">Sem Escalas</span>
-                    {% endif %}
-                    
-                    <!-- Resumo de Meses -->
-                    {% if ano_info.meses_com_escalas > 0 %}
-                    <div class="resumo-meses">
-                        <small>
-                            <i class="fas fa-calendar-week text-primary me-1"></i>
-                            <strong>{{ ano_info.meses_com_escalas }}</strong> 
-                            mês{{ ano_info.meses_com_escalas|pluralize:"es" }} com escalas
-                        </small>
-                    </div>
-                    {% endif %}
-                    
-                    <!-- Estatísticas Detalhadas -->
-                    {% if ano_info.total_escalas > 0 %}
-                    <div class="ano-stats mt-auto">
-                        <div class="stat-row">
-                            <span><i class="fas fa-calendar-day stat-icon text-primary"></i>Escalas:</span>
-                            <strong>{{ ano_info.total_escalas }}</strong>
-                        </div>
-                        
-                        {% if ano_info.escalas_pendentes > 0 %}
-                        <div class="stat-row">
-                            <span><i class="fas fa-clock stat-icon text-warning"></i>Pendentes:</span>
-                            <strong class="text-warning">{{ ano_info.escalas_pendentes }}</strong>
-                        </div>
-                        {% endif %}
-                        
-                        {% if ano_info.escalas_aprovadas > 0 %}
-                        <div class="stat-row">
-                            <span><i class="fas fa-check-circle stat-icon text-success"></i>Aprovadas:</span>
-                            <strong class="text-success">{{ ano_info.escalas_aprovadas }}</strong>
-                        </div>
-                        {% endif %}
-                        
-                        {% if ano_info.escalas_rejeitadas > 0 %}
-                        <div class="stat-row">
-                            <span><i class="fas fa-times-circle stat-icon text-danger"></i>Rejeitadas:</span>
-                            <strong class="text-danger">{{ ano_info.escalas_rejeitadas }}</strong>
-                        </div>
-                        {% endif %}
-                        
-                        {% if ano_info.total_servicos > 0 %}
-                        <div class="stat-row">
-                            <span><i class="fas fa-briefcase stat-icon text-info"></i>Serviços:</span>
-                            <strong class="text-info">{{ ano_info.total_servicos }}</strong>
-                        </div>
-                        {% endif %}
-                        
-                        {% if ano_info.total_valor > 0 %}
-                        <div class="stat-row">
-                            <span><i class="fas fa-dollar-sign stat-icon text-success"></i>Valor Total:</span>
-                            <strong class="text-success">{{ ano_info.total_valor|currency_no_cents }}</strong>
-                        </div>
-                        {% endif %}
-                    </div>
-                    {% else %}
-                    <div class="ano-stats mt-auto">
-                        <p class="text-muted small mb-0">
-                            <i class="fas fa-info-circle me-2"></i>
-                            Nenhuma escala criada neste ano
-                        </p>
-                    </div>
-                    {% endif %}
+    {% if anos %}
+        <div class="overview-carousel" data-carousel="anos">
+            <button type="button" class="overview-carousel__nav prev" data-carousel-prev aria-label="Mostrar anos anteriores">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="overview-carousel__viewport">
+                <div class="overview-carousel__track" data-carousel-track>
+                    {% for ano_info in anos %}
+                        <a href="{% url 'escalas:selecionar_mes_ano' ano=ano_info.ano %}" class="overview-card {% if ano_info.eh_atual %}is-current{% endif %} {% if ano_info.total_escalas == 0 %}is-empty{% endif %}">
+                            <div class="overview-card__eyebrow">
+                                {% if ano_info.eh_atual %}
+                                    Ano atual
+                                {% elif ano_info.total_escalas > 0 %}
+                                    {{ ano_info.total_escalas }} escala{% if ano_info.total_escalas != 1 %}s{% endif %}
+                                {% else %}
+                                    Sem escalas
+                                {% endif %}
+                            </div>
+                            <div class="overview-card__body">
+                                <h2 class="overview-card__title">{{ ano_info.ano }}</h2>
+                                {% if ano_info.meses_com_escalas > 0 %}
+                                    <p class="overview-card__subtitle">{{ ano_info.meses_com_escalas }} mês{% if ano_info.meses_com_escalas != 1 %}es{% endif %} com escalas</p>
+                                {% else %}
+                                    <p class="overview-card__subtitle text-muted">Nenhum mês com escalas registradas</p>
+                                {% endif %}
+
+                                <div class="overview-card__chips">
+                                    {% if ano_info.escalas_aprovadas > 0 %}
+                                        <span class="status-chip success"><i class="fas fa-check"></i>{{ ano_info.escalas_aprovadas }}</span>
+                                    {% endif %}
+                                    {% if ano_info.escalas_pendentes > 0 %}
+                                        <span class="status-chip warning"><i class="fas fa-clock"></i>{{ ano_info.escalas_pendentes }}</span>
+                                    {% endif %}
+                                    {% if ano_info.escalas_rejeitadas > 0 %}
+                                        <span class="status-chip danger"><i class="fas fa-times"></i>{{ ano_info.escalas_rejeitadas }}</span>
+                                    {% endif %}
+                                </div>
+
+                                <dl class="metric-list">
+                                    <div class="metric">
+                                        <dt>Escalas</dt>
+                                        <dd>{{ ano_info.total_escalas }}</dd>
+                                    </div>
+                                    <div class="metric">
+                                        <dt>Serviços</dt>
+                                        <dd>{{ ano_info.total_servicos }}</dd>
+                                    </div>
+                                    {% if ano_info.total_valor > 0 %}
+                                        <div class="metric">
+                                            <dt>Valor total</dt>
+                                            <dd>{{ ano_info.total_valor|currency_no_cents }}</dd>
+                                        </div>
+                                    {% endif %}
+                                </dl>
+                            </div>
+                            <span class="overview-card__cta">Ver meses <i class="fas fa-arrow-right"></i></span>
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
+            <button type="button" class="overview-carousel__nav next" data-carousel-next aria-label="Mostrar anos seguintes">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
-        {% endfor %}
-    </div>
-    
-    <!-- Informações de Uso -->
-    <div class="row mt-5">
-        <div class="col-12">
-            <div class="card border-info">
-                <div class="card-header bg-light">
-                    <h6 class="card-title mb-0">
-                        <i class="fas fa-info-circle text-info"></i> Navegação por Anos
-                    </h6>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h6><i class="fas fa-calendar-alt text-primary"></i> Seleção de Ano</h6>
-                            <p class="small mb-3">Clique no card do ano desejado para ver os meses disponíveis naquele período.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h6><i class="fas fa-chart-line text-success"></i> Visão Geral</h6>
-                            <p class="small mb-3">Cada card mostra estatísticas anuais completas, incluindo meses ativos e totais financeiros.</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h6><i class="fas fa-calendar-star text-warning"></i> Ano Atual</h6>
-                            <p class="small mb-0">O ano atual é destacado em verde para fácil identificação e acesso rápido.</p>
-                        </div>
-                    </div>
-                </div>
+    {% else %}
+        <div class="overview-empty">
+            <div class="overview-empty__icon">
+                <i class="fas fa-calendar-minus"></i>
+            </div>
+            <h6 class="overview-empty__title">Nenhum ano disponível</h6>
+            <p class="overview-empty__text">Crie uma nova estrutura de escala para começar a acompanhar os resultados por ano.</p>
+        </div>
+    {% endif %}
+
+    <div class="info-panel mt-5">
+        <div class="info-panel__icon">
+            <i class="fas fa-lightbulb"></i>
+        </div>
+        <div class="info-panel__content">
+            <h6>Como usar</h6>
+            <div class="info-panel__grid">
+                <p><strong>Selecione o ano</strong> para visualizar os meses disponíveis e acompanhar o status das escalas.</p>
+                <p><strong>Acompanhe as estatísticas</strong> para entender rapidamente volume, pendências e valores movimentados no período.</p>
+                <p><strong>Crie novas estruturas</strong> quando precisar iniciar um planejamento de escala para uma data específica.</p>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
 
-<script>
-// Efeito de hover aprimorado nos cards
-document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.card-ano');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px)';
-            this.style.boxShadow = '0 12px 30px rgba(0,0,0,0.15)';
+{% block scripts %}
+    {{ block.super }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+                const track = carousel.querySelector('[data-carousel-track]');
+                if (!track) {
+                    return;
+                }
+
+                const prevButton = carousel.querySelector('[data-carousel-prev]');
+                const nextButton = carousel.querySelector('[data-carousel-next]');
+
+                const getGapValue = function () {
+                    const styles = window.getComputedStyle(track);
+                    const gapValue = styles.columnGap || styles.gap || '0';
+                    const parsed = parseFloat(gapValue);
+                    return isNaN(parsed) ? 0 : parsed;
+                };
+
+                const getScrollAmount = function () {
+                    const firstCard = track.querySelector('.overview-card');
+                    if (!firstCard) {
+                        return track.clientWidth || 240;
+                    }
+                    return firstCard.getBoundingClientRect().width + getGapValue();
+                };
+
+                const updateButtons = function () {
+                    const maxScrollLeft = Math.max(track.scrollWidth - track.clientWidth - 1, 0);
+                    if (prevButton) {
+                        prevButton.disabled = track.scrollLeft <= 1;
+                        prevButton.classList.toggle('is-edge', prevButton.disabled);
+                    }
+                    if (nextButton) {
+                        nextButton.disabled = track.scrollLeft >= maxScrollLeft;
+                        nextButton.classList.toggle('is-edge', nextButton.disabled);
+                    }
+                    carousel.classList.toggle('is-scrollable', track.scrollWidth > track.clientWidth + 1);
+                };
+
+                const scrollByAmount = function (direction) {
+                    const amount = getScrollAmount() * direction;
+                    track.scrollBy({ left: amount, behavior: 'smooth' });
+                };
+
+                if (prevButton) {
+                    prevButton.addEventListener('click', function () {
+                        scrollByAmount(-1);
+                    });
+                }
+
+                if (nextButton) {
+                    nextButton.addEventListener('click', function () {
+                        scrollByAmount(1);
+                    });
+                }
+
+                track.addEventListener('scroll', updateButtons, { passive: true });
+                window.addEventListener('resize', updateButtons);
+
+                updateButtons();
+            });
         });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '';
-        });
-    });
-});
-</script>
-{% endblock %}<style>
-/* Dark mode adjustments */
-[data-theme="dark"] .card {
-    background: rgba(15, 23, 42, 0.92);
-    border-color: rgba(148, 163, 184, 0.25);
-    color: var(--text-primary-dark);
-    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.55);
-}
-[data-theme="dark"] .card-header {
-    background: rgba(30, 41, 59, 0.9);
-    border-bottom-color: rgba(148, 163, 184, 0.25);
-    color: var(--text-primary-dark);
-}
-[data-theme="dark"] .card-ano {
-    border-color: rgba(148, 163, 184, 0.2);
-}
-[data-theme="dark"] .card-ano:hover {
-    border-color: rgba(96, 165, 250, 0.45);
-    box-shadow: 0 24px 50px rgba(2, 6, 23, 0.7);
-}
-[data-theme="dark"] .card-ano.ano-atual {
-    background: linear-gradient(135deg, rgba(30, 64, 175, 0.4) 0%, rgba(14, 116, 144, 0.45) 100%);
-    border-color: rgba(34, 197, 94, 0.45);
-}
-[data-theme="dark"] .card-ano .ano-numero,
-[data-theme="dark"] .card-ano .text-muted,
-[data-theme="dark"] .stat-row span,
-[data-theme="dark"] .stat-row strong {
-    color: var(--text-primary-dark) !important;
-}
-[data-theme="dark"] .resumo-meses {
-    background: linear-gradient(90deg, rgba(14, 165, 233, 0.2) 0%, rgba(147, 197, 253, 0.2) 100%);
-    color: var(--text-primary-dark);
-}
-[data-theme="dark"] .ano-stats {
-    background: rgba(30, 41, 59, 0.85);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-}
-</style>
+    </script>
+{% endblock %}
