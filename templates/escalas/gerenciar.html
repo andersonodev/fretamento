@@ -82,16 +82,11 @@
                     <form method="post" id="formCriarEstrutura">
                         {% csrf_token %}
                         <input type="hidden" name="acao" value="criar_estrutura">
-                        <div class="row g-2 align-items-center">
-                            <div class="col-auto d-flex flex-column justify-content-center">
-                                <label for="data" class="form-label mb-1">Data da Escala</label>
-                                <input type="date" class="form-control" name="data" id="data" required lang="pt-BR">
-                            </div>
-                            <div class="col-auto d-flex align-items-center" style="height:100%;">
-                                <button type="submit" class="btn btn-primary btn-create-structure ms-2">
-                                    <i class="fas fa-plus me-2"></i>Criar Estrutura
-                                </button>
-                            </div>
+                        <div class="d-flex flex-row align-items-center gap-2">
+                            <input type="date" class="form-control" name="data" id="data" required lang="pt-BR" placeholder="dd/mm/2025">
+                            <button type="submit" class="btn btn-primary btn-create-structure">
+                                <i class="fas fa-plus me-2"></i>Criar Estrutura
+                            </button>
                         </div>
                     </form>
                 </div>
