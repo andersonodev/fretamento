@@ -1,188 +1,79 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% load custom_filters %}
+{% load static %}
 
 {% block title %}Gerenciar Escalas{% endblock %}
 
-{% block extra_css %}
-<style>
-/* Rótulos pequenos para clarificar valores nas células (etapa/status/pax/valor) */
-.cell-label {
-    display: block;
-    font-size: 0.75rem;
-    color: #6c757d; /* text-muted */
-    margin-bottom: 0.25rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-}
-.badge-compact {
-    padding: 0.45rem 0.6rem;
-    font-size: 0.85rem;
-}
-
-/* Header refinado */
-.page-header {
-    gap: 1rem;
-}
-.page-header .h3 {
-    font-size: 1.25rem;
-    margin: 0;
-}
-.breadcrumb-custom .breadcrumb-item a {
-    color: #6b7280; /* muted */
-}
-.breadcrumb-custom .breadcrumb-item.active {
-    color: #374151; /* darker text */
-    font-weight: 600;
-}
-.steps {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-top: 0.35rem;
-}
-.steps .step {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #6b7280;
-    font-size: 0.875rem;
-}
-.steps .step .step-badge {
-    width: 1.6rem;
-    height: 1.6rem;
-    display: inline-grid;
-    place-items: center;
-    border-radius: 0.375rem;
-    background: #f8fafc;
-    border: 1px solid #e5e7eb;
-    font-weight: 700;
-    color: #0f172a;
-    font-size: 0.85rem;
-}
-
-@media (max-width: 576px) {
-    .steps { display: none; }
-}
-
-/* Hover sutil nos botões de ação */
-.btn-group .btn:hover {
-    z-index: 1;
-    opacity: 0.95;
-}
-
-/* Estilo do modo escuro refinado */
-[data-theme="dark"] .card,
-[data-theme="dark"] .table,
-[data-theme="dark"] .table tbody tr {
-    background-color: #1e293b; /* slate-800 */
-    color: #e2e8f0; /* slate-200 */
-    border-color: #334155; /* slate-700 */
-    box-shadow: none;
-}
-
-[data-theme="dark"] .card-header,
-[data-theme="dark"] .table thead {
-    background-color: #0f172a; /* slate-900 */
-    border-bottom: 1px solid #334155;
-    color: #e2e8f0;
-}
-
-[data-theme="dark"] .table tbody tr:nth-child(even) {
-    background-color: #1c2a3a; /* zebra effect */
-}
-
-[data-theme="dark"] .text-muted,
-[data-theme="dark"] small,
-[data-theme="dark"] .form-text {
-    color: #94a3b8 !important; /* slate-400 */
-}
-
-[data-theme="dark"] .table-hover tbody tr:hover {
-    background-color: #3b82f640; /* azul suave */
-}
-
-[data-theme="dark"] .badge.bg-warning,
-[data-theme="dark"] .badge.bg-secondary,
-[data-theme="dark"] .badge.bg-light {
-    color: #0f172a;
-    background-color: #facc15; /* amarelo leve */
-    font-weight: 500;
-}
-
-[data-theme="dark"] .btn-outline-secondary,
-[data-theme="dark"] .btn-outline-danger,
-[data-theme="dark"] .btn-outline-primary {
-    color: #e2e8f0;
-    border-color: #475569; /* slate-600 */
-}
-
-[data-theme="dark"] .btn-outline-secondary:hover,
-[data-theme="dark"] .btn-outline-danger:hover,
-[data-theme="dark"] .btn-outline-primary:hover {
-    background-color: #2563eb33; /* azul translúcido */
-    color: #f8fafc;
-}
-
-[data-theme="dark"] .table thead th {
-    border-bottom: 1px solid #334155;
-}
-
-[data-theme="dark"] .table tbody tr td {
-    border-color: #334155;
-}
-
-[data-theme="dark"] .table tbody tr td .badge {
-    filter: brightness(0.95);
-}
-
-[data-theme="dark"] .table .text-success {
-    color: #34d399 !important; /* verde suave */
-}
-
-</style>
+{% block extra_head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/escalas-gerenciar.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <!-- breadcrumb superior removido (substituído por versão compacta no header) -->
+<div class="container-fluid scale-management py-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'escalas:selecionar_ano' %}">
+                    <i class="fas fa-calendar-alt"></i> Anos
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}">
+                    <i class="fas fa-calendar-check"></i> Meses de {{ ano }}
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <i class="fas fa-list-alt"></i>
+                {% if mes_atual %}
+                    {% with mes_nome=mes_atual.nome|strip_year:ano %}
+                        Escalas de {{ mes_nome }} {{ ano }}
+                    {% endwith %}
+                {% else %}
+                    Escalas de {{ mes }}/{{ ano }}
+                {% endif %}
+            </li>
+        </ol>
+    </nav>
 
     <!-- Cabeçalho -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="d-flex justify-content-between align-items-start page-header">
-                <div>
-                    <div class="mb-1 breadcrumb-custom">
-                        <small class="text-muted">
-                            <a href="{% url 'escalas:selecionar_ano' %}"><i class="fas fa-calendar-alt"></i> Anos</a>
-                            &nbsp;/&nbsp;
-                            <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}"><i class="fas fa-calendar-check"></i> Meses de {{ ano }}</a>
-                            &nbsp;/&nbsp;
-                            <span class="active">Escalas de {% if mes_atual %}{{ mes_atual.nome }} {{ ano }}{% else %}{{ mes }}/{{ ano }}{% endif %}</span>
-                        </small>
-                    </div>
-
-                    <h3 class="h3 mb-0" style="color:#1775AE;font-weight:700;">Escalas — {% if mes_atual %}{{ mes_atual.nome }} {{ ano }}{% else %}{{ mes }}/{{ ano }}{% endif %}</h3>
-                    <div class="steps text-muted">
-                        <span class="small">Criar estrutura</span>
-                        <span class="mx-2">•</span>
-                        <span class="small">Puxar dados</span>
-                        <span class="mx-2">•</span>
-                        <span class="small">Agrupar/Otimizar</span>
-                        <span class="mx-2">•</span>
-                        <span class="small">Formatar</span>
+            <div class="page-header">
+                <div class="page-context">
+                    <h1 class="page-title mb-2">
+                        <i class="fas fa-calendar-alt text-primary me-2"></i>
+                        {% if mes_atual %}
+                            {% with mes_nome=mes_atual.nome|strip_year:ano %}
+                                Escalas de {{ mes_nome }} {{ ano }}
+                            {% endwith %}
+                        {% else %}
+                            Escalas de {{ mes }}/{{ ano }}
+                        {% endif %}
+                    </h1>
+                    <div class="page-subtitle">
+                        <span class="subtitle-label">Fluxo de trabalho</span>
+                        <div class="workflow-steps" role="list" aria-label="Fluxo de trabalho das escalas">
+                            <span class="workflow-step" role="listitem">Criar estrutura</span>
+                            <span class="workflow-arrow" aria-hidden="true"><i class="fas fa-long-arrow-alt-right"></i></span>
+                            <span class="workflow-step" role="listitem">Puxar dados</span>
+                            <span class="workflow-arrow" aria-hidden="true"><i class="fas fa-long-arrow-alt-right"></i></span>
+                            <span class="workflow-step" role="listitem">Agrupar &amp; otimizar</span>
+                            <span class="workflow-arrow" aria-hidden="true"><i class="fas fa-long-arrow-alt-right"></i></span>
+                            <span class="workflow-step" role="listitem">Formatar quando necessário</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="d-flex gap-2">
-                    <a href="{% url 'escalas:exportar_mes' ano=ano mes=mes %}" 
-                       class="btn btn-success" 
+                <div class="header-actions">
+                    <a href="{% url 'escalas:exportar_mes' ano=ano mes=mes %}"
+                       class="btn btn-success shadow-sm"
                        title="Exportar todas as escalas do mês em Excel">
-                        <i class="fas fa-file-excel"></i> Exportar Mês
+                        <i class="fas fa-file-excel me-2"></i>Exportar Mês
                     </a>
                     <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}" class="btn btn-outline-secondary">
-                        <i class="fas fa-arrow-left"></i> Voltar aos Meses
+                        <i class="fas fa-arrow-left me-2"></i>Voltar aos Meses
                     </a>
                 </div>
             </div>
@@ -192,29 +83,27 @@
     <!-- Criar Nova Escala -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
+            <div class="card scale-card shadow-sm border-0">
+                <div class="card-header border-0 d-flex flex-wrap justify-content-between align-items-center gap-3">
                     <h5 class="card-title mb-0">
-                        <i class="fas fa-plus-circle"></i> Criar Nova Escala
+                        <i class="fas fa-plus-circle me-2 text-primary"></i>Nova Estrutura de Escala
                     </h5>
+                    <button type="submit" form="formCriarEstrutura" class="btn btn-primary btn-create-structure ms-auto">
+                        <i class="fas fa-plus me-2"></i>Criar Estrutura
+                    </button>
                 </div>
                 <div class="card-body">
-                    <form method="post" class="row g-3">
+                    <form method="post" id="formCriarEstrutura" class="row g-3 align-items-end">
                         {% csrf_token %}
                         <input type="hidden" name="acao" value="criar_estrutura">
-                        <div class="col-md-4">
+                        <div class="col-md-6 col-lg-4">
                             <label for="data" class="form-label">Data da Escala</label>
                             <input type="date" class="form-control" name="data" id="data" required lang="pt-BR">
                         </div>
-                        <div class="col-md-4 d-flex align-items-end">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> Criar Estrutura
-                            </button>
-                        </div>
-                        <div class="col-md-4">
-                            <small class="text-muted">
-                                <strong>Etapa 1:</strong> Cria apenas a estrutura básica da escala
-                            </small>
+                        <div class="col-12 col-md">
+                            <div class="form-hint">
+                                Escolha a data desejada para iniciar a estrutura da escala. Depois, prossiga pelas etapas de puxar dados e otimizar.
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -225,23 +114,21 @@
     <!-- Lista de Escalas -->
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
+            <div class="card scale-card shadow-sm border-0">
+                <div class="card-header border-0">
                     <h5 class="card-title mb-0">
-                        <i class="fas fa-list"></i> Escalas Existentes
+                        <i class="fas fa-list me-2 text-primary"></i>Escalas Existentes
                     </h5>
                 </div>
                 <div class="card-body">
                     {% if escalas %}
-                        <div class="table-responsive">
-                            <table class="table table-hover">
+                        <div class="table-responsive scale-table-wrapper">
+                            <table class="table table-hover align-middle scale-table">
                                 <thead>
                                     <tr>
                                         <th>Data</th>
-                                        <th><span class="visually-hidden">Status</span></th>
                                         <th>Aprovação</th>
-                                        <th><span class="visually-hidden">Data Origem</span></th>
-                                        <!-- Serviços e PAX removidos -->
+                                        <th>Serviços</th>
                                         <th>Valor Total</th>
                                         <th>Ações</th>
                                     </tr>
@@ -249,13 +136,11 @@
                                 <tbody>
                                     {% for escala in escalas %}
                                     <tr>
-                                        <td>
+                                        <td class="date-cell">
                                             <strong>{{ escala.data|date:"d/m/Y" }}</strong><br>
                                             <small class="text-muted">{{ escala.data|date:"l" }}</small>
                                         </td>
-                                        <!-- Etapa removida -->
                                         <td>
-                                            <span class="cell-label">Aprovação</span>
                                             <span class="badge bg-{% if escala.status == 'PENDENTE' %}warning{% elif escala.status == 'APROVADA' %}success{% else %}danger{% endif %}">
                                                 {{ escala.get_status_display }}
                                             </span>
@@ -264,57 +149,51 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% if escala.data_origem %}
-                                                {{ escala.data_origem|date:"d/m/Y" }}
-                                            {% else %}
-                                                <span class="text-muted">-</span>
-                                            {% endif %}
-                                        </td>
-                                        <!-- Serviços e PAX removidos -->
-                                        <td>
-                                            <span class="cell-label">Valor</span>
-                                            <span class="text-success" aria-label="Valor total">{{ escala.total_van1_valor|add:escala.total_van2_valor|currency }}</span>
+                                            <span class="badge bg-info">{{ escala.alocacoes.count }}</span>
                                         </td>
                                         <td>
-                                            <div class="btn-group btn-group-sm" role="group">
+                                            <span class="text-success">{{ escala.total_van1_valor|add:escala.total_van2_valor|currency }}</span>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm action-buttons" role="group">
                                                 <!-- Visualizar -->
-                                                <a href="{% url 'escalas:visualizar_escala' data=escala.data|date_br %}" 
+                                                <a href="{% url 'escalas:visualizar_escala' data=escala.data|date_br %}"
                                                    class="btn btn-outline-primary" title="Visualizar">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-                                                
+
                                                 <!-- Puxar Dados -->
                                                 {% if escala.etapa == 'ESTRUTURA' %}
-                                                    <a href="{% url 'escalas:puxar_dados' data=escala.data|date_br %}" 
+                                                    <a href="{% url 'escalas:puxar_dados' data=escala.data|date_br %}"
                                                        class="btn btn-outline-info" title="Puxar Dados">
                                                         <i class="fas fa-download"></i>
                                                     </a>
                                                 {% endif %}
-                                                
+
                                                 <!-- Formatar Escala -->
                                                 {% if escala.tem_dados %}
-                                                    <button type="button" 
-                                                            class="btn btn-outline-danger" 
+                                                    <button type="button"
+                                                            class="btn btn-outline-danger"
                                                             title="{% if escala.etapa == 'OTIMIZADA' %}Formatar Escala Otimizada{% else %}Formatar Escala{% endif %}"
-                                                            data-bs-toggle="modal" 
+                                                            data-bs-toggle="modal"
                                                             data-bs-target="#modalFormatarEscala"
                                                             data-data="{{ escala.data|date_br }}"
                                                             onclick="definirDataFormatar('{{ escala.data|date_br }}')">
                                                         <i class="fas fa-paint-brush"></i>
                                                     </button>
                                                 {% endif %}
-                                                
+
                                                 <!-- Exportar -->
                                                 {% if escala.alocacoes.count > 0 %}
-                                                    <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}" 
+                                                    <a href="{% url 'escalas:exportar_escala' data=escala.data|date_br %}"
                                                        class="btn btn-outline-success" title="Exportar Excel">
                                                         <i class="fas fa-file-excel"></i>
                                                     </a>
                                                 {% endif %}
-                                                
+
                                                 <!-- Excluir -->
-                                                <button type="button" 
-                                                        class="btn btn-outline-danger" 
+                                                <button type="button"
+                                                        class="btn btn-outline-danger"
                                                         title="Excluir Escala"
                                                         onclick="abrirModalExclusao('{{ escala.data|date_br }}', '{{ escala.data|date:'d/m/Y' }}', {{ escala.alocacoes.count }}, '{{ escala.get_etapa_display }}')">
                                                     <i class="fas fa-trash"></i>
@@ -327,10 +206,10 @@
                             </table>
                         </div>
                     {% else %}
-                        <div class="text-center py-4">
-                            <i class="fas fa-calendar-times fa-3x text-muted mb-3"></i>
+                        <div class="scale-empty-state text-center py-5">
+                            <i class="fas fa-calendar-times fa-3x mb-3"></i>
                             <h6 class="text-muted">Nenhuma escala criada ainda</h6>
-                            <p class="text-muted">Crie sua primeira escala usando o formulário acima.</p>
+                            <p class="text-muted mb-0">Crie sua primeira escala usando o formulário acima.</p>
                         </div>
                     {% endif %}
                 </div>
@@ -341,52 +220,57 @@
     <!-- Guia de Uso -->
     <div class="row mt-4">
         <div class="col-12">
-            <div class="card border-info">
-                <div class="card-header bg-light">
+            <div class="card scale-card scale-guidance shadow-sm border-0">
+                <div class="card-header border-0">
                     <h6 class="card-title mb-0">
-                        <i class="fas fa-info-circle text-info"></i> Como Usar o Sistema de Escalas
+                        <i class="fas fa-info-circle me-2 text-primary"></i>Como usar o sistema de escalas
                     </h6>
                 </div>
                 <div class="card-body">
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="d-flex justify-content-between align-items-start page-header">
-                                <div>
-                                    <div class="mb-1 breadcrumb-custom">
-                                        <small class="text-muted">
-                                            <a href="{% url 'escalas:selecionar_ano' %}"><i class="fas fa-calendar-alt"></i> Anos</a>
-                                            &nbsp;/&nbsp;
-                                            <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}"><i class="fas fa-calendar-check"></i> Meses de {{ ano }}</a>
-                                            &nbsp;/&nbsp;
-                                            <span class="active">Escalas de {% if mes_atual %}{{ mes_atual.nome }} {{ ano }}{% else %}{{ mes }}/{{ ano }}{% endif %}</span>
-                                        </small>
-                                    </div>
-
-                                    <h3 class="h3 mb-0" style="color:#1775AE;font-weight:700;">Escalas — {% if mes_atual %}{{ mes_atual.nome }} {{ ano }}{% else %}{{ mes }}/{{ ano }}{% endif %}</h3>
-                                    <!-- Stepper removido conforme solicitado -->
-                                </div>
-
-                                <div class="d-flex gap-2">
-                                    <a href="{% url 'escalas:exportar_mes' ano=ano mes=mes %}" 
-                                       class="btn btn-success" 
-                                       title="Exportar todas as escalas do mês em Excel">
-                                        <i class="fas fa-file-excel"></i> Exportar Mês
-                                    </a>
-                                    <a href="{% url 'escalas:selecionar_mes_ano' ano=ano %}" class="btn btn-outline-secondary">
-                                        <i class="fas fa-arrow-left"></i> Voltar aos Meses
-                                    </a>
-                                </div>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="guidance-step">
+                                <span class="guidance-icon text-primary"><i class="fas fa-plus"></i></span>
+                                <h6 class="guidance-title">Criar estrutura</h6>
+                                <p class="guidance-text">Defina a data e abra a grade da escala para dar início à organização das equipes.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="guidance-step">
+                                <span class="guidance-icon text-info"><i class="fas fa-download"></i></span>
+                                <h6 class="guidance-title">Puxar dados</h6>
+                                <p class="guidance-text">Traga os serviços necessários e mantenha a lista sincronizada com as solicitações.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="guidance-step">
+                                <span class="guidance-icon text-danger"><i class="fas fa-paint-brush"></i></span>
+                                <h6 class="guidance-title">Finalizar formatação</h6>
+                                <p class="guidance-text">Ajuste agrupamentos, finalize a precificação e gere o arquivo pronto para envio.</p>
                             </div>
                         </div>
                     </div>
-            {% if mes_atual and primeiro_dia %}
-                const primeiroDia = '{{ primeiro_dia|date:"Y-m-d" }}';
-                dataInput.value = primeiroDia;
-            {% else %}
-                // Caso contrário, usar hoje
-                const hoje = new Date().toISOString().split('T')[0];
-                dataInput.value = hoje;
-            {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Auto-definir data para hoje ou para o mês selecionado
+document.addEventListener('DOMContentLoaded', function() {
+    const dataInput = document.getElementById('data');
+
+    if (dataInput && !dataInput.value) {
+        {% if mes_atual and primeiro_dia %}
+            // Se estamos em um mês específico, usar o primeiro dia do mês
+            const primeiroDia = '{{ primeiro_dia|date:"Y-m-d" }}';
+            dataInput.value = primeiroDia;
+        {% else %}
+            // Caso contrário, usar hoje
+            const hoje = new Date().toISOString().split('T')[0];
+            dataInput.value = hoje;
+        {% endif %}
     }
 });
 
@@ -402,14 +286,14 @@ function abrirModalExclusao(data, dataFormatada, totalServicos, etapa) {
         totalServicos: totalServicos,
         etapa: etapa
     };
-    
+
     // Construir detalhes da exclusão
     let detalhesHtml = `
         <div class="text-center mb-3">
             <i class="fas fa-calendar-alt text-danger" style="font-size: 3rem;"></i>
             <h4 class="mt-2 text-danger">Escala de ${dataFormatada}</h4>
         </div>
-        
+
         <div class="row text-center">
             <div class="col-md-6">
                 <div class="card border-warning">
@@ -433,7 +317,7 @@ function abrirModalExclusao(data, dataFormatada, totalServicos, etapa) {
             </div>
         </div>
     `;
-    
+
     if (etapa === 'Otimizada') {
         detalhesHtml += `
             <div class="alert alert-danger mt-3" role="alert">
@@ -442,25 +326,25 @@ function abrirModalExclusao(data, dataFormatada, totalServicos, etapa) {
             </div>
         `;
     }
-    
+
     // Preencher modal
     const detalhesElement = document.getElementById('detalhesExclusao');
     if (detalhesElement) {
         detalhesElement.innerHTML = detalhesHtml;
     }
-    
+
     // Limpar campos
     const senhaInput = document.getElementById('senhaConfirmacao');
     if (senhaInput) {
         senhaInput.value = '';
     }
-    
+
     // Verificar se elemento existe antes de manipular
     const erroSenha = document.getElementById('erroSenha');
     if (erroSenha) {
         erroSenha.classList.add('d-none');
     }
-    
+
     // Abrir modal
     const modalElement = document.getElementById('modalExclusaoEscala');
     if (modalElement) {
@@ -476,28 +360,28 @@ function abrirModalExclusao(data, dataFormatada, totalServicos, etapa) {
 document.addEventListener('DOMContentLoaded', function() {
     const btnConfirmar = document.getElementById('btnConfirmarExclusao');
     const inputSenha = document.getElementById('senhaConfirmacao');
-    
+
     if (btnConfirmar) {
         btnConfirmar.addEventListener('click', function() {
             const senha = inputSenha ? inputSenha.value : '';
-            
+
             if (!senha) {
                 if (inputSenha) inputSenha.focus();
                 return;
             }
-            
+
             // Desabilitar botão e mostrar loading
             btnConfirmar.disabled = true;
             btnConfirmar.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Verificando...';
-            
+
             // TESTE: Verificar se consegue comunicar com o servidor
             console.log('🧪 Testando comunicação...');
-            
+
             // Tentar verificação direta primeiro
             verificarSenhaEExcluir(senha);
         });
     }
-    
+
     // Enter no campo de senha
     if (inputSenha) {
         inputSenha.addEventListener('keypress', function(e) {
@@ -511,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Função para verificar senha e excluir escala
 function verificarSenhaEExcluir(senha) {
     console.log('🔍 Verificando senha...', dadosExclusao);
-    
+
     fetch('{% url "escalas:verificar_senha_exclusao" %}', {
         method: 'POST',
         headers: {
@@ -533,7 +417,7 @@ function verificarSenhaEExcluir(senha) {
     .then(data => {
         console.log('📋 Dados recebidos:', data);
         const btnConfirmar = document.getElementById('btnConfirmarExclusao');
-        
+
         if (data.senha_correta) {
             console.log('✅ Senha correta, excluindo escala...');
             // Senha correta, excluir escala
@@ -545,13 +429,13 @@ function verificarSenhaEExcluir(senha) {
             if (erroSenha) {
                 erroSenha.classList.remove('d-none');
             }
-            
+
             const senhaInput = document.getElementById('senhaConfirmacao');
             if (senhaInput) {
                 senhaInput.value = '';
                 senhaInput.focus();
             }
-            
+
             // Restaurar botão
             if (btnConfirmar) {
                 btnConfirmar.disabled = false;
@@ -561,7 +445,7 @@ function verificarSenhaEExcluir(senha) {
     })
     .catch(error => {
         console.error('❌ Erro na verificação:', error);
-        
+
         // Mostrar erro específico baseado no tipo
         let mensagemErro = 'Erro ao verificar senha.';
         if (error.message.includes('404')) {
@@ -571,7 +455,7 @@ function verificarSenhaEExcluir(senha) {
         } else if (error.message.includes('500')) {
             mensagemErro = 'Erro 500: Problema no servidor.';
         }
-        
+
         // Oferecer opção de continuar sem verificação de senha
         const continuar = confirm(
             mensagemErro + '\n\n' +
@@ -579,7 +463,7 @@ function verificarSenhaEExcluir(senha) {
             'Deseja continuar mesmo assim?\n' +
             '(A exclusão será registrada no log)'
         );
-        
+
         if (continuar) {
             console.log('⚠️ Usuário optou por continuar sem verificação de senha');
             excluirEscala();
@@ -599,7 +483,7 @@ function excluirEscala() {
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = `/escalas/excluir/${dadosExclusao.data}/`;
-    
+
     // Token CSRF
     const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     const csrfInput = document.createElement('input');
@@ -607,14 +491,14 @@ function excluirEscala() {
     csrfInput.name = 'csrfmiddlewaretoken';
     csrfInput.value = csrfToken;
     form.appendChild(csrfInput);
-    
+
     // Adicionar dados adicionais para log
     const dadosInput = document.createElement('input');
     dadosInput.type = 'hidden';
     dadosInput.name = 'dados_exclusao';
     dadosInput.value = JSON.stringify(dadosExclusao);
     form.appendChild(dadosInput);
-    
+
     // Adicionar ao DOM e submeter
     document.body.appendChild(form);
     form.submit();
@@ -640,7 +524,7 @@ function definirDataFormatar(data) {
                 <div class="modal-body">
                     {% csrf_token %}
                     <input type="hidden" id="dataFormatar" name="data" value="">
-                    
+
                     <div class="alert alert-warning">
                         <i class="fas fa-exclamation-triangle me-2"></i>
                         <strong>ATENÇÃO:</strong> Esta ação irá <strong>FORMATAR</strong> a escala do dia <strong id="textoDataFormatar"></strong>:
@@ -656,17 +540,17 @@ function definirDataFormatar(data) {
                             <strong>Após formatação:</strong> A escala poderá ser reagrupada e reotimizada quantas vezes necessário.
                         </div>
                     </div>
-                    
+
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle me-2"></i>
                         Esta operação será <strong>registrada no log do sistema</strong> com seu usuário e IP para auditoria.
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="senhaFormatar" class="form-label">
                             <i class="fas fa-lock me-1"></i>Digite sua senha para confirmar:
                         </label>
-                        <input type="password" class="form-control" id="senhaFormatar" name="senha" required 
+                        <input type="password" class="form-control" id="senhaFormatar" name="senha" required
                                placeholder="Sua senha de login">
                     </div>
                 </div>
@@ -698,19 +582,19 @@ function definirDataFormatar(data) {
                     <i class="fas fa-warning me-2"></i>
                     <strong>Atenção!</strong> Esta ação não pode ser desfeita.
                 </div>
-                
+
                 <div id="detalhesExclusao" class="mb-4">
                     <!-- Detalhes serão preenchidos dinamicamente -->
                 </div>
-                
+
                 <div class="mb-3">
                     <label for="senhaConfirmacao" class="form-label">
                         <i class="fas fa-lock me-1"></i>
                         <strong>Digite sua senha para confirmar:</strong>
                     </label>
-                    <input type="password" 
-                           class="form-control" 
-                           id="senhaConfirmacao" 
+                    <input type="password"
+                           class="form-control"
+                           id="senhaConfirmacao"
                            placeholder="Sua senha atual"
                            required>
                     <div class="form-text text-muted">
@@ -718,7 +602,7 @@ function definirDataFormatar(data) {
                         Por segurança, é necessário confirmar sua senha.
                     </div>
                 </div>
-                
+
                 <div id="erroSenha" class="alert alert-danger d-none" role="alert">
                     <i class="fas fa-times-circle me-2"></i>
                     Senha incorreta. Tente novamente.
@@ -737,22 +621,3 @@ function definirDataFormatar(data) {
 </div>
 
 {% endblock %}
-[data-theme="dark"] .table thead th {
-    border-bottom-color: rgba(148, 163, 184, 0.25);
-}
-
-[data-theme="dark"] .table tbody tr {
-    border-color: rgba(148, 163, 184, 0.2);
-}
-
-[data-theme="dark"] .table tbody tr td {
-    color: var(--text-primary-dark);
-}
-
-[data-theme="dark"] .table tbody tr td .badge {
-    filter: brightness(0.92);
-}
-
-[data-theme="dark"] .table .text-success {
-    color: #34d399 !important;
-}
