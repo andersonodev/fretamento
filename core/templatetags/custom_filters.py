@@ -3,6 +3,7 @@ Filtros personalizados para templates Django
 """
 
 from django import template
+import re
 from urllib.parse import urlencode
 
 register = template.Library()
@@ -404,3 +405,22 @@ def grupo_sequencial(grupo, todos_grupos):
         return 1
     except (AttributeError, TypeError):
         return 1
+
+
+@register.filter
+def strip_year(value, year):
+    """Remove ocorrências do ano ao exibir rótulos de meses."""
+    if value is None:
+        return ''
+
+    text = str(value)
+    year_str = str(year)
+
+    # Remove ocorrências isoladas do ano e delimitadores próximos
+    pattern = r"(?:\s*[/,-]?\s*" + re.escape(year_str) + r")+"
+    cleaned = re.sub(pattern, '', text).strip()
+
+    # Evita múltiplos espaços internos resultantes da remoção
+    cleaned = re.sub(r"\s{2,}", ' ', cleaned)
+
+    return cleaned
