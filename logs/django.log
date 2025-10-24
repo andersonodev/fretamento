@@ -7695,3 +7695,80 @@ INFO 2025-10-23 16:08:26,520 basehttp 71508 6175453184 "GET /escalas/ HTTP/1.1" 
 INFO 2025-10-23 16:08:28,136 basehttp 71508 6175453184 "GET /escalas/ano/2025/ HTTP/1.1" 200 48285
 INFO 2025-10-23 16:08:29,651 basehttp 71508 6175453184 "GET /escalas/gerenciar/10/2025/ HTTP/1.1" 200 68387
 INFO 2025-10-23 16:08:32,429 basehttp 71508 6175453184 "GET /escalas/visualizar/18-10-2025/ HTTP/1.1" 200 539152
+WARNING 2025-10-23 16:09:23,962 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:09:23,964 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:09:29,955 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:10:23,991 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:10:23,993 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:10:29,954 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:11:23,983 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:11:23,990 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:11:29,951 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:12:23,964 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:12:23,968 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:12:29,946 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:13:23,924 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:13:23,926 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:13:29,952 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:14:23,954 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:14:23,956 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:14:29,951 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:15:23,966 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:15:23,970 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:15:29,953 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:16:23,933 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:16:23,935 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:16:30,948 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:17:23,921 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:17:23,925 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:17:31,932 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:18:23,919 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:18:23,923 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:18:32,935 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:19:23,978 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:19:23,983 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:19:33,926 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:20:23,949 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:20:23,956 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:20:34,946 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:21:23,953 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:21:23,956 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:21:35,925 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:22:24,165 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:22:24,168 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:22:37,101 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:23:24,089 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:23:24,090 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:23:38,096 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:24:24,115 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:24:24,116 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:24:39,113 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:25:24,088 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:25:24,089 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:25:40,095 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:26:24,088 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:26:24,089 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:26:41,094 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:27:24,092 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:27:24,092 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:27:42,098 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:28:24,125 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:28:24,127 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:28:43,103 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:29:24,151 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:29:24,153 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:29:44,111 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:30:24,128 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:30:24,132 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:30:45,103 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:31:24,129 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:31:24,132 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:31:46,144 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:32:24,144 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:32:24,146 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:32:47,119 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:33:24,194 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:33:24,196 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
+INFO 2025-10-23 16:33:30,109 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 200 85
+WARNING 2025-10-23 16:34:24,124 log 71508 6175453184 Unauthorized: /core/api/dashboard/updates/
+WARNING 2025-10-23 16:34:24,131 basehttp 71508 6175453184 "GET /core/api/dashboard/updates/ HTTP/1.1" 401 33
