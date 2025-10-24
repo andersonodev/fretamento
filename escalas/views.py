@@ -126,9 +126,20 @@ class SelecionarAnoView(LoginRequiredMixin, View):
         hoje = date.today()
         ano_atual = hoje.year
         
-        # Apenas anos 2025 e 2026
+        ano_maximo = 2035
+
+        # Encontrar o primeiro ano disponível com base nos registros existentes ou no ano atual
+        anos_disponiveis = Escala.objects.dates('data', 'year', order='ASC')
+        if anos_disponiveis:
+            ano_inicial = min(anos_disponiveis[0].year, ano_atual)
+        else:
+            ano_inicial = ano_atual
+
+        ano_inicial = min(ano_inicial, ano_maximo)
+        ano_inicial = min(ano_inicial, 2025)
+
         anos = []
-        for ano in [2025, 2026]:
+        for ano in range(ano_inicial, ano_maximo + 1):
             
             # Contar escalas do ano
             primeiro_dia_ano = date(ano, 1, 1)

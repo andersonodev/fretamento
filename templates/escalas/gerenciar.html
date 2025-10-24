@@ -53,7 +53,6 @@
                             Escalas de {{ mes }}/{{ ano }}
                         {% endif %}
                     </h1>
-                    <!-- Bloco do fluxo de trabalho removido -->
                 </div>
                 <div class="header-actions">
                     <a href="{% url 'escalas:exportar_mes' ano=ano mes=mes %}"
@@ -73,20 +72,23 @@
     <div class="row mb-4">
         <div class="col-12">
             <div class="card scale-card shadow-sm border-0">
-                <div class="card-header border-0">
+                <div class="card-header border-0 d-flex flex-wrap align-items-center gap-3">
                     <h5 class="card-title mb-0">
                         <i class="fas fa-plus-circle me-2 text-primary"></i>Nova Estrutura de Escala
                     </h5>
                 </div>
                 <div class="card-body">
-                    <form method="post" id="formCriarEstrutura">
+                    <form method="post" id="formCriarEstrutura" class="row g-3 align-items-end">
                         {% csrf_token %}
                         <input type="hidden" name="acao" value="criar_estrutura">
-                        <div class="d-flex flex-row align-items-center gap-2">
-                            <input type="date" class="form-control" name="data" id="data" required lang="pt-BR" placeholder="dd/mm/2025">
-                            <button type="submit" class="btn btn-primary btn-create-structure">
-                                <i class="fas fa-plus me-2"></i>Criar Estrutura
-                            </button>
+                        <div class="col-md-6 col-lg-4">
+                            <label for="data" class="form-label">Data da Escala</label>
+                            <div class="input-group">
+                                <input type="date" class="form-control" name="data" id="data" required lang="pt-BR">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-plus me-2"></i>Criar Estrutura
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -200,7 +202,6 @@
         </div>
     </div>
 
-    <!-- Bloco de instruções removido -->
 </div>
 
 <script>

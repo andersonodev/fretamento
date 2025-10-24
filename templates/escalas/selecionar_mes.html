@@ -1,103 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load custom_filters %}
 
 {% block title %}Selecionar Mês {{ ano }} - Escalas{% endblock %}
 
-{% block extra_css %}
-<style>
-.card-mes {
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-.card-mes:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    border-color: #007bff;
-}
-
-.card-mes.mes-atual {
-    border-color: #28a745;
-    background: linear-gradient(135deg, #f8fff9 0%, #f0fff4 100%);
-}
-
-.card-mes.mes-atual:hover {
-    border-color: #20c997;
-}
-
-.badge-escalas {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
-}
-
-.mes-stats {
-    background: #f8f9fa;
-    border-radius: 0.5rem;
-    padding: 0.75rem;
-    margin-top: 0.5rem;
-}
-
-.stat-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.25rem;
-}
-
-.stat-item:last-child {
-    margin-bottom: 0;
-}
-
-.icon-mes {
-    font-size: 2.5rem;
-    opacity: 0.7;
-    margin-bottom: 1rem;
-}
-</style>
-{% endblock %}
-
 {% block extra_head %}
-<style>
-/* Dark mode adjustments */
-[data-theme="dark"] .card {
-    background: rgba(15, 23, 42, 0.92);
-    border-color: rgba(148, 163, 184, 0.25);
-    color: var(--text-primary-dark);
-    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.55);
-}
-[data-theme="dark"] .card-header {
-    background: rgba(30, 41, 59, 0.9);
-    border-bottom-color: rgba(148, 163, 184, 0.25);
-    color: var(--text-primary-dark);
-}
-[data-theme="dark"] .card-mes {
-    border-color: rgba(148, 163, 184, 0.2);
-}
-[data-theme="dark"] .card-mes:hover {
-    border-color: rgba(96, 165, 250, 0.45);
-    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.65);
-}
-[data-theme="dark"] .card-mes.mes-atual {
-    background: linear-gradient(135deg, rgba(30, 64, 175, 0.4) 0%, rgba(14, 116, 144, 0.45) 100%);
-    border-color: rgba(34, 197, 94, 0.45);
-}
-[data-theme="dark"] .card-mes .card-title,
-[data-theme="dark"] .stat-item span,
-[data-theme="dark"] .stat-item strong,
-[data-theme="dark"] .text-muted {
-    color: var(--text-primary-dark) !important;
-}
-[data-theme="dark"] .mes-stats {
-    background: rgba(30, 41, 59, 0.85);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-}
-</style>
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/escalas-gerenciar.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <!-- Breadcrumb -->
+<div class="container-fluid scale-management py-4">
     <nav aria-label="breadcrumb" class="mb-3">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -111,214 +24,188 @@
         </ol>
     </nav>
 
-    <!-- Cabeçalho -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <h1 class="mb-0">
-                <i class="fas fa-calendar-alt text-primary"></i>
+    <div class="page-header mb-4">
+        <div class="page-context">
+            <h1 class="page-title mb-2">
+                <i class="fas fa-calendar-alt text-primary me-2"></i>
                 Meses de {{ ano }}
             </h1>
-            <p class="text-muted">Selecione o mês para visualizar e gerenciar as escalas</p>
+            <p class="page-subtitle mb-0">Escolha um mês para visualizar e gerenciar suas escalas.</p>
         </div>
     </div>
 
-    <!-- Criar Nova Escala -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">
-                        <i class="fas fa-plus-circle"></i> Criar Nova Escala
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <form method="post" action="{% url 'escalas:selecionar_mes_ano' ano=ano %}" class="row g-3">
-                        {% csrf_token %}
-                        <input type="hidden" name="acao" value="criar_estrutura">
-                        <div class="col-md-4">
-                            <label for="data" class="form-label">Data da Escala</label>
-                            <input type="date" class="form-control" name="data" id="data" required 
-                                   min="{{ ano }}-01-01" max="{{ ano }}-12-31" lang="pt-BR">
+    <div class="overview-carousel" data-carousel="meses">
+        <button type="button" class="overview-carousel__nav prev" data-carousel-prev aria-label="Mostrar meses anteriores">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="overview-carousel__viewport">
+            <div class="overview-carousel__track" data-carousel-track>
+                {% for mes in meses %}
+                    <a href="{% url 'escalas:gerenciar_escalas_mes' mes=mes.mes_numero ano=mes.ano %}"
+                       class="overview-card month-card {% if mes.eh_atual %}is-current{% endif %} {% if mes.total_escalas == 0 %}is-empty{% endif %}"
+                       data-mes="{{ mes.mes_numero }}"
+                       data-ano="{{ mes.ano }}">
+                        <div class="overview-card__eyebrow">
+                            {% if mes.eh_atual %}
+                                Mês atual
+                            {% elif mes.total_escalas > 0 %}
+                                {{ mes.total_escalas }} escala{% if mes.total_escalas != 1 %}s{% endif %}
+                            {% else %}
+                                Sem escalas
+                            {% endif %}
                         </div>
-                        <div class="col-md-4 d-flex align-items-end">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> Criar Estrutura
-                            </button>
-                        </div>
-                        <div class="col-md-4">
-                            <small class="text-muted">
-                                <strong>Etapa 1:</strong> Cria apenas a estrutura básica da escala
-                            </small>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <div class="overview-card__body">
+                            <h2 class="overview-card__title">{{ mes.nome }}</h2>
+                            <p class="overview-card__subtitle">{{ ano }}</p>
 
-    <!-- Grid de Meses -->
-    <div class="row g-4">
-        {% for mes in meses %}
-        <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="card card-mes h-100 {% if mes.eh_atual %}mes-atual{% endif %}" 
-                 onclick="window.location.href='{% url 'escalas:gerenciar_escalas_mes' mes=mes.mes_numero ano=mes.ano %}'">
-                <div class="card-body text-center">
-                    <!-- Ícone do Mês -->
-                    <div class="icon-mes">
-                        {% if mes.eh_atual %}
-                            <i class="fas fa-calendar-check text-success"></i>
-                        {% elif mes.total_escalas > 0 %}
-                            <i class="fas fa-calendar-day text-primary"></i>
-                        {% else %}
-                            <i class="fas fa-calendar text-muted"></i>
-                        {% endif %}
-                    </div>
-                    
-                    <!-- Nome do Mês -->
-                    <h5 class="card-title mb-0">{{ mes.nome }}</h5>
-                    
-                    {% if mes.eh_atual %}
-                        <span class="badge bg-success badge-escalas mb-3">Mês Atual</span>
-                    {% elif mes.total_escalas > 0 %}
-                        <span class="badge bg-primary badge-escalas mb-3">{{ mes.total_escalas }} Escala{{ mes.total_escalas|pluralize:"s" }}</span>
-                    {% else %}
-                        <span class="badge bg-secondary badge-escalas mb-3">Sem Escalas</span>
-                    {% endif %}
-                    
-                    <!-- Estatísticas -->
-                    {% if mes.total_escalas > 0 %}
-                    <div class="mes-stats">
-                        <div class="stat-item">
-                            <span><i class="fas fa-calendar-day text-primary me-2"></i>Escalas:</span>
-                            <strong>{{ mes.total_escalas }}</strong>
+                            <div class="overview-card__chips">
+                                {% if mes.escalas_aprovadas > 0 %}
+                                    <span class="status-chip success"><i class="fas fa-check"></i>{{ mes.escalas_aprovadas }}</span>
+                                {% endif %}
+                                {% if mes.escalas_pendentes > 0 %}
+                                    <span class="status-chip warning"><i class="fas fa-clock"></i>{{ mes.escalas_pendentes }}</span>
+                                {% endif %}
+                            </div>
+
+                            <dl class="metric-list">
+                                <div class="metric">
+                                    <dt>Escalas</dt>
+                                    <dd>{{ mes.total_escalas }}</dd>
+                                </div>
+                                <div class="metric">
+                                    <dt>Serviços</dt>
+                                    <dd>{{ mes.total_servicos }}</dd>
+                                </div>
+                                {% if mes.total_valor > 0 %}
+                                    <div class="metric">
+                                        <dt>Valor</dt>
+                                        <dd>{{ mes.total_valor|currency_no_cents }}</dd>
+                                    </div>
+                                {% endif %}
+                            </dl>
                         </div>
-                        
-                        {% if mes.escalas_pendentes > 0 %}
-                        <div class="stat-item">
-                            <span><i class="fas fa-clock text-warning me-2"></i>Pendentes:</span>
-                            <strong class="text-warning">{{ mes.escalas_pendentes }}</strong>
-                        </div>
-                        {% endif %}
-                        
-                        {% if mes.escalas_aprovadas > 0 %}
-                        <div class="stat-item">
-                            <span><i class="fas fa-check-circle text-success me-2"></i>Aprovadas:</span>
-                            <strong class="text-success">{{ mes.escalas_aprovadas }}</strong>
-                        </div>
-                        {% endif %}
-                        
-                        {% if mes.total_servicos > 0 %}
-                        <div class="stat-item">
-                            <span><i class="fas fa-briefcase text-info me-2"></i>Serviços:</span>
-                            <strong class="text-info">{{ mes.total_servicos }}</strong>
-                        </div>
-                        {% endif %}
-                        
-                        {% if mes.total_valor > 0 %}
-                        <div class="stat-item">
-                            <span><i class="fas fa-dollar-sign text-success me-2"></i>Valor:</span>
-                            <strong class="text-success">{{ mes.total_valor|currency }}</strong>
-                        </div>
-                        {% endif %}
-                    </div>
-                    {% else %}
-                    <div class="mes-stats">
-                        <p class="text-muted small mb-0">
-                            <i class="fas fa-info-circle me-2"></i>
-                            Nenhuma escala criada neste mês
-                        </p>
-                    </div>
-                    {% endif %}
-                </div>
+                    </a>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
-    </div>
-    
-    <!-- Informações de Uso -->
-    <div class="row mt-5">
-        <div class="col-12">
-            <div class="card border-info">
-                <div class="card-header bg-light">
-                    <h6 class="card-title mb-0">
-                        <i class="fas fa-info-circle text-info"></i> Como Usar
-                    </h6>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6><i class="fas fa-calendar-alt text-primary"></i> Seleção de Mês</h6>
-                            <p class="small mb-3">Clique no card do mês desejado para visualizar e gerenciar as escalas daquele período.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h6><i class="fas fa-chart-bar text-success"></i> Estatísticas</h6>
-                            <p class="small mb-3">Cada card mostra um resumo das escalas, incluindo status de aprovação e totais financeiros.</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6><i class="fas fa-calendar-check text-success"></i> Mês Atual</h6>
-                            <p class="small mb-0">O mês atual é destacado em verde para fácil identificação.</p>
-                        </div>
-                        <div class="col-md-6">
-                            <h6><i class="fas fa-plus-circle text-primary"></i> Criar Escalas</h6>
-                            <p class="small mb-0">Entre no mês desejado para criar novas escalas ou gerenciar as existentes.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <button type="button" class="overview-carousel__nav next" data-carousel-next aria-label="Mostrar meses seguintes">
+            <i class="fas fa-chevron-right"></i>
+        </button>
     </div>
 </div>
 
-<script>
-// Efeito de hover nos cards
-document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.card-mes');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+            const track = carousel.querySelector('[data-carousel-track]');
+            if (!track) {
+                return;
+            }
+
+            const viewport = carousel.querySelector('.overview-carousel__viewport') || track;
+            const prevButton = carousel.querySelector('[data-carousel-prev]');
+            const nextButton = carousel.querySelector('[data-carousel-next]');
+
+            let userInteracted = false;
+
+            const getGapValue = function () {
+                const styles = window.getComputedStyle(track);
+                const gapValue = styles.columnGap || styles.gap || '0';
+                const parsed = parseFloat(gapValue);
+                return isNaN(parsed) ? 0 : parsed;
+            };
+
+            const getScrollAmount = function () {
+                const firstCard = track.querySelector('.overview-card');
+                if (!firstCard) {
+                    return track.clientWidth || 240;
+                }
+                return firstCard.getBoundingClientRect().width + getGapValue();
+            };
+
+            const updateButtons = function () {
+                const maxScrollLeft = Math.max(track.scrollWidth - track.clientWidth - 1, 0);
+                if (prevButton) {
+                    prevButton.disabled = track.scrollLeft <= 1;
+                    prevButton.classList.toggle('is-edge', prevButton.disabled);
+                }
+                if (nextButton) {
+                    nextButton.disabled = track.scrollLeft >= maxScrollLeft;
+                    nextButton.classList.toggle('is-edge', nextButton.disabled);
+                }
+                carousel.classList.toggle('is-scrollable', track.scrollWidth > track.clientWidth + 1);
+            };
+
+            const scrollByAmount = function (direction) {
+                const amount = getScrollAmount() * direction;
+                track.scrollBy({ left: amount, behavior: 'smooth' });
+            };
+
+            if (prevButton) {
+                prevButton.addEventListener('click', function () {
+                    userInteracted = true;
+                    scrollByAmount(-1);
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', function () {
+                    userInteracted = true;
+                    scrollByAmount(1);
+                });
+            }
+
+            track.addEventListener('pointerdown', function () {
+                userInteracted = true;
+            }, { once: false });
+
+            const resolveTargetCard = function () {
+                const highlighted = track.querySelector('.month-card.is-current');
+                if (highlighted) {
+                    return highlighted;
+                }
+                const currentMonthNumber = String(new Date().getMonth() + 1);
+                return track.querySelector('.month-card[data-mes="' + currentMonthNumber + '"]');
+            };
+
+            const centerOnTargetCard = function (smoothScroll) {
+                const targetCard = resolveTargetCard();
+                if (!targetCard) {
+                    return;
+                }
+
+                const offset = Math.max(
+                    targetCard.offsetLeft - (viewport.clientWidth - targetCard.clientWidth) / 2,
+                    0
+                );
+
+                if (smoothScroll) {
+                    track.scrollTo({ left: offset, behavior: 'smooth' });
+                } else {
+                    track.scrollLeft = offset;
+                }
+            };
+
+            track.addEventListener('scroll', updateButtons, { passive: true });
+            window.addEventListener('resize', function () {
+                updateButtons();
+                if (!userInteracted && carousel.dataset.carousel === 'meses') {
+                    centerOnTargetCard(false);
+                }
+            });
+
+            // Atualização inicial
+            requestAnimationFrame(function () {
+                if (carousel.dataset.carousel === 'meses') {
+                    centerOnTargetCard(false);
+                }
+                updateButtons();
+            });
         });
     });
-});
-</script>
-{% endblock %}<style>
-/* Dark mode adjustments */
-[data-theme="dark"] .card {
-    background: rgba(15, 23, 42, 0.92);
-    border-color: rgba(148, 163, 184, 0.25);
-    color: var(--text-primary-dark);
-    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.55);
-}
-[data-theme="dark"] .card-header {
-    background: rgba(30, 41, 59, 0.9);
-    border-bottom-color: rgba(148, 163, 184, 0.25);
-    color: var(--text-primary-dark);
-}
-[data-theme="dark"] .card-mes {
-    border-color: rgba(148, 163, 184, 0.2);
-}
-[data-theme="dark"] .card-mes:hover {
-    border-color: rgba(96, 165, 250, 0.45);
-    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.65);
-}
-[data-theme="dark"] .card-mes.mes-atual {
-    background: linear-gradient(135deg, rgba(30, 64, 175, 0.4) 0%, rgba(14, 116, 144, 0.45) 100%);
-    border-color: rgba(34, 197, 94, 0.45);
-}
-[data-theme="dark"] .card-mes .card-title,
-[data-theme="dark"] .stat-item span,
-[data-theme="dark"] .stat-item strong,
-[data-theme="dark"] .text-muted {
-    color: var(--text-primary-dark) !important;
-}
-[data-theme="dark"] .mes-stats {
-    background: rgba(30, 41, 59, 0.85);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-}
-</style>
+    </script>
+{% endblock %}
