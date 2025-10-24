@@ -335,9 +335,9 @@ class GerenciarEscalasView(LoginRequiredMixin, View):
             total_valor=Sum('alocacoes__preco_calculado')
         ).order_by('-data')
         
-        # Informações do mês
-        mes_nome = f"{MESES_PORTUGUES[mes]} {ano}"
-        
+        # Informações do mês - enviar nome do mês sem ano para evitar duplicação
+        mes_nome = MESES_PORTUGUES[mes]
+
         return render(request, 'escalas/gerenciar.html', {
             'escalas': escalas,
             'mes_atual': {'numero': mes, 'ano': ano, 'nome': mes_nome},

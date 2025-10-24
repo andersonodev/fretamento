@@ -485,7 +485,6 @@
     font-size: 0.95rem;
     line-height: 1.45;
 }
-
 .form-hint {
     background: rgba(31, 140, 203, 0.06);
     border: 1px solid rgba(31, 140, 203, 0.18);
@@ -655,7 +654,6 @@
         width: 42px;
         height: 42px;
     }
-
     .overview-carousel__nav {
         width: 42px;
         height: 42px;
