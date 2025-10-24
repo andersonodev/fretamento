@@ -26,9 +26,6 @@
             <h5 class="card-title mb-0">
                 <i class="fas fa-plus-circle me-2 text-primary"></i>Criar Nova Escala
             </h5>
-            <button type="submit" form="formCriarEstruturaAno" class="btn btn-primary ms-auto">
-                <i class="fas fa-plus me-2"></i>Criar Estrutura
-            </button>
         </div>
         <div class="card-body">
             <form method="post" id="formCriarEstruturaAno" class="row g-3 align-items-end" action="{% url 'escalas:selecionar_ano' %}">
@@ -36,11 +33,11 @@
                 <input type="hidden" name="acao" value="criar_estrutura">
                 <div class="col-md-5 col-lg-4">
                     <label for="data" class="form-label">Data da Escala</label>
-                    <input type="date" class="form-control" name="data" id="data" required lang="pt-BR">
-                </div>
-                <div class="col-12 col-md">
-                    <div class="form-hint">
-                        Escolha a data desejada para iniciar uma nova escala. Após criar a estrutura, você poderá puxar dados e otimizar as alocações.
+                    <div class="input-group">
+                        <input type="date" class="form-control" name="data" id="data" required lang="pt-BR">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Criar Estrutura
+                        </button>
                     </div>
                 </div>
             </form>

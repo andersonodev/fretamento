@@ -1,3 +1,7 @@
+/* Carrossel de meses: impedir scroll manual, manter setas */
+.overview-carousel[data-carousel="meses"] .overview-carousel__track {
+    overflow-x: hidden;
+}
 .scale-management {
     max-width: 1200px;
     margin: 0 auto;
@@ -149,6 +153,12 @@
     padding: 0 3.5rem;
 }
 
+/* Remove barra de progresso visual do carrossel */
+.overview-carousel::after {
+    display: none !important;
+    content: none !important;
+}
+
 .overview-carousel__viewport {
     overflow: hidden;
     width: 100%;
@@ -157,7 +167,7 @@
 .overview-carousel__track {
     display: flex;
     gap: var(--carousel-gap);
-    overflow-x: auto;
+    overflow-x: hidden;
     padding: 0.5rem 0 1rem;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
