@@ -200,3 +200,8 @@ pids
 
 # Heroku
 .heroku/
+
+# React landing page assets
+!frontend/public/
+!frontend/public/**
+frontend/public/imagens/
