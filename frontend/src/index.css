@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #333333;
+  background-color: #FAF9F6;
+}
+
+body {
+  @apply bg-background text-ink font-sans antialiased min-h-screen;
+}
+
+::selection {
+  background-color: rgba(163, 177, 138, 0.4);
+}
