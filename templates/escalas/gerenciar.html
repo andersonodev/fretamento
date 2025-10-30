@@ -53,7 +53,18 @@
                             Escalas de {{ mes }}/{{ ano }}
                         {% endif %}
                     </h1>
-                    <!-- Bloco do fluxo de trabalho removido -->
+                    <div class="page-subtitle">
+                        <span class="subtitle-label">Fluxo de trabalho</span>
+                        <div class="workflow-steps" role="list" aria-label="Fluxo de trabalho das escalas">
+                            <span class="workflow-step" role="listitem">Criar estrutura</span>
+                            <span class="workflow-arrow" aria-hidden="true"><i class="fas fa-long-arrow-alt-right"></i></span>
+                            <span class="workflow-step" role="listitem">Puxar dados</span>
+                            <span class="workflow-arrow" aria-hidden="true"><i class="fas fa-long-arrow-alt-right"></i></span>
+                            <span class="workflow-step" role="listitem">Agrupar &amp; otimizar</span>
+                            <span class="workflow-arrow" aria-hidden="true"><i class="fas fa-long-arrow-alt-right"></i></span>
+                            <span class="workflow-step" role="listitem">Formatar quando necessário</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="header-actions">
                     <a href="{% url 'escalas:exportar_mes' ano=ano mes=mes %}"
@@ -73,20 +84,26 @@
     <div class="row mb-4">
         <div class="col-12">
             <div class="card scale-card shadow-sm border-0">
-                <div class="card-header border-0">
+                <div class="card-header border-0 d-flex flex-wrap justify-content-between align-items-center gap-3">
                     <h5 class="card-title mb-0">
                         <i class="fas fa-plus-circle me-2 text-primary"></i>Nova Estrutura de Escala
                     </h5>
+                    <button type="submit" form="formCriarEstrutura" class="btn btn-primary btn-create-structure ms-auto">
+                        <i class="fas fa-plus me-2"></i>Criar Estrutura
+                    </button>
                 </div>
                 <div class="card-body">
-                    <form method="post" id="formCriarEstrutura">
+                    <form method="post" id="formCriarEstrutura" class="row g-3 align-items-end">
                         {% csrf_token %}
                         <input type="hidden" name="acao" value="criar_estrutura">
-                        <div class="d-flex flex-row align-items-center gap-2">
-                            <input type="date" class="form-control" name="data" id="data" required lang="pt-BR" placeholder="dd/mm/2025">
-                            <button type="submit" class="btn btn-primary btn-create-structure">
-                                <i class="fas fa-plus me-2"></i>Criar Estrutura
-                            </button>
+                        <div class="col-md-6 col-lg-4">
+                            <label for="data" class="form-label">Data da Escala</label>
+                            <input type="date" class="form-control" name="data" id="data" required lang="pt-BR">
+                        </div>
+                        <div class="col-12 col-md">
+                            <div class="form-hint">
+                                Escolha a data desejada para iniciar a estrutura da escala. Depois, prossiga pelas etapas de puxar dados e otimizar.
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -200,7 +217,43 @@
         </div>
     </div>
 
-    <!-- Bloco de instruções removido -->
+    <!-- Guia de Uso -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card scale-card scale-guidance shadow-sm border-0">
+                <div class="card-header border-0">
+                    <h6 class="card-title mb-0">
+                        <i class="fas fa-info-circle me-2 text-primary"></i>Como usar o sistema de escalas
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="guidance-step">
+                                <span class="guidance-icon text-primary"><i class="fas fa-plus"></i></span>
+                                <h6 class="guidance-title">Criar estrutura</h6>
+                                <p class="guidance-text">Defina a data e abra a grade da escala para dar início à organização das equipes.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="guidance-step">
+                                <span class="guidance-icon text-info"><i class="fas fa-download"></i></span>
+                                <h6 class="guidance-title">Puxar dados</h6>
+                                <p class="guidance-text">Traga os serviços necessários e mantenha a lista sincronizada com as solicitações.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="guidance-step">
+                                <span class="guidance-icon text-danger"><i class="fas fa-paint-brush"></i></span>
+                                <h6 class="guidance-title">Finalizar formatação</h6>
+                                <p class="guidance-text">Ajuste agrupamentos, finalize a precificação e gere o arquivo pronto para envio.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
